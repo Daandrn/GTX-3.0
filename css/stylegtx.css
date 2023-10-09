@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+body {
+    height: 100vh;
+    margin: 0 0 0 0;
+    background-color: black;
+}
+
+h1 {
+    margin: 0px;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-radius: 0 0 7px 7px;
+    background-color: #1FDBB7;
+}
+
+.navegador nav{
+    background-color: #262626;
+    border-radius: 0 0 7px 7px;
+}
+
+.navegador ul{
+    height: 50px;
+    display: flex;
+    justify-content: end;
+    margin: 0px 250px;
+}
+
+.navegador ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    list-style: none;
+}
+
+.navegador a {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+main {
+    min-height: calc(100vh - 200px);
+    background-color: #525252;
+    border-radius: 0 0 7px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#separador {
+    display: flex;
+    flex-direction: row;
+}
+
+#quemsomos {
+    text-align: center;
+    width: 33.33%;
+    padding: 10px;
+    background-color: silver;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+#formularios {
+    display: flex;
+    justify-content: center;
+    background-color: #262626;
+    height: 250px;
+    width: 100%;
+    color: white;
+    padding: 10px;
+    border-radius: 0 0 7px 7px;
+}
+
+#formularios h1 {
+    text-align: center;
+}
+
+#login form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#login input {
+    margin: 3px 0 3px 0;
+    width: 210px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login label{
+    display: inline-block;
+    width: 45px;
+}
+
+#login input#login {
+    width: 93px;
+    margin-left: 49px;
+}
+
+#login button {
+    width: 93px;
+}
+
+#recrut form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#recrut input {
+    margin: 3px 0 3px 0;
+    width: 210px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#recrut label{
+    display: inline-block;
+    width: 75px;
+}
+
+#recrut input#solicitar {
+    width: 140px;
+    margin-left: 79px;
+}
+
+#recrut select {
+    width: 218px;
+}
+
+/** imagem no index **/
+#imagemind {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	min-height: 405px;
+}
+
+#imagemind img {
+	height: 300px;
+	width: 300px;
+	transition: height 0.7s, width 0.7s;
+}
+
+#imagemind img:hover {
+	height: 400px;
+	width: 400px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    color: white;
+    background-color: black;
+}
+
+footer p {
+    margin: 5px;
+}
