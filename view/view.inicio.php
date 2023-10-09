@@ -57,6 +57,10 @@
                             <input type="text" name="nome" id="nome" maxlength="40" size="40" pattern="[A-Za-z\s']+" placeholder="Nome" title="Insira seu nome sem caracteres especiais." required>
                         </div>
                         <div>
+                            <label for="nick">Nick: </label>
+                            <input type="text" name="nick" id="nick" maxlength="40" size="40" pattern="[a-zA-Z0-9]*" placeholder="Nickname" title="Insira seu nick/origin." required>
+                        </div>
+                        <div>
                             <label for="plataforma">Plataforma: </label>
                             <select name="plataforma" id="plataforma" required>
                                 <option value=""></option>
@@ -64,10 +68,6 @@
                                     <option value="<? echo $plat['id'];?>"><?echo $plat['descricao'];?></option>
                                 <?endforeach;?>
                             </select>
-                        </div>
-                        <div>
-                        <label for="nick">Nick: </label>
-                            <input type="text" name="nick" id="nick" maxlength="40" size="40" pattern="[a-zA-Z0-9]*" placeholder="Nickname" title="Insira seu nick/origin." required>
                         </div>
                         <div>
                             <input type="submit" value="Solicitar recrutamento" id="solicitar">
