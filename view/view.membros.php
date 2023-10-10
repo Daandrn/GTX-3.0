@@ -24,12 +24,6 @@
         </div>
     </header>
     <main class="principal">
-        <div>
-            <form method="POST">
-                <input type="hidden" name="formLogado" value="form_sair" >
-                <input type="submit" value="Sair" id="sair">
-            </form>
-        </div>
     </main>
     <footer>
         <p>Ghost tóxic team&trade;</p>

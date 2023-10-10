@@ -17,19 +17,13 @@
                 <ul>
                     <li><a href="/control/control.inicio.php" >Inicio</a></li>
                     <li><a href="/control/control.arealogada.php">Área logada</a></li>
-                    <li><a href="/control/control.salavideos.php">Sala de videos</a></li>
+                    <li><a href="/control/control.saladevideos.php">Sala de videos</a></li>
                     <li><a href="/control/control.membros.php">Membros</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main class="principal">
-        <div>
-            <form method="POST">
-                <input type="hidden" name="formLogado" value="form_sair" >
-                <input type="submit" value="Sair" id="sair">
-            </form>
-        </div>
     </main>
     <footer>
         <p>Ghost tóxic team&trade;</p>
