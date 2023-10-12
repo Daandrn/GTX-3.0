@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "/../funcoes/func.verificasessao.php";
+require __DIR__ . "/../funcoes/func.verificaSessao.php";
 
 verificaSessao();
 
@@ -20,6 +20,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-require __DIR__ . "/../view/view.arealogada.php";
+require __DIR__ . "/../view/view.areaLogada.php";
 
 ?>

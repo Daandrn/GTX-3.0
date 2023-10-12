@@ -1,6 +1,6 @@
 <?php 
 
 echo "fazer";
-include __DIR__.'/../view/view.recuperanha.php';
+include __DIR__.'/../view/view.recuperaSenha.php';
 
 ?>

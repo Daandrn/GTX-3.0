@@ -16,8 +16,8 @@
             <nav>
                 <ul>
                     <li><a href="/control/control.inicio.php" >Inicio</a></li>
-                    <li><a href="/control/control.arealogada.php">Área logada</a></li>
-                    <li><a href="/control/control.saladevideos.php">Sala de videos</a></li>
+                    <li><a href="/control/control.areaLogada.php">Área logada</a></li>
+                    <li><a href="/control/control.salaVideos.php">Sala de videos</a></li>
                     <li><a href="/control/control.membros.php">Membros</a></li>
                 </ul>
             </nav>

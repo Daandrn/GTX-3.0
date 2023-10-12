@@ -1,5 +1,5 @@
 <?php 
 
-require __DIR__ . "/../view/view.salavideos.php";
+require __DIR__ . "/../view/view.salaVideos.php";
 
 ?>
