@@ -109,6 +109,13 @@ main {
     width: 93px;
 }
 
+#respostaLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
 #recrut form {
     display: flex;
     flex-direction: column;
