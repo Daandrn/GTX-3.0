@@ -43,6 +43,9 @@
                             <button onclick="window.location.href='/../control/control.recuperasenha.php'";>Esqueci senha</button>
                         </div>
                     </form>
+                    <div id="respostaLogin">
+                        <?php if (isset($responseLogin)) {echo $responseLogin;}?>
+                    </div>
                 </div>
                 <div id="quemsomos">
                     <h1>Quem somos</h1>
