@@ -1,5 +1,7 @@
 <?php 
-
+/*
+Verifica se a pessoa já tem uma sessao logada ativa e, caso não, limpo o array da sessao e destroi a sessão
+ */
 function verificaSessao() {
 
     session_start();
