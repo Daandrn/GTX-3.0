@@ -14,7 +14,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
             require __DIR__ . "/../funcoes/func.login.php";
 
-            login($usuarioLogin, $senhaLogin);
+            $responseLogin = login($usuarioLogin, $senhaLogin);
 
             break;
 
@@ -31,7 +31,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
     }
 }
-
 require __DIR__ . "/../view/view.inicio.php";
 
 ?>
