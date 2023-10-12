@@ -26,6 +26,10 @@ CREATE TABLE statusmembro (
     status_solicit INT PRIMARY KEY UNIQUE,
     descricao TEXT
 );
+CREATE TABLE plataformagame (
+    id INT PRIMARY KEY UNIQUE,
+    descricao TEXT
+);
 CREATE TABLE pessoa (
     id INT PRIMARY KEY UNIQUE,
     nome VARCHAR(30) NOT NULL,
@@ -33,14 +37,10 @@ CREATE TABLE pessoa (
     plataforma INT,
     status_solicit INT NOT NULL,
     senha TEXT,
-    FOREIGN KEY (status_solicit) REFERENCES statusmembro(status_solicit)
+    FOREIGN KEY (status_solicit) REFERENCES statusmembro(status_solicit),
     FOREIGN KEY (plataforma) REFERENCES plataformagame(id)
 );
 CREATE TABLE plataformastream (
-    id INT PRIMARY KEY UNIQUE,
-    descricao TEXT
-);
-CREATE TABLE plataformagame (
     id INT PRIMARY KEY UNIQUE,
     descricao TEXT
 );
@@ -91,7 +91,7 @@ INSERT INTO plataformagame (id, descricao) VALUES
 
 -- cria um usuário administrador com senha '456' (que deve ser alterado posteriormente)
 INSERT INTO pessoa (id, nome, nick, plataforma, status_solicit, senha) VALUES 
-(1, 'Administrador', 'adm', 'PC', 4, '456');
+(1, 'Administrador', 'adm', 1, 4, '456');
 
 INSERT INTO canalstream (id, plataforma, link_canal, nickstream) VALUES
 (1, NULL, NULL, NULL);
