@@ -38,16 +38,16 @@ class pessoa {
             
             salvaPessoa($this->idPessoa, $this->nomePessoa, $this->nickPessoa, $this->plataformaPessoa, $this->statusPessoa);
 
-            $retornoPessoa = "Pessoa incluída com sucesso!";
+            $retornoPessoa = "Solicitação realizada com sucesso!";
 
         } elseif (verificaPessoa($nickPessoa)) {
-            $retornoPessoa = "A pessoa com nick $nickPessoa já existe!";
+            $retornoPessoa = "Erro: O nick \"$nickPessoa\" já existe!";
         }
 
         return $retornoPessoa;
     }
 
-    /*function excluiPessoa($idPessoa) {
+    function excluiPessoa($idPessoa) {
 
         require __DIR__ . "/../funcoes/func.excluirPessoa.php";
                 
@@ -59,12 +59,12 @@ class pessoa {
         }
 
         return $retornoExclusao;
-    }*/
+    }
 
 
-    /*function alteraPessoa() {
+    function alteraPessoa() {
         
-    }*/
+    }
 
 }
 
