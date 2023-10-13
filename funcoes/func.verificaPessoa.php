@@ -6,7 +6,7 @@ function verificaPessoa($nickName){
 
     require __DIR__ . "/../configuracao/conexao.php";
     require __DIR__ . "/../control/control.inicio.php";
-
+    try {
     $consulta = $conexao->prepare("SELECT * FROM pessoa WHERE nick = :nick");
     $consulta->bindParam(':nick', $nickName);
     $consulta->execute();
@@ -22,6 +22,8 @@ function verificaPessoa($nickName){
         $resposta = false;
     }
     return $resposta;
+} catch (PDOException $erro) {
+    echo "Erro no banco de dados: " . $erro->getMessage();
+}
 };
-
 ?>
