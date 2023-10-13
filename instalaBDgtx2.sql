@@ -7,7 +7,7 @@ O sql abaixo deve ser utilizado após criar o servidor e a base de dados com as 
 */
 
 -- configurações da base de dados
-CREATE DATABASE "GTX"
+CREATE DATABASE "GTX2"
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
