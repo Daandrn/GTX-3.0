@@ -58,11 +58,11 @@
                     <form name="formrecrut" method="POST">
                         <div>
                             <label for="nome_recrut">Nome: </label>
-                            <input type="text" name="nome_recrut" id="nome_recrut" maxlength="40" size="40" pattern="[A-Za-z\s']+" placeholder="Nome" title="Insira seu nome sem caracteres especiais." required>
+                            <input type="text" name="nome_recrut" id="nome_recrut" maxlength="30" size="40" pattern="[A-Za-z\s']+" placeholder="Nome" title="Insira seu nome sem caracteres especiais." required>
                         </div>
                         <div>
                             <label for="nick_recrut">Nick: </label>
-                            <input type="text" name="nick_recrut" id="nick_recrut" maxlength="40" size="40" pattern="[a-zA-Z0-9]*" placeholder="Nickname" title="Insira seu nick/origin." required>
+                            <input type="text" name="nick_recrut" id="nick_recrut" maxlength="20" size="40" pattern="[a-zA-Z0-9]*" placeholder="Nickname" title="Insira seu nick/origin." required>
                         </div>
                         <div>
                             <label for="plataforma_recrut">Plataforma: </label>
@@ -78,6 +78,9 @@
                             <input type="submit" value="Solicitar recrutamento" id="solicitar">
                         </div>
                     </form>
+                    <div id="respostaRecrut">
+                        <?php if (isset($responseRecrut)) {echo $responseRecrut;}?>
+                    </div>
                 </div>
             </span>
         </div>
