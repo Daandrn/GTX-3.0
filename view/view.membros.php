@@ -24,6 +24,21 @@
         </div>
     </header>
     <main class="principal">
+        <div>
+            <table>
+                <caption>MEMBROS</caption>
+                <th style="width: 218px;">Nome</th><th style="width: 143px;">Origin</th><th style="width: 108px;">Cargo</th><th style="width: 143px;">Nick stream</th><th style="width: 78px;">plataforma</th>
+                <?php while ($resultado = $consulta->fetch(PDO::FETCH_ASSOC)):?>
+                <tr style="height: 30px;">
+                    <td><?php echo $resultado['nome'];?></td>
+                    <td><?php echo $resultado['nick'];?></td>
+                    <td><?php echo $resultado['cargo'];?></td>
+                    <td><a href="<?php echo $resultado['link_canal'];?>"><?php echo $resultado['nickstream'];?></a></td>
+                    <td><?php echo $resultado['plataforma'];?></td>
+                </tr>
+                <?php endwhile ?>
+            </table>
+        </div>
     </main>
     <footer>
         <p>Ghost tóxic team&trade;</p>
