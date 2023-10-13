@@ -2,7 +2,7 @@
 
 $bancoDeDados = "pgsql";
 $host = "localhost";
-$baseDeDados = "GTX";
+$baseDeDados = "GTX2";
 $usuario = "postgres";
 $senha = "123";
 
