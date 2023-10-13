@@ -143,6 +143,13 @@ main {
     width: 140px;
 }
 
+#respostaRecrut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+}
+
 /** imagem no index **/
 #imagemind {
 	display: flex;

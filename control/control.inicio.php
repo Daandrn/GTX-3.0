@@ -26,7 +26,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
             require __DIR__ . "/../classe/class.pessoa.php";
 
-            // instanciar o recrutado aqui
+            $recrutado = new pessoa();
+            $recrutado->pendente();
+            $responseRecrut = $recrutado->incluiPessoa($nomeRecrut, $nickRecrut, $plataformaRecrut);
 
             break;
     }
