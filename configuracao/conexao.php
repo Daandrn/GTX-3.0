@@ -12,7 +12,7 @@ try {
     $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch (\Throwable $erro){
-    echo "Erro". $erro->getMessage();
+    echo "Erro no banco de dados: ". $erro->getMessage();
 }
 
 ?>

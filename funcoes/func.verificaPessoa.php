@@ -5,7 +5,7 @@ Verifica se o nick informado por argumento está presente no banco de dados e re
 function verificaPessoa($nickName){
 
     require __DIR__ . "/../configuracao/conexao.php";
-    require __DIR__ . "/../control/control.inicio.php";
+    
     try {
     $consulta = $conexao->prepare("SELECT * FROM pessoa WHERE nick = :nick");
     $consulta->bindParam(':nick', $nickName);

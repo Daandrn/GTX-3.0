@@ -47,7 +47,7 @@ class pessoa {
         return $retornoPessoa;
     }
 
-    function excluiPessoa($idPessoa) {
+    /*function excluiPessoa($idPessoa) {
 
         require __DIR__ . "/../funcoes/func.excluirPessoa.php";
                 
@@ -59,7 +59,7 @@ class pessoa {
         }
 
         return $retornoExclusao;
-    }
+    }*/
 
 
     /*function alteraPessoa() {

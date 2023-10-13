@@ -3,7 +3,7 @@ function salvaPessoa($id, $nome, $nick, $plataforma, $status_solicit) {
     try {
         require __DIR__ . "/../configuracao/conexao.php";
 
-        $cosulta = $conexao->prepare("INSERT INTO pessoa VALUES (:id, ':nome', ':nick', :plataforma, ':status_solicit', '123456')");
+        $consulta = $conexao->prepare("INSERT INTO pessoa VALUES (:id, :nome, :nick, :plataforma, :status_solicit, '123456')");
         $consulta->bindParam(':id', $id);
         $consulta->bindParam(':nome', $nome);
         $consulta->bindParam(':nick', $nick);

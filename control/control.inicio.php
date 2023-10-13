@@ -24,7 +24,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             $nickRecrut = $_POST['nick_recrut'];
             $plataformaRecrut = $_POST['plataforma_recrut'];
 
-            require __DIR__ . "/../classe/class.pessoa.php";
+            require_once __DIR__ . "/../classe/class.pessoa.php";
 
             $recrutado = new pessoa();
             $recrutado->pendente();
