@@ -45,7 +45,7 @@ h1 {
     text-decoration: none;
 }
 
-main {
+.principal {
     min-height: calc(100vh - 200px);
     background-color: #525252;
     border-radius: 0 0 7px 7px;
@@ -183,4 +183,46 @@ footer {
 
 footer p {
     margin: 5px;
+}
+
+/** MEMBROS **/
+#membros {
+    margin: 30px 0 88px;
+    border-radius: 7px 7px 0 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: #c2bfbf;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+caption {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: white;
+}
+
+#membros thead th{
+    padding: 12px 15px;
+    color: white;
+}
+
+#membros thead tr{
+    background-color: #1FDBB7;
+}
+
+tr#lista td {
+    padding: 16px 15px;
+    text-align: center;
+}
+
+#linkcanal {
+    text-decoration: none;
+}
+
+#membros tr:last-of-type {
+    border-bottom: 2px solid #1FDBB7;
+}
+
+#membros tr:nth-of-type(even) {
+    background-color: #e4e1e1;
 }
