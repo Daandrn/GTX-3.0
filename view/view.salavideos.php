@@ -15,15 +15,23 @@
         <div class="navegador">
             <nav>
                 <ul>
-                    <li><a href="/control/control.inicio.php" >Inicio</a></li>
-                    <li><a href="/control/control.areaLogada.php">Área logada</a></li>
-                    <li><a href="/control/control.salaVideos.php">Sala de videos</a></li>
-                    <li><a href="/control/control.membros.php">Membros</a></li>
+                    <li><a class="aNavegador" href="/control/control.inicio.php" >Inicio</a></li>
+                    <li><a class="aNavegador" href="/control/control.areaLogada.php">Área logada</a></li>
+                    <li><a class="aNavegador" href="/control/control.salaVideos.php">Sala de videos</a></li>
+                    <li><a class="aNavegador" href="/control/control.membros.php">Membros</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main class="principal">
+        <h1 id="tituloVideos">
+            Sala de videos
+        </h1>
+        <section id="videos">
+            <div >
+                <video src="/css/videos/introgtx.mp4" autoplay type="video/mp4"></video>
+            </div>
+        </section>
     </main>
     <footer>
         <p>Ghost tóxic team&trade;</p>
