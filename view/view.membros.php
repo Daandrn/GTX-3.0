@@ -25,15 +25,19 @@
     </header>
     <main class="principal">
         <div>
-            <table>
+            <table id="membros">
                 <caption>MEMBROS</caption>
+                <thead>
+                <tr>
                 <th style="width: 218px;">Nome</th><th style="width: 143px;">Origin</th><th style="width: 108px;">Cargo</th><th style="width: 143px;">Nick stream</th><th style="width: 78px;">plataforma</th>
+                </tr>
+                </thead>
                 <?php while ($resultado = $consulta->fetch(PDO::FETCH_ASSOC)):?>
-                <tr style="height: 30px;">
+                <tr id="lista">
                     <td><?php echo $resultado['nome'];?></td>
                     <td><?php echo $resultado['nick'];?></td>
                     <td><?php echo $resultado['cargo'];?></td>
-                    <td><a href="<?php echo $resultado['link_canal'];?>"><?php echo $resultado['nickstream'];?></a></td>
+                    <td><a id="linkcanal" href="<?php echo $resultado['link_canal'];?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $resultado['nickstream'];?></a></td>
                     <td><?php echo $resultado['plataforma'];?></td>
                 </tr>
                 <?php endwhile ?>
