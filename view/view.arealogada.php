@@ -15,10 +15,10 @@
         <div class="navegador">
             <nav>
                 <ul>
-                    <li><a href="/control/control.inicio.php" >Inicio</a></li>
-                    <li><a href="/control/control.areaLogada.php">Área logada</a></li>
-                    <li><a href="/control/control.salaVideos.php">Sala de videos</a></li>
-                    <li><a href="/control/control.membros.php">Membros</a></li>
+                    <li><a class="aNavegador" href="/control/control.inicio.php" >Inicio</a></li>
+                    <li><a class="aNavegador" href="/control/control.areaLogada.php">Área logada</a></li>
+                    <li><a class="aNavegador" href="/control/control.salaVideos.php">Sala de videos</a></li>
+                    <li><a class="aNavegador" href="/control/control.membros.php">Membros</a></li>
                 </ul>
             </nav>
         </div>

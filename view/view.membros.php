@@ -15,10 +15,10 @@
         <div class="navegador">
             <nav>
                 <ul>
-                    <li><a href="/control/control.inicio.php" >Inicio</a></li>
-                    <li><a href="/control/control.arealogada.php">Área logada</a></li>
-                    <li><a href="/control/control.salavideos.php">Sala de videos</a></li>
-                    <li><a href="/control/control.membros.php">Membros</a></li>
+                    <li><a class="aNavegador" href="/control/control.inicio.php" >Inicio</a></li>
+                    <li><a class="aNavegador" href="/control/control.arealogada.php">Área logada</a></li>
+                    <li><a class="aNavegador" href="/control/control.salavideos.php">Sala de videos</a></li>
+                    <li><a class="aNavegador" href="/control/control.membros.php">Membros</a></li>
                 </ul>
             </nav>
         </div>
@@ -29,7 +29,7 @@
                 <caption>MEMBROS</caption>
                 <thead>
                 <tr>
-                <th style="width: 218px;">Nome</th><th style="width: 143px;">Origin</th><th style="width: 108px;">Cargo</th><th style="width: 143px;">Nick stream</th><th style="width: 78px;">Plataforma</th>
+                <th style="width: 220px;">Nome</th><th style="width: 143px;">Origin</th><th style="width: 108px;">Cargo</th><th style="width: 143px;">Nick stream</th><th style="width: 78px;">Plataforma</th>
                 </tr>
                 </thead>
                 <?php while ($resultado = $consulta->fetch(PDO::FETCH_ASSOC)):?>
