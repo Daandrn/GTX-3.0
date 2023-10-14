@@ -29,7 +29,7 @@
                 <caption>MEMBROS</caption>
                 <thead>
                 <tr>
-                <th style="width: 218px;">Nome</th><th style="width: 143px;">Origin</th><th style="width: 108px;">Cargo</th><th style="width: 143px;">Nick stream</th><th style="width: 78px;">plataforma</th>
+                <th style="width: 218px;">Nome</th><th style="width: 143px;">Origin</th><th style="width: 108px;">Cargo</th><th style="width: 143px;">Nick stream</th><th style="width: 78px;">Plataforma</th>
                 </tr>
                 </thead>
                 <?php while ($resultado = $consulta->fetch(PDO::FETCH_ASSOC)):?>
