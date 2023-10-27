@@ -65,6 +65,11 @@ CREATE TABLE recuperasenha(
     FOREIGN KEY (solicit_senha) REFERENCES statussenha(solicit_senha)
 );
 
+CREATE TABLE versao (
+    id INT PRIMARY KEY,
+    descricao text
+);
+
 -- Insere os dados constantes da aplicação
 INSERT INTO statusmembro (status_solicit, descricao) VALUES 
 (0, 'Pendente'),
@@ -95,3 +100,7 @@ INSERT INTO pessoa (id, nome, nick, plataforma, status_solicit, senha) VALUES
 
 INSERT INTO canalstream (id, plataforma, link_canal, nickstream) VALUES
 (1, NULL, NULL, NULL);
+
+-- versiona o banco de dados
+INSERT INTO versao (id, descricao) VALUES 
+(1, 'Versao');

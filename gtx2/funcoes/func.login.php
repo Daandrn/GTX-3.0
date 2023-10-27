@@ -25,7 +25,7 @@ function login($nick, $password){
                     'nick' => $resultado['nick']
                 );
                 $mensagem = "Login efetuado com sucesso!";
-                header("location: /../control/control.arealogada.php");
+                header("location: /gtx2/control/control.arealogada.php");
                 exit;
             }
             // se a consulta retornar pessoa com cuja solicitação ainda esta pendente, retorna aviso.

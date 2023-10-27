@@ -9,7 +9,7 @@ function sair() {
     session_regenerate_id(true);
     session_destroy();
 
-    header("location: /../control/control.inicio.php");
+    header("location: /gtx2/control/control.inicio.php");
 
     return;
 

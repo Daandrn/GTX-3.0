@@ -11,7 +11,7 @@ function verificaSessao() {
         session_regenerate_id();
         $_SESSION = array();
         session_destroy();
-        header("location: /../control/control.inicio.php");
+        header("location: /gtx2/control/control.inicio.php");
 
     }
 

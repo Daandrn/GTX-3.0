@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTX</title>
-    <link rel="stylesheet" href="/css/stylegtx.css">
-    <link rel="shortcut icon" href="/css/imagens/logotrans.png" type="image/x-png">
+    <link rel="stylesheet" href="/gtx2/css/stylegtx.css">
+    <link rel="shortcut icon" href="/gtx2/css/imagens/logotrans.png" type="image/x-png">
 </head>
 <body>
     <header>
@@ -15,10 +15,10 @@
         <div class="navegador">
             <nav>
                 <ul>
-                    <li><a class="aNavegador" href="/control/control.inicio.php" >Inicio</a></li>
-                    <li><a class="aNavegador" href="/control/control.areaLogada.php">Área logada</a></li>
-                    <li><a class="aNavegador" href="/control/control.salavideos.php">Sala de videos</a></li>
-                    <li><a class="aNavegador" href="/control/control.membros.php">Membros</a></li>
+                    <li><a class="aNavegador" href="/gtx2/control/control.inicio.php" >Inicio</a></li>
+                    <li><a class="aNavegador" href="/gtx2/control/control.areaLogada.php">Área logada</a></li>
+                    <li><a class="aNavegador" href="/gtx2/control/control.salaVideos.php">Sala de videos</a></li>
+                    <li><a class="aNavegador" href="/gtx2/control/control.membros.php">Membros</a></li>
                 </ul>
             </nav>
         </div>
@@ -40,7 +40,7 @@
                         <div>
                             <input type="hidden" name="formInicio" value="form_login">
                             <input type="submit" value="Login" id="login">
-                            <button onclick="window.location.href='/../control/control.recuperasenha.php'";>Esqueci senha</button>
+                            <button onclick="window.location.href='/gtx2/control/control.recuperaSenha.php'";>Esqueci senha</button>
                         </div>
                     </form>
                     <div id="respostaLogin">
@@ -85,7 +85,7 @@
             </span>
         </div>
         <div id="imagemind">
-            <img src="/css/imagens/logotrans.png">
+            <img src="/gtx2/css/imagens/logotrans.png">
         </div>
     </main>
     <footer>
