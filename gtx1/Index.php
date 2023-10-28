@@ -117,6 +117,20 @@
     <footer id="rodape">
         <p>Todos os direitos reservados&copy; 2022</p>
         <p>Ghost Tóxic Team &trade;</p>
+        <div id="versionaApp">
+            <form method="POST">
+                <input type="hidden" name="versaoAPP" value="2">
+                <input type="submit" value="Voltar para versao 2.0">
+            </form>
+            <?php 
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['versaoAPP'])) { 
+                $versao = $_POST['versaoAPP']; 
+                require __DIR__ . "/../gtx2/funcoes/func.salvaVersao.php";
+                alteraVersao($versao);
+                header("location: /index.php");
+                }
+                ?>
+        </div>
     </footer>
 </body>
 

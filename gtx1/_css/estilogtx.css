@@ -63,6 +63,12 @@ div#titulo h1{
 	 margin: 0%;
 }
 
+#versionaApp {
+	position: absolute;
+	align-self: self-end;
+	margin: 15px;
+}
+
 /** sombreamento ao passar mouse nas opções do menu **/
 
 nav#menu {
