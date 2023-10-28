@@ -1,0 +1,502 @@
+@charset "UTF-8";
+
+body {
+	margin: 0px 0px 0px 0px;
+	background-color: black;
+	background-attachment: fixed;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+}
+
+header#cabecalho {
+	position: relative;
+	background-color: #262626;
+	min-width: 100%;
+	height: 105px;
+
+}
+
+main#interface {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background-color: #525252;
+	width: 100%;
+	min-height: calc(100vh - 219px);
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+/** estilo rodape **/
+footer#rodape {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	font-size: 18px;
+	color: #E4E4E4;
+	background-color: black;
+	width: 100%;
+	height: 114px;
+}
+
+#maintitulo{
+	display: flex;
+	justify-content: center;
+}
+
+#maintabela{
+	display: flex;
+	justify-content: center;
+}
+
+div#titulo {
+	 background-color: #1FDBB7;
+	 text-align: center;
+	 border-bottom-right-radius: 8px;
+	 border-bottom-left-radius: 8px;
+}
+
+div#titulo h1{
+	 margin: 0%;
+}
+
+/** sombreamento ao passar mouse nas opções do menu **/
+
+nav#menu {
+	 width: 100%;
+	 height: calc(100% - 38px);
+	 position: relative;
+	 display: flex;
+	 justify-content: flex-end;
+	 align-items: center;
+}
+
+nav#menu ul {
+	 position: relative;
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 height: 100%;
+	 margin: 0px 100px 0px 0px;
+}
+
+nav#menu li {
+	 list-style: none;
+	 display: inline-flex;
+	 align-items: center;
+	 transition: background-color 0.7s;
+	 border-bottom-right-radius: 8px;
+	 border-bottom-left-radius: 8px;
+	 height: 100%;
+	 padding: 0px 5px 0px 5px;
+}
+
+nav#menu li:hover {
+	background-color: black;
+}
+
+nav#menu a {
+	 text-decoration: none;
+	 color: #E4E4E4;
+	 text-shadow: 0px 0px 5px aqua;
+	 transition: text-shadow 0.4s;
+	 font-size: 20px;
+}
+
+nav#menu a:hover {
+	 text-shadow: 0px 0px 10px black;
+}
+
+div.textos {
+	 opacity: 0.6;
+	 background-color: silver;
+	 padding-left: 20px;
+	 padding-right: 20px;
+	 transition: opacity 0.7s;
+	 border-bottom-right-radius: 8px;
+	 border-bottom-left-radius: 8px;
+}
+
+div.textos:hover {
+	opacity: 1;
+}
+
+div.textos p{
+	 padding-left: 20px;
+	 padding-right: 20px;
+	 text-indent: 30px;
+	 font-size: 25px;
+}
+
+div#imagemlogo img {
+	 position: relative;
+	 left: 800px;
+	 box-shadow: 0px 0px 20px black;
+	 opacity: 0.8;
+	 transition: opacity 0.7s;
+}
+
+div#imagemlogo img:hover {
+	 opacity: 1;
+}
+
+/** arquivo membros **/
+#divmembros{
+	display: flex;
+	justify-content: center;
+}
+
+div.semRegistro{
+	align-self: center;
+}
+
+.membro-lista {
+	display: flex;
+	background-color: silver;
+	opacity: 0.8;
+	border: 1px solid black;
+	padding: 10px;
+	border-radius: 8px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.membro-lista th {
+	padding: 5px;
+}
+
+.membro-lista tr{
+	height: 30px;
+	text-align: center;
+}
+  
+.membro-lista td {
+	padding: 5px;
+	border-bottom: 1px solid black;
+	border-radius: 8px;
+}
+
+.membro-lista td:hover {
+	  text-shadow: 0px 0px 5px black;
+	  transition: text-shadow 0.4s;
+}
+
+
+/** imagem no index **/
+#imagemind {
+	display: flex;
+	justify-content: center;
+	min-height: 405px;
+
+}
+
+#imagemind img {
+	height: 300px;
+	width: 300px;
+	transition: height 0.7s, width 0.7s;
+}
+
+#imagemind img:hover {
+	height: 400px;
+	width: 400px;
+}
+
+
+/** ajusta o alinhamento do formulario de login **/
+
+.formlogin div label{
+	width: 50px;
+	display: inline-flex;
+}
+
+.formlogin div {
+	margin-top: 2px;
+}
+
+.formlogin {
+	width: 300px;
+	padding: 1%;
+}
+
+.formlogin input {
+	border-radius: 5px;
+	border-color: silver;
+	cursor: pointer;
+}
+
+.formlogin button {
+	border-radius: 5px;
+	border-color: silver;
+	cursor: pointer;
+}
+
+/** ajusta o alinhamento do formulario de recrutamento **/
+
+.formrecrut div label{
+	width: 75px;
+	display: inline-flex;
+}
+
+.formrecrut div{
+	margin-bottom: 2px;
+}
+
+.formrecrut {
+	width: 300px;
+	padding-left: 1%;
+}
+
+.formrecrut input {
+	border-radius: 5px;
+	border-color: silver;
+	cursor: pointer;
+}
+
+.formrecrut select {
+	border-radius: 5px;
+	border-color: silver;
+	cursor: pointer;
+}
+
+/** ajusta o alinhamento do formulario de esqueci senha **/
+
+.formesquecisenha div label{
+	width: 85px;
+	display: inline-flex;
+}
+
+.formesquecisenha div {
+	margin-bottom: 2px;
+}
+
+.formesquecisenha {
+	width: 300px;
+	padding: 1%;
+}
+
+.formesquecisenha input {
+	border-radius: 5px;
+	border-color: silver;
+	cursor: pointer;
+}
+
+/** reposta de solicitação de recrutamento **/
+
+.resprecrut {
+	margin-bottom: 5px;
+}
+
+/** SEÇÃO ADM USUARIO **/
+
+#boasvindas {
+	padding-left: 1%;
+}
+
+#admusuario {
+	display: flex;
+	justify-content: center;
+}
+
+#admusuario div{
+	display: flex;
+	width: 100%;
+	padding: 1%;
+}
+
+#formcanalstream {
+	justify-content: flex-end;
+}
+
+#formcanalstream form{
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	padding: 2%;
+	border-radius: 8px;
+	border: 1px solid black;
+	box-shadow: 0px 0px 5px black;
+}
+
+#formcanalstream form label{
+	width: 85px;
+}
+
+#formcanalstreaminput {
+	width: 85px;
+	margin-left: 87px;
+	margin-top: 1%;
+}
+
+#perfilesenha {
+	justify-content: flex-start;
+	width: auto;
+}
+
+#perfilesenha form {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	padding: 2%;
+	border-radius: 8px;
+	border: 1px solid black;
+	box-shadow: 0px 0px 5px black;
+}
+
+#perfilesenha form label{
+	width: 80px;
+}
+
+#perfilesenhainput {
+	width: 85px;
+	margin-left: 82px;
+	margin-top: 1%;
+}
+
+div#divalteranick {
+	position: absolute;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+	background-color: #262626;
+	border-radius: 8px;
+	box-shadow: 0px 0px 5px black;
+	color: white;
+	width: 300px !important;
+	height: 250px;
+}
+
+#sectionalteranick {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1;
+	background-color: transparent;
+	transition: background-color 0.7s;
+}
+
+/** tabelas da area logada **/
+table.solicitacaorecrutamento {
+	width: 850px;
+	background-color: silver;
+	opacity: 0.8;
+	border: 1px solid black;
+	border-radius: 8px;
+	box-shadow: 0px 0px 5px black;
+	
+}
+
+.solicitacaorecrutamento tr{
+  	height: 30px;
+    text-align: center;
+}
+
+.solicitacaorecrutamento td {
+	padding: 5px;
+	border-bottom: 1px solid black;
+	border-radius: 8px;
+}
+
+.solicitacaorecrutamento td:hover {
+	text-shadow: 0px 0px 15px black;
+	transition: text-shadow 0.4s;
+}
+
+#formtd{
+	display: inline-flex;
+}
+
+#formtd form{
+	margin-right: 2px;
+}
+
+#formtd input {
+	background-color: rgb(99, 98, 98) !important;
+	color: white;
+	opacity: 1 !important;
+	border-radius: 5px;
+
+}
+
+#formtd input:hover {
+	cursor: pointer;
+}
+
+#formtd select {
+	background-color: rgb(99, 98, 98) !important;
+	color: white;
+	opacity: 1 !important;
+	border-radius: 5px;
+
+}
+
+#formtd select:hover {
+	cursor: pointer;
+}
+
+/** seção de recrutamento **/
+#admrecrut {
+	display: flex;
+	justify-content: center;
+	margin-top: 5px;
+}
+
+/** seção de admmembros **/
+
+#admmembros {
+	display: flex;
+	justify-content: center;
+	margin-top: 5px;
+}
+
+/** seção de admoutros **/
+#admoutros {
+	display: flex;
+	justify-content: center;
+	margin-top: 5px;
+}
+
+/** seção de admoutros **/
+#admrecuperasenha {
+	display: flex;
+	justify-content: center;
+	margin-top: 5px;
+}
+
+/** botao sair **/
+
+#sairbotao {
+	padding: 1%;
+}
+
+#sairbotao input{
+	height: 30px;
+	width: 50px;
+}
+
+/** Sala de videos **/
+
+#salavideo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#salavideo video{
+	width: 533px;
+	height: 300px;
+	transition: width 0.7s, height 0.7s;
+}
+
+#salavideo video:hover{
+	width: 800px;
+	height: 450px;
+}
+
+#salavideo video::after {
+	background-color: black;
+}
