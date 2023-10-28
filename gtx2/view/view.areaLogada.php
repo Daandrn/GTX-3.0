@@ -76,7 +76,7 @@
                     <form method="POST">
                         <div>
                             <label for="">Nova senha</label>
-                            <input type="password" name="senha" id="" placeholder="Nova senha" maxlength="10" required>
+                            <input type="password" name="senha" id="" pattern="[0-9]*" placeholder="Nova senha" maxlength="10" title="Insira sua senha numérica." required>
                         </div>
                         <input type="hidden" name="formLogado" value="perfilSenha">
                         <input type="submit" value="Salvar Senha" id="salvarPerfil">
