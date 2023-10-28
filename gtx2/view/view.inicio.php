@@ -44,7 +44,17 @@
                         </div>
                     </form>
                     <div id="respostaLogin">
-                        <?php if (isset($responseLogin)) {echo $responseLogin;}?>
+                    <script>
+
+                        let respostaLogin = <?php $alert = isset($responseLogin) ? $responseLogin : 1;
+                            echo json_encode($alert);
+                            ?>;
+
+                        if (respostaLogin != 1) {
+                            alert(respostaLogin)
+                        }
+
+                        </script>
                     </div>
                 </div>
                 <div id="quemsomos">

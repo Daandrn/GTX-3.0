@@ -24,17 +24,16 @@ function login($nick, $password){
                     'id_sessao' => $resultado['id'],
                     'nick' => $resultado['nick']
                 );
-                $mensagem = "Login efetuado com sucesso!";
                 header("location: /gtx2/control/control.arealogada.php");
                 exit;
             }
             // se a consulta retornar pessoa com cuja solicitação ainda esta pendente, retorna aviso.
             elseif ($resultado['status_solicit'] == 0) {
-                $mensagem = "Aguardando aprovação!";
+                $mensagem = "Aguardando aprovação! entre em contato com um dos administradores ou aguarde.";
             }
             // se a consulta retornar pessoa com cuja senha esteja incorreta, retorna erro.
             elseif ($password != $resultado['senha']) {
-                $mensagem = "Senha incorreta!";
+                $mensagem = "Senha incorreta! tente novamente ou use o esqueci senha.";
             }
             
         } 
