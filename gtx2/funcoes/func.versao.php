@@ -5,7 +5,7 @@ function verificaVersao() {
     try {
 
         require __DIR__ . "/../configuracao/conexao.php";
-        $sql = ("SELECT id FROM versao");
+        $sql = ("SELECT id FROM versao WHERE selected = 1");
         $consulta = $conexao->prepare($sql);
         $consulta->execute();
 

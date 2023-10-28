@@ -6,7 +6,7 @@ function verificaSessao() {
 
     session_start();
 
-    if(!isset($_SESSION['nome'])){
+    if(!isset($_SESSION['nick'])){
 
         session_regenerate_id();
         $_SESSION = array();

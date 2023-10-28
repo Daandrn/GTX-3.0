@@ -2,7 +2,7 @@
 
 $url = $_SERVER['REQUEST_URI'];
 
-require __DIR__ . "/gtx2/model/model.versao.php";
+require __DIR__ . "/gtx2/funcoes/func.versao.php";
 
 if (
     $url == "/inicio.php" || 

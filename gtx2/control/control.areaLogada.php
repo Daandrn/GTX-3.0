@@ -17,7 +17,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
 
         case 'salvaVersao':
-            //echo '<script> confirm("Deseja realmente alterar a versão do aplicativo?") </script>';
             $versao = $_POST['versao'];
             require __DIR__ . "/../funcoes/func.salvaVersao.php";
             alteraVersao($versao);
@@ -25,7 +24,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
         
         case 'form_sair':
-            //echo '<script> confirm("Sua sessão será finalizada, deseja continuar?") </script>';
             require __DIR__ . "/../funcoes/func.sair.php";
             sair();
             break;
