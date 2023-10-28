@@ -66,8 +66,9 @@ CREATE TABLE recuperasenha(
 );
 
 CREATE TABLE versao (
-    id INT PRIMARY KEY,
-    descricao text
+    id INT UNIQUE,
+    descricao TEXT,
+    selected INT
 );
 
 -- Insere os dados constantes da aplicação
@@ -102,5 +103,6 @@ INSERT INTO canalstream (id, plataforma, link_canal, nickstream) VALUES
 (1, NULL, NULL, NULL);
 
 -- versiona o banco de dados
-INSERT INTO versao (id, descricao) VALUES 
-(1, 'Versao');
+INSERT INTO versao (id, descricao, selected) VALUES 
+(1, 'GTX V1', null),
+(2, 'GTX V2', 1);
