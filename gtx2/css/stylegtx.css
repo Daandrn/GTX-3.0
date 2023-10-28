@@ -392,12 +392,26 @@ tr#lista td {
     margin: 5px;
 }
 
-#rodapeLogado span {
+#versiona {
     display: flex;
-    flex-direction: column !important;
+    flex-direction: column;
     position: absolute;
     align-self: self-end;
     margin: 5px;
+}
+
+#versiona div {
+    display: flex;
+    flex-direction: row;
+}
+
+#versiona label {
+    width: 45px;
+    margin-right: 2px;
+}
+
+#versiona input {
+    margin-left: 52px;
 }
 
 #rodapeLogado p {

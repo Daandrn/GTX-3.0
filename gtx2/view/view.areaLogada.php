@@ -93,18 +93,20 @@
             <p>Todos os direitos reservados&copy;</p>
             <p>2023</p>
         </div>
-        <span>
+        <div id="versiona">
             <form method="post">
-                <label for="versao">Versao</label>
-                <select name="versao">
-                    <?php while ($resutado = $sql->fetch(PDO::FETCH_ASSOC)): ?>
-                    <option value="<?php echo $resutado['id'];?>" <?php if ($resutado['selected'] == 1) {echo "selected";} ?>><?php echo $resutado['descricao'];?></option>
-                    <?php endwhile; ?>
-                </select>
-                <input type="hidden" name="formLogado" value="salvaVersao">
-                <input type="submit" value="Salvar">
+                <div>
+                    <label for="versao">Versao</label>
+                    <select name="versao">
+                        <?php while ($resutado = $sql->fetch(PDO::FETCH_ASSOC)): ?>
+                        <option value="<?php echo $resutado['id'];?>" <?php if ($resutado['selected'] == 1) {echo "selected";} ?>><?php echo $resutado['descricao'];?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+                    <input type="hidden" name="formLogado" value="salvaVersao">
+                    <input type="submit" value="Salvar">
             </form>
-        </span>
+        </div>
     </footer>
 </body>
 </html>
