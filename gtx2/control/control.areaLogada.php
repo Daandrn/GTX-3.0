@@ -18,9 +18,12 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
         case 'salvaVersao':
             $versao = $_POST['versao'];
-            require __DIR__ . "/../funcoes/func.salvaVersao.php";
-            alteraVersao($versao);
-            header("location: /index.php");
+            require __DIR__ . "/../funcoes/func.versao.php";
+            if ($versao != verificaVersao()){
+                require __DIR__ . "/../funcoes/func.salvaVersao.php";
+                alteraVersao($versao);
+                header("location: /index.php");
+            }
             break;
         
         case 'form_sair':
