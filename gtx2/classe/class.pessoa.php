@@ -38,10 +38,10 @@ class pessoa {
             
             salvaPessoa($this->idPessoa, $this->nomePessoa, $this->nickPessoa, $this->plataformaPessoa, $this->statusPessoa);
 
-            $retornoPessoa = "Solicitação realizada com sucesso!";
+            $retornoPessoa = "Solicitação realizada com sucesso! Aguarde a aprovação de um dos administradores.";
 
         } elseif (verificaPessoa($nickPessoa)) {
-            $retornoPessoa = "Erro: O nick \"$nickPessoa\" já existe!";
+            $retornoPessoa = "Erro: O nick \"$nickPessoa\" já existe! tente novamente ou tente o recuperar senha.";
         }
 
         return $retornoPessoa;

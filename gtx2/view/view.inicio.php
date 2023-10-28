@@ -79,7 +79,17 @@
                         </div>
                     </form>
                     <div id="respostaRecrut">
-                        <?php if (isset($responseRecrut)) {echo $responseRecrut;}?>
+                        <script>
+
+                        let respostaRecrut = <?php $alert = isset($responseRecrut) ? $responseRecrut : 1;
+                                                echo json_encode($alert);
+                                                ?>;
+
+                        if (respostaRecrut != 1) {
+                            alert(respostaRecrut)
+                        }
+
+                        </script>
                     </div>
                 </div>
             </span>

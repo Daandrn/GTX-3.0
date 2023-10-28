@@ -26,4 +26,5 @@ function verificaPessoa($nickName){
     echo "Erro no banco de dados: " . $erro->getMessage();
 }
 };
+
 ?>
