@@ -39,11 +39,11 @@
                     <h3>Canal Stream</h3>
                     <div>
                         <label for="nickStream">Nick stream</label>
-                        <input type="text" name="nickStream" value="<?php echo $dadoStream['nickStream']; ?>" placeholder="Nickstream">
+                        <input type="text" name="nickStream" value="<?php echo $dadoStream['nickStream']; ?>" placeholder="Nickstream" maxlength="30">
                     </div>
                     <div>
                         <label for="linkstream">Link canal</label>
-                        <input type="text" name="linkStream" value="<?php echo $dadoStream['linkCanal']; ?>" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv.">
+                        <input type="text" name="linkStream" value="<?php echo $dadoStream['linkCanal']; ?>" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv." maxlength="50">
                     </div>
                     <div>
                         <label for="plataforma">Plataforma</label>
@@ -66,7 +66,7 @@
                         <h3>Perfil</h3>
                         <div>
                             <label for="">Nick/origin</label>
-                            <input type="text" name="origin" value="<?php echo $nickPerfil?>" required>
+                            <input type="text" name="origin" value="<?php echo $nickPerfil?>" maxlength="20" pattern="[a-zA-Z0-9]*" required>
                         </div>
                         <input type="hidden" name="formLogado" value="perfilNick">
                         <input type="submit" value="Salvar Nick" id="salvarPerfil">
@@ -76,7 +76,7 @@
                     <form method="POST">
                         <div>
                             <label for="">Nova senha</label>
-                            <input type="text" name="senha" id="" placeholder="Nova senha" required>
+                            <input type="password" name="senha" id="" placeholder="Nova senha" maxlength="10" required>
                         </div>
                         <input type="hidden" name="formLogado" value="perfilSenha">
                         <input type="submit" value="Salvar Senha" id="salvarPerfil">
