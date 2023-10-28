@@ -4,6 +4,8 @@ require __DIR__ . "/../funcoes/func.verificaSessao.php";
 
 verificaSessao();
 
+$boasvindas = $_SESSION['nome'];
+
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $formularios = $_POST['formLogado'];
