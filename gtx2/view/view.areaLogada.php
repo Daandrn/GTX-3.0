@@ -19,17 +19,23 @@
                     <li><a class="aNavegador" href="/gtx2/control/control.areaLogada.php">Área logada</a></li>
                     <li><a class="aNavegador" href="/gtx2/control/control.salaVideos.php">Sala de videos</a></li>
                     <li><a class="aNavegador" href="/gtx2/control/control.membros.php">Membros</a></li>
+                    <li>
+                        <form method="POST">
+                            <input type="hidden" name="formLogado" value="form_sair" >
+                            <input type="submit" value="Sair" id="botaoSair">
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
+    <aside>
+        
+    </aside>
     <main class="principal">
-        <div>
-            <form method="POST">
-                <input type="hidden" name="formLogado" value="form_sair" >
-                <input type="submit" value="Sair" id="sair">
-            </form>
-        </div>
+        <h1 id="boasVindas">
+        Seja bem vindo, <?php echo $boasvindas;?>!
+        </h1>
     </main>
     <footer>
         <p>Ghost tóxic team&trade;</p>
