@@ -354,6 +354,7 @@ tr#lista td {
     border-radius: 7px;
     padding: 10px;
     color: white;
+    gap: 4px;
 }
 
 #perfil div {

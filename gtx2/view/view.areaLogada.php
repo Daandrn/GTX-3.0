@@ -63,19 +63,27 @@
                 </form>
             </div>
             <div id="perfil">
-                <form method="POST">
-                    <h3>Perfil</h3>
-                    <div>
-                        <label for="">Nick/origin</label>
-                        <input type="text" name="origin" id="" required>
-                    </div>
-                    <div>
-                        <label for="">Senha</label>
-                        <input type="text" name="senha" id="" placeholder="Nova senha">
-                    </div>
-                    <input type="hidden" name="formLogado" value="perfil">
-                    <input type="submit" value="Salvar" id="salvarPerfil">
-                </form>
+                <div>
+                    <form method="POST">
+                        <h3>Perfil</h3>
+                        <div>
+                            <label for="">Nick/origin</label>
+                            <input type="text" name="origin" id="" required>
+                        </div>
+                        <input type="hidden" name="formLogado" value="perfilNick">
+                        <input type="submit" value="Salvar Nick" id="salvarPerfil">
+                    </form>
+                </div>
+                <div>
+                    <form method="POST">
+                        <div>
+                            <label for="">Senha</label>
+                            <input type="text" name="senha" id="" placeholder="Nova senha" required>
+                        </div>
+                        <input type="hidden" name="formLogado" value="perfilSenha">
+                        <input type="submit" value="Salvar Senha" id="salvarPerfil">
+                    </form>
+                </div>
             </div>
         </div>
     </main>
