@@ -12,6 +12,10 @@ h1 {
     margin: 0px;
 }
 
+h3 {
+    margin: 0px;
+}
+
 .cabecalho {
     display: flex;
     justify-content: center;
@@ -108,6 +112,8 @@ h1 {
 #login input {
     margin: 3px 0 3px 0;
     width: 210px;
+    height: 20px;
+    border: 0;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -124,6 +130,10 @@ h1 {
 
 #login button {
     width: 93px;
+    cursor: pointer;
+    height: 20px;
+    border: 0;
+    border-radius: 5px;
 }
 
 #respostaLogin {
@@ -142,6 +152,8 @@ h1 {
 #recrut input {
     margin: 3px 0 3px 0;
     width: 210px;
+    height: 20px;
+    border: 0;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -291,5 +303,102 @@ tr#lista td {
     text-shadow: 0 0 2px #1FDBB7;
     transition: color 0.5s, text-shadow 0.5s;
     font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
 }
 
+#boasVindas {
+    align-self: self-start;
+    margin: 10px;
+    color: white;
+}
+
+#dadosPessoais {
+    display: flex;
+    gap: 12px;
+}
+
+#dadosPessoais input {
+    height: 20px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#canalStream {
+    box-shadow: 0px 0px 10px black;
+    border-radius: 7px;
+    padding: 10px;
+    color: white;
+}
+
+#canalStream div {
+    margin-bottom: 5px;
+    display: flex;
+}
+
+#canalStream h3 {
+    margin: 0 0 8px 8px;
+}
+
+#canalStream label {
+    width: 80px;
+}
+
+#salvarStream {
+    margin-left: 80px;
+    cursor: pointer;
+}
+
+#perfil {
+    box-shadow: 0px 0px 10px black;
+    border-radius: 7px;
+    padding: 10px;
+    color: white;
+}
+
+#perfil div {
+    margin-bottom: 5px;
+    display: flex;
+}
+
+#perfil h3 {
+    margin: 0 0 8px 8px;
+}
+
+#perfil label {
+    width: 80px;
+}
+
+#salvarPerfil {
+    margin-left: 80px;
+}
+
+#rodapeLogado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    color: white;
+    background-color: black;
+}
+
+#rodapeLogado div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+
+#rodapeLogado span {
+    display: flex;
+    flex-direction: column !important;
+    position: absolute;
+    align-self: self-end;
+    margin: 5px;
+}
+
+#rodapeLogado p {
+    margin: 5px;
+}
