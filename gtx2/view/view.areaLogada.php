@@ -43,7 +43,7 @@
                     </div>
                     <div>
                         <label for="linkstream">Link canal</label>
-                        <input type="text" name="linkStream" value="<?php echo $dadoStream['linkCanal']; ?>" placeholder="link">
+                        <input type="text" name="linkStream" value="<?php echo $dadoStream['linkCanal']; ?>" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv.">
                     </div>
                     <div>
                         <label for="plataforma">Plataforma</label>

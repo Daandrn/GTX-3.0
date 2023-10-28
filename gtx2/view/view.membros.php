@@ -37,7 +37,7 @@
                     <td><?php echo $resultado['nome'];?></td>
                     <td><?php echo $resultado['nick'];?></td>
                     <td><?php echo $resultado['cargo'];?></td>
-                    <td><a id="linkcanal" href="<?php echo $resultado['link_canal'];?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $resultado['nickstream'];?></a></td>
+                    <td><a id="linkcanal" href="https://<?php echo $resultado['link_canal'];?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $resultado['nickstream'];?></a></td>
                     <td><?php echo $resultado['plataforma'];?></td>
                 </tr>
                 <?php endwhile ?>
