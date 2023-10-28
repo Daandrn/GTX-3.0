@@ -39,21 +39,19 @@
                     <h3>Canal Stream</h3>
                     <div>
                         <label for="nickStream">Nick stream</label>
-                        <input type="text" name="nickStream" id="">
+                        <input type="text" name="nickStream" value="<?php echo $dadoStream['nickStream']; ?>" placeholder="Nickstream">
                     </div>
                     <div>
                         <label for="linkstream">Link canal</label>
-                        <input type="text" name="linkStream" id="">
+                        <input type="text" name="linkStream" value="<?php echo $dadoStream['linkCanal']; ?>" placeholder="link">
                     </div>
                     <div>
                         <label for="plataforma">Plataforma</label>
                         <select name="plataforma" id="">
                             <option value=""></option>
-                            <option value="1">Youtube</option>
-                            <option value="2">Twitch</option>
-                            <option value="3">TikTok</option>
-                            <option value="4">Facebook</option>
-                            <option value="5">Kwai</option>
+                            <?php foreach ($plataformasStream as $plat) : ?>
+                            <option value="<?php echo $plat['id']?>" <?php if ($plat['id'] == $dadoStream['plataforma']) {echo "selected";} ?>><?php echo $plat['descricao']?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <span id="salvarStream">
@@ -68,7 +66,7 @@
                         <h3>Perfil</h3>
                         <div>
                             <label for="">Nick/origin</label>
-                            <input type="text" name="origin" id="" required>
+                            <input type="text" name="origin" value="<?php echo $nickPerfil?>" required>
                         </div>
                         <input type="hidden" name="formLogado" value="perfilNick">
                         <input type="submit" value="Salvar Nick" id="salvarPerfil">
@@ -77,7 +75,7 @@
                 <div>
                     <form method="POST">
                         <div>
-                            <label for="">Senha</label>
+                            <label for="">Nova senha</label>
                             <input type="text" name="senha" id="" placeholder="Nova senha" required>
                         </div>
                         <input type="hidden" name="formLogado" value="perfilSenha">

@@ -1,18 +1,29 @@
 <?php
 
 require __DIR__ . "/../funcoes/func.verificaSessao.php";
+require __DIR__ . "/../funcoes/func.dadosPerfil.php";
+require __DIR__ . "/../funcoes/func.dadoStream.php";
+require __DIR__ . "/../funcoes//func.plataformaStream.php";
 require __DIR__ . "/../model/model.areaLogada.php";
 
 verificaSessao();
 
 $boasvindas = $_SESSION['nome'];
 
+$nickSessao = $_SESSION['nick'];
+$nickPerfil = carregaPerfil($nickSessao);
+
+$idSessao = $_SESSION['id_sessao'];
+$dadoStream =carregaStream($idSessao);
+
+$plataformasStream = carregaPlataformas();
+
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $formularios = $_POST['formLogado'];
     
     switch ($formularios) {
-        case '':
+        case 'perfilNick':
             # code.
             break;
 
