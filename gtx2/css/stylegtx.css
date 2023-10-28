@@ -2,9 +2,10 @@
 
 body {
     height: 100vh;
-    min-width: 956px;
+    min-width: 962px;
     margin: 0 0 0 0;
     background-color: black;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 h1 {
@@ -277,3 +278,18 @@ tr#lista td {
     height: 360px;
     width: 640px;
 }
+
+/* Area logada */
+
+#botaoSair {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 20px;
+    color: white;
+    text-shadow: 0 0 2px #1FDBB7;
+    transition: color 0.5s, text-shadow 0.5s;
+    font-family: 'Times New Roman', Times, serif;
+}
+
