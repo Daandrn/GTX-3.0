@@ -218,7 +218,7 @@ footer p {
     margin: 30px 0 88px;
     border-radius: 7px 7px 0 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    background-color: #c2bfbf;
+    background-color: #bbbbbb;
     border-collapse: collapse;
     overflow: hidden;
     color: white;
@@ -242,12 +242,11 @@ caption {
 tr#lista td {
     padding: 16px 15px;
     text-align: center;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 #linkcanal {
     color: white;
-    text-shadow: 0 0 0;
     transition: text-shadow 0.5s;
 }
 
@@ -260,7 +259,7 @@ tr#lista td {
 }
 
 #membros tr:nth-of-type(even) {
-    background-color: #e4e1e1;
+    background-color: #cacaca;
 }
 
 /* Videos na sala de video */
