@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Sort entries by keys</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="arrayiterator.key.html">« ArrayIterator::key</a></li>
+      <li style="float: right;"><a href="arrayiterator.natcasesort.html">ArrayIterator::natcasesort »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.arrayiterator.html">ArrayIterator</a></li>
+    <li>Sort entries by keys</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="arrayiterator.ksort" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ArrayIterator::ksort</h1>
+  <p class="refpurpose"><span class="refname">ArrayIterator::ksort</span> &mdash; <span class="dc-title">Sort entries by keys</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-arrayiterator.ksort-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>ArrayIterator::ksort</strong></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = <strong><code>SORT_REGULAR</code></strong></span></span>): <span class="type"><span class="type true">true</span></span></div>
+
+  <p class="para rdfs-comment">
+   Sorts entries by their keys.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+ <p class="para">
+  Se dois elementos são comparados como iguais, eles mantêm sua ordem original.
+  Antes do PHP 8.0.0, sua ordem relativa no array ordenado era indefinida.
+ </p>
+</p></blockquote>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-arrayiterator.ksort-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <dl>
+   
+  <dt>
+<code class="parameter">flags</code></dt>
+
+  <dd>
+
+   <p class="para">
+    O segundo parâmetro opcional <code class="parameter">flags</code>
+    pode ser usado para modificar o comportamento da ordenação usando estes valores:
+   </p>
+   <p class="para">
+    Flags dos tipos de ordenação:
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara"><strong><code>SORT_REGULAR</code></strong> - compara os elementos normalmente;
+      os detalhes são descritos na seção <a href="language.operators.comparison.html" class="link">operadores de comparação</a></span>
+     </li>
+     <li class="listitem">
+      <span class="simpara"><strong><code>SORT_NUMERIC</code></strong> - compara os elementos numericamente</span>
+     </li>
+     <li class="listitem">
+      <span class="simpara"><strong><code>SORT_STRING</code></strong> - compara os elementos como strings</span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong><code>SORT_LOCALE_STRING</code></strong> - compara os elementos como
+       strings, com base na localidade atual. A localidade
+       pode ser alterada usando <span class="function"><a href="function.setlocale.html" class="function">setlocale()</a></span>
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong><code>SORT_NATURAL</code></strong> - compara os elementos como strings
+       usando &quot;ordenação natural&quot; como <span class="function"><a href="function.natsort.html" class="function">natsort()</a></span>
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong><code>SORT_FLAG_CASE</code></strong> - pode ser combinada
+       (usando o operador bit a bit OR) com
+       <strong><code>SORT_STRING</code></strong> ou
+       <strong><code>SORT_NATURAL</code></strong> para ordenar strings sem fazer distinção entre maiúsculas e minúsculas
+      </span>
+     </li>
+    </ul>
+   </p>
+  </dd>
+
+ 
+
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-arrayiterator.ksort-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Sempre retorna <strong><code>true</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-arrayiterator.ksort-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+ <td>8.2.0</td>
+ <td>
+  O tipo do retorno agora é <strong><code>true</code></strong>; anteriormente, era <span class="type">bool</span>.
+ </td>
+</tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-arrayiterator.ksort-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="arrayiterator.asort.html" class="methodname" rel="rdfs-seeAlso">ArrayIterator::asort()</a> - Sort entries by values</span></li>
+    <li class="member"><span class="methodname"><a href="arrayiterator.natcasesort.html" class="methodname" rel="rdfs-seeAlso">ArrayIterator::natcasesort()</a> - Sort entries naturally, case insensitive</span></li>
+    <li class="member"><span class="methodname"><a href="arrayiterator.natsort.html" class="methodname" rel="rdfs-seeAlso">ArrayIterator::natsort()</a> - Sort entries naturally</span></li>
+    <li class="member"><span class="methodname"><a href="arrayiterator.uasort.html" class="methodname" rel="rdfs-seeAlso">ArrayIterator::uasort()</a> - Sort with a user-defined comparison function and maintain index association</span></li>
+    <li class="member"><span class="methodname"><a href="arrayiterator.uksort.html" class="methodname" rel="rdfs-seeAlso">ArrayIterator::uksort()</a> - Sort by keys using a user-defined comparison function</span></li>
+    <li class="member"><span class="function"><a href="function.ksort.html" class="function" rel="rdfs-seeAlso">ksort()</a> - Sort an array by key in ascending order</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Instalando uma extens&atilde;o PHP no Windows</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.pecl.downloads.html">« Baixando extens&otilde;es PECL</a></li>
+      <li style="float: right;"><a href="install.pecl.pear.html">Compilando extens&otilde;es PECL compartilhadas com o comando pecl »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.pecl.html">Instala&ccedil;&atilde;o das extens&otilde;es PECL</a></li>
+    <li>Instalando uma extens&atilde;o PHP no Windows</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.pecl.windows" class="sect1">
+  <h2 class="title">Instalando uma extensão PHP no Windows</h2>
+  <p class="para">
+   Existem duas maneiras de carregar uma extensão PHP no Windows: compilando-a
+   no PHP ou carregando a DLL.
+   Carregar uma extensão pré-compilada é a maneira mais fácil e preferida.
+  </p>
+  <p class="para">
+   Para carregar uma extensão, ela deve estar disponível como um arquivo
+   <var class="filename">.dll</var>
+   no sistema.
+   Todas as extensões são compiladas automaticamente e periodicamente pelo PHP
+   Group (veja a próxima seção para download).
+  </p>
+  <p class="para">
+   Para compilar uma extensão no PHP, consulte a documentação sobre
+   <a href="install.windows.building.html" class="link">compilação do código-fonte</a>.
+  </p>
+  <p class="para">
+   Para compilar uma extensão independente (um arquivo DLL), consulte a
+   documentação sobre
+   <a href="install.windows.building.html" class="link">compilação do código-fonte</a>.
+   Se a DLL não estiver disponível na distribuição do PHP nem no PECL,
+   pode ser necessário compilá-la antes que a extensão possa ser usada.
+  </p>
+  <div class="sect2" id="install.pecl.windows.find">
+   <h3 class="title">Onde encontrar uma extensão?</h3>
+   <p class="para">
+    As extensões do PHP geralmente são chamadas de
+    <var class="filename">php_*.dll</var>
+    (onde o asterisco representa o nome da extensão) e estão localizadas no
+    diretório
+    <var class="filename">PHP\ext</var>.
+   </p>
+   <p class="para">
+    O PHP vem com as extensões mais úteis para a maioria dos desenvolvedores.
+    Elas são chamadas extensões <em>nativas</em> do PHP.
+   </p>
+   <p class="para">
+    Entretanto, se as extensões nativas não fornecerem a funcionalidade
+    necessária, uma extensão que ofereça essa funcionalidade ainda pode ser
+    encontrada no <a href="https://pecl.php.net/" class="link external">&raquo;&nbsp;PECL</a>. A biblioteca comunitária de extensões PHP
+    (PECL) é um repositório de extensões PHP, que fornece um
+    diretório de todas as extensões conhecidas e recursos de hospedagem para
+    download e desenvolvimento de extensões PHP.
+   </p>
+   <p class="para">
+    Se uma extensão foi desenvolvida para usos específicos, ela pode ser
+    hospedada no PECL para que outras pessoas com as mesmas necessidades possam
+    se beneficiar delas.
+    Um bom efeito colateral é que é uma excelente chance de receber feedbacks,
+    agradecimentos, relatórios de erros e até mesmo correções/patches.
+    Antes de enviar uma extensão para hospedagem no PECL, consulte sobre
+    <a href="https://pecl.php.net/package-new.php" class="link external">&raquo;&nbsp;Submissão ao PECL</a>.
+   </p>
+  </div>
+
+  <div class="sect2" id="install.pecl.windows.which">
+   <h3 class="title">Qual extensão baixar?</h3>
+   <p class="para">
+    <em>
+     Muitas vezes, haverá várias versões disponíveis de cada DLL:
+    </em>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       Números de versão diferentes (pelo menos os dois primeiros números devem
+       corresponder)
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Versões de thread safety diferentes
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Arquitetura de processador diferente (x86, x64, ...)
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Configurações de depuração diferentes
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <code class="literal">etc.</code>
+      </span>
+     </li>
+    </ul>
+   </p>
+   <p class="para">
+    Lembre-se de que as configurações de extensão devem corresponder a todas as
+    configurações do executável PHP que está sendo usado.
+    O script a seguir informará <em>tudo</em> sobre as configurações
+    do PHP:
+   </p>
+   <p class="para">
+    <div class="example" id="example-77">
+     <p><strong>Exemplo #1 A função
+      <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span>
+     </strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />phpinfo</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    Ou na linha de comando, execute:
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+drive:\caminho\para\o\executavel\php.exe -i
+</pre></div>
+    </div>
+   </p>
+  </div>
+
+  <div class="sect2" id="install.pecl.windows.loading">
+   <h3 class="title">Carregando uma extensão</h3>
+   <p class="para">
+    A forma mais comum de carregar uma extensão PHP é incluí-la no arquivo de
+    configuração <var class="filename">php.ini</var>.
+    Observe que muitas extensões já estão presentes no <var class="filename">php.ini</var> e só é preciso
+    remover o ponto e vírgula para ativá-las.
+   </p>
+   <p class="para">
+    A partir do PHP 7.2.0, o nome da extensão pode ser usado ao invés do nome do
+    arquivo da extensão.
+    Como é independente do sistema operacional é mais fácil, especialmente para
+    iniciantes, essa é a maneira recomendada de especificar as extensões a serem
+    carregadas.
+    Os nomes dos arquivos continuam suportados para compatibilidade com versões
+    anteriores.
+   </p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+;extension=php_extname.dll
+</pre></div>
+   </div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+extension=php_extname.dll
+</pre></div>
+   </div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+; A partir do PHP 7.2.0, prefira:
+extension=extname
+zend_extension=another_extension
+</pre></div>
+   </div>
+   <p class="para">
+    No entanto, isso pode causar confusão em alguns servidores web porque eles
+    não usam o arquivo <var class="filename">php.ini</var> localizado junto do executável PHP.
+    Para descobrir onde o arquivo <var class="filename">php.ini</var> está, procure seu caminho na
+    função <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span>:
+   </p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Configuration File (php.ini) Path  C:\WINDOWS
+</pre></div>
+   </div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Loaded Configuration File   C:\Program Files\PHP\8.2\php.ini
+</pre></div>
+   </div>
+   <p class="para">
+    Depois de ativar uma extensão, salve o arquivo <var class="filename">php.ini</var>, reinicie o
+    servidor web e verifique a função <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span> novamente.
+    A nova extensão agora deve ter sua própria seção.
+   </p>
+  </div>
+
+  <div class="sect2" id="install.pecl.windows.problemsolving">
+   <h3 class="title">Resolvendo problemas</h3>
+   <p class="para">
+    Se uma extensão não aparecer na função <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span>,
+    os logs devem ser verificados para saber de onde vem o problema.
+   </p>
+   <p class="para">
+    Se o PHP estiver sendo usado na linha de comando (CLI),
+    os erros de carregamento da extensão podem ser lidos diretamente na tela.
+   </p>
+   <p class="para">
+    Se o PHP estiver sendo usado com um servidor web, a localização e o formato
+    dos logs irão variar dependendo do software usado.
+    Consulte a documentação do servidor web para localizar os logs,
+    pois isso não está relacionado com o PHP.
+   </p>
+   <p class="para">
+    Problemas comuns são a localização da DLL e das DLLs das quais ela depende,
+    o valor da diretiva &quot;<a href="ini.core.html#ini.extension-dir" class="link">extension_dir</a>&quot;
+    no arquivo <var class="filename">php.ini</var> e incompatibilidades de configuração em tempo de
+    compilação.
+   </p>
+   <p class="para">
+    Se o problema estiver em uma incompatibilidade de configuração em tempo de
+    compilação, provavelmente a DLL errada foi baixada.
+    Tente baixar novamente a extensão com as configurações corretas.
+    Novamente, a função <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span> pode ser de grande ajuda.
+   </p>
+  </div>
+
+ </div></div></div></body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Configura&ccedil;&otilde;es em Execu&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="apache.installation.html">« Instala&ccedil;&atilde;o</a></li>
+      <li style="float: right;"><a href="apache.resources.html">Tipos de Recurso »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="apache.setup.html">Instala&ccedil;&atilde;o/Configura&ccedil;&atilde;o</a></li>
+    <li>Configura&ccedil;&otilde;es em Execu&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="apache.configuration" class="section">
+ <h2 class="title">Configurações em Execução</h2>
+ <p class="para">
+  O comportamento do módulo PHP sob o Apache é afetado pelas configurações
+  no <var class="filename">php.ini</var>. As diretivas de configuração no <var class="filename">php.ini</var> podem ser sobrescritas
+  por <a href="configuration.changes.html#configuration.changes.apache" class="link">diretivas php_flag</a>
+  no arquivo de configuração do servidor ou por arquivos <var class="filename">.htaccess</var> locais.
+ </p>
+ <div class="example" id="">
+  <p><strong>Exemplo #1 Desligando a interpretação do PHP em um diretório utilizando <var class="filename">.htaccess</var></strong></p>
+  <div class="example-contents"><div class="cdata"><pre>php_flag engine off</pre></div></div>
+
+ </div>
+ <p class="para">
+  <table class="doctable table">
+   <caption><strong>Opções de configuração do Apache</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Nome</th>
+      <th>Padrão</th>
+      <th>Modificável</th>
+      <th>Changelog</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><a href="apache.configuration.html#ini.engine" class="link">engine</a></td>
+      <td>&quot;1&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td><a href="apache.configuration.html#ini.child-terminate" class="link">child_terminate</a></td>
+      <td>&quot;0&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td><a href="apache.configuration.html#ini.last-modified" class="link">last_modified</a></td>
+      <td>&quot;0&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td><a href="apache.configuration.html#ini.xbithack" class="link">xbithack</a></td>
+      <td>&quot;0&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+  Para mais detalhes e definições dos modos
+PHP_INI_*, consulte os <a href="configuration.changes.modes.html" class="xref">Onde uma configura&ccedil;&atilde;o deve ser definida</a>.
+ </p>
+
+ <p class="para">Aqui está uma breve explicação das
+diretivas de configuração.</p>
+
+ <p class="para">
+  <dl>
+   
+    <dt id="ini.engine">
+     <code class="parameter">engine</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Liga ou desliga a interpretação do PHP.
+      Esta diretiva é útil somente para a módulo do Apache
+      do PHP. É utilizada por sites que desejam desligar e ligar a
+      interpretação do PHP em nível de diretórios ou servidores
+      virtuais. Colocando <strong class="userinput"><code>engine off</code></strong>
+      nos lugares apropriados do arquivo <var class="filename">httpd.conf</var>, o PHP pode
+      ser ativado ou desativado.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.child-terminate">
+     <code class="parameter">child_terminate</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Especifica se scripts PHP podem requisitar o término de processos filhos no final da
+      requisição, veja também <span class="function"><a href="function.apache-child-terminate.html" class="function">apache_child_terminate()</a></span>.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.last-modified">
+     <code class="parameter">last_modified</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Envia a data de modificação dos scripts PHP com cabeçalho Last-Modified: para esta requisição.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.xbithack">
+     <code class="parameter">xbithack</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Interpreta arquivos marcados como executável como PHP, indiferente da extensão.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </p>
+
+</div></div></div></body></html>

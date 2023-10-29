@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Instala&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysql.requirements.html">« Depend&ecirc;ncias</a></li>
+      <li style="float: right;"><a href="mysql.configuration.html">Configura&ccedil;&otilde;es em Execu&ccedil;&atilde;o »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysql.setup.html">Instala&ccedil;&atilde;o/Configura&ccedil;&atilde;o</a></li>
+    <li>Instala&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysql.installation" class="section">
+ <h2 class="title">Instalação</h2>
+
+ <div class="warning"><strong class="warning">Aviso</strong>
+  <p class="para">Esta extensão tornou-se obsoleta a partir do PHP 5.5.0 e foi removida no PHP 7.0.0.
+Em vez disso, as extensões <a href="book.mysqli.html" class="link">MySQLi</a> ou <a href="ref.pdo-mysql.html" class="link">PDO_MySQL</a> devem ser usadas.
+Veja também o guia <a href="mysqlinfo.api.choosing.html" class="link">MySQL: escolhendo uma API</a>.
+Alternativas a esta função incluem:</p>
+ </div>
+
+ <p class="para" id="mysql.configure">
+  Para compilar, simplesmente use a opção de configuração
+  <strong class="option configure">--with-mysql[=DIR]</strong>
+  onde o parâmetro opcional <code class="literal">[DIR]</code> aponta para o
+  diretório onde o MySQL está instalado.
+ </p>
+ <p class="para">
+  Mesmo sendo esta extensão MySQL compatível com o MySQL 4.1.0 e posterior,
+  ela não suporta a funcionalidade extra que estas versões fornecem.
+  Para isto, use a extensão <a href="book.mysqli.html" class="link">MySQLi</a>.
+ </p>
+ <p class="para">
+  Se você quiser instalar a extensão mysql junto com a extensão mysqli
+  você deve usar a mesma biblioteca de cliente para evitar quaisquer conflitos.
+ </p>
+
+ <div class="section" id="mysql.installation.linux">
+  <h2 class="title">Instalação em Sistemas Linux</h2>
+  <p class="para">
+   Nota: <code class="literal">[DIR]</code> é o caminho para os arquivos da biblioteca de cliente
+   MySQL (<em>headers e bibliotecas</em>), que podem ser baixados do site do
+   <a href="http://www.mysql.com/" class="link external">&raquo;&nbsp;MySQL</a>.
+  </p>
+  <table class="doctable table">
+   <caption><strong>tabela de suporte em tempo de compilação da ext/mysql</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Versão do PHP</th>
+      <th>Padrão</th>
+      <th>Opções de Configuração: <a href="mysqlnd.overview.html" class="link">mysqlnd</a></th>
+      <th>Opções de Configuração: <code class="literal">libmysqlclient</code></th>
+      <th>Changelog</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>4.x.x</td>
+      <td>libmysqlclient</td>
+      <td>Não Disponível</td>
+      <td><strong class="option configure">--without-mysql</strong> para desabilitar</td>
+      <td>MySQL habilitado por padrão, bibliotecas de clientes MySQL vêm embutidas</td>
+     </tr>
+
+     <tr>
+      <td>5.0.x, 5.1.x, 5.2.x</td>
+      <td>libmysqlclient</td>
+      <td>Não Disponível</td>
+      <td><strong class="option configure">--with-mysql=[DIR]</strong></td>
+      <td>
+       O MySQL não é mais habilitado por padrão, e as bibliotecas de clientes MySQL
+       não vêm mais embutidas
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.x</td>
+      <td>libmysqlclient</td>
+      <td><strong class="option configure">--with-mysql=mysqlnd</strong></td>
+      <td><strong class="option configure">--with-mysql=[DIR]</strong></td>
+      <td>mysqlnd agora está disponível</td>
+     </tr>
+
+     <tr>
+      <td>5.4.x</td>
+      <td>mysqlnd</td>
+      <td><strong class="option configure">--with-mysql</strong></td>
+      <td><strong class="option configure">--with-mysql=[DIR]</strong></td>
+      <td>mysqlnd agora é o padrão</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+ <div class="section" id="mysql.installation.windows">
+  <h2 class="title">Instalação em Sistemas Windows</h2>
+<div class="section" id="mysql.installation.windows.php52">
+   <h2 class="title">PHP 5.0.x, 5.1.x, 5.2.x</h2>
+   <p class="para">
+    O MySQL não é mais habilitado por padrão, então a DLL
+    <var class="filename">php_mysql.dll</var> deve estar habilitada dentro do
+    <var class="filename">php.ini</var>. Além disso, o PHP precisa de acesso à biblioteca de cliente MySQL. Um arquivo
+    chamado <var class="filename">libmysql.dll</var> é incluído na distribuição PHP
+    do Windows, e para que o PHP possa conversar com o MySQL este arquivo precisa estar
+    disponível no <var class="envar">PATH</var> dos sistemas Windows. Veja a pergunta
+    entitulada &quot;<a href="faq.installation.html#faq.installation.addtopath" class="link">Como adicionar meu diretório
+    PHP ao <var class="envar">PATH</var> do Windows</a>&quot; para informações sobre como fazer
+    isso. Embora copiar o arquivo <var class="filename">libmysql.dll</var> para o diretório de sistema
+    do Windows também funcione (porque o diretório de sistema está por padrão no
+    <var class="envar">PATH</var> do sistema), isto não é recomendado.
+   </p>
+   <p class="para">
+    Assim como ao habilitar qualquer extensão PHP (como
+    <var class="filename">php_mysql.dll</var>), a diretiva PHP
+    <a href="ini.core.html#ini.extension-dir" class="link">extension_dir</a> deve apontar para
+    o diretório onde as extensões PHP estão localizadas. Veja também as
+    <a href="install.windows.manual.html" class="link">Instruções para Instalação Manual
+    no Windows</a>. Um exemplo de valor para extension_dir no PHP 5 é
+    <code class="literal">c:\php\ext</code>
+   </p>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     Se ao iniciar o servidor web um erro similar ao seguinte ocorrer:
+     <code class="literal">&quot;Unable to load dynamic library &#039;./php_mysql.dll&#039;&quot;</code>,
+     é porque o arquivo <var class="filename">php_mysql.dll</var> e/ou
+     <var class="filename">libmysql.dll</var> não pode ser encontrado pelo sistema.
+    </p>
+   </p></blockquote>
+  </div>
+  <div class="section" id="mysql.installation.windows.php53">
+   <h2 class="title">PHP 5.3.0+</h2>
+   <p class="para">
+    O <a href="mysqlnd.overview.html" class="link">Driver Nativo MySQL</a> está habilitado por
+    padrão. Inclui <var class="filename">php_mysql.dll</var>, mas <var class="filename">libmysql.dll</var>
+    não é mais necessário ou usado.
+   </p>
+  </div>
+ </div>
+
+ <div class="section" id="mysql.installation.notes">
+  <h2 class="title">Notas de Instalação do MySQL</h2>
+   <div class="warning"><strong class="warning">Aviso</strong>
+    <p class="para">
+     Falhas e problemas de inicialização do PHP podem ocorrer
+     ao carregar esta extensão em conjunto com a extensão recode.
+     Veja a extensão <a href="ref.recode.html" class="link">recode</a> para maiores
+     informações.
+    </p>
+   </div>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     Se você precisar de charsets diferentes de <em>latin</em>
+     (padrão), você terá que instalar uma libmysqlclient externa (não embutida) com o suporte compilado
+     ao charset.
+    </p>
+   </p></blockquote>
+ </div>
+</div></div></div></body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Sintaxe de Atributo</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.attributes.overview.html">« Vis&atilde;o geral dos atributos</a></li>
+      <li style="float: right;"><a href="language.attributes.reflection.html">Lendo Atributos com a API Reflection »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.attributes.html">Atributos</a></li>
+    <li>Sintaxe de Atributo</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.attributes.syntax" class="sect1">
+  <h2 class="title">Sintaxe de Atributo</h2>
+
+  <p class="para">
+   Existem várias partes para a sintaxe de atributos. Primeiro, uma declaração
+   de atributo é sempre incluída com um
+   <code class="literal">#[</code> inicial e um <code class="literal">]</code>
+   final correspondente. Dentro, um ou vários atributos são listados,
+   separados por vírgula. O nome do atributo é um nome não qualificado, qualificado ou totalmente qualificado,
+   conforme descrito em <a href="language.namespaces.basics.html" class="link">Noções Básicas do Uso de Namespaces</a>.
+   Os argumentos para o atributo são opcionais, mas são colocados entre parênteses <code class="literal">()</code>.
+   Os argumentos para atributos só podem ser valores literais ou expressões constantes. Tanto a sintaxe de
+   argumentos posicionais quanto a dos argumentos nomeados podem ser usadas.
+  </p>
+
+  <p class="para">
+   Os nomes dos atributos e seus argumentos são resolvidos para uma classe e os argumentos são passados para seu construtor,
+   quando uma instância do atributo é solicitada por meio da API Reflection. Como tal,
+   uma classe deve ser introduzida para cada atributo.
+  </p>
+
+  <div class="example" id="example-1046">
+   <p><strong>Exemplo #1 Sintaxe de Atributo</strong></p>
+
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// a.php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">MyExample</span><span style="color: #007700">;<br /><br />use </span><span style="color: #0000BB">Attribute</span><span style="color: #007700">;<br /><br />#[</span><span style="color: #0000BB">Attribute</span><span style="color: #007700">]<br />class </span><span style="color: #0000BB">MyAttribute<br /></span><span style="color: #007700">{<br />    const </span><span style="color: #0000BB">VALUE </span><span style="color: #007700">= </span><span style="color: #DD0000">'value'</span><span style="color: #007700">;<br /><br />    private </span><span style="color: #0000BB">$value</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$value </span><span style="color: #007700">= </span><span style="color: #0000BB">null</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">value </span><span style="color: #007700">= </span><span style="color: #0000BB">$value</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #FF8000">// b.php<br /><br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">Another</span><span style="color: #007700">;<br /><br />use </span><span style="color: #0000BB">MyExample\MyAttribute</span><span style="color: #007700">;<br /><br />#[</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">]<br />#[</span><span style="color: #0000BB">\MyExample\MyAttribute</span><span style="color: #007700">]<br />#[</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">(</span><span style="color: #0000BB">1234</span><span style="color: #007700">)]<br />#[</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">(</span><span style="color: #0000BB">value</span><span style="color: #007700">: </span><span style="color: #0000BB">1234</span><span style="color: #007700">)]<br />#[</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">(</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">::</span><span style="color: #0000BB">VALUE</span><span style="color: #007700">)]<br />#[</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"key" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"value"</span><span style="color: #007700">))]<br />#[</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">(</span><span style="color: #0000BB">100 </span><span style="color: #007700">+ </span><span style="color: #0000BB">200</span><span style="color: #007700">)]<br />class </span><span style="color: #0000BB">Thing<br /></span><span style="color: #007700">{<br />}<br /><br />#[</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">(</span><span style="color: #0000BB">1234</span><span style="color: #007700">), </span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">(</span><span style="color: #0000BB">5678</span><span style="color: #007700">)]<br />class </span><span style="color: #0000BB">AnotherThing<br /></span><span style="color: #007700">{<br />}</span></span></code></div>
+   </div>
+
+  </div>
+ </div></div></div></body></html>

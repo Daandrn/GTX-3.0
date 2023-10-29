@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Coment&aacute;rios</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.basic-syntax.instruction-separation.html">« Separa&ccedil;&atilde;o de instru&ccedil;&otilde;es</a></li>
+      <li style="float: right;"><a href="language.types.html">Tipos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.basic-syntax.html">Sintaxe B&aacute;sica</a></li>
+    <li>Coment&aacute;rios</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.basic-syntax.comments" class="sect1">
+   <h2 class="title">Comentários</h2>
+   <p class="para">
+    O PHP suporta comentários no estilo C, C++ e Unix shell (estilo Perl). Por exemplo:
+
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />    </span><span style="color: #007700">echo </span><span style="color: #DD0000">'Isto é um teste'</span><span style="color: #007700">; </span><span style="color: #FF8000">// Este é um comentário no estilo C++ de uma linha<br />    /* Este é um comentário de várias linhas<br />       mais uma linha de comentário */<br />    </span><span style="color: #007700">echo </span><span style="color: #DD0000">'Este é mais um teste'</span><span style="color: #007700">;<br />    echo </span><span style="color: #DD0000">'Um teste final'</span><span style="color: #007700">; </span><span style="color: #FF8000"># Este é um comentário no estilo shell de uma linha<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="simpara">
+    Os estilos de comentário de uma linha comentam apenas até o final da
+    linha ou do bloco atual de código PHP, o que ocorrer primeiro.
+    Isso significa que o código HTML após <code class="literal">// ... ?&gt;</code>
+    ou <code class="literal"># ...  ?&gt;</code> SERÁ impresso:
+    ?&gt; sai do modo PHP e retorna ao modo HTML, e
+    <code class="literal">//</code> ou <code class="literal">#</code> não podem influenciar isso.
+   </p>
+   <p class="para">
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">&lt;h1&gt;Este é um <span style="color: #0000BB">&lt;?php </span><span style="color: #FF8000"># echo 'simples';</span><span style="color: #0000BB">?&gt;</span> exemplo&lt;/h1&gt;<br />&lt;p&gt;O cabeçalho acima dirá 'Este é um exemplo'.&lt;/p&gt;</span></code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="simpara">
+    Os comentários no estilo C terminam no primeiro <code class="literal">*/</code> encontrado.
+    Certifique-se de não aninhar comentários no estilo C. É fácil cometer esse
+    erro ao tentar comentar um grande bloco de código.
+   </p>
+   <p class="para">
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /> </span><span style="color: #FF8000">/*<br />    echo 'Isto é um teste'; /* Este comentário causará um problema */<br /> </span><span style="color: #007700">*/<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+  </div></div></div></body></html>

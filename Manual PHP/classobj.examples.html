@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Exemplos</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="classobj.constants.html">« Constantes pr&eacute;-definidas</a></li>
+      <li style="float: right;"><a href="ref.classobj.html">Fun&ccedil;&otilde;es para Classes/Objetos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.classobj.html">Classes/Objetos</a></li>
+    <li>Exemplos</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="classobj.examples" class="appendix">
+ <h1>Exemplos</h1>
+
+ <p class="para">
+  Neste exemplo, nós primeiramente definiremos uma classe base e uma
+  extensão da classe. A classe base descreve um vegetal comum,
+  que é comestível ou não e que tem sua cor. A sub-classe
+  <var class="varname">Espinafre</var> adiciona um método para cozinhá-lo e outro
+  para descobrir se ele está cozido.
+ </p>
+ <p class="para">
+  <div class="example" id="">
+   <p><strong>Exemplo #1 classes.inc</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">// Classe base com propriedades e métodos de membros<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Vegetal </span><span style="color: #007700">{<br /><br />    var </span><span style="color: #0000BB">$comestivel</span><span style="color: #007700">;<br />    var </span><span style="color: #0000BB">$cor</span><span style="color: #007700">;<br /><br />    function </span><span style="color: #0000BB">Vegetal</span><span style="color: #007700">(</span><span style="color: #0000BB">$comestivel</span><span style="color: #007700">, </span><span style="color: #0000BB">$cor</span><span style="color: #007700">=</span><span style="color: #DD0000">"verde"</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">comestivel </span><span style="color: #007700">= </span><span style="color: #0000BB">$comestivel</span><span style="color: #007700">;<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">cor </span><span style="color: #007700">= </span><span style="color: #0000BB">$cor</span><span style="color: #007700">;<br />    }<br /><br />    function </span><span style="color: #0000BB">is_comestivel</span><span style="color: #007700">()<br />    {<br />        return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">comestivel</span><span style="color: #007700">;<br />    }<br /><br />    function </span><span style="color: #0000BB">qual_cor</span><span style="color: #007700">()<br />    {<br />        return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">cor</span><span style="color: #007700">;<br />    }<br /><br />} </span><span style="color: #FF8000">// Fim da classe Vegetal<br /><br />// estende a classe base<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Espinafre </span><span style="color: #007700">extends </span><span style="color: #0000BB">Vegetal </span><span style="color: #007700">{<br /><br />    var </span><span style="color: #0000BB">$cozido </span><span style="color: #007700">= </span><span style="color: #0000BB">false</span><span style="color: #007700">;<br /><br />    function </span><span style="color: #0000BB">Espinafre</span><span style="color: #007700">()<br />    {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Vegetal</span><span style="color: #007700">( </span><span style="color: #0000BB">true</span><span style="color: #007700">, </span><span style="color: #DD0000">"verde" </span><span style="color: #007700">);<br />    }<br /><br />    function </span><span style="color: #0000BB">cozinhe</span><span style="color: #007700">()<br />    {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">cozido </span><span style="color: #007700">= </span><span style="color: #0000BB">true</span><span style="color: #007700">;<br />    }<br /><br />    function </span><span style="color: #0000BB">esta_cozido</span><span style="color: #007700">()<br />    {<br />        return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">cozido</span><span style="color: #007700">;<br />    }<br /><br />} </span><span style="color: #FF8000">// Fim da classe Espinafre<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  Nós instanciamos 2 objetos destas classes e exibimos informações
+  sobre elas, incluindo o parentesco de suas classes.
+  Nós também definimos algumas funções úteis, principalmente para ter
+  uma boa saída de variáveis.
+ </p>
+ <p class="para">
+  <div class="example" id="">
+   <p><strong>Exemplo #2 test_script.php</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">&lt;pre&gt;<br /><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">include </span><span style="color: #DD0000">"classes.inc"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// utility functions<br /><br /></span><span style="color: #007700">function </span><span style="color: #0000BB">print_vars</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">)<br />{<br />foreach (</span><span style="color: #0000BB">get_object_vars</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">) as </span><span style="color: #0000BB">$prop </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$val</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"\t</span><span style="color: #0000BB">$prop</span><span style="color: #DD0000"> = </span><span style="color: #0000BB">$val</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br />}<br /><br />function </span><span style="color: #0000BB">print_methods</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">)<br />{<br /></span><span style="color: #0000BB">$arr </span><span style="color: #007700">= </span><span style="color: #0000BB">get_class_methods</span><span style="color: #007700">(</span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">));<br />foreach (</span><span style="color: #0000BB">$arr </span><span style="color: #007700">as </span><span style="color: #0000BB">$method</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"\tfunction </span><span style="color: #0000BB">$method</span><span style="color: #DD0000">()\n"</span><span style="color: #007700">;<br />}<br />}<br /><br />function </span><span style="color: #0000BB">class_parentage</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">, </span><span style="color: #0000BB">$class</span><span style="color: #007700">)<br />{<br />if (</span><span style="color: #0000BB">is_subclass_of</span><span style="color: #007700">(</span><span style="color: #0000BB">$GLOBALS</span><span style="color: #007700">[</span><span style="color: #0000BB">$obj</span><span style="color: #007700">], </span><span style="color: #0000BB">$class</span><span style="color: #007700">)) {<br />    echo </span><span style="color: #DD0000">"Object </span><span style="color: #0000BB">$obj</span><span style="color: #DD0000"> belongs to class " </span><span style="color: #007700">. </span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$GLOBALS</span><span style="color: #007700">[</span><span style="color: #0000BB">$obj</span><span style="color: #007700">]);<br />    echo </span><span style="color: #DD0000">", a subclass of </span><span style="color: #0000BB">$class</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />} else {<br />    echo </span><span style="color: #DD0000">"Object </span><span style="color: #0000BB">$obj</span><span style="color: #DD0000"> does not belong to a subclass of </span><span style="color: #0000BB">$class</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br />}<br /><br /></span><span style="color: #FF8000">// instantiate 2 objects<br /><br /></span><span style="color: #0000BB">$veggie </span><span style="color: #007700">= new </span><span style="color: #0000BB">Vegetable</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">, </span><span style="color: #DD0000">"blue"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$leafy </span><span style="color: #007700">= new </span><span style="color: #0000BB">Spinach</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// print out information about objects<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">"veggie: CLASS " </span><span style="color: #007700">. </span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$veggie</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">"leafy: CLASS " </span><span style="color: #007700">. </span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$leafy</span><span style="color: #007700">);<br />echo </span><span style="color: #DD0000">", PARENT " </span><span style="color: #007700">. </span><span style="color: #0000BB">get_parent_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$leafy</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// show veggie properties<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">"\nveggie: Properties\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">print_vars</span><span style="color: #007700">(</span><span style="color: #0000BB">$veggie</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// and leafy methods<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">"\nleafy: Methods\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">print_methods</span><span style="color: #007700">(</span><span style="color: #0000BB">$leafy</span><span style="color: #007700">);<br /><br />echo </span><span style="color: #DD0000">"\nParentage:\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">class_parentage</span><span style="color: #007700">(</span><span style="color: #DD0000">"leafy"</span><span style="color: #007700">, </span><span style="color: #DD0000">"Spinach"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">class_parentage</span><span style="color: #007700">(</span><span style="color: #DD0000">"leafy"</span><span style="color: #007700">, </span><span style="color: #DD0000">"Vegetable"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;<br /></span>&lt;/pre&gt;</span></code></div>
+   </div>
+
+   <div class="example-contents"><p>
+    Uma coisa importante para se notar no exemplo acima é que
+    o objeto <var class="varname">$folheado</var> é uma instância da classe
+    <span class="classname"><strong class="classname">Espinafre</strong></span> que é uma subclasse de
+    <span class="classname"><strong class="classname">Vegetal</strong></span>,
+    então a última parte do script acima exibirá:
+   </p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+   [...]
+Parentesco:
+Objeto folheado não pertence a uma subclasse de Espinafre
+Object folheado pertence à classe Espinafre, uma subclasse de Vegetal
+</pre></div>
+   </div>
+  </div>
+ </p>
+</div>
+</div></div></body></html>

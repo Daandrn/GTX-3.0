@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Estabelece as permiss&otilde;es de um arquivo via FTP</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ftp-chdir.html">« ftp_chdir</a></li>
+      <li style="float: right;"><a href="function.ftp-close.html">ftp_close »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ftp.html">FTP Fun&ccedil;&otilde;es</a></li>
+    <li>Estabelece as permiss&otilde;es de um arquivo via FTP</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ftp-chmod" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ftp_chmod</h1>
+  <p class="refpurpose"><span class="refname">ftp_chmod</span> &mdash; <span class="dc-title">Estabelece as permissões de um arquivo via FTP</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.ftp-chmod-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ftp_chmod</strong></span>(<span class="methodparam"><span class="type">resource</span> <code class="parameter">$ftp_stream</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$filename</code></span>): <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Estabelece as permissões para o arquivo remoto especificado
+   para <code class="parameter">modo</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ftp-chmod-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">ftp_stream</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O identificador da conexão FTP.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       As novas permisões, dadas como um valor <em>octal</em>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">filename</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O nome do arquivo remoto.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ftp-chmod-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna as novas permissões em caso de sucesso, o <strong><code>false</code></strong> em caso de erro.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ftp-chmod-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo <span class="function"><strong>ftp_chmod()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$file </span><span style="color: #007700">= </span><span style="color: #DD0000">'public_html/index.php'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// define a conexão básica<br /></span><span style="color: #0000BB">$conn_id </span><span style="color: #007700">= </span><span style="color: #0000BB">ftp_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$ftp_server</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// login com nome de usuário e senha<br /></span><span style="color: #0000BB">$login_result </span><span style="color: #007700">= </span><span style="color: #0000BB">ftp_login</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">, </span><span style="color: #0000BB">$ftp_user_name</span><span style="color: #007700">, </span><span style="color: #0000BB">$ftp_user_pass</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// tenta usar o chmod em $file para 644<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">ftp_chmod</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">, </span><span style="color: #0000BB">0644</span><span style="color: #007700">, </span><span style="color: #0000BB">$file</span><span style="color: #007700">) !== </span><span style="color: #0000BB">false</span><span style="color: #007700">) { <br />   echo </span><span style="color: #DD0000">"Foram mudadas as permissões do arquivo </span><span style="color: #0000BB">$file</span><span style="color: #DD0000"> para 644\n"</span><span style="color: #007700">; <br />} else {<br />echo </span><span style="color: #DD0000">"não foi possível usar o chmod no arquivo </span><span style="color: #0000BB">$file</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">// fecha a conexão<br /></span><span style="color: #0000BB">ftp_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ftp-chmod-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.chmod.html" class="function" rel="rdfs-seeAlso">chmod()</a> - Changes file mode</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

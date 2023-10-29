@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Chama uma fun&ccedil;&atilde;o SOAP (obsoleta)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="class.soapclient.html">« SoapClient</a></li>
+      <li style="float: right;"><a href="soapclient.construct.html">SoapClient::__construct »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.soapclient.html">SoapClient</a></li>
+    <li>Chama uma fun&ccedil;&atilde;o SOAP (obsoleta)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="soapclient.call" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SoapClient::__call</h1>
+  <p class="refpurpose"><span class="refname">SoapClient::__call</span> &mdash; <span class="dc-title">Chama uma função SOAP (obsoleta)</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-soapclient.call-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SoapClient::__call</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>, <span class="methodparam"><span class="type">array</span> <code class="parameter">$args</code></span>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+
+  <p class="para rdfs-comment">
+   Atualmente, chamar este método diretamente não é de todo recomendável, pois o mesmo se encontra obsoleto. Em vez disso, recomenda-se a utilização das funções SOAP
+   como métodos do objeto <span class="classname"><a href="class.soapclient.html" class="classname">SoapClient</a></span>. No entanto, em alguns casos pode ser necessário utilizar opções adicionais ou chamar funções
+   com nomes dinâmicos, e nesses casos é recomendado utilizar o método <span class="methodname"><a href="soapclient.soapcall.html" class="methodname">SoapClient::__soapCall()</a></span>.
+   Este último permite um controle mais detalhado sobre a chamada da função, incluindo a especificação do nome da função como uma string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-soapclient.call-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O nome da função SOAP a ser chamada.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">args</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Ao chamar uma função SOAP, é necessário passar os argumentos adequados para que a operação seja executada corretamente. Esses argumentos são fornecidos como um array,
+       que pode ser organizado de duas formas distintas: array indexado (também conhecido por &quot;array ordenado&quot;) ou array associativo. É importante notar que muitos servidores SOAP
+       requerem que os nomes dos parâmetros sejam fornecidos na chamada da função. Nesse caso, é necessário utilizar um array associativo para garantir que cada valor seja atribuído ao parâmetro correto.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-soapclient.call-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Funções SOAP podem retornar um ou vários valores.
+   Caso a função retorne apenas um valor, tratar-se-á um valor escalar.
+   Se vários valores forem retornados, em vez disso, será retornado um array associativo de parâmetros de saída nomeados.
+   Já no caso de retornar múltiplos valores, tratar-se-á de um array associativo de parâmetros de saída nomeados.
+  </p>
+  <p class="para">
+   Ao ocorrer um erro durante a execução de uma operação SOAP, o objeto <span class="classname"><a href="class.soapclient.html" class="classname">SoapClient</a></span> poderá retornar um objeto <span class="classname"><a href="class.soapfault.html" class="classname">SoapFault</a></span>
+   para indicar o problema. No entanto, vale referir que esse comportamento depende da opção <code class="literal">exceptions</code>, sendo que esta pode ser
+   configurada no momento que o objecto é instanciado. Caso ocorra um erro e essa opção esteja definida como <strong><code>false</code></strong>, a biblioteca do PHP não lançará uma exceção.
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

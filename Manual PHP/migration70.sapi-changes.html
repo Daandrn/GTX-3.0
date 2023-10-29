@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Modifica&ccedil;&otilde;es nos M&oacute;dulos SAPI</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration70.constants.html">« Novas Constantes Globais</a></li>
+      <li style="float: right;"><a href="migration70.removed-exts-sapis.html">Extens&otilde;es e SAPIs removidas »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration70.html">Migrando do PHP 5.6.x para o PHP 7.0.x</a></li>
+    <li>Modifica&ccedil;&otilde;es nos M&oacute;dulos SAPI</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration70.sapi-changes" class="sect1">
+ <h2 class="title">Modificações nos Módulos SAPI</h2>
+
+ <div class="sect2" id="migration70.sapi-changes.fpm">
+  <h3 class="title"><a href="book.fpm.html" class="link">FPM</a></h3>
+
+  <div class="sect3" id="migration70.sapi-changes.fpm.listen">
+   <h4 class="title">
+    Portas de <a href="install.fpm.configuration.html#listen" class="link">listen</a> não qualificadas agora escutam
+    IPv4 e IPv6
+   </h4>
+
+   <p class="para">
+    No PHP 5, uma diretiva <a href="install.fpm.configuration.html#listen" class="link">listen</a> com somente um
+    número de porta escutaria em todas interfaces, mas somente no IPv4. O PHP
+    aceitará requisições feitas tanto via IPv4 quanto IPv6.
+   </p>
+
+   <p class="para">
+    Isso não afeta diretivas que incluem endereços de IP específicos; estas
+    continuarão a escutar somente no endereço e protocolo especificados.
+   </p>
+  </div>
+ </div>
+</div></div></div></body></html>

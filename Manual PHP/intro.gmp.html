@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Introdu&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="book.gmp.html">« GMP</a></li>
+      <li style="float: right;"><a href="gmp.setup.html">Instala&ccedil;&atilde;o/Configura&ccedil;&atilde;o »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.gmp.html">GMP</a></li>
+    <li>Introdu&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="intro.gmp" class="preface">
+  <h1 class="title">Introdução</h1>
+  <p class="simpara">
+   Estas funções permitem a você trabalhar com inteiros de tamanho arbritário
+   usando a biblioteca GNU <abbr title="Multiple Precision">MP</abbr>.
+  </p>
+  <p class="simpara">
+   Estas funções foram adicionadas no PHP 4.0.4.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    A maioria das funções GMP aceitam números GMP comoargumentos, definidos
+    como <code class="literal">resource</code> abaixo. Entretanto, a maioria destas
+    funções também aceitam argumentos númericos e strings, dado que é possível
+    converter posteriormente para um número. Também, caso houver uma
+    função mais rápida que possa trabalhar com números inteiros, ela
+    será usada ao invés de uma função mais lenta quando os argumentos forem inteiros.
+    Isto é feito de forma transparente, em resumo, você poderá usar
+    inteiros em qualquer função que espere um número GMP.
+    Veja também a função <span class="function"><a href="function.gmp-init.html" class="function">gmp_init()</a></span>.
+   </p>
+  </p></blockquote>
+  <div class="warning"><strong class="warning">Aviso</strong>
+   <p class="simpara">
+    Se você quiser explicitamente especificar um número inteiro largo,
+    especifique-o como uma string. Se você não fizer isto, o PHP
+    irá interpretar a literal inteira primeiro, possivelmente resultando em
+    perca de precisão, mesmo antes de começar a utilizar o <code class="literal">GMP</code>.
+   </p>
+  </div>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Esta extensão esta disponível na plataforma Windows desde PHP 5.1.0.
+   </span>
+  </p></blockquote>
+ </div></div></div></body></html>

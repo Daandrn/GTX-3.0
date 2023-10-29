@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>A compara&ccedil;&atilde;o bin&aacute;ria entre duas strings de um offset at&eacute; o limite do comprimento de caracteres</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.strtr.html">« strtr</a></li>
+      <li style="float: right;"><a href="function.substr-count.html">substr_count »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.strings.html">Fun&ccedil;&otilde;es de String</a></li>
+    <li>A compara&ccedil;&atilde;o bin&aacute;ria entre duas strings de um offset at&eacute; o limite do comprimento de caracteres</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.substr-compare" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">substr_compare</h1>
+  <p class="refpurpose"><span class="refname">substr_compare</span> &mdash; <span class="dc-title">A comparação binária entre duas strings de um offset até o limite do comprimento de caracteres</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.substr-compare-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>substr_compare</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$main_str</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$str</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$length</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">bool</span> <code class="parameter">$case_insensitivity</code><span class="initializer"> = false</span></span><br>): <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>substr_compare()</strong></span> compara <code class="parameter">main_str</code>
+   da posição <code class="parameter">offset</code> com <code class="parameter">str</code>
+   até <code class="parameter">length</code> caracteres.
+  </p>
+   </div>
+
+   
+   <div class="refsect1 parameters" id="refsect1-function.substr-compare-parameters">
+    <h3 class="title">Parâmetros</h3>
+    <p class="para">
+     <dl>
+      
+       <dt>
+<code class="parameter">main_str</code></dt>
+
+       <dd>
+
+       <p class="para">
+        A string principal a ser comparada.
+       </p>
+       </dd>
+
+      
+      
+       <dt>
+<code class="parameter">str</code></dt>
+
+       <dd>
+
+       <p class="para">
+        A segunda string a ser comparada.
+       </p>
+       </dd>
+
+      
+      
+       <dt>
+<code class="parameter">offset</code></dt>
+
+       <dd>
+
+        <p class="para">
+         A posição inicial para a comparação. Se negativo, inicia contando
+         da final da string.
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<code class="parameter">length</code></dt>
+
+       <dd>
+
+        <p class="para">
+         O comprimento da comparação. O valor padrão é o maior comprimento entre 
+         o comprimento de <code class="parameter">str</code> comparado com o comprimento
+         de <code class="parameter">main_str</code> menos o 
+         <code class="parameter">offset</code>.
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<code class="parameter">case_insensitivity</code></dt>
+
+       <dd>
+
+        <p class="para">
+         Se <code class="parameter">case_insensitivity</code> é <strong><code>true</code></strong>, a comparação é
+         case insensitive.
+        </p>
+       </dd>
+
+      
+     </dl>
+
+    </p>
+   </div>
+
+ 
+   <div class="refsect1 returnvalues" id="refsect1-function.substr-compare-returnvalues">
+    <h3 class="title">Valor Retornado</h3>
+    <p class="para">
+     Retorna &lt; 0 se <code class="parameter">main_str</code> da posição 
+     <code class="parameter">offset</code> em diante é menor que <code class="parameter">str</code>, &gt;
+     0 se ela é maior que <code class="parameter">str</code>, e 0 se elas são iguais.
+     Se <code class="parameter">offset</code> é igual ou maior que o comprimento de 
+     <code class="parameter">main_str</code> e <code class="parameter">length</code> é setado e é menor que 
+     1, (até PHP 5.6)<span class="function"><strong>substr_compare()</strong></span> dispara um warning e retorna 
+     <strong><code>false</code></strong>.
+    </p>
+   </div>
+
+   
+   <div class="refsect1 changelog" id="refsect1-function.substr-compare-changelog">
+    <h3 class="title">Changelog</h3>
+    <p class="para">
+     <table class="doctable informaltable">
+      
+       <thead>
+        <tr>
+         <th>Versão</th>
+         <th>Descrição</th>
+        </tr>
+
+       </thead>
+
+       <tbody class="tbody">
+        <tr>
+         <td>7.2.18, 7.3.5</td>
+         <td>
+          <code class="parameter">offset</code> may now be equal to the length of <code class="parameter">main_str</code>.
+         </td>
+        </tr>
+
+       </tbody>
+      
+     </table>
+
+    </p>
+   </div>
+
+   
+   <div class="refsect1 examples" id="refsect1-function.substr-compare-examples">
+    <h3 class="title">Exemplos</h3>
+    <p class="para">
+     <div class="example" id="">
+      <p><strong>Exemplo #1 Exemplo da <span class="function"><strong>substr_compare()</strong></span></strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">, </span><span style="color: #DD0000">"bc"</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">); </span><span style="color: #FF8000">// 0<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">, </span><span style="color: #DD0000">"de"</span><span style="color: #007700">, -</span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">); </span><span style="color: #FF8000">// 0<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">, </span><span style="color: #DD0000">"bcg"</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">); </span><span style="color: #FF8000">// 0<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">, </span><span style="color: #DD0000">"BC"</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #0000BB">true</span><span style="color: #007700">); </span><span style="color: #FF8000">// 0<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">, </span><span style="color: #DD0000">"bc"</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">); </span><span style="color: #FF8000">// 1<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">, </span><span style="color: #DD0000">"cd"</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">); </span><span style="color: #FF8000">// -1<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">, </span><span style="color: #DD0000">"abc"</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">); </span><span style="color: #FF8000">// warning<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+  <div class="refsect1 seealso" id="refsect1-function.substr-compare-seealso">
+   <h3 class="title">Veja Também</h3>
+   <p class="para">
+    <ul class="simplelist">
+     <li class="member"><span class="function"><a href="function.strncmp.html" class="function" rel="rdfs-seeAlso">strncmp()</a> - Binary safe string comparison of the first n characters</span></li>
+    </ul>
+   </p>
+  </div>
+
+   
+</div></div></div></body></html>

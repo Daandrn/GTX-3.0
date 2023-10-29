@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retorna um novo objeto DateTime</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="datetime.add.html">« DateTime::add</a></li>
+      <li style="float: right;"><a href="datetime.createfromformat.html">DateTime::createFromFormat »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.datetime.html">DateTime</a></li>
+    <li>Retorna um novo objeto DateTime</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="datetime.construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DateTime::__construct</h1>
+  <h1 class="refname">date_create</h1>
+  <p class="refpurpose"><span class="refname">DateTime::__construct</span> -- <span class="refname">date_create</span> &mdash; <span class="dc-title">Retorna um novo objeto DateTime</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-datetime.construct-description">
+  <h3 class="title">Descrição</h3>
+  <p class="para">Estilo orientado a objetos</p>
+  <div class="constructorsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>DateTime::__construct</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$time</code><span class="initializer"> = &quot;now&quot;</span></span>, <span class="methodparam"><span class="type"><a href="class.datetimezone.html" class="type DateTimeZone">DateTimeZone</a></span> <code class="parameter">$timezone</code><span class="initializer"> = <strong><code>null</code></strong></span></span>)</div>
+
+  <p class="para rdfs-comment">Estilo procedural</p>
+  <div class="methodsynopsis dc-description"><span class="methodname"><a href="function.date-create.html" class="methodname">date_create</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$time</code><span class="initializer"> = &quot;now&quot;</span></span>, <span class="methodparam"><span class="type"><a href="class.datetimezone.html" class="type DateTimeZone">DateTimeZone</a></span> <code class="parameter">$timezone</code><span class="initializer"> = <strong><code>null</code></strong></span></span>): <span class="type"><a href="class.datetime.html" class="type DateTime">DateTime</a></span></div>
+
+  <p class="para rdfs-comment">
+   Retorna um novo objeto DateTime.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-datetime.construct-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <dl>
+   
+    <dt>
+<code class="parameter">time</code></dt>
+
+    <dd>
+
+     <p class="para">Uma string de data/hora. Os formatos válidos são explicados em <a href="datetime.formats.html" class="link">Formatos de Data e Hora</a>.</p>
+     <p class="para">
+      Coloque <strong><code>null</code></strong> neste parâmetro para obter o horário atual quando
+      utilizar o parâmetro <code class="parameter">$timezone</code>
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">timezone</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Um objeto <span class="classname"><a href="class.datetimezone.html" class="classname">DateTimeZone</a></span>, representando o
+      fuso horário do parâmetro <code class="parameter">$time</code>.
+     </p>
+     <p class="para">
+      Se <code class="parameter">$timezone</code> for omitido,
+      o fuso horário atual será utilizado.
+     </p>
+     <blockquote class="note"><p><strong class="note">Nota</strong>: 
+      <p class="para">
+       O parâmetro <code class="parameter">$timezone</code>
+       e o fuso horário atual são ignorados quando o
+       parâmetro <code class="parameter">$time</code>
+       é um timestamp UNIX (exemplo, <code class="literal">@946684800</code>)
+       ou quando o fuso horário é informado
+       (exemplo. <code class="literal">2010-01-28T15:00:00+02:00</code>).
+      </p>
+     </p></blockquote>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-datetime.construct-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna uma nova instância de DateTime.
+   Estilo procedural retorna <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-datetime.construct-errors">
+  <h3 class="title">Erros</h3>
+  <p class="para">
+   Emitirá uma <span class="classname"><a href="class.exception.html" class="classname">Exception</a></span> em caso de erro.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-datetime.construct-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.3.0</td>
+       <td>
+        Se o parâmetro <code class="parameter">time</code> conter algum
+        <a href="datetime.formats.html" class="link">formato de data/hora</a> inválida,
+        uma exceção será lançada. Anteriormente, um erro era emitido.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-datetime.construct-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="">
+   <p><strong>Exemplo #1 Exemplos do construtor <span class="function"><strong>DateTime::__construct()</strong></span></strong></p>
+   <div class="example-contents"><p>Estilo orientado a objetos</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">try {<br />    </span><span style="color: #0000BB">$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">'2000-01-01'</span><span style="color: #007700">);<br />} catch (</span><span style="color: #0000BB">Exception $e</span><span style="color: #007700">) {<br />    echo </span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();<br />    exit(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />}<br /><br />echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>Estilo procedural</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$date </span><span style="color: #007700">= </span><span style="color: #0000BB">date_create</span><span style="color: #007700">(</span><span style="color: #DD0000">'2000-01-01'</span><span style="color: #007700">);<br />if (!</span><span style="color: #0000BB">$date</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">$e </span><span style="color: #007700">= </span><span style="color: #0000BB">date_get_last_errors</span><span style="color: #007700">();<br />    foreach (</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'errors'</span><span style="color: #007700">] as </span><span style="color: #0000BB">$error</span><span style="color: #007700">) {<br />        echo </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$error</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />    }<br />    exit(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />}<br /><br />echo </span><span style="color: #0000BB">date_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$date</span><span style="color: #007700">, </span><span style="color: #DD0000">'Y-m-d'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>Os exemplos acima produzirão:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+2000-01-01
+</pre></div>
+   </div>
+  </div>
+  <div class="example" id="">
+   <p><strong>Exemplo #2 Complexidades do construtor <span class="function"><strong>DateTime::__construct()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Specified date/time in your computer's time zone.<br /></span><span style="color: #0000BB">$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">'2000-01-01'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d H:i:sP'</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Specified date/time in the specified time zone.<br /></span><span style="color: #0000BB">$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">'2000-01-01'</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeZone</span><span style="color: #007700">(</span><span style="color: #DD0000">'Pacific/Nauru'</span><span style="color: #007700">));<br />echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d H:i:sP'</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Current date/time in your computer's time zone.<br /></span><span style="color: #0000BB">$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">();<br />echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d H:i:sP'</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Current date/time in the specified time zone.<br /></span><span style="color: #0000BB">$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeZone</span><span style="color: #007700">(</span><span style="color: #DD0000">'Pacific/Nauru'</span><span style="color: #007700">));<br />echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d H:i:sP'</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Using a UNIX timestamp.  Notice the result is in the UTC time zone.<br /></span><span style="color: #0000BB">$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">'@946684800'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d H:i:sP'</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Non-existent values roll over.<br /></span><span style="color: #0000BB">$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">'2000-02-30'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d H:i:sP'</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+2000-01-01 00:00:00-05:00
+2000-01-01 00:00:00+12:00
+2010-04-24 10:24:16-04:00
+2010-04-25 02:24:16+12:00
+2000-01-01 00:00:00+00:00
+2000-03-01 00:00:00-05:00
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-datetime.construct-seealso">
+  <h3 class="title">Veja Também</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="function"><a href="datetime.createfromformat.html" class="function" rel="rdfs-seeAlso">DateTime::createFromFormat()</a> - Retorna um novo objeto DateTime formatado de acordo com um formato informado</span></li>
+   <li class="member"><span class="function"><a href="datetimezone.construct.html" class="function" rel="rdfs-seeAlso">DateTimeZone::__construct()</a> - Cria um novo objeto DateTimeZone</span></li>
+   <li class="member"><a href="datetime.formats.html" class="link">Date and Time Formats</a></li>
+   <li class="member"><a href="datetime.configuration.html#ini.date.timezone" class="link">date.timezone</a> ini setting</li>
+   <li class="member"><span class="function"><a href="function.date-default-timezone-set.html" class="function" rel="rdfs-seeAlso">date_default_timezone_set()</a> - Configura o fuso hor&aacute;rio padr&atilde;o utilizado por todas as fun&ccedil;&otilde;es de data e
+   hora em um script</span></li>
+   <li class="member"><span class="function"><a href="datetime.getlasterrors.html" class="function" rel="rdfs-seeAlso">DateTime::getLastErrors()</a> - Retorna os avisos e erros</span></li>
+   <li class="member"><span class="function"><a href="function.checkdate.html" class="function" rel="rdfs-seeAlso">checkdate()</a> - Valida uma data Gregoriana</span></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Algo &Uacute;til</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="tutorial.firstpage.html">« Sua primeira p&aacute;gina PHP</a></li>
+      <li style="float: right;"><a href="tutorial.forms.html">Tratando Formul&aacute;rios »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="tutorial.html">Um simples tutorial</a></li>
+    <li>Algo &Uacute;til</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="tutorial.useful" class="section">
+   <div class="info"><h1 class="title">Algo Útil</h1></div>
+   <p class="para">
+    Vamos fazer alguma coisa um pouco mais útil agora. Nós iremos checar
+    qual é o tipo de navegador que o visitante está utilizando para ver a nossa página.
+    Para fazer isto nós iremos checar qual é o valor da string agente que o navegador
+    envia como parte de sua requisição HTTP. Esta informação é armazenada em uma <a href="language.variables.html" class="link">variável</a>. Variáveis sempre começam
+    com um símbolo de cifrão no PHP. A variável que nos interessa no momento
+    é <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['HTTP_USER_AGENT']</a></var>.
+   </p>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var> é uma
+     variável especial reservada do PHP que contém todas as informações sobre o servidor web.
+     Ela é conhecida como uma superglobal. Veja a página do manual relacionada às
+     <a href="language.variables.superglobals.html" class="link">superglobais</a>
+     para mais informações.
+    </p>
+   </p></blockquote>
+   <p class="para">
+    Para exibir esta variável, nós podemos fazer isto:
+   </p>
+   <p class="para">
+    <div class="example" id="example-11">
+     <div class="info"><p><strong>Exemplo #1 Imprimindo uma variável (elemento do Array)</strong></p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'HTTP_USER_AGENT'</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Um exemplo de saída desse script poderia ser:
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Mozilla/5.0 (Linux) Firefox/112.0
+</pre></div>
+    </div>
+   </div>
+   </p>
+   <p class="para">
+    Há muitos <a href="language.types.html" class="link">tipos</a> de
+    variáveis disponíveis no PHP. No exemplo acima nós imprimimos
+    um elemento do <a href="language.types.array.html" class="link">Array</a>.
+    Arrays podem ser muito úteis.
+   </p>
+   <p class="para">
+    <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var> é somente uma das variáveis que o PHP automaticamente
+    disponibiliza para você. A lista destas variáveis pode ser vista na seção
+    <a href="reserved.variables.html" class="link">Variáveis Reservadas</a>
+    do manual ou você pode obter uma lista completa delas olhando
+    o resultado da função <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span> utilizada no
+    exemplo da seção anterior.
+   </p>
+   <p class="para">
+    Você pode colocar múltiplas instruções PHP dentro da tag PHP e criar
+    pequenos blocos de códigos que fazem muito mais do que um simples echo.
+    Por exemplo, se você quer checar se o navegador é o Firefox você
+    pode fazer isso:
+   </p>
+   <p class="para">
+    <div class="example" id="install.unix.debian.apt.example2">
+     <div class="info"><p><strong>Exemplo #2 Exemplo utilizando <a href="language.control-structures.html" class="link">estruturas
+     de controle</a> e <a href="language.functions.html" class="link">funções</a></strong></p></div>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">str_contains</span><span style="color: #007700">(</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'HTTP_USER_AGENT'</span><span style="color: #007700">], </span><span style="color: #DD0000">'Firefox'</span><span style="color: #007700">)) {<br />    echo </span><span style="color: #DD0000">'Você está usando o Firefox.'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+     <div class="example-contents"><p>
+      Um exemplo de saída desse script seria:
+     </p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Você está usando o Firefox.
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <p class="para">
+    Aqui nós introduzimos alguns conceitos novos. Nós temos a declaração
+    <a href="control-structures.if.html" class="link">if</a>.
+    Se você está familiarizado com a sintaxe básica usada pela
+    linguagem C isto parecerá ser lógico para você. Se não você
+    provavelmente deve ver um livro introdutório de PHP e ler os
+    capítulos iniciais, ou ainda ler a seção <a href="langref.html" class="link">Referência da
+    Linguagem</a> do manual.
+   </p>
+   <p class="para">
+    O segundo conceito que iremos abordar é a chamada à função <span class="function"><a href="function.str-contains.html" class="function">str_contains()</a></span>.
+    A função <span class="function"><a href="function.str-contains.html" class="function">str_contains()</a></span> vem junto com
+    o PHP e busca uma palavra em outra palavra. Neste caso nós estamos
+    procurando pelo texto <code class="literal">&#039;Firefox&#039;</code> dentro de
+    <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['HTTP_USER_AGENT']</a></var>. Se o dado pesquisado
+    não for encontrado na coleção, a função retorna true. Se não, ela
+    retorna <strong><code>false</code></strong>. Se ela retornar <strong><code>true</code></strong>, o <a href="control-structures.if.html" class="link">if</a> avalia para <strong><code>true</code></strong>
+    e o código dentro dos {colchetes} é executado. Caso contrário o código não
+    roda. Tente criar exemplos similares
+    com <a href="control-structures.if.html" class="link">if</a>,
+    <a href="control-structures.else.html" class="link">else</a>, e outras
+    funções como <span class="function"><a href="function.strtoupper.html" class="function">strtoupper()</a></span> e
+    <span class="function"><a href="function.strlen.html" class="function">strlen()</a></span>. Cada página relacionada contém exemplos
+    também. Se você estiver incerto em como utilizar funções você deve ler
+    as páginas sobre <a href="about.prototypes.html" class="link">como ler uma
+    definição de função</a> e a seção sobre
+    <a href="language.functions.html" class="link">funções do PHP</a>.
+   </p>
+   <p class="para">
+    Nós podemos avançar agora e mostrar a você como alternar entre os modos
+    PHP mesmo que você esteja executando blocos de códigos:
+   </p>
+   <p class="para">
+    <div class="example" id="example-17">
+     <div class="info"><p><strong>Exemplo #3 Mesclando entre os modos PHP e HTML</strong></p></div>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">str_contains</span><span style="color: #007700">(</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'HTTP_USER_AGENT'</span><span style="color: #007700">], </span><span style="color: #DD0000">'Firefox'</span><span style="color: #007700">) !== </span><span style="color: #0000BB">false</span><span style="color: #007700">) {<br /></span><span style="color: #0000BB">?&gt;<br /></span>&lt;h3&gt;str_contains() retornou não falso&lt;/h3&gt;<br />&lt;p&gt;Você está usando Firefox&lt;/p&gt;<br /><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">} else {<br /></span><span style="color: #0000BB">?&gt;<br /></span>&lt;h3&gt;str_contains() retornou false&lt;/h3&gt;<br />&lt;p&gt;Você não está usando Firefox&lt;/p&gt;<br /><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+     <div class="example-contents"><p>
+      Um exemplo de saída desse script poderia ser:
+     </p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+&lt;h3&gt;str_contains() retornou não falso&lt;/h3&gt;
+&lt;p&gt;Você está usando Firefox&lt;/p&gt;
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <p class="para">
+    Ao invés de usar a declaração echo do PHP para imprimir a saída dos dados, nós saímos
+    do modo do PHP e usamos o HTML normal. O importante a notar aqui
+    é que a lógica do script continua intacta. Somente
+    um dos blocos HTML será enviado dependendo do
+    resultado da chamada à função <span class="function"><a href="function.str-contains.html" class="function">str_contains()</a></span>. Em outras palavras, depende
+    se a palavra <code class="literal">Firefox</code> for encontrada ou não.
+   </p>
+  </div></div></div></body></html>

@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retorna a hora do p&ocirc;r do sol de um dia e localiza&ccedil;&atilde;o informada.</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.date-sunrise.html">« date_sunrise</a></li>
+      <li style="float: right;"><a href="function.date-time-set.html">date_time_set »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.datetime.html">Fun&ccedil;&otilde;es de Data/Hora</a></li>
+    <li>Retorna a hora do p&ocirc;r do sol de um dia e localiza&ccedil;&atilde;o informada.</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.date-sunset" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">date_sunset</h1>
+  <p class="refpurpose"><span class="refname">date_sunset</span> &mdash; <span class="dc-title">
+   Retorna a hora do pôr do sol de um dia e localização informada.
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.date-sunset-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>date_sunset</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$timestamp</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$format</code><span class="initializer"> = SUNFUNCS_RET_STRING</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">float</span> <code class="parameter">$latitude</code><span class="initializer"> = ini_get(&quot;date.default_latitude&quot;)</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">float</span> <code class="parameter">$longitude</code><span class="initializer"> = ini_get(&quot;date.default_longitude&quot;)</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">float</span> <code class="parameter">$zenith</code><span class="initializer"> = ini_get(&quot;date.sunset_zenith&quot;)</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">float</span> <code class="parameter">$gmt_offset</code><span class="initializer"> = 0</span></span><br>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+
+   <p class="para rdfs-comment">
+   A função <span class="function"><a href="function.date-sunrise.html" class="function">date_sunrise()</a></span> retorna a hora do pôr do sol de um
+   dia (especificado como um <code class="parameter">timestamp</code>) e localização informada.
+   </p>
+  </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.date-sunset-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">timestamp</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O <code class="parameter">timestamp</code> do dia do pôr do sol
+       desejado.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">format</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <table class="doctable table">
+        <caption><strong><code class="parameter">format</code> constants</strong></caption>
+        
+         <thead>
+          <tr>
+           <th>constante</th>
+           <th>descrição</th>
+           <th>exemplo</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>SUNFUNCS_RET_STRING</td>
+           <td>retorna o resultado como uma <span class="type">string</span></td>
+           <td>16:46</td>
+          </tr>
+
+          <tr>
+           <td>SUNFUNCS_RET_DOUBLE</td>
+           <td>retorna o resultado como um <span class="type">float</span></td>
+           <td>16.78243132</td>
+          </tr>
+
+          <tr>
+           <td>SUNFUNCS_RET_TIMESTAMP</td>
+           <td>retorna o resultado como um <span class="type">integer</span> (timestamp)</td>
+           <td>1095034606</td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">latitude</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Padronizado ao Norte, passe o valor negativado para Sul.
+       Veja também: <code class="literal">date.default_latitude</code>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">longitude</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Padronizado a Leste, passe o valor negativado para Oeste.
+       Veja também: <code class="literal">date.default_longitude</code>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">zenith</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Default: <code class="literal">date.sunset_zenith</code>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">gmtoffset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Especificado em horas.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-function.date-sunset-errors">
+  <h3 class="title">Erros</h3>
+
+   <p class="para">
+Toda chamada a uma função de data/hora gerará um <strong><code>E_WARNING</code></strong>
+se o fuso horário não for válido. Veja também <span class="function"><a href="function.date-default-timezone-set.html" class="function">date_default_timezone_set()</a></span></p>
+
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.date-sunset-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.date-sunset-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna a hora do pôr do sol no <code class="parameter">format</code> especificado em caso de
+   sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.date-sunset-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo da função <span class="function"><strong>date_sunset()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/* calculate the sunset time for Lisbon, Portugal<br />Latitude: 38.4 North<br />Longitude: 9 West<br />Zenith ~= 90<br />offset: +1 GMT<br />*/<br /><br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">"D M d Y"</span><span style="color: #007700">). </span><span style="color: #DD0000">', sunset time : ' </span><span style="color: #007700">.</span><span style="color: #0000BB">date_sunset</span><span style="color: #007700">(</span><span style="color: #0000BB">time</span><span style="color: #007700">(), </span><span style="color: #0000BB">SUNFUNCS_RET_STRING</span><span style="color: #007700">, </span><span style="color: #0000BB">38.4</span><span style="color: #007700">, -</span><span style="color: #0000BB">9</span><span style="color: #007700">, </span><span style="color: #0000BB">90</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Mon Dec 20 2004, sunset time : 18:13
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.date-sunset-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.date-sunrise.html" class="function" rel="rdfs-seeAlso">date_sunrise()</a> - Retorna a hora do nascer do sol de um dia e localica&ccedil;&atilde;o informada</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

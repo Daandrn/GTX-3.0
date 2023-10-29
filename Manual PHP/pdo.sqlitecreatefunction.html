@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Registra uma Fun&ccedil;&atilde;o Definida pelo Usu&aacute;rio para uso em declara&ccedil;&otilde;es SQL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="pdo.sqlitecreatecollation.html">« PDO::sqliteCreateCollation</a></li>
+      <li style="float: right;"><a href="refs.database.vendors.html">Vendor Specific Database Extensions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.pdo-sqlite.html">SQLite (PDO)</a></li>
+    <li>Registra uma Fun&ccedil;&atilde;o Definida pelo Usu&aacute;rio para uso em declara&ccedil;&otilde;es SQL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="pdo.sqlitecreatefunction" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">PDO::sqliteCreateFunction</h1>
+  <p class="refpurpose"><span class="refname">PDO::sqliteCreateFunction</span> &mdash; <span class="dc-title">
+   Registra uma Função Definida pelo Usuário para uso em declarações SQL
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-pdo.sqlitecreatefunction-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>PDO::sqliteCreateFunction</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$function_name</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$callback</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$num_args</code><span class="initializer"> = -1</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span><br>): <span class="type">bool</span></div>
+
+  <div class="warning"><strong class="warning">Aviso</strong><p class="simpara">Esta função é
+<em>EXPERIMENTAL</em>. O comportamento desta função, seu nome e
+documentação poderão mudar sem aviso prévio em futuras versões do PHP.
+Use por sua conta e risco.
+</p></div>
+
+  <p class="para">
+   Este método permite registrar uma função PHP com o SQLite como uma
+   <abbr title="User Defined Functions">UDF</abbr> (Função Definida pelo Usuário), para que possa ser
+   chamada a partir das declarações SQL.
+  </p>
+  <p class="para">
+   A UDF pode ser usada em qualquer declaração SQL que possa chamar funções,
+   como declarações SELECT e UPDATE e também em triggers.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-pdo.sqlitecreatefunction-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">function_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O nome da função usada nas declarações SQL.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">callback</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Função callback para tratar a função SQL definida.
+      </p>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <span class="simpara">
+        As funções callback devem retornar um tipo reconhecido pelo SQLite
+        (ou seja, um
+        <a href="language.types.intro.html" class="link">tipo escalar</a>).
+       </span>
+      </p></blockquote>
+      <p class="para">
+       Esta função precisa ser definida como:
+       <div class="methodsynopsis dc-description">
+        <span class="methodname"><span class="replaceable">callback</span></span>(<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">...$values</code></span>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+
+       <dl>
+        
+         <dt>
+<code class="parameter">value</code></dt>
+
+         <dd>
+
+          <p class="para">
+           O primeiro argumento passado para a função SQL.
+          </p>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">values</code></dt>
+
+         <dd>
+
+          <p class="para">
+           Argumentos adicionais passados para a função SQL.
+          </p>
+         </dd>
+
+        
+       </dl>
+
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">num_args</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O número de argumentos que a função SQL utiliza.
+       Se este parâmetro for <code class="literal">-1</code>, então a função SQL poderá
+       receber qualquer número de argumentos.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Uma conjunção bit a bit de flags.
+       Atualmente, apenas <strong><code>PDO::SQLITE_DETERMINISTIC</code></strong> é
+       suportada, o que especifica que a função sempre retorna o mesmo resultado
+       dadas as mesmas entradas em uma única instrução SQL.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-pdo.sqlitecreatefunction-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-pdo.sqlitecreatefunction-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>7.1.4</td>
+      <td>
+       O parâmetro <code class="parameter">flags</code> foi adicionado.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-pdo.sqlitecreatefunction-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="example-3359">
+    <p><strong>Exemplo #1 Exemplo de <span class="function"><strong>PDO::sqliteCreateFunction()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">md5_and_reverse</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">)<br />{<br />    return </span><span style="color: #0000BB">strrev</span><span style="color: #007700">(</span><span style="color: #0000BB">md5</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">$db </span><span style="color: #007700">= new </span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #DD0000">'sqlite:sqlitedb'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sqliteCreateFunction</span><span style="color: #007700">(</span><span style="color: #DD0000">'md5rev'</span><span style="color: #007700">, </span><span style="color: #DD0000">'md5_and_reverse'</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$rows </span><span style="color: #007700">= </span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT md5rev(filename) FROM files'</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">fetchAll</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Neste exemplo, existe uma função que calcula a soma md5 de uma string e
+   depois a inverte.
+   Quando a instrução SQL é executada, ela retorna o valor do nome do arquivo
+   transformado pela função.
+   Os dados retornados em <code class="literal">$rows</code> contêm o resultado
+   processado.
+  </p>
+  <p class="para">
+   A beleza desta técnica é que não é necessário processar o resultado usando um
+   laço <a href="control-structures.foreach.html" class="link">foreach</a> após os dados terem sido consultados.
+  </p>
+  <div class="tip"><strong class="tip">Dica</strong>
+   <p class="para">
+    <a href="pdo.sqlitecreatefunction.html" class="xref">PDO::sqliteCreateFunction</a>
+    e
+    <a href="pdo.sqlitecreateaggregate.html" class="xref">PDO::sqliteCreateAggregate</a>
+    podem ser usados para substituir funções SQL nativas do SQLite.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-pdo.sqlitecreatefunction-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="pdo.sqlitecreateaggregate.html" class="xref">PDO::sqliteCreateAggregate</a></li>
+    <li class="member"><span class="function"><strong>sqlite_create_function()</strong></span></li>
+    <li class="member"><span class="function"><strong>sqlite_create_aggregate()</strong></span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

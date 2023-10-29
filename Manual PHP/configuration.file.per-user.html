@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Arquivos .user.ini</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="configuration.file.html">« O arquivo de configura&ccedil;&atilde;o</a></li>
+      <li style="float: right;"><a href="configuration.changes.modes.html">Onde uma configura&ccedil;&atilde;o deve ser definida »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="configuration.html">Configura&ccedil;&atilde;o em tempo de execu&ccedil;&atilde;o</a></li>
+    <li>Arquivos .user.ini</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="configuration.file.per-user" class="sect1">
+  <h2 class="title">Arquivos .user.ini</h2>
+  
+  <p class="simpara">
+   O PHP tem suporte para arquivos de configuração INI por 
+   cada diretório. Esses arquivos são processados <em>apenas</em> pelo
+   CGI/FastCGI SAPI. Essa funcionalidade torna obsoleta a extensão PECL htscanner.
+   Se você estiver rodando o PHP como um módulo do Apache, use arquivos <var class="filename">.htaccess</var> para obter o mesmo
+   efeito.
+  </p>
+  
+  <p class="simpara">
+   Além do arquivo <var class="filename">php.ini</var> principal, o PHP procura por arquivos INI em cada
+   diretório, iniciando no diretório do arquivo PHP requisitado e 
+   continua o caminho até a raiz do documento atual (conforme definido na variável
+   <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['DOCUMENT_ROOT']</a></var>). Caso o arquivo PHP esteja fora
+   da raiz do documento, apenas o seu diretório é procurado.
+  </p>
+  <p class="simpara">
+   Somente configurações INI com 
+   os modos <strong><code>PHP_INI_PERDIR</code></strong> e
+   <strong><code>PHP_INI_USER</code></strong> serão reconhecidos nos arquivos INI estilo
+   .user.ini.
+  </p>
+  
+  <p class="simpara">
+   Duas novas diretivas INI,
+   <a href="ini.core.html#ini.user-ini.filename" class="link">user_ini.filename</a> e
+   <a href="ini.core.html#ini.user-ini.cache-ttl" class="link">user_ini.cache_ttl</a>
+   controlam o uso de arquivos INI de usuário.
+  </p>
+  
+  <p class="simpara">
+   A diretiva <a href="ini.core.html#ini.user-ini.filename" class="link">user_ini.filename</a> define o nome do arquivo que o PHP 
+   procura em cada diretório; se for definido como uma string vazia, o PHP não
+   fará a varredura em tudo. O padrão é <code class="literal">.user.ini</code>.
+  </p>
+  
+  <p class="simpara">
+   A diretiva <a href="ini.core.html#ini.user-ini.cache-ttl" class="link">user_ini.cache_ttl</a> controla a frequência de como os arquivos INI 
+   de usuário são relidos. O padrão é de 300 segundos (5 minutos).
+  </p>
+ </div></div></div></body></html>

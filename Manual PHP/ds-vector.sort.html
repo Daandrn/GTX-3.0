@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Sorts the vector in-place</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="ds-vector.slice.html">« Ds\Vector::slice</a></li>
+      <li style="float: right;"><a href="ds-vector.sorted.html">Ds\Vector::sorted »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.ds-vector.html">Ds\Vector</a></li>
+    <li>Sorts the vector in-place</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="ds-vector.sort" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Ds\Vector::sort</h1>
+  <p class="refpurpose"><span class="refname">Ds\Vector::sort</span> &mdash; <span class="dc-title">
+    Sorts the vector in-place
+ </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-ds-vector.sort-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>Ds\Vector::sort</strong></span>(<span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$comparator</code><span class="initializer"> = ?</span></span>): <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+    Sorts the vector in-place, using an optional <code class="parameter">comparator</code> function.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-ds-vector.sort-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <dl>
+   
+     <dt>
+<code class="parameter">comparator</code></dt>
+
+     <dd>
+
+      <p class="para">
+ A função de comparação deve retornar um inteiro menor que, igual ou maior que zero se o primeiro argumento for considerado respectivamente menor que, igual ou maior que o segundo.
+</p>
+<div class="methodsynopsis dc-description"><span class="methodname"><span class="replaceable">callback</span></span>(<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$a</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$b</code></span>): <span class="type">int</span></div>
+
+<div class="caution"><strong class="caution">Cuidado</strong>
+ <p class="para">
+  Retornar valores <em>não inteiros</em> da função de
+  comparação, como <span class="type">float</span>, resultará em uma conversão interna
+  do valor retornado da função callback para <span class="type">int</span>. Portanto, valores como
+  <code class="literal">0.99</code> e <code class="literal">0.1</code> serão convertidos para o
+  valor inteiro <code class="literal">0</code>, o que comparará esses valores como iguais.
+ </p>
+</div>
+     </dd>
+
+    
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-ds-vector.sort-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+    Nenhum valor é retornado.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-ds-vector.sort-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="">
+   <p><strong>Exemplo #1 <span class="function"><strong>Ds\Vector::sort()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$vector </span><span style="color: #007700">= new </span><span style="color: #0000BB">\Ds\Vector</span><span style="color: #007700">([</span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$vector</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sort</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$vector</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Ds\Vector Object
+(
+    [0] =&gt; 1
+    [1] =&gt; 2
+    [2] =&gt; 3
+    [3] =&gt; 4
+    [4] =&gt; 5
+)
+</pre></div>
+   </div>
+  </div>
+  <div class="example" id="">
+   <p><strong>Exemplo #2 <span class="function"><strong>Ds\Vector::sort()</strong></span> example using a comparator</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$vector </span><span style="color: #007700">= new </span><span style="color: #0000BB">\Ds\Vector</span><span style="color: #007700">([</span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">]);<br /><br /></span><span style="color: #0000BB">$vector</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sort</span><span style="color: #007700">(function(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br />    return </span><span style="color: #0000BB">$b </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #0000BB">$a</span><span style="color: #007700">;<br />});<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$vector</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Ds\Vector Object
+(
+    [0] =&gt; 5
+    [1] =&gt; 4
+    [2] =&gt; 3
+    [3] =&gt; 2
+    [4] =&gt; 1
+)
+</pre></div>
+   </div>
+  </div>
+
+ </div>
+
+
+
+</div></div></div></body></html>

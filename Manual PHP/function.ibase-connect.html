@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Abre uma conex&atilde;o com um banco de dados InterBase</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ibase-commit.html">« ibase_commit</a></li>
+      <li style="float: right;"><a href="function.ibase-db-info.html">ibase_db_info »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ibase.html">Fun&ccedil;&otilde;es para Firebird/InterBase</a></li>
+    <li>Abre uma conex&atilde;o com um banco de dados InterBase</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ibase-connect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ibase_connect</h1>
+  <p class="refpurpose"><span class="refname">ibase_connect</span> &mdash; <span class="dc-title">Abre uma conexão com um banco de dados InterBase</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.ibase-connect-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ibase_connect</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$database</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$username</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$password</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$charset</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$buffers</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$dialect</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$role</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$sync</code><span class="initializer"> = ?</span></span><br>): <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   Estabelece uma conexão com um banco de dados InterBase.
+  </p>
+  <p class="para">
+   No caso de uma segunda chamada a <span class="function"><strong>ibase_connect()</strong></span> com
+   os mesmos argumntos, não será criada uma nova conexão, mas ao invés, será
+   retornado o identificador da conexão já aberta. A conexão com
+   o servidor será fechada assim que terminar a execução do script, a menos
+   que seja fechada explicitamente pela chamada de <span class="function"><a href="function.ibase-close.html" class="function">ibase_close()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ibase-connect-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">database</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O argumento <code class="parameter">database</code> deve ser um caminho válido
+       para o arquivo do banco de dados no servidor no qual ele reside. Se o servidor não for local,
+       ele deve ser prefixado com &#039;hostname:&#039; (TCP/IP), &#039;//hostname/&#039;
+       (NetBEUI) ou &#039;hostname@&#039; (IPX/SPX), dependendo do protocolo de conexão
+       usado.   
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">username</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O nome de usuário. Pode ser definido com a diretiva
+       <code class="literal">ibase.default_user</code> do <var class="filename">php.ini</var> 
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">password</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A senha para <code class="parameter">username</code>. Poe ser definida com a diretiva
+       <code class="literal">ibase.default_password</code> do <var class="filename">php.ini</var>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">charset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">charset</code> é o conjunto de caracteres padrão
+       para o banco de dados.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">buffers</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">buffers</code> é o número de buffers do banco de dados
+       a serem alocados para o cache do lado do servidor. Se 0 ou omitido, o servidor
+       escolhe o seu próprio padrão.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">dialect</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">dialect</code> define o dialeto SQL padrão para
+       qualquer comand executado na conexão, e o padrão é o mais alto
+       suportado pelas bibliotecas do cliente. Funciona apenas com
+       InterBase 6 e superior.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">role</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Funcional apenas com InterBase 5 e superior.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">sync</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ibase-connect-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna um identificador de conexão InterBase em caso de sucesso, ou <strong><code>false</code></strong> em caso de erro.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-function.ibase-connect-errors">
+  <h3 class="title">Erros</h3>
+  <p class="para">
+   Se você ter um erro parecido com &quot;arithmetic exception, numeric overflow, ou
+   string truncation. Cannot transliterate character between character sets&quot;
+   (isto ocorre quando você tenta usar algum caractere com acento) ao usar esta e depois
+   <span class="function"><a href="function.ibase-query.html" class="function">ibase_query()</a></span> você deve definir seu conjunto de caracteres
+   (ex. ISO8859_1 ou seu conjunto de caracteres atual).
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ibase-connect-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="example-3698">
+    <p><strong>Exemplo #1 Exemplo <span class="function"><strong>ibase_connect()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$host </span><span style="color: #007700">= </span><span style="color: #DD0000">'localhost:/path/to/your.gdb'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$dbh </span><span style="color: #007700">= </span><span style="color: #0000BB">ibase_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$host</span><span style="color: #007700">, </span><span style="color: #0000BB">$username</span><span style="color: #007700">, </span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt </span><span style="color: #007700">= </span><span style="color: #DD0000">'SELECT * FROM tblname'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$sth </span><span style="color: #007700">= </span><span style="color: #0000BB">ibase_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">, </span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br />while (</span><span style="color: #0000BB">$row </span><span style="color: #007700">= </span><span style="color: #0000BB">ibase_fetch_object</span><span style="color: #007700">(</span><span style="color: #0000BB">$sth</span><span style="color: #007700">)) {<br />    echo </span><span style="color: #0000BB">$row</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">email</span><span style="color: #007700">, </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">ibase_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$sth</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ibase_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ibase-connect-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ibase-pconnect.html" class="function" rel="rdfs-seeAlso">ibase_pconnect()</a> - Open a persistent connection to an InterBase database</span></li>
+    <li class="member"><span class="function"><a href="function.ibase-close.html" class="function" rel="rdfs-seeAlso">ibase_close()</a> - Close a connection to an InterBase database</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Obt&eacute;m e/ou define o id de sess&atilde;o atual</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.session-get-cookie-params.html">« session_get_cookie_params</a></li>
+      <li style="float: right;"><a href="function.session-module-name.html">session_module_name »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.session.html">Fun&ccedil;&otilde;es para Sess&atilde;o</a></li>
+    <li>Obt&eacute;m e/ou define o id de sess&atilde;o atual</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.session-id" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_id</h1>
+  <p class="refpurpose"><span class="refname">session_id</span> &mdash; <span class="dc-title">Obtém e/ou define o id de sessão atual</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.session-id-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>session_id</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$id</code><span class="initializer"> = ?</span></span>): <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>session_id()</strong></span> é usado para obter ou definir o id de sessão
+   para a sessão atual.
+  </p>
+  <p class="para">
+   A constante <strong><code>SID</code></strong> também pode ser usada para
+   obter o nome e id da sessão atual como uma string adequado para
+   adicionar em URLs. Veja também <a href="ref.session.html" class="link">Manipulação
+   de Sessão</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.session-id-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">id</code></dt>
+
+      <dd>
+
+       <p class="para">
+        Se <code class="parameter">id</code> for especificado, ele substituirá o
+        id de sessão atual. <span class="function"><strong>session_id()</strong></span> precisa ser chamado antes de
+        <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> para este fim. Dependendo do
+        manipulador de sessão, nem todos os caracteres são permitidos em um id de sessão.
+        Por exemplo, o manipulador de sessão em arquivo permite apenas caracteres no
+        intervalo <code class="literal">a-z A-Z 0-9 , (comma) and - (minus)</code>!
+       </p>
+       <blockquote class="note"><p><strong class="note">Nota</strong>: 
+        <span class="simpara">
+         Quando estiver usando cookies de sessão, especificar um <code class="parameter">id</code>
+         para <span class="function"><strong>session_id()</strong></span> sempre enviará um novo cookie
+         quando <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> for chamada, sem importar se o
+         id da sessão atual for idêntico ao que está sendo definido.
+        </span>
+       </p></blockquote>
+      </dd>
+
+     
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.session-id-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   <span class="function"><strong>session_id()</strong></span> retorna o id de sessão para a sessão
+   atual ou uma string vazia (<code class="literal">&quot;&quot;</code>) se não houver sessão
+   atual (não existe um id de sessão atual).
+  </p>
+ </div>
+
+
+<div class="refsect1 seealso" id="refsect1-function.session-id-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.session-regenerate-id.html" class="function" rel="rdfs-seeAlso">session_regenerate_id()</a> - Atualiza o id da sess&atilde;o atual com um novo id gerado</span></li>
+    <li class="member"><span class="function"><a href="function.session-start.html" class="function" rel="rdfs-seeAlso">session_start()</a> - Inicia uma nova sess&atilde;o ou resume uma sess&atilde;o existente</span></li>
+    <li class="member"><span class="function"><a href="function.session-set-save-handler.html" class="function" rel="rdfs-seeAlso">session_set_save_handler()</a> - Define fun&ccedil;&otilde;es de armazenamento de sess&atilde;o &agrave; n&iacute;vel de usu&aacute;rio</span></li>
+    <li class="member">
+     <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

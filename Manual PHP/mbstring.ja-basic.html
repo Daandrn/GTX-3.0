@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>No&ccedil;&otilde;es B&aacute;sicas de Codifica&ccedil;&otilde;es Multibyte Japonesas</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mbstring.encodings.html">« Summaries of supported encodings</a></li>
+      <li style="float: right;"><a href="mbstring.http.html">HTTP Input and Output »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.mbstring.html">Multibyte String</a></li>
+    <li>No&ccedil;&otilde;es B&aacute;sicas de Codifica&ccedil;&otilde;es Multibyte Japonesas</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mbstring.ja-basic" class="chapter">
+ <h1>Noções Básicas de Codificações Multibyte Japonesas</h1>
+
+ <p class="para">
+  Os caracteres japoneses só podem ser representados por codificações multibyte,
+  e vários padrões de codificação são usados dependendo da plataforma
+  e da finalidade do texto.
+  Para piorar a situação, esses padrões de codificação diferem um pouco um do
+  outro.
+  Para criar uma aplicação web que possa ser usada em um ambiente japonês,
+  essas complexidades devem ser consideradas para garantir que as codificações
+  de caracteres adequadas sejam usadas.
+ </p>
+ <p class="para">
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">O armazenamento de um caractere pode ter até seis bytes.</span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     A maioria dos caracteres multibyte japoneses aparece com o dobro da largura
+     dos caracteres de byte único.
+     Esses caracteres são chamados &quot;zen-kaku&quot; em japonês,
+     que significa &quot;largura total&quot;.
+     Outros caracteres mais estreitos, são chamados &quot;han-kaku&quot;,
+     que significa &quot;meia largura&quot;.
+     As propriedades gráficas dos caracteres, no entanto, dependem das fontes
+     usadas para exibi-los.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Algumas codificações de caracteres usam sequências de deslocamento (escape)
+     definidas na ISO-2022 para alternar o mapa de código da área de código
+     específica (<code class="literal">00h</code> a <code class="literal">7fh</code>).
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     A ISO-2022-JP deve ser usada no SMTP/NNTP, e cabeçalhos e entidades devem
+     ser recodificados de acordo com os requisitos da RFC.
+     Embora esses não sejam requisitos, ainda é uma boa ideia porque vários
+     agentes de usuário populares não podem reconhecer nenhum outro método de
+     codificação.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     As páginas web criadas para serviços de telefonia móvel,
+     como
+     <a href="http://www.nttdocomo.com/services/imode/" class="link external">&raquo;&nbsp;i-mode</a>
+     ou
+     <a href="http://www.au.kddi.com/english/service/ezweb/index.html" class="link external">&raquo;&nbsp;EZweb</a>
+     devem usar Shift_JIS.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+      Emoji usados em serviços de telefonia móvel,
+      como
+      <a href="http://www.nttdocomo.com/services/imode/" class="link external">&raquo;&nbsp;i-mode</a>
+      ou
+      <a href="http://www.au.kddi.com/english/service/ezweb/index.html" class="link external">&raquo;&nbsp;EZweb</a>
+      são suportados.
+    </span>
+   </li>
+  </ul>
+ </p>
+</div>
+</div></div></body></html>

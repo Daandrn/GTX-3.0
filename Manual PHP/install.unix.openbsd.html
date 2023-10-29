@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Notas de instala&ccedil;&atilde;o para o OpenBSD</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.unix.commandline.html">« CGI e instala&ccedil;&otilde;es de linha de comando</a></li>
+      <li style="float: right;"><a href="install.unix.solaris.html">Dicas de instala&ccedil;&atilde;o espec&iacute;ficas para o Solaris »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.unix.html">Instala&ccedil;&atilde;o em sistemas Unix</a></li>
+    <li>Notas de instala&ccedil;&atilde;o para o OpenBSD</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.unix.openbsd" class="sect1">
+ <h2 class="title">Notas de instalação para o OpenBSD</h2>
+ <p class="para">
+ Essa seção contém notas e dicas específicas para a instalação
+ do PHP no <a href="http://www.openbsd.org/" class="link external">&raquo;&nbsp;OpenBSD</a>.
+ </p>
+ <div class="sect2" id="install.unix.openbsd.packages">
+  <h3 class="title">Usando Pacotes Binários</h3>
+   <p class="simpara">
+    Usando pacotes binários para instalar o PHP no OpenBSD é o método recomendado
+    e o mais simples. O pacote núcleo foi separado dos vários módulos,
+    e cada um pode ser instalado e removido independentemente dos outros.
+    Os arquivos necessários podem ser encontrados no CD do OpenBSD ou no FTP do site.
+   </p>
+   <p class="simpara">
+    O pacote principal que você precisa instalar é o <var class="filename">php</var>,
+    que contém o engine básico (mais gettext e iconv), e pode estar
+    disponível dentre várias versões a escolher. Depois, olhe
+    os pacotes com módulos, como o <var class="filename">php-mysqli</var>
+    ou <var class="filename">php-imap</var>. Você precisa usar o comando
+    <strong class="command">phpxs</strong> para ativar e desativar esses módulos no seu arquivo <var class="filename">php.ini</var>.
+   </p>
+   <div class="example" id="example-35">
+    <p><strong>Exemplo #1 Exemplo de instalação de pacote no OpenBSD</strong></p>
+    <div class="example-contents">
+<div class="shellcode"><pre class="shellcode"># pkg_add php
+# pkg_add php-apache
+# pkg_add php-mysqli
+  (install the PEAR libraries)
+# pkg_add pear
+
+Siga as instruções de cada pacote!
+
+  (to remove packages)
+# pkg_delete php
+# pkg_delete php-apache
+# pkg_delete php-mysqli
+# pkg_delete pear</pre>
+</div>
+    </div>
+
+   </div>
+   <p class="simpara">
+   Leia o manual de <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=packages" class="link external">&raquo;&nbsp;packages(7)</a>
+   para mais informações sobre pacotes binários no OpenBSD.
+   </p>
+ </div>
+ <div class="sect2" id="install.unix.openbsd.ports">
+  <h3 class="title">Usando Ports</h3>
+  <p class="simpara">
+   Você também pode compilar o PHP a partir dos fontes usando a <a href="http://www.openbsd.org/faq/ports/ports.html" class="link external">&raquo;&nbsp;árvore ports</a>.
+   No entanto, isso só é recomendado para usuários familiarizados com OpenBSD. O port do PHP
+   é dividido em núcleo e extensões. As
+   extensões geram sub-pacotes para todos os módulos
+   suportados pelo PHP. Se você achar que não quer criar alguns dos módulos,
+   use o comando <strong class="command">no_*</strong> FLAVOR. Por exemplo, se você quiser que
+   o módulo imap seja ignorado, atribua à FLAVOR o valor <strong class="command">no_imap</strong>.
+  </p>
+ </div>
+ <div class="sect2" id="install.unix.openbsd.faq">
+  <h3 class="title">Problemas Comuns</h3>
+  <ul class="itemizedlist">
+   <li class="listitem">
+     <span class="simpara">Apache e Nginx não são mais os servidores padrão no OpenBSD, mas eles podem ser facilmente
+      encontrados em ports e pacotes. O novo servidor é chamado &#039;httpd&#039;.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">A instalação padrão do Apache roda dentro de uma
+    <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=chroot" class="link external">&raquo;&nbsp;prisão de chroot(2)</a>, que restringe os scripts PHP a
+    acessar arquivos abaixo de <var class="filename">/var/www</var>. Você irá, portanto, precisar criar um
+    diretório <var class="filename">/var/www/tmp</var> para que os arquivos de sessão do PHP sejam guardados, ou usar um
+    backend alternativo para sessões. Além disso, sockets de bancos de dados devem ser colocados dentro
+    da prisão ou escutar na interface <var class="filename">localhost</var>. Se você usar funções de rede,
+    alguns arquivos do diretório <var class="filename">/etc</var> como <var class="filename">/etc/resolv.conf</var> e
+    <var class="filename">/etc/services</var> precisarão ser movidos para <var class="filename">/var/www/etc</var>.
+    O pacote OpenBSD PEAR se instala automaticamente nos diretórios chroot corretos.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Os pacotes do OpenBSD package para a extensão <a href="http://www.libgd.org/" class="link external">&raquo;&nbsp;gd</a>
+     requer o Xorg para instalação. Isso é realizado na instalação com o acréscimo de
+     o file set <var class="filename">xbase.tgz</var>, ou pode ser instalado
+     posteriormente (veja
+     <a href="https://www.openbsd.org/faq/faq4.html#FilesNeeded" class="link external">&raquo;&nbsp;OpenBSD FAQ#4</a>).
+    </span>
+   </li>
+  </ul>
+ </div>
+</div></div></div></body></html>

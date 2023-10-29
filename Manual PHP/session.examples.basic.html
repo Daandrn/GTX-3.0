@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Uso b&aacute;sico</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="session.examples.html">« Exemplos</a></li>
+      <li style="float: right;"><a href="session.idpassing.html">Passando o ID de sess&atilde;o »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="session.examples.html">Exemplos</a></li>
+    <li>Uso b&aacute;sico</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="session.examples.basic" class="section">
+  <h2 class="title">Uso básico</h2>
+   <p class="para">
+    Sessões são uma forma simples de armazenar dados para usuários individuais usando um ID de sessão único.
+    Sessões podem ser usadas para persistir informações entre requisições de páginas.  IDs de sessão normalmente são
+    enviados ao navegador através de cookies de sessão e o ID é usado para recuperar dados da sessão existente.
+    A ausência de um ID ou cookie de sessão permite que o PHP saiba que deve criar uma nova sessão e gerar um novo
+    ID de sessão.
+   </p>
+   <p class="para">
+    Sessões seguem um fluxo simples.  Quando uma sessão é iniciada, o PHP recupera uma
+    sessão existente usando o ID informado (normalmente de um cookie de sessão) ou se nenhum é informado
+    então será criada uma nova sessão.  O PHP preencherá a super global <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>
+    com todos os dados de sessão depois que a sessão iniciar.  Quando o PHP finalizar, automaticamente ele
+    pegará o conteúdo da super global <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>, então vai serializá-lo e enviá-lo
+    para armazenamento usando o manipulador de gravação da sessão.
+   </p>
+   <p class="para">
+    Por padrão, o PHP usa o manipulador de gravação interno <code class="parameter">files</code> que
+    é configurado por <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>.
+    Isto salva os dados da sessão no servidor no local configurado pela
+    diretiva de configuração <a href="session.configuration.html#ini.session.save-path" class="link">session.save_path</a>.
+   </p>
+   <p class="para">
+    Sessões podem ser iniciadas manualmente usando a função <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span>.
+    Se a diretiva <a href="session.configuration.html#ini.session.auto-start" class="link">session.auto_start</a> estiver configurada
+    como <code class="parameter">1</code>, a sessão será iniciada automaticamente no início da requisição.
+   </p>
+   <p class="para">
+    Sessões normalmente se encerram automaticamente quando o PHP termina de executar um script, mas podem ser
+    encerradas manualmente usando a função <span class="function"><a href="function.session-write-close.html" class="function">session_write_close()</a></span>.
+   </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 
+     Registrando uma variável com <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>.
+    </strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />session_start</span><span style="color: #007700">();<br />if (!isset(</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">])) {<br />  </span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">] = </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />} else {<br />  </span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">]++;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+   <div class="example" id="">
+    <p><strong>Exemplo #2 
+     Desregistrando uma variável com <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>.
+    </strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />session_start</span><span style="color: #007700">();<br />unset(</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="caution"><strong class="caution">Cuidado</strong>
+    <p class="para">
+     NÃO desregistre toda a <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> com
+     <code class="literal">unset($_SESSION)</code> já que isso desativará o
+     registro de variáveis de sessões da
+     super global <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>.
+    </p>
+   </div>
+  </p>
+  <div class="warning"><strong class="warning">Aviso</strong>
+   <p class="para">
+    Referências não podem ser usadas nas variáveis de sessão já que não existe uma maneira
+    de restaurar uma referência para outra variável.
+   </p>
+  </div>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Sessões baseadas em arquivos (padrão no PHP) adicionam travas no arquivo de sessão assim que
+    a sessão é iniciada via <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> ou simplesmente via
+    <a href="session.configuration.html#ini.session.auto-start" class="link">session.auto_start</a>. Assim que
+    adicionada a trava, nenhum outro script pode acessar o mesmo arquivo de sessão até que ela
+    seja finalizada pelo encerramento do primeiro script ou pela chamada de
+    <span class="function"><a href="function.session-write-close.html" class="function">session_write_close()</a></span>.
+   </p>
+   <p class="para">
+    Isto é possivelmente um problema para web sites que utilizam fortemente o AJAX e
+    que tem múltiplas solicitações concorrentes. A maneira mais fácil de lidar com isto é
+    chamar <span class="function"><a href="function.session-write-close.html" class="function">session_write_close()</a></span> assim que as
+    alterações necessárias na sessão forem feitas, de preferência no início do script.
+    Como alternativa, um manipulador de sessão diferente que suporte concorrência
+    poderia ser usado.
+   </p>
+  </p></blockquote>
+ </div></div></div></body></html>

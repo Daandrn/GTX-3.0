@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cria um prefixo/namespace de contexto para a pr&oacute;xima consulta XPath</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="simplexmlelement.next.html">« SimpleXMLElement::next</a></li>
+      <li style="float: right;"><a href="simplexmlelement.rewind.html">SimpleXMLElement::rewind »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.simplexmlelement.html">SimpleXMLElement</a></li>
+    <li>Cria um prefixo/namespace de contexto para a pr&oacute;xima consulta XPath</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="simplexmlelement.registerxpathnamespace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SimpleXMLElement::registerXPathNamespace</h1>
+  <p class="refpurpose"><span class="refname">SimpleXMLElement::registerXPathNamespace</span> &mdash; <span class="dc-title">
+   Cria um prefixo/namespace de contexto para a próxima consulta XPath
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-simplexmlelement.registerxpathnamespace-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SimpleXMLElement::registerXPathNamespace</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$prefix</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$ns</code></span>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Cria um prefixo/namespace de contexto para a próxima consulta XPath. Basicamente, esta
+   função será útil se o provedor do documento XML informado, altera os
+   prefixos dos namespaces. <code class="literal">registerXPathNamespace</code> criará um prefixo para o
+   namespace associado, permitindo o acesso a nós no namespace
+   sem a necessidade de mudar o código para permitir novos prefixos ditados pelo
+   provedor.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-simplexmlelement.registerxpathnamespace-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">prefix</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O prefixo do namespace utilizado na consulta XPath para o namespace dado em
+       <code class="parameter">ns</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">ns</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O namespace para ser utilizado na consulta XPath. Este parâmetro deve fechar com um
+       namespace utilizado pelo documento XML ou a consulta XPath utilizando
+       <code class="parameter">prefix</code> não retornará nenhum resultado.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-simplexmlelement.registerxpathnamespace-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-simplexmlelement.registerxpathnamespace-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Definindo um prefixo de namespace para ser usado em uma consulta XPath</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$xml </span><span style="color: #007700">= &lt;&lt;&lt;EOD<br /></span><span style="color: #DD0000">&lt;book xmlns:chap="http://example.org/chapter-title"&gt;<br />    &lt;title&gt;My Book&lt;/title&gt;<br />    &lt;chapter id="1"&gt;<br />        &lt;chap:title&gt;Chapter 1&lt;/chap:title&gt;<br />        &lt;para&gt;Donec velit. Nullam eget tellus vitae tortor gravida scelerisque.<br />            In orci lorem, cursus imperdiet, ultricies non, hendrerit et, orci.<br />            Nulla facilisi. Nullam velit nisl, laoreet id, condimentum ut,<br />            ultricies id, mauris.&lt;/para&gt;<br />    &lt;/chapter&gt;<br />    &lt;chapter id="2"&gt;<br />        &lt;chap:title&gt;Chapter 2&lt;/chap:title&gt;<br />        &lt;para&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin<br />            gravida. Phasellus tincidunt massa vel urna. Proin adipiscing quam<br />            vitae odio. Sed dictum. Ut tincidunt lorem ac lorem. Duis eros<br />            tellus, pharetra id, faucibus eu, dapibus dictum, odio.&lt;/para&gt;<br />    &lt;/chapter&gt;<br />&lt;/book&gt;<br /></span><span style="color: #007700">EOD;<br /><br /></span><span style="color: #0000BB">$sxe </span><span style="color: #007700">= new </span><span style="color: #0000BB">SimpleXMLElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$xml</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">registerXPathNamespace</span><span style="color: #007700">(</span><span style="color: #DD0000">'c'</span><span style="color: #007700">, </span><span style="color: #DD0000">'http://example.org/chapter-title'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">xpath</span><span style="color: #007700">(</span><span style="color: #DD0000">'//c:title'</span><span style="color: #007700">);<br /><br />foreach (</span><span style="color: #0000BB">$result </span><span style="color: #007700">as </span><span style="color: #0000BB">$title</span><span style="color: #007700">) {<br />  echo </span><span style="color: #0000BB">$title </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Chapter 1
+Chapter 2
+</pre></div>
+    </div>
+    <div class="example-contents"><p>
+     Perceba como como o documento XML mostrado no exemplo define o namespace com o
+     prefixo de <code class="literal">chap</code>. Imagine que este documento (ou outro semelhante)
+     deveria ter utilizado o prefixo de <code class="literal">c</code> no passado para o mesmo
+     namespace. Uma vez que ele foi alterado, a consulta XPath não irá mais
+     retornar os resultados apropriados e a consulta exigirá modificações. Utilizando
+     <code class="literal">registerXPathNamespace</code> evita modificações futuras na consulta, mesmo
+     que o provedor altere o prefixo dos namespaces.
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-simplexmlelement.registerxpathnamespace-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="simplexmlelement.xpath.html" class="methodname" rel="rdfs-seeAlso">SimpleXMLElement::xpath()</a> - Executa uma consulta XPath em dados XML</span></li>
+    <li class="member"><span class="methodname"><a href="simplexmlelement.getdocnamespaces.html" class="methodname" rel="rdfs-seeAlso">SimpleXMLElement::getDocNamespaces()</a> - Retorna um namespace declarado no documento</span></li>
+    <li class="member"><span class="methodname"><a href="simplexmlelement.getnamespaces.html" class="methodname" rel="rdfs-seeAlso">SimpleXMLElement::getNamespaces()</a> - Retorna os namespaces utilizados no documento</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Calcula a similaridade entre duas strings</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.sha1.html">« sha1</a></li>
+      <li style="float: right;"><a href="function.soundex.html">soundex »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.strings.html">Fun&ccedil;&otilde;es de String</a></li>
+    <li>Calcula a similaridade entre duas strings</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.similar-text" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">similar_text</h1>
+  <p class="refpurpose"><span class="refname">similar_text</span> &mdash; <span class="dc-title">Calcula a similaridade entre duas strings</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.similar-text-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>similar_text</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$first</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$second</code></span>, <span class="methodparam"><span class="type">float</span> <code class="parameter reference">&$percent</code><span class="initializer"> = ?</span></span>): <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Calcula a similaridade entre duas strings como descrito em Programming Classics: Implementing the World&#039;s Best Algorithms by Oliver (ISBN 0-131-00413-1). 
+   Note que esta implementação não usa uma stack como no pseudo-código de 
+   Oliver, mas chamadas recursivas as quais podem ou não tornar todo o 
+   processo mais rápido. Note também que a complexidade deste algoritmo é 
+   O(N**3) aonde N é o tamanho da string mais longa.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.similar-text-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">primeira</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A primeira string.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">segunda</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A segunda string.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">percentual</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Passando uma referência como terceiro argumento, a função
+       <span class="function"><strong>similar_text()</strong></span> irá calcular o percentual de
+       similaridade para você.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.similar-text-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna o número de caracteres iguais em ambas as strings.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.similar-text-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.levenshtein.html" class="function" rel="rdfs-seeAlso">levenshtein()</a> - Calculate Levenshtein distance between two strings</span></li>
+    <li class="member"><span class="function"><a href="function.soundex.html" class="function" rel="rdfs-seeAlso">soundex()</a> - Calcula a chave soundex de uma string</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Novas Funcionalidades</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration83.html">« Migrando do PHP 8.2.x para o PHP 8.3.x</a></li>
+      <li style="float: right;"><a href="migration83.new-classes.html">Novas Classes e Interfaces »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration83.html">Migrando do PHP 8.2.x para o PHP 8.3.x</a></li>
+    <li>Novas Funcionalidades</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration83.new-features" class="sect1">
+ <h2 class="title">Novas Funcionalidades</h2>
+
+ <div class="sect2" id="migration83.new-features.core">
+  <h3 class="title">PHP Core</h3>
+
+  <div class="sect3" id="migration83.new-features.core.readonly-modifier-improvements">
+   <h4 class="title">Propriedades somente leitura</h4>
+
+   <p class="para">
+    Classes anônimas agora podem ser marcadas como somente leitura.
+   </p>
+
+   <p class="para">
+    Propriedades somente leitura agora podem ser reinicializadas durante a clonagem.
+    
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.new-features.core.typed-class-constants">
+   <h4 class="title">Constantes de Classe Tipadas</h4>
+
+   <p class="para">
+    Constantes de classe, interface, trait e enum agora suportam declarações de tipo.
+    
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.new-features.core.closures-created-from-magic-methods">
+   <h4 class="title">Closures criados a partir de métodos mágicos</h4>
+
+   <p class="para">
+    Closures criados a partir de métodos mágicos agora podem aceitar argumentos nomeados.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.new-features.core.final-modifier-method-from-trait">
+   <h4 class="title">O modificador final com um método de uma trait</h4>
+
+   <p class="para">
+    O modificador final agora pode ser usado ao utilizar um método de uma trait.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.new-features.core.override-attribute">
+   <h4 class="title">Sobreposição de atributos</h4>
+
+   <p class="para">
+    Foi adicionado o atributo #[\Override] para verificar se um método existe em uma classe pai ou
+    interface implementada.
+    
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.new-features.core.fetch-class-constant-dynamically-syntax">
+   <h4 class="title">Sintaxe para buscar constantes de classe dinamicamente.</h4>
+
+   <p class="para">
+    Agora é possível acessar constantes de classe de forma dinâmica usando a sintaxe
+    <code class="code">C::{$name}</code>.
+    
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.new-features.core.static-variable-initializers">
+   <h4 class="title">Inicializadores de variáveis Estáticas</h4>
+
+   <p class="para">
+    Os inicializadores de variáveis estáticas agora podem conter expressões arbitrárias.
+    
+   </p>
+  </div>
+
+ </div>
+
+ <div class="sect2" id="migration83.new-features.cli">
+  <h3 class="title">CLI</h3>
+
+  <p class="para">
+   Agora é possível verificar a sintaxe de vários arquivos.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.new-features.dom">
+  <h3 class="title">DOM</h3>
+
+  <p class="para">
+   Foram adicionadas as propriedades <span class="property">DOMElement::$className</span>
+   e <span class="property">DOMElement::$id</span>.
+   No momento, essas propriedades não são seguras para binários devido a limitações
+   subjacentes do libxml2.
+   Isso significa que os valores das propriedades serão truncados em um byte NUL.
+  </p>
+
+  <p class="para">
+   Foram adicionadas as propriedades <span class="property">DOMNode::$isConnected</span>
+   e <span class="property">DOMNameSpaceNode::$isConnected</span>.
+  </p>
+
+  <p class="para">
+   Foram adicionadas as propriedades <span class="property">DOMNode::$parentElement</span> e
+   <span class="property">DOMNameSpaceNode::$parentElement</span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.new-features.ffi">
+  <h3 class="title">FFI</h3>
+
+  <p class="para">
+   Agora é possível atribuir <span class="classname"><a href="class.ffi-cdata.html" class="classname">FFI\CData</a></span> a outros FFI\CData.
+   Isso significa que CData pode ser atribuído a estruturas e campos.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.new-features.opcache">
+  <h3 class="title">Opcache</h3>
+
+  <p class="para">
+   <code class="code">opcache_get_status()[&#039;scripts&#039;][n][&#039;revalidate&#039;]</code> agora contém
+   um carimbo de data e hora Unix que indica quando a próxima revalidação do carimbo de
+   data e hora dos scripts está programada, de acordo
+   com a diretiva INI
+   <a href="opcache.configuration.html#ini.opcache.revalidate-freq" class="link">opcache.revalidate_freq</a>;
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.new-features.posix">
+  <h3 class="title">POSIX</h3>
+
+  <p class="para">
+   A função <span class="function"><a href="function.posix-getrlimit.html" class="function">posix_getrlimit()</a></span> agora aceita um parâmetro opcional
+   <code class="parameter">$res</code> para permitir a recuperação de um único limite de recurso.
+  </p>
+
+  <p class="para">
+   A função <span class="function"><a href="function.posix-isatty.html" class="function">posix_isatty()</a></span> agora gera avisos de tipo para inteiros,
+   seguindo as semânticas ZPP usuais.
+  </p>
+
+  <p class="para">
+   A função <span class="function"><a href="function.posix-ttyname.html" class="function">posix_ttyname()</a></span> agora gera avisos de tipo para inteiros,
+   seguindo as semânticas ZPP usuais, e avisos de valor para inteiros de
+   descritor de arquivo inválidos.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.new-features.streams">
+  <h3 class="title">Streams</h3>
+
+  <p class="para">
+   Agora, Streams podem emitir a notificação <strong><code>STREAM_NOTIFY_COMPLETED</code></strong>.
+   Isso não era previamente implementado.
+  </p>
+ </div>
+
+</div></div></div></body></html>

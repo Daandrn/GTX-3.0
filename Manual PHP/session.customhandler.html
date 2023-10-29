@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Manipuladores de Sess&atilde;o Personalizados</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="session.idpassing.html">« Passando o ID de sess&atilde;o</a></li>
+      <li style="float: right;"><a href="session.upload-progress.html">Progresso de Upload em Sess&atilde;o »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="session.examples.html">Exemplos</a></li>
+    <li>Manipuladores de Sess&atilde;o Personalizados</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="session.customhandler" class="section">
+  <h2 class="title">Manipuladores de Sessão Personalizados</h2>
+  <p class="para">
+   Para implementar as sessões em banco de dados, ou qualquer outro método de armazenamento, é
+   preciso usar <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span> para
+   criar um conjunto de funções de armazenamento a nível de usuário. Um manipulador de sessão pode ser criado
+   usando <span class="classname"><a href="class.sessionhandlerinterface.html" class="classname">SessionHandlerInterface</a></span> ou estender os manipuladores internos do PHP herdando
+   de <span class="classname"><a href="class.sessionhandler.html" class="classname">SessionHandler</a></span>.
+  </p>
+  <p class="para">
+   Os callbacks especificados em <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span> são métodos
+   executados pelo PHP durante o ciclo de vida de uma sessão: <code class="parameter">open</code>, <code class="parameter">read</code>,
+   <code class="parameter">write</code> e <code class="parameter">close</code> e para as tarefas de manutenção:
+   <code class="parameter">destroy</code> para deletar uma sessão e <code class="parameter">gc</code> para recolha periódica
+   de lixo.
+  </p>
+  <p class="para">
+   Portanto, o PHP sempre requer manipuladores de gravação de sessão. O padrão normalmente é
+   o manipulador de gravação interno de &#039;arquivos&#039;. Um manipulador personalizado pode ser configurado usando
+   <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span>. Manipuladores internos alternativos também são
+   disponibilizados por extensões do PHP, como <code class="parameter">sqlite</code>,
+   <code class="parameter">memcache</code> e <code class="parameter">memcached</code> e podem ser definidos com
+   <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>.
+  </p>
+  <p class="para">
+   Quando a sessão inicia, o PHP internamente executa o manipulador <code class="parameter">open</code> seguido pelo
+   callback <code class="parameter">read</code> que deve retornar uma string codificada exatamente como foi originalmente
+   passado para armazenamento. Após o <code class="parameter">read</code> retornar a string codificada, o PHP vai
+   decodificá-la e colocar o array resultante na super global <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>.
+  </p>
+  <p class="para">
+   Quando o PHP é encerrado (ou quando <span class="function"><a href="function.session-write-close.html" class="function">session_write_close()</a></span> for chamada),
+   o PHP internamente vai codificar a super global <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> e passá-la
+   junto com o ID de sessão para o callback <code class="parameter">write</code>.
+   Depois que o callback <code class="parameter">write</code> finalizar, o PHP internamente invocará o
+   callback <code class="parameter">close</code>.
+  </p>
+  <p class="para">
+   Quando uma sessão é destruída, o PHP chamará o manipulador <code class="parameter">destroy</code> com
+   o ID de sessão.
+  </p>
+ <p class="para">
+   O PHP executará o callback <code class="parameter">gc</code> de tempo em tempo para
+   apagar quaisquer informações na sessão de acordo com o tempo de vida máximo (lifetime) definido para a sessão.
+   Esta rotina deve apagar todas as informações do armazenamento persistente em que
+   a diferença de tempo do último acesso até o momento atual seja maior que <code class="parameter">$lifetime</code>.
+ </p>
+ </div></div></div></body></html>

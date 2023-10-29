@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Sintaxe Alternativa para estruturas de controle</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="control-structures.elseif.html">« elseif/else if</a></li>
+      <li style="float: right;"><a href="control-structures.while.html">while »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.control-structures.html">Estruturas de Controle</a></li>
+    <li>Sintaxe Alternativa para estruturas de controle</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="control-structures.alternative-syntax" class="sect1">
+ <h2 class="title">Sintaxe Alternativa para estruturas de controle</h2>
+ <p class="verinfo">(PHP 4, PHP 5, PHP 7, PHP 8)</p>
+ <p class="para">
+  O PHP oferece uma sintaxe alternativa para algumas estruturas
+  de controle; a saber, <code class="literal">if</code>,
+  <code class="literal">while</code>, <code class="literal">for</code>,
+  <code class="literal">foreach</code>, e <code class="literal">switch</code>.
+  Em cada caso, basicamente a sintaxe alternativa é trocar
+  a chave de abertura por dois pontos (:) e a chave de fechamento por
+  <code class="literal">endif;</code>, <code class="literal">endwhile;</code>,
+  <code class="literal">endfor;</code>, <code class="literal">endforeach;</code>, ou
+  <code class="literal">endswitch;</code>, respectivamente.
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php </span><span style="color: #007700">if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">== </span><span style="color: #0000BB">5</span><span style="color: #007700">): </span><span style="color: #0000BB">?&gt;<br /></span>A é igual a 5<br /><span style="color: #0000BB">&lt;?php </span><span style="color: #007700">endif; </span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="simpara">
+  No exemplo acima, o bloco HTML &quot;A é igual a 5&quot; está dentro de um
+  <code class="literal">if</code> escrito na sintaxe alternativa.  O
+  bloco HTML será exibido somente se <var class="varname">$a</var> for igual a 5.
+ </p>
+ <p class="para">
+  A sintaxe alternativa também se aplica ao <code class="literal">else</code> e
+  <code class="literal">elseif</code>.  A seguir um exemplo de um
+  <code class="literal">if</code> com <code class="literal">elseif</code> e
+  <code class="literal">else</code> no formato alternativo:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">== </span><span style="color: #0000BB">5</span><span style="color: #007700">):<br />    echo </span><span style="color: #DD0000">"a equals 5"</span><span style="color: #007700">;<br />    echo </span><span style="color: #DD0000">"..."</span><span style="color: #007700">;<br />elseif (</span><span style="color: #0000BB">$a </span><span style="color: #007700">== </span><span style="color: #0000BB">6</span><span style="color: #007700">):<br />    echo </span><span style="color: #DD0000">"a equals 6"</span><span style="color: #007700">;<br />    echo </span><span style="color: #DD0000">"!!!"</span><span style="color: #007700">;<br />else:<br />    echo </span><span style="color: #DD0000">"a is neither 5 nor 6"</span><span style="color: #007700">;<br />endif;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </p>
+ <blockquote class="note"><p><strong class="note">Nota</strong>: 
+  <p class="para">
+   Misturar a sintaxe no mesmo bloco de controle não é suportado.
+  </p>
+ </p></blockquote>
+ <div class="warning"><strong class="warning">Aviso</strong>
+  <p class="para">
+   Qualquer saída (inclusive espaços em branco) entre um <code class="literal">switch</code>
+   e o primeiro <code class="literal">case</code> irá resultar em um erro de
+   sintaxe. O exemplo abaixo é inválido:
+  </p>
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$foo</span><span style="color: #007700">): </span><span style="color: #0000BB">?&gt;<br /></span>    <span style="color: #0000BB">&lt;?php </span><span style="color: #007700">case </span><span style="color: #0000BB">1</span><span style="color: #007700">: </span><span style="color: #0000BB">?&gt;<br /></span>    ...<br /><span style="color: #0000BB">&lt;?php </span><span style="color: #007700">endswitch; </span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+  <p class="para">
+   Enquanto que este é válido, já que a quebra de linha depois do
+   <code class="literal">switch</code> é considerado parte da tag de fechamento
+   <code class="literal">?&gt;</code> e, portanto, nenhuma saída será enviada entre o
+   <code class="literal">switch</code> e <code class="literal">case</code>:
+  </p>
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$foo</span><span style="color: #007700">): </span><span style="color: #0000BB">?&gt;<br />&lt;?php </span><span style="color: #007700">case </span><span style="color: #0000BB">1</span><span style="color: #007700">: </span><span style="color: #0000BB">?&gt;<br /></span>    ...<br /><span style="color: #0000BB">&lt;?php </span><span style="color: #007700">endswitch; </span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </div>
+ <p class="para">
+  Veja mais sobre <a href="control-structures.while.html" class="link">while</a>,
+  <a href="control-structures.for.html" class="link">for</a>, e <a href="control-structures.if.html" class="link">if</a> para outros exemplos.
+ </p>
+</div></div></div></body></html>

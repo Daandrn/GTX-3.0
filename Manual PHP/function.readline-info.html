@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Obt&eacute;m/Define v&aacute;rias vari&aacute;veis internas do readline</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.readline-completion-function.html">« readline_completion_function</a></li>
+      <li style="float: right;"><a href="function.readline-list-history.html">readline_list_history »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.readline.html">Fun&ccedil;&otilde;es da Readline</a></li>
+    <li>Obt&eacute;m/Define v&aacute;rias vari&aacute;veis internas do readline</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.readline-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">readline_info</h1>
+  <p class="refpurpose"><span class="refname">readline_info</span> &mdash; <span class="dc-title">Obtém/Define várias variáveis internas do readline</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.readline-info-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>readline_info</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$varname</code><span class="initializer"> = ?</span></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$newvalue</code><span class="initializer"> = ?</span></span>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+
+  <p class="para rdfs-comment">
+   Obtém ou define várias variáveis internas da readline.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.readline-info-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">varname</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Um nome de variável.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">newvalue</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Se fornecido, este será o novo valor.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.readline-info-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Se for utilizada sem parâmetros, esta função retorna uma matriz de 
+   valores para as configurações que a readline usa. Os elementos
+   serão indexados pelos seguintes valores: done, end, erase_empty_line,
+   library_version, line_buffer, mark, pending_input, point, prompt,
+   readline_name, e terminal_name.
+  </p>
+  <p class="para">
+   Se for utilizada com um ou dois parâmetros, o antigo valor é retornado.
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

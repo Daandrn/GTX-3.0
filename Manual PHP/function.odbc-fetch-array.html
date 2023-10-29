@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Obt&eacute;m uma linha do resultado como uma array associativa</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.odbc-execute.html">« odbc_execute</a></li>
+      <li style="float: right;"><a href="function.odbc-fetch-into.html">odbc_fetch_into »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.uodbc.html">ODBC Fun&ccedil;&otilde;es</a></li>
+    <li>Obt&eacute;m uma linha do resultado como uma array associativa</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.odbc-fetch-array" class="refentry">
+   <div class="refnamediv">
+    <h1 class="refname">odbc_fetch_array</h1>
+    <p class="refpurpose"><span class="refname">odbc_fetch_array</span> &mdash; <span class="dc-title">Obtém uma linha do resultado como uma array associativa</span></p>
+
+   </div>
+   
+   <div class="refsect1 description" id="refsect1-function.odbc-fetch-array-description">
+    <h3 class="title">Descrição</h3>
+     <div class="methodsynopsis dc-description">
+      <span class="methodname"><strong>odbc_fetch_array</strong></span>(<span class="methodparam"><span class="type">resource</span> <code class="parameter">$result</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$rownumber</code><span class="initializer"> = ?</span></span>): <span class="type">array</span></div>
+
+    <p class="para rdfs-comment">
+     Obtém um <span class="type">array</span> associativo de uma consulta ODBC. Veja o 
+     changelog abaixo para saber desde quando esta função esta disponível.
+    </p>
+   </div>
+
+
+   <div class="refsect1 parameters" id="refsect1-function.odbc-fetch-array-parameters">
+    <h3 class="title">Parâmetros</h3>
+    <p class="para">
+     <dl>
+      
+       <dt>
+<code class="parameter">result</code></dt>
+
+       <dd>
+
+        <p class="para">
+         O recurso de resultado de <span class="function"><a href="function.odbc-exec.html" class="function">odbc_exec()</a></span>.
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+<code class="parameter">rownumber</code></dt>
+
+       <dd>
+
+        <p class="para">
+         Opcionalmente escolha o número da linha que você quer obter.
+        </p>
+       </dd>
+
+      
+     </dl>
+
+    </p>
+   </div>
+
+
+   <div class="refsect1 returnvalues" id="refsect1-function.odbc-fetch-array-returnvalues">
+    <h3 class="title">Valor Retornado</h3>
+    <p class="para">
+     Retorna uma array que corresponde a linha obtida, ou <strong><code>false</code></strong> se não
+     houverem mais linhas.
+    </p>
+   </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.odbc-fetch-array-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.odbc-fetch-row.html" class="function" rel="rdfs-seeAlso">odbc_fetch_row()</a> - Obt&eacute;m uma linha</span></li>
+    <li class="member"><span class="function"><a href="function.odbc-fetch-object.html" class="function" rel="rdfs-seeAlso">odbc_fetch_object()</a> - Obt&eacute;m um conjunto de resultados como um objeto</span></li>
+    <li class="member"><span class="function"><a href="function.odbc-num-rows.html" class="function" rel="rdfs-seeAlso">odbc_num_rows()</a> - N&uacute;mero de linhas em um resultado</span></li>
+    </ul>
+    </p>
+   </div>
+
+  </div></div></div></body></html>

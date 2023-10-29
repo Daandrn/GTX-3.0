@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Criar array contendo vari&aacute;veis e seus valores</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.asort.html">« asort</a></li>
+      <li style="float: right;"><a href="function.count.html">count »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Criar array contendo vari&aacute;veis e seus valores</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.compact" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">compact</h1>
+  <p class="refpurpose"><span class="refname">compact</span> &mdash; <span class="dc-title">Criar array contendo variáveis e seus valores</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.compact-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>compact</strong></span>(<span class="methodparam"><span class="type"><span class="type">array</span>|<span class="type">string</span></span> <code class="parameter">$var_name</code></span>, <span class="methodparam"><span class="type"><span class="type">array</span>|<span class="type">string</span></span> <code class="parameter">...$var_names</code></span>): <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Cria um array contendo variáveis e seus valores.
+  </p>
+  <p class="para">
+   Para cada um dos parâmetros passados, <span class="function"><strong>compact()</strong></span> procura
+   uma variável com o nome especificado na tabela de símbolos e a adiciona
+   no array de saída de forma que o nome da variável será a chave e o seu
+   conteúdo será o valor para esta chave.
+   Em resumo, ela faz o oposto de <span class="function"><a href="function.extract.html" class="function">extract()</a></span>.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Antes do PHP 7.3, quaisquer strings que não estão definidas serão silenciosamente ignoradas.
+   </p>
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.compact-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">var_name</code></dt>
+
+     <dt>
+<code class="parameter">var_names</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <span class="function"><strong>compact()</strong></span> recebe um número variável de parâmetros.
+       Cada parâmetro pode ser ou uma string contendo o nome da variável, ou
+       um array de nomes de variáveis. O array pode conter outros arrays de
+       nomes de variáveis; <span class="function"><strong>compact()</strong></span> o manipula
+       recursivamente.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.compact-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna a saída do array com todas as variáveis adicionadas a ele.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-function.compact-errors">
+  <h3 class="title">Erros</h3>
+  <p class="para">
+   <span class="function"><strong>compact()</strong></span> emite um erro nível E_NOTICE se uma determinada string
+   se refere a uma variável não definida.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.compact-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>7.3.0</td>
+      <td>
+       <span class="function"><strong>compact()</strong></span> agora emite um erro nível E_NOTICE se uma determinada string
+       se refere a uma variável não definida. Anteriomente, strings como essa seriam ignoradas silenciosamente.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.compact-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo de <span class="function"><strong>compact()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$cidade </span><span style="color: #007700">= </span><span style="color: #DD0000">"Sao Paulo"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$estado </span><span style="color: #007700">= </span><span style="color: #DD0000">"SP"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$evento </span><span style="color: #007700">= </span><span style="color: #DD0000">"SIGGRAPH"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$vars_localidade </span><span style="color: #007700">= array(</span><span style="color: #DD0000">"cidade"</span><span style="color: #007700">, </span><span style="color: #DD0000">"estado"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">compact</span><span style="color: #007700">(</span><span style="color: #DD0000">"evento"</span><span style="color: #007700">, </span><span style="color: #0000BB">$vars_localidade</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [evento] =&gt; SIGGRAPH
+    [cidade] =&gt; Sao Paulo
+    [estado] =&gt; SP
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes" id="refsect1-function.compact-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <strong>Gotcha</strong><br />
+   <p class="para">
+    Devido a <a href="language.variables.variable.html" class="link">variáveis
+    variável</a> não poderem ser usadas com <a href="language.variables.superglobals.html" class="link">arrays superglobais</a> do PHP 
+    dentro de funções, os arrays superglobais não podem ser passados
+    na <span class="function"><strong>compact()</strong></span>.
+   </p>
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.compact-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.extract.html" class="function" rel="rdfs-seeAlso">extract()</a> - Importa vari&aacute;veis para a tabela de s&iacute;mbolos a partir de um array</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>elseif/else if</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="control-structures.else.html">« else</a></li>
+      <li style="float: right;"><a href="control-structures.alternative-syntax.html">Sintaxe Alternativa para estruturas de controle »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.control-structures.html">Estruturas de Controle</a></li>
+    <li>elseif/else if</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="control-structures.elseif" class="sect1">
+ <h2 class="title">elseif/else if</h2>
+ <p class="verinfo">(PHP 4, PHP 5, PHP 7, PHP 8)</p>
+ <p class="para">
+  <code class="literal">elseif</code>, como o nome sugere, é uma combinação
+  do <code class="literal">if</code> e <code class="literal">else</code>. Como o
+  <code class="literal">else</code>, estende um <code class="literal">if</code>
+  para executar instruções diferentes no caso da expressão
+  <code class="literal">if</code> original ser avaliada como
+  <strong><code>false</code></strong>.  Entretanto, diferentemente do
+  <code class="literal">else</code>, executará uma expressão alternativa
+  somente se a expressão condicional do <code class="literal">elseif</code>
+  for avaliada como <strong><code>true</code></strong>. Por exemplo, o código
+  a seguir exibirá <span class="computeroutput">a é maior que
+  b</span>, <span class="computeroutput">a é igual a b</span>
+  ou <span class="computeroutput">a é menor que b</span>:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"a é maior que b"</span><span style="color: #007700">;<br />} elseif (</span><span style="color: #0000BB">$a </span><span style="color: #007700">== </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"a é igual a b"</span><span style="color: #007700">;<br />} else {<br />    echo </span><span style="color: #DD0000">"a é menor que b"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="simpara">
+  Pode haver vários <code class="literal">elseif</code>s dentro da mesma instrução
+  <code class="literal">if</code>. A primeira expressão
+  <code class="literal">elseif</code> (se houver) que retornar
+  <strong><code>true</code></strong> será executada. No PHP, pode-se escrever
+  <code class="literal">else if</code> (em duas palavras), e o comportamento será idêntico
+  ao do <code class="literal">elseif</code> (em uma única palavra). O significado sintático
+  é um pouco diferente (se você está familiarizado com C, mas, no final,
+  ambos terão exatamente o mesmo comportamento.
+ </p>
+ <p class="simpara">
+  O <code class="literal">elseif</code> só é executado se o
+  <code class="literal">if</code> precedente ou qualquer
+  <code class="literal">elseif</code> for avaliado como
+  <strong><code>false</code></strong>, e o <code class="literal">elseif</code>
+  corrente for avaliado como
+  <strong><code>true</code></strong>.
+ </p>
+ <blockquote class="note"><p><strong class="note">Nota</strong>: 
+  <span class="simpara">
+   Note que o <code class="literal">elseif</code> e <code class="literal">else if</code>
+   só serão considerados exatamente iguais se usados com chaves
+   como no exemplo abaixo. Ao utilizar os dois pontos (:) para definir as
+   condições de <code class="literal">if</code>/<code class="literal">elseif</code>, então o uso
+   de <code class="literal">elseif</code> como uma única palavras se torna necessário, ou o PHP
+   falhará com um erro de interpretação se <code class="literal">else if</code>
+   estiver separado em duas palavras.
+  </span>
+ </p></blockquote>
+ <p class="para">
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/* Método Incorreto: */<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$b</span><span style="color: #007700">):<br />    echo </span><span style="color: #0000BB">$a</span><span style="color: #007700">.</span><span style="color: #DD0000">" é maior que "</span><span style="color: #007700">.</span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br />else if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">== </span><span style="color: #0000BB">$b</span><span style="color: #007700">): </span><span style="color: #FF8000">// Não irá compilar.<br />    </span><span style="color: #007700">echo </span><span style="color: #DD0000">"A linha acima causa um erro de análise."</span><span style="color: #007700">;<br />endif;<br /><br /><br /></span><span style="color: #FF8000">/* Método Correto: */<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$b</span><span style="color: #007700">):<br />    echo </span><span style="color: #0000BB">$a</span><span style="color: #007700">.</span><span style="color: #DD0000">" é maior que "</span><span style="color: #007700">.</span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br />elseif (</span><span style="color: #0000BB">$a </span><span style="color: #007700">== </span><span style="color: #0000BB">$b</span><span style="color: #007700">): </span><span style="color: #FF8000">// Note a combinação das palavras.<br />    </span><span style="color: #007700">echo </span><span style="color: #0000BB">$a</span><span style="color: #007700">.</span><span style="color: #DD0000">" é igual a "</span><span style="color: #007700">.</span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br />else:<br />    echo </span><span style="color: #0000BB">$a</span><span style="color: #007700">.</span><span style="color: #DD0000">" não é maior nem igual a "</span><span style="color: #007700">.</span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br />endif;<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </p>
+</div></div></div></body></html>

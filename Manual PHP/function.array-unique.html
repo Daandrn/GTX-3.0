@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Remove os valores duplicados de um array</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.array-uintersect.html">« array_uintersect</a></li>
+      <li style="float: right;"><a href="function.array-unshift.html">array_unshift »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Remove os valores duplicados de um array</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.array-unique" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_unique</h1>
+  <p class="refpurpose"><span class="refname">array_unique</span> &mdash; <span class="dc-title">Remove os valores duplicados de um array</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.array-unique-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>array_unique</strong></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter">$array</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = <strong><code>SORT_STRING</code></strong></span></span>): <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Recebe uma entrada <code class="parameter">array</code> e retorna um novo array
+   sem valores duplicados.
+  </p>
+  <p class="para">
+   Note que as chaves são preservadas. Se vários elementos forem iguais sob
+   as <code class="parameter">flags</code> fornecidas, então a chave e o valor
+   do primeiro elemento igual serão retidos.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Dois elementos são considerados iguais se, e somente se,
+    <code class="literal">(string) $elem1 === (string) $elem2</code>. Em palavras:
+    quando a represetação em string é a mesma, o primeiro elemento será usado.
+   </span>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.array-unique-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">array</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O array de entrada.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O segundo parâmetro opcional <code class="parameter">flags</code>
+       pode ser utilizado para modificar o comportamento de comparação usando estes valores:
+      </p>
+      <p class="para">
+       Flags de tipo de comparação:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_REGULAR</code></strong> - compara os itens normalmente
+         (não altera tipos)</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_NUMERIC</code></strong> - compara itens numericamente</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_STRING</code></strong> - compara itens como strings</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_LOCALE_STRING</code></strong> - compara itens como
+          strings baseado na localidade atual.
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.array-unique-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna o array filtrado.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.array-unique-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.2.0</td>
+       <td>
+        Se <code class="parameter">flags</code> for <strong><code>SORT_STRING</code></strong>,
+        o <code class="parameter">array</code> anterior foi copiado e os elementos não únicos
+        foram removidos (sem empacotar o array em seguida), mas
+        um novo array é criado ao adicionar os novos elementos. Isto pode resultar
+        em índices numéricos diferentes.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.array-unique-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo de <span class="function"><strong>array_unique()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$input </span><span style="color: #007700">= array(</span><span style="color: #DD0000">"a" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"verde"</span><span style="color: #007700">, </span><span style="color: #DD0000">"vermelho"</span><span style="color: #007700">, </span><span style="color: #DD0000">"b" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"verde"</span><span style="color: #007700">, </span><span style="color: #DD0000">"azul"</span><span style="color: #007700">, </span><span style="color: #DD0000">"vermelho"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">array_unique</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [a] =&gt; verde
+    [0] =&gt; vermelho
+    [1] =&gt; azul
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #2 <span class="function"><strong>array_unique()</strong></span> e tipos</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$input </span><span style="color: #007700">= array(</span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #DD0000">"4"</span><span style="color: #007700">, </span><span style="color: #DD0000">"3"</span><span style="color: #007700">, </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">"3"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">array_unique</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(2) {
+  [0] =&gt; int(4)
+  [2] =&gt; string(1) &quot;3&quot;
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.array-unique-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Note que <span class="function"><strong>array_unique()</strong></span> não se destina
+    a funcionar em arrays multidimensionais.
+   </span>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.array-unique-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.array-count-values.html" class="function" rel="rdfs-seeAlso">array_count_values()</a> - Conta as ocorr&ecirc;ncias de cada valor distinto em um array</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

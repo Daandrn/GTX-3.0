@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Abre um banco de dados</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.dbase-numrecords.html">« dbase_numrecords</a></li>
+      <li style="float: right;"><a href="function.dbase-pack.html">dbase_pack »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.dbase.html">Fun&ccedil;&otilde;es da dBase</a></li>
+    <li>Abre um banco de dados</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.dbase-open" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dbase_open</h1>
+  <p class="refpurpose"><span class="refname">dbase_open</span> &mdash; <span class="dc-title">Abre um banco de dados</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.dbase-open-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>dbase_open</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$filename</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code></span>): <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>dbase_open()</strong></span> abre um banco de dados dBase com
+   o modo de acesso dado.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <p class="para">Esta função é afetada por <a href="ini.core.html#ini.open-basedir" class="link">open_basedir</a>.</p></p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.dbase-open-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">filename</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O nome do banco de dados. Pode ser um caminho relativo ou absoluto para
+       o arquivo onde o dBase irá guardar os seus dados.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Um inteiro que corresponda a chamada de sistema <strong class="command">open()</strong>
+       (Tipicamente 0 significa somente-leitura, 1 apenas para escrita e 2
+       significa leitura e escrita).
+      </p>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <p class="para">
+        VoC~e não pode abrir um banco de dados dBase em modo somente para escrita já que a função
+        irá falhar ao ler os cabeçalhos com informações e então você não pode usar 1 como o
+        parâmetro <code class="parameter">mode</code>.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.dbase-open-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="example-3677">
+    <p><strong>Exemplo #1 Abrindo um banco de dados dBase</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">// open in read-only mode<br /></span><span style="color: #0000BB">$db </span><span style="color: #007700">= </span><span style="color: #0000BB">dbase_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'/tmp/test.dbf'</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br />if (</span><span style="color: #0000BB">$db</span><span style="color: #007700">) {<br />  </span><span style="color: #FF8000">// read some data ..<br /><br />  </span><span style="color: #0000BB">dbase_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$db</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.dbase-open-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna um identificador do banco de dados se for aberto com sucesso, 
+   ou <strong><code>false</code></strong> se um erro aconteceu.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.dbase-open-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.dbase-create.html" class="function" rel="rdfs-seeAlso">dbase_create()</a> - Cria um banco de dados</span></li>
+    <li class="member"><span class="function"><a href="function.dbase-close.html" class="function" rel="rdfs-seeAlso">dbase_close()</a> - Fecha um banco de dados</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

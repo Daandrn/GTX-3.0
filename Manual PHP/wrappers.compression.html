@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Streams de compacta&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="wrappers.php.html">« php://</a></li>
+      <li style="float: right;"><a href="wrappers.data.html">data:// »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="wrappers.html">Protocolos e Wrappers suportados</a></li>
+    <li>Streams de compacta&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="wrappers.compression" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">zlib://</h1>
+  <h1 class="refname">bzip2://</h1>
+  <h1 class="refname">zip://</h1>
+  <p class="refpurpose"><span class="refname">zlib://</span> -- <span class="refname">bzip2://</span> -- <span class="refname">zip://</span> &mdash; <span class="dc-title">Streams de compactação</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-wrappers.compression-description">
+  <h3 class="title">Descrição</h3>
+  <p class="simpara"><var class="filename">compress.zlib://</var> e <var class="filename">compress.bzip2://</var></p>
+
+  <p class="simpara">
+   <var class="filename">zlib:</var> funciona como <span class="function"><a href="function.gzopen.html" class="function">gzopen()</a></span>, exceto que
+   o stream pode ser usado com <span class="function"><a href="function.fread.html" class="function">fread()</a></span> e outras
+   funções do sistema de arquivos.  Isso é obsoleto devido
+   a ambiguidades com nomes de arquivos contendo caracteres &#039;:&#039;; use
+   <var class="filename">compress.zlib://</var> em vez disso.
+  </p>
+
+  <p class="simpara">
+   <var class="filename">compress.zlib://</var> e
+   <var class="filename">compress.bzip2://</var> são equivalentes para
+   <span class="function"><a href="function.gzopen.html" class="function">gzopen()</a></span> e <span class="function"><a href="function.bzopen.html" class="function">bzopen()</a></span>
+   respectivamente, e funcionam mesmo em sistemas que não suportam
+   fopencookie.
+  </p>
+
+  <p class="simpara">
+   A <a href="book.zip.html" class="link">extensão ZIP</a> registra o wrapper <var class="filename">zip:</var>. a partir do
+   PHP 7.2.0 e libzip 1.2.0+, foi adicionado suporte para as senhas para arquivos criptografados, permitindo
+   que as senhas sejam fornecidas por stream contexts. As senhas podem ser definidas usando <code class="literal">&#039;password&#039;</code>,
+   uma opção de contexto de streams.
+  </p>
+ </div>
+
+
+ <div class="refsect1 usage" id="refsect1-wrappers.compression-usage"> 
+  <h3 class="title">Uso</h3>
+  <ul class="itemizedlist">
+   <li class="listitem"><span class="simpara"><var class="filename">compress.zlib://file.gz</var></span></li>
+   <li class="listitem"><span class="simpara"><var class="filename">compress.bzip2://file.bz2</var></span></li>
+   <li class="listitem"><span class="simpara"><var class="filename">zip://archive.zip#dir/file.txt</var></span></li>
+  </ul>
+ </div>
+ 
+
+ <div class="refsect1 options" id="refsect1-wrappers.compression-options">
+  <h3 class="title">Opções</h3>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Resumo do Wrapper</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Atributo</th>
+       <th>Suportado</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>Restringido por <a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">allow_url_fopen</a></td>
+       <td>Não</td>
+      </tr>
+
+      <tr>
+       <td>Permite Leitura</td>
+       <td>Sim</td>
+      </tr>
+
+      <tr>
+       <td>Permite Escrita</td>
+       <td>Sim (exceto <code class="literal">zip://</code>)</td>
+      </tr>
+
+      <tr>
+       <td>Permite Adição</td>
+       <td>Sim (exceto <code class="literal">zip://</code>)</td>
+      </tr>
+
+      <tr>
+       <td>Permite Leitura e Escrita Simultâneas</td>
+       <td>Não</td>
+      </tr>
+
+      <tr>
+       <td>Suporta <span class="function"><a href="function.stat.html" class="function">stat()</a></span></td>
+       <td>
+        Não, use o wrapper <code class="literal">file://</code>
+        para verificar o stat de arquivos compactados.
+       </td>
+      </tr>
+
+      <tr>
+       <td>Suporta <span class="function"><a href="function.unlink.html" class="function">unlink()</a></span></td>
+       <td>
+        Não, use o wrapper <code class="literal">file://</code>
+        para excluir arquivos compactados.
+       </td>
+      </tr>
+
+      <tr>
+       <td>Suporta <span class="function"><a href="function.rename.html" class="function">rename()</a></span></td>
+       <td>Não</td>
+      </tr>
+
+      <tr>
+       <td>Suporta <span class="function"><a href="function.mkdir.html" class="function">mkdir()</a></span></td>
+       <td>Não</td>
+      </tr>
+
+      <tr>
+       <td>Suporta <span class="function"><a href="function.rmdir.html" class="function">rmdir()</a></span></td>
+       <td>Não</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+ 
+
+ <div class="refsect1 seealso" id="refsect1-wrappers.compression-seealso">
+  <h3 class="title">Veja Também</h3>
+  <ul class="simplelist">
+   <li class="member"><a href="context.zlib.html" class="xref">Zlib context options</a></li>
+  </ul>
+ </div>
+
+</div></div></div></body></html>

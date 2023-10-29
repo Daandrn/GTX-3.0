@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Mostra uma string</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.parse-str.html">« parse_str</a></li>
+      <li style="float: right;"><a href="function.printf.html">printf »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.strings.html">Fun&ccedil;&otilde;es de String</a></li>
+    <li>Mostra uma string</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.print" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">print</h1>
+  <p class="refpurpose"><span class="refname">print</span> &mdash; <span class="dc-title">Mostra uma string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.print-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>print</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$arg</code></span>): <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Mostra <code class="parameter">arg</code>.
+  </p>
+  <p class="para">
+   <code class="literal">print</code> na verdade não é uma função real (ela é uma
+   construção da linguagem), dessa forma você não precisa usar parênteses
+   com sua lista de argumentos.
+  </p>
+  <p class="para">
+   As principais diferenças para <code class="literal">echo</code> são que
+   <code class="literal">print</code> aceita apenas um único argumento e sempre retorna 1
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.print-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">arg</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O dado de entrada.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.print-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <code class="literal">1</code>, sempre.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.print-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplos <code class="literal">print</code></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">print(</span><span style="color: #DD0000">"Hello World"</span><span style="color: #007700">);<br /><br />print </span><span style="color: #DD0000">"print() also works without parentheses."</span><span style="color: #007700">;<br /><br />print </span><span style="color: #DD0000">"This spans<br />multiple lines. The newlines will be<br />output as well"</span><span style="color: #007700">;<br /><br />print </span><span style="color: #DD0000">"This spans\nmultiple lines. The newlines will be\noutput as well."</span><span style="color: #007700">;<br /><br />print </span><span style="color: #DD0000">"escaping characters is done \"Like this\"."</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// You can use variables inside a print statement<br /></span><span style="color: #0000BB">$foo </span><span style="color: #007700">= </span><span style="color: #DD0000">"foobar"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$bar </span><span style="color: #007700">= </span><span style="color: #DD0000">"barbaz"</span><span style="color: #007700">;<br /><br />print </span><span style="color: #DD0000">"foo is </span><span style="color: #0000BB">$foo</span><span style="color: #DD0000">"</span><span style="color: #007700">; </span><span style="color: #FF8000">// foo is foobar<br /><br />// You can also use arrays<br /></span><span style="color: #0000BB">$bar </span><span style="color: #007700">= array(</span><span style="color: #DD0000">"value" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"foo"</span><span style="color: #007700">);<br /><br />print </span><span style="color: #DD0000">"this is </span><span style="color: #007700">{</span><span style="color: #0000BB">$bar</span><span style="color: #007700">[</span><span style="color: #DD0000">'value'</span><span style="color: #007700">]}</span><span style="color: #DD0000"> !"</span><span style="color: #007700">; </span><span style="color: #FF8000">// this is foo !<br /><br />// Using single quotes will print the variable name, not the value<br /></span><span style="color: #007700">print </span><span style="color: #DD0000">'foo is $foo'</span><span style="color: #007700">; </span><span style="color: #FF8000">// foo is $foo<br /><br />// If you are not using any other characters, you can just print variables<br /></span><span style="color: #007700">print </span><span style="color: #0000BB">$foo</span><span style="color: #007700">;          </span><span style="color: #FF8000">// foobar<br /><br /></span><span style="color: #007700">print &lt;&lt;&lt;END<br /></span><span style="color: #DD0000">This uses the "here document" syntax to output<br />multiple lines with </span><span style="color: #0000BB">$variable</span><span style="color: #DD0000"> interpolation. Note<br />that the here document terminator must appear on a<br />line with just a semicolon no extra whitespace!<br /></span><span style="color: #007700">END;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.print-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">Como esta é uma
+construção da linguagem e não uma função, ela não pode ser chamada usando
+<a href="functions.variable-functions.html" class="link">funções variáveis</a>
+ou <a href="functions.arguments.html#functions.named-arguments" class="link">argumentos nomeados</a>.</span>
+</p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.print-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.echo.html" class="function" rel="rdfs-seeAlso">echo</a> - Output one or more strings</span></li>
+    <li class="member"><span class="function"><a href="function.printf.html" class="function" rel="rdfs-seeAlso">printf()</a> - Output a formatted string</span></li>
+    <li class="member"><span class="function"><a href="function.flush.html" class="function" rel="rdfs-seeAlso">flush()</a> - Flush system output buffer</span></li>
+    <li class="member"><a href="language.types.string.html#language.types.string.syntax.heredoc" class="link">Sintaxe Heredoc</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

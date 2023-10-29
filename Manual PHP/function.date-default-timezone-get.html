@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retorna o fuso hor&aacute;rio padr&atilde;o usado por todas as fun&ccedil;&otilde;es de data e tempo em um script</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.date-date-set.html">« date_date_set</a></li>
+      <li style="float: right;"><a href="function.date-default-timezone-set.html">date_default_timezone_set »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.datetime.html">Fun&ccedil;&otilde;es de Data/Hora</a></li>
+    <li>Retorna o fuso hor&aacute;rio padr&atilde;o usado por todas as fun&ccedil;&otilde;es de data e tempo em um script</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.date-default-timezone-get" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">date_default_timezone_get</h1>
+  <p class="refpurpose"><span class="refname">date_default_timezone_get</span> &mdash; <span class="dc-title">
+   Retorna o fuso horário padrão usado por todas as funções de data e tempo em um script
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.date-default-timezone-get-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description"><span class="methodname"><strong>date_default_timezone_get</strong></span>(): <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Em ordem de preferência, essa função retorna o fuso horário padrão:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      Lendo o fuso horário configurado utilizando a função
+      <span class="function"><a href="function.date-default-timezone-set.html" class="function">date_default_timezone_set()</a></span> (se existir)
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Até o PHP 5.4.0 <em>somente</em>: Lendo a variável de ambiente
+      <var class="varname">TZ</var> (se não estiver vazia)
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Lendo o valor de <a href="datetime.configuration.html#ini.date.timezone" class="link">date.timezone</a> do ini
+      (se configurada)
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Até o PHP 5.4.0 <em>somente</em>: Requisitando o sistema operacional
+      (se suportado e permitido pelo SO). Usa um algoritmo que tenta
+      <em>adivinhar</em> o fuso horário. De modo algum, funcionará corretamente
+      em qualquer situação. Um aviso será mostrado quando esse estágio é alcançado. Não confie
+      que ele será adivinhado corretamente, e configure <a href="datetime.configuration.html#ini.date.timezone" class="link">date.timezone</a>
+      para o fuso correto.
+     </p>
+    </li>
+   </ul>
+  </p>
+     <p class="para">
+      Se nenhuma das opções acima obter êxito, a função <span class="methodname"><strong>date_default_timezone_get()</strong></span>
+      retornará o fuso horário padrão <code class="literal">UTC</code>
+     </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.date-default-timezone-get-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna uma <span class="type">string</span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.date-default-timezone-get-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.4.0</td>
+       <td>
+        A variável de ambiente <code class="literal">TZ</code> não é mais utilizada
+        para adivinhar o fuso horário.
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.4.0</td>
+       <td>
+        O fuso horário não é mais suposto por informações disponíveis no
+        sistema operacional, já que o fuso horário adivinhado não é confiável.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.date-default-timezone-get-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Lendo o fuso horário padrão</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />date_default_timezone_set</span><span style="color: #007700">(</span><span style="color: #DD0000">'Europe/London'</span><span style="color: #007700">);<br /><br />if (</span><span style="color: #0000BB">date_default_timezone_get</span><span style="color: #007700">()) {<br />    echo </span><span style="color: #DD0000">'date_default_timezone_set: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">date_default_timezone_get</span><span style="color: #007700">() . </span><span style="color: #DD0000">'&lt;br /&gt;'</span><span style="color: #007700">;<br />}<br /><br />if (</span><span style="color: #0000BB">ini_get</span><span style="color: #007700">(</span><span style="color: #DD0000">'date.timezone'</span><span style="color: #007700">)) {<br />    echo </span><span style="color: #DD0000">'date.timezone: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">ini_get</span><span style="color: #007700">(</span><span style="color: #DD0000">'date.timezone'</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+date_default_timezone_set: Europe/London
+date.timezone: Europe/London
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #2 Lendo a abreviação de um fuso horário</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />date_default_timezone_set</span><span style="color: #007700">(</span><span style="color: #DD0000">'America/Los_Angeles'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">date_default_timezone_get</span><span style="color: #007700">() . </span><span style="color: #DD0000">' =&gt; ' </span><span style="color: #007700">. </span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">'e'</span><span style="color: #007700">) . </span><span style="color: #DD0000">' =&gt; ' </span><span style="color: #007700">. </span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">'T'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+America/Los_Angeles =&gt; America/Los_Angeles =&gt; PST
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.date-default-timezone-get-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.date-default-timezone-set.html" class="function" rel="rdfs-seeAlso">date_default_timezone_set()</a> - Configura o fuso hor&aacute;rio padr&atilde;o utilizado por todas as fun&ccedil;&otilde;es de data e
+   hora em um script</span></li>
+    <li class="member"><a href="timezones.html" class="xref">Lista de Fusos Hor&aacute;rios Suportados</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

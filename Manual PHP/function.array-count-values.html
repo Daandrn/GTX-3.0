@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Conta as ocorr&ecirc;ncias de cada valor distinto em um array</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.array-combine.html">« array_combine</a></li>
+      <li style="float: right;"><a href="function.array-diff-assoc.html">array_diff_assoc »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Conta as ocorr&ecirc;ncias de cada valor distinto em um array</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.array-count-values" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_count_values</h1>
+  <p class="refpurpose"><span class="refname">array_count_values</span> &mdash; <span class="dc-title">Conta as ocorrências de cada valor distinto em um array</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.array-count-values-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>array_count_values</strong></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter">$array</code></span>): <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   A função <span class="function"><strong>array_count_values()</strong></span> retorna um array utilizando os valores
+   do parâmetro <code class="parameter">array</code> (que devem ser <span class="type">int</span>s ou <span class="type">string</span>s) como chaves e suas respectivas
+   frequências em <code class="parameter">array</code> como valores.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.array-count-values-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">array</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O array de valores para contar
+      </p>
+     </dd>
+
+    
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.array-count-values-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna um array associativo de valores de <code class="parameter">array</code> como
+   chaves e suas quantias como valor.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-function.array-count-values-errors">
+  <h3 class="title">Erros</h3>
+  <p class="para">
+   Dispara <strong><code>E_WARNING</code></strong> para cada elemento que não for
+   <span class="type">string</span> ou <span class="type">int</span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.array-count-values-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo da <span class="function"><strong>array_count_values()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$array </span><span style="color: #007700">= array(</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">"ola"</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">"mundo"</span><span style="color: #007700">, </span><span style="color: #DD0000">"ola"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">array_count_values</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [1] =&gt; 2
+    [ola] =&gt; 2
+    [mundo] =&gt; 1
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.array-count-values-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.count.html" class="function" rel="rdfs-seeAlso">count()</a> - Counts all elements in an array or in a Countable object</span></li>
+    <li class="member"><span class="function"><a href="function.array-unique.html" class="function" rel="rdfs-seeAlso">array_unique()</a> - Remove os valores duplicados de um array</span></li>
+    <li class="member"><span class="function"><a href="function.array-values.html" class="function" rel="rdfs-seeAlso">array_values()</a> - Retorna todos os valores de um array</span></li>
+    <li class="member"><span class="function"><a href="function.count-chars.html" class="function" rel="rdfs-seeAlso">count_chars()</a> - Return information about characters used in a string</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

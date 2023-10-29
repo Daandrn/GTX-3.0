@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Onde uma configura&ccedil;&atilde;o deve ser definida</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="configuration.file.per-user.html">« Arquivos .user.ini</a></li>
+      <li style="float: right;"><a href="configuration.changes.html">Como mudar as configura&ccedil;&otilde;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="configuration.html">Configura&ccedil;&atilde;o em tempo de execu&ccedil;&atilde;o</a></li>
+    <li>Onde uma configura&ccedil;&atilde;o deve ser definida</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="configuration.changes.modes" class="sect1">
+  <h2 class="title">Onde uma configuração deve ser definida</h2>
+  
+  <p class="para">
+   Estes modos determinam quando e onde uma diretiva do PHP pode ou não pode
+   ser definida, e cada diretiva no manual faz referência a um destes modos.
+   Por exemplo, algumas definições podem ser feitas em um script PHP
+   usando <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>, enquanto outras só podem ser feitas no 
+   <var class="filename">php.ini</var> ou <var class="filename">httpd.conf</var>.
+  </p>
+
+  <p class="para">
+   Por exemplo, a configuração 
+   <a href="outcontrol.configuration.html#ini.output-buffering" class="link">output_buffering</a> 
+   é <code class="literal">PHP_INI_PERDIR</code> portanto não pode ser definida usando
+   <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>. Entretanto a diretiva
+   <a href="errorfunc.configuration.html#ini.display-errors" class="link">display_errors</a> é
+   <code class="literal">PHP_INI_ALL</code> portanto pode ser definida em qualquer lugar
+   com <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>.
+  </p>
+ 
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Definição dos modos PHP_INI_*</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Modo</th>
+       <th>Significado</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">PHP_INI_USER</code></td>
+       <td>
+        A entrada pode ser definida nos scripts do usuário (com <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>)
+        ou no <a href="configuration.changes.html#configuration.changes.windows" class="link">registro do Windows</a>.
+        A entrada pode ser definida no <var class="filename">.user.ini</var>
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">PHP_INI_PERDIR</code></td>
+       <td>
+        A entrada pode ser definida no <var class="filename">php.ini</var>, <var class="filename">.htaccess</var>, <var class="filename">httpd.conf</var> ou <var class="filename">.user.ini</var>
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">PHP_INI_SYSTEM</code></td>
+       <td>A entrada pode ser definida no <var class="filename">php.ini</var> ou <var class="filename">httpd.conf</var></td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">PHP_INI_ALL</code></td>
+       <td>A entrada pode ser definida em qualquer lugar</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div></div></div></body></html>

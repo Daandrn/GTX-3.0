@@ -1,0 +1,630 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Informa&ccedil;&atilde;o do servidor e ambiente de execu&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="reserved.variables.globals.html">« $GLOBALS</a></li>
+      <li style="float: right;"><a href="reserved.variables.get.html">$_GET »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="reserved.variables.html">Vari&aacute;veis pr&eacute;-definidas</a></li>
+    <li>Informa&ccedil;&atilde;o do servidor e ambiente de execu&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="reserved.variables.server" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">$_SERVER</h1>
+  <p class="refpurpose"><span class="refname">$_SERVER</span> &mdash; <span class="dc-title">Informação do servidor e ambiente de execução</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-reserved.variables.server-description">
+  <h3 class="title">Descrição</h3>
+  <p class="para">
+   <var class="varname">$_SERVER</var> é um <span class="type">array</span> contendo informação
+   como headers, caminhos, e outras informações do script.
+   As informações nesse array são criadas pelo servidor web específico, e portanto
+   não há garantias que sempre existirá as mesmas informações,
+   podendo algumas serem omitidas ou adicionadas em relação a lista a seguir.
+   Entretanto, a maioria dessas variáveis são documentadas na
+   <a href="http://www.faqs.org/rfcs/rfc3875" class="link external">&raquo;&nbsp;especificação CGI/1.1</a>,
+   e estão normalmente definidas.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Quando rodando o PHP na <a href="features.commandline.html" class="link">linha de comando</a>
+    a maioria dessas informações não estarão disponíveis ou não terão qualquer sentido.
+   </span>
+  </p></blockquote>
+  <p class="para">
+   Além dos valores listados a seguir, o PHP irá criar itens adicionais
+   com valores dos headers de requisição. Esses itens serão prefixados com
+   <code class="literal">HTTP_</code> seguido do nome do header,
+   capitalizados e com underlines ao invés de hifens.
+   Por exemplo, o header <code class="literal">Accept-Language</code> estará disponível
+   como <code class="code">$_SERVER[&#039;HTTP_ACCEPT_LANGUAGE&#039;]</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 indices" id="refsect1-reserved.variables.server-indices">
+  <h3 class="title">Índices</h3>
+
+  <p class="para">
+   <dl>
+    
+     <dt>
+&#039;<var class="varname">PHP_SELF</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O nome do arquivo do script que está executando, relativa à
+       raiz do documento. Por exemplo,
+       <var class="varname">$_SERVER['PHP_SELF']</var> em um script no
+       endereço <var class="filename">http://example.com/foo/bar.php</var>
+       seria <var class="filename">/foo/bar.php</var>.
+       A constante <a href="language.constants.predefined.html" class="link">__FILE__</a>
+       contém o caminho completo e nome do atual arquivo (possivelmente
+       incluído).
+      </span>
+      <span class="simpara">
+       Se estiver rodando o PHP em linha de comando, esta variável contém
+       o nome do script.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<a href="reserved.variables.argv.html" class="link">argv</a>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Array de argumentos passado para o script. Quando o script
+       é executado na linha de comando, isto permite um acesso aos parâmetros
+       de linha de comando no estilo do C. Quando chamado via método GET, ele
+       conterá a query string.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<a href="reserved.variables.argc.html" class="link">argc</a>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Contém o número de parâmetros da linha de comando passados para o
+       script (se executando da linha de comando).
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">GATEWAY_INTERFACE</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O número de revisão da especificação CGI que o servidor está utilizando,
+       por exemplo: <code class="literal">&#039;CGI/1.1&#039;</code>.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">SERVER_ADDR</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O endereço IP do servidor onde está o script em
+       execução.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">SERVER_NAME</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O nome host do servidor onde o script atual é
+       executado. Se o script está rodando em um host virtual, este
+       será o valor definido para aquele host virtual.
+      </span>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <span class="simpara">
+        No Apache 2, você deve definir <code class="literal">UseCanonicalName = On</code> e
+        <code class="literal">ServerName</code>. Caso contrário, este valor refletirá
+        o nome do servidor fornecido pelo cliente, que pode ser forjado.
+        Não é seguro confiar neste valor em contextos que dependam de segurança.
+       </span>
+      </p></blockquote>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">SERVER_SOFTWARE</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       A string de identificação do servidor, fornecida nos headers quando
+       respondendo a requests.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">SERVER_PROTOCOL</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Nome e número de revisão do protocolo de informação pelo qual a
+       página foi requerida, por exemplo<code class="literal">&#039;HTTP/1.0&#039;</code>;
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">REQUEST_METHOD</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Contém o método de request utilizando para acessar a página. Geralmente &#039;<code class="literal">&#039;GET&#039;</code>&#039;,
+       &#039;<code class="literal">&#039;HEAD&#039;</code>&#039;, &#039;<code class="literal">&#039;POST&#039;</code>&#039; ou &#039;<code class="literal">&#039;PUT&#039;</code>&#039;.
+      </span>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <p class="para">
+        O script PHP é terminado depois de enviado cabeçalhos (significa depois de
+        produzir alguma saída sem saída do buffer) se o método da requisição
+        for <code class="literal">HEAD</code>.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">REQUEST_TIME</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O timestamp do início da requisição.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">REQUEST_TIME_FLOAT</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O timestamp, com precisão em microsegundos, do início da requisição.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">QUERY_STRING</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       A query string, se houver, pela qual a página foi acessada.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">DOCUMENT_ROOT</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O diretório raiz sob onde o script atual é
+       executado, como definido no arquivo de configuração do servidor.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">HTTPS</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Define para um valor não vazio se o script foi requisitado através do protocolo
+       HTTPS.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">REMOTE_ADDR</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O endereço IP de onde o usuário está visualizando a página
+       atual.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">REMOTE_HOST</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O nome do host que o usuário utilizou para chamar a página
+       atual. O DNS reverso (lookup) do
+       <var class="varname">REMOTE_ADDR</var> do usuário.
+      </span>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <span class="simpara">
+        Seu servidor web precisa estar configurado para criar essa variável. Por
+        exemplo, no Apache você precisa colocar um <code class="literal">HostnameLookups On</code>
+        dentro do <var class="filename">httpd.conf</var>. Veja também
+        <span class="function"><a href="function.gethostbyaddr.html" class="function">gethostbyaddr()</a></span>.
+       </span>
+      </p></blockquote>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">REMOTE_PORT</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       A porta TCP na máquina do usuário utilizada para comunicação com
+       o servidor web.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">REMOTE_USER</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+        O usuário autenticado
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">REDIRECT_REMOTE_USER</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+        O usuário autenticado utilizado se a requisição foi redirecionada internamente.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">SCRIPT_FILENAME</var>&#039;</dt>
+
+     <dd>
+
+      <p class="para">
+       O caminho absoluto do script atualmente em execução.
+       <blockquote class="note"><p><strong class="note">Nota</strong>: 
+        <p class="para">
+         Se o script for executado pela CLI com um caminho relativo,
+         como <var class="filename">file.php</var> ou
+         <var class="filename">../file.php</var>,
+         <var class="varname">$_SERVER['SCRIPT_FILENAME']</var> irá
+         conter o caminho relativo especificado pelo usuário.
+        </p>
+       </p></blockquote>
+      </p>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">SERVER_ADMIN</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O valor fornecido pela diretiva SERVER_ADMIN (do Apache) no
+       arquivo de configuração do servidor. Se o script está sendo executado
+       em um host virtual, este será os valores definidos para aquele
+       host virtual.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">SERVER_PORT</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       A porta na máquina servidora utilizada pelo servidor web
+       para comunicação. Como default, este valor é &#039;<code class="literal">&#039;80&#039;</code>&#039;.
+       Utilizando SSL, entretanto, mudará esse valor para a porta de comunicação
+       segura HTTP.
+      </span>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <span class="simpara">
+        Utilizando o Apache 2, você deve configurar <code class="literal">UseCanonicalName = On</code>,
+        assim como <code class="literal">UseCanonicalPhysicalPort = On</code> para
+        obter a porta física (real), caso contrário, este valor pode ser falsificado e pode,
+        ou não, retornar como valor a porta física.
+        Não é seguro confiar neste valor em contextos que dependem de segurança.
+       </span>
+      </p></blockquote>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">SERVER_SIGNATURE</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       String contendo a versão do servidor e nome do host virtual
+       que é adicionado às páginas geradas no servidor, se ativo.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">PATH_TRANSLATED</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O caminho real do script relativo ao sistema de arquivos
+       (não o document root), depois realizou todos os mapeamentos
+       de caminhos (virtual-to-real).
+      </span>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <span class="simpara">
+        Usuários do Apache 2 podem usar <code class="literal">AcceptPathInfo = On</code> dentro do
+        <var class="filename">httpd.conf</var> para definir o <var class="envar">PATH_INFO</var>.
+       </span>
+      </p></blockquote>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">SCRIPT_NAME</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Contém o caminho completo do script atual. Útil para páginas
+       que precisam apontar para elas mesmas (dinamicamente).
+       A constante <a href="language.constants.predefined.html" class="link">__FILE__</a>
+       contém o caminho completo e nome do arquivo (mesmo incluído)
+       atual.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">REQUEST_URI</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       O URI fornecido para acessar a página atual, por
+       exemplo, &#039;<code class="literal">/index.html</code>&#039;.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">PHP_AUTH_DIGEST</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Quando executando no Apache como módulo fazendo autenticação HTTP
+       esta variável é definida para o cabeçalho &#039;Authorization&#039; enviado pelo
+       cliente (que você pode então usar para fazer apropriada validação).
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">PHP_AUTH_USER</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Quando efetuando autenticação HTTP, esta variável estará definida com o username
+       fornecido pelo usuário.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">PHP_AUTH_PW</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Quando efetuando autenticação HTTP, esta variável estará definida com a senha
+       fornecida pelo usuário.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">AUTH_TYPE</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Quando efetuando autenticação HTTP, esta
+       variável estará definida com o tipo de autenticação utilizado.
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">PATH_INFO</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Contém qualquer informação fornecida pelo usuário, se disponível,
+       que levam ao nome do script atual, precedendo a query
+       string. Por exemplo, se o script atual fosse acessado via a URL
+       <var class="filename">http://www.example.com/php/path_info.php/some/stuff?foo=bar</var>,
+       então <var class="varname">$_SERVER['PATH_INFO']</var>teria como
+       valor <code class="literal">/some/stuff</code>
+      </span>
+     </dd>
+
+    
+
+    
+     <dt>
+&#039;<var class="varname">ORIG_PATH_INFO</var>&#039;</dt>
+
+     <dd>
+
+      <span class="simpara">
+       Versão original do &#039;<var class="varname">PATH_INFO</var>&#039; antes de ser processada pelo
+       PHP.
+      </span>
+     </dd>
+
+    
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-reserved.variables.server-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="example-1079">
+    <p><strong>Exemplo #1 Exemplo da <var class="varname">$_SERVER</var></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'SERVER_NAME'</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+www.example.com
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-reserved.variables.server-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <p class="para">Esta é uma variável &#039;superglobal&#039; ou
+variável global automática. Isso significa simplesmente que ela está disponível em
+todos os escopos de um script. Não há necessidade de usar
+<strong class="command">global $variable;</strong> para acessá-la dentro de funções ou métodos.
+</p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-reserved.variables.server-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="book.filter.html" class="link">A extensão filter</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

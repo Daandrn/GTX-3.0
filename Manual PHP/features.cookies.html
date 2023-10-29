@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cookies</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="features.http-auth.html">« Autentica&ccedil;&atilde;o HTTP com PHP</a></li>
+      <li style="float: right;"><a href="features.sessions.html">Sess&otilde;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="features.html">Caracter&iacute;sticas</a></li>
+    <li>Cookies</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="features.cookies" class="chapter">
+  <h1>Cookies</h1>
+
+
+  <p class="para">
+   O PHP suporta de forma transparente cookies <abbr title="Hypertext Transfer Protocol">HTTP</abbr>. Cookies são um mecanismo para
+   armazenar dados no navegador remoto e assim rastrear ou identificar usuários
+   que retornam. Você pode criar cookies usando as funções <span class="function"><a href="function.setcookie.html" class="function">setcookie()</a></span> ou
+   <span class="function"><a href="function.setrawcookie.html" class="function">setrawcookie()</a></span>.
+   Cookies fazem parte do cabeçalho <abbr title="Hypertext Transfer Protocol">HTTP</abbr>, logo,
+   <span class="function"><a href="function.setcookie.html" class="function">setcookie()</a></span> deve ser chamada antes que qualquer saída seja enviada ao
+   navegador. Esta é a mesma limitação que a função <span class="function"><a href="function.header.html" class="function">header()</a></span>
+   tem. Você pode usar as <a href="ref.outcontrol.html" class="link">funções de buffering
+   de saída</a> para atrasar as impressões no script até que você tenha decidido
+   se vai ou não configurar qualquer cookie ou enviar quaisquer cabeçalhos.
+  </p>
+
+  <p class="para">
+   Qualquer cookie enviado para o servidor pelo cliente será automaticamente incluído
+   no array auto-global <var class="varname"><a href="reserved.variables.cookies.html" class="classname">$_COOKIE</a></var>
+   se <a href="ini.core.html#ini.variables-order" class="link">variables_order</a>
+   contém &quot;C&quot;. Se você deseja definir vários valores em um único
+   cookie, simplesmente acrescente <code class="literal">[]</code> ao nome do cookie.
+  </p>
+
+  <p class="para">
+   Para mais detalhes, incluindo comentários sobre problemas de browsers, veja as
+   funções <span class="function"><a href="function.setcookie.html" class="function">setcookie()</a></span> e <span class="function"><a href="function.setrawcookie.html" class="function">setrawcookie()</a></span>.
+   
+  </p>
+
+ </div>
+</div></div></body></html>

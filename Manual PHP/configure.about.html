@@ -1,0 +1,543 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lista de op&ccedil;&otilde;es do script configure</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="configure.html">« Op&ccedil;&otilde;es do script Configure</a></li>
+      <li style="float: right;"><a href="ini.html">php.ini directives »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="configure.html">Op&ccedil;&otilde;es do script Configure</a></li>
+    <li>Lista de op&ccedil;&otilde;es do script configure</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="configure.about" class="sect1">
+  <h2 class="title">Lista de opções do script configure</h2>
+  <p class="para">
+   Abaixo está a lista parcial das opções do script <var class="filename">configure</var> usado pelo PHP
+   quando compilando o mesmo em ambientes Unix-like.
+   A maioria das opções de configuração está listada na 
+   página de referência da extensão e não aqui. Para uma lista atualizada 
+   e completa das opções do script configure, execute <strong class="command">./configure --help</strong>
+   no diretórios dos fontes do PHP após executar <strong class="command">autoconf</strong>
+   (veja também o <a href="install.html" class="link">capítulo de Instalação</a>).
+   Você pode também se interessar em ler a
+   documentação do <a href="http://www.airs.com/ian/configure/" class="link external">&raquo;&nbsp;GNU configure</a> para
+   obter informações em opções adicionais do <strong class="command">configure</strong> tais como
+   <code class="literal">--prefix=PREFIX</code>.
+  </p>
+  
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Essas opções são utilizadas apenas em tempo de compilação. Se você quiser alterar a
+    configuração do PHP em tempo de execução, por favor, veja o capítulo de <a href="configuration.html" class="link">Configuração em tempo de execução</a>.
+   </p>
+  </p></blockquote>
+  
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <a href="configure.about.html#configure.options.misc" class="link">Miscelânea</a>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="configure.about.html#configure.options.php" class="link">Comportamento do PHP</a>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="configure.about.html#configure.options.servers" class="link">Servidor</a>
+    </span>
+   </li>
+  </ul>
+
+  <div class="sect2" id="configure.options">
+   <h3 class="title">Opções do Configuração do PHP</h3>
+   
+
+ <div class="sect3" id="configure.options.misc">
+  <h4 class="title">Opções Mistas</h4>
+  <dl>
+   
+    <dt id="configure.enable-debug">
+     <strong class="option configure">--enable-debug</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Compila com símbolos para depuração.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-layout">
+     <strong class="option configure">--with-layout=TYPE</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Configura a disposição dos arquivos instalados. Type pode ser PHP (padrão)
+      ou GNU. Note que instalar manpages sob o prefixo PREFIX (default), utilize o estilo
+      GNU de forma que estas páginas possam ser encontradas pelo utilitário <var class="filename">manpath</var>.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-pear">
+     <strong class="option configure">--with-pear=DIR</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Instala o PEAR em DIR (padrão é PREFIX/lib/php).
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.without-pear">
+     <strong class="option configure">--without-pear</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Não instala o PEAR.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="configure.enable-sigchild">
+     <strong class="option configure">--enable-sigchild</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Permite que o PHP tenha um tratador de SIGCHLD próprio.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.disable-rpath">
+     <strong class="option configure">--disable-rpath</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Desabilita a passagem de caminhos adicionais onde busca por bibliotecas em tempo de execução.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.enable-libgcc">
+     <strong class="option configure">--enable-libgcc</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Habilita montar explicitamente com a libgcc.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.enable-php-streams">
+     <strong class="option configure">--enable-php-streams</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Inclui fluxos de dados (streams) experimentais do PHP. Não use a não ser que esteja testando
+o código!
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-zlib-dir">
+     <strong class="option configure">--with-zlib-dir[=DIR]</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Define a localização do diretório onde a zlib está instalada.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="configure.with-tsrm-pthreads">
+     <strong class="option configure">--with-tsrm-pthreads</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Use threads POSIX (padrão).
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.enable-shared">
+     <strong class="option configure">--enable-shared[=PKGS]</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Monta bibliotecas compartilhadas [padrão=yes].
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.enable-static">
+     <strong class="option configure">--enable-static[=PKGS]</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Monta bibliotecas estáticas [padrão=yes].
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.enable-fast-install">
+     <strong class="option configure">--enable-fast-install[=PKGS]</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Optimiza para instalação rápida [padrão=yes].
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-gnu-ld">
+     <strong class="option configure">--with-gnu-ld</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Presume que o compilador C usa o GNU ld [padrão=no].
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.disable-libtool-lock">
+     <strong class="option configure">--disable-libtool-lock</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Evita travamento (pode quebrar compilações rodando em paralelo).
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-pic">
+     <strong class="option configure">--with-pic</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Tenta usar apenas objetos PIC/não-PIC [padrão=use both].
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="configure.enable-versioning.php4">
+     <strong class="option configure">--enable-versioning</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Exporta apenas os símbolos necessários.
+      Veja o arquivo INSTALL para mais informações.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+
+   
+
+ <div class="sect3" id="configure.options.php">
+  <h4 class="title">Opções do PHP</h4>
+  <dl>
+   
+    <dt id="configure.enable-maintainer-mode">
+     <strong class="option configure">--enable-maintainer-mode</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Habilita criar regras e dependências que não são úteis (e algumas vezes confusas)
+      para o instalador casual.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-config-file-path">
+     <strong class="option configure">--with-config-file-path=PATH</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Edita o caminho no qual deve procurar pelo arquivo <var class="filename">php.ini</var>, padrão é <code class="literal">PREFIX/lib</code>.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.disable-short-tags">
+     <strong class="option configure">--disable-short-tags</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Desabilita a forma comprimida de tag inicial &lt;? por padrão.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-libdir">
+     <strong class="option configure">--with-libdir</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Especifica o diretório onde as bibliotecas necessárias para compilar
+      o PHP se encontram em um sistema UNIX. Para sistemas 64bit, é necessário
+      especificar o diretório <code class="literal">lib64</code> desta forma: 
+      <code class="literal">--with-libdir=lib64</code>.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.enable-zts">
+     <strong class="option configure">--enable-zts</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Ativa segurança de thread.
+      Anteriormente ao PHP 8.0.0 em sistemas não Windows, essa opção era chamada
+      <strong class="option configure">--enable-maintainer-zts</strong>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+
+   
+
+ <div class="sect3" id="configure.options.servers">
+  <h4 class="title">Opções SAPI</h4>
+  <p class="para">
+   A lista a seguir contêm as SAPI&amp;s (<code class="literal">Server
+   Application Programming Interface</code>) para o PHP.
+  </p>
+  <dl>
+   
+    <dt id="configure.with-apxs">
+     <strong class="option configure">--with-apxs[=FILE]</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Compila o módulo compartilhado do Apache. FILE é o caminho opcional para a ferramenta
+      apxs do Apache; padrão é apxs. Assegure-se que você especificou a versão do apxs que
+      está atualmente instalado no seu sistema e não a que está no diretório de
+      fontes do Apache.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-apache">
+     <strong class="option configure">--with-apache[=DIR]</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Compila o módulo estático do Apache. DIR é o diretório raíz do apache,
+      sendo que o padrão é <var class="filename">/usr/local/apache</var>.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-mod-charset">
+     <strong class="option configure">--with-mod_charset</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Habilita as tabelas de transferência para o mod_charset (Apache Russo).
+     </p>
+    </dd>
+
+   
+   
+    <dt id="configure.with-apxs2">
+     <strong class="option configure">--with-apxs2[=FILE]</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Compila o módulo compartilhado do Apache 2.0. FILE é o caminho opcional para a ferramenta
+      apxs do Apache; sendo o padrão para o apxs.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="configure.disable-cli">
+     <strong class="option configure">--disable-cli</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Para desabilitar a utilização do PHP na linha de comando (CLI) poderá utilizar
+      a diretiva <a href="configure.about.html#configure.without-pear" class="link">--without-pear</a>).
+      Para mais informações leia sobre
+      <a href="features.commandline.html" class="link">Utilizando o PHP a partir da linha de comando (CLI).</a>.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="configure.enable-phpdbg">
+     <strong class="option configure">--enable-phpdbg</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Ativa o debug interativo phpdbg no módulo SAPI.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="configure.enable-embed">
+     <strong class="option configure">--enable-embed[=TYPE]</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Habilita a instalação da biblioteca SAPI embutida. TYPE pode ser
+      <code class="literal">shared</code> ou <code class="literal">static</code>, sendo o
+      padrão <code class="literal">shared</code>.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="configure.with-servlet">
+     <strong class="option configure">--with-servlet[=DIR]</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Inclue o suporte à servlet. DIR é o diretório base de instalação para a JSDK.
+      Esse SAPI requer que a extensão java seja montada como uma dl compartilhada.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="configure.disable-cgi">
+     <strong class="option configure">--disable-cgi</strong>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Desabilita a compilação da versão CGI do PHP.
+     </p>
+     <p class="para">
+      Este argumento também habilita o FastCGI.
+     </p>
+    </dd>
+
+   
+
+  </dl>
+
+ </div>
+
+
+
+  </div>
+ </div></div></div></body></html>

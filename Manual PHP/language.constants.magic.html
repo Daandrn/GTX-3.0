@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Constantes M&aacute;gicas</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.constants.predefined.html">« Constantes Predefinidas</a></li>
+      <li style="float: right;"><a href="language.expressions.html">Express&otilde;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.constants.html">Constantes</a></li>
+    <li>Constantes M&aacute;gicas</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.constants.magic" class="sect1">
+   <h2 class="title">Constantes Mágicas</h2>
+   <p class="para">
+    Existem nove constantes mágicas que mudam dependendo de
+    onde são usadas. Por exemplo, o valor de
+    <strong><code>__LINE__</code></strong> depende da linha em que é
+    usada no script. Todas essas constantes &quot;mágicas&quot; são resolvidas
+    em tempo de compilação, ao contrário das constantes regulares, que são resolvidas em tempo de execução.
+    Essas constantes especiais não diferenciam maiúsculas de minúsculas e são as seguintes:
+   </p>
+   <p class="para">
+    <table class="doctable table">
+     <caption><strong>Constantes Mágicas do PHP</strong></caption>
+     
+      <thead>
+       <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+       </tr>
+
+      </thead>
+
+      <tbody class="tbody">
+       <tr id="constant.line">
+        <td><strong><code>__LINE__</code></strong></td>
+        <td>
+         O número da linha atual do arquivo.
+        </td>
+       </tr>
+
+       <tr id="constant.file">
+        <td><strong><code>__FILE__</code></strong></td>
+        <td>
+         O caminho completo e o nome do arquivo com links simbólicos resolvidos. Se usada dentro de um include,
+         o nome do arquivo incluído será retornado.
+        </td>
+       </tr>
+
+       <tr id="constant.dir">
+        <td><strong><code>__DIR__</code></strong></td>
+        <td>
+         O diretório do arquivo. Se usada dentro de um include,
+         o diretório do arquivo incluído será retornado. Isso é equivalente
+         a <code class="literal">dirname(__FILE__)</code>. O nome do diretório
+         não possui barra no final, a menos que seja o diretório raiz.
+        </td>
+       </tr>
+
+       <tr id="constant.function">
+        <td><strong><code>__FUNCTION__</code></strong></td>
+        <td>
+         O nome da função ou <code class="literal">{closure}</code> para funções anônimas.
+        </td>
+       </tr>
+
+       <tr id="constant.class">
+        <td><strong><code>__CLASS__</code></strong></td>
+        <td>
+         O nome da classe. O nome da classe inclui o namespace
+         em que foi declarada (por exemplo, <code class="literal">Foo\Bar</code>).
+         Quando usada
+         em um método de trait, __CLASS__ é o nome da classe em que o trait
+         for usado.
+        </td>
+       </tr>
+
+       <tr id="constant.trait">
+        <td><strong><code>__TRAIT__</code></strong></td>
+        <td>
+         O nome do trait. O nome do trait inclui o namespace em
+         que foi declarado (por exemplo, <code class="literal">Foo\Bar</code>).
+        </td>
+       </tr>
+
+       <tr id="constant.method">
+        <td><strong><code>__METHOD__</code></strong></td>
+        <td>
+         O nome do método da classe.
+        </td>
+       </tr>
+
+       <tr id="constant.namespace">
+        <td><strong><code>__NAMESPACE__</code></strong></td>
+        <td>
+         O nome do namespace atual.
+        </td>
+       </tr>
+
+       <tr id="constant.coloncolonclass">
+        <td><strong><code><span class="replaceable">ClassName</span>::class</code></strong></td>
+        <td>
+         O nome totalmente qualificado da classe.
+        </td>
+       </tr>
+
+      </tbody>
+     
+    </table>
+
+   </p>
+
+   <div class="sect2">
+    <h3 class="title">Veja Também</h3>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><a href="language.oop5.basic.html#language.oop5.basic.class.class" class="link">::class</a></li>
+      <li class="member"><span class="function"><a href="function.get-class.html" class="function">get_class()</a></span></li>
+      <li class="member"><span class="function"><a href="function.get-object-vars.html" class="function">get_object_vars()</a></span></li>
+      <li class="member"><span class="function"><a href="function.file-exists.html" class="function">file_exists()</a></span></li>
+      <li class="member"><span class="function"><a href="function.function-exists.html" class="function">function_exists()</a></span></li>
+     </ul>
+    </p>
+   </div>
+
+  </div></div></div></body></html>

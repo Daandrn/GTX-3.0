@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Redefine o conte&uacute;do do cache opcode</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.opcache-is-script-cached.html">« opcache_is_script_cached</a></li>
+      <li style="float: right;"><a href="book.outcontrol.html">Controle de Sa&iacute;da »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.opcache.html">OPcache Fun&ccedil;&otilde;es</a></li>
+    <li>Redefine o conte&uacute;do do cache opcode</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.opcache-reset" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">opcache_reset</h1>
+  <p class="refpurpose"><span class="refname">opcache_reset</span> &mdash; <span class="dc-title">Redefine o conteúdo do cache opcode</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.opcache-reset-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>opcache_reset</strong></span>(): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Esta função redefine todo o cache do opcode. Depois de chamar
+   <span class="function"><strong>opcache_reset()</strong></span>, todos os scripts serão recarregados e
+   reanalisados na próxima vez que forem atingidos. Esta função redefine apenas
+   o cache na memória, não o cache do arquivo.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.opcache-reset-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">Esta função não possui parâmetros.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.opcache-reset-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> se o cache de opcode foi redefinido, ou <strong><code>false</code></strong> se o cache de opcode
+   estiver desativado ou se a reinicialização estiver pendente ou em progresso (consulte <span class="function"><a href="function.opcache-get-status.html" class="function">opcache_get_status()</a></span>).
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.opcache-reset-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.opcache-invalidate.html" class="function" rel="rdfs-seeAlso">opcache_invalidate()</a> - Invalida um script em cache</span></li>
+    <li class="member"><span class="function"><a href="function.opcache-get-status.html" class="function" rel="rdfs-seeAlso">opcache_get_status()</a> - Obt&eacute;m informa&ccedil;&otilde;es de status sobre o cache</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

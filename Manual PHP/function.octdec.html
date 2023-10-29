@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Octal para decimal</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.min.html">« min</a></li>
+      <li style="float: right;"><a href="function.pi.html">pi »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.math.html">Fun&ccedil;&otilde;es Matem&aacute;ticas</a></li>
+    <li>Octal para decimal</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.octdec" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">octdec</h1>
+  <p class="refpurpose"><span class="refname">octdec</span> &mdash; <span class="dc-title">Octal para decimal</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.octdec-description">
+  <h3 class="title">Descrição</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="methodname"><strong>octdec</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$octal_string</code></span>): <span class="type"><span class="type">int</span>|<span class="type">float</span></span></div>
+
+  <p class="para rdfs-comment">
+   Retorna o decimal equivalente do número octal
+   representado pelo argumento <code class="parameter">octal_string</code>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.octdec-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">octal_string</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A string octal a ser convertida.
+       Quaisquer caracteres inválidos em <code class="parameter">octal_string</code> são ignorados silenciosamente.
+       A partir do PHP 7.4.0, informar caracteres inválidos está obsoleto.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.octdec-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   A representação decimal de <code class="parameter">octal_string</code>
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.octdec-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>7.4.0</td>
+      <td>
+       Passar caracteres inválidos gerará um aviso de obsolescência.
+       O resultado será calculado como se os caracteres inválidos não existissem.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.octdec-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo da <span class="function"><strong>octdec()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">octdec</span><span style="color: #007700">(</span><span style="color: #DD0000">'77'</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo </span><span style="color: #0000BB">octdec</span><span style="color: #007700">(</span><span style="color: #0000BB">decoct</span><span style="color: #007700">(</span><span style="color: #0000BB">45</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+63
+45
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes" id="refsect1-function.octdec-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    A função pode converter números que são muito grandes para caber no tipo
+    <span class="type">int</span> da plataforma, e nesse caso os valores são retornados como
+    <span class="type">float</span>.
+   </p>
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.octdec-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.decoct.html" class="function" rel="rdfs-seeAlso">decoct()</a> - Decimal para octal</span></li>
+    <li class="member"><span class="function"><a href="function.bindec.html" class="function" rel="rdfs-seeAlso">bindec()</a> - Binary to decimal</span></li>
+    <li class="member"><span class="function"><a href="function.hexdec.html" class="function" rel="rdfs-seeAlso">hexdec()</a> - Hexadecimal para decimal</span></li>
+    <li class="member"><span class="function"><a href="function.base-convert.html" class="function" rel="rdfs-seeAlso">base_convert()</a> - Converte um n&uacute;mero entre bases arbitr&aacute;rias</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

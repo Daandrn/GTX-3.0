@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Escreve dados em um arquivo</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.file-get-contents.html">« file_get_contents</a></li>
+      <li style="float: right;"><a href="function.file.html">file »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.filesystem.html">Fun&ccedil;&otilde;es da Filesystem</a></li>
+    <li>Escreve dados em um arquivo</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.file-put-contents" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">file_put_contents</h1>
+  <p class="refpurpose"><span class="refname">file_put_contents</span> &mdash; <span class="dc-title">Escreve dados em um arquivo</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.file-put-contents-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>file_put_contents</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$filename</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$data</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">resource</span> <code class="parameter">$context</code><span class="initializer"> = ?</span></span><br>): <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Esta função é idêntica à chamar <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>,
+   <span class="function"><a href="function.fwrite.html" class="function">fwrite()</a></span> e <span class="function"><a href="function.fclose.html" class="function">fclose()</a></span> sucessivamente
+   para escrever dados em um arquivo.
+  </p>
+  <p class="para">
+   Se <code class="parameter">filename</code> não existir, o arquivo é criado. Do
+   contrário, o arquivo existente é sobrescrito, a não ser que a flag
+   <strong><code>FILE_APPEND</code></strong> seja definida.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.file-put-contents-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">filename</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O caminho para o arquivo onde escrever os dados.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">data</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Os dados a serem escritos. Pode ser uma <span class="type">string</span>, um
+       <span class="type">array</span> ou um recurso <span class="type"><span class="type stream">stream</span></span>.
+      </p>
+      <p class="para">
+       Se <code class="parameter">data</code> for um recurso <span class="type"><span class="type stream">stream</span></span>, o
+       buffer restante desse stream será copiado para o arquivo especificado,
+       semelhante à utilização da <span class="function"><a href="function.stream-copy-to-stream.html" class="function">stream_copy_to_stream()</a></span>.
+      </p>
+      <p class="para">
+       Você também pode especificar o parâmetro <code class="parameter">data</code> como
+       um array unidimensional. Isso é equivalente a
+       <code class="literal">file_put_contents($filename, implode(&#039;&#039;, $array))</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O valor de <code class="parameter">flags</code> pode ser qualquer combinação das
+       seguintes flags, unidas com o operador binário OR (<code class="literal">|</code>).
+       
+      </p>
+      <p class="para">
+       <table class="doctable table">
+        <caption><strong>Flags disponíveis</strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Flag</th>
+           <th>Descrição</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>
+            <strong><code>FILE_USE_INCLUDE_PATH</code></strong>
+           </td>
+           <td>
+            Procura o arquivo <code class="parameter">filename</code> nos diretórios de
+            include. Veja <a href="ini.core.html#ini.include-path" class="link">include_path</a>
+            para mais informações.
+           </td>
+          </tr>
+
+          <tr>
+           <td>
+            <strong><code>FILE_APPEND</code></strong>
+           </td>
+           <td>
+            Se o arquivo <code class="parameter">filename</code> já existir, acrescenta
+            os dados no arquivo ao invés de sobrescrevê-lo.
+           </td>
+          </tr>
+
+          <tr>
+           <td>
+            <strong><code>LOCK_EX</code></strong>
+           </td>
+           <td>
+            Adquire uma trava exclusiva no arquivo ao prosseguir para a escrita.
+            Em outras palavras, uma chamada <span class="function"><a href="function.flock.html" class="function">flock()</a></span> acontece
+            entre a chamada <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span> e a chamada
+            <span class="function"><a href="function.fwrite.html" class="function">fwrite()</a></span>. Isso não é idêntico à uma chamada
+            <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span> com modo &quot;x&quot;.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">context</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Um recurso de contexto válido criado com
+       <span class="function"><a href="function.stream-context-create.html" class="function">stream_context_create()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.file-put-contents-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Esta função retorna a quantidade de bytes que foi escrita no arquivo ou
+   <strong><code>false</code></strong> em caso de falha.
+  </p>
+  <div class="warning"><strong class="warning">Aviso</strong><p class="simpara">Esta função pode
+retornar o valor booleano <strong><code>false</code></strong>, mas também pode retornar um valor não booleano que pode ser
+avaliado como <strong><code>false</code></strong>. Leia a seção sobre <a href="language.types.boolean.html" class="link">Booleanos</a> para mais
+informações. Use o <a href="language.operators.comparison.html" class="link">operador
+===</a> para testar o valor retornado por esta
+função.</p></div>
+ </div>
+
+
+  <div class="refsect1 examples" id="refsect1-function.file-put-contents-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo de uso simples</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$file </span><span style="color: #007700">= </span><span style="color: #DD0000">'people.txt'</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Abre o arquivo para obter o conteúdo existente<br /></span><span style="color: #0000BB">$current </span><span style="color: #007700">= </span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">// Acrescenta a nova pessoa no arquivo<br /></span><span style="color: #0000BB">$current </span><span style="color: #007700">.= </span><span style="color: #DD0000">"John Smith\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Escreve o conteúdo de volta no arquivo<br /></span><span style="color: #0000BB">file_put_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #0000BB">$current</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+   <div class="example" id="">
+    <p><strong>Exemplo #2 Usando flags</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$file </span><span style="color: #007700">= </span><span style="color: #DD0000">'people.txt'</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// A nova pessoa para adicionar no arquivo<br /></span><span style="color: #0000BB">$person </span><span style="color: #007700">= </span><span style="color: #DD0000">"John Smith\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Escreve o conteúdo no arquivo,<br />// usando a flag FILE_APPEND para acrescentar o conteúdo no fim do arquivo<br />// e a flag LOCK_EX para evitar que outra pessoa escreva no arquivo ao mesmo tempo<br /></span><span style="color: #0000BB">file_put_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #0000BB">$person</span><span style="color: #007700">, </span><span style="color: #0000BB">FILE_APPEND </span><span style="color: #007700">| </span><span style="color: #0000BB">LOCK_EX</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.file-put-contents-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">Esta função é
+compatível com dados binários.</span></p></blockquote>
+  <div class="tip"><strong class="tip">Dica</strong><p class="simpara">Uma URL pode ser usada como um
+nome de arquivo com esta função se os <a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">wrappers fopen</a> estiverem habilitados.
+Consulte a função <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span> para mais detalhes sobre como especificar
+o nome do arquivo. Consulte os <a href="wrappers.html" class="xref">Protocolos e Wrappers suportados</a> para obter links para informações
+sobre as capacidades de cada wrapper, notas de uso
+e informações sobre quaisquer variáveis predefinidas que eles possam
+fornecer.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.file-put-contents-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a> - Opens file or URL</span></li>
+    <li class="member"><span class="function"><a href="function.fwrite.html" class="function" rel="rdfs-seeAlso">fwrite()</a> - Escrita binary-safe em arquivos</span></li>
+    <li class="member"><span class="function"><a href="function.file-get-contents.html" class="function" rel="rdfs-seeAlso">file_get_contents()</a> - L&ecirc; todo o conte&uacute;do de um arquivo para uma string</span></li>
+    <li class="member"><span class="function"><a href="function.stream-context-create.html" class="function" rel="rdfs-seeAlso">stream_context_create()</a> - Creates a stream context</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

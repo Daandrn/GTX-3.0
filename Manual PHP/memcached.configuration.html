@@ -1,0 +1,763 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Configura&ccedil;&otilde;es em Execu&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="memcached.installation.html">« Instala&ccedil;&atilde;o</a></li>
+      <li style="float: right;"><a href="memcached.resources.html">Tipos de Recurso »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="memcached.setup.html">Instala&ccedil;&atilde;o/Configura&ccedil;&atilde;o</a></li>
+    <li>Configura&ccedil;&otilde;es em Execu&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="memcached.configuration" class="section">
+ <h2 class="title">Configurações em Execução</h2>
+ <p class="simpara">
+O comportamento dessas funções é afetado pelas configurações do <var class="filename">php.ini</var>.
+</p>
+ <p class="para">
+  <table class="doctable table">
+   <caption><strong>Memcached Opções de Configuração</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Nome</th>
+      <th>Padrão</th>
+      <th>Modificável</th>
+      <th>Changelog</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-locking" class="link">memcached.sess_locking</a></td>
+      <td>On</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 0.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-consistent-hash" class="link">memcached.sess_consistent_hash</a></td>
+      <td>On</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.1.0. O valor padrão é On a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-binary" class="link">memcached.sess_binary</a></td>
+      <td>Off</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.0.0. Substituído por memcached.sess_binary_protocol a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-lock-wait" class="link">memcached.sess_lock_wait</a></td>
+      <td>150000</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 0.1.0. Removido a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-prefix" class="link">memcached.sess_prefix</a></td>
+      <td>memc.sess.key.</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 0.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-number-of-replicas" class="link">memcached.sess_number_of_replicas</a></td>
+      <td>0</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-randomize-replica-read" class="link">memcached.sess_randomize_replica_read</a></td>
+      <td>Off</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-remove-failed" class="link">memcached.sess_remove_failed</a></td>
+      <td>On</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.1.0. Substituído por memcached.sess_remove_failed_servers a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.compression-type" class="link">memcached.compression_type</a></td>
+      <td>fastlz</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 0.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.compression-factor" class="link">memcached.compression_factor</a></td>
+      <td>1.3</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 0.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.compression-threshold" class="link">memcached.compression_threshold</a></td>
+      <td>2000</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 0.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.serializer" class="link">memcached.serializer</a></td>
+      <td>igbinary</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 0.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.use-sasl" class="link">memcached.use_sasl</a></td>
+      <td>Off</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.2.0. Removido a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.default-binary-protocol" class="link">memcached.default_binary_protocol</a></td>
+      <td>Off</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.default-connect-timeout" class="link">memcached.default_connect_timeout</a></td>
+      <td>0</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.default-consistent-hash" class="link">memcached.default_consistent_hash</a></td>
+      <td>Off</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-binary-protocol" class="link">memcached.sess_binary_protocol</a></td>
+      <td>On</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0. Substitua memcached.sess_binary</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-connect-timeout" class="link">memcached.sess_connect_timeout</a></td>
+      <td>1000</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.2.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-consistent-hash-type" class="link">memcached.sess_consistent_hash_type</a></td>
+      <td>ketama</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-lock-expire" class="link">memcached.sess_lock_expire</a></td>
+      <td>0</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.2.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-lock-retries" class="link">memcached.sess_lock_retries</a></td>
+      <td>5</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-lock-wait-max" class="link">memcached.sess_lock_wait_max</a></td>
+      <td>150</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0. Valor padrão 150 a partir do memcached 3.1.0 (anteriormente 2000).</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-lock-wait-min" class="link">memcached.sess_lock_wait_min</a></td>
+      <td>150</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0. Valor padrão 150 a partir do memcached 3.1.0 (anteriormente 1000).</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-persistent" class="link">memcached.sess_persistent</a></td>
+      <td>Off</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-remove-failed-servers" class="link">memcached.sess_remove_failed_servers</a></td>
+      <td>Off</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0. Substitua memcached.sess_remove_failed.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-server-failure-limit" class="link">memcached.sess_server_failure_limit</a></td>
+      <td>0</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 3.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-sasl-password" class="link">memcached.sess_sasl_password</a></td>
+      <td>null</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.2.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.sess-sasl-username" class="link">memcached.sess_sasl_username</a></td>
+      <td>null</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponível a partir do memcached 2.2.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="memcached.configuration.html#ini.memcached.store-retry-count" class="link">memcached.store_retry_count</a></td>
+      <td>0</td>
+      <td>PHP_INI_ALL</td>
+      <td>
+       Disponível a partir do memcached 2.2.0
+       O valor padrão é <code class="literal">0</code> no memcached 3.2.0
+       (anteriormente <code class="literal">2</code>).
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </p>
+
+ <p class="para">Aqui está uma breve explicação das
+diretivas de configuração.</p>
+
+ <p class="para">
+  <dl>
+   
+    <dt id="ini.memcached.sess-locking">
+     <code class="parameter">memcached.sess_locking</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Use o bloqueio de sessão. Valores válidos: On, Off, o padrão é On.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-consistent-hash">
+     <code class="parameter">memcached.sess_consistent_hash</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Se definido como On, hashing consistente (libketama) é usado para manipulação de sessão. Quando hashing consistente é usado, pode-se adicionar ou remover nó(s) de cache sem atrapalhar muito as keys existentes. O padrão é On.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-binary">
+     <code class="parameter">memcached.sess_binary</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Use o modo binário de sessão memcached. As réplicas Libmemcached funcionam
+      apenas se o modo binário estiver ativado. O padrão é Off.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-lock-wait">
+     <code class="parameter">memcached.sess_lock_wait</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Tempo de espera de nova tentativa de bloqueio de rotação da sessão em microssegundos. Tenha cuidado
+      ao definir esse valor. Os valores válidos são inteiros, em que 0 é interpretado
+      como o valor padrão. Valores negativos resultam em um bloqueio reduzido para
+      um bloqueio de tentativa. O padrão é 150000.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-prefix">
+     <code class="parameter">memcached.sess_prefix</code>
+     <span class="type">string</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Prefixo da key de sessão Memcached. Os valores válidos são strings com menos de 219
+      bytes de comprimento. O valor padrão é &quot;memc.sess.key.&quot;
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-number-of-replicas">
+     <code class="parameter">memcached.sess_number_of_replicas</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Grave dados em vários servidores memcached adicionais. Isso é &quot;poor man&#039;s HA&quot;, como libmemcached o chama. Se esse valor for positivo e sess_remove_failed_servers estiver ativado quando um servidor memcached falhar, a sessão continuará disponível a partir de uma réplica. No entanto, se o servidor de memcache com falha ficar disponível novamente, ele lerá a sessão a partir daí, que pode ter dados antigos ou nenhum dado. O padrão é 0.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-randomize-replica-read">
+     <code class="parameter">memcached.sess_randomize_replica_read</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      A réplica da sessão do Memcached é lida aleatoriamente.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-remove-failed">
+     <code class="parameter">memcached.sess_remove_failed</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Permitir que o servidor memcached com falha seja removido automaticamente.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.compression-type">
+     <code class="parameter">memcached.compression_type</code>
+     <span class="type">string</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Defina o tipo de compactação, os valores válidos são: fastlz, zlib. O padrão
+      é fastlz.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.compression-factor">
+     <code class="parameter">memcached.compression_factor</code>
+     <span class="type">float</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Fator de compressão. Armazene o valor compactado somente se o fator de
+      compactação (economia) exceder o limite definido. Armazene compactado se:
+      <code class="literal">plain_len &gt; comp_len * factor</code>. O valor padrão
+      é 1,3 (23% de economia de espaço).
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.compression-threshold">
+     <code class="parameter">memcached.compression_threshold</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      O limite de compressão. Não compacte valores serializados abaixo desse limite.
+      O padrão é 2.000 bytes.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.serializer">
+     <code class="parameter">memcached.serializer</code>
+     <span class="type">string</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Defina o serializador padrão para novos objetos memcached. Os valores válidos
+      são: php, igbinary, json, json_array, msgpack.
+     </p>
+     <dl>
+      
+       <dt>
+json</dt>
+
+       <dd>
+
+        <p class="para">
+         Codificação php JSON padrão. Este serializador é rápido e compacto, mas
+         funciona apenas em dados codificados em UTF-8 e não implementa totalmente
+         a serialização. Consulte a extensão JSON. Disponível a partir do memcached 0.2.0.
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+json_array</dt>
+
+       <dd>
+
+        <p class="para">
+         Como json, mas decodifica em arrays. Disponível a partir do memcached 2.0.0.
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+php</dt>
+
+       <dd>
+
+        <p class="para">
+         O serializador PHP padrão.
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+igbinary</dt>
+
+       <dd>
+
+        <p class="para">
+         Um serializador binário. Disponível a partir do memcached 0.1.4.
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+msgpack</dt>
+
+       <dd>
+
+        <p class="para">
+         Um serializador binário multilíngue. Disponível a partir do memcached 2.2.0.
+        </p>
+       </dd>
+
+      
+     </dl>
+
+     <p class="para">
+      O padrão é igbinary se disponível, então msgpack se disponível, então php caso contrário.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.use-sasl">
+     <code class="parameter">memcached.use_sasl</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Use autenticação SASL para conexões. Valores válidos: On, Off. O
+      padrão é Off.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.default-binary-protocol">
+     <code class="parameter">memcached.default_binary_protocol</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Define o protocolo memcached padrão para novas conexões. (Para configurar o protocolo memcached para conexões usadas por sessões, use memcached.sess_binary_protocol em vez disso)
+
+      Se definido como On, o protocolo binário memcached é usado por padrão. Se definido como Off, o protocolo de texto memcached é usado. O padrão é desativado
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.default-connect-timeout">
+     <code class="parameter">memcached.default_connect_timeout</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Define o tempo limite de conexão memcached padrão para novas conexões. (Para configurar o tempo limite de conexão do memcached para sessões, use memcached.sess_connect_timeout)
+
+      No modo non-blocking, isso altera o valor do tempo limite. durante a conexão do socket em milissegundos. Especificar -1 significa um tempo limite infinito. Especificar 0 significa usar o tempo limite de conexão padrão da biblioteca memcached. O padrão é 0.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.default-consistent-hash">
+     <code class="parameter">memcached.default_consistent_hash</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Define o padrão para hash consistente para novas conexões. (Para configurar hashing consistente para conexões de sessão, use memcached.sess_consistent_hash em vez disso)
+
+      Se definido como On, hashing consistente (libketama) é usado para manipulação de sessão. Quando hashing consistente é usado, pode-se adicionar ou remover nó(s) de cache sem bagunçar muito com as keys existentes, o padrão é Off.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-binary-protocol">
+     <code class="parameter">memcached.sess_binary_protocol</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Use o protocolo binário memcached para sessões memcached (em vez do protocolo de texto) as réplicas libmemcached funcionam apenas se o modo binário estiver ativado. No entanto, certos proxies (como twemproxy) funcionarão somente se o protocolo binário estiver desabilitado. Em versões mais antigas do php-memcached, essa configuração estava desativada e era chamada de memcached.sess_binary. O padrão é On com libmemcached 1.0.18 ou mais recente. O padrão é Off com a versão mais antiga.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-connect-timeout">
+     <code class="parameter">memcached.sess_connect_timeout</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      valor de tempo limite de conexão memcached
+      No modo non-blocking, isso altera o valor do tempo limite durante a conexão do socket em milissegundos. Especificar -1 significa um tempo limite infinito.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-consistent-hash-type">
+     <code class="parameter">memcached.sess_consistent_hash_type</code>
+     <span class="type">string</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Tipo de hash consistente da sessão Memcached. Se definido como &#039;ketama&#039;, hash consistente (libketama) é usado para manipulação de sessão (padrão para php-memcached 3.x) se definido como &#039;ketama_weighted&#039;, hashing consistente ponderado (libketama) é usado para manipulação de sessão (padrão para php- memcached 2.x). O padrão é &quot;ketama&quot;.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-lock-expire">
+     <code class="parameter">memcached.sess_lock_expire</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      O tempo, em segundos, antes que um bloqueio seja liberado. Definir como 0 resulta no comportamento padrão, que é usar o max_execution_time do PHP. O padrão é 0.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-lock-retries">
+     <code class="parameter">memcached.sess_lock_retries</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      O número de vezes para tentar bloquear novamente o bloqueio de sessão, não incluindo a primeira tentativa. O padrão é 5.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-lock-wait-max">
+     <code class="parameter">memcached.sess_lock_wait_max</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      O tempo máximo, em milissegundos, de espera entre tentativas de bloqueio de sessão. O padrão é 150.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-lock-wait-min">
+     <code class="parameter">memcached.sess_lock_wait_min</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      O tempo mínimo, em milissegundos, de espera entre tentativas de bloqueio de sessão. Esse valor é dobrado em cada nova tentativa de bloqueio até que memcached.sess_lock_wait_max seja alcançado, após o qual qualquer nova tentativa levará sess_lock_wait_max segundos. O padrão é 150.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-persistent">
+     <code class="parameter">memcached.sess_persistent</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Se deve ou não reutilizar as conexões memcached correspondentes ao(s) valor(es) de session.save_path após o término da execução do script. Não use isso se certas configurações (por exemplo, configurações SASL, sess_binary_protocol) forem substituídas entre as solicitações. O padrão é Off.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-remove-failed-servers">
+     <code class="parameter">memcached.sess_remove_failed_servers</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Permitir que o servidor memcached com falha seja removido automaticamente. O padrão é Off. (Nas versões anteriores, essa configuração era chamada de memcached.sess_remove_failed)
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-server-failure-limit">
+     <code class="parameter">memcached.sess_server_failure_limit</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Defina esse valor para permitir que o servidor seja removido após o número configurado de falhas de conexão contínuas. O padrão é 0.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-sasl-password">
+     <code class="parameter">memcached.sess_sasl_password</code>
+     <span class="type">string</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Senha SASL da sessão
+      O nome de usuário e a senha precisam ser definidos para que o SASL seja ativado
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.sess-sasl-username">
+     <code class="parameter">memcached.sess_sasl_username</code>
+     <span class="type">string</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Nome de usuário SASL da sessão
+      O nome de usuário e a senha precisam ser definidos para que o SASL seja ativado
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.memcached.store-retry-count">
+     <code class="parameter">memcached.store_retry_count</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      A quantidade de novas tentativas para comandos de armazenamento com falha.
+      Esse mecanismo permite fail-over transparente para servidores secundários quando as operações set/increment/decrement/setMulti falham no servidor desejado em um ambiente multiservidor. O padrão é 2.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </p>
+</div></div></div></body></html>

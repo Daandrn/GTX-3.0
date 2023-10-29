@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Extrai um elemento do final do array</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.array-pad.html">« array_pad</a></li>
+      <li style="float: right;"><a href="function.array-product.html">array_product »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Extrai um elemento do final do array</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.array-pop" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_pop</h1>
+  <p class="refpurpose"><span class="refname">array_pop</span> &mdash; <span class="dc-title">Extrai um elemento do final do array</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.array-pop-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>array_pop</strong></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter reference">&$array</code></span>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>array_pop()</strong></span> extrai e retorna o valor do
+   último elemento de <code class="parameter">array</code>, diminuindo o
+   <code class="parameter">array</code> em um elemento.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">Após o uso desta função,
+assim como na função <span class="function"><a href="function.reset.html" class="function">reset()</a></span>, o ponteiro interno do <span class="type">array</span> fornecido apontará para o
+primeiro elemento.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.array-pop-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">array</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O array para obter os valores.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.array-pop-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna o valor do último elemento de <code class="parameter">array</code>.
+   Se <code class="parameter">array</code> é vazio,
+   <strong><code>null</code></strong> será retornado.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.array-pop-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo da <span class="function"><strong>array_pop()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$stack </span><span style="color: #007700">= array(</span><span style="color: #DD0000">"orange"</span><span style="color: #007700">, </span><span style="color: #DD0000">"banana"</span><span style="color: #007700">, </span><span style="color: #DD0000">"apple"</span><span style="color: #007700">, </span><span style="color: #DD0000">"raspberry"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$fruit </span><span style="color: #007700">= </span><span style="color: #0000BB">array_pop</span><span style="color: #007700">(</span><span style="color: #0000BB">$stack</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$stack</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Depois disso, <var class="varname">$stack</var> irá conter apenas 3 elementos:
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; orange
+    [1] =&gt; banana
+    [2] =&gt; apple
+)
+</pre></div>
+    </div>
+    <div class="example-contents"><p>
+     e <code class="literal">raspberry</code> será passado para
+     <var class="varname">$fruit</var>.
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.array-pop-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.array-push.html" class="function" rel="rdfs-seeAlso">array_push()</a> - Adiciona um ou mais elementos no final de um array</span></li>
+    <li class="member"><span class="function"><a href="function.array-shift.html" class="function" rel="rdfs-seeAlso">array_shift()</a> - Retira o primeiro elemento de um array</span></li>
+    <li class="member"><span class="function"><a href="function.array-unshift.html" class="function" rel="rdfs-seeAlso">array_unshift()</a> - Adiciona um ou mais elementos no in&iacute;cio de um array</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

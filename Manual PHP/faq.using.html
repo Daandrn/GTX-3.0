@@ -1,0 +1,428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Utilizando o PHP</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="faq.build.html">« Problemas de Compila&ccedil;&atilde;o</a></li>
+      <li style="float: right;"><a href="faq.passwords.html">Gerando hash de senha »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li>Utilizando o PHP</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="faq.using" class="chapter">
+  <h1>Utilizando o PHP</h1>
+
+  
+
+  <p class="para">
+   Esta seção reúne vários erros comuns que você pode encontrar
+   enquanto estiver escrevendo scripts PHP.
+  </p>
+
+  <div class="qandaset"><ol class="qandaset_questions"><li><a href="#faq.using.parameterorder">
+     
+      N&atilde;o consigo me lembrar da ordem dos par&acirc;metros das fun&ccedil;&otilde;es PHP. Eles s&atilde;o aleat&oacute;rios?
+     
+    </a></li><li><a href="#faq.using.anyform">
+     
+      Eu gostaria de escrever um script PHP gen&eacute;rico que fosse capaz de manipular
+      dados provenientes de qualquer formul&aacute;rio. Como eu sei quais vari&aacute;veis do m&eacute;todo POST est&atilde;o dispon&iacute;veis?
+     
+    </a></li><li><a href="#faq.using.addslashes">
+     
+      Preciso converter todas as aspas simples (&#039;) para uma barra invertida
+      seguida por uma aspa simples (\&#039;). Como eu posso fazer isso utilizando
+      express&otilde;es regulares? Gostaria de converter tamb&eacute;m &quot; para \&quot; e
+      \ para \\.
+     
+    </a></li><li><a href="#faq.using.wrong-order">
+     
+      Quando eu fa&ccedil;o o seguinte, a sa&iacute;da &eacute; exibida na
+      ordem errada:
+     
+
+&lt;?php
+function myfunc($argument)
+{
+    echo $argument + 10;
+}
+$variable = 10;
+echo &quot;myfunc($variable) = &quot; . myfunc($variable);
+?&gt;
+
+    
+     o que est&aacute; acontecendo?
+     
+    </a></li><li><a href="#faq.using.newlines">
+     
+      Ei, o que aconteceu com as minhas novas linhas?
+      
+
+&lt;pre&gt;
+&lt;?php echo &quot;Esta deve ser a primeira linha.&quot;; ?&gt;
+&lt;?php echo &quot;Esta deveria ser uma nova linha.&quot;; ?&gt;
+&lt;/pre&gt;
+
+      
+     
+    </a></li><li><a href="#faq.using.headers-sent">
+     
+      Recebi a mensagem &#039;Warning: Cannot send session cookie - headers already
+      sent...&#039; ou &#039;Cannot add header information - headers already sent...&#039;.
+     
+    </a></li><li><a href="#faq.using.header">
+     
+      Preciso acessar informa&ccedil;&otilde;es no cabe&ccedil;alho de requisi&ccedil;&atilde;o diretamente.
+      Como eu fa&ccedil;o isso?
+     
+    </a></li><li><a href="#faq.using.authentication">
+     
+      Quando eu tento utilizar autentica&ccedil;&atilde;o com o IIS eu recebo a mensagem &#039;No Input file specified&#039;.
+     
+    </a></li><li><a href="#faq.using.iis.sharing">
+     
+      Windows: N&atilde;o consigo acessar arquivos compartilhados em outro computador utilizando IIS.
+     
+    </a></li><li><a href="#faq.using.mixml">
+     
+      Como fa&ccedil;o para misturar XML e PHP? Ele reclama
+      das minhas tags &lt;?xml!
+     
+    </a></li><li><a href="#faq.using.variables">
+     
+      Onde posso encontrar uma lista completa das vari&aacute;veis que est&atilde;o dispon&iacute;veis para mim
+      no PHP?
+     
+    </a></li><li><a href="#faq.using.freepdf">
+     
+      Como posso gerar arquivos PDF sem utilizar bibliotecas n&atilde;o-livres e
+      comerciais como
+      PDFLib? Eu gostaria de alguma que fosse
+      livre e n&atilde;o precisasse de bibliotecas PDF externas.
+     
+    </a></li><li><a href="#faq.using.shorthandbytes">
+     
+      Algumas diretivas PHP podem receber valores em bytes de forma abreviada (1K), ao contr&aacute;rio
+      de apenas valores int. Quais s&atilde;o todas as op&ccedil;&otilde;es
+      dispon&iacute;veis de bytes de forma abreviada?
+     
+    </a></li></ol></div>
+
+   <dl class="qandaentry" id="faq.using.parameterorder">
+    
+    <dt><strong>
+     
+      Não consigo me lembrar da ordem dos parâmetros das funções PHP. Eles são aleatórios?
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      O PHP é uma &quot;cola&quot; que reúne centenas de bibliotecas externas, então às vezes
+      isso fica desorganizado. No entanto, uma regra simples é a seguinte:
+     </p>
+     <p class="para">
+      Os parâmetros de <a href="book.array.html" class="link">funções de Array</a> são ordenados como
+      &quot;<em>needle, haystack</em>&quot; ao passo que 
+      <a href="book.strings.html" class="link">funções de String</a> são o contrário,
+      logo &quot;<em>haystack, needle</em>&quot;.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.anyform">
+    <dt><strong>
+     
+      Eu gostaria de escrever um script PHP genérico que fosse capaz de manipular
+      dados provenientes de qualquer formulário. Como eu sei quais variáveis do método POST estão disponíveis?
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      O PHP disponibiliza muitas <a href="language.variables.predefined.html" class="link">
+      variáveis predefinidas</a>, como a superglobal <var class="varname"><a href="reserved.variables.post.html" class="classname">$_POST</a></var>.
+      Você pode iterar através de <var class="varname"><a href="reserved.variables.post.html" class="classname">$_POST</a></var>, já que ele é um array
+      associativo com todos os valores enviados com o método POST. Por exemplo, vamos
+      iterar através de POST com <a href="control-structures.foreach.html" class="link">foreach</a>,
+      verificar se há valores vazios com <span class="function"><a href="function.empty.html" class="function">empty()</a></span>
+      e imprimi-los na tela.
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$empty </span><span style="color: #007700">= </span><span style="color: #0000BB">$post </span><span style="color: #007700">= array();<br />foreach (</span><span style="color: #0000BB">$_POST </span><span style="color: #007700">as </span><span style="color: #0000BB">$varname </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$varvalue</span><span style="color: #007700">) {<br />    if (empty(</span><span style="color: #0000BB">$varvalue</span><span style="color: #007700">)) {<br />        </span><span style="color: #0000BB">$empty</span><span style="color: #007700">[</span><span style="color: #0000BB">$varname</span><span style="color: #007700">] = </span><span style="color: #0000BB">$varvalue</span><span style="color: #007700">;<br />    } else {<br />        </span><span style="color: #0000BB">$post</span><span style="color: #007700">[</span><span style="color: #0000BB">$varname</span><span style="color: #007700">] = </span><span style="color: #0000BB">$varvalue</span><span style="color: #007700">;<br />    }<br />}<br /><br />print </span><span style="color: #DD0000">"&lt;pre&gt;"</span><span style="color: #007700">;<br />if (empty(</span><span style="color: #0000BB">$empty</span><span style="color: #007700">)) {<br />    print </span><span style="color: #DD0000">"Nenhum dos valores enviados com POST estão vazios, enviado:\n"</span><span style="color: #007700">;<br />    </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$post</span><span style="color: #007700">);<br />} else {<br />    print </span><span style="color: #DD0000">"Temos " </span><span style="color: #007700">. </span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$empty</span><span style="color: #007700">) . </span><span style="color: #DD0000">" valores vazios\n"</span><span style="color: #007700">;<br />    print </span><span style="color: #DD0000">"Enviado:\n"</span><span style="color: #007700">; </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$post</span><span style="color: #007700">);<br />    print </span><span style="color: #DD0000">"Vazio:\n"</span><span style="color: #007700">; </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$empty</span><span style="color: #007700">);<br />    exit;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </p>
+
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.addslashes">
+    
+    <dt><strong>
+     
+      Preciso converter todas as aspas simples (&#039;) para uma barra invertida
+      seguida por uma aspa simples (\&#039;). Como eu posso fazer isso utilizando
+      expressões regulares? Gostaria de converter também &quot; para \&quot; e
+      \ para \\.
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Considerando que isso seja para um banco de dados, utilize o mecanismo
+      de escape que vem com o banco de dados. Por exemplo, utilize
+      <span class="function"><a href="function.mysql-real-escape-string.html" class="function">mysql_real_escape_string()</a></span> com MySQL e
+      <span class="function"><a href="function.pg-escape-string.html" class="function">pg_escape_string()</a></span> com PostgreSQL. Existem também as
+      funções genéricas <span class="function"><a href="function.addslashes.html" class="function">addslashes()</a></span> e 
+      <span class="function"><a href="function.stripslashes.html" class="function">stripslashes()</a></span>, que são mais comuns
+      com códigos PHP antigos.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.wrong-order">
+    <dt><strong>
+     
+      Quando eu faço o seguinte, a saída é exibida na
+      ordem errada:
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">myfunc</span><span style="color: #007700">(</span><span style="color: #0000BB">$argument</span><span style="color: #007700">)<br />{<br />    echo </span><span style="color: #0000BB">$argument </span><span style="color: #007700">+ </span><span style="color: #0000BB">10</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">$variable </span><span style="color: #007700">= </span><span style="color: #0000BB">10</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">"myfunc(</span><span style="color: #0000BB">$variable</span><span style="color: #DD0000">) = " </span><span style="color: #007700">. </span><span style="color: #0000BB">myfunc</span><span style="color: #007700">(</span><span style="color: #0000BB">$variable</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+     o que está acontecendo?
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Para ser capaz de utilizar os resultados de suas funções em uma expressão (como
+      concatenar com uma string no exemplo acima), você precisa
+      utilizar <span class="function"><a href="function.return.html" class="function">return</a></span> para retornar o valor
+      e não <span class="function"><a href="function.echo.html" class="function">echo</a></span>.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.newlines">
+    <dt><strong>
+     
+      Ei, o que aconteceu com as minhas novas linhas?
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">&lt;pre&gt;<br /><span style="color: #0000BB">&lt;?php </span><span style="color: #007700">echo </span><span style="color: #DD0000">"Esta deve ser a primeira linha."</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br />&lt;?php </span><span style="color: #007700">echo </span><span style="color: #DD0000">"Esta deveria ser uma nova linha."</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br /></span>&lt;/pre&gt;</span></code></div>
+      </div>
+
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      No PHP, um bloco de código é fechado com &quot;?&gt;&quot; ou
+      &quot;?&gt;\n&quot; (onde \n significa uma nova linha). Logo, no exemplo anterior,
+      as sentenças serão exibidas na mesma linha porque o PHP omite
+      o caractere de nova linha após o final do bloco de código. Isso significa
+      que você precisa inserir uma nova linha depois de cada bloco de código PHP para
+      exibi-las em uma nova linha.
+     </p>
+     <p class="para">
+      Por que o PHP faz isso? Porque quando está formatando HTML, isto
+      normalmente torna sua vida mais fácil porque não se quer esta nova linha,
+      senão você teria que criar linhas extremamente longas ou tornar
+      o código fonte ilegível para alcançar este efeito.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.headers-sent">
+    <dt><strong>
+     
+      Recebi a mensagem &#039;Warning: Cannot send session cookie - headers already
+      sent...&#039; ou &#039;Cannot add header information - headers already sent...&#039;.
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      As funções <span class="function"><a href="function.header.html" class="function">header()</a></span>, <span class="function"><a href="function.setcookie.html" class="function">setcookie()</a></span>
+      e as <a href="ref.session.html" class="link">funções de sessão</a>
+      precisam adicionar os cabeçalhos ao stream de saída, mas os cabeçalhos
+      só podem ser enviados antes de qualquer outro conteúdo. Não pode haver nenhuma saída
+      antes de utilizar estas funções como HTML. A função 
+      <span class="function"><a href="function.headers-sent.html" class="function">headers_sent()</a></span> irá verificar se o seu script já enviou
+      cabeçalhos e veja também as funções de <a href="ref.outcontrol.html" class="link">Controle
+      de Saída</a>.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.header">
+    <dt><strong>
+     
+      Preciso acessar informações no cabeçalho de requisição diretamente.
+      Como eu faço isso?
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      A função <span class="function"><a href="function.getallheaders.html" class="function">getallheaders()</a></span> fará isso se você
+      estiver rodando o PHP como um módulo do Apache. Logo, o fragmento
+      de código abaixo sempre exibirá todos os cabeçalhos de requisição:
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$headers </span><span style="color: #007700">= </span><span style="color: #0000BB">getallheaders</span><span style="color: #007700">();<br />foreach (</span><span style="color: #0000BB">$headers </span><span style="color: #007700">as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$content</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"headers[</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">] = </span><span style="color: #0000BB">$content</span><span style="color: #DD0000">&lt;br /&gt;\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </p>
+     <p class="para">
+      Veja também
+      <span class="function"><a href="function.apache-lookup-uri.html" class="function">apache_lookup_uri()</a></span>, 
+      <span class="function"><a href="function.apache-response-headers.html" class="function">apache_response_headers()</a></span> e 
+      <span class="function"><a href="function.fsockopen.html" class="function">fsockopen()</a></span>
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.authentication">
+    <dt><strong>
+     
+      Quando eu tento utilizar autenticação com o IIS eu recebo a mensagem &#039;No Input file specified&#039;.
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      O modelo de segurança do IIS é o culpado aqui. Este é um problema
+      comum a todos os programas CGI rodando no IIS. A solução é
+      criar um arquivo HTML (não interpretado pelo PHP) como uma página de entrada
+      para o diretório autenticado. Então utilizar a tag META para redirecionar
+      para a página PHP ou fornecer um link para a página PHP. O PHP irá
+      então reconhecer a autenticação corretamente. Com o módulo ISAPI,
+      este não é um problema. Isto não deve afetar outros
+      servidores web NT. Para mais informações veja:
+      <a href="http://support.microsoft.com/kb/q160422/" class="link external">&raquo;&nbsp;http://support.microsoft.com/kb/q160422/</a> e a
+      seção do manual em <a href="features.http-auth.html" class="link">Autenticação HTTP
+      </a>.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.iis.sharing">
+    <dt><strong>
+     
+      Windows: Não consigo acessar arquivos compartilhados em outro computador utilizando IIS.
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Você terá que alterar o <code class="literal">Go to Internet Information
+      Services</code>. Localize o arquivo PHP e vá até as suas propriedades.
+      Vá até a aba <code class="literal">File Security</code>, <code class="literal">Edit -&lt;
+      Anonymous access and authentication control</code>.
+     </p>
+     <p class="para">
+      Pode-se corrigir o problema desabilitando <code class="literal">Anonymous
+      Access</code> e deixando <code class="literal">Integrated Window
+      Authentication</code> habilitado, ou habilitando <code class="literal">Anonymous
+      Access</code> e editando o usuário para que ele não possa ter o
+      direito de acesso.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.mixml">
+    <dt><strong>
+     
+      Como faço para misturar XML e PHP? Ele reclama
+      das minhas tags &lt;?xml!
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Para utilizar &lt;?xml diretamente no seu código PHP, você terá que desabilitar
+      as short tags definindo a diretiva PHP
+      <a href="ini.core.html#ini.short-open-tag" class="link">short_open_tags</a> como
+      <code class="literal">0</code>. Você não pode configurar esta diretiva com a função
+      <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>. Independentemente de
+      <a href="ini.core.html#ini.short-open-tag" class="link">short_open_tags</a> estar ativada ou
+      não, você pode fazer algo como: <code class="literal">&lt;?php echo &#039;&lt;?xml&#039;; ?&gt;</code>.
+      O padrão para esta diretiva é <code class="literal">On</code>.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.variables">
+    <dt><strong>
+     
+      Onde posso encontrar uma lista completa das variáveis que estão disponíveis para mim
+      no PHP?
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Leia a página do manual <a href="language.variables.predefined.html" class="link">
+      variáveis predefinidas</a> dado que ele inclui uma lista parcial das variáveis
+      predefinidas disponíveis para o seu script. Uma lista completa das
+      variáveis disponíveis (e muito mais informação) pode ser vista chamando a função
+      <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span>. Não deixe de ler a
+      seção do manual <a href="language.variables.external.html" class="link">variáveis de
+      fontes externas</a> uma vez que descreve cenários comuns para variáveis
+      externas como aquelas originadas de um formulário HTML, cookie ou da URL.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.freepdf">
+    <dt><strong>
+     
+      Como posso gerar arquivos PDF sem utilizar bibliotecas não-livres e
+      comerciais como
+      PDFLib? Eu gostaria de alguma que fosse
+      livre e não precisasse de bibliotecas PDF externas.
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Existem algumas poucas alternativas escritas em PHP como
+      <a href="http://www.fpdf.org/" class="link external">&raquo;&nbsp;FPDF</a> e
+      <a href="http://www.tcpdf.org/" class="link external">&raquo;&nbsp;TCPDF</a>.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.using.shorthandbytes">
+    <dt><strong>
+     
+      Algumas diretivas PHP podem receber valores em bytes de forma abreviada (1K), ao contrário
+      de apenas valores <span class="type">int</span>. Quais são todas as opções
+      disponíveis de bytes de forma abreviada?
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      As opções disponíveis são K (para Kilobytes), M (para Megabytes) e G (para
+      Gigabytes), tanto em maiúsculas ou minúsculas.
+      Qualquer outra coisa é tratada como bytes. <code class="literal">1M</code> é igual a um Megabyte ou
+      <code class="literal">1048576</code> bytes. <code class="literal">1K</code> é igual a um Kilobyte ou
+      <code class="literal">1024</code> bytes. Essas notações abreviadas podem ser
+      utilizadas no <var class="filename">php.ini</var> e na função <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>.
+      Importante observar que os valores são truncados para <span class="type">int</span> apenas,
+      ou seja, <code class="literal">0.5M</code> será interpretado como <code class="literal">0</code>.
+     </p>
+     <blockquote class="note"><p><strong class="note">Nota</strong>: 
+      <strong>kilobyte versus kibibyte</strong><br />
+      <p class="para">
+       A notação do PHP descreve um kilobyte equivalente a 1024 bytes, enquanto que
+       o padrão <abbr>IEC</abbr> considera que este deve ser um kibibyte.
+       Resumindo: k e K = 1024 bytes.
+      </p>
+     </p></blockquote>
+    </dd>
+   </dl>
+  
+ </div>
+</div></div></body></html>

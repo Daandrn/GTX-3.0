@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fun&ccedil;&otilde;es internas (built-in)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="functions.variable-functions.html">« Fun&ccedil;&otilde;es vari&aacute;veis</a></li>
+      <li style="float: right;"><a href="functions.anonymous.html">Fun&ccedil;&otilde;es an&ocirc;nimas »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.functions.html">Fun&ccedil;&otilde;es</a></li>
+    <li>Fun&ccedil;&otilde;es internas (built-in)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="functions.internal" class="sect1">
+   <h2 class="title">Funções internas (built-in)</h2>
+
+   <p class="para">
+    O PHP vem por padrão com muitas funções e construtores. Também existem
+    funções que necessitam que uma extensão específica esteja compilada, se não
+    erros fatais &quot;undefined function&quot; (função não definida) irão aparecer. Por exemplo, para usar
+    as funções <a href="ref.image.html" class="link">image</a> como
+    <span class="function"><a href="function.imagecreatetruecolor.html" class="function">imagecreatetruecolor()</a></span>, o PHP deve ser compilado com suporte
+    <span class="productname">GD</span>. Ou, para usar
+    <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span>, PHP deve ser compilado com suporte
+    <a href="book.mysqli.html" class="link">MySQLi</a>. Existem muitas funções do núcleo
+    que são incluídas em cada versão do PHP, como
+    <a href="ref.strings.html" class="link">string</a> e
+    <a href="ref.var.html" class="link">variable</a>. Uma chamada a
+    <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span> ou
+    <span class="function"><a href="function.get-loaded-extensions.html" class="function">get_loaded_extensions()</a></span> irá mostrar quais extensões estão
+    carregadas no PHP. Note também que várias extensões são ativadas por padrão e que
+    o manual do PHP é dividido por extensão. Veja
+    <a href="configuration.html" class="link">configuração</a>,
+    <a href="install.html" class="link">instalação</a>, e os capítulos
+    individuais das extensões para como configurar o PHP.
+   </p>
+   <p class="para">
+    A leitura e entendimento de um protótipo de função é explicado na
+    seção do manual intitulada
+    <a href="about.prototypes.html" class="link">como ler uma definição de função</a>.
+    É importante perceber o que a função retorna ou se a função trabalha
+    diretamente no valor passado como argumento. Por exemplo,
+    <span class="function"><a href="function.str-replace.html" class="function">str_replace()</a></span> irá retornar a string modificada enquanto
+    <span class="function"><a href="function.usort.html" class="function">usort()</a></span> trabalha na própria variável passada no
+    argumento. Cada página do manual também contém informações específicas de cada
+    função, como: parâmetros da função, mudanças de comportamento,
+    valores de retorno tanto para sucesso e erros, como outras informações disponíveis.
+    O conhecimento destas diferenças importantes é crucial para escrever corretamente seu código PHP.
+   </p>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <span class="simpara">
+     Se os parâmetros dados a uma função não forem o que ela espera, como
+     passar um <span class="type">array</span> onde uma <span class="type">string</span> é esperada,
+     o valor de retorno da função é indefinido. Neste caso provavelmente
+     irá retornar <strong><code>null</code></strong> mas isto é apenas uma convenção, e
+     você não pode depender disso.
+     A partir do PHP 8.0.0, uma exceção <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> é lançada
+     nesses casos.
+    </span>
+   </p></blockquote>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     Tipos escalares para funções embutidas são anuláveis por padrão no modo coercivo.
+     A partir do PHP 8.1.0, passar <strong><code>null</code></strong> para um parâmetro de uma função interna que não é declarado anulável
+     é desencorajado e emite uma notícia de depreciação no modo coercitivo para alinhar com o comportamento de funções definidas pelo usuário,
+     onde tipos escalares precisam ser marcados como anuláveis explícitamente.
+    </p>
+
+    <p class="para">
+     Por exemplo, a função <span class="function"><a href="function.strlen.html" class="function">strlen()</a></span> expera que o parâmetro <code class="literal">$string</code>
+     seja uma <span class="type">string</span> não anulável.
+     Por razões históricas, o PHP permite a passagem de <strong><code>null</code></strong> para esse parâmetro no modo coercivo, e o parâmetro é
+     implicitamente convertido para <span class="type">string</span>, resultando em um valor <code class="literal">&quot;&quot;</code>.
+     Em contrapartida, um <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> é emitido no modo estrito.
+    </p>
+
+    <div class="example" id="ffi.examples.array">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">));<br /></span><span style="color: #FF8000">// "Deprecated: Passing null to parameter #1 ($string) of type string is deprecated" as of PHP 8.1.0<br />// int(0)<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">str_contains</span><span style="color: #007700">(</span><span style="color: #DD0000">"foobar"</span><span style="color: #007700">, </span><span style="color: #0000BB">null</span><span style="color: #007700">));<br /></span><span style="color: #FF8000">// "Deprecated: Passing null to parameter #2 ($needle) of type string is deprecated" as of PHP 8.1.0<br />// bool(true)<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p></blockquote>
+
+   <div class="sect2">
+    <h3 class="title">Veja Também</h3>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><span class="function"><a href="function.function-exists.html" class="function">function_exists()</a></span></li>
+      <li class="member"><a href="funcref.html" class="link">A referência das funções</a></li>
+      <li class="member"><span class="function"><a href="function.get-extension-funcs.html" class="function">get_extension_funcs()</a></span></li>
+      <li class="member"><span class="function"><a href="function.dl.html" class="function">dl()</a></span></li>
+     </ul>
+    </p>
+   </div>
+  </div></div></div></body></html>

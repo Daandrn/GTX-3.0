@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Define os contextos streams para o pr&oacute;ximo documento carregado ou escrito na libxml</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.libxml-set-external-entity-loader.html">« libxml_set_external_entity_loader</a></li>
+      <li style="float: right;"><a href="function.libxml-use-internal-errors.html">libxml_use_internal_errors »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.libxml.html">Fun&ccedil;&otilde;es da libxml</a></li>
+    <li>Define os contextos streams para o pr&oacute;ximo documento carregado ou escrito na libxml</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.libxml-set-streams-context" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">libxml_set_streams_context</h1>
+  <p class="refpurpose"><span class="refname">libxml_set_streams_context</span> &mdash; <span class="dc-title">
+   Define os contextos streams para o próximo documento carregado ou escrito na libxml
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.libxml-set-streams-context-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>libxml_set_streams_context</strong></span>(<span class="methodparam"><span class="type">resource</span> <code class="parameter">$streams_context</code></span>): <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Define contextos streams para o próximo documento carregado ou escrito na libxml.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.libxml-set-streams-context-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">streams_context</code></dt>
+
+      <dd>
+
+       <p class="para">
+        O resource do contexto stream (criado com
+        <span class="function"><a href="function.stream-context-create.html" class="function">stream_context_create()</a></span>)
+       </p>
+      </dd>
+
+     
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.libxml-set-streams-context-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Nenhum valor é retornado.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.libxml-set-streams-context-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Um exemplo da <span class="function"><strong>libxml_set_streams_context()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$opts </span><span style="color: #007700">= array(<br />    </span><span style="color: #DD0000">'http' </span><span style="color: #007700">=&gt; array(<br />        </span><span style="color: #DD0000">'user_agent' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'PHP libxml agent'</span><span style="color: #007700">,<br />    )<br />);<br /><br /></span><span style="color: #0000BB">$context </span><span style="color: #007700">= </span><span style="color: #0000BB">stream_context_create</span><span style="color: #007700">(</span><span style="color: #0000BB">$opts</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">libxml_set_streams_context</span><span style="color: #007700">(</span><span style="color: #0000BB">$context</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// request a file through HTTP<br /></span><span style="color: #0000BB">$doc </span><span style="color: #007700">= </span><span style="color: #0000BB">DOMDocument</span><span style="color: #007700">::</span><span style="color: #0000BB">load</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://www.example.com/file.xml'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.libxml-set-streams-context-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.stream-context-create.html" class="function" rel="rdfs-seeAlso">stream_context_create()</a> - Creates a stream context</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

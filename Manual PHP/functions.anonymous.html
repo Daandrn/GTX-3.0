@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fun&ccedil;&otilde;es an&ocirc;nimas</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="functions.internal.html">« Fun&ccedil;&otilde;es internas (built-in)</a></li>
+      <li style="float: right;"><a href="functions.arrow.html">Arrow Functions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.functions.html">Fun&ccedil;&otilde;es</a></li>
+    <li>Fun&ccedil;&otilde;es an&ocirc;nimas</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="functions.anonymous" class="sect1">
+   <h2 class="title">Funções anônimas</h2>
+
+   <p class="simpara">
+    Funções anônimas, também conhecidas como <code class="literal">closures</code>, permitem a criação
+    de funções que não tem o nome especificado. Elas são mais úteis
+    como o valor de parâmetros <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>,
+    mas podem ter vários outros usos.
+   </p>
+   <p class="simpara">
+    Funções anônimas são implementadas utilizando a classe
+    <a href="class.closure.html" class="link"><span class="classname"><a href="class.closure.html" class="classname">Closure</a></span></a>
+   </p>
+
+   <div class="example" id="example-533">
+    <p><strong>Exemplo #1 Exemplo de função anônima</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">preg_replace_callback</span><span style="color: #007700">(</span><span style="color: #DD0000">'~-([a-z])~'</span><span style="color: #007700">, function (</span><span style="color: #0000BB">$match</span><span style="color: #007700">) {<br />    return </span><span style="color: #0000BB">strtoupper</span><span style="color: #007700">(</span><span style="color: #0000BB">$match</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br />}, </span><span style="color: #DD0000">'hello-world'</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">// outputs helloWorld<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+
+   <p class="simpara">
+    Closures também podem ser utilizadas como valores de variáveis; o PHP automaticamente
+    converte expressões assim em instâncias da classe interna
+    <span class="classname"><a href="class.closure.html" class="classname">Closure</a></span>. Definindo um closure
+    a uma variável usa a mesma sintaxe que qualquer outra definição, incluindo
+    o ponto-e-vírgula:
+   </p>
+
+   <div class="example" id="example-536">
+    <p><strong>Exemplo #2 Exemplo de como definir uma função anônima para uma variável</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$greet </span><span style="color: #007700">= function(</span><span style="color: #0000BB">$name</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Hello %s\r\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$name</span><span style="color: #007700">);<br />};<br /><br /></span><span style="color: #0000BB">$greet</span><span style="color: #007700">(</span><span style="color: #DD0000">'World'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$greet</span><span style="color: #007700">(</span><span style="color: #DD0000">'PHP'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+
+   <p class="simpara">
+    Closures também podem herdar variáveis do escopo pai. Essas
+    variáveis precisam ser referenciadas utilizando a instrução <code class="literal">use</code>.
+    A partir do PHP 7.1, essas variáveis não devem incluir <a href="language.variables.predefined.html" class="link">superglobals</a>,
+    <var class="varname">$this</var>, ou variáveis com o mesmo nome como um parâmetro.
+    A declaração de tipo de retorno de uma função deve ser posicionada
+    <em>depois</em> de uma instrução <code class="literal">use</code>.
+   </p>
+
+   <div class="example" id="example-539">
+    <p><strong>Exemplo #3 Herdando variáveis do escopo anterior</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Sem "use"<br /></span><span style="color: #0000BB">$example </span><span style="color: #007700">= function () {<br />    </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$message</span><span style="color: #007700">);<br />};<br /></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// Inherit $message<br /></span><span style="color: #0000BB">$example </span><span style="color: #007700">= function () use (</span><span style="color: #0000BB">$message</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$message</span><span style="color: #007700">);<br />};<br /></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// Herdando valor da variável quando a função é definida,<br />// não quando é chamada<br /></span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'world'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// Reseta mensagem<br /></span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Herdando por referência<br /></span><span style="color: #0000BB">$example </span><span style="color: #007700">= function () use (&amp;</span><span style="color: #0000BB">$message</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$message</span><span style="color: #007700">);<br />};<br /></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// O valor modificado no escopo pai<br />// reflete quando a função é chamada<br /></span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'world'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$example</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// Closures também aceitam argumentos normais<br /></span><span style="color: #0000BB">$example </span><span style="color: #007700">= function (</span><span style="color: #0000BB">$arg</span><span style="color: #007700">) use (</span><span style="color: #0000BB">$message</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$arg </span><span style="color: #007700">. </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$message</span><span style="color: #007700">);<br />};<br /></span><span style="color: #0000BB">$example</span><span style="color: #007700">(</span><span style="color: #DD0000">"hello"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Declaração de tipo de retorno após a instrução 'use'<br /></span><span style="color: #0000BB">$example </span><span style="color: #007700">= function () use (</span><span style="color: #0000BB">$message</span><span style="color: #007700">): </span><span style="color: #0000BB">string </span><span style="color: #007700">{<br />    return </span><span style="color: #DD0000">"hello </span><span style="color: #0000BB">$message</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br />};<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$example</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Notice: Undefined variable: message in /example.php on line 6
+NULL
+string(5) &quot;hello&quot;
+string(5) &quot;hello&quot;
+string(5) &quot;hello&quot;
+string(5) &quot;world&quot;
+string(11) &quot;hello world&quot;
+string(11) &quot;hello world&quot;
+</pre></div>
+    </div>
+   </div>
+
+   <p class="para">
+    A partir do PHP 8.0.0 a lista de variáveis herdadas no escopo podem incluir uma vírgula
+    final, que será ignorada.
+   </p>
+   <p class="simpara">
+    Herdar variáveis do escopo pai <em>não</em>
+    é o mesmo que usar variáveis globais.
+    Variáveis globais existem no escopo global, o qual é o mesmo não
+    importa a função sendo executada. O escopo pai de um closure é a função
+    no qual o closure foi declarado (não necessariamente a função a partir do
+    qual ele foi chamado). Veja o exemplo a seguir:
+   </p>
+
+   <div class="example" id="example-542">
+    <p><strong>Exemplo #4 Closures e escopo</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Um exemplo básico de carrinho de compras que contém uma lista de produtos<br />// e a quantidade de cada produto. Inclui um método que<br />// calcula o preço total dos itens no carrinho utilizando uma<br />// closure como callback.<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Cart<br /></span><span style="color: #007700">{<br />    const </span><span style="color: #0000BB">PRICE_BUTTER  </span><span style="color: #007700">= </span><span style="color: #0000BB">1.00</span><span style="color: #007700">;<br />    const </span><span style="color: #0000BB">PRICE_MILK    </span><span style="color: #007700">= </span><span style="color: #0000BB">3.00</span><span style="color: #007700">;<br />    const </span><span style="color: #0000BB">PRICE_EGGS    </span><span style="color: #007700">= </span><span style="color: #0000BB">6.95</span><span style="color: #007700">;<br /><br />    protected </span><span style="color: #0000BB">$products </span><span style="color: #007700">= array();<br /><br />    public function </span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #0000BB">$product</span><span style="color: #007700">, </span><span style="color: #0000BB">$quantity</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">products</span><span style="color: #007700">[</span><span style="color: #0000BB">$product</span><span style="color: #007700">] = </span><span style="color: #0000BB">$quantity</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">getQuantity</span><span style="color: #007700">(</span><span style="color: #0000BB">$product</span><span style="color: #007700">)<br />    {<br />        return isset(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">products</span><span style="color: #007700">[</span><span style="color: #0000BB">$product</span><span style="color: #007700">]) ? </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">products</span><span style="color: #007700">[</span><span style="color: #0000BB">$product</span><span style="color: #007700">] :<br />               </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">getTotal</span><span style="color: #007700">(</span><span style="color: #0000BB">$tax</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">0.00</span><span style="color: #007700">;<br /><br />        </span><span style="color: #0000BB">$callback </span><span style="color: #007700">=<br />            function (</span><span style="color: #0000BB">$quantity</span><span style="color: #007700">, </span><span style="color: #0000BB">$product</span><span style="color: #007700">) use (</span><span style="color: #0000BB">$tax</span><span style="color: #007700">, &amp;</span><span style="color: #0000BB">$total</span><span style="color: #007700">)<br />            {<br />                </span><span style="color: #0000BB">$pricePerItem </span><span style="color: #007700">= </span><span style="color: #0000BB">constant</span><span style="color: #007700">(</span><span style="color: #0000BB">__CLASS__ </span><span style="color: #007700">. </span><span style="color: #DD0000">"::PRICE_" </span><span style="color: #007700">.<br />                    </span><span style="color: #0000BB">strtoupper</span><span style="color: #007700">(</span><span style="color: #0000BB">$product</span><span style="color: #007700">));<br />                </span><span style="color: #0000BB">$total </span><span style="color: #007700">+= (</span><span style="color: #0000BB">$pricePerItem </span><span style="color: #007700">* </span><span style="color: #0000BB">$quantity</span><span style="color: #007700">) * (</span><span style="color: #0000BB">$tax </span><span style="color: #007700">+ </span><span style="color: #0000BB">1.0</span><span style="color: #007700">);<br />            };<br /><br />        </span><span style="color: #0000BB">array_walk</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">products</span><span style="color: #007700">, </span><span style="color: #0000BB">$callback</span><span style="color: #007700">);<br />        return </span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$total</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">);<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$my_cart </span><span style="color: #007700">= new </span><span style="color: #0000BB">Cart</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Adiciona alguns itens no carrinho<br /></span><span style="color: #0000BB">$my_cart</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #DD0000">'butter'</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$my_cart</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #DD0000">'milk'</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$my_cart</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #DD0000">'eggs'</span><span style="color: #007700">, </span><span style="color: #0000BB">6</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Print the total with a 5% sales tax.<br /></span><span style="color: #007700">print </span><span style="color: #0000BB">$my_cart</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getTotal</span><span style="color: #007700">(</span><span style="color: #0000BB">0.05</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// The result is 54.29<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+
+   <div class="example" id="example-545">
+    <p><strong>Exemplo #5 Vinculação automática do <code class="literal">$this</code></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Test<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">testing</span><span style="color: #007700">()<br />    {<br />        return function() {<br />            </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">);<br />        };<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$object </span><span style="color: #007700">= new </span><span style="color: #0000BB">Test</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #0000BB">$object</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">testing</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$function</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+object(Test)#1 (0) {
+}
+</pre></div>
+    </div>
+   </div>
+
+   <p class="para">
+    Quando declarada no contexto de uma classe, a classe corrente é
+    automaticamente vinculada a ela, tornando <code class="literal">$this</code> disponível
+    dentro do escopo da função. Se essa vinculação automática da classe
+    corrente não for o comportamento esperado,
+    <a href="functions.anonymous.html#functions.anonymous-functions.static" class="link">funções anônimas estáticas</a>
+    podem ser utilizadas.
+   </p>
+
+   <div class="sect2" id="functions.anonymous-functions.static">
+    <h3 class="title">Funções anônimas estáticas</h3>
+    <p class="para">
+     Funções anônimas podem ser declaradas estaticamente. Evita
+     que a classe corrente seja automaticamente vinculada a
+     ela. Objetos também podem não ser vinculados a ela em tempo de execução.
+    </p>
+    <p class="para">
+     <div class="example" id="example-548">
+      <p><strong>Exemplo #6 Tentando utilizar o <code class="literal">$this</code> de dentro de uma função anônima estática</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    function </span><span style="color: #0000BB">__construct</span><span style="color: #007700">()<br />    {<br />        </span><span style="color: #0000BB">$func </span><span style="color: #007700">= static function() {<br />            </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">);<br />        };<br />        </span><span style="color: #0000BB">$func</span><span style="color: #007700">();<br />    }<br />};<br />new </span><span style="color: #0000BB">Foo</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Notice: Undefined variable: this in %s on line %d
+NULL
+</pre></div>
+      </div>
+     </div>
+    </p>
+
+    <p class="para">
+     <div class="example" id="example-551">
+      <p><strong>Exemplo #7 Tentando vincular um objeto a uma função anônima estática</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$func </span><span style="color: #007700">= static function() {<br />    </span><span style="color: #FF8000">// corpo da função<br /></span><span style="color: #007700">};<br /></span><span style="color: #0000BB">$func </span><span style="color: #007700">= </span><span style="color: #0000BB">$func</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindTo</span><span style="color: #007700">(new </span><span style="color: #0000BB">stdClass</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$func</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Warning: Cannot bind an instance to a static closure in %s on line %d
+</pre></div>
+      </div>
+     </div>
+    </p>
+   </div>
+
+   <div class="sect2">
+    <h3 class="title">Changelog</h3>
+    <p class="para">
+     <table class="doctable informaltable">
+      
+       <thead>
+        <tr>
+         <th>Versão</th>
+         <th>Descrição</th>
+        </tr>
+
+       </thead>
+
+       <tbody class="tbody">
+        <tr>
+         <td>7.1.0</td>
+         <td>
+          Funções anônimas podem não incluir <a href="language.variables.predefined.html" class="link">superglobals</a>,
+          <var class="varname">$this</var>, ou qualquer variável com o mesmo nome como um
+          parâmetro.
+         </td>
+        </tr>
+
+       </tbody>
+      
+     </table>
+
+    </p>
+   </div>
+
+   <div class="sect2">
+    <h3 class="title">Notas</h3>
+    <blockquote class="note"><p><strong class="note">Nota</strong>: 
+     <span class="simpara">
+      É possível utilizar <span class="function"><a href="function.func-num-args.html" class="function">func_num_args()</a></span>,
+      <span class="function"><a href="function.func-get-arg.html" class="function">func_get_arg()</a></span> e <span class="function"><a href="function.func-get-args.html" class="function">func_get_args()</a></span>
+      dentro de closures.
+     </span>
+    </p></blockquote>
+   </div>
+
+  </div></div></div></body></html>

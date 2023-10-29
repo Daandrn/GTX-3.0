@@ -1,0 +1,428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lista de altera&ccedil;&otilde;es da POO</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.oop5.variance.html">« Covariance and Contravariance</a></li>
+      <li style="float: right;"><a href="language.namespaces.html">Namespaces »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.oop5.html">Classes e Objetos</a></li>
+    <li>Lista de altera&ccedil;&otilde;es da POO</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.oop5.changelog" class="sect1">
+ <h2 class="title">Lista de alterações da POO</h2>
+ <p class="para">
+  As alterações no modelo de POO do PHP são registradas aqui.
+  Descrições e outras notas relacionadas a estes recursos estão documentadas na
+  documentação do modelo POO.
+ </p>
+ <p class="para">
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>8.1.0</td>
+      <td>
+       Adicionado: suporte ao modificador <span class="modifier">final</span> para
+       constantes de classe.
+       Além disso, as constantes de interface agora são substituíveis por
+       padrão.
+      </td>
+     </tr>
+
+     <tr>
+      <td>8.0.0</td>
+      <td>
+       Adicionado: suporte ao operador
+       <a href="language.oop5.basic.html#language.oop5.basic.nullsafe" class="link">nullsafe</a>
+       <em>?-&gt;</em> para acessar propriedades e métodos em
+       objetos que podem ser nulos.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.4.0</td>
+      <td>
+       Alterado: agora é possível lançar uma exceção dentro de
+       <span class="function"><strong>__toString()</strong></span>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.4.0</td>
+      <td>
+       Adicionado: suporte a covariância limitada de tipo de retorno e
+       contravariância de tipo de argumento.
+       O suporte completo à variância só estará disponível se o carregamento
+       automático for usado.
+       Dentro de um único arquivo, apenas referências de tipo não cíclicas são
+       possíveis.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.4.0</td>
+      <td>
+       Adicionado: agora é possível usar tipos nas propriedades da classe.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.3.0</td>
+      <td>
+       Incompatibilidade: o desempacotamento de argumentos com instâncias de
+       <span class="classname"><a href="class.traversable.html" class="classname">Traversable</a></span> com chaves não-<span class="type">int</span> não é mais
+       suportado.
+       Esse comportamento não era intencional e, portanto, foi removido.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.3.0</td>
+      <td>
+       Incompatibilidade: nas versões anteriores era possível separar as
+       propriedades estáticas atribuindo uma referência. Isso foi removido.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.3.0</td>
+      <td>
+       Alterado: o operador
+       <a href="language.operators.type.html" class="link">instanceof</a>
+       agora permite literais como o primeiro operando, caso em que o resultado
+       é sempre <strong><code>false</code></strong>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.2.0</td>
+      <td>
+       Obsoleto: a função <span class="function"><a href="function.autoload.html" class="function">__autoload()</a></span> tornou-se obsoleta em
+       favor da função <span class="function"><a href="function.spl-autoload-register.html" class="function">spl_autoload_register()</a></span>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.2.0</td>
+      <td>
+       Alterado: o seguinte nome não pode ser usado para nomear classes,
+       interfaces ou traits: <code class="literal">object</code>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.2.0</td>
+      <td>
+       Alterado: uma vírgula à direita agora pode ser adicionada à sintaxe de
+       agrupamento de use para namespaces.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.2.0</td>
+      <td>
+       Alterado: extensão do tipo de parâmetro. Os tipos de parâmetro de métodos
+       sobrescritos e de implementações de interface agora podem ser omitidos.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.2.0</td>
+      <td>
+       Alterado: métodos abstratos agora podem ser sobrescritos quando uma
+       classe abstrata estende outra classe abstrata.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.1.0</td>
+      <td>
+       Alterado: os nomes a seguir não podem ser usados para nomear classes,
+       interfaces ou traits: <code class="literal">void</code>
+       e <code class="literal">iterable</code>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.1.0</td>
+      <td>
+       Adicionado: agora é possível especificar a
+       <a href="language.oop5.visibility.html#language.oop5.visiblity-constants" class="link">visibilidade das constantes de classe</a>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.0.0</td>
+      <td>
+       Obsoleto: chamadas
+       <a href="language.oop5.static.html" class="link">estáticas</a>
+       a métodos que não são declarados estáticos.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.0.0</td>
+      <td>
+       Obsoleto:
+       <a href="language.oop5.decon.html" class="link">construtor</a>
+       no estilo do PHP 4.
+       Ou seja, métodos com o mesmo nome da classe em que eles são definidos.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.0.0</td>
+      <td>
+       Adicionado: a declaração <em>use</em> de grupo: classes,
+       funções e constantes importadas do mesmo namespace agora podem ser
+       agrupadas em uma única declaração use.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.0.0</td>
+      <td>
+       Adicionado: o suporte a
+       <a href="language.oop5.anonymous.html" class="link">classes anônimas</a>
+       foi adicionado via <code class="literal">new class</code>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.0.0</td>
+      <td>
+       Incompatibilidade: iterar sobre um <span class="type">object</span> que não seja uma instância de
+       <span class="classname"><a href="class.traversable.html" class="classname">Traversable</a></span> agora terá o mesmo comportamento que
+       iterar sobre <span class="type">array</span>s por referência.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.0.0</td>
+      <td>
+       Alterado: definir propriedades (compatíveis) em duas
+       <a href="language.oop5.traits.html" class="link">traits</a>
+       não dispara mais um erro.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.6.0</td>
+      <td>
+       Adicionado: o método
+       <a href="language.oop5.magic.html#object.debuginfo" class="link">__debugInfo()</a>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.5.0</td>
+      <td>
+       Adicionado: a constante mágica
+       <a href="language.oop5.basic.html#language.oop5.basic.class.class" class="link">::class</a>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.5.0</td>
+      <td>
+       Adicionado:
+       <a href="language.exceptions.html" class="link">finally</a>
+       para manipular exceções.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.4.0</td>
+      <td>
+       Adicionado:
+       <a href="language.oop5.traits.html" class="link">traits</a>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.4.0</td>
+      <td>
+       Alterado: se uma classe
+       <a href="language.oop5.abstract.html" class="link">abstract</a>
+       definir uma assinatura para o
+       <a href="language.oop5.decon.html" class="link">construtor</a>,
+       agora ela será imposta.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.3</td>
+      <td>
+       Alterado: métodos com o mesmo nome do último elemento de uma classe
+       <a href="language.namespaces.html" class="link">com namespace</a>
+       não serão mais tratados como
+       <a href="language.oop5.decon.html" class="link">construtor</a>.
+       Esta alteração não afeta classes sem namespace.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.0</td>
+      <td>
+       Alterado: classes que implementam interfaces com métodos que possuem
+       valores padrão no protótipo não precisam mais corresponder ao valor
+       padrão da interface.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.0</td>
+      <td>
+       Alterado: agora é possível referenciar a classe usando uma variável
+       (por exemplo, <code class="literal">echo $nome_da_classe::CONSTANTE;</code>).
+       O valor da variável não pode ser uma palavra-chave (por exemplo,
+       <code class="literal">self</code>,
+       <code class="literal">parent</code> ou <code class="literal">static</code>).
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.0</td>
+      <td>
+       Alterado: um erro de nível <strong><code>E_WARNING</code></strong> será emitido se
+       os métodos mágicos de
+       <a href="language.oop5.overloading.html" class="link">sobrecarga</a>
+       forem declarados
+       <a href="language.oop5.static.html" class="link">estáticos</a>.
+       Também impõe o requisito de visibilidade pública.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.0</td>
+      <td>
+       Alterado: antes do PHP 5.3.0, as exceções lançadas na função
+       <span class="function"><a href="function.autoload.html" class="function">__autoload()</a></span> não podiam ser capturadas no bloco
+       <a href="language.exceptions.html" class="link">catch</a>
+       e resultariam em um erro fatal.
+       Agora as exceções lançadas na função <span class="function"><a href="function.autoload.html" class="function">__autoload()</a></span>
+       podem ser capturadas no bloco
+       <a href="language.exceptions.html" class="link">catch</a>,
+       com uma condição.
+       Se uma exceção personalizada for lançada, a classe de exceção
+       personalizada deve estar disponível.
+       A função <span class="function"><a href="function.autoload.html" class="function">__autoload()</a></span> pode ser usada recursivamente
+       para carregar automaticamente a classe de exceção personalizada.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.0</td>
+      <td>
+       Adicionado: o método
+       <a href="language.oop5.overloading.html" class="link">__callStatic</a>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.0</td>
+      <td>
+       Adicionado: suporte a
+       <a href="language.types.string.html#language.types.string.syntax.heredoc" class="link">heredoc</a>
+       e
+       <a href="language.types.string.html#language.types.string.syntax.nowdoc" class="link">nowdoc</a>
+       nas definições de <em>constantes</em> e propriedades
+       de classe.
+       Nota: os valores heredoc devem seguir as mesmas regras que strings com
+       aspas duplas, (por exemplo, sem variáveis dentro).
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.0</td>
+      <td>
+       Adicionado:
+       <a href="language.oop5.late-static-bindings.html" class="link">Late Static Bindings</a>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.3.0</td>
+      <td>
+       Adicionado: o método
+       <a href="language.oop5.magic.html#object.invoke" class="link">__invoke()</a>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.2.0</td>
+      <td>
+       Alterado: o método
+       <a href="language.oop5.magic.html#object.tostring" class="link">__toString()</a>
+       só era chamado quando combinado diretamente com
+       <span class="function"><a href="function.echo.html" class="function">echo</a></span> ou <span class="function"><a href="function.print.html" class="function">print</a></span>.
+       Mas agora, ele é chamado em qualquer contexto de <span class="type">string</span> (por exemplo,
+       em <span class="function"><a href="function.printf.html" class="function">printf()</a></span> com o modificador <code class="literal">%s</code>),
+       mas não em outros contextos de tipos (por exemplo, com o modificador
+       <code class="literal">%d</code>).
+       A partir do PHP 5.2.0, a conversão de <span class="type">object</span>s sem um método
+       <a href="language.oop5.magic.html#object.tostring" class="link">__toString</a>
+       para <span class="type">string</span> emitirá um erro de nível
+       <strong><code>E_RECOVERABLE_ERROR</code></strong>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.1.3</td>
+      <td>
+       Alterado: nas versões anteriores do PHP 5, o uso de
+       <code class="literal">var</code> era considerado obsoleto e emitiria um erro de
+       nível <strong><code>E_STRICT</code></strong>.
+       Agora não é mais obsoleto, portanto não emite o erro.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.1.0</td>
+      <td>
+       Alterado: o método estático
+       <a href="language.oop5.magic.html#object.set-state" class="link">__set_state()</a>
+       agora é chamado por classes exportadas com a função
+       <span class="function"><a href="function.var-export.html" class="function">var_export()</a></span>.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.1.0</td>
+      <td>
+       Adicionado: os métodos
+       <a href="language.oop5.overloading.html#object.isset" class="link">__isset()</a>
+       e
+       <a href="language.oop5.overloading.html#object.unset" class="link">__unset()</a>.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </p>
+</div></div></div></body></html>

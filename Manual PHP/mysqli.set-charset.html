@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Define o conjunto de caracteres do cliente</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqli.select-db.html">« mysqli::select_db</a></li>
+      <li style="float: right;"><a href="mysqli.sqlstate.html">mysqli::$sqlstate »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mysqli.html">mysqli</a></li>
+    <li>Define o conjunto de caracteres do cliente</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqli.set-charset" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli::set_charset</h1>
+  <h1 class="refname">mysqli_set_charset</h1>
+  <p class="refpurpose"><span class="refname">mysqli::set_charset</span> -- <span class="refname">mysqli_set_charset</span> &mdash; <span class="dc-title">Define o conjunto de caracteres do cliente</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli.set-charset-description">
+  <h3 class="title">Descrição</h3>
+  <p class="para">Estilo orientado a objetos</p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>mysqli::set_charset</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$charset</code></span>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">Estilo procedural</p>
+  <div class="methodsynopsis dc-description"><span class="methodname"><strong>mysqli_set_charset</strong></span>(<span class="methodparam"><span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <code class="parameter">$mysql</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$charset</code></span>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Define o conjunto de caracteres a ser usado ao enviar dados de e para o
+   servidor de banco de dados.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli.set-charset-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    <dt>
+
+<code class="parameter">mysql</code></dt>
+<dd>
+<p class="para">Somente no estilo procedural: Um objeto <span class="classname"><a href="class.mysqli.html" class="classname">mysqli</a></span>
+retornado por <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span> ou <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span>.
+</p></dd>
+
+    
+     <dt>
+<code class="parameter">charset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O conjunto de caracteres desejado.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli.set-charset-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mysqli.set-charset-errors">
+  <h3 class="title">Erros</h3>
+  <p class="para">
+Se o relatório de erros da extensão mysqli estiver habilitado (<strong><code>MYSQLI_REPORT_ERROR</code></strong>) e a operação solicitada falhar,
+um aviso será gerado. Se, além disso, o modo for definido como <strong><code>MYSQLI_REPORT_STRICT</code></strong>,
+uma exceção <span class="classname"><a href="class.mysqli-sql-exception.html" class="classname">mysqli_sql_exception</a></span> será lançada em vez do aviso.</p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli.set-charset-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="example-4502">
+   <p><strong>Exemplo #1 <span class="methodname"><strong>mysqli::set_charset()</strong></span> exemplo</strong></p>
+   <div class="example-contents"><p>Estilo orientado a objetos</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />mysqli_report</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_REPORT_ERROR </span><span style="color: #007700">| </span><span style="color: #0000BB">MYSQLI_REPORT_STRICT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli </span><span style="color: #007700">= new </span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">, </span><span style="color: #DD0000">"test"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Conjunto de caracteres inicial: %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">character_set_name</span><span style="color: #007700">());<br /><br /></span><span style="color: #FF8000">/* alterar conjunto de caracteres para utf8mb4 */<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set_charset</span><span style="color: #007700">(</span><span style="color: #DD0000">"utf8mb4"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Conjunto de caracteres atual: %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">character_set_name</span><span style="color: #007700">());</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>Estilo procedural</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />mysqli_report</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_REPORT_ERROR </span><span style="color: #007700">| </span><span style="color: #0000BB">MYSQLI_REPORT_STRICT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$link </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_user'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_password'</span><span style="color: #007700">, </span><span style="color: #DD0000">'test'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Conjunto de caracteres inicial: %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_character_set_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/* alterar conjunto de caracteres para utf8mb4 */<br /></span><span style="color: #0000BB">mysqli_set_charset</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #DD0000">"utf8mb4"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Conjunto de caracteres atual: %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_character_set_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>Os exemplos acima produzirão
+algo semelhante a:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Conjunto de caracteres inicial: latin1
+Conjunto de caracteres atual: utf8mb4
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-mysqli.set-charset-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Para usar esta função em uma plataforma Windows, você precisa da biblioteca cliente MySQL
+    versão 4.1.11 ou superior (para MySQL 5.0, você precisa da versão 5.0.6 ou superior).
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Esta é a maneira preferida de alterar o conjunto de caracteres. Usar
+    <span class="function"><a href="mysqli.query.html" class="function">mysqli_query()</a></span> para configurá-lo (como <code class="literal">SET NAMES utf8</code>)
+    não é recomendado. Consulte a seção de <a href="mysqlinfo.concepts.charset.html" class="link">conceitos do conjunto de caracteres do MySQL</a>
+    para obter mais informações.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli.set-charset-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli.character-set-name.html" class="function" rel="rdfs-seeAlso">mysqli_character_set_name()</a> - Retorna o conjunto de caracteres padr&atilde;o para a conex&atilde;o com o banco de dados</span></li>
+    <li class="member"><span class="function"><a href="mysqli.real-escape-string.html" class="function" rel="rdfs-seeAlso">mysqli_real_escape_string()</a> - Escape caracteres especiais em uma string para uso em uma instru&ccedil;&atilde;o SQL, levando em considera&ccedil;&atilde;o o conjunto de caracteres atual da conex&atilde;o</span></li>
+    <li class="member"><a href="mysqlinfo.concepts.charset.html" class="link">Conceitos do conjunto de caracteres do MySQL</a></li>
+    <li class="member"><a href="http://dev.mysql.com/doc/mysql/en/charset-charsets.html" class="link external">&raquo;&nbsp;Lista de conjuntos de caracteres que o MySQL suporta</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

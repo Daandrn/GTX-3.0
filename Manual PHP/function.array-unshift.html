@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Adiciona um ou mais elementos no in&iacute;cio de um array</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.array-unique.html">« array_unique</a></li>
+      <li style="float: right;"><a href="function.array-values.html">array_values »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Adiciona um ou mais elementos no in&iacute;cio de um array</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.array-unshift" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_unshift</h1>
+  <p class="refpurpose"><span class="refname">array_unshift</span> &mdash; <span class="dc-title">Adiciona um ou mais elementos no início de um array</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.array-unshift-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>array_unshift</strong></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter reference">&$array</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">...$values</code></span>): <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>array_unshift()</strong></span> adiciona os elementos passados como
+   argumentos no início de <code class="parameter">array</code>. Note que a lista
+   de elementos é adicionada como um todo, de forma que eles ficam na
+   mesma ordem. Todas as chaves numéricas serão modificadas para começar a
+   contar de zero enquanto chaves literais permanecerão inalteradas.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+ <p class="para">
+  Redefine o ponteiro interno do array para o primeiro elemento.
+ </p>
+</p></blockquote>
+
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.array-unshift-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">array</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O array de entrada.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">values</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Os valores a serem adicionados.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.array-unshift-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna o novo número de elementos em <code class="parameter">array</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.array-unshift-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.3.0</td>
+       <td>
+        Essa função agora pode ser chamada com apenas um parâmetro. Anteriomente, pelo
+        menos dois parâmetros eram necessários.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.array-unshift-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo de <span class="function"><strong>array_unshift()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$cesta </span><span style="color: #007700">= [<br />    </span><span style="color: #DD0000">"laranja"</span><span style="color: #007700">,<br />    </span><span style="color: #DD0000">"banana"<br /></span><span style="color: #007700">];<br /><br /></span><span style="color: #0000BB">array_unshift</span><span style="color: #007700">(</span><span style="color: #0000BB">$cesta</span><span style="color: #007700">, </span><span style="color: #DD0000">"melancia"</span><span style="color: #007700">, </span><span style="color: #DD0000">"morango"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cesta</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(4) {
+  [0] =&gt;
+  string(8) &quot;melancia&quot;
+  [1] =&gt;
+  string(7) &quot;morango&quot;
+  [2] =&gt;
+  string(7) &quot;laranja&quot;
+  [3] =&gt;
+  string(6) &quot;banana&quot;
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #2 Uso de arrays associativos</strong></p>
+    <div class="example-contents"><p>
+     Se um array associativo é pre anexado a outro array associativo,
+     o array anexado é numeralmente indexado no array anterior.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$frutas </span><span style="color: #007700">= [<br />    </span><span style="color: #DD0000">'maca' </span><span style="color: #007700">=&gt; [<br />        </span><span style="color: #DD0000">'McIntosh' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'vermelho'</span><span style="color: #007700">,<br />        </span><span style="color: #DD0000">'Granny Smith' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'verde'</span><span style="color: #007700">,<br />    ],<br />    </span><span style="color: #DD0000">'laranja' </span><span style="color: #007700">=&gt; [<br />        </span><span style="color: #DD0000">'Navel' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'laranja'</span><span style="color: #007700">,<br />        </span><span style="color: #DD0000">'Valencia' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'laranja'</span><span style="color: #007700">,<br />    ],<br />];<br /></span><span style="color: #0000BB">$vegetais </span><span style="color: #007700">= [<br />    </span><span style="color: #DD0000">'alface' </span><span style="color: #007700">=&gt; [<br />        </span><span style="color: #DD0000">'Iceberg' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'verde'</span><span style="color: #007700">,<br />        </span><span style="color: #DD0000">'Butterhead' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'verde'</span><span style="color: #007700">,<br />    ],<br />    </span><span style="color: #DD0000">'cenoura' </span><span style="color: #007700">=&gt; [<br />        </span><span style="color: #DD0000">'Deep Purple Hybrid' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'roxo'</span><span style="color: #007700">,<br />        </span><span style="color: #DD0000">'Imperator' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'laranja'</span><span style="color: #007700">,<br />    ],<br />    </span><span style="color: #DD0000">'pepino' </span><span style="color: #007700">=&gt; [<br />        </span><span style="color: #DD0000">'Kirby' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'verde'</span><span style="color: #007700">,<br />        </span><span style="color: #DD0000">'Gherkin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'verde'</span><span style="color: #007700">,<br />    ],<br />];<br /><br /></span><span style="color: #0000BB">array_unshift</span><span style="color: #007700">(</span><span style="color: #0000BB">$frutas</span><span style="color: #007700">, </span><span style="color: #0000BB">$vegetais</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$frutas</span><span style="color: #007700">);</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(3) {
+  [0] =&gt;
+  array(3) {
+    &#039;alface&#039; =&gt;
+    array(2) {
+      &#039;Iceberg&#039; =&gt;
+      string(5) &quot;verde&quot;
+      &#039;Butterhead&#039; =&gt;
+      string(5) &quot;verde&quot;
+    }
+    &#039;cenoura&#039; =&gt;
+    array(2) {
+      &#039;Deep Purple Hybrid&#039; =&gt;
+      string(4) &quot;roxo&quot;
+      &#039;Imperator&#039; =&gt;
+      string(7) &quot;laranja&quot;
+    }
+    &#039;pepino&#039; =&gt;
+    array(2) {
+      &#039;Kirby&#039; =&gt;
+      string(5) &quot;verde&quot;
+      &#039;Gherkin&#039; =&gt;
+      string(5) &quot;verde&quot;
+    }
+  }
+  &#039;maca&#039; =&gt;
+  array(2) {
+    &#039;McIntosh&#039; =&gt;
+    string(8) &quot;vermelho&quot;
+    &#039;Granny Smith&#039; =&gt;
+    string(5) &quot;verde&quot;
+  }
+  &#039;laranja&#039; =&gt;
+  array(2) {
+    &#039;Navel&#039; =&gt;
+    string(7) &quot;laranja&quot;
+    &#039;Valencia&#039; =&gt;
+    string(7) &quot;laranja&quot;
+  }
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.array-unshift-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.array-merge.html" class="function" rel="rdfs-seeAlso">array_merge()</a> - Combina um ou mais arrays</span></li>
+    <li class="member"><span class="function"><a href="function.array-shift.html" class="function" rel="rdfs-seeAlso">array_shift()</a> - Retira o primeiro elemento de um array</span></li>
+    <li class="member"><span class="function"><a href="function.array-push.html" class="function" rel="rdfs-seeAlso">array_push()</a> - Adiciona um ou mais elementos no final de um array</span></li>
+    <li class="member"><span class="function"><a href="function.array-pop.html" class="function" rel="rdfs-seeAlso">array_pop()</a> - Extrai um elemento do final do array</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

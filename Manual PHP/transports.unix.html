@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Dom&iacute;nio Unix: Unix e UDG</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="transports.inet.html">« Dom&iacute;nios da Internet: TCP, UDP, SSL, e TLS</a></li>
+      <li style="float: right;"><a href="types.comparisons.html">Tabela de compara&ccedil;&otilde;es de tipos do PHP »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="transports.html">Lista de Transportes via Socket Suportados</a></li>
+    <li>Dom&iacute;nio Unix: Unix e UDG</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="transports.unix" class="section">
+  <h2 class="title">Domínio Unix: Unix e UDG</h2>
+  <p class="simpara">
+   <code class="literal">unix://</code> e
+   <code class="literal">udg://</code>
+  </p>
+
+  <ul class="itemizedlist">
+   <li class="listitem"><span class="simpara"><code class="literal">unix:///tmp/mysock</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">udg:///tmp/mysock</code></span></li>
+  </ul>
+
+  <p class="simpara">
+   <code class="literal">unix://</code> provê acessos a conexão via Unix
+   sockets. <code class="literal">udg://</code> provê
+   um transporte alternativo para um socket Unix usando o protocolo
+   de datagramas de usuário (UDP).
+  </p>
+
+  <p class="simpara">
+   Sockets Unix, diferentes de sockets de Internet, não esperam um
+   número de porta. No caso de <span class="function"><a href="function.fsockopen.html" class="function">fsockopen()</a></span> o
+   parâmetro <code class="parameter">portno</code> deve ser o valor 0.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Sockets Unix domain não são suportados no Windows.
+   </span>
+  </p></blockquote>
+ </div></div></div></body></html>

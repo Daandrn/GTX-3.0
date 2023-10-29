@@ -1,0 +1,557 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>O b&aacute;sico</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="oop5.intro.html">« Introdu&ccedil;&atilde;o</a></li>
+      <li style="float: right;"><a href="language.oop5.properties.html">Propriedades »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.oop5.html">Classes e Objetos</a></li>
+    <li>O b&aacute;sico</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.oop5.basic" class="sect1">
+  <h2 class="title">O básico</h2>
+
+  <div class="sect2" id="language.oop5.basic.class">
+   <h3 class="title">class</h3>
+   <p class="para">
+    A definição de uma classe começa com a
+    palavra chave <code class="literal">class</code>, seguida do nome da classe,
+    seguido de um par de chaves que englobam as definições
+    de propriedades e métodos pertencentes à classe.
+   </p>
+   <p class="para">
+    O nome de uma classe tem de ser válido, que não seja
+    uma <a href="reserved.html" class="link">palavra reservada do PHP</a>. Um nome de classe válido
+    começa com uma letra ou sublinhado, seguido de qualquer sequência de
+    letras, números e sublinhados. Como uma expressão regular,
+    pode ser expressada assim:
+    <code class="code">^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$</code>.
+   </p>
+   <p class="para">
+    Uma classe pode conter suas
+    próprias <a href="language.oop5.constants.html" class="link">constantes</a>, <a href="language.oop5.properties.html" class="link">variáveis</a>
+    (chamadas de &quot;propriedades&quot;) e funções (chamadas de &quot;métodos&quot;).
+   </p>
+   <div class="example" id="example-575">
+    <p><strong>Exemplo #1 Definição Simples de uma Classe</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">SimpleClass<br /></span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">// declaração de propriedade<br />    </span><span style="color: #007700">public </span><span style="color: #0000BB">$var </span><span style="color: #007700">= </span><span style="color: #DD0000">'um valor padrão'</span><span style="color: #007700">;<br /><br />    </span><span style="color: #FF8000">// declaração de método<br />    </span><span style="color: #007700">public function </span><span style="color: #0000BB">displayVar</span><span style="color: #007700">() {<br />        echo </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">var</span><span style="color: #007700">;<br />    }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+   <p class="para">
+    A pseudo-variável <var class="varname">$this</var> está disponível quando um
+    método é chamado a partir de um contexto de um objeto.
+    <var class="varname">$this</var> é o valor do objeto chamado.
+   </p>
+   <div class="warning"><strong class="warning">Aviso</strong>
+    <p class="para">
+     Chamar um método não estático de maneira estática lança um
+     <span class="classname"><a href="class.error.html" class="classname">Error</a></span>.
+     Anteriormente ao PHP 8.0.0, isto iria gerar um aviso de chamada obsoleta,
+     e <var class="varname">$this</var> estaria indefinido.
+    </p>
+    <div class="example" id="example-578">
+     <p><strong>Exemplo #2 Alguns exemplos da pseudo variável <var class="varname">$this</var></strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />    function </span><span style="color: #0000BB">foo</span><span style="color: #007700">()<br />    {<br />        if (isset(</span><span style="color: #0000BB">$this</span><span style="color: #007700">)) {<br />            echo </span><span style="color: #DD0000">'$this está definida ('</span><span style="color: #007700">;<br />            echo </span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">);<br />            echo </span><span style="color: #DD0000">")\n"</span><span style="color: #007700">;<br />        } else {<br />            echo </span><span style="color: #DD0000">"\$this não está definida.\n"</span><span style="color: #007700">;<br />        }<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">B<br /></span><span style="color: #007700">{<br />    function </span><span style="color: #0000BB">bar</span><span style="color: #007700">()<br />    {<br />        </span><span style="color: #0000BB">A</span><span style="color: #007700">::</span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$a </span><span style="color: #007700">= new </span><span style="color: #0000BB">A</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">A</span><span style="color: #007700">::</span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$b </span><span style="color: #007700">= new </span><span style="color: #0000BB">B</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$b</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bar</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">B</span><span style="color: #007700">::</span><span style="color: #0000BB">bar</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+     <div class="example-contents"><p>Saída do exemplo acima no PHP 7:</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+$this está definida (A)
+
+Deprecated: Non-static method A::foo() should not be called statically in %s  on line 27
+$this não está definida.
+
+Deprecated: Non-static method A::foo() should not be called statically in %s  on line 20
+$this não está definida.
+
+Deprecated: Non-static method B::bar() should not be called statically in %s  on line 32
+
+Deprecated: Non-static method A::foo() should not be called statically in %s  on line 20
+$this não está definida.
+</pre></div>
+     </div>
+     <div class="example-contents"><p>Saída do exemplo acima no PHP 8:</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+$this está definida (A)
+
+Fatal error: Uncaught Error: Non-static method A::foo() cannot be called statically in %s :27
+Stack trace:
+#0 {main}
+  thrown in %s  on line 27
+</pre></div>
+     </div>
+    </div>
+   </div>
+
+   <div class="sect3" id="language.oop5.basic.class.readonly">
+    <h4 class="title">Classes somente leitura</h4>
+    <p class="para">
+     A partir do PHP 8.2.0, uma classe pode ser marcada com o modificador
+     <span class="modifier">readonly</span>.
+     Marcar uma classe como <span class="modifier">readonly</span> irá acrescentar o modificador
+     <a href="language.oop5.properties.html#language.oop5.properties.readonly-properties" class="link"><span class="modifier">readonly</span></a>
+     em cada propriedade declarada, e prevenir a criação de
+     <a href="language.oop5.properties.html#language.oop5.properties.dynamic-properties" class="link">propriedades dinâmicas</a>.
+     Além disso será impossível de acrescentar suportes a propriedades dinâmicas utilizando o atributo
+     <span class="classname"><a href="class.allowdynamicproperties.html" class="classname">AllowDynamicProperties</a></span>. Acrescentar o atributo em classes somente leitura
+     irá disparar um erro de compilação.
+    </p>
+    <div class="example" id="example-581">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">#[</span><span style="color: #0000BB">\AllowDynamicProperties</span><span style="color: #007700">]<br />readonly class </span><span style="color: #0000BB">Foo </span><span style="color: #007700">{<br />}<br /><br /></span><span style="color: #FF8000">// Fatal error: Cannot apply #[AllowDynamicProperties] to readonly class Foo<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+
+    <p class="para">
+     As neither untyped, nor static properties can be marked with the
+     <code class="literal">readonly</code> modifier, readonly classes cannot declare
+     them either:
+    </p>
+    <div class="example" id="example-584">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">readonly class </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    public </span><span style="color: #0000BB">$bar</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">// Fatal error: Readonly property Foo::$bar must have type<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">readonly class </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    public static </span><span style="color: #0000BB">int $bar</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">// Fatal error: Readonly class Foo cannot declare static properties<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+    <p class="para">
+     Uma classe <span class="modifier">readonly</span> pode ser
+     <a href="language.oop5.basic.html#language.oop5.basic.extends" class="link">estendida</a>
+     se, e somente se, a classe filha também ser uma classe
+     <span class="modifier">readonly</span>.
+    </p>
+   </div>
+  </div>
+
+  <div class="sect2" id="language.oop5.basic.new">
+   <h3 class="title">new</h3>
+   <p class="para">
+    Para criar uma instância de uma classe, a instrução <code class="literal">new</code> deve
+    ser utilizada. Um objeto sempre será criado a não ser que a classe tenha um
+    <a href="language.oop5.decon.html" class="link">construtor</a> definido que dispare uma
+    <a href="language.exceptions.html" class="link">exceção</a> em caso de erro. Classes
+    devem ser definidas antes de instanciadas (e em alguns casos isso é
+    obrigatório).
+   </p>
+   <p class="para">
+    Se uma <span class="type">string</span> contendo o nome da classe é utilizado com
+    <code class="literal">new</code>, uma nova instância da classe será criada. Se
+    a classe estiver dentro de um namespace, o nome completo e qualificado deve ser utilizado
+    para fazer isso.
+   </p>
+
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     Se não há argumentos a serem passados para o construtor da classe,
+     os parênteses após o nome da classe podem ser omitidos.
+    </p>
+   </p></blockquote>
+
+   <div class="example" id="example-587">
+    <p><strong>Exemplo #3 Criando uma instância</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$instance </span><span style="color: #007700">= new </span><span style="color: #0000BB">SimpleClass</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// Também pode ser feito com uma variável:<br /></span><span style="color: #0000BB">$className </span><span style="color: #007700">= </span><span style="color: #DD0000">'SimpleClass'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$instance </span><span style="color: #007700">= new </span><span style="color: #0000BB">$className</span><span style="color: #007700">(); </span><span style="color: #FF8000">// new SimpleClass()<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+   <p class="para">
+    A partir do PHP 8.0.0, usar <code class="literal">new</code> com expressões arbitrárias
+    é suportado. Isso permite instanciação mais complexa se a expressão
+    produzir uma <span class="type">string</span>. As expressões devem ser envolvidas em parênteses.
+   </p>
+   <div class="example" id="example-590">
+    <p><strong>Exemplo #4 Criando uma instância usando uma expressão arbitrária</strong></p>
+    <div class="example-contents"><p>
+     No exemplo fornecido mostramos múltiplos exemplos de expressões arbitrárias válidas que produzem um nome de classe.
+     Isto mostra uma chamada para uma função, concatenação de string, e a constante <strong><code>::class</code></strong>.
+    </p></div>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">ClasseA </span><span style="color: #007700">extends </span><span style="color: #0000BB">\stdClass </span><span style="color: #007700">{}<br />class </span><span style="color: #0000BB">ClasseB </span><span style="color: #007700">extends </span><span style="color: #0000BB">\stdClass </span><span style="color: #007700">{}<br />class </span><span style="color: #0000BB">ClasseC </span><span style="color: #007700">extends </span><span style="color: #0000BB">ClasseB </span><span style="color: #007700">{}<br />class </span><span style="color: #0000BB">ClasseD </span><span style="color: #007700">extends </span><span style="color: #0000BB">ClasseA </span><span style="color: #007700">{}<br /><br />function </span><span style="color: #0000BB">obterAlgumaClasse</span><span style="color: #007700">(): </span><span style="color: #0000BB">string<br /></span><span style="color: #007700">{<br />    return </span><span style="color: #DD0000">'ClasseA'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(new (</span><span style="color: #0000BB">obterAlgumaClasse</span><span style="color: #007700">()));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(new (</span><span style="color: #DD0000">'Classe' </span><span style="color: #007700">. </span><span style="color: #DD0000">'B'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(new (</span><span style="color: #DD0000">'Classe' </span><span style="color: #007700">. </span><span style="color: #DD0000">'C'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(new (</span><span style="color: #0000BB">ClasseD</span><span style="color: #007700">::class));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>Saída do exemplo acima no PHP 8:</p></div>
+    <div class="example-contents screen">
+     <div class="cdata"><pre>
+object(ClasseA)#1 (0) {
+}
+object(ClasseB)#1 (0) {
+}
+object(ClasseC)#1 (0) {
+}
+object(ClasseD)#1 (0) {
+}
+
+</pre></div>
+    </div>
+   </div>
+   <p class="para">
+    No contexto da classe, é possível criar um novo objeto com
+    <code class="literal">new self</code> e <code class="literal">new parent</code>.
+   </p>
+   <p class="para">
+    Ao atribuir uma instância de uma classe já criada, a uma variável nova,
+    a variável nova irá acessar a mesma instância do objeto que foi atribuído. Este
+    comportamento se mantém ao se passar instâncias a uma função. Uma cópia
+    de um objeto criado pode ser feita
+    <a href="language.oop5.cloning.html" class="link">clonando</a> o mesmo.
+   </p>
+   <div class="example" id="example-593">
+    <p><strong>Exemplo #5 Atribuição de Objetos</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$instance </span><span style="color: #007700">= new </span><span style="color: #0000BB">SimpleClass</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$assigned   </span><span style="color: #007700">=  </span><span style="color: #0000BB">$instance</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$reference  </span><span style="color: #007700">=&amp; </span><span style="color: #0000BB">$instance</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$instance</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">var </span><span style="color: #007700">= </span><span style="color: #DD0000">'$assigned terá esse valor'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$instance </span><span style="color: #007700">= </span><span style="color: #0000BB">null</span><span style="color: #007700">; </span><span style="color: #FF8000">// $instance e $reference tornam-se nulos<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$instance</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$reference</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$assigned</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+NULL
+NULL
+object(SimpleClass)#1 (1) {
+   [&quot;var&quot;]=&gt;
+     string(30) &quot;$assigned terá esse valor&quot;
+}
+</pre></div>
+    </div>
+   </div>
+   <p class="para">
+    É possível usar algumas formas de criar instâncias de um objeto:
+   </p>
+   <div class="example" id="example-596">
+    <p><strong>Exemplo #6 Criando novos objetos</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Test<br /></span><span style="color: #007700">{<br />    static public function </span><span style="color: #0000BB">getNew</span><span style="color: #007700">()<br />    {<br />        return new static;<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">Child </span><span style="color: #007700">extends </span><span style="color: #0000BB">Test<br /></span><span style="color: #007700">{}<br /><br /></span><span style="color: #0000BB">$obj1 </span><span style="color: #007700">= new </span><span style="color: #0000BB">Test</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$obj2 </span><span style="color: #007700">= new </span><span style="color: #0000BB">$obj1</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj1 </span><span style="color: #007700">!== </span><span style="color: #0000BB">$obj2</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$obj3 </span><span style="color: #007700">= </span><span style="color: #0000BB">Test</span><span style="color: #007700">::</span><span style="color: #0000BB">getNew</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj3 </span><span style="color: #007700">instanceof </span><span style="color: #0000BB">Test</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$obj4 </span><span style="color: #007700">= </span><span style="color: #0000BB">Child</span><span style="color: #007700">::</span><span style="color: #0000BB">getNew</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj4 </span><span style="color: #007700">instanceof </span><span style="color: #0000BB">Child</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+bool(true)
+bool(true)
+bool(true)
+</pre></div>
+    </div>
+   </div>
+
+   <p class="para">
+    É possível acessar um membro do objeto recém criado
+    em uma expressão simples:
+   </p>
+   <div class="example" id="example-599">
+    <p><strong>Exemplo #7 Access member of newly created object</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo (new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">())-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+2016
+</pre></div>
+    </div>
+   </div>
+
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <span class="simpara">
+     Anteriormente ao PHP 7.1, os argumentos não são avaliados se não houver
+     um construtor definido.
+    </span>
+   </p></blockquote>
+  </div>
+
+  <div class="sect2" id="language.oop5.basic.properties-methods">
+   <h3 class="title">Propriedades e métodos</h3>
+   <p class="para">
+    Propriedades e métodos de classe vivem em &quot;namespaces&quot; separados, de forma que é
+    possível ter uma propriedade e método com mesmos nomes. A referência a
+    propriedades e métodos tem a mesma notação, e a decisão de se uma propriedade será acessada
+    ou uma chamada a um método feita, depende somente do contexto,
+    ou seja, se está tentando acessar uma variável ou chamar um método.
+   </p>
+   <div class="example" id="example-602">
+    <p><strong>Exemplo #8 Acesso a propriedade vs. chamar um método</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    public </span><span style="color: #0000BB">$bar </span><span style="color: #007700">= </span><span style="color: #DD0000">'propriedade'</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">bar</span><span style="color: #007700">() {<br />        return </span><span style="color: #DD0000">'métod'</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$obj </span><span style="color: #007700">= new </span><span style="color: #0000BB">Foo</span><span style="color: #007700">();<br />echo </span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bar</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">, </span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bar</span><span style="color: #007700">(), </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+propriedade
+método
+</pre></div>
+    </div>
+   </div>
+   <p class="para">
+    Isto significa que chamar diretamente uma <a href="functions.anonymous.html" class="link">função
+    anônima</a> atribuída a uma propriedade não é possível.
+    Em vez disso, por exemplo, a propriedade deve primeiro ser atribuída a uma
+    variável. É possível chamar uma propriedade diretamente
+    a colocando entre parênteses.
+   </p>
+   <div class="example" id="example-605">
+    <p><strong>Exemplo #9 Chamando uma função anônima armazenada em uma propriedade</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    public </span><span style="color: #0000BB">$bar</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">__construct</span><span style="color: #007700">() {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bar </span><span style="color: #007700">= function() {<br />            return </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br />        };<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$obj </span><span style="color: #007700">= new </span><span style="color: #0000BB">Foo</span><span style="color: #007700">();<br /><br />echo (</span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bar</span><span style="color: #007700">)(), </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+42
+</pre></div>
+    </div>
+   </div>
+  </div>
+
+  <div class="sect2" id="language.oop5.basic.extends">
+   
+   
+   <h3 class="title">extends</h3>
+   <p class="para">
+    Uma classe pode herdar constantes, métodos e propriedades de outra classe usando a
+    palavra-chave <code class="literal">extends</code> na declaração
+    da classe. Não é possível herdar múltiplas classes; uma
+    classe só pode herdar uma classe base.
+   </p>
+   <p class="para">
+    Os métodos e propriedades herdados podem ser sobrescritos
+    declarando-os com o mesmo nome definido na classe
+    base. Entretanto, se a classe mãe definiu um método ou constante
+    como <a href="language.oop5.final.html" class="link">final</a>,
+    eles não poderão ser sobrescritos. É possível acessar os métodos sobrescritos
+    ou propriedades estáticas referenciado-os
+    com <a href="language.oop5.paamayim-nekudotayim.html" class="link">parent::</a>.
+   </p>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <span class="simpara">
+     A partir do PHP 8.1.0, constantes podem ser declaradas como finais.
+    </span>
+   </p></blockquote>
+   <div class="example" id="example-608">
+    <p><strong>Exemplo #10 Herança da Classe Simples</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">ExtendClass </span><span style="color: #007700">extends </span><span style="color: #0000BB">SimpleClass<br /></span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">// Redefine o método pai<br />    </span><span style="color: #007700">function </span><span style="color: #0000BB">displayVar</span><span style="color: #007700">()<br />    {<br />        echo </span><span style="color: #DD0000">"Classe Herdeira\n"</span><span style="color: #007700">;<br />        </span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">displayVar</span><span style="color: #007700">();<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$extended </span><span style="color: #007700">= new </span><span style="color: #0000BB">ExtendClass</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$extended</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">displayVar</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Classe Herdeira
+um valor padrão
+</pre></div>
+    </div>
+   </div>
+
+   <div class="sect3" id="language.oop.lsp">
+    <h4 class="title">Regras de compatibilidade de assinaturas</h4>
+    <p class="para">
+     Quando sobrescrevendo um método, sua assinatura precisa ser compatível com
+     o método original. De outra forma um erro fatal é emitido, ou, anteriormente ao PHP 8.0.0, um aviso
+     <strong><code>E_WARNING</code></strong> seria gerado.
+     Uma assinatura é compatível se ela respeita as regras de
+     <a href="language.oop5.variance.html" class="link">variância</a>, se torna um
+     parâmetro obrigatório em opcional, se adiciona novos parâmetros opcionais,
+     e se não restringe ou apenas aumenta a visibilidade.
+     Isso é conhecido como Princípio de Substituição de Liskov, ou LSP.
+     O <a href="language.oop5.decon.html#language.oop5.decon.constructor" class="link">construtor</a>,
+     e membros <code class="literal">private</code> não precisam seguir essas regras de
+     compatibilidade, e portanto não há emissão de erros fatais no caso
+     de assinaturas incompatíveis.
+    </p>
+    <div class="example" id="uopz-allow-exit.example.basic">
+     <p><strong>Exemplo #11 Métodos compatíveis</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Base<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">int $a</span><span style="color: #007700">) {<br />        echo </span><span style="color: #DD0000">"Valid\n"</span><span style="color: #007700">;<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">Extend1 </span><span style="color: #007700">extends </span><span style="color: #0000BB">Base<br /></span><span style="color: #007700">{<br />    function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">int $a </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">Extend2 </span><span style="color: #007700">extends </span><span style="color: #0000BB">Base<br /></span><span style="color: #007700">{<br />    function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">int $a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$extended1 </span><span style="color: #007700">= new </span><span style="color: #0000BB">Extend1</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$extended1</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$extended2 </span><span style="color: #007700">= new </span><span style="color: #0000BB">Extend2</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$extended2</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);</span></span></code></div>
+     </div>
+
+     <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Valid
+Valid
+</pre></div>
+     </div>
+    </div>
+
+    <p class="para">
+     Os exemplos a seguir demonstram que um método derivado que remove um parâmetro, ou torna um parâmetro opcional
+     em mandatório não é compatível com o método original.
+    </p>
+    <div class="example" id="example-614">
+     <p><strong>Exemplo #12 Erro fatal quando um método derivado remove um parâmetro</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Base<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">int $a </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">) {<br />        echo </span><span style="color: #DD0000">"Válido?\n"</span><span style="color: #007700">;<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">Extend </span><span style="color: #007700">extends </span><span style="color: #0000BB">Base<br /></span><span style="color: #007700">{<br />    function </span><span style="color: #0000BB">foo</span><span style="color: #007700">()<br />    {<br />        </span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />    }<br />}</span></span></code></div>
+     </div>
+
+     <div class="example-contents"><p>A saída do exemplo acima no PHP 8 é semelhante a:</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Fatal error: Declaration of Extend::foo() must be compatible with Base::foo(int $a = 5) in /in/evtlq on line 13
+</pre></div>
+     </div>
+    </div>
+    <div class="example" id="example-617">
+     <p><strong>Exemplo #13 Erro falta quando um método derivado transforma um parâmetro opcional em mandatório</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Base<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">int $a </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">) {<br />        echo </span><span style="color: #DD0000">"Válido?\n"</span><span style="color: #007700">;<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">Extend </span><span style="color: #007700">extends </span><span style="color: #0000BB">Base<br /></span><span style="color: #007700">{<br />    function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">int $a</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br />    }<br />}</span></span></code></div>
+     </div>
+
+     <div class="example-contents"><p>A saída do exemplo acima no PHP 8 é semelhante a:</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Fatal error: Declaration of Extend::foo(int $a) must be compatible with Base::foo(int $a = 5) in /in/qJXVC on line 13
+</pre></div>
+     </div>
+    </div>
+
+    <div class="warning"><strong class="warning">Aviso</strong>
+     <p class="para">
+      Renomear um nome de parâmetro em uma classe derivada não é uma quebra
+      de assinatura. Entretanto isso é desencorajado porque ocasionará em um
+      <span class="classname"><a href="class.error.html" class="classname">Error</a></span> se
+      <a href="functions.arguments.html#functions.named-arguments" class="link">argumentos nomeados</a>
+      forem utilizados na chamada.
+     </p>
+     <div class="example" id="example-620">
+      <p><strong>Exemplo #14 Erro ao utilizar argumentos nomeados renomeados em uma classe derivada</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">A </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">, </span><span style="color: #0000BB">$bar</span><span style="color: #007700">) {}<br />}<br /><br />class </span><span style="color: #0000BB">B </span><span style="color: #007700">extends </span><span style="color: #0000BB">A </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {}<br />}<br /><br /></span><span style="color: #0000BB">$obj </span><span style="color: #007700">= new </span><span style="color: #0000BB">B</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Passando parâmetros de acordo com o contrato de A::test()<br /></span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">foo</span><span style="color: #007700">: </span><span style="color: #DD0000">"foo"</span><span style="color: #007700">, </span><span style="color: #0000BB">bar</span><span style="color: #007700">: </span><span style="color: #DD0000">"bar"</span><span style="color: #007700">); </span><span style="color: #FF8000">// ERROR!</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Fatal error: Uncaught Error: Unknown named parameter $foo in /in/XaaeN:14
+Stack trace:
+#0 {main}
+  thrown in /in/XaaeN on line 14
+</pre></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="sect2" id="language.oop5.basic.class.class">
+   <h3 class="title">::class</h3>
+
+   <p class="para">
+    A palavra-chave <code class="literal">class</code> também pode ser utilizada para resolução
+    de nome de classes.
+    Pode-se obter o nome completo e qualificado da classe <code class="literal">ClassName</code>
+    utilizando <code class="literal">ClassName::class</code>. Isso é particularmente útil em classes com
+    <a href="language.namespaces.html" class="link">namespaces</a>.
+   </p>
+   <p class="para">
+    <div class="example" id="uopz-get-exit-status.example.basic">
+     <p><strong>Exemplo #15 Resolução de nome da classe</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">NS </span><span style="color: #007700">{<br />    class </span><span style="color: #0000BB">ClassName </span><span style="color: #007700">{<br />    }<br /><br />    echo </span><span style="color: #0000BB">ClassName</span><span style="color: #007700">::class;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+     <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+NS\ClassName
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">A resolução do nome de classe através de <code class="literal">::class</code> é
+     uma transformação em tempo de compilação. Isso significa que no momento que o texto do nome
+     da classe é criado o autoloading ainda não ocorreu. Como consequẽncia, nomes de classe
+     são expandidos mesmo se a classe não existir. Não é emitido erro nesses
+     casos.
+    </p>
+    <div class="example" id="uopz-get-property.example.basic">
+     <p><strong>Exemplo #16 Resolução de um nome de classe de classe ausente</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">print </span><span style="color: #0000BB">Does\Not\Exist</span><span style="color: #007700">::class;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+     <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Does\Not\Exist
+</pre></div>
+     </div>
+    </div>
+   </p></blockquote>
+   <p class="para">
+    A partir do PHP 8.0.0, a constante <code class="literal">::class</code> também pode ser utilizada em
+    objetos. Essa resolução acontece em tempo de execução, e não em tempo de compilação. O efeito é
+    o mesmo de chamar <span class="function"><a href="function.get-class.html" class="function">get_class()</a></span> em um objeto.
+   </p>
+   <div class="example" id="example-629">
+    <p><strong>Exemplo #17 Resolução de nome de objeto</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">NS </span><span style="color: #007700">{<br />    class </span><span style="color: #0000BB">ClassName </span><span style="color: #007700">{<br />    }<br />}<br /></span><span style="color: #0000BB">$c </span><span style="color: #007700">= new </span><span style="color: #0000BB">ClassName</span><span style="color: #007700">();<br />print </span><span style="color: #0000BB">$c</span><span style="color: #007700">::class;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+NS\ClassName
+</pre></div>
+    </div>
+   </div>
+  </div>
+ <div class="sect2" id="language.oop5.basic.nullsafe">
+  <h3 class="title">Métodos e propriedades nullsafe</h3>
+  <p class="para">
+   A partir do PHP 8.0.0, propriedades e métodos também podem ser acessados com o operador
+   &quot;nullsafe&quot;: <code class="literal">?-&gt;</code>. O operador nullsafe
+   funciona da mesma forma que os acessos de métodos e variáveis, exceto que se
+   o objeto referenciado é <strong><code>null</code></strong>, então <strong><code>null</code></strong>
+   será retornado ao invés de uma exceção ser lançada. Se uma derreferência for parte de uma
+   cadeia de chamadas, o resto da cadeia é ignorado.
+  </p>
+  <p class="para">
+   O resultado é similar a encapsular cada acesso dentro de um teste <span class="function"><a href="function.is-null.html" class="function">is_null()</a></span>,
+   mas mais compacto.
+  </p>
+  <p class="para">
+   <div class="example" id="example-632">
+    <p><strong>Exemplo #18 Operador nullsafe</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">// A partir do PHP 8.0.0, esta linha:<br /></span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">$repository</span><span style="color: #007700">?-&gt;</span><span style="color: #0000BB">getUser</span><span style="color: #007700">(</span><span style="color: #0000BB">5</span><span style="color: #007700">)?-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// É o equivalente ao seguinte código:<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">is_null</span><span style="color: #007700">(</span><span style="color: #0000BB">$repository</span><span style="color: #007700">)) {<br />    </span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">null</span><span style="color: #007700">;<br />} else {<br />    </span><span style="color: #0000BB">$user </span><span style="color: #007700">= </span><span style="color: #0000BB">$repository</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getUser</span><span style="color: #007700">(</span><span style="color: #0000BB">5</span><span style="color: #007700">);<br />    if (</span><span style="color: #0000BB">is_null</span><span style="color: #007700">(</span><span style="color: #0000BB">$user</span><span style="color: #007700">)) {<br />        </span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">null</span><span style="color: #007700">;<br />    } else {<br />        </span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">$user</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">;<br />    }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    O operador nullsafe é melhor utilizado quando null é considerado um valor válido
+    e esperado de uma propriedade ou retorno de método. Para indicar um erro,
+    uma exceção lançada é preferível.
+   </p>
+  </p></blockquote>
+ </div>
+</div></div></div></body></html>

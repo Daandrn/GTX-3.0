@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Definindo v&aacute;rios namespaces no mesmo arquivo</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.namespaces.nested.html">« Declarando subnamespaces</a></li>
+      <li style="float: right;"><a href="language.namespaces.basics.html">Usando namespaces: Fundamentos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.namespaces.html">Namespaces</a></li>
+    <li>Definindo v&aacute;rios namespaces no mesmo arquivo</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.namespaces.definitionmultiple" class="sect1">
+  <h2 class="title">Definindo vários namespaces no mesmo arquivo</h2>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PHP 8)</p>
+  <p class="para">
+   Vários namespaces também podem ser declarados no mesmo arquivo. Existem duas sintaxes
+   permitidas.
+  </p>
+  <p class="para">
+   <div class="example" id="example-884">
+    <p><strong>Exemplo #1 Declarando vários namespaces, sintaxe de combinação simples</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">MeuProjeto</span><span style="color: #007700">;<br /><br />const </span><span style="color: #0000BB">CONEXAO_OK </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />class </span><span style="color: #0000BB">Conexao </span><span style="color: #007700">{ </span><span style="color: #FF8000">/* ... */ </span><span style="color: #007700">}<br />function </span><span style="color: #0000BB">conectar</span><span style="color: #007700">() { </span><span style="color: #FF8000">/* ... */  </span><span style="color: #007700">}<br /><br />namespace </span><span style="color: #0000BB">OutroProjeto</span><span style="color: #007700">;<br /><br />const </span><span style="color: #0000BB">CONEXAO_OK </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />class </span><span style="color: #0000BB">Conexao </span><span style="color: #007700">{ </span><span style="color: #FF8000">/* ... */ </span><span style="color: #007700">}<br />function </span><span style="color: #0000BB">conectar</span><span style="color: #007700">() { </span><span style="color: #FF8000">/* ... */  </span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Essa sintaxe não é recomendada para combinar namespaces em um único arquivo.
+   Em vez disso, é recomendado usar a sintaxe alternativa de colchetes.
+  </p>
+  <p class="para">
+   <div class="example" id="example-887">
+    <p><strong>Exemplo #2 Declarando vários namespaces, sintaxe de colchetes</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">MeuProjeto </span><span style="color: #007700">{<br /><br />const </span><span style="color: #0000BB">CONEXAO_OK </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />class </span><span style="color: #0000BB">Conexao </span><span style="color: #007700">{ </span><span style="color: #FF8000">/* ... */ </span><span style="color: #007700">}<br />function </span><span style="color: #0000BB">conectar</span><span style="color: #007700">() { </span><span style="color: #FF8000">/* ... */  </span><span style="color: #007700">}<br />}<br /><br />namespace </span><span style="color: #0000BB">OutroProjeto </span><span style="color: #007700">{<br /><br />const </span><span style="color: #0000BB">CONEXAO_OK </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />class </span><span style="color: #0000BB">Conexao </span><span style="color: #007700">{ </span><span style="color: #FF8000">/* ... */ </span><span style="color: #007700">}<br />function </span><span style="color: #0000BB">conectar</span><span style="color: #007700">() { </span><span style="color: #FF8000">/* ... */  </span><span style="color: #007700">}<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   É altamente desaconselhado como prática de programação combinar vários namespaces no
+   mesmo arquivo. O principal caso de uso é combinar vários scripts PHP no mesmo
+   arquivo.
+  </p>
+  <p class="para">
+   Para combinar código global sem namespace com código com namespace, apenas a sintaxe de colchetes é
+   suportada. O código global deve ser
+   encapsulado em uma declaração de namespace sem nome de namespace, como em:
+   <div class="example" id="example-890">
+    <p><strong>Exemplo #3 Declarando vários namespaces e código sem namespace</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">MeuProjeto </span><span style="color: #007700">{<br /><br />const </span><span style="color: #0000BB">CONEXAO_OK </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />class </span><span style="color: #0000BB">Conexao </span><span style="color: #007700">{ </span><span style="color: #FF8000">/* ... */ </span><span style="color: #007700">}<br />function </span><span style="color: #0000BB">conectar</span><span style="color: #007700">() { </span><span style="color: #FF8000">/* ... */  </span><span style="color: #007700">}<br />}<br /><br />namespace { </span><span style="color: #FF8000">// código global<br /></span><span style="color: #0000BB">session_start</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$a </span><span style="color: #007700">= </span><span style="color: #0000BB">MeuProjeto\conectar</span><span style="color: #007700">();<br />echo </span><span style="color: #0000BB">MeuProjeto\Conexao</span><span style="color: #007700">::</span><span style="color: #0000BB">iniciar</span><span style="color: #007700">();<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Nenhum código PHP pode existir fora dos colchetes do namespace, exceto uma declaração
+   declare de abertura.
+   <div class="example" id="example-893">
+    <p><strong>Exemplo #4 Declarando vários namespaces e código sem namespace</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">declare(</span><span style="color: #0000BB">encoding</span><span style="color: #007700">=</span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">);<br />namespace </span><span style="color: #0000BB">MeuProjeto </span><span style="color: #007700">{<br /><br />const </span><span style="color: #0000BB">CONEXAO_OK </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />class </span><span style="color: #0000BB">Conexao </span><span style="color: #007700">{ </span><span style="color: #FF8000">/* ... */ </span><span style="color: #007700">}<br />function </span><span style="color: #0000BB">conectar</span><span style="color: #007700">() { </span><span style="color: #FF8000">/* ... */  </span><span style="color: #007700">}<br />}<br /><br />namespace { </span><span style="color: #FF8000">// código global<br /></span><span style="color: #0000BB">session_start</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$a </span><span style="color: #007700">= </span><span style="color: #0000BB">MeuProjeto\conectar</span><span style="color: #007700">();<br />echo </span><span style="color: #0000BB">MeuProjeto\Conexao</span><span style="color: #007700">::</span><span style="color: #0000BB">iniciar</span><span style="color: #007700">();<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div></div></div></body></html>

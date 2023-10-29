@@ -21,8 +21,16 @@ if (
                 header("location: /gtx2/control/control.inicio.php");
                 break;
         }
-} else {
-    echo "error 404";
+} 
+
+if (
+    $url == "/testephp"
+) {
+    header("location: /gtx2/teste/teste.php");
+}
+
+else {
+    echo "Página não encontrada.";
 }
 
 ?>

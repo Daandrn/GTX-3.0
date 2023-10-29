@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Set system resource limits</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.posix-setpgid.html">« posix_setpgid</a></li>
+      <li style="float: right;"><a href="function.posix-setsid.html">posix_setsid »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.posix.html">POSIX Fun&ccedil;&otilde;es</a></li>
+    <li>Set system resource limits</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.posix-setrlimit" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">posix_setrlimit</h1>
+  <p class="refpurpose"><span class="refname">posix_setrlimit</span> &mdash; <span class="dc-title">Set system resource limits</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.posix-setrlimit-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>posix_setrlimit</strong></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$resource</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$soft_limit</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$hard_limit</code></span>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>posix_setrlimit()</strong></span> sets the soft and hard limits for a
+   given system resource.
+  </p>
+  
+<p class="para">
+  Cada recurso tem um limite flexível e um limite rígido associado. O limite
+  flexível é o valor que o kernel impõe ao recurso
+  correspondente. O limite rígido funciona com um teto máximo para o limite flexível.
+  Um processo sem privilégios pode apenas definir seu limite flexível para um valor
+  entre 0 e o limite rígido e reduzir irreversivelmente seu limite rígido.
+</p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.posix-setrlimit-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">resource</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The
+       <a href="posix.constants.setrlimit.html" class="link">resource limit constant</a>
+       corresponding to the limit that is being set.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">soft_limit</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The soft limit, in whatever unit the resource limit requires, or
+       <strong><code>POSIX_RLIMIT_INFINITY</code></strong>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">hard_limit</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The hard limit, in whatever unit the resource limit requires, or
+       <strong><code>POSIX_RLIMIT_INFINITY</code></strong>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.posix-setrlimit-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.posix-setrlimit-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">man page SETRLIMIT(2)</li>
+    <li class="member"><span class="function"><a href="function.posix-getrlimit.html" class="function" rel="rdfs-seeAlso">posix_getrlimit()</a> - Return info about system resource limits</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

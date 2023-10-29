@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Comparar dois n&uacute;meros de precis&atilde;o arbitr&aacute;ria</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.bcadd.html">« bcadd</a></li>
+      <li style="float: right;"><a href="function.bcdiv.html">bcdiv »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.bc.html">BC Math Fun&ccedil;&otilde;es</a></li>
+    <li>Comparar dois n&uacute;meros de precis&atilde;o arbitr&aacute;ria</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.bccomp" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">bccomp</h1>
+  <p class="refpurpose"><span class="refname">bccomp</span> &mdash; <span class="dc-title">Comparar dois números de precisão arbitrária</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.bccomp-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>bccomp</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$num1</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$num2</code></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type">int</span><span class="type"></span></span> <code class="parameter">$scale</code><span class="initializer"> = <strong><code>null</code></strong></span></span>): <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Compara o <code class="parameter">num1</code> com o
+   <code class="parameter">num2</code> e retorna o resultado
+   como um inteiro.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.bccomp-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">num1</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O operando da esquerda, como uma string.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">num2</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O operando da direita, como uma string.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">scale</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O parâmetro opcional <code class="parameter">scale</code> é usado para definir o
+       número de dígitos depois da parte decimal que será usada na
+       comparação. 
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.bccomp-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna 0 se os dois operandos são iguais, 1 se o
+   <code class="parameter">num1</code> é maior que
+   <code class="parameter">num2</code>, -1 caso contrário.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-function.bccomp-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>8.0.0</td>
+      <td>
+       <code class="parameter">scale</code> pode ser null.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.bccomp-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="">
+   <p><strong>Exemplo #1 Exemplo da <span class="function"><strong>bccomp()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">bccomp</span><span style="color: #007700">(</span><span style="color: #DD0000">'1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'2'</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;   </span><span style="color: #FF8000">// -1<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">bccomp</span><span style="color: #007700">(</span><span style="color: #DD0000">'1.00001'</span><span style="color: #007700">, </span><span style="color: #DD0000">'1'</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">); </span><span style="color: #FF8000">// 0<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">bccomp</span><span style="color: #007700">(</span><span style="color: #DD0000">'1.00001'</span><span style="color: #007700">, </span><span style="color: #DD0000">'1'</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">); </span><span style="color: #FF8000">// 1<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </div>
+
+</div></div></div></body></html>

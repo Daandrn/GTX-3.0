@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Introdu&ccedil;&atilde;o &agrave;s Instala&ccedil;&otilde;es PECL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.pecl.html">« Instala&ccedil;&atilde;o das extens&otilde;es PECL</a></li>
+      <li style="float: right;"><a href="install.pecl.downloads.html">Baixando extens&otilde;es PECL »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.pecl.html">Instala&ccedil;&atilde;o das extens&otilde;es PECL</a></li>
+    <li>Introdu&ccedil;&atilde;o &agrave;s Instala&ccedil;&otilde;es PECL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.pecl.intro" class="sect1">
+  <h2 class="title">Introdução às Instalações PECL</h2>
+  <p class="simpara">
+   <a href="https://pecl.php.net/" class="link external">&raquo;&nbsp;PECL</a> é um repositório de extensões PHP disponibilizadas através do
+   sistema de pacotes <a href="https://pear.php.net/" class="link external">&raquo;&nbsp;PEAR</a>.
+   
+   Esta seção do manual destina-se a demonstrar como obter e instalar extensões
+   PECL.
+  </p>
+  <p class="simpara">
+   Estas instruções assumem que <code class="literal">/path/to/php/src/dir/</code> seja o
+   caminho para o código-fonte do PHP e que <code class="literal">extname</code>
+   seja o nome da extensão PECL. Ajuste adequadamente.
+   Estas instruções também assumem uma familiaridade com o
+   <a href="https://pear.php.net/manual/en/guide.users.commandline.cli.php" class="link external">&raquo;&nbsp;comando pear</a>.
+   As informações no manual do PEAR para o comando
+   <strong class="command">pear</strong>
+   também se aplicam ao comando
+   <strong class="command">pecl</strong>.
+   
+  </p>
+  <p class="simpara">
+   Uma extensão compartilhada deve ser compilada, instalada e carregada para ser
+   útil.
+   Os métodos descritos abaixo fornecem várias instruções sobre como criar e
+   instalar as extensões, mas não as carregam automaticamente.
+   As extensões podem ser carregadas adicionando uma diretiva
+   <a href="ini.core.html#ini.extension" class="link">extension</a>
+   ao arquivo <var class="filename">php.ini</var> ou através do uso da função <span class="function"><a href="function.dl.html" class="function">dl()</a></span>.
+  </p>
+  <p class="simpara">
+   Ao compilar módulos PHP, é importante ter as versões apropriadas das
+   ferramentas necessárias (autoconf, automake, libtool, etc.).
+   Consulte as
+   <a href="https://www.php.net/git.php" class="link external">&raquo;&nbsp;Instruções para Acesso Anônimo ao Git</a>
+   para obter detalhes sobre as ferramentas e versões necessárias.
+  </p>
+ </div></div></div></body></html>

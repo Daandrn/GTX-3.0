@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Operador de Resolu&ccedil;&atilde;o de Escopo (::)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.oop5.inheritance.html">« Heran&ccedil;a de Objetos</a></li>
+      <li style="float: right;"><a href="language.oop5.static.html">Palavra-Chave 'static' »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.oop5.html">Classes e Objetos</a></li>
+    <li>Operador de Resolu&ccedil;&atilde;o de Escopo (::)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.oop5.paamayim-nekudotayim" class="sect1">
+ <h2 class="title">Operador de Resolução de Escopo (::)</h2>
+
+ <p class="para">
+  O Operador de Resolução de Escopo (também chamado de Paamayim Nekudotayim), ou em
+  termos mais simples, dois pontos duplo, é um símbolo que permite acesso a
+  métodos ou propriedades <a href="language.oop5.static.html" class="link">estáticas</a>,
+  <a href="language.oop5.constants.html" class="link">constantes</a>, e sobrecarregadas
+  de uma classe.
+ </p>
+
+ <p class="para">
+  Ao referenciar estes itens fora da definição da classe, use
+  o nome da classe.
+ </p>
+
+ <p class="para">
+  É possível referenciar a classe usando a variável.
+  O valor da variável não pode ser uma palavra-chave (por exemplo, <code class="literal">self</code>,
+  <code class="literal">parent</code> e <code class="literal">static</code>).
+ </p>
+
+ <p class="para">
+  Paamayim Nekudotayim pode parecer, de início, uma escolha estranha para chamar
+  dois pontos duplo. No entanto, na hora de escrever a Zend Engine 0.5
+  (que provia o PHP 3), foi o que a equipe da Zend decidiu.
+  Realmente significa dois pontos duplo - em Hebreu!
+ </p>
+
+ <div class="example" id="example-722">
+  <p><strong>Exemplo #1 :: de fora da definição da classe</strong></p>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">MyClass </span><span style="color: #007700">{<br />    const </span><span style="color: #0000BB">CONST_VALUE </span><span style="color: #007700">= </span><span style="color: #DD0000">'Um valor constante'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$classname </span><span style="color: #007700">= </span><span style="color: #DD0000">'MyClass'</span><span style="color: #007700">;<br />echo </span><span style="color: #0000BB">$classname</span><span style="color: #007700">::</span><span style="color: #0000BB">CONST_VALUE</span><span style="color: #007700">;<br /><br />echo </span><span style="color: #0000BB">MyClass</span><span style="color: #007700">::</span><span style="color: #0000BB">CONST_VALUE</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+ </div>
+
+ <p class="para">
+  Três palavras-chave especiais <var class="varname">self</var>, <var class="varname">parent</var> e
+  <var class="varname">static</var>, são utilizadas para acessar propriedades e métodos dentro
+  de uma definição de classe.
+ </p>
+
+ <div class="example" id="example-725">
+  <p><strong>Exemplo #2 :: de dentro da definição da classe</strong></p>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">OtherClass </span><span style="color: #007700">extends </span><span style="color: #0000BB">MyClass<br /></span><span style="color: #007700">{<br />    public static </span><span style="color: #0000BB">$my_static </span><span style="color: #007700">= </span><span style="color: #DD0000">'variável estática'</span><span style="color: #007700">;<br /><br />    public static function </span><span style="color: #0000BB">doubleColon</span><span style="color: #007700">() {<br />        echo </span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">CONST_VALUE </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />        echo </span><span style="color: #0000BB">self</span><span style="color: #007700">::</span><span style="color: #0000BB">$my_static </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$classname </span><span style="color: #007700">= </span><span style="color: #DD0000">'OtherClass'</span><span style="color: #007700">;<br />echo </span><span style="color: #0000BB">$classname</span><span style="color: #007700">::</span><span style="color: #0000BB">doubleColon</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">OtherClass</span><span style="color: #007700">::</span><span style="color: #0000BB">doubleColon</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+ </div>
+
+ <p class="para">
+  Quando uma subclasse sobrecarrega a definição de um método do pai,
+  o PHP não chamará o método pai. Fica a cargo da subclasse
+  chamar o método pai ou não. Isso também se aplica a definições de métodos <a href="language.oop5.decon.html" class="link">Construtores e Destrutores</a>, <a href="language.oop5.overloading.html" class="link">de Sobrecarga</a> e <a href="language.oop5.magic.html" class="link">Mágicos</a>.
+ </p>
+
+ <div class="example" id="example-728">
+  <p><strong>Exemplo #3 Chamando um método pai</strong></p>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">MyClass<br /></span><span style="color: #007700">{<br />    protected function </span><span style="color: #0000BB">myFunc</span><span style="color: #007700">() {<br />        echo </span><span style="color: #DD0000">"MyClass::myFunc()\n"</span><span style="color: #007700">;<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">OtherClass </span><span style="color: #007700">extends </span><span style="color: #0000BB">MyClass<br /></span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">// Sobrescreve e definição da classe estendida<br />    </span><span style="color: #007700">public function </span><span style="color: #0000BB">myFunc</span><span style="color: #007700">()<br />    {<br />        </span><span style="color: #FF8000">// Mas ainda consegue chamar o método na classe herdada<br />        </span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">myFunc</span><span style="color: #007700">();<br />        echo </span><span style="color: #DD0000">"OtherClass::myFunc()\n"</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$class </span><span style="color: #007700">= new </span><span style="color: #0000BB">OtherClass</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$class</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myFunc</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+ </div>
+ <p class="para">
+  Veja também <a href="language.oop5.basic.html#language.oop5.basic.class.this" class="link">outros exemplos de
+  chamadas estáticas mais complexas</a>.
+ </p>
+
+</div></div></div></body></html>

@@ -1,0 +1,494 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>The mysqli class</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqli.summary.html">« Resumo da Fun&ccedil;&atilde;o de Extens&atilde;o do MySQLi</a></li>
+      <li style="float: right;"><a href="mysqli.affected-rows.html">mysqli-&gt;affected_rows »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.mysqli.html">MySQLi</a></li>
+    <li>The mysqli class</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.mysqli" class="reference">
+ <h1 class="title">The mysqli class</h1>
+ 
+ 
+ <div class="partintro"><p class="verinfo">(PHP 5, PHP 7, PHP 8)</p>
+ 
+
+  <div class="section" id="mysqli.intro">
+   <h2 class="title">Introdução</h2>
+   <p class="para">
+    Represents a connection between PHP and a MySQL database.
+   </p>
+  </div>
+
+ 
+  <div class="section" id="mysqli.synopsis">
+   <h2 class="title">Sinopse da classe</h2>
+ 
+
+   <div class="classsynopsis"><div class="classsynopsisinfo">
+    
+     <span class="modifier">class</span> <strong class="classname"><strong class="classname">mysqli</strong></strong>
+     {</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Propriedades */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type"><span class="type">int</span>|<span class="type">string</span></span>
+      <var class="varname"><a href="mysqli.affected-rows.html">$<var class="varname">affected_rows</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">string</span>
+      <var class="varname"><a href="mysqli.get-client-info.html">$<var class="varname">client_info</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="mysqli.get-client-version.html">$<var class="varname">client_version</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="mysqli.connect-errno.html">$<var class="varname">connect_errno</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span>
+      <var class="varname"><a href="mysqli.connect-error.html">$<var class="varname">connect_error</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="mysqli.errno.html">$<var class="varname">errno</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">string</span>
+      <var class="varname"><a href="mysqli.error.html">$<var class="varname">error</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">array</span>
+      <var class="varname"><a href="mysqli.error-list.html">$<var class="varname">error_list</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="mysqli.field-count.html">$<var class="varname">field_count</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">string</span>
+      <var class="varname"><a href="mysqli.get-host-info.html">$<var class="varname">host_info</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span>
+      <var class="varname"><a href="mysqli.info.html">$<var class="varname">info</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type"><span class="type">int</span>|<span class="type">string</span></span>
+      <var class="varname"><a href="mysqli.insert-id.html">$<var class="varname">insert_id</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">string</span>
+      <var class="varname"><a href="mysqli.get-server-info.html">$<var class="varname">server_info</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="mysqli.get-server-version.html">$<var class="varname">server_version</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">string</span>
+      <var class="varname"><a href="mysqli.sqlstate.html">$<var class="varname">sqlstate</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="mysqli.get-proto-info.html">$<var class="varname">protocol_version</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="mysqli.thread-id.html">$<var class="varname">thread_id</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="mysqli.warning-count.html">$<var class="varname">warning_count</var></a></var>;</div>
+
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Métodos */</div>
+    <div class="constructorsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mysqli.construct.html" class="methodname">__construct</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$hostname</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$username</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$password</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$database</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">int</span><span class="type"></span></span> <code class="parameter">$port</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$socket</code><span class="initializer"> = <strong><code>null</code></strong></span></span><br>)</div>
+
+    <div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.begin-transaction.html" class="methodname">begin_transaction</a></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$name</code><span class="initializer"> = <strong><code>null</code></strong></span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.close.html" class="methodname">close</a></span>(): <span class="type"><span class="type true">true</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="function.mysqli-connect.html" class="methodname">connect</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$hostname</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$username</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$password</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$database</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">int</span><span class="type"></span></span> <code class="parameter">$port</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$socket</code><span class="initializer"> = <strong><code>null</code></strong></span></span><br>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.debug.html" class="methodname">debug</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$options</code></span>): <span class="type"><span class="type true">true</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.execute-query.html" class="methodname">execute_query</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type">array</span><span class="type"></span></span> <code class="parameter">$params</code><span class="initializer"> = <strong><code>null</code></strong></span></span>): <span class="type"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span>|<span class="type">bool</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.get-charset.html" class="methodname">get_charset</a></span>(): <span class="type"><span class="type">?</span><span class="type">object</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.get-connection-stats.html" class="methodname">get_connection_stats</a></span>(): <span class="type">array</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.get-warnings.html" class="methodname">get_warnings</a></span>(): <span class="type"><span class="type"><a href="class.mysqli-warning.html" class="type mysqli_warning">mysqli_warning</a></span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.init.html" class="methodname">init</a></span>(): <span class="type"><span class="type">?</span><span class="type">bool</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.options.html" class="methodname">options</a></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$option</code></span>, <span class="methodparam"><span class="type"><span class="type">string</span>|<span class="type">int</span></span> <code class="parameter">$value</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.ping.html" class="methodname">ping</a></span>(): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><a href="mysqli.poll.html" class="methodname">poll</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">array</span><span class="type"></span></span> <code class="parameter reference">&$read</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">array</span><span class="type"></span></span> <code class="parameter reference">&$error</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">array</span> <code class="parameter reference">&$reject</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$seconds</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$microseconds</code><span class="initializer"> = 0</span></span><br>): <span class="type"><span class="type">int</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.prepare.html" class="methodname">prepare</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>): <span class="type"><span class="type"><a href="class.mysqli-stmt.html" class="type mysqli_stmt">mysqli_stmt</a></span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.query.html" class="methodname">query</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$result_mode</code><span class="initializer"> = <strong><code>MYSQLI_STORE_RESULT</code></strong></span></span>): <span class="type"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span>|<span class="type">bool</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.real-connect.html" class="methodname">real_connect</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$hostname</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$username</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$password</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$database</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">int</span><span class="type"></span></span> <code class="parameter">$port</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$socket</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span><br>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.real-escape-string.html" class="methodname">real_escape_string</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$string</code></span>): <span class="type">string</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.real-query.html" class="methodname">real_query</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.reap-async-query.html" class="methodname">reap_async_query</a></span>(): <span class="type"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span>|<span class="type">bool</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.refresh.html" class="methodname">refresh</a></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.release-savepoint.html" class="methodname">release_savepoint</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.rollback.html" class="methodname">rollback</a></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$name</code><span class="initializer"> = <strong><code>null</code></strong></span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.savepoint.html" class="methodname">savepoint</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.select-db.html" class="methodname">select_db</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$database</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.set-charset.html" class="methodname">set_charset</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$charset</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.ssl-set.html" class="methodname">ssl_set</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$certificate</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$ca_certificate</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$ca_path</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$cipher_algos</code></span><br>): <span class="type"><span class="type true">true</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.stat.html" class="methodname">stat</a></span>(): <span class="type"><span class="type">string</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.stmt-init.html" class="methodname">stmt_init</a></span>(): <span class="type"><span class="type"><a href="class.mysqli-stmt.html" class="type mysqli_stmt">mysqli_stmt</a></span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.store-result.html" class="methodname">store_result</a></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code><span class="initializer"> = 0</span></span>): <span class="type"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.thread-safe.html" class="methodname">thread_safe</a></span>(): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="mysqli.use-result.html" class="methodname">use_result</a></span>(): <span class="type"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span>|<span class="type"><span class="type false">false</span></span></span></div>
+
+   }</div>
+
+ 
+  </div>
+ </div>
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Índice</h2><ul class="chunklist chunklist_reference"><li><a href="mysqli.affected-rows.html">mysqli-&gt;affected_rows</a> — Retorna o n&uacute;mero de linhas afetadas pela opera&ccedil;&atilde;o MySQL anterior</li><li><a href="mysqli.autocommit.html">mysqli::autocommit</a> — Ativa ou desativa o salvar automaticamente as modifica&ccedil;&otilde;es no banco de dados</li><li><a href="mysqli.begin-transaction.html">mysqli::begin_transaction</a> — Inicia uma transa&ccedil;&atilde;o</li><li><a href="mysqli.change-user.html">mysqli::change_user</a> — Modifica o usu&aacute;rio para a conex&atilde;o com o banco de dados especificada</li><li><a href="mysqli.character-set-name.html">mysqli::character_set_name</a> — Retorna o conjunto de caracteres padr&atilde;o para a conex&atilde;o com o banco de dados</li><li><a href="mysqli.close.html">mysqli::close</a> — Closes a previously opened database connection</li><li><a href="mysqli.commit.html">mysqli::commit</a> — Salva a transa&ccedil;&atilde;o atual</li><li><a href="mysqli.connect-errno.html">mysqli::$connect_errno</a> — Returns the error code from last connect call</li><li><a href="mysqli.connect-error.html">mysqli::$connect_error</a> — Returns a description of the last connection error</li><li><a href="mysqli.construct.html">mysqli::__construct</a> — Abre uma nova conex&atilde;o com o servidor MySQL</li><li><a href="mysqli.debug.html">mysqli::debug</a> — Performs debugging operations</li><li><a href="mysqli.dump-debug-info.html">mysqli::dump_debug_info</a> — Descarrega informa&ccedil;&atilde;o de debug no log</li><li><a href="mysqli.errno.html">mysqli-&gt;errno</a> — Retorna o c&oacute;digo de erro para a chamada de fun&ccedil;&atilde;o mais recente</li><li><a href="mysqli.error-list.html">mysqli::$error_list</a> — Retorna uma lista de erros do &uacute;ltimo comando executado</li><li><a href="mysqli.error.html">mysqli-&gt;error</a> — Retorna uma string descrevendo o ultimo erro</li><li><a href="mysqli.execute-query.html">mysqli::execute_query</a> — Prepara, vincula par&acirc;metros e executa a instru&ccedil;&atilde;o SQL</li><li><a href="mysqli.field-count.html">mysqli::$field_count</a> — Returns the number of columns for the most recent query</li><li><a href="mysqli.get-charset.html">mysqli::get_charset</a> — Retorna um objeto de conjunto de caracteres</li><li><a href="mysqli.get-client-info.html">mysqli::get_client_info</a> — Retorna a vers&atilde;o do cliente MySQL como uma string</li><li><a href="mysqli.get-client-version.html">mysqli::get_client_version</a> — Obt&eacute;m informa&ccedil;&atilde;o sobre o cliente MySQL</li><li><a href="mysqli.get-connection-stats.html">mysqli::get_connection_stats</a> — Retorna estat&iacute;sticas sobre a conex&atilde;o do cliente</li><li><a href="mysqli.get-host-info.html">mysqli::$host_info</a> — Returns a string representing the type of connection used</li><li><a href="mysqli.get-proto-info.html">mysqli-&gt;protocol_version</a> — Retorna a vers&atilde;o do protocolo MySQL usada</li><li><a href="mysqli.get-server-info.html">mysqli-&gt;server_info</a> — Retorna a vers&atilde;o do servidor MySQL</li><li><a href="mysqli.get-server-version.html">mysqli-&gt;server_version</a> — Retorna a vers&atilde;o do servidor MySQL como um integer</li><li><a href="mysqli.get-warnings.html">mysqli::get_warnings</a> — Get result of SHOW WARNINGS</li><li><a href="mysqli.info.html">mysqli_info</a> — Recupera informa&ccedil;&atilde;o sobre a mais recente query executada</li><li><a href="mysqli.init.html">mysqli::init</a> — Initializes MySQLi and returns an object for use with mysqli_real_connect()</li><li><a href="mysqli.insert-id.html">mysqli::$insert_id</a> — Returns the value generated for an AUTO_INCREMENT column by the last query</li><li><a href="mysqli.kill.html">mysqli::kill</a> — Solicita ao servidor o encerramento de um thread do MySQL</li><li><a href="mysqli.more-results.html">mysqli::more_results</a> — Verifica se h&aacute; mais algum resultado de uma multi query</li><li><a href="mysqli.multi-query.html">mysqli::multi_query</a> — Performs a query on the database</li><li><a href="mysqli.next-result.html">mysqli::next_result</a> — Prepara o pr&oacute;ximo resultado de multi_query</li><li><a href="mysqli.options.html">mysqli::options</a> — Define op&ccedil;&otilde;es</li><li><a href="mysqli.ping.html">mysqli::ping</a> — Faz ping em uma conex&atilde;o de servidor ou tenta reconectar se a conex&atilde;o cair</li><li><a href="mysqli.poll.html">mysqli::poll</a> — Poll connections</li><li><a href="mysqli.prepare.html">mysqli::prepare</a> — Prepara uma instru&ccedil;&atilde;o SQL para execu&ccedil;&atilde;o</li><li><a href="mysqli.query.html">mysqli::query</a> — Executa uma consulta no banco de dados</li><li><a href="mysqli.real-connect.html">mysqli::real_connect</a> — Abre uma conex&atilde;o com um servidor mysql</li><li><a href="mysqli.real-escape-string.html">mysqli::real_escape_string</a> — Escape caracteres especiais em uma string para uso em uma instru&ccedil;&atilde;o SQL, levando em considera&ccedil;&atilde;o o conjunto de caracteres atual da conex&atilde;o</li><li><a href="mysqli.real-query.html">mysqli::real_query</a> — Executa uma consulta SQL</li><li><a href="mysqli.reap-async-query.html">mysqli::reap_async_query</a> — Obtenha o resultado da consulta ass&iacute;ncrona</li><li><a href="mysqli.refresh.html">mysqli::refresh</a> — Atualiza</li><li><a href="mysqli.release-savepoint.html">mysqli::release_savepoint</a> — Remove o ponto de salvamento nomeado do conjunto de pontos de salvamento da transa&ccedil;&atilde;o atual</li><li><a href="mysqli.rollback.html">mysqli::rollback</a> — Reverte a transa&ccedil;&atilde;o atual</li><li><a href="mysqli.savepoint.html">mysqli::savepoint</a> — Define um ponto de salvamento de transa&ccedil;&atilde;o nomeado</li><li><a href="mysqli.select-db.html">mysqli::select_db</a> — Seleciona o banco de dados padr&atilde;o para consultas de banco de dados</li><li><a href="mysqli.set-charset.html">mysqli::set_charset</a> — Define o conjunto de caracteres do cliente</li><li><a href="mysqli.sqlstate.html">mysqli::$sqlstate</a> — Retorna o erro SQLSTATE da opera&ccedil;&atilde;o MySQL anterior</li><li><a href="mysqli.ssl-set.html">mysqli::ssl_set</a> — Usado para estabelecer conex&otilde;es seguras usando SSL</li><li><a href="mysqli.stat.html">mysqli::stat</a> — Obt&eacute;m o status atual do sistema</li><li><a href="mysqli.stmt-init.html">mysqli::stmt_init</a> — Inicializa uma instru&ccedil;&atilde;o e retorna um objeto para uso com mysqli_stmt_prepare</li><li><a href="mysqli.store-result.html">mysqli::store_result</a> — Transfere um conjunto de resultados da &uacute;ltima consulta</li><li><a href="mysqli.thread-id.html">mysqli::$thread_id</a> — Retorna o ID da thread para a conex&atilde;o atual</li><li><a href="mysqli.thread-safe.html">mysqli::thread_safe</a> — Retorna se a seguran&ccedil;a de thread &eacute; dada ou n&atilde;o</li><li><a href="mysqli.use-result.html">mysqli::use_result</a> — Iniciar uma recupera&ccedil;&atilde;o de conjunto de resultados</li><li><a href="mysqli.warning-count.html">mysqli::$warning_count</a> — Retorna o n&uacute;mero de avisos da &uacute;ltima consulta para o link fornecido</li></ul>
+</div>
+</div></div></body></html>

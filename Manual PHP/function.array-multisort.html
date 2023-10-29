@@ -1,0 +1,350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ordena m&uacute;ltiplos arrays ou arrays multidimensionais</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.array-merge.html">« array_merge</a></li>
+      <li style="float: right;"><a href="function.array-pad.html">array_pad »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Ordena m&uacute;ltiplos arrays ou arrays multidimensionais</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.array-multisort" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_multisort</h1>
+  <p class="refpurpose"><span class="refname">array_multisort</span> &mdash; <span class="dc-title">Ordena múltiplos arrays ou arrays multidimensionais</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.array-multisort-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>array_multisort</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">array</span> <code class="parameter reference">&$array1</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$array1_sort_order</code><span class="initializer"> = SORT_ASC</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$array1_sort_flags</code><span class="initializer"> = SORT_REGULAR</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">...$rest</code></span><br>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>array_multisort()</strong></span> pode ser usada para ordenar
+   vários arrays de uma vez, ou um array multidimensional por uma
+   ou mais dimensões.
+  </p>
+  <p class="para">
+   Chaves associativas (<span class="type">string</span>) serão mantidas, mas chaves
+   númericas serão reindexadas.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+ <p class="para">
+  Se dois elementos são comparados como iguais, eles mantêm sua ordem original.
+  Antes do PHP 8.0.0, sua ordem relativa no array ordenado era indefinida.
+ </p>
+</p></blockquote>
+
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+ <p class="para">
+  Redefine o ponteiro interno do array para o primeiro elemento.
+ </p>
+</p></blockquote>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.array-multisort-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">array1</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Um <span class="type">array</span> a ser ordenado.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">array1_sort_order</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A ordenação para ser utilizada no argumento <span class="type">array</span> anterior. Pode ser
+       <strong><code>SORT_ASC</code></strong> para ordenar na ascendente (crescente) <strong><code>SORT_DESC</code></strong>
+       para ordernar na descendente (decrescente).
+      </p>
+      <p class="para">
+       Este argumento pode ser trocado com <code class="parameter">array1_sort_flags</code>
+       ou ser omitido completamente, e nesse caso é utilizado <strong><code>SORT_ASC</code></strong>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">array1_sort_flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Opções de ordenamento para o argumento <span class="type">array</span> anterior:
+      </p>
+      <p class="para">
+       Flags:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_REGULAR</code></strong> - comparar itens normalmente
+         (não modidifica tipos)</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_NUMERIC</code></strong> - compare itens numericamente</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara"><strong><code>SORT_STRING</code></strong> - compare itens como strings</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SORT_LOCALE_STRING</code></strong> - compare itens como
+          strings, utilizando o locate atual. Utiliza o locale,
+          que pode ser modificado com <span class="function"><a href="function.setlocale.html" class="function">setlocale()</a></span>
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SORT_NATURAL</code></strong> - compare itens como strings
+          utilizando a &quot;ordenação natural&quot; de <span class="function"><a href="function.natsort.html" class="function">natsort()</a></span>
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SORT_FLAG_CASE</code></strong> - pode ser combinado
+          (bitwise OR) com
+          <strong><code>SORT_STRING</code></strong> ou
+          <strong><code>SORT_NATURAL</code></strong> para ordenar as strings sem considerar maiúsculas e minúsculas
+         </span>
+        </li>
+       </ul>
+      </p>
+      <p class="para">
+       Este argumento pode ser trocado com <code class="parameter">array1_sort_order</code>
+       ou completamente omitido, e nesse caso é utilizado <strong><code>SORT_REGULAR</code></strong>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">rest</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Outros arrays, podendo informar também ordem e flags de ordenação. Somente elementos
+       correspondentes a elementos equivalentes nos arrays anteriores são comparados.
+       Em outras palavras, a ordem é lexigráfica.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.array-multisort-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.array-multisort-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Ordenando vários arrays</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$ar1 </span><span style="color: #007700">= array(</span><span style="color: #0000BB">10</span><span style="color: #007700">, </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ar2 </span><span style="color: #007700">= array(</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #0000BB">4</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">array_multisort</span><span style="color: #007700">(</span><span style="color: #0000BB">$ar1</span><span style="color: #007700">, </span><span style="color: #0000BB">$ar2</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$ar1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$ar2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Nesse exemplo, após a ordenação o primeiro array conterá 0,
+     10, 100, 100. O segundo array conterá 4, 1, 2, 3. Os
+     itens no segundo array correspondentes ao itens idênticos
+     do primeiro array (100 e 100) também são ordenados.
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(4) {
+  [0]=&gt; int(0)
+  [1]=&gt; int(10)
+  [2]=&gt; int(100)
+  [3]=&gt; int(100)
+}
+array(4) {
+  [0]=&gt; int(4)
+  [1]=&gt; int(1)
+  [2]=&gt; int(2)
+  [3]=&gt; int(3)
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #2 Ordenando arrays multi dimensionais</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$ar </span><span style="color: #007700">= array(<br />       array(</span><span style="color: #DD0000">"10"</span><span style="color: #007700">, </span><span style="color: #0000BB">11</span><span style="color: #007700">, </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #DD0000">"a"</span><span style="color: #007700">),<br />       array(   </span><span style="color: #0000BB">1</span><span style="color: #007700">,  </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">"2"</span><span style="color: #007700">,   </span><span style="color: #0000BB">3</span><span style="color: #007700">,   </span><span style="color: #0000BB">1</span><span style="color: #007700">)<br />      );<br /></span><span style="color: #0000BB">array_multisort</span><span style="color: #007700">(</span><span style="color: #0000BB">$ar</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">], </span><span style="color: #0000BB">SORT_ASC</span><span style="color: #007700">, </span><span style="color: #0000BB">SORT_STRING</span><span style="color: #007700">,<br />                </span><span style="color: #0000BB">$ar</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">], </span><span style="color: #0000BB">SORT_NUMERIC</span><span style="color: #007700">, </span><span style="color: #0000BB">SORT_DESC</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$ar</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Neste exemplo, após a ordenação o primeiro array será transformado para
+     &quot;10&quot;, 100, 100, 11, &quot;a&quot; (ordenado os itens como strings em ordem
+     crescente). O segundo conterá 1, 3, &quot;2&quot;, 2, 1 (ordenado como números,
+     em ordem decrescente).
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(2) {
+  [0]=&gt; array(5) {
+    [0]=&gt; string(2) &quot;10&quot;
+    [1]=&gt; int(100)
+    [2]=&gt; int(100)
+    [3]=&gt; int(11)
+    [4]=&gt; string(1) &quot;a&quot;
+  }
+  [1]=&gt; array(5) {
+    [0]=&gt; int(1)
+    [1]=&gt; int(3)
+    [2]=&gt; string(1) &quot;2&quot;
+    [3]=&gt; int(2)
+    [4]=&gt; int(1)
+  }
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #3 Ordenando resultados de bancos de dados</strong></p>
+    <div class="example-contents"><p>
+     Neste exemplo, cada elemento no array <var class="varname">data</var>
+     representa um iten em uma tabela. Esse tipo de conjunto de dados é típico
+     de registros de base de dados.
+    </p></div>
+    <div class="example-contents"><p>
+     Exemplo:
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+volume | edition
+-------+--------
+    67 |       2
+    86 |       1
+    85 |       6
+    98 |       2
+    86 |       6
+    67 |       7
+</pre></div>
+    </div>
+    <div class="example-contents"><p>
+     Os dados estão em um array, chamado <var class="varname">data</var>. Isso pode ser obtido,
+     por exemplo, de rodar <span class="function"><a href="mysqli-result.fetch-assoc.html" class="function">mysqli_fetch_assoc()</a></span> em loop.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$data</span><span style="color: #007700">[] = array(</span><span style="color: #DD0000">'volume' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">67</span><span style="color: #007700">, </span><span style="color: #DD0000">'edition' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[] = array(</span><span style="color: #DD0000">'volume' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">86</span><span style="color: #007700">, </span><span style="color: #DD0000">'edition' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[] = array(</span><span style="color: #DD0000">'volume' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">85</span><span style="color: #007700">, </span><span style="color: #DD0000">'edition' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[] = array(</span><span style="color: #DD0000">'volume' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">98</span><span style="color: #007700">, </span><span style="color: #DD0000">'edition' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[] = array(</span><span style="color: #DD0000">'volume' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">86</span><span style="color: #007700">, </span><span style="color: #DD0000">'edition' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[] = array(</span><span style="color: #DD0000">'volume' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">67</span><span style="color: #007700">, </span><span style="color: #DD0000">'edition' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Vamos ordenar <var class="varname">volume</var> decrescente e
+     <var class="varname">edition</var> crescente.
+    </p></div>
+    <div class="example-contents"><p>
+     Aqui temos um array de registros, mas <span class="function"><strong>array_multisort()</strong></span>
+     exige um array de colunas, então é preciso converter os dados utilizando o código abaixo
+     para então executar a ordenação.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Obtain a list of columns<br /></span><span style="color: #007700">foreach (</span><span style="color: #0000BB">$data </span><span style="color: #007700">as </span><span style="color: #0000BB">$key </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$row</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">$volume</span><span style="color: #007700">[</span><span style="color: #0000BB">$key</span><span style="color: #007700">]  = </span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'volume'</span><span style="color: #007700">];<br />    </span><span style="color: #0000BB">$edition</span><span style="color: #007700">[</span><span style="color: #0000BB">$key</span><span style="color: #007700">] = </span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'edition'</span><span style="color: #007700">];<br />}<br /><br /></span><span style="color: #FF8000">// Você pode usar array_column() em vez do código acima<br /></span><span style="color: #0000BB">$volume  </span><span style="color: #007700">= </span><span style="color: #0000BB">array_column</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">, </span><span style="color: #DD0000">'volume'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$edition </span><span style="color: #007700">= </span><span style="color: #0000BB">array_column</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">, </span><span style="color: #DD0000">'edition'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Ordena os dados por volume decrescente, edição crescente.<br />// Adiciona $data como último parâmetro, para ordenar por uma chave comum.<br /></span><span style="color: #0000BB">array_multisort</span><span style="color: #007700">(</span><span style="color: #0000BB">$volume</span><span style="color: #007700">, </span><span style="color: #0000BB">SORT_DESC</span><span style="color: #007700">, </span><span style="color: #0000BB">$edition</span><span style="color: #007700">, </span><span style="color: #0000BB">SORT_ASC</span><span style="color: #007700">, </span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     O conjunto de dados agora está ordenado, assim:
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+volume | edition
+-------+--------
+    98 |       2
+    86 |       1
+    86 |       6
+    85 |       6
+    67 |       2
+    67 |       7
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #4 Ordenação case insensitive</strong></p>
+    <div class="example-contents"><p>
+     <strong><code>SORT_STRING</code></strong> e
+     <strong><code>SORT_REGULAR</code></strong> são sensíveis a maiúsculas e minúsculas, de forma que strings
+     começando com maiúsculas aparecerão primeiro que strings começando com
+     minúsculas.
+    </p></div>
+    <div class="example-contents"><p>
+     Para realizar uma ordenação case insensitive é preciso forçar a ordenação
+     a rodar com uma cópia do array original, transformado em minúsculas.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$array </span><span style="color: #007700">= array(</span><span style="color: #DD0000">'Alpha'</span><span style="color: #007700">, </span><span style="color: #DD0000">'atomic'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Beta'</span><span style="color: #007700">, </span><span style="color: #DD0000">'bank'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$array_lowercase </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map</span><span style="color: #007700">(</span><span style="color: #DD0000">'strtolower'</span><span style="color: #007700">, </span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">array_multisort</span><span style="color: #007700">(</span><span style="color: #0000BB">$array_lowercase</span><span style="color: #007700">, </span><span style="color: #0000BB">SORT_ASC</span><span style="color: #007700">, </span><span style="color: #0000BB">SORT_STRING</span><span style="color: #007700">, </span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; Alpha
+    [1] =&gt; atomic
+    [2] =&gt; bank
+    [3] =&gt; Beta
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.array-multisort-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.usort.html" class="function" rel="rdfs-seeAlso">usort()</a> - Sort an array by values using a user-defined comparison function</span></li>
+    <li class="member"><a href="array.sorting.html" class="link">Comparação entre as funções de ordenação de array</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

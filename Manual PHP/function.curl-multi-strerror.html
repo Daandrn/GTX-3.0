@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retorna uma string que descreve o c&oacute;digo de erro</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.curl-multi-setopt.html">« curl_multi_setopt</a></li>
+      <li style="float: right;"><a href="function.curl-pause.html">curl_pause »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.curl.html">Fun&ccedil;&otilde;es cURL</a></li>
+    <li>Retorna uma string que descreve o c&oacute;digo de erro</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.curl-multi-strerror" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">curl_multi_strerror</h1>
+  <p class="refpurpose"><span class="refname">curl_multi_strerror</span> &mdash; <span class="dc-title">Retorna uma string que descreve o código de erro</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.curl-multi-strerror-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>curl_multi_strerror</strong></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$error_code</code></span>): <span class="type"><span class="type">?</span><span class="type">string</span></span></div>
+
+  <p class="para rdfs-comment">
+   Retorna um texto descrevendo o código de erro de CURLM informado como parâmetro.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.curl-multi-strerror-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <dl>
+   
+    <dt>
+<code class="parameter">error_code</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Uma das constantes de <a href="http://curl.haxx.se/libcurl/c/libcurl-errors.html" class="link external">&raquo;&nbsp;códigos de erros de CURLM</a>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.curl-multi-strerror-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna a descrição do erro para um código de erro válido, caso contrário <strong><code>null</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.curl-multi-strerror-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo de <span class="function"><strong>curl_multi_strerror()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Cria os manipuladores cURL<br /></span><span style="color: #0000BB">$ch1 </span><span style="color: #007700">= </span><span style="color: #0000BB">curl_init</span><span style="color: #007700">(</span><span style="color: #DD0000">"http://example.com/"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ch2 </span><span style="color: #007700">= </span><span style="color: #0000BB">curl_init</span><span style="color: #007700">(</span><span style="color: #DD0000">"http://php.net/"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Cria um "multi" manipulador cURL<br /></span><span style="color: #0000BB">$mh </span><span style="color: #007700">= </span><span style="color: #0000BB">curl_multi_init</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// Adiciona os manipuladores ao "multi" manipulador<br /></span><span style="color: #0000BB">curl_multi_add_handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$mh</span><span style="color: #007700">, </span><span style="color: #0000BB">$ch1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">curl_multi_add_handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$mh</span><span style="color: #007700">, </span><span style="color: #0000BB">$ch2</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Executa o "multi" manipulador<br /></span><span style="color: #007700">do {<br />    </span><span style="color: #0000BB">$status </span><span style="color: #007700">= </span><span style="color: #0000BB">curl_multi_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$mh</span><span style="color: #007700">, </span><span style="color: #0000BB">$active</span><span style="color: #007700">);<br />    if (</span><span style="color: #0000BB">$active</span><span style="color: #007700">) {<br />        </span><span style="color: #0000BB">curl_multi_select</span><span style="color: #007700">(</span><span style="color: #0000BB">$mh</span><span style="color: #007700">);<br />    }<br />} while (</span><span style="color: #0000BB">$active </span><span style="color: #007700">&amp;&amp; </span><span style="color: #0000BB">$status </span><span style="color: #007700">=== </span><span style="color: #0000BB">CURLM_OK</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Verifica se há erros<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$status </span><span style="color: #007700">!= </span><span style="color: #0000BB">CURLM_OK</span><span style="color: #007700">) {<br />    </span><span style="color: #FF8000">// Exibe mensagem de erro<br />    </span><span style="color: #007700">echo </span><span style="color: #DD0000">"ERROR!\n " </span><span style="color: #007700">. </span><span style="color: #0000BB">curl_multi_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">$status</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.curl-multi-strerror-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.curl-strerror.html" class="function" rel="rdfs-seeAlso">curl_strerror()</a> - Retorna uma string que descreve o c&oacute;digo de erro informado</span></li>
+    <li class="member"><a href="http://curl.haxx.se/libcurl/c/libcurl-errors.html" class="link external">&raquo;&nbsp;Códigos de erros do cURL</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

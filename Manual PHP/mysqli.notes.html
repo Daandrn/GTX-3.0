@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Notes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqli.constants.html">« Constantes pr&eacute;-definidas</a></li>
+      <li style="float: right;"><a href="mysqli.summary.html">Resumo da Fun&ccedil;&atilde;o de Extens&atilde;o do MySQLi »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.mysqli.html">MySQLi</a></li>
+    <li>Notes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqli.notes" class="chapter">
+ <h1>Notes</h1>
+
+
+ <p class="para">Algumas notas de implementação:</p>
+
+ <ol type="1">
+  <li class="listitem">
+   <p class="para">
+     Foi adicionado suporte para <code class="literal">MYSQL_TYPE_GEOMETRY</code>
+     à extensão MySQLi no PHP 5.3.
+   </p>
+  </li>
+  <li class="listitem">
+   <p class="para">
+     Observe que existem diferentes implementações internas em
+     <code class="literal">libmysqlclient</code> e <code class="literal">mysqlnd</code> para lidar
+     com colunas do tipo <code class="literal">MYSQL_TYPE_GEOMETRY</code>. De um modo geral,
+     o <code class="literal">mysqlnd</code> irá alocar significativamente menos memória. Por
+     exemplo, se houver uma coluna <code class="literal">POINT</code>
+     em um conjunto de resultados, <code class="literal">libmysqlclient</code> pode pré-alocar até
+     4 GB de RAM, embora sejam necessários menos de 50 bytes para
+     manter uma coluna <code class="literal">POINT</code> na memória. A alocação de
+     memória é muito menor, menos de 50 bytes, se estiver
+     usando <code class="literal">mysqlnd</code>.
+   </p>
+  </li>
+ </ol>
+
+</div>
+</div></div></body></html>

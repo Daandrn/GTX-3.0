@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Codifica os dados atuais da sess&atilde;o como uma sess&atilde;o codificada em formato string</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.session-destroy.html">« session_destroy</a></li>
+      <li style="float: right;"><a href="function.session-gc.html">session_gc »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.session.html">Fun&ccedil;&otilde;es para Sess&atilde;o</a></li>
+    <li>Codifica os dados atuais da sess&atilde;o como uma sess&atilde;o codificada em formato string</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.session-encode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_encode</h1>
+  <p class="refpurpose"><span class="refname">session_encode</span> &mdash; <span class="dc-title">Codifica os dados atuais da sessão como uma sessão codificada em formato string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.session-encode-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>session_encode</strong></span>(): <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>session_encode()</strong></span> retorna uma string serializada do
+   conteúdo atual da sessão armazenados na super global $_SESSION.
+  </p>
+  <p class="para">
+   Por padrão, o método de serialização usado é interno do PHP e não é o mesmo que <span class="function"><a href="function.serialize.html" class="function">serialize()</a></span>.
+   O método de serialização pode ser configurado usando <a href="session.configuration.html#ini.session.serialize-handler" class="link">session.serialize_handler</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.session-encode-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna, codificado, o conteúdo da sessão atual.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.session-encode-notes">
+  <h3 class="title">Notas</h3>
+  <div class="warning"><strong class="warning">Aviso</strong>
+   <p class="para">
+    Must call <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> before using <span class="function"><strong>session_encode()</strong></span>.
+   </p>
+  </div>
+ </div>
+ 
+ 
+ <div class="refsect1 seealso" id="refsect1-function.session-encode-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.session-decode.html" class="function" rel="rdfs-seeAlso">session_decode()</a> - Decodifica dados de sess&atilde;o de uma sess&atilde;o codificada em formato string</span></li>
+    <li class="member"><a href="session.configuration.html#ini.session.serialize-handler" class="link">session.serialize_handler</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

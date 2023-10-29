@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Azure App Services</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.cloud.html">« Instala&ccedil;&atilde;o em Plataformas de Computa&ccedil;&atilde;o em Nuvem</a></li>
+      <li style="float: right;"><a href="install.cloud.ec2.html">Amazon EC2 »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.cloud.html">Instala&ccedil;&atilde;o em Plataformas de Computa&ccedil;&atilde;o em Nuvem</a></li>
+    <li>Azure App Services</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.cloud.azure" class="sect1">
+  <h2 class="title">Azure App Services</h2>
+  <p class="para">
+    O PHP é freqüentemente usado no Azure App Services (também conhecido como Microsoft Azure, Windows Azure, Azure Web Apps).
+  </p>
+  <p class="para">O Azure App Services gerencia pools de Servidores Web Windows para hospedar sua aplicação web, como uma alternativa ao gerenciamento do seu próprio servidor web em suas próprias VMs Azure Compute ou outros servidores.
+  </p>
+  <p class="para">O PHP já está automaticamente habilitado para o seu site web do Azure App Services. No Portal Azure, selecione seu site web e você poderá escolher qual versão do PHP usar. Você pode querer escolher uma versão mais recente que a padrão.
+  </p>
+
+  <p class="para">Como tal, o PHP e suas extensões serão executados no Azure App Services, assim como serão em outros servidores Windows.
+
+  Grande parte da base de conhecimento também é portável, então veja a <a href="install.windows.troubleshooting.html" class="link">Página de Solução de Problemas do Windows</a> também.
+
+  No entanto, a interface de gerenciamento para o Azure App Services é diferente:
+  </p>
+
+  <ul class="itemizedlist">
+    <li class="listitem">
+      <p class="para">Portal Azure: crie, edite configurações e delete sites web. <a href="https://portal.azure.com/" class="link external">&raquo;&nbsp;Portal Azure</a>
+      </p>
+    </li>
+    <li class="listitem">
+      <p class="para">Dashboard Kudu: se o seu site é [nome do seu site web].azurewebsites.net, então, o dashboard Kudu é <a href="https://your_web_site_name.scm.azurewebsites.net/" class="link external">&raquo;&nbsp;https://[nome do seu site web].scm.azurewebsites.net/</a>. O Dashboard dá acesso a algumas capacidades de depuração, gerenciamento de arquivos e extensões de site. As extensões de site são um mecanismo do Azure para adicionar programas extras, como compilações de preview do PHP, ao seu site web.
+      </p>
+    </li>
+    <li class="listitem">
+      <p class="para">Você não pode usar o Gerenciador do IIS, o Gerenciador de Servidores ou o RDP.</p>
+    </li>
+  </ul>
+
+  <p class="para">Há também um SDK do PHP para programaticamente usar vários Azure Services a partir do seu código PHP. Veja o <a href="https://github.com/Azure/azure-sdk-for-php" class="link external">&raquo;&nbsp;Azure SDK para PHP</a>.
+  </p>
+
+  <p class="para">Para obter mais informações, consulte o <a href="https://azure.microsoft.com/en-us/develop/php/" class="link external">&raquo;&nbsp;Centro de Desenvolvedores PHP do Azure</a>
+  </p>
+
+  <div class="sect2">
+    <h3 class="title">WinCache</h3>
+  <p class="para">O WinCache está habilitado por padrão no Azure App Services e é recomendado que você o mantenha habilitado.
+
+  Se você instalar sua própria compilação do PHP, você deve habilitar o WinCache nela também.
+  </p>
+  </div>
+
+  <div class="sect2">
+    <h3 class="title">Compilação Customizada do PHP</h3>
+  <p class="para">Você pode fazer o upload de sua própria compilação do PHP para o seu D:\Home (C:\ NÃO é gravável). Em seguida, no Portal Azure, defina SCRIPT_PROCESSOR para .php como o caminho absoluto do arquivo php-cgi.exe na sua compilação.
+  </p>
+  </div>
+
+</div></div></div></body></html>

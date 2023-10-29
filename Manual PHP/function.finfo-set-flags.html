@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Define as op&ccedil;&otilde;es de configura&ccedil;&atilde;o da libmagic</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.finfo-open.html">« finfo_open</a></li>
+      <li style="float: right;"><a href="function.mime-content-type.html">mime_content_type »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.fileinfo.html">Fun&ccedil;&otilde;es da Fileinfo</a></li>
+    <li>Define as op&ccedil;&otilde;es de configura&ccedil;&atilde;o da libmagic</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.finfo-set-flags" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">finfo_set_flags</h1>
+  <h1 class="refname">finfo::set_flags</h1>
+  <p class="refpurpose"><span class="refname">finfo_set_flags</span> -- <span class="refname">finfo::set_flags</span> &mdash; <span class="dc-title">Define as opções de configuração da libmagic</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.finfo-set-flags-description">
+  <h3 class="title">Descrição</h3>
+  <p class="para">Estilo procedural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><a href="finfo.set-flags.html" class="methodname">finfo_set_flags</a></span>(<span class="methodparam"><span class="type"><a href="class.finfo.html" class="type finfo">finfo</a></span> <code class="parameter">$finfo</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code></span>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">Estilo orientado a objetos</p>
+  <div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="finfo.set-flags.html" class="methodname">finfo::set_flags</a></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code></span>): <span class="type">bool</span></div>
+
+
+  <p class="para rdfs-comment">
+   Esta função define várias opções de Fileinfo.
+   As opções também podem ser definidas diretamente em
+   <span class="function"><a href="function.finfo-open.html" class="function">finfo_open()</a></span> ou em outras funções da Fileinfo.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.finfo-set-flags-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">finfo</code></dt>
+
+     <dd>
+
+      <p class="para">Uma instância de <span class="classname"><a href="class.finfo.html" class="classname">finfo</a></span>, retornada por <span class="function"><a href="function.finfo-open.html" class="function">finfo_open()</a></span>.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Uma ou disjunção de mais
+       <a href="fileinfo.constants.html" class="link">constantes Fileinfo</a>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.finfo-set-flags-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.finfo-set-flags-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+ <td>8.1.0</td>
+ <td>
+  O parâmetro <code class="parameter">finfo</code> agora espera uma instância de <span class="classname"><a href="class.finfo.html" class="classname">finfo</a></span>;
+  anteriormente, um <a href="language.types.resource.html" class="link">resource</a> era esperado.
+ </td>
+</tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Instala&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.fpm.html">« FastCGI Process Manager (FPM)</a></li>
+      <li style="float: right;"><a href="install.fpm.configuration.html">Configura&ccedil;&atilde;o »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.fpm.html">FastCGI Process Manager (FPM)</a></li>
+    <li>Instala&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.fpm.install" class="sect1">
+   <h2 class="title">Instalação</h2>
+    <div class="sect2" id="install.fpm.install.compiling">
+     <h3 class="title">Compilando dos fontes</h3>
+     <p class="para">
+      Para habilitar o FPM na sua compilação do PHP você deve adicionar <code class="literal">--enable-fpm</code>
+      à sua linha de configuração
+     </p>
+     <p class="para">
+      Há várias outras opções de configuração específicas para o FPM (todas opcionais):
+     </p>
+     <ul class="itemizedlist">
+      <li class="listitem">
+       <p class="para">
+        <code class="literal">--with-fpm-user</code> - configura o usuário FPM (padrão - nobody).
+       </p>
+      </li>
+      <li class="listitem">
+       <p class="para">
+        <code class="literal">--with-fpm-group</code> - configura o grupo FPM (padrão - nobody).
+       </p>
+      </li>
+      <li class="listitem">
+       <p class="para">
+        <code class="literal">--with-fpm-systemd</code> - Ativa a integração com o systemd (padrão - no).
+       </p>
+      </li>
+      <li class="listitem">
+       <p class="para">
+        <code class="literal">--with-fpm-acl</code> - Usa Access Control Lists do POSIX (padrão - no).
+       </p>
+      </li>
+      <li class="listitem">
+       <p class="para">
+        <code class="literal">--with-fpm-apparmor</code> - Ativa a integração com o AppArmor (padrão - no).
+       </p>
+      </li>
+      <li class="listitem">
+       <p class="para">
+        <code class="literal">--with-fpm-selinux</code> - Ativa a integração com o SELinux (padrão - no).
+       </p>
+      </li>
+     </ul>
+    </div>
+
+    <div class="sect2">
+      <h3 class="title">Changelog</h3>
+      <p class="para">
+       <table class="doctable informaltable">
+        
+         <thead>
+          <tr>
+           <th>Versão</th>
+           <th>Descrição</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>8.2.0</td>
+           <td>
+            A opção <code class="literal">--with-fpm-selinux</code> foi adicionada.
+           </td>
+          </tr>
+
+          <tr>
+           <td>8.0.0</td>
+           <td>
+            A opção <code class="literal">--with-fpm-apparmor</code> foi adicionada.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </div>
+   </div></div></div></body></html>

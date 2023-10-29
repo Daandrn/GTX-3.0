@@ -1,0 +1,864 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Resumo da Fun&ccedil;&atilde;o de Extens&atilde;o do MySQLi</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqli.notes.html">« Notes</a></li>
+      <li style="float: right;"><a href="class.mysqli.html">mysqli »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.mysqli.html">MySQLi</a></li>
+    <li>Resumo da Fun&ccedil;&atilde;o de Extens&atilde;o do MySQLi</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqli.summary" class="chapter">
+
+ <h1>Resumo da Função de Extensão do MySQLi</h1>
+
+
+ <table id="mysqli.summary.classtable" class="doctable table">
+  <caption><strong>Resumo dos métodos <span class="classname"><a href="class.mysqli.html" class="classname">mysqli</a></span></strong></caption>
+  
+   <thead>
+    <tr>
+     <th>Classe mysqli</th>
+    </tr>
+
+    <tr>
+     <th>Interface POO</th>
+     <th>Interface Procedural</th>
+     <th>Alias (não use)</th>
+     <th>Descrição</th>
+    </tr>
+
+   </thead>
+
+   <tbody class="tbody">
+    <tr>
+     <td><strong>Propriedades</strong></td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.affected-rows.html" class="link">$mysqli::affected_rows</a></td>
+     <td><span class="function"><a href="mysqli.affected-rows.html" class="function">mysqli_affected_rows()</a></span></td>
+     <td>N/A</td>
+     <td>Obtém o número de linhas afetadas em uma operação MySQL anterior</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.get-client-info.html" class="link">$mysqli::client_info</a></td>
+     <td><span class="function"><a href="mysqli.get-client-info.html" class="function">mysqli_get_client_info()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna a versão do cliente MySQL como uma string</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.get-client-version.html" class="link">$mysqli::client_version</a></td>
+     <td><span class="function"><a href="mysqli.get-client-version.html" class="function">mysqli_get_client_version()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna as informações da versão do cliente MySQL como um número inteiro</td>    </tr>
+
+    <tr>
+     <td><a href="mysqli.connect-errno.html" class="link">$mysqli::connect_errno</a></td>
+     <td><span class="function"><a href="mysqli.connect-errno.html" class="function">mysqli_connect_errno()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o código de erro da última chamada de conexão</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.connect-error.html" class="link">$mysqli::connect_error</a></td>
+     <td><span class="function"><a href="mysqli.connect-error.html" class="function">mysqli_connect_error()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna uma descrição de string do último erro de conexão</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.errno.html" class="link">$mysqli::errno</a></td>
+     <td><span class="function"><a href="mysqli.errno.html" class="function">mysqli_errno()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o código de erro da chamada de função mais recente</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.error.html" class="link">$mysqli::error</a></td>
+     <td><span class="function"><a href="mysqli.error.html" class="function">mysqli_error()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna uma descrição de string do último erro</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.field-count.html" class="link">$mysqli::field_count</a></td>
+     <td><span class="function"><a href="mysqli.field-count.html" class="function">mysqli_field_count()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o número de colunas da consulta mais recente</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.get-host-info.html" class="link">$mysqli::host_info</a></td>
+     <td><span class="function"><a href="mysqli.get-host-info.html" class="function">mysqli_get_host_info()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna uma string representando o tipo de conexão usada</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.get-proto-info.html" class="link">$mysqli::protocol_version</a></td>
+     <td><span class="function"><a href="mysqli.get-proto-info.html" class="function">mysqli_get_proto_info()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna a versão do protocolo MySQL usado</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.get-server-info.html" class="link">$mysqli::server_info</a></td>
+     <td><span class="function"><a href="mysqli.get-server-info.html" class="function">mysqli_get_server_info()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna a versão do servidor MySQL</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.get-server-version.html" class="link">$mysqli::server_version</a></td>
+     <td><span class="function"><a href="mysqli.get-server-version.html" class="function">mysqli_get_server_version()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna a versão do servidor MySQL como um inteiro</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.info.html" class="link">$mysqli::info</a></td>
+     <td><span class="function"><a href="mysqli.info.html" class="function">mysqli_info()</a></span></td>
+     <td>N/A</td>
+     <td>Recupera informações sobre a consulta executada mais recentemente</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.insert-id.html" class="link">$mysqli::insert_id</a></td>
+     <td><span class="function"><a href="mysqli.insert-id.html" class="function">mysqli_insert_id()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o id gerado automaticamente usado na última consulta</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.sqlstate.html" class="link">$mysqli::sqlstate</a></td>
+     <td><span class="function"><a href="mysqli.sqlstate.html" class="function">mysqli_sqlstate()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o erro SQLSTATE da operação MySQL anterior</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli.warning-count.html" class="link">$mysqli::warning_count</a></td>
+     <td><span class="function"><a href="mysqli.warning-count.html" class="function">mysqli_warning_count()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o número de avisos da última consulta para o link fornecido</td>
+    </tr>
+
+    <tr>
+     <td><strong>Métodos</strong></td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.autocommit.html" class="methodname">mysqli::autocommit()</a></span></td>
+     <td><span class="function"><a href="mysqli.autocommit.html" class="function">mysqli_autocommit()</a></span></td>
+     <td>N/A</td>
+     <td>Ativa ou desativa modificações de banco de dados de confirmação automática</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.change-user.html" class="methodname">mysqli::change_user()</a></span></td>
+     <td><span class="function"><a href="mysqli.change-user.html" class="function">mysqli_change_user()</a></span></td>
+     <td>N/A</td>
+     <td>Altera o usuário da conexão de banco de dados especificada</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.character-set-name.html" class="methodname">mysqli::character_set_name()</a></span></td>
+     <td><span class="function"><a href="mysqli.character-set-name.html" class="function">mysqli_character_set_name()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o conjunto de caracteres padrão para a conexão do banco de dados</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.close.html" class="methodname">mysqli::close()</a></span></td>
+     <td><span class="function"><a href="mysqli.close.html" class="function">mysqli_close()</a></span></td>
+     <td>N/A</td>
+     <td>Fecha uma conexão de banco de dados aberta anteriormente</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.commit.html" class="methodname">mysqli::commit()</a></span></td>
+     <td><span class="function"><a href="mysqli.commit.html" class="function">mysqli_commit()</a></span></td>
+     <td>N/A</td>
+     <td>Confirma a transação atual</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.construct.html" class="methodname">mysqli::__construct()</a></span></td>
+     <td><span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span></td>
+     <td>N/A</td>
+     <td>Abra uma nova conexão com o servidor MySQL [Nota: método estático (ou seja,
+      classe)]</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.debug.html" class="methodname">mysqli::debug()</a></span></td>
+     <td><span class="function"><a href="mysqli.debug.html" class="function">mysqli_debug()</a></span></td>
+     <td>N/A</td>
+     <td>Executa operações de depuração</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.dump-debug-info.html" class="methodname">mysqli::dump_debug_info()</a></span></td>
+     <td><span class="function"><a href="mysqli.dump-debug-info.html" class="function">mysqli_dump_debug_info()</a></span></td>
+     <td>N/A</td>
+     <td>Despejar informações de depuração no log</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.get-charset.html" class="methodname">mysqli::get_charset()</a></span></td>
+     <td><span class="function"><a href="mysqli.get-charset.html" class="function">mysqli_get_charset()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna um objeto de conjunto de caracteres</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.get-connection-stats.html" class="methodname">mysqli::get_connection_stats()</a></span></td>
+     <td><span class="function"><a href="mysqli.get-connection-stats.html" class="function">mysqli_get_connection_stats()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna estatísticas de conexão do cliente. Disponível apenas com o <a href="book.mysqlnd.html" class="link">mysqlnd</a>.</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.get-client-info.html" class="methodname">mysqli::get_client_info()</a></span></td>
+     <td><span class="function"><a href="mysqli.get-client-info.html" class="function">mysqli_get_client_info()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna a versão do cliente MySQL como uma string</td>
+    </tr>
+
+    <tr>
+     <td>N/A</td>
+     <td><span class="function"><a href="function.mysqli-get-client-stats.html" class="function">mysqli_get_client_stats()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna as estatísticas do cliente por processo. Disponível apenas com o <a href="book.mysqlnd.html" class="link">mysqlnd</a>.</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.get-server-info.html" class="methodname">mysqli::get_server_info()</a></span></td>
+     <td><span class="function"><a href="mysqli.get-server-info.html" class="function">mysqli_get_server_info()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna uma string representando a versão do servidor MySQL ao qual a extensão MySQLi está conectada</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.get-warnings.html" class="methodname">mysqli::get_warnings()</a></span></td>
+     <td><span class="function"><a href="mysqli.get-warnings.html" class="function">mysqli_get_warnings()</a></span></td>
+     <td>N/A</td>
+     <td>NÃO DOCUMENTADO</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.init.html" class="methodname">mysqli::init()</a></span></td>
+     <td><span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span></td>
+     <td>N/A</td>
+     <td>Inicializa o MySQLi e retorna um objeto para uso com
+      mysqli_real_connect.</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.kill.html" class="methodname">mysqli::kill()</a></span></td>
+     <td><span class="function"><a href="mysqli.kill.html" class="function">mysqli_kill()</a></span></td>
+     <td>N/A</td>
+     <td>Pede ao servidor para matar um encadeamento do MySQL</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.more-results.html" class="methodname">mysqli::more_results()</a></span></td>
+     <td><span class="function"><a href="mysqli.more-results.html" class="function">mysqli_more_results()</a></span></td>
+     <td>N/A</td>
+     <td>Verifica se há mais resultados de consulta de uma consulta múltipla</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.multi-query.html" class="methodname">mysqli::multi_query()</a></span></td>
+     <td><span class="function"><a href="mysqli.multi-query.html" class="function">mysqli_multi_query()</a></span></td>
+     <td>N/A</td>
+     <td>Executa uma consulta no banco de dados</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.next-result.html" class="methodname">mysqli::next_result()</a></span></td>
+     <td><span class="function"><a href="mysqli.next-result.html" class="function">mysqli_next_result()</a></span></td>
+     <td>N/A</td>
+     <td>Prepara o próximo resultado da multi_query</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.options.html" class="methodname">mysqli::options()</a></span></td>
+     <td><span class="function"><a href="mysqli.options.html" class="function">mysqli_options()</a></span></td>
+     <td><span class="function"><a href="function.mysqli-set-opt.html" class="function">mysqli_set_opt()</a></span></td>
+     <td>Define opções</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.ping.html" class="methodname">mysqli::ping()</a></span></td>
+     <td><span class="function"><a href="mysqli.ping.html" class="function">mysqli_ping()</a></span></td>
+     <td>N/A</td>
+     <td>Faz ping em uma conexão de servidor ou tenta reconectar se a
+      conexão cair</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.prepare.html" class="methodname">mysqli::prepare()</a></span></td>
+     <td><span class="function"><a href="mysqli.prepare.html" class="function">mysqli_prepare()</a></span></td>
+     <td>N/A</td>
+     <td>Prepara uma instrução SQL para execução</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.query.html" class="methodname">mysqli::query()</a></span></td>
+     <td><span class="function"><a href="mysqli.query.html" class="function">mysqli_query()</a></span></td>
+     <td>N/A</td>
+     <td>Executa uma consulta no banco de dados</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.real-connect.html" class="methodname">mysqli::real_connect()</a></span></td>
+     <td><span class="function"><a href="mysqli.real-connect.html" class="function">mysqli_real_connect()</a></span></td>
+     <td>N/A</td>
+     <td>Abre uma conexão com um servidor mysql</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.real-escape-string.html" class="methodname">mysqli::real_escape_string()</a></span>,
+      <span class="methodname"><a href="function.mysqli-escape-string.html" class="methodname">mysqli::escape_string()</a></span></td>
+     <td><span class="function"><a href="mysqli.real-escape-string.html" class="function">mysqli_real_escape_string()</a></span></td>
+     <td><span class="function"><a href="function.mysqli-escape-string.html" class="function">mysqli_escape_string()</a></span></td>
+     <td>Escapa caracteres especiais em uma string para uso em uma instrução SQL,
+      levando em consideração o conjunto de caracteres atual da conexão</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.real-query.html" class="methodname">mysqli::real_query()</a></span></td>
+     <td><span class="function"><a href="mysqli.real-query.html" class="function">mysqli_real_query()</a></span></td>
+     <td>N/A</td>
+     <td>Executa uma consulta SQL</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.refresh.html" class="methodname">mysqli::refresh()</a></span></td>
+     <td><span class="function"><a href="mysqli.refresh.html" class="function">mysqli_refresh()</a></span></td>
+     <td>N/A</td>
+     <td>Libera tabelas ou caches ou redefine as informações do servidor de replicação</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.rollback.html" class="methodname">mysqli::rollback()</a></span></td>
+     <td><span class="function"><a href="mysqli.rollback.html" class="function">mysqli_rollback()</a></span></td>
+     <td>N/A</td>
+     <td>Reverte a transação atual</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.select-db.html" class="methodname">mysqli::select_db()</a></span></td>
+     <td><span class="function"><a href="mysqli.select-db.html" class="function">mysqli_select_db()</a></span></td>
+     <td>N/A</td>
+     <td>Seleciona o banco de dados padrão para consultas de banco de dados</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.set-charset.html" class="methodname">mysqli::set_charset()</a></span></td>
+     <td><span class="function"><a href="mysqli.set-charset.html" class="function">mysqli_set_charset()</a></span></td>
+     <td>N/A</td>
+     <td>Define o conjunto de caracteres do cliente padrão</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.ssl-set.html" class="methodname">mysqli::ssl_set()</a></span></td>
+     <td><span class="function"><a href="mysqli.ssl-set.html" class="function">mysqli_ssl_set()</a></span></td>
+     <td>N/A</td>
+     <td>Usado para estabelecer conexões seguras usando SSL</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.stat.html" class="methodname">mysqli::stat()</a></span></td>
+     <td><span class="function"><a href="mysqli.stat.html" class="function">mysqli_stat()</a></span></td>
+     <td>N/A</td>
+     <td>Obtém o status atual do sistema</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.stmt-init.html" class="methodname">mysqli::stmt_init()</a></span></td>
+     <td><span class="function"><a href="mysqli.stmt-init.html" class="function">mysqli_stmt_init()</a></span></td>
+     <td>N/A</td>
+     <td>Inicializa uma instrução e retorna um objeto para uso com
+      mysqli_stmt_prepare</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.store-result.html" class="methodname">mysqli::store_result()</a></span></td>
+     <td><span class="function"><a href="mysqli.store-result.html" class="function">mysqli_store_result()</a></span></td>
+     <td>N/A</td>
+     <td>Transfere um conjunto de resultados da última consulta</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.thread-id.html" class="methodname">mysqli::thread_id()</a></span></td>
+     <td><span class="function"><a href="mysqli.thread-id.html" class="function">mysqli_thread_id()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o ID do thread para a conexão atual</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.thread-safe.html" class="methodname">mysqli::thread_safe()</a></span></td>
+     <td><span class="function"><a href="mysqli.thread-safe.html" class="function">mysqli_thread_safe()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna se a segurança de thread é dada ou não</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli.use-result.html" class="methodname">mysqli::use_result()</a></span></td>
+     <td><span class="function"><a href="mysqli.use-result.html" class="function">mysqli_use_result()</a></span></td>
+     <td>N/A</td>
+     <td>Inicia uma recuperação de conjunto de resultados</td>
+    </tr>
+
+   </tbody>
+  
+ </table>
+
+
+ <table id="mysqli.summary.methods" class="doctable table">
+  <caption><strong>Resumo dos métodos <span class="classname"><a href="class.mysqli-stmt.html" class="classname">mysqli_stmt</a></span></strong></caption>
+  
+   <thead>
+    <tr>
+     <th>MySQL_STMT</th>
+    </tr>
+
+    <tr>
+     <th>Interface POO</th>
+     <th>Interface Procedural</th>
+     <th>Alias (não use)</th>
+     <th>Descrição</th>
+    </tr>
+
+   </thead>
+
+   <tbody class="tbody">
+    <tr>
+     <td><strong>Propriedades</strong></td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-stmt.affected-rows.html" class="link">$mysqli_stmt::affected_rows</a></td>
+     <td><span class="function"><a href="mysqli-stmt.affected-rows.html" class="function">mysqli_stmt_affected_rows()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o número total de linhas alteradas, excluídas ou inseridas pela
+      última instrução executada</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-stmt.errno.html" class="link">$mysqli_stmt::errno</a></td>
+     <td><span class="function"><a href="mysqli-stmt.errno.html" class="function">mysqli_stmt_errno()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o código de erro para a chamada de instrução mais recente</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-stmt.error.html" class="link">$mysqli_stmt::error</a></td>
+     <td><span class="function"><a href="mysqli-stmt.error.html" class="function">mysqli_stmt_error()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna uma descrição de string para o último erro de instrução</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-stmt.field-count.html" class="link">$mysqli_stmt::field_count</a></td>
+     <td><span class="function"><a href="mysqli-stmt.field-count.html" class="function">mysqli_stmt_field_count()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o número do campo na instrução fornecida - não documentado</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-stmt.insert-id.html" class="link">$mysqli_stmt::insert_id</a></td>
+     <td><span class="function"><a href="mysqli-stmt.insert-id.html" class="function">mysqli_stmt_insert_id()</a></span></td>
+     <td>N/A</td>
+     <td>Obtenha o ID gerado da operação INSERT anterior</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-stmt.num-rows.html" class="link">$mysqli_stmt::num_rows</a></td>
+     <td><span class="function"><a href="mysqli-stmt.num-rows.html" class="function">mysqli_stmt_num_rows()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o número de linhas no conjunto de resultados de instruções</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-stmt.param-count.html" class="link">$mysqli_stmt::param_count</a></td>
+     <td><span class="function"><a href="mysqli-stmt.param-count.html" class="function">mysqli_stmt_param_count()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o número do parâmetro para a instrução fornecida</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-stmt.sqlstate.html" class="link">$mysqli_stmt::sqlstate</a></td>
+     <td><span class="function"><a href="mysqli-stmt.sqlstate.html" class="function">mysqli_stmt_sqlstate()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o erro SQLSTATE da operação de instrução anterior</td>
+    </tr>
+
+    <tr>
+     <td><strong>Métodos</strong></td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.attr-get.html" class="methodname">mysqli_stmt::attr_get()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.attr-get.html" class="function">mysqli_stmt_attr_get()</a></span></td>
+     <td>N/A</td>
+     <td>Usado para obter o valor atual de um atributo de instrução</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.attr-set.html" class="methodname">mysqli_stmt::attr_set()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.attr-set.html" class="function">mysqli_stmt_attr_set()</a></span></td>
+     <td>N/A</td>
+     <td>Usado para modificar o comportamento de uma instrução preparada</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.bind-param.html" class="methodname">mysqli_stmt::bind_param()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.bind-param.html" class="function">mysqli_stmt_bind_param()</a></span></td>
+     <td>N/A</td>
+     <td>Vincula variáveis a uma instrução preparada como parâmetros</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.bind-result.html" class="methodname">mysqli_stmt::bind_result()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.bind-result.html" class="function">mysqli_stmt_bind_result()</a></span></td>
+     <td>N/A</td>
+     <td>Vincula variáveis a uma instrução preparada para armazenamento de resultados</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.close.html" class="methodname">mysqli_stmt::close()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.close.html" class="function">mysqli_stmt_close()</a></span></td>
+     <td>N/A</td>
+     <td>Fecha uma instrução preparada</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.data-seek.html" class="methodname">mysqli_stmt::data_seek()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.data-seek.html" class="function">mysqli_stmt_data_seek()</a></span></td>
+     <td>N/A</td>
+     <td>Procura uma linha arbitrária no conjunto de resultados da instrução</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.execute.html" class="methodname">mysqli_stmt::execute()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.execute.html" class="function">mysqli_stmt_execute()</a></span></td>
+     <td><span class="function"><a href="function.mysqli-execute.html" class="function">mysqli_execute()</a></span></td>
+     <td>Executa uma consulta preparada</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.fetch.html" class="methodname">mysqli_stmt::fetch()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.fetch.html" class="function">mysqli_stmt_fetch()</a></span></td>
+     <td>N/A</td>
+     <td>Busca resultados de uma instrução preparada nas variáveis vinculadas</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.free-result.html" class="methodname">mysqli_stmt::free_result()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.free-result.html" class="function">mysqli_stmt_free_result()</a></span></td>
+     <td>N/A</td>
+     <td>Libera a memória de resultado armazenada para o identificador de instrução fornecido</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.get-result.html" class="methodname">mysqli_stmt::get_result()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.get-result.html" class="function">mysqli_stmt_get_result()</a></span></td>
+     <td>N/A</td>
+     <td>Obtém um conjunto de resultados de uma instrução preparada. Disponível apenas com o <a href="book.mysqlnd.html" class="link">mysqlnd</a>.</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.get-warnings.html" class="methodname">mysqli_stmt::get_warnings()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.get-warnings.html" class="function">mysqli_stmt_get_warnings()</a></span></td>
+     <td>N/A</td>
+     <td>NÃO DOCUMENTADO</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.more-results.html" class="methodname">mysqli_stmt::more_results()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.more-results.html" class="function">mysqli_stmt_more_results()</a></span></td>
+     <td>N/A</td>
+     <td>Verifica se há mais resultados de consulta de uma consulta múltipla</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.next-result.html" class="methodname">mysqli_stmt::next_result()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.next-result.html" class="function">mysqli_stmt_next_result()</a></span></td>
+     <td>N/A</td>
+     <td>Lê o próximo resultado de uma consulta múltipla</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.num-rows.html" class="methodname">mysqli_stmt::num_rows()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.num-rows.html" class="function">mysqli_stmt_num_rows()</a></span></td>
+     <td>N/A</td>
+     <td>Veja também a propriedade <a href="mysqli-stmt.num-rows.html" class="link">$mysqli_stmt::num_rows</a></td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.prepare.html" class="methodname">mysqli_stmt::prepare()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.prepare.html" class="function">mysqli_stmt_prepare()</a></span></td>
+     <td>N/A</td>
+     <td>Prepara uma instrução SQL para execução</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.reset.html" class="methodname">mysqli_stmt::reset()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.reset.html" class="function">mysqli_stmt_reset()</a></span></td>
+     <td>N/A</td>
+     <td>Redefine uma instrução preparada</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.result-metadata.html" class="methodname">mysqli_stmt::result_metadata()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.result-metadata.html" class="function">mysqli_stmt_result_metadata()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna os metadados do conjunto de resultados de uma instrução preparada</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.send-long-data.html" class="methodname">mysqli_stmt::send_long_data()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.send-long-data.html" class="function">mysqli_stmt_send_long_data()</a></span></td>
+     <td>N/A</td>
+     <td>Envia dados em blocos</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-stmt.store-result.html" class="methodname">mysqli_stmt::store_result()</a></span></td>
+     <td><span class="function"><a href="mysqli-stmt.store-result.html" class="function">mysqli_stmt_store_result()</a></span></td>
+     <td>N/A</td>
+     <td>Transfere um conjunto de resultados de uma instrução preparada</td>
+    </tr>
+
+   </tbody>
+  
+ </table>
+
+
+ <table id="mysqli.summary.resultmethods" class="doctable table">
+  <caption><strong>Resumo dos métodos <span class="classname"><a href="class.mysqli-result.html" class="classname">mysqli_result</a></span> </strong></caption>
+  
+   <thead>
+    <tr>
+     <th>mysqli_result</th>
+    </tr>
+
+    <tr>
+     <th>Interface POO</th>
+     <th>Interface Procedural</th>
+     <th>Alias (não use)</th>
+     <th>Descrição</th>
+    </tr>
+
+   </thead>
+
+   <tbody class="tbody">
+    <tr>
+     <td><strong>Propriedades</strong></td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-result.current-field.html" class="link">$mysqli_result::current_field</a></td>
+     <td><span class="function"><a href="mysqli-result.current-field.html" class="function">mysqli_field_tell()</a></span></td>
+     <td>N/A</td>
+     <td>Obtém o deslocamento de campo atual de um ponteiro de resultado</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-result.field-count.html" class="link">$mysqli_result::field_count</a></td>
+     <td><span class="function"><a href="mysqli-result.field-count.html" class="function">mysqli_num_fields()</a></span></td>
+     <td>N/A</td>
+     <td>Obtém o número de campos em um resultado</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-result.lengths.html" class="link">$mysqli_result::lengths</a></td>
+     <td><span class="function"><a href="mysqli-result.lengths.html" class="function">mysqli_fetch_lengths()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna os comprimentos das colunas da linha atual no conjunto de resultados</td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-result.num-rows.html" class="link">$mysqli_result::num_rows</a></td>
+     <td><span class="function"><a href="mysqli-result.num-rows.html" class="function">mysqli_num_rows()</a></span></td>
+     <td>N/A</td>
+     <td>Obtém o número de linhas em um resultado</td>
+    </tr>
+
+    <tr>
+     <td><strong>Methods</strong></td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.data-seek.html" class="methodname">mysqli_result::data_seek()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.data-seek.html" class="function">mysqli_data_seek()</a></span></td>
+     <td>N/A</td>
+     <td>Ajusta o ponteiro de resultado para uma linha arbitrária no resultado</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.fetch-all.html" class="methodname">mysqli_result::fetch_all()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.fetch-all.html" class="function">mysqli_fetch_all()</a></span></td>
+     <td>N/A</td>
+     <td>Busca todas as linhas de resultado e retorna o conjunto de resultados como uma matriz associativa, uma matriz numérica ou ambas. Disponível apenas com o <a href="book.mysqlnd.html" class="link">mysqlnd</a>.</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.fetch-array.html" class="methodname">mysqli_result::fetch_array()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.fetch-array.html" class="function">mysqli_fetch_array()</a></span></td>
+     <td>N/A</td>
+     <td>Busca uma linha de resultado como uma associativa, uma matriz numérica ou ambas</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.fetch-assoc.html" class="methodname">mysqli_result::fetch_assoc()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.fetch-assoc.html" class="function">mysqli_fetch_assoc()</a></span></td>
+     <td>N/A</td>
+     <td>Busca uma linha de resultado como uma matriz associativa</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.fetch-column.html" class="methodname">mysqli_result::fetch_column()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.fetch-column.html" class="function">mysqli_fetch_column()</a></span></td>
+     <td>N/A</td>
+     <td>Busca uma única coluna da próxima linha de um conjunto de resultados</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.fetch-field-direct.html" class="methodname">mysqli_result::fetch_field_direct()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.fetch-field-direct.html" class="function">mysqli_fetch_field_direct()</a></span></td>
+     <td>N/A</td>
+     <td>Buscar metadados para um único campo</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.fetch-field.html" class="methodname">mysqli_result::fetch_field()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.fetch-field.html" class="function">mysqli_fetch_field()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna o próximo campo no conjunto de resultados</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.fetch-fields.html" class="methodname">mysqli_result::fetch_fields()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.fetch-fields.html" class="function">mysqli_fetch_fields()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna uma matriz de objetos que representam os campos em um conjunto de resultados</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.fetch-object.html" class="methodname">mysqli_result::fetch_object()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.fetch-object.html" class="function">mysqli_fetch_object()</a></span></td>
+     <td>N/A</td>
+     <td>Retorna a linha atual de um conjunto de resultados como um objeto</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.fetch-row.html" class="methodname">mysqli_result::fetch_row()</a></span></td>
+     <td><span class="function"><a href="mysqli-result.fetch-row.html" class="function">mysqli_fetch_row()</a></span></td>
+     <td>N/A</td>
+     <td>Obtenha uma linha de resultado como uma matriz enumerada</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><strong>mysqli_result::field_seek()</strong></span></td>
+     <td><span class="function"><a href="mysqli-result.field-seek.html" class="function">mysqli_field_seek()</a></span></td>
+     <td>N/A</td>
+     <td>Definir ponteiro de resultado para um deslocamento de campo especificado</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-result.free.html" class="methodname">mysqli_result::free()</a></span>,
+      <a href="mysqli-result.free.html" class="link">mysqli_result::close</a>,
+      <a href="mysqli-result.free.html" class="link">mysqli_result::free_result</a></td>
+     <td><span class="function"><a href="mysqli-result.free.html" class="function">mysqli_free_result()</a></span></td>
+     <td>N/A</td>
+     <td>Libera a memória associada a um resultado</td>
+    </tr>
+
+   </tbody>
+  
+ </table>
+
+
+ <table id="mysqli.summary.drivermethods" class="doctable table">
+  <caption><strong>Resumo dos métodos <span class="classname"><a href="class.mysqli-driver.html" class="classname">mysqli_driver</a></span></strong></caption>
+  
+   <thead>
+    <tr>
+     <th>MySQL_Driver</th>
+    </tr>
+
+    <tr>
+     <th>Interface POO</th>
+     <th>Interface Procedural</th>
+     <th>Alias (não use)</th>
+     <th>Descrição</th>
+    </tr>
+
+   </thead>
+
+   <tbody class="tbody">
+    <tr>
+     <td><strong>Propriedades</strong></td>
+    </tr>
+
+    <tr>
+     <td><a href="mysqli-driver.report-mode.html" class="link">$mysqli_driver::mysqli_report</a></td>
+     <td><span class="function"><a href="function.mysqli-report.html" class="function">mysqli_report()</a></span></td>
+     <td>N/A</td>
+     <td>Define o modo de relatório de erros do mysqli</td>
+    </tr>
+
+    <tr>
+     <td><strong>Métodos</strong></td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-driver.embedded-server-end.html" class="methodname">mysqli_driver::embedded_server_end()</a></span></td>
+     <td><span class="function"><a href="mysqli-driver.embedded-server-end.html" class="function">mysqli_embedded_server_end()</a></span></td>
+     <td>N/A</td>
+     <td>NÃO DOCUMENTADO</td>
+    </tr>
+
+    <tr>
+     <td><span class="methodname"><a href="mysqli-driver.embedded-server-start.html" class="methodname">mysqli_driver::embedded_server_start()</a></span></td>
+     <td><span class="function"><a href="mysqli-driver.embedded-server-start.html" class="function">mysqli_embedded_server_start()</a></span></td>
+     <td>N/A</td>
+     <td>NÃO DOCUMENTADO</td>
+    </tr>
+
+   </tbody>
+  
+ </table>
+
+
+ <blockquote class="note"><p><strong class="note">Nota</strong>: 
+  <p class="para">
+   As funções de alias são fornecidas apenas para fins de compatibilidade com versões
+   anteriores. Não os use em novos projetos.
+  </p>
+ </p></blockquote>
+
+</div>
+</div></div></body></html>

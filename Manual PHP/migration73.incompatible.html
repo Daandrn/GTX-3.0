@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Altera&ccedil;&otilde;es incompat&iacute;veis com vers&otilde;es anteriores</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration73.constants.html">« Novas Constantes Globais</a></li>
+      <li style="float: right;"><a href="migration73.deprecated.html">Recursos depreciados »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration73.html">Migrando do PHP 7.2.x para o PHP 7.3.x</a></li>
+    <li>Altera&ccedil;&otilde;es incompat&iacute;veis com vers&otilde;es anteriores</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration73.incompatible" class="sect1">
+ <h2 class="title">Alterações incompatíveis com versões anteriores</h2>
+
+ <div class="sect2" id="migration73.incompatible.core">
+  <h3 class="title">PHP Core</h3>
+
+  <div class="sect3" id="migration73.incompatible.core.heredoc-nowdoc">
+   <h4 class="title">Interpretação do rótulo de finalização Heredoc/Nowdoc</h4>
+
+   <p class="para">
+    Devido à introdução da <a href="migration73.new-features.html#migration73.new-features.core.heredoc" class="link">sintaxe flexível
+    heredoc/nowdoc</a>, doc strings que contêm o rótulo final dentro de seu corpo
+    podem causar erros de sintaxe ou alteração na interpretação. Por exemplo em:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$str </span><span style="color: #007700">= &lt;&lt;&lt;FOO<br /></span><span style="color: #DD0000">abcdefg<br /></span><span style="color: #007700">   FOO<br /></span><span style="color: #0000BB">FOO</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+    A ocorrência recuada de <code class="literal">FOO</code> não tinha anteriormente nenhum
+    significado especial. Agora será interpretado como o final da string heredoc
+    e o seguinte <code class="literal">FOO;</code> causará um erro de sintaxe. Esse problema sempre
+    pode ser resolvido escolhendo um rótulo final que não ocorra
+    no conteúdo da string.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.continue-targeting-switch">
+   <h4 class="title">Continuar problemas com o comutador de segmentação Warning</h4>
+
+   <p class="para">
+    As instruções <code class="literal">continue</code> direcionadas às estruturas de fluxo de controle do <code class="literal">switch</code>
+    agora gerarão um aviso. Em PHP, tais instruções
+    <code class="literal">continue</code> são equivalentes a
+    <code class="literal">break</code>, enquanto se comportam como <code class="literal">continue 2</code>
+    em outras linguagens.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">while (</span><span style="color: #0000BB">$foo</span><span style="color: #007700">) {<br />    switch (</span><span style="color: #0000BB">$bar</span><span style="color: #007700">) {<br />      case </span><span style="color: #DD0000">"baz"</span><span style="color: #007700">:<br />         continue;<br />         </span><span style="color: #FF8000">// Warning: "continue" targeting switch is equivalent to<br />         //          "break". Did you mean to use "continue 2"?<br />   </span><span style="color: #007700">}<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.arrayaccess">
+   <h4 class="title">Interpretação estrita de chaves de strings inteiras em ArrayAccess</h4>
+
+   <p class="para">
+    Acessos de matriz do tipo <code class="literal">$obj[&quot;123&quot;]</code>, onde
+    <code class="literal">$obj</code> implementa <span class="classname"><a href="class.arrayaccess.html" class="classname">ArrayAccess</a></span> e
+    <code class="literal">&quot;123&quot;</code>&quot; é uma <span class="type">string</span> literal de inteiro não
+    resultará mais em uma conversão implícita para inteiro, ou seja,
+    <code class="literal">$obj-&gt;offsetGet(&quot;123&quot;)</code> será chamado em vez de
+    <code class="literal">$obj-&gt;offsetGet(123)</code>. Isso corresponde ao comportamento existente
+    para não literais. O comportamento dos arrays não é afetado de forma alguma, eles
+    continuam a converter implicitamente chaves de string integrais em inteiros.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.static-properties">
+   <h4 class="title">Propriedades estáticas não são mais separadas por atribuição de referência</h4>
+
+   <p class="para">
+    No PHP, as propriedades estáticas são compartilhadas entre as classes herdadas, a menos que
+    a propriedade estática seja explicitamente substituída em uma classe filha. Porém, devido a um
+    artefato de implementação foi possível separar as propriedades estáticas atribuindo uma
+    referência. Essa brecha foi corrigida.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Test </span><span style="color: #007700">{<br />    public static </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />}<br />class </span><span style="color: #0000BB">Test2 </span><span style="color: #007700">extends </span><span style="color: #0000BB">Test </span><span style="color: #007700">{ }<br /><br /></span><span style="color: #0000BB">Test2</span><span style="color: #007700">::</span><span style="color: #0000BB">$x </span><span style="color: #007700">= &amp;</span><span style="color: #0000BB">$x</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">Test</span><span style="color: #007700">::</span><span style="color: #0000BB">$x</span><span style="color: #007700">, </span><span style="color: #0000BB">Test2</span><span style="color: #007700">::</span><span style="color: #0000BB">$x</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">// Previously: int(0), int(1)<br />// Now:        int(1), int(1)<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.reference-unwrapping">
+   <h4 class="title">Referências retornadas por Array e Property Accesss são imediatamente desempacotadas</h4>
+
+   <p class="para">
+    As referências retornadas por acessos de array e propriedade agora são desempacotadas
+    como parte do acesso. Isso significa que não é mais possível modificar a
+    referência entre o acesso e o uso do valor acessado:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$arr </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">$ref </span><span style="color: #007700">=&amp; </span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] + (</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] = </span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #FF8000">// Previously: int(4), Now: int(3)<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+    Isso torna consistente o comportamento de referências e não referências. Observe que
+    ler e escrever um valor dentro de uma única expressão permanece um comportamento
+    indefinido e pode mudar novamente no futuro.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.traversable-unpacking">
+   <h4 class="title">Argumento de descompactação de Traversables com chaves não inteiras não é mais suportada</h4>
+
+   <p class="para">
+    A descompactação de argumentos parou de funcionar com <span class="classname"><a href="class.traversable.html" class="classname">Traversable</a></span>s
+    com chaves não inteiras. O código a seguir funcionou no PHP 5.6-7.2 por acidente.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(...</span><span style="color: #0000BB">$args</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$args</span><span style="color: #007700">);<br />}<br />function </span><span style="color: #0000BB">gen</span><span style="color: #007700">() {<br />    yield </span><span style="color: #0000BB">1.23 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">123</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(...</span><span style="color: #0000BB">gen</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.misc">
+   <h4 class="title">Diversos</h4>
+
+   <p class="para">
+    O utilitário <var class="filename">ext_skel</var> foi completamente redesenhado com
+    novas opções e algumas opções antigas removidas. Isso agora é escrito em PHP e não
+    possui dependências externas.
+   </p>
+
+   <p class="para">
+    O suporte para BeOS foi descartado.
+   </p>
+
+   <p class="para">
+    Exceções lançadas devido à conversão automática de avisos em exceções no modo
+    <code class="literal">EH_THROW</code> (por exemplo, algumas exceções <span class="classname"><a href="class.datetime.html" class="classname">DateTime</a></span>)
+    não preenchem mais o estado <span class="function"><a href="function.error-get-last.html" class="function">error_get_last()</a></span>. Dessa forma,
+    eles agora funcionam da mesma maneira que as exceções lançadas manualmente.
+   </p>
+
+   <p class="para">
+    <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> agora relata tipos errados como
+    <code class="literal">int</code> e <code class="literal">bool</code> em vez de
+    <code class="literal">integer</code> e <code class="literal">boolean</code>, respectivamente.
+   </p>
+
+   <p class="para">
+    As variáveis indefinidas passadas para <span class="function"><a href="function.compact.html" class="function">compact()</a></span> agora serão
+    relatadas como um aviso.
+   </p>
+
+   <p class="para">
+    <span class="function"><a href="function.getimagesize.html" class="function">getimagesize()</a></span> e funções relacionadas agora relatam o tipo mime
+    de imagens BMP como <code class="literal">image/bmp</code> em vez de
+    <code class="literal">image/x-ms-bmp</code>, já que o primeiro foi registrado
+    na IANA (consulte <a href="http://www.faqs.org/rfcs/rfc7903" class="link external">&raquo;&nbsp;RFC 7903</a>).
+   </p>
+
+   <p class="para">
+    <span class="function"><a href="function.stream-socket-get-name.html" class="function">stream_socket_get_name()</a></span> agora retornará endereços IPv6
+    entre colchetes. Por exemplo, <code class="literal">&quot;[::1]:1337&quot;</code> será
+    retornado em vez de <code class="literal">&quot;::1:1337&quot;</code>.
+   </p>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.bc">
+  <h3 class="title">BCMath Matemática de Precisão Arbitrária</h3>
+
+  <p class="para">
+   Todos os avisos lançados pelas <a href="ref.bc.html" class="link">funções BCMath</a> agora
+   estão usando o tratamento de erros do PHP. Anteriormente, alguns avisos eram
+   gravados diretamente no stderr.
+  </p>
+
+  <p class="para">
+   <span class="function"><a href="function.bcmul.html" class="function">bcmul()</a></span> e <span class="function"><a href="function.bcpow.html" class="function">bcpow()</a></span> agora retornam números
+   com a escala solicitada. Anteriormente, os números retornados podem ter omitido
+   zeros decimais à direita.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.imap">
+  <h3 class="title">IMAP, POP3 e NNTP</h3>
+
+  <p class="para">
+   Os logins <strong class="command">rsh</strong>/<strong class="command">ssh</strong> são desabilitados por padrão.
+   Use <a href="imap.configuration.html#ini.imap.enable-insecure-rsh" class="link">imap.enable_insecure_rsh</a> se
+   quiser ativá-los. Observe que a biblioteca IMAP não filtra os nomes
+   das caixas de correio antes de passá-los para o comando <strong class="command">rsh</strong>/<strong class="command">ssh</strong>,
+   portanto, passar dados não confiáveis para essa função com
+   <strong class="command">rsh</strong>/<strong class="command">ssh</strong> ativado é inseguro.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.mbstring">
+  <h3 class="title">Multibyte String</h3>
+
+  <p class="para">
+    Devido ao suporte adicional para capturas nomeadas, os padrões <code class="literal">mb_ereg_*()</code>
+    usando capturas nomeadas se comportarão de maneira diferente. Em particular, as capturas
+    nomeadas farão parte das correspondências e <span class="function"><a href="function.mb-ereg-replace.html" class="function">mb_ereg_replace()</a></span>
+    interpretará a sintaxe adicional. Consulte <a href="migration73.new-features.html#migration73.new-features.mbstring.named-captures" class="link">Capturas
+    nomeadas</a> para obter mais informações.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.mysqli">
+  <h3 class="title">Melhorias na extensão MySQL</h3>
+
+  <p class="para">
+   As instruções preparadas agora relatam corretamente os segundos fracionários para as colunas
+   <code class="literal">DATETIME</code>, <code class="literal">TIME</code> e
+   <code class="literal">TIMESTAMP</code> com especificador de decimais (por exemplo,
+   <code class="literal">TIMESTAMP(6)</code> ao usar microssegundos). Anteriormente, a
+   parte dos segundos fracionários era simplesmente omitida dos valores retornados.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.pdo-mysql">
+  <h3 class="title">Funções do MySQL (PDO_MYSQL)</h3>
+
+  <p class="para">
+   As instruções preparadas agora relatam corretamente os segundos fracionários para as colunas
+   <code class="literal">DATETIME</code>, <code class="literal">TIME</code> e
+   <code class="literal">TIMESTAMP</code> com especificador de decimais (por exemplo,
+   <code class="literal">TIMESTAMP(6)</code> ao usar microssegundos). Anteriormente, a
+   parte dos segundos fracionários era simplesmente omitida dos valores retornados. Observe que
+   isso afeta apenas o uso de <a href="ref.pdo-mysql.html" class="link">PDO_MYSQL</a> com preparações emuladas desativadas
+   (por exemplo, usando a funcionalidade de preparação nativa). Declarações usando
+   conexões com <strong><code>PDO::ATTR_EMULATE_PREPARES</code></strong>=<strong><code>true</code></strong>
+   (que é o padrão) não foram afetadas pelo bug corrigido e já obtiveram os
+   valores de segundos fracionários apropriados do mecanismo.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.reflection">
+  <h3 class="title">Reflection</h3>
+
+  <p class="para">
+   A exportação de <a href="book.reflection.html" class="link">Reflection</a> para string agora usa
+   <code class="literal">int</code> e <code class="literal">bool</code> em vez de
+   <code class="literal">integer</code> e <code class="literal">boolean</code>, respectivamente.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.spl">
+  <h3 class="title">Standard PHP Library (SPL)</h3>
+
+  <p class="para">
+   Se um autoloader <a href="book.spl.html" class="link">SPL</a> lançar uma exceção,
+   os seguintes autoloaders não serão executados. Anteriormente, todos os autoloaders eram
+   executados e as exceções eram encadeadas.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.simplexml">
+  <h3 class="title">SimpleXML</h3>
+
+  <p class="para">
+   Operações matemáticas envolvendo objetos <a href="book.simplexml.html" class="link">SimpleXML</a> agora tratarão o texto como
+   um <span class="type">int</span> ou <span class="type">float</span>, o que for mais apropriado.
+   Anteriormente, os valores eram tratados como <span class="type">int</span>s incondicionalmente.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.cookie-decode">
+  <h3 class="title">Cookies recebidos</h3>
+
+  <p class="para">
+   A partir do PHP 7.3.23, os <em>nomes</em> dos cookies recebidos não são
+   mais decodificados por url por motivos de segurança.
+  </p>
+ </div>
+
+</div></div></div></body></html>

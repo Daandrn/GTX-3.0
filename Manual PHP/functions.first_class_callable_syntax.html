@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Sintaxe de Callable de Primeira Classe</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="functions.arrow.html">« Arrow Functions</a></li>
+      <li style="float: right;"><a href="language.oop5.html">Classes e Objetos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.functions.html">Fun&ccedil;&otilde;es</a></li>
+    <li>Sintaxe de Callable de Primeira Classe</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="functions.first_class_callable_syntax" class="sect1">
+   <h2 class="title">Sintaxe de Callable de Primeira Classe</h2>
+
+   <p class="para">
+    A sintaxe de callable de primeira classe é introduzida a partir do PHP 8.1.0, como uma maneira de criar <a href="functions.anonymous.html" class="link">funções anônimas</a> a partir de <a href="language.types.callable.html" class="link">callable</a>.
+    Ela substitui a sintaxe de callable existente usando strings e arrays.
+    A vantagem dessa sintaxe é que ela é acessível à análise estática, e usa o escopo no ponto onde o callable é adquirido.
+   </p>
+
+   <p class="para">
+    A sintaxe <code class="code">CallableExpr(...)</code> é usada para criar um objeto <span class="classname"><a href="class.closure.html" class="classname">Closure</a></span> a partir de callable. <code class="code">CallableExpr</code> aceita qualquer expressão que possa ser diretamente chamada na gramática do PHP:
+    <div class="example" id="example-566">
+     <p><strong>Exemplo #1 Sintaxe de callable de primeira classe simples</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo </span><span style="color: #007700">{<br />   public function </span><span style="color: #0000BB">metodo</span><span style="color: #007700">() {}<br />   public static function </span><span style="color: #0000BB">metodoestatico</span><span style="color: #007700">() {}<br />   public function </span><span style="color: #0000BB">__invoke</span><span style="color: #007700">() {}<br />}<br /><br /></span><span style="color: #0000BB">$obj </span><span style="color: #007700">= new </span><span style="color: #0000BB">Foo</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$strClasse </span><span style="color: #007700">= </span><span style="color: #DD0000">'Foo'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$strMetodo </span><span style="color: #007700">= </span><span style="color: #DD0000">'metodo'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$strMetodoestatico </span><span style="color: #007700">= </span><span style="color: #DD0000">'metodoestatico'</span><span style="color: #007700">;<br /><br /><br /></span><span style="color: #0000BB">$f1 </span><span style="color: #007700">= </span><span style="color: #0000BB">strlen</span><span style="color: #007700">(...);<br /></span><span style="color: #0000BB">$f2 </span><span style="color: #007700">= </span><span style="color: #0000BB">$obj</span><span style="color: #007700">(...);  </span><span style="color: #FF8000">// objeto invocável<br /></span><span style="color: #0000BB">$f3 </span><span style="color: #007700">= </span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">metodo</span><span style="color: #007700">(...);<br /></span><span style="color: #0000BB">$f4 </span><span style="color: #007700">= </span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">$strMetodo</span><span style="color: #007700">(...);<br /></span><span style="color: #0000BB">$f5 </span><span style="color: #007700">= </span><span style="color: #0000BB">Foo</span><span style="color: #007700">::</span><span style="color: #0000BB">metodoestatico</span><span style="color: #007700">(...);<br /></span><span style="color: #0000BB">$f6 </span><span style="color: #007700">= </span><span style="color: #0000BB">$strClasse</span><span style="color: #007700">::</span><span style="color: #0000BB">$strMetodoestatico</span><span style="color: #007700">(...);<br /><br /></span><span style="color: #FF8000">// Callable tradicional usando string, array<br /></span><span style="color: #0000BB">$f7 </span><span style="color: #007700">= </span><span style="color: #DD0000">'strlen'</span><span style="color: #007700">(...);<br /></span><span style="color: #0000BB">$f8 </span><span style="color: #007700">= [</span><span style="color: #0000BB">$obj</span><span style="color: #007700">, </span><span style="color: #DD0000">'metodo'</span><span style="color: #007700">](...);<br /></span><span style="color: #0000BB">$f9 </span><span style="color: #007700">= [</span><span style="color: #0000BB">Foo</span><span style="color: #007700">::class, </span><span style="color: #DD0000">'metodoestatico'</span><span style="color: #007700">](...);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+      As <code class="code">...</code> são parte da sintaxe, e não uma omissão.
+    </p>
+   </p></blockquote>
+
+   <p class="para">
+    <code class="code">CallableExpr(...)</code> tem a mesma semântica que <span class="methodname"><a href="closure.fromcallable.html" class="methodname">Closure::fromCallable()</a></span>.
+    Isto é, That is, ao contrário de callable usando string e array, <code class="code">CallableExpr(...)</code> respeita o escopo no ponto onde ela é criada:
+    <div class="example" id="getopt.examples-2">
+     <p><strong>Exemplo #2 Comparação de escopo de <code class="code">CallableExpr(...)</code> e callable tradicional</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">obterMetodoPrivado</span><span style="color: #007700">() {<br />        return [</span><span style="color: #0000BB">$this</span><span style="color: #007700">, </span><span style="color: #DD0000">'metodoPrivado'</span><span style="color: #007700">];<br />    }<br /><br />    private function </span><span style="color: #0000BB">metodoPrivado</span><span style="color: #007700">() {<br />        echo </span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">, </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$foo </span><span style="color: #007700">= new </span><span style="color: #0000BB">Foo</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$metodoPrivado </span><span style="color: #007700">= </span><span style="color: #0000BB">$foo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">obterMetodoPrivado</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$metodoPrivado</span><span style="color: #007700">();<br /></span><span style="color: #FF8000">// Fatal error: Call to private method Foo::metodoPrivado() from global scope<br />// Isso acontece porque a chamada é realizada fora de Foo e a visibilidade será verificada a partir desse ponto.<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo1 </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">obterMetodoPrivado</span><span style="color: #007700">() {<br />        </span><span style="color: #FF8000">// Usa o escopo onde o callable é adquirido.<br />        </span><span style="color: #007700">return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">metodoPrivado</span><span style="color: #007700">(...); </span><span style="color: #FF8000">// Idêntico a Closure::fromCallable([$this, 'metodoPrivado']);<br />    </span><span style="color: #007700">}<br /><br />    private function </span><span style="color: #0000BB">metodoPrivado</span><span style="color: #007700">() {<br />        echo </span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">, </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$foo1 </span><span style="color: #007700">= new </span><span style="color: #0000BB">Foo1</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$metodoPrivado </span><span style="color: #007700">= </span><span style="color: #0000BB">$foo1</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">obterMetodoPrivado</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$metodoPrivado</span><span style="color: #007700">();  </span><span style="color: #FF8000">// Foo1::metodoPrivado<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+
+   </p>
+
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     Criação de objetos por essa sintaxe (por exemplo <code class="code">new Foo(...)</code>) não é suportada, porque a sintaxe <code class="code">new Foo()</code> não é considerada uma chamada.
+    </p>
+   </p></blockquote>
+
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     A sintaxe de callable de primeira classe não pode ser combinada com o <a href="language.oop5.basic.html#language.oop5.basic.nullsafe" class="link">operador nullsafe</a>. Ambos os resultados a seguir resultam em um erro de tempo de compilação:
+     <div class="example" id="example-572">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$obj</span><span style="color: #007700">?-&gt;</span><span style="color: #0000BB">metodo</span><span style="color: #007700">(...);<br /></span><span style="color: #0000BB">$obj</span><span style="color: #007700">?-&gt;</span><span style="color: #0000BB">prop</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">metodo</span><span style="color: #007700">(...);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </div>
+    </p>
+   </p></blockquote>
+  </div></div></div></body></html>

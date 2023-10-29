@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>A classe Memcached</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="memcached.sessions.html">« Suporte a sess&otilde;es</a></li>
+      <li style="float: right;"><a href="memcached.add.html">Memcached::add »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.memcached.html">Memcached</a></li>
+    <li>A classe Memcached</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.memcached" class="reference">
+
+ <h1 class="title">A classe Memcached</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(PECL memcached &gt;= 0.1.0)</p>
+
+  
+  <div class="section" id="memcached.intro">
+   <h2 class="title">Introdução</h2>
+   <p class="para">
+    Representa uma conexão com um conjunto de servidores memcached.
+   </p>
+  </div>
+  
+
+  <div class="section" id="memcached.synopsis">
+   <h2 class="title">Sinopse da classe</h2>
+
+   
+   <div class="classsynopsis">
+    <span class="ooclass">
+     <strong class="classname"></strong>
+    </span>
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <span class="modifier">class</span> <strong class="classname">Memcached</strong>
+     </span>
+     {</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Métodos */</div>
+    <div class="constructorsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="memcached.construct.html" class="methodname">__construct</a></span>(<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$persistent_id</code><span class="initializer"> = <strong><code>null</code></strong></span></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span><span class="type"></span></span> <code class="parameter">$callback</code><span class="initializer"> = <strong><code>null</code></strong></span></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$connection_str</code><span class="initializer"> = <strong><code>null</code></strong></span></span>)</div>
+
+    <div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.add.html" class="methodname">add</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.addbykey.html" class="methodname">addByKey</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span><br>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.addserver.html" class="methodname">addServer</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$host</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$port</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$weight</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.addservers.html" class="methodname">addServers</a></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter">$servers</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.append.html" class="methodname">append</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>): <span class="type"><span class="type">?</span><span class="type">bool</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.appendbykey.html" class="methodname">appendByKey</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>): <span class="type"><span class="type">?</span><span class="type">bool</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.cas.html" class="methodname">cas</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><span class="type">string</span>|<span class="type">int</span>|<span class="type">float</span></span> <code class="parameter">$cas_token</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span><br>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.casbykey.html" class="methodname">casByKey</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><span class="type">string</span>|<span class="type">int</span>|<span class="type">float</span></span> <code class="parameter">$cas_token</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span><br>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.decrement.html" class="methodname">decrement</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code><span class="initializer"> = 1</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$initial_value</code><span class="initializer"> = 0</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$expiry</code><span class="initializer"> = 0</span></span><br>): <span class="type"><span class="type">int</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.decrementbykey.html" class="methodname">decrementByKey</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code><span class="initializer"> = 1</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$initial_value</code><span class="initializer"> = 0</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$expiry</code><span class="initializer"> = 0</span></span><br>): <span class="type"><span class="type">int</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.delete.html" class="methodname">delete</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$time</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.deletebykey.html" class="methodname">deleteByKey</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$time</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.deletemulti.html" class="methodname">deleteMulti</a></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter">$keys</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$time</code><span class="initializer"> = 0</span></span>): <span class="type">array</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.deletemultibykey.html" class="methodname">deleteMultiByKey</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>, <span class="methodparam"><span class="type">array</span> <code class="parameter">$keys</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$time</code><span class="initializer"> = 0</span></span>): <span class="type">array</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.fetch.html" class="methodname">fetch</a></span>(): <span class="type"><span class="type">array</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.fetchall.html" class="methodname">fetchAll</a></span>(): <span class="type"><span class="type">array</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.flush.html" class="methodname">flush</a></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$delay</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.get.html" class="methodname">get</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span><span class="type"></span></span> <code class="parameter">$cache_cb</code><span class="initializer"> = <strong><code>null</code></strong></span></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$get_flags</code><span class="initializer"> = 0</span></span>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getallkeys.html" class="methodname">getAllKeys</a></span>(): <span class="type"><span class="type">array</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getbykey.html" class="methodname">getByKey</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span><span class="type"></span></span> <code class="parameter">$cache_cb</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$get_flags</code><span class="initializer"> = 0</span></span><br>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getdelayed.html" class="methodname">getDelayed</a></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter">$keys</code></span>, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$with_cas</code><span class="initializer"> = <strong><code>false</code></strong></span></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span><span class="type"></span></span> <code class="parameter">$value_cb</code><span class="initializer"> = <strong><code>null</code></strong></span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getdelayedbykey.html" class="methodname">getDelayedByKey</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">array</span> <code class="parameter">$keys</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">bool</span> <code class="parameter">$with_cas</code><span class="initializer"> = <strong><code>false</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span><span class="type"></span></span> <code class="parameter">$value_cb</code><span class="initializer"> = <strong><code>null</code></strong></span></span><br>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getmulti.html" class="methodname">getMulti</a></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter">$keys</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$get_flags</code><span class="initializer"> = 0</span></span>): <span class="type"><span class="type">array</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getmultibykey.html" class="methodname">getMultiByKey</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>, <span class="methodparam"><span class="type">array</span> <code class="parameter">$keys</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$get_flags</code><span class="initializer"> = 0</span></span>): <span class="type"><span class="type">array</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getoption.html" class="methodname">getOption</a></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$option</code></span>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getresultcode.html" class="methodname">getResultCode</a></span>(): <span class="type">int</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getresultmessage.html" class="methodname">getResultMessage</a></span>(): <span class="type">string</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getserverbykey.html" class="methodname">getServerByKey</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>): <span class="type"><span class="type">array</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getserverlist.html" class="methodname">getServerList</a></span>(): <span class="type">array</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getstats.html" class="methodname">getStats</a></span>(<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$type</code><span class="initializer"> = <strong><code>null</code></strong></span></span>): <span class="type"><span class="type">array</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.getversion.html" class="methodname">getVersion</a></span>(): <span class="type"><span class="type">array</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.increment.html" class="methodname">increment</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code><span class="initializer"> = 1</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$initial_value</code><span class="initializer"> = 0</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$expiry</code><span class="initializer"> = 0</span></span><br>): <span class="type"><span class="type">int</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.incrementbykey.html" class="methodname">incrementByKey</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code><span class="initializer"> = 1</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$initial_value</code><span class="initializer"> = 0</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$expiry</code><span class="initializer"> = 0</span></span><br>): <span class="type"><span class="type">int</span>|<span class="type"><span class="type false">false</span></span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.ispersistent.html" class="methodname">isPersistent</a></span>(): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.ispristine.html" class="methodname">isPristine</a></span>(): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.prepend.html" class="methodname">prepend</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>): <span class="type"><span class="type">?</span><span class="type">bool</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.prependbykey.html" class="methodname">prependByKey</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>): <span class="type"><span class="type">?</span><span class="type">bool</span></span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.quit.html" class="methodname">quit</a></span>(): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.replace.html" class="methodname">replace</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.replacebykey.html" class="methodname">replaceByKey</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span><br>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.resetserverlist.html" class="methodname">resetServerList</a></span>(): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.set.html" class="methodname">set</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.setbykey.html" class="methodname">setByKey</a></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span><br>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.setmulti.html" class="methodname">setMulti</a></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter">$items</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.setmultibykey.html" class="methodname">setMultiByKey</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>, <span class="methodparam"><span class="type">array</span> <code class="parameter">$items</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.setoption.html" class="methodname">setOption</a></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$option</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.setoptions.html" class="methodname">setOptions</a></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.setsaslauthdata.html" class="methodname">setSaslAuthData</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$username</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$password</code></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.touch.html" class="methodname">touch</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><a href="memcached.touchbykey.html" class="methodname">touchByKey</a></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$server_key</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$expiration</code><span class="initializer"> = 0</span></span>): <span class="type">bool</span></div>
+
+   }</div>
+   
+
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Índice</h2><ul class="chunklist chunklist_reference"><li><a href="memcached.add.html">Memcached::add</a> — Adiciona um item em uma nova key</li><li><a href="memcached.addbykey.html">Memcached::addByKey</a> — Adiciona um item sob uma nova key em um servidor espec&iacute;fico</li><li><a href="memcached.addserver.html">Memcached::addServer</a> — Adiciona um servidor ao pool de servidores</li><li><a href="memcached.addservers.html">Memcached::addServers</a> — Adiciona m&uacute;ltiplos servidores ao pool de servidores</li><li><a href="memcached.append.html">Memcached::append</a> — Anexa dados a um item existente</li><li><a href="memcached.appendbykey.html">Memcached::appendByKey</a> — Anexa dados a um item existente em um servidor espec&iacute;fico</li><li><a href="memcached.cas.html">Memcached::cas</a> — Compara e troca um item</li><li><a href="memcached.casbykey.html">Memcached::casByKey</a> — Compara e troca um item em um servidor espec&iacute;fico</li><li><a href="memcached.construct.html">Memcached::__construct</a> — Cria uma inst&acirc;ncia do Memcached</li><li><a href="memcached.decrement.html">Memcached::decrement</a> — Decrementa o valor do item num&eacute;rico</li><li><a href="memcached.decrementbykey.html">Memcached::decrementByKey</a> — Decrementa o valor do item num&eacute;rico, armazenado em um servidor espec&iacute;fico</li><li><a href="memcached.delete.html">Memcached::delete</a> — Remover um item</li><li><a href="memcached.deletebykey.html">Memcached::deleteByKey</a> — Remover um item de um servidor espec&iacute;fico</li><li><a href="memcached.deletemulti.html">Memcached::deleteMulti</a> — Remover v&aacute;rios itens</li><li><a href="memcached.deletemultibykey.html">Memcached::deleteMultiByKey</a> — Remover v&aacute;rios itens de um servidor espec&iacute;fico</li><li><a href="memcached.fetch.html">Memcached::fetch</a> — Busca o pr&oacute;ximo resultado</li><li><a href="memcached.fetchall.html">Memcached::fetchAll</a> — Busca todos os resultados restantes</li><li><a href="memcached.flush.html">Memcached::flush</a> — Invalida todos os itens no cache</li><li><a href="memcached.get.html">Memcached::get</a> — Recupera um item</li><li><a href="memcached.getallkeys.html">Memcached::getAllKeys</a> — Obt&eacute;m as keys armazenadas em todos os servidores</li><li><a href="memcached.getbykey.html">Memcached::getByKey</a> — Recupera item de um servidor espec&iacute;fico</li><li><a href="memcached.getdelayed.html">Memcached::getDelayed</a> — Solicita v&aacute;rios itens</li><li><a href="memcached.getdelayedbykey.html">Memcached::getDelayedByKey</a> — Solicita v&aacute;rios itens de um servidor espec&iacute;fico</li><li><a href="memcached.getmulti.html">Memcached::getMulti</a> — Recupera v&aacute;rios itens</li><li><a href="memcached.getmultibykey.html">Memcached::getMultiByKey</a> — Recupere v&aacute;rios itens de um servidor espec&iacute;fico</li><li><a href="memcached.getoption.html">Memcached::getOption</a> — Recupera um valor de op&ccedil;&atilde;o do Memcached</li><li><a href="memcached.getresultcode.html">Memcached::getResultCode</a> — Retorna o c&oacute;digo de resultado da &uacute;ltima opera&ccedil;&atilde;o</li><li><a href="memcached.getresultmessage.html">Memcached::getResultMessage</a> — Retorna a mensagem descrevendo o resultado da &uacute;ltima opera&ccedil;&atilde;o</li><li><a href="memcached.getserverbykey.html">Memcached::getServerByKey</a> — Mapear uma key para um servidor</li><li><a href="memcached.getserverlist.html">Memcached::getServerList</a> — Obtenha a lista dos servidores no pool</li><li><a href="memcached.getstats.html">Memcached::getStats</a> — Obtem estat&iacute;sticas do pool de servidores</li><li><a href="memcached.getversion.html">Memcached::getVersion</a> — Obtem informa&ccedil;&otilde;es da vers&atilde;o do pool de servidores</li><li><a href="memcached.increment.html">Memcached::increment</a> — Incrementa o valor do item num&eacute;rico</li><li><a href="memcached.incrementbykey.html">Memcached::incrementByKey</a> — Incrementa o valor do item num&eacute;rico, armazenado em um servidor espec&iacute;fico</li><li><a href="memcached.ispersistent.html">Memcached::isPersistent</a> — Verifica se uma conex&atilde;o permanente com o memcache est&aacute; sendo usada</li><li><a href="memcached.ispristine.html">Memcached::isPristine</a> — Verifica se a inst&acirc;ncia foi criada recentemente</li><li><a href="memcached.prepend.html">Memcached::prepend</a> — Anexa dados a um item existente</li><li><a href="memcached.prependbykey.html">Memcached::prependByKey</a> — Anexa dados a um item existente em um servidor espec&iacute;fico</li><li><a href="memcached.quit.html">Memcached::quit</a> — Fecha todas as conex&otilde;es abertas</li><li><a href="memcached.replace.html">Memcached::replace</a> — Substitua o item em uma key existente</li><li><a href="memcached.replacebykey.html">Memcached::replaceByKey</a> — Substitua o item em uma key existente em um servidor espec&iacute;fico</li><li><a href="memcached.resetserverlist.html">Memcached::resetServerList</a> — Limpa todos os servidores da lista de servidores</li><li><a href="memcached.set.html">Memcached::set</a> — Armazena um item</li><li><a href="memcached.setbykey.html">Memcached::setByKey</a> — Armazena um item em um servidor espec&iacute;fico</li><li><a href="memcached.setmulti.html">Memcached::setMulti</a> — Armazena v&aacute;rios itens</li><li><a href="memcached.setmultibykey.html">Memcached::setMultiByKey</a> — Armazena v&aacute;rios itens em um servidor espec&iacute;fico</li><li><a href="memcached.setoption.html">Memcached::setOption</a> — Define uma op&ccedil;&atilde;o Memcached</li><li><a href="memcached.setoptions.html">Memcached::setOptions</a> — Define op&ccedil;&otilde;es do Memcached</li><li><a href="memcached.setsaslauthdata.html">Memcached::setSaslAuthData</a> — Define as credenciais a serem usadas para autentica&ccedil;&atilde;o</li><li><a href="memcached.touch.html">Memcached::touch</a> — Define uma nova expira&ccedil;&atilde;o para um item</li><li><a href="memcached.touchbykey.html">Memcached::touchByKey</a> — Define uma nova expira&ccedil;&atilde;o para um item em um servidor espec&iacute;fico</li></ul>
+</div>
+</div></div></body></html>

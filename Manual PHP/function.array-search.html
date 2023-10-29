@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Procura por um valor em um array e retorna sua chave correspondente caso seja encontrado</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.array-reverse.html">« array_reverse</a></li>
+      <li style="float: right;"><a href="function.array-shift.html">array_shift »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Procura por um valor em um array e retorna sua chave correspondente caso seja encontrado</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.array-search" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_search</h1>
+  <p class="refpurpose"><span class="refname">array_search</span> &mdash; <span class="dc-title">Procura por um valor em um array e retorna sua chave correspondente caso seja encontrado</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.array-search-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>array_search</strong></span>(<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$needle</code></span>, <span class="methodparam"><span class="type">array</span> <code class="parameter">$haystack</code></span>, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$strict</code><span class="initializer"> = <strong><code>false</code></strong></span></span>): <span class="type"><span class="type">int</span>|<span class="type">string</span>|<span class="type"><span class="type false">false</span></span></span></div>
+
+  <p class="para rdfs-comment">
+   Procura a <code class="parameter">needle</code> (agulha) em <code class="parameter">haystack</code> (palheiro).
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.array-search-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">needle</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O valor procurado.
+      </p>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <p class="para">
+        Se <code class="parameter">needle</code> for uma string, a comparação é feita
+        de uma maneira que diferencia maiúsculas e minúsculas.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">haystack</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O array.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">strict</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Se o terceiro parâmetro opcional <code class="parameter">strict</code> for informador como <strong><code>true</code></strong>
+       então <span class="function"><strong>array_search()</strong></span> fará uma busca por elementos
+       <em>idênticos</em> em
+       <code class="parameter">haystack</code>. Isto significa que haverá uma checagem adicional de
+       <a href="language.types.html" class="link">tipos</a> no parâmetro
+       <code class="parameter">needle</code> ao percorrer <code class="parameter">haystack</code>,
+       de forma que os objetos sejam a mesma instância.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.array-search-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna a chave para <code class="parameter">needle</code> se foi encontrada no
+   array, <strong><code>false</code></strong> caso contrário.
+  </p>
+  <p class="para">
+   Se <code class="parameter">needle</code> for encontrado em <code class="parameter">haystack</code>
+   mais de uma vez, a primeira chave encontrada é retornada. Para retornar as chaves
+   de todos os valores que combinantes, utilize a função <span class="function"><a href="function.array-keys.html" class="function">array_keys()</a></span> com o parâmetro opcional
+   <code class="parameter">search_value</code>.
+  </p>
+  <div class="warning"><strong class="warning">Aviso</strong><p class="simpara">Esta função pode
+retornar o valor booleano <strong><code>false</code></strong>, mas também pode retornar um valor não booleano que pode ser
+avaliado como <strong><code>false</code></strong>. Leia a seção sobre <a href="language.types.boolean.html" class="link">Booleanos</a> para mais
+informações. Use o <a href="language.operators.comparison.html" class="link">operador
+===</a> para testar o valor retornado por esta
+função.</p></div>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.array-search-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo da <span class="function"><strong>array_search()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$array </span><span style="color: #007700">= array(</span><span style="color: #0000BB">0 </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'blue'</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'red'</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'green'</span><span style="color: #007700">, </span><span style="color: #0000BB">3 </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'red'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$key </span><span style="color: #007700">= </span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #DD0000">'green'</span><span style="color: #007700">, </span><span style="color: #0000BB">$array</span><span style="color: #007700">); </span><span style="color: #FF8000">// $key = 2;<br /></span><span style="color: #0000BB">$key </span><span style="color: #007700">= </span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #DD0000">'red'</span><span style="color: #007700">, </span><span style="color: #0000BB">$array</span><span style="color: #007700">);   </span><span style="color: #FF8000">// $key = 1;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.array-search-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.array-keys.html" class="function" rel="rdfs-seeAlso">array_keys()</a> - Retorna todas as chaves ou uma parte das chaves de um array</span></li>
+    <li class="member"><span class="function"><a href="function.array-values.html" class="function" rel="rdfs-seeAlso">array_values()</a> - Retorna todos os valores de um array</span></li>
+    <li class="member"><span class="function"><a href="function.array-key-exists.html" class="function" rel="rdfs-seeAlso">array_key_exists()</a> - Checa se uma chave ou &iacute;ndice existe em um array</span></li>
+    <li class="member"><span class="function"><a href="function.in-array.html" class="function" rel="rdfs-seeAlso">in_array()</a> - Checa se um valor existe em um array</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

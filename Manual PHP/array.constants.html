@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Constantes pr&eacute;-definidas</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="array.resources.html">« Tipos de Recurso</a></li>
+      <li style="float: right;"><a href="array.sorting.html">Ordenando Arrays »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.array.html">Arrays</a></li>
+    <li>Constantes pr&eacute;-definidas</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="array.constants" class="appendix">
+ <h1>Constantes pré-definidas</h1>
+
+ <p class="simpara">
+As constantes abaixo estão sempre disponíveis como parte do núcleo do PHP.
+</p>
+ <p class="para">
+ <dl>
+  
+   <dt id="constant.case-lower">
+    <strong><code>CASE_LOWER</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     <strong><code>CASE_LOWER</code></strong> é utilizado com a função
+     <span class="function"><a href="function.array-change-key-case.html" class="function">array_change_key_case()</a></span> para converter
+     chaves de arrays para minúsculo. É o valor padrão utilizado na função
+     <span class="function"><a href="function.array-change-key-case.html" class="function">array_change_key_case()</a></span>. A partir do PHP 8.2.0, somente caracteres ASCII
+     serão convertidos.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.case-upper">
+    <strong><code>CASE_UPPER</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     <strong><code>CASE_UPPER</code></strong> é utilizado com a função
+     <span class="function"><a href="function.array-change-key-case.html" class="function">array_change_key_case()</a></span> para converter
+     chaves de arrays para maiúsculo. A partir do PHP 8.2.0, somente caracteres ASCII serão
+     convertidos.
+    </span>
+   </dd>
+
+  
+ </dl>
+
+ </p>
+
+ <p class="para"> Sinais de ordenação:
+ <dl>
+  
+   <dt id="constant.sort-asc">
+    <strong><code>SORT_ASC</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     <strong><code>SORT_ASC</code></strong> é utilizado com
+     <span class="function"><a href="function.array-multisort.html" class="function">array_multisort()</a></span> para ordenar em ordem crescente.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.sort-desc">
+    <strong><code>SORT_DESC</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     <strong><code>SORT_DESC</code></strong> é utilizado com
+     <span class="function"><a href="function.array-multisort.html" class="function">array_multisort()</a></span> para ordenar em ordem decrescente.
+    </span>
+   </dd>
+
+  
+ </dl>
+
+ </p>
+
+ <p class="para"> Sinais de tipos de ordenação: utilizado por várias funções de ordenação
+ <dl>
+  
+   <dt id="constant.sort-regular">
+    <strong><code>SORT_REGULAR</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     <strong><code>SORT_REGULAR</code></strong> é utilizado para comparar itens normalmente.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.sort-numeric">
+    <strong><code>SORT_NUMERIC</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     <strong><code>SORT_NUMERIC</code></strong> é utilizado para comparar itens numericamente.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.sort-string">
+    <strong><code>SORT_STRING</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+    <strong><code>SORT_STRING</code></strong> é utilizado para comparar itens como strings.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.sort-locale-string">
+    <strong><code>SORT_LOCALE_STRING</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+    <strong><code>SORT_LOCALE_STRING</code></strong> é utilizado para comparar itens como
+    strings, baseado no local atual.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.sort-natural">
+    <strong><code>SORT_NATURAL</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+    <strong><code>SORT_NATURAL</code></strong> é utilizado para comparar itens como
+    strings utilizando a &quot;ordenação natural&quot;, como a função <span class="function"><a href="function.natsort.html" class="function">natsort()</a></span>.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.sort-flag-case">
+    <strong><code>SORT_FLAG_CASE</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     <strong><code>SORT_FLAG_CASE</code></strong> pode ser combinado (operador bit a bit OR) com
+     <strong><code>SORT_STRING</code></strong> ou <strong><code>SORT_NATURAL</code></strong> para
+     ordenar strings de forma case-insensitive. A partir do PHP 8.2.0, somente a redução de todas as letras ASCII a maiúsculas ou minúsculas
+     será feita.
+    </span>
+   </dd>
+
+  
+ </dl>
+
+ </p>
+
+ <p class="para"> Sinais de filtro:
+ <dl>
+  
+   <dt id="constant.array-filter-use-key">
+    <strong><code>ARRAY_FILTER_USE_KEY</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     <strong><code>ARRAY_FILTER_USE_KEY</code></strong> é utilizado com a função
+     <span class="function"><a href="function.array-filter.html" class="function">array_filter()</a></span> para passar cada chave como primeiro argumento de uma função callback informada.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.array-filter-use-both">
+    <strong><code>ARRAY_FILTER_USE_BOTH</code></strong>
+    (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     <strong><code>ARRAY_FILTER_USE_BOTH</code></strong> é utilizado com a função
+     <span class="function"><a href="function.array-filter.html" class="function">array_filter()</a></span> para passar tanto chave, quanto valor, para a função callback informada.
+    </span>
+   </dd>
+
+  
+ </dl>
+
+ </p>
+
+ <dl>
+  
+   <dt id="constant.count-normal">
+    <strong><code>COUNT_NORMAL</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.count-recursive">
+    <strong><code>COUNT_RECURSIVE</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.extr-overwrite">
+    <strong><code>EXTR_OVERWRITE</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.extr-skip">
+    <strong><code>EXTR_SKIP</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.extr-prefix-same">
+    <strong><code>EXTR_PREFIX_SAME</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.extr-prefix-all">
+    <strong><code>EXTR_PREFIX_ALL</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.extr-prefix-invalid">
+    <strong><code>EXTR_PREFIX_INVALID</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.extr-prefix-if-exists">
+    <strong><code>EXTR_PREFIX_IF_EXISTS</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.extr-if-exists">
+    <strong><code>EXTR_IF_EXISTS</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+  
+   <dt id="constant.extr-refs">
+    <strong><code>EXTR_REFS</code></strong>
+     (<span class="type">int</span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+
+    </span>
+   </dd>
+
+  
+ </dl>
+
+</div>
+</div></div></body></html>

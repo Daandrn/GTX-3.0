@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Envia uma mensagem de erro para as rotinas de tratamento de erros definidas</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.error-get-last.html">« error_get_last</a></li>
+      <li style="float: right;"><a href="function.error-reporting.html">error_reporting »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.errorfunc.html">Fun&ccedil;&otilde;es para Manuseamento de Erros</a></li>
+    <li>Envia uma mensagem de erro para as rotinas de tratamento de erros definidas</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.error-log" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">error_log</h1>
+  <p class="refpurpose"><span class="refname">error_log</span> &mdash; <span class="dc-title">Envia uma mensagem de erro para as rotinas de tratamento de erros definidas</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.error-log-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>error_log</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$message</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$message_type</code><span class="initializer"> = 0</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$destination</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$additional_headers</code><span class="initializer"> = <strong><code>null</code></strong></span></span><br>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Envia uma mensagem de erro para o registro de erros do servidor web ou para um arquivo.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.error-log-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">message</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A mensagem de erro que deve ser registrada.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">message_type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Indica para onde o erro deve ser direcionado. Os possíveis tipos de mensagem são os
+       seguintes:
+      </p>
+      <p class="para">
+       <table class="doctable table">
+        <caption><strong>Tipos de logs de <span class="function"><strong>error_log()</strong></span></strong></caption>
+        
+         <tbody class="tbody">
+          <tr>
+           <td>0</td>
+           <td>
+            <code class="parameter">message</code> é enviado para sistema de logs do PHP, usando
+            o mecanismo de log do sistema operacional ou um arquivo, dependendo do que
+            a diretiva de configuração <a href="errorfunc.configuration.html#ini.error-log" class="link">error_log</a>
+            estiver definida. Esta é a opção padrão.
+           </td>
+          </tr>
+
+          <tr>
+           <td>1</td>
+           <td>
+            <code class="parameter">message</code> é enviado por e-mail para o endereço no parâmetro
+            <code class="parameter">destination</code>. Este é o único tipo de
+            mensagem em que o quarto parâmetro,
+            <code class="parameter">additional_headers</code>, é utilizado.
+           </td>
+          </tr>
+
+          <tr>
+           <td>2</td>
+           <td>
+            Não é mais uma opção.
+           </td>
+          </tr>
+
+          <tr>
+           <td>3</td>
+           <td>
+            <code class="parameter">message</code> é adicionada ao arquivo
+            <code class="parameter">destination</code>. Uma nova linha não é automaticamente
+            adicionada ao final da string <code class="parameter">message</code>.
+           </td>
+          </tr>
+
+          <tr>
+           <td>4</td>
+           <td>
+            <code class="parameter">message</code> é enviado diretamente para o manipulador de log do
+            SAPI.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">destination</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O destino. Seu significado depende do parâmetro
+       <code class="parameter">message_type</code>, conforme descrito acima.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">additional_headers</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Os cabeçalhos adicionais. É usado quando o parâmetro <code class="parameter">message_type</code>
+       está definido como <code class="literal">1</code>.
+       Este tipo de mensagem usa a mesma função interna que
+       <span class="function"><a href="function.mail.html" class="function">mail()</a></span> utiliza.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.error-log-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+   Se <code class="parameter">message_type</code> for zero, esta função sempre retorna <strong><code>true</code></strong>,
+   independentemente de o erro poder ser registrado ou não.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.error-log-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>8.0.0</td>
+      <td>
+       <code class="parameter">destination</code> e
+       <code class="parameter">additional_headers</code> agora permitem null.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.error-log-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="example-1556">
+    <p><strong>Exemplo #1 Exemplos <span class="function"><strong>error_log()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Envia uma notificação através do registro do servidor se não conseguirmos<br />// conectar ao banco de dados.<br /></span><span style="color: #007700">if (!</span><span style="color: #0000BB">Ora_Logon</span><span style="color: #007700">(</span><span style="color: #0000BB">$username</span><span style="color: #007700">, </span><span style="color: #0000BB">$password</span><span style="color: #007700">)) {<br />    </span><span style="color: #0000BB">error_log</span><span style="color: #007700">(</span><span style="color: #DD0000">"Banco de dados Oracle não disponível!"</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">// Notificar o administrador por e-mail se ficarmos sem FOO<br /></span><span style="color: #007700">if (!(</span><span style="color: #0000BB">$foo </span><span style="color: #007700">= </span><span style="color: #0000BB">allocate_new_foo</span><span style="color: #007700">())) {<br />    </span><span style="color: #0000BB">error_log</span><span style="color: #007700">(</span><span style="color: #DD0000">"Grande problema, estamos sem FOOs!"</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">,<br />               </span><span style="color: #DD0000">"operator@example.com"</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">// Outra forma de chamar error_log():<br /></span><span style="color: #0000BB">error_log</span><span style="color: #007700">(</span><span style="color: #DD0000">"Você cometeu um erro!"</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">"/var/tmp/my-errors.log"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.error-log-notes">
+  <h3 class="title">Notas</h3>
+  <div class="warning"><strong class="warning">Aviso</strong>
+   <p class="simpara">
+    <span class="function"><strong>error_log()</strong></span> não é seguro para binários. <code class="parameter">message</code> será truncado pelo caractere nulo.
+   </p>
+  </div>
+  <div class="tip"><strong class="tip">Dica</strong>
+   <p class="simpara">
+    <code class="parameter">message</code> não deve conter o caractere nulo. Observe que <code class="parameter">message</code> pode ser enviado para arquivo, e-mail, syslog, etc. Use a função apropriada de conversão/escape, como <span class="function"><a href="function.base64-encode.html" class="function">base64_encode()</a></span>, <span class="function"><a href="function.rawurlencode.html" class="function">rawurlencode()</a></span> ou <span class="function"><a href="function.addslashes.html" class="function">addslashes()</a></span> antes de chamar <span class="function"><strong>error_log()</strong></span>.
+   </p>
+  </div>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Apache 2.x no Microsoft Windows</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.windows.commandline.html">« Command Line PHP on Microsoft Windows</a></li>
+      <li style="float: right;"><a href="install.windows.troubleshooting.html">Troubleshooting PHP on Windows »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.windows.html">Instala&ccedil;&atilde;o no Windows</a></li>
+    <li>Apache 2.x no Microsoft Windows</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.windows.apache2" class="sect1">
+ <h2 class="title">Apache 2.x no Microsoft Windows</h2>
+ <p class="para">
+  Esta seção contém notas e dicas específicas para instalações do Apache 2.x
+  do PHP em sistemas Microsoft Windows.
+ </p>
+ <blockquote class="note"><p><strong class="note">Nota</strong>: 
+  <p class="para">
+   Por favor, leia o <a href="install.windows.manual.html" class="link">manual
+   das etapas de instalação</a> primeiro!.
+  </p>
+ </p></blockquote>
+
+ <p class="para">
+  É altamente recomendável consultar a 
+  <a href="http://httpd.apache.org/docs/current/" class="link external">&raquo;&nbsp;Documentação Apache</a>
+  para obter uma compreensão básica do servidor Apache 2.x
+  Considere, também, a leitura das 
+  <a href="http://httpd.apache.org/docs/current/platform/windows.html" class="link external">&raquo;&nbsp;notas específicas do Windows</a>
+  para Apache 2.x antes de continuar.
+ </p>
+
+ <p class="para">
+  Baixa a versão mais recente do 
+  <a href="https://www.apachelounge.com/download/" class="link external">&raquo;&nbsp;Apache 2.x</a>
+  e uma versão adequada do PHP. Siga os 
+  <a href="install.windows.manual.html" class="link">passos do manual de instalação</a>
+  e volte para prosseguir com a integração do PHP e Apache.
+ </p>
+
+ <p class="para">
+  Existem três maneiras de configurar o PHP para funcionar com o Apache 2.x no Windows.
+  O PHP pode ser executado como um controlador, como um CGI ou em FastCGI.
+ </p>
+
+ <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">Lembre-se que ao adicionar
+caminhos nos arquivos de configuração do Apache no Windows, todas as barras invertidas
+como em <var class="filename">c:\diretorio\arquivo.ext</var> devem ser convertidas para
+barras: <var class="filename">c:/diretorio/arquivo.ext</var>. Uma barra
+final também pode ser necessária para diretórios.</span></p></blockquote>
+
+ <div class="sect2" id="install.windows.apache2.module">
+  <h3 class="title">Instalando como um controlador Apache</h3>
+  <p class="para">
+   Para carregar o módulo PHP para Apache 2.x, as seguintes linhas no
+    arquivo de configuração Apache <var class="filename">httpd.conf</var> precisam ser inseridas:
+   <div class="example" id="example-62">
+    <p><strong>Exemplo #1 PHP e Apache 2.x como controlador</strong></p>
+    <div class="example-contents">
+<div class="apache-confcode"><pre class="apache-confcode"># antes do PHP 8.0.0 o nome do módulo era php7_module
+LoadModule php_module &quot;c:/php/php8apache2_4.dll&quot;
+&lt;FilesMatch \.php$&gt;
+    SetHandler application/x-httpd-php
+&lt;/FilesMatch&gt;
+# configure caminho para php.ini
+PHPIniDir &quot;C:/php&quot;</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    O caminho correto do PHP precisa ser substituído em vez de 
+    <var class="filename">C:/php/</var> nos exemplos acima.
+    Certifique-se de que o arquivo referenciado na diretiva <code class="literal">LoadModule</code> está no
+    local especificado. Use <var class="filename">php7apache2_4.dll</var>
+    para PHP 7, ou <var class="filename">php8apache2_4.dll</var> para PHP 8.
+   </span>
+  </p></blockquote>
+ </div>
+
+ <div class="sect2" id="install.windows.apache2.cgi">
+  <h3 class="title">Executando PHP como CGI</h3>
+
+  <p class="para">
+   É altamente recomendável consultar a
+   <a href="http://httpd.apache.org/docs/current/howto/cgi.html" class="link external">&raquo;&nbsp;documentação Apache CGI</a>
+   para uma compreensão mais completa da execução de CGI no Apache.
+  </p>
+
+  <p class="para">
+   Para executar o PHP como CGI, os arquivos php-cgi precisarão ser colocados em um
+   diretório designado como um diretório CGI usando a diretiva ScriptAlias.
+  </p>
+
+  <p class="para">
+   Uma linha iniciada com <code class="literal">#!</code> precisará ser colocada nos arquivos PHP
+   que apontam para a localização do binário do PHP:
+
+   <div class="example" id="language.types.array.examples.loop">
+    <p><strong>Exemplo #2 PHP e Apache 2.x como CGI</strong></p>
+    <div class="example-contents">
+<div class="cdata"><pre>
+#!C:/php/php.exe
+&lt;?php
+  phpinfo();
+?&gt;
+</pre></div>
+    </div>
+
+   </div>
+  </p>
+  <div class="warning"><strong class="warning">Aviso</strong><p class="para">Um servidor instalado em modo CGI está aberto
+a várias vulnerabilidades possíveis. Leia nossa
+<a href="security.cgi-bin.html" class="link">seção de segurança CGI</a> para aprender como
+se defender de tais ataques.</p></div>
+ </div>
+
+ <div class="sect2" id="install.windows.apache2.fastcgi">
+  <h3 class="title">Executando PHP sobre FastCGI</h3>
+
+  <p class="para">
+   Executar o PHP no FastCGI tem uma série de vantagens sobre executá-lo como um
+   CGI. Configurá-lo dessa forma é bastante simples:
+  </p>
+  <p class="para">
+   Baixe <code class="literal">mod_fcgid</code> de
+   <a href="https://www.apachelounge.com/download/" class="link external">&raquo;&nbsp;https://www.apachelounge.com</a>.
+   Os binários do Win32 estão disponíveis para download neste site.
+   Instale o módulo de acordo com as instruções que o acompanham.
+  </p>
+  <p class="para">
+   Configure o seu servidor web conforme mostrado abaixo, tendo o cuidado de ajustar quaisquer caminhos
+   para refletir como você instalou em seu sistema específico:
+
+   <div class="example" id="example-68">
+    <p><strong>Exemplo #3 Configure o Apache para executar PHP como FastCGI</strong></p>
+    <div class="example-contents">
+<div class="cdata"><pre>
+LoadModule fcgid_module modules/mod_fcgid.so
+# Onde está seu arquivo php.ini?
+FcgidInitialEnv PHPRC        &quot;c:/php&quot;
+&lt;FilesMatch \.php$&gt;
+    SetHandler fcgid-script
+&lt;/FilesMatch&gt;
+FcgidWrapper &quot;c:/php/php-cgi.exe&quot; .php
+</pre></div>
+    </div>
+
+   </div>
+
+   Arquivos com extensão .php agora serão executados pelo interpretador PHP
+   FastCGI.
+  </p>
+ </div>
+</div></div></div></body></html>

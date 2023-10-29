@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Instala&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="opcache.requirements.html">« Depend&ecirc;ncias</a></li>
+      <li style="float: right;"><a href="opcache.configuration.html">Configura&ccedil;&otilde;es em Execu&ccedil;&atilde;o »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="opcache.setup.html">Instala&ccedil;&atilde;o/Configura&ccedil;&atilde;o</a></li>
+    <li>Instala&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="opcache.installation" class="sect1">
+ <h2 class="title">Instalação</h2>
+
+ <p class="para">
+  OPcache só pode ser compilado como uma extensão compartilhada. Se você desativou
+  a construção de extensões padrão com
+  <strong class="option configure">--disable-all</strong>, você deve compilar o PHP com a
+  opção <strong class="option configure">--enable-opcache</strong> para que o OPcache
+  esteja disponível.
+ </p>
+
+ <p class="para">
+  Uma vez compilado, você pode usar a diretiva de configuração
+  <a href="ini.core.html#ini.zend-extension" class="link">zend_extension</a> para carregar
+  a extensão OPcache no PHP. Isso pode ser feito com
+  <code class="literal">zend_extension=/full/path/to/opcache.so</code> em plataformas não Windows
+  e <code class="literal">zend_extension=C:\path\to\php_opcache.dll</code>
+  no Windows.
+ </p>
+
+ <blockquote class="note"><p><strong class="note">Nota</strong>: 
+  <p class="para">
+   Se você quiser usar o OPcache com
+   <a href="http://xdebug.org/" class="link external">&raquo;&nbsp;Xdebug</a>, você deve carregar o OPcache antes
+   do Xdebug.
+  </p>
+ </p></blockquote>
+
+ <div class="sect2" id="opcache.installation.recommended">
+  <h3 class="title">Configurações recomendadas do php.ini</h3>
+
+  <p class="para">
+   As seguintes configurações são geralmente recomendadas para fornecer um bom
+   desempenho:
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+    <div class="cdata"><pre>
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=4000
+opcache.revalidate_freq=60
+opcache.fast_shutdown=1 ; prior to PHP 7.2.0
+opcache.enable_cli=1
+</pre></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Você também pode querer considerar desabilitar
+   <a href="opcache.configuration.html#ini.opcache.save-comments" class="link">opcache.save_comments</a>
+   e habilitar
+   <a href="opcache.configuration.html#ini.opcache.enable-file-override" class="link">opcache.enable_file_override</a>,
+   no entanto, observe que você terá que testar seu código antes de usá-los na
+   produção, pois eles são conhecidos por quebrar algumas estruturas e aplicativos,
+   particularmente nos casos em que são usadas anotações de comentários na documentação.
+  </p>
+
+  <p class="para">
+   No Windows, <a href="opcache.configuration.html#ini.opcache.file-cache-fallback" class="link">opcache.file_cache_fallback</a>
+   deve ser habilitado e <a href="opcache.configuration.html#ini.opcache.file-cache" class="link">opcache.file_cache</a>
+   deve ser definido como um diretório já existente e gravável.
+  </p>
+
+  <p class="para">
+   Uma lista completa de diretivas de configuração suportadas pelo OPcache
+   <a href="opcache.configuration.html" class="link">também está disponível</a>.
+  </p>
+ </div>
+</div></div></div></body></html>

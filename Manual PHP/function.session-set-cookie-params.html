@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Define os par&acirc;metros do cookie de sess&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.session-save-path.html">« session_save_path</a></li>
+      <li style="float: right;"><a href="function.session-set-save-handler.html">session_set_save_handler »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.session.html">Fun&ccedil;&otilde;es para Sess&atilde;o</a></li>
+    <li>Define os par&acirc;metros do cookie de sess&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.session-set-cookie-params" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_set_cookie_params</h1>
+  <p class="refpurpose"><span class="refname">session_set_cookie_params</span> &mdash; <span class="dc-title">Define os parâmetros do cookie de sessão</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.session-set-cookie-params-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>session_set_cookie_params</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$lifetime</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$path</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$domain</code><span class="initializer"> = ?</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">bool</span> <code class="parameter">$secure</code><span class="initializer"> = false</span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">bool</span> <code class="parameter">$httponly</code><span class="initializer"> = false</span></span><br>): <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Define parâmetros dos cookies configurados no arquivo <var class="filename">php.ini</var>. O efeito desta
+   função é apenas pela duração do script. Então, você precisa
+   chamar <span class="function"><strong>session_set_cookie_params()</strong></span> para cada requisição e
+   antes que <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> seja chamada.
+  </p>
+  <p class="para">
+   Esta função atualiza os valores em tempo de execução correspondentes às configurações INI
+   que podem ser obetidos com <span class="function"><a href="function.ini-get.html" class="function">ini_get()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.session-set-cookie-params-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">lifetime</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <a href="session.configuration.html#ini.session.cookie-lifetime" class="link">Tempo de vida</a> do
+       cookie de sessão, definido em segundos.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">path</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <a href="session.configuration.html#ini.session.cookie-path" class="link">Caminho</a> no domínio onde
+       o cookie vai funcionar. Use uma única barra (&#039;/&#039;) para que funcione em todos os caminhos do
+       domínio.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">domain</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <a href="session.configuration.html#ini.session.cookie-domain" class="link">Domínio</a> do cookie, por
+       exemplo &#039;www.php.net&#039;. Para tornar os cookies visíveis em todos os subdomínios,
+       o domínio deve ser prefixado com um ponto, como &#039;.php.net&#039;.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">secure</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Se <strong><code>true</code></strong>, o cookie só será enviado em conexões
+       <a href="session.configuration.html#ini.session.cookie-secure" class="link">seguras</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">httponly</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Se <strong><code>true</code></strong>, então o PHP tentará enviar a flag
+       <a href="session.configuration.html#ini.session.cookie-httponly" class="link">httponly</a>
+       ao definir o cookie de sessão.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.session-set-cookie-params-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Nenhum valor é retornado.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.session-set-cookie-params-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.2.0</td>
+       <td>
+        O parâmetro <code class="parameter">httponly</code> foi adicionado.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.session-set-cookie-params-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <a href="session.configuration.html#ini.session.cookie-lifetime" class="link">session.cookie_lifetime</a>
+    </li>
+    <li class="member">
+     <a href="session.configuration.html#ini.session.cookie-path" class="link">session.cookie_path</a>
+    </li>
+    <li class="member">
+     <a href="session.configuration.html#ini.session.cookie-domain" class="link">session.cookie_domain</a>
+    </li>
+    <li class="member">
+     <a href="session.configuration.html#ini.session.cookie-secure" class="link">session.cookie_secure</a>
+    </li>
+    <li class="member">
+     <a href="session.configuration.html#ini.session.cookie-httponly" class="link">session.cookie_httponly</a>
+    </li>
+    <li class="member"><span class="function"><a href="function.session-get-cookie-params.html" class="function" rel="rdfs-seeAlso">session_get_cookie_params()</a> - Obt&eacute;m os par&acirc;metros do cookie da sess&atilde;o</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

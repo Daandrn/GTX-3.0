@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retorna as classes da SPL dispon&iacute;veis</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.spl-autoload.html">« spl_autoload</a></li>
+      <li style="float: right;"><a href="function.spl-object-hash.html">spl_object_hash »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.spl.html">Fun&ccedil;&otilde;es da SPL</a></li>
+    <li>Retorna as classes da SPL dispon&iacute;veis</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.spl-classes" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">spl_classes</h1>
+  <p class="refpurpose"><span class="refname">spl_classes</span> &mdash; <span class="dc-title">Retorna as classes da SPL disponíveis</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.spl-classes-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>spl_classes</strong></span>(): <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Esta função retorna um array com as classes da SPL disponíveis atualmente.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.spl-classes-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">Esta função não possui parâmetros.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.spl-classes-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna um <span class="type">array</span> contendo as classes SPL disponíveis.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.spl-classes-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo de<span class="function"><strong>spl_classes()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">spl_classes</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [ArrayObject] =&gt; ArrayObject
+    [ArrayIterator] =&gt; ArrayIterator
+    [CachingIterator] =&gt; CachingIterator
+    [RecursiveCachingIterator] =&gt; RecursiveCachingIterator
+    [DirectoryIterator] =&gt; DirectoryIterator
+    [FilterIterator] =&gt; FilterIterator
+    [LimitIterator] =&gt; LimitIterator
+    [ParentIterator] =&gt; ParentIterator
+    [RecursiveDirectoryIterator] =&gt; RecursiveDirectoryIterator
+    [RecursiveIterator] =&gt; RecursiveIterator
+    [RecursiveIteratorIterator] =&gt; RecursiveIteratorIterator
+    [SeekableIterator] =&gt; SeekableIterator
+    [SimpleXMLIterator] =&gt; SimpleXMLIterator
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+</div></div></div></body></html>

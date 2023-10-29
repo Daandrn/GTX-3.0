@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Restaura a fun&ccedil;&atilde;o anterior para gerenciamento de erro</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.error-reporting.html">« error_reporting</a></li>
+      <li style="float: right;"><a href="function.restore-exception-handler.html">restore_exception_handler »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.errorfunc.html">Fun&ccedil;&otilde;es para Manuseamento de Erros</a></li>
+    <li>Restaura a fun&ccedil;&atilde;o anterior para gerenciamento de erro</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.restore-error-handler" class="refentry">
+   <div class="refnamediv">
+    <h1 class="refname">restore_error_handler</h1>
+    <p class="refpurpose"><span class="refname">restore_error_handler</span> &mdash; <span class="dc-title">Restaura a função anterior para gerenciamento de erro</span></p>
+
+   </div>
+   
+   <div class="refsect1 description" id="refsect1-function.restore-error-handler-description">
+    <h3 class="title">Descrição</h3>
+     <div class="methodsynopsis dc-description">
+      <span class="methodname"><strong>restore_error_handler</strong></span>(): <span class="type">bool</span></div>
+
+    <p class="para rdfs-comment">
+     Usada após mudar a função que gerencia os erros usando
+     <span class="function"><a href="function.set-error-handler.html" class="function">set_error_handler()</a></span>, para reverter para a função que gerencia os erros anterior
+     (a qual pode ser uma função interna ou uma função definida pelo usuário).
+    </p>
+   </div>
+
+
+   <div class="refsect1 returnvalues" id="refsect1-function.restore-error-handler-returnvalues">
+    <h3 class="title">Valor Retornado</h3>
+    <p class="para">
+     Esta função sempre retorna <strong><code>true</code></strong>.
+    </p>
+   </div>
+
+
+   <div class="refsect1 examples" id="refsect1-function.restore-error-handler-examples">
+    <h3 class="title">Exemplos</h3>
+    <p class="para">
+     <div class="example" id="example-1562">
+      <p><strong>Exemplo #1 Exemplo <span class="function"><strong>restore_error_handler()</strong></span></strong></p>
+       <div class="example-contents"><p>
+        Decide se <span class="function"><a href="function.unserialize.html" class="function">unserialize()</a></span> causou um erro, então
+        restaura o manipulador de erro original.
+       </p></div>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">unserialize_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$errno</span><span style="color: #007700">, </span><span style="color: #0000BB">$errstr</span><span style="color: #007700">)<br />{<br />    echo </span><span style="color: #DD0000">"Invalid serialized value.\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$serialized </span><span style="color: #007700">= </span><span style="color: #DD0000">'foo'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">set_error_handler</span><span style="color: #007700">(</span><span style="color: #DD0000">'unserialize_handler'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$original </span><span style="color: #007700">= </span><span style="color: #0000BB">unserialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$serialized</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">restore_error_handler</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+       <div class="example-contents screen">
+<div class="cdata"><pre>
+Invalid serialized value.
+</pre></div>
+       </div>
+      </div>
+     </p>
+    </div>
+
+
+   <div class="refsect1 notes" id="refsect1-function.restore-error-handler-notes">
+    <h3 class="title">Notas</h3>
+    <blockquote class="note"><p><strong class="note">Nota</strong>: 
+     <p class="para">
+      Chamar <span class="function"><strong>restore_error_handler()</strong></span> da função
+      <code class="literal">error_handler</code> é ignorada.
+     </p>
+    </p></blockquote>
+   </div>
+
+
+  <div class="refsect1 seealso" id="refsect1-function.restore-error-handler-seealso">
+   <h3 class="title">Veja Também</h3>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><span class="function"><a href="function.error-reporting.html" class="function" rel="rdfs-seeAlso">error_reporting()</a> - Define quais erros do PHP s&atilde;o relatados</span></li>
+      <li class="member"><span class="function"><a href="function.set-error-handler.html" class="function" rel="rdfs-seeAlso">set_error_handler()</a> - Sets a user-defined error handler function</span></li>
+      <li class="member"><span class="function"><a href="function.restore-exception-handler.html" class="function" rel="rdfs-seeAlso">restore_exception_handler()</a> - Restores the previously defined exception handler function</span></li>
+      <li class="member"><span class="function"><a href="function.trigger-error.html" class="function" rel="rdfs-seeAlso">trigger_error()</a> - Gera uma mensagem a n&iacute;vel de usu&aacute;rio de erro/aviso/not&iacute;cia</span></li>
+     </ul>
+    </p>
+   </div>
+
+  </div></div></div></body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Backed enums</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.enumerations.basics.html">« Enumera&ccedil;&otilde;es b&aacute;sicas</a></li>
+      <li style="float: right;"><a href="language.enumerations.methods.html">M&eacute;todos de enumera&ccedil;&otilde;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.enumerations.html">Enumera&ccedil;&otilde;es</a></li>
+    <li>Backed enums</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.enumerations.backed" class="sect1">
+  <h2 class="title">Backed enums</h2>
+
+  <p class="para">
+   Por padrão, os Casos não possuem um equivalente escalar. Eles são apenas objetos singleton. No entanto,
+   existem muitos casos em que um Caso Enumerado precisa ser capaz de fazer fazer uma conversão de ida e volta para um banco de dados ou
+   um armazenamento de dados semelhante, então ter um escalar embutido (e, portanto, trivialmente serializável) equivalente definido
+   intrinsecamente é útil.
+  </p>
+
+  <p class="para">Para definir um equivalente escalar para uma Enumeração, a sintaxe é a seguinte:</p>
+
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">enum </span><span style="color: #0000BB">Naipe</span><span style="color: #007700">: </span><span style="color: #0000BB">string<br /></span><span style="color: #007700">{<br />    case </span><span style="color: #0000BB">Copas </span><span style="color: #007700">= </span><span style="color: #DD0000">'C'</span><span style="color: #007700">;<br />    case </span><span style="color: #0000BB">Ouros </span><span style="color: #007700">= </span><span style="color: #DD0000">'O'</span><span style="color: #007700">;<br />    case </span><span style="color: #0000BB">Paus </span><span style="color: #007700">= </span><span style="color: #DD0000">'P'</span><span style="color: #007700">;<br />    case </span><span style="color: #0000BB">Espadas </span><span style="color: #007700">= </span><span style="color: #DD0000">'E'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+
+  <p class="para">
+   Um caso que possui um equivalente escalar é chamado de Backed Case, sendo &quot;Backed&quot; no sentido de lastreado, suportado,
+   por um valor mais simples. Uma Enum que possui todos Casos Lastreados é chamada Backed Enum.
+   Uma Backed Enum pode conter apenas Backed Case. Uma Enum Pura pode conter apenas Casos Puros.
+  </p>
+
+  <p class="para">
+   Uma Backed Enum pode associar valores de tipos <code class="literal">int</code> ou <code class="literal">string</code>,
+   e uma determinada enumeração suporta apenas um único tipo de cada vez (isto é, sem união de <code class="literal">int|string</code>).
+   Se uma enumeração for marcada como tendo um equivalente escalar, então todos os casos devem possuir um escalar equivalente
+   único definido explicitamente. Não existem equivalentes escalares gerados automaticamente
+   (p. ex.: inteiros sequenciais). Casos lastreados devem ser únicos; dois casos enum lastreados não podem
+   ter o mesmo equivalente escalar. No entanto, uma constante pode se referir a um caso, efetivamente
+   criando um apelido. Veja <a href="language.enumerations.constants.html" class="link">Constantes de enumeração</a>.
+  </p>
+
+  <p class="para">
+   Valores equivalentes devem ser literais ou expressões literais. Constantes e expressões constantes
+   não são suportadas. Isto é, <code class="literal">1 + 1</code> é permitido, mas <code class="literal">1 + SOME_CONST</code>
+   não é.
+  </p>
+
+  <p class="para">
+   Backed Cases possuem uma propriedade somente leitura adicional, <code class="literal">value</code>, que é o valor
+   especificado na definição.
+  </p>
+
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">print </span><span style="color: #0000BB">Naipe</span><span style="color: #007700">::</span><span style="color: #0000BB">Paus</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">value</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Imprime "P"<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+
+  <p class="para">
+   Para impor a propriedade <code class="literal">value</code> como somente leitura, uma variável não pode
+   ser atribuída como uma referência para ela. Isto é, o seguinte lança um erro:
+  </p>
+
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$naipe </span><span style="color: #007700">= </span><span style="color: #0000BB">Naipe</span><span style="color: #007700">::</span><span style="color: #0000BB">Paus</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$ref </span><span style="color: #007700">= &amp;</span><span style="color: #0000BB">$naipe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">value</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Error: Cannot acquire reference to property Naipe::$value<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+
+  <p class="para">
+   Backed Enums implementam uma interface interna <span class="interfacename"><a href="class.backedenum.html" class="interfacename">BackedEnum</a></span>,
+   que expõe dois métodos adicionais:
+  </p>
+
+  <ul class="simplelist">
+   <li class="member">
+    <code class="literal">from(int|string): self</code> recebe uma escalar e retornará o Caso Enum
+    correspondente. Se um não for encontrado, ela lançará um <span class="classname"><a href="class.valueerror.html" class="classname">ValueError</a></span>. Isso é útil
+    principalmente nas situações somente valores previstos são permitidos e um valor enum ausente deve ser
+    considerado um erro de interrupção de aplicação.
+   </li>
+   <li class="member">
+    <code class="literal">tryFrom(int|string): ?self</code> recebe uma escalar e retornará o
+    Caso Enum correspondente. Se um não for encontrado, ela retornará <code class="literal">null</code>.
+    Isso é útil principalmente em casos onde o escalar de entrada não é confiável e o chamador quer
+    implementar sua própria lógica de manipulação de erros ou de valor padrão.
+   </li>
+  </ul>
+
+  <p class="para">
+   Os métodos <code class="literal">from()</code> e <code class="literal">tryFrom()</code> seguem as regras
+   padrão de tipagem fraca/forte. No modo de tipagem fraca, passar um inteiro ou string é aceitável
+   e o sistema irá coagir o valor de acordo. Passar um float também irá funcionar e será
+   convertido. No modo de tipagem estrita, passar um inteiro para <code class="literal">from()</code> em uma
+   enum associada a strings (ou vice-versa) irá resultar em um <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span>,
+   assim como um float irá lançar um erro em todas as circunstâncias. Todos os outros tipos de parâmetro lançarão um TypeError
+   em ambos os modos.
+  </p>
+
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$registro </span><span style="color: #007700">= </span><span style="color: #0000BB">obter_coisas_do_banco_de_dados</span><span style="color: #007700">(</span><span style="color: #0000BB">$id</span><span style="color: #007700">);<br />print </span><span style="color: #0000BB">$registro</span><span style="color: #007700">[</span><span style="color: #DD0000">'naipe'</span><span style="color: #007700">];<br /><br /></span><span style="color: #0000BB">$naipe </span><span style="color: #007700">= </span><span style="color: #0000BB">Naipe</span><span style="color: #007700">::</span><span style="color: #0000BB">from</span><span style="color: #007700">(</span><span style="color: #0000BB">$registro</span><span style="color: #007700">[</span><span style="color: #DD0000">'naipe'</span><span style="color: #007700">]);<br /></span><span style="color: #FF8000">// Dados inválidos lançam um ValueError: "X" is not a valid scalar value for enum "Naipe"<br /></span><span style="color: #007700">print </span><span style="color: #0000BB">$naipe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">value</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$naipe </span><span style="color: #007700">= </span><span style="color: #0000BB">Naipe</span><span style="color: #007700">::</span><span style="color: #0000BB">tryFrom</span><span style="color: #007700">(</span><span style="color: #DD0000">'A'</span><span style="color: #007700">) ?? </span><span style="color: #0000BB">Naipe</span><span style="color: #007700">::</span><span style="color: #0000BB">Espadas</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Dados inválidos retornam null, então Naipe::Espadas em seu lugar.<br /></span><span style="color: #007700">print </span><span style="color: #0000BB">$naipe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">value</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+
+  <p class="para">Definir manualmente um método <code class="literal">from()</code> ou <code class="literal">tryFrom()</code> em uma Backed Enum irá resultar em um erro fatal.</p>
+
+  </div></div></div></body></html>

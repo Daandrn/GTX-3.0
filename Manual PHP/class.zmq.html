@@ -1,0 +1,916 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>A classe ZMQ</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="zmq.requirements.html">« Depend&ecirc;ncias</a></li>
+      <li style="float: right;"><a href="zmq.construct.html">ZMQ::__construct »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.zmq.html">API de Mensagens 0MQ</a></li>
+    <li>A classe ZMQ</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.zmq" class="reference">
+
+ <h1 class="title">A classe ZMQ</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(PECL zmq &gt;= 0.5.0)</p>
+
+
+  <div class="section" id="zmq.intro">
+   <h2 class="title">Introdução</h2>
+   <p class="para">
+
+   </p>
+  </div>
+
+
+  <div class="section" id="zmq.synopsis">
+   <h2 class="title">Sinopse da classe</h2>
+
+
+   <div class="classsynopsis">
+    <span class="ooclass"><strong class="classname"></strong></span>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <span class="modifier">class</span> <strong class="classname">ZMQ</strong>
+     </span>
+     {</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Constantes */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-pair"><var class="varname">SOCKET_PAIR</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-pub"><var class="varname">SOCKET_PUB</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-sub"><var class="varname">SOCKET_SUB</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-req"><var class="varname">SOCKET_REQ</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-rep"><var class="varname">SOCKET_REP</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-xreq"><var class="varname">SOCKET_XREQ</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-xrep"><var class="varname">SOCKET_XREP</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-push"><var class="varname">SOCKET_PUSH</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-pull"><var class="varname">SOCKET_PULL</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-router"><var class="varname">SOCKET_ROUTER</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-dealer"><var class="varname">SOCKET_DEALER</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-xpub"><var class="varname">SOCKET_XPUB</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-xsub"><var class="varname">SOCKET_XSUB</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.socket-stream"><var class="varname">SOCKET_STREAM</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-hwm"><var class="varname">SOCKOPT_HWM</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-sndhwm"><var class="varname">SOCKOPT_SNDHWM</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-rcvhwm"><var class="varname">SOCKOPT_RCVHWM</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-affinity"><var class="varname">SOCKOPT_AFFINITY</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-identity"><var class="varname">SOCKOPT_IDENTITY</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-subscribe"><var class="varname">SOCKOPT_SUBSCRIBE</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-unsubscribe"><var class="varname">SOCKOPT_UNSUBSCRIBE</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-rate"><var class="varname">SOCKOPT_RATE</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-recovery-ivl"><var class="varname">SOCKOPT_RECOVERY_IVL</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-reconnect-ivl"><var class="varname">SOCKOPT_RECONNECT_IVL</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-reconnect-ivl-max"><var class="varname">SOCKOPT_RECONNECT_IVL_MAX</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-mcast-loop"><var class="varname">SOCKOPT_MCAST_LOOP</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-sndbuf"><var class="varname">SOCKOPT_SNDBUF</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-rcvbuf"><var class="varname">SOCKOPT_RCVBUF</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-rcvmore"><var class="varname">SOCKOPT_RCVMORE</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-type"><var class="varname">SOCKOPT_TYPE</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-linger"><var class="varname">SOCKOPT_LINGER</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-backlog"><var class="varname">SOCKOPT_BACKLOG</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-maxmsgsize"><var class="varname">SOCKOPT_MAXMSGSIZE</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-sndtimeo"><var class="varname">SOCKOPT_SNDTIMEO</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-rcvtimeo"><var class="varname">SOCKOPT_RCVTIMEO</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-ipv4only"><var class="varname">SOCKOPT_IPV4ONLY</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-last-endpoint"><var class="varname">SOCKOPT_LAST_ENDPOINT</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-tcp-keepalive-idle"><var class="varname">SOCKOPT_TCP_KEEPALIVE_IDLE</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-tcp-keepalive-cnt"><var class="varname">SOCKOPT_TCP_KEEPALIVE_CNT</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-tcp-keepalive-intvl"><var class="varname">SOCKOPT_TCP_KEEPALIVE_INTVL</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-tcp-accept-filter"><var class="varname">SOCKOPT_TCP_ACCEPT_FILTER</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-tcp-accept-filter"><var class="varname">SOCKOPT_TCP_ACCEPT_FILTER</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-delay-attach-on-connect"><var class="varname">SOCKOPT_DELAY_ATTACH_ON_CONNECT</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-xpub-verbose"><var class="varname">SOCKOPT_XPUB_VERBOSE</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-router-raw"><var class="varname">SOCKOPT_ROUTER_RAW</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.sockopt-ipv6"><var class="varname">SOCKOPT_IPV6</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.ctxopt-max-sockets"><var class="varname">CTXOPT_MAX_SOCKETS</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.poll-in"><var class="varname">POLL_IN</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.poll-out"><var class="varname">POLL_OUT</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.mode-noblock"><var class="varname">MODE_NOBLOCK</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.mode-dontwait"><var class="varname">MODE_DONTWAIT</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.mode-sndmore"><var class="varname">MODE_SNDMORE</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.err-internal"><var class="varname">ERR_INTERNAL</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.err-eagain"><var class="varname">ERR_EAGAIN</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.err-enotsup"><var class="varname">ERR_ENOTSUP</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.err-efsm"><var class="varname">ERR_EFSM</var></a></var>;</div>
+
+    <div class="fieldsynopsis"><span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.zmq.html#zmq.constants.err-eterm"><var class="varname">ERR_ETERM</var></a></var>;</div>
+
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Métodos */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">private</span> <span class="methodname"><a href="zmq.construct.html" class="methodname">__construct</a></span>()</div>
+
+   }</div>
+
+
+  </div>
+
+
+  <div class="section" id="zmq.constants">
+   <h2 class="title">Constantes pré-definidas</h2>
+   <div class="section" id="zmq.constants.types">
+    <h2 class="title">Tipos de Constantes ZMQ</h2>
+    <dl>
+
+     
+      <dt id="zmq.constants.socket-pair"><strong><code>ZMQ::SOCKET_PAIR</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Padrão de paridade exclusiva</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-pub"><strong><code>ZMQ::SOCKET_PUB</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Socket de publicação</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-sub"><strong><code>ZMQ::SOCKET_SUB</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Socket de subscrição</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-req"><strong><code>ZMQ::SOCKET_REQ</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Socket de requisição</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-rep"><strong><code>ZMQ::SOCKET_REP</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Socket de resposta</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-xreq"><strong><code>ZMQ::SOCKET_XREQ</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Um pseudônimo para SOCKET_DEALER</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-xrep"><strong><code>ZMQ::SOCKET_XREP</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Um pseudônimo para SOCKET_ROUTER</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-push"><strong><code>ZMQ::SOCKET_PUSH</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Um socket para envio de fluxo</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-pull"><strong><code>ZMQ::SOCKET_PULL</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Um socket para recepção de fluxo</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-router"><strong><code>ZMQ::SOCKET_ROUTER</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Um socket de resposta extendido que pode rotear respostas para os solicitantes</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-dealer"><strong><code>ZMQ::SOCKET_DEALER</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Um socket extendido de requisição que equilibra a carga para todos os clientes conectados</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-xpub"><strong><code>ZMQ::SOCKET_XPUB</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Similar ao SOCKET_PUB, exceto que é possível receber subscrições como mensagens.
+             A mensagem de subscrição é 0 (não subscrever) ou 1 (subscrever) seguido por um tópico.</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-xsub"><strong><code>ZMQ::SOCKET_XSUB</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Similar ao SOCKET_SUB, exceto que é possível enviar subscrições como mensagens. Consulte SOCKET_XPUB para saber o formato.</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.socket-stream"><strong><code>ZMQ::SOCKET_STREAM</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Usado para enviar e receber dados via TCP de um cliente não ØMQ. Disponível se compilado em versão igual ou superior a 4.x da ZeroMQ (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-hwm"><strong><code>ZMQ::SOCKOPT_HWM</code></strong></dt>
+
+      <dd>
+
+       <p class="para">O marcador High Water Mark (HWM) para as mensagens que entram e saem,  é um marcador de limite  do número máximo de mensagens que a ØMQ enfileira na memória para um cliente qualquer ao qual o socket especificado esteja se comunicando. Definir esta opção em um socket afetará apenas as conexões feitas após a configuração da opção. Na ZeroMQ 3.x esta opção é um wrapper para a configuração de SNDHWM e RCVHWM. (Valor: <span class="type">int</span>).</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-sndhwm"><strong><code>ZMQ::SOCKOPT_SNDHWM</code></strong></dt>
+
+      <dd>
+
+       <p class="para">A opção ZMQ_SNDHWM define o limite HWM para as mensagens de saída no socket especificado. Disponível se compilado na versão 3.x ou maior da ZeroMQ (Valor: <span class="type">int</span>).</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-rcvhwm"><strong><code>ZMQ::SOCKOPT_RCVHWM</code></strong></dt>
+
+      <dd>
+
+       <p class="para">A opção ZMQ_RCVHWM define o limite HWM para as mensagens de entrada no socket especificado. Disponível se compilado na versão 3.x ou maior da ZeroMQ (Valor: <span class="type">int</span>).</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-affinity"><strong><code>ZMQ::SOCKOPT_AFFINITY</code></strong></dt>
+
+      <dd>
+
+       <p class="para"> Define a relação com a thread de I/O (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-identity"><strong><code>ZMQ::SOCKOPT_IDENTITY</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define a identidade do socket (Valor: <span class="type">string</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-subscribe"><strong><code>ZMQ::SOCKOPT_SUBSCRIBE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Estabelece um filtro de mensagens. Válido para o socket subscrito (Valor: <span class="type">string</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-unsubscribe"><strong><code>ZMQ::SOCKOPT_UNSUBSCRIBE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Remove um filtro de mensagens. Válido para o socket subscrito (Valor: <span class="type">string</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-rate"><strong><code>ZMQ::SOCKOPT_RATE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define a taxa de envio para sockets multicast (pgm) (Valor: <span class="type">int</span> &gt;= 0)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-recovery-ivl"><strong><code>ZMQ::SOCKOPT_RECOVERY_IVL</code></strong></dt>
+
+      <dd>
+
+       <p class="para"> Define o intervalo de recuperação multicast (Valor: <span class="type">int</span> &gt;= 0)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-reconnect-ivl"><strong><code>ZMQ::SOCKOPT_RECONNECT_IVL</code></strong></dt>
+
+      <dd>
+
+       <p class="para"> Define o intervalo de reconexão inicial (Valor: <span class="type">int</span> &gt;= 0)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-reconnect-ivl-max"><strong><code>ZMQ::SOCKOPT_RECONNECT_IVL_MAX</code></strong></dt>
+
+      <dd>
+
+       <p class="para"> Define o intervalo máximo de reconexão (Valor: <span class="type">int</span> &gt;= 0)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-mcast-loop"><strong><code>ZMQ::SOCKOPT_MCAST_LOOP</code></strong></dt>
+
+      <dd>
+
+       <p class="para"> Controla o retorno do multicast (Valor: <span class="type">int</span> &gt;= 0)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-sndbuf"><strong><code>ZMQ::SOCKOPT_SNDBUF</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define o tamanho do buffer do kernel de transmissão (Valor: <span class="type">int</span> &gt;= 0)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-rcvbuf"><strong><code>ZMQ::SOCKOPT_RCVBUF</code></strong></dt>
+
+      <dd>
+
+       <p class="para"> Define o tamanho do buffer do kernel de recepção (Valor: <span class="type">int</span> &gt;= 0)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-rcvmore"><strong><code>ZMQ::SOCKOPT_RCVMORE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Recebe mensagens com várias partes (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-type"><strong><code>ZMQ::SOCKOPT_TYPE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Obtém o tipo de socket. Válido para o método getSockOpt (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-linger"><strong><code>ZMQ::SOCKOPT_LINGER</code></strong></dt>
+
+      <dd>
+
+       <p class="para">O tempo de permanência após fechamento do socket. Especifica por quanto tempo o socket fica bloqueado
+             enquanto tenta dar vazão às mensagens depois que ele tenha sido fechado (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-backlog"><strong><code>ZMQ::SOCKOPT_BACKLOG</code></strong></dt>
+
+      <dd>
+
+       <p class="para">A opção SOCKOPT_BACKLOG define o comprimento máximo da fila de conexões de clientes para o socket especificado; isso só se aplica a transportes orientados a conexão. (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-maxmsgsize"><strong><code>ZMQ::SOCKOPT_MAXMSGSIZE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Limita o tamanho máximo da mensagem de entrada. O valor -1 significa que não há limite. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-sndtimeo"><strong><code>ZMQ::SOCKOPT_SNDTIMEO</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define o tempo limite para a operação de envio no socket. O valor -1 indica que não há limite. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-rcvtimeo"><strong><code>ZMQ::SOCKOPT_RCVTIMEO</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define o tempo limite para a operação de recepção no socket. O valor -1 indica que não há limite. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-ipv4only"><strong><code>ZMQ::SOCKOPT_IPV4ONLY</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Desabilita o suporte ao IPV6 caso o valor seja 1. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-last-endpoint"><strong><code>ZMQ::SOCKOPT_LAST_ENDPOINT</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Recupera o último destino conectado - para o uso com as portas * coringa. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">string</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-tcp-keepalive-idle"><strong><code>ZMQ::SOCKOPT_TCP_KEEPALIVE_IDLE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Tempo de ociosidade para os pacotes TCP keepalive. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-tcp-keepalive-cnt"><strong><code>ZMQ::SOCKOPT_TCP_KEEPALIVE_CNT</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Contador para os pacotes TCp keepalive. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-tcp-keepalive-intvl"><strong><code>ZMQ::SOCKOPT_TCP_KEEPALIVE_INTVL</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Intervalo para os pacotes TCP keepalive. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-delay-attach-on-connect"><strong><code>ZMQ::SOCKOPT_DELAY_ATTACH_ON_CONNECT</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define uma string CIDR para comparar com as conexões TCP de entrada. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">string</span>)</p>
+      </dd>
+
+     
+
+      
+       <dt id="zmq.constants.sockopt-tcp-accept-filter"><strong><code>ZMQ::SOCKOPT_TCP_ACCEPT_FILTER</code></strong></dt>
+
+       <dd>
+
+        <p class="para">Define uma string CIDR para comparar com as conexões TCP de entrada. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">string</span>)</p>
+       </dd>
+
+      
+
+     
+      <dt id="zmq.constants.sockopt-xpub-verbose"><strong><code>ZMQ::SOCKOPT_XPUB_VERBOSE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define que a opção XPUB deve receber uma mensagem de aplicação em cada instância de subscrição. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">string</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-router-raw"><strong><code>ZMQ::SOCKOPT_ROUTER_RAW</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define o modo raw (sem processamento) para o ROUTER, quando passado o valor 1. No modo raw,  ao usar um socket TCP, a leitura e escrita dos dados será realizada sem o processamento do ZeroMQ.
+               Disponível se compilado em versão igual ou superior a 4.0 da ZeroMQ (Valor: <span class="type">string</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.sockopt-ipv6"><strong><code>ZMQ::SOCKOPT_IPV6</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Habilita o protocolo IPV6. Disponível se compilado em versão igual ou superior a 4.0 da ZeroMQ (Valor: <span class="type">string</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.ctxopt-max-sockets"><strong><code>ZMQ::CTXOPT_MAX_SOCKETS</code></strong></dt>
+
+      <dd>
+
+       <p class="para">O número máximo de sockets para o contexto. Disponível se compilado em versão igual ou superior a 3.x da ZeroMQ (Valor: <span class="type">int</span>)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.poll-in"><strong><code>ZMQ::POLL_IN</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Consulta se há dados de entrada</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.poll-out"><strong><code>ZMQ::POLL_OUT</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Consulta se há dados e saída</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.mode-noblock"><strong><code>ZMQ::MODE_NOBLOCK</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define a operação como não bloqueante. Constante obsoleta, use ZMQ::MODE_DONTWAIT</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.mode-dontwait"><strong><code>ZMQ::MODE_DONTWAIT</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define a operação como não bloqueante</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.mode-sndmore"><strong><code>ZMQ::MODE_SNDMORE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Envia uma mensagem particionada (com várias partes)</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.device-forwarder"><strong><code>ZMQ::DEVICE_FORWARDER</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define um dispositivo de encaminhamento</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.device-queue"><strong><code>ZMQ::DEVICE_QUEUE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define um dispositivo de enfileiramento</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.device-streamer"><strong><code>ZMQ::DEVICE_STREAMER</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Define um dispositivo de fluxo</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.err-internal"><strong><code>ZMQ::ERR_INTERNAL</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Erro interno na extensão ZMQ</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.err-eagain"><strong><code>ZMQ::ERR_EAGAIN</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Impleca que a operação será bloqueante caso ZMQ::MODE_DONTWAIT seja usada</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.err-enotsup"><strong><code>ZMQ::ERR_ENOTSUP</code></strong></dt>
+
+      <dd>
+
+       <p class="para">A operação não é suportada pelo tipo de socket informado</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.err-efsm"><strong><code>ZMQ::ERR_EFSM</code></strong></dt>
+
+      <dd>
+
+       <p class="para">A operação não pode ser executada porque o socket não está em um estado válido</p>
+      </dd>
+
+     
+
+     
+      <dt id="zmq.constants.err-eterm"><strong><code>ZMQ::ERR_ETERM</code></strong></dt>
+
+      <dd>
+
+       <p class="para">O contexto foi encerrado</p>
+      </dd>
+
+     
+
+    </dl>
+
+   </div>
+  </div>
+
+
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+<h2>Índice</h2><ul class="chunklist chunklist_reference"><li><a href="zmq.construct.html">ZMQ::__construct</a> — Construtor da classe ZMQ</li></ul>
+</div>
+</div></div></body></html>

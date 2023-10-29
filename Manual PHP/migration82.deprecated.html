@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Funcionalidades Preteridas</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration82.incompatible.html">« Altera&ccedil;&otilde;es incompat&iacute;veis com vers&otilde;es anteriores</a></li>
+      <li style="float: right;"><a href="migration82.other-changes.html">Outras mudan&ccedil;as »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration82.html">Migrando do PHP 8.1.x para o PHP 8.2.x</a></li>
+    <li>Funcionalidades Preteridas</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration82.deprecated" class="sect1">
+ <h2 class="title">Funcionalidades Preteridas</h2>
+
+ <div class="sect2" id="migration82.deprecated.core">
+  <h3 class="title">PHP Core</h3>
+
+  <div class="sect3" id="migration82.deprecated.core.dynamic-properties">
+   <h4 class="title">Uso de propriedades dinâmicas</h4>
+
+   <p class="para">
+    A criação de propriedades dinâmicas foi preterida a menos que a classe a ative
+    usando o atributo <code class="code">#[\AllowDynamicProperties]</code>.
+    <span class="classname"><a href="class.stdclass.html" class="classname">stdClass</a></span> permite propriedades dinâmicas.
+    O uso dos métodos mágicos <a href="language.oop5.overloading.html#object.get" class="link">__get()</a>/<a href="language.oop5.overloading.html#object.set" class="link">__set()</a> não é afetado por essa mudança.
+    Um aviso de descontinuação de propriedades dinâmicas pode ser abordado das seguintes maneiras:
+
+    <ul class="simplelist">
+     <li class="member">Declarando a propriedade (preferido).</li>
+     <li class="member">
+      Adicionando o atributo <code class="code">#[\AllowDynamicProperties]</code> à classe
+      (que também se aplica a todas as classes filhas).
+     </li>
+     <li class="member">
+      Usando um <span class="classname"><a href="class.weakmap.html" class="classname">WeakMap</a></span> se dados adicionais precisarem ser
+      associados a um objeto ao qual não se detém posse.
+     </li>
+    </ul>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration82.deprecated.core.relative-callables">
+   <h4 class="title">Chamáveis relativos</h4>
+
+   <p class="para">
+    Chamáveis que não são aceitos pela sintaxe <code class="code">$callable()</code>
+    (mas são aceitos por <span class="function"><a href="function.call-user-func.html" class="function">call_user_func()</a></span>) foram preteridos.
+
+    Em particular:
+    <ul class="simplelist">
+     <li class="member"><code class="code">&quot;self::method&quot;</code></li>
+     <li class="member"><code class="code">&quot;parent::method&quot;</code></li>
+     <li class="member"><code class="code">&quot;static::method&quot;</code></li>
+     <li class="member"><code class="code">[&quot;self&quot;, &quot;method&quot;]</code></li>
+     <li class="member"><code class="code">[&quot;parent&quot;, &quot;method&quot;]</code></li>
+     <li class="member"><code class="code">[&quot;static&quot;, &quot;method&quot;]</code></li>
+     <li class="member"><code class="code">[&quot;Foo&quot;, &quot;Bar::method&quot;]</code></li>
+     <li class="member"><code class="code">[new Foo, &quot;Bar::method&quot;]</code></li>
+    </ul>
+
+    Isso não afeta chamáveis de métodos normais como
+    <code class="code">&quot;A::method&quot;</code> ou <code class="code">[&quot;A&quot;, &quot;method&quot;]</code>.
+   </p>
+   
+   
+  </div>
+
+  <div class="sect3" id="migration82.deprecated.core.dollar-brace-interpolation">
+   <h4 class="title">Estilo de interpolação <code class="code">&quot;${var}&quot;</code> e <code class="code">&quot;${expr}&quot;</code></h4>
+
+   <p class="para">
+    Os estilos de interpolação de string <code class="code">&quot;${var}&quot;</code> e <code class="code">&quot;${expr}&quot;</code>
+    foram preteridos.
+    Use <code class="code">&quot;$var&quot;/&quot;{$var}&quot;</code> e <code class="code">&quot;{${expr}}&quot;</code>, respectivamente.
+    
+   </p>
+  </div>
+
+ </div>
+
+ <div class="sect2" id="migration82.deprecated.mbstring">
+  <h3 class="title">MBString</h3>
+
+  <p class="para">
+   O uso das &#039;codificações de texto&#039; <code class="literal">QPrint</code>, <code class="literal">Base64</code>,
+   <code class="literal">Uuencode</code>, e <code class="literal">HTML-ENTITIES</code>
+   foi preterido para todas as funções de MBString.
+
+   Diferente das outras codificações de texto suportadas pela MBString,
+   essas não codificam a sequência de pontos de código Unicode, mas sim uma sequência de bytes brutos.
+   Não está claro quais deveriam ser os valores de devolução corretos para a maioria das funções de MBString
+   quando uma dessas não-codificações é especificada.
+   Além disso, o PHP possui implementações separadas, embutidas, para todas elas;
+   por exemplo, dados UUencoded podem ser manipulados utilizando
+   <span class="function"><a href="function.convert-uuencode.html" class="function">convert_uuencode()</a></span>/<span class="function"><a href="function.convert-uudecode.html" class="function">convert_uudecode()</a></span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration82.deprecated.spl">
+  <h3 class="title">SPL</h3>
+
+  <p class="para">
+   O método interno <span class="methodname"><strong>SplFileInfo::_bad_state_ex()</strong></span>
+   for preterido.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration82.deprecated.standard">
+  <h3 class="title">Biblioteca Padrão</h3>
+
+  <p class="para">
+   <span class="function"><a href="function.utf8-encode.html" class="function">utf8_encode()</a></span> e <span class="function"><a href="function.utf8-decode.html" class="function">utf8_decode()</a></span>
+   foram preteridas.
+  </p>
+ </div>
+
+</div></div></div></body></html>

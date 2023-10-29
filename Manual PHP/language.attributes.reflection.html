@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lendo Atributos com a API Reflection</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.attributes.syntax.html">« Sintaxe de Atributo</a></li>
+      <li style="float: right;"><a href="language.attributes.classes.html">Declarando Classes de Atributos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.attributes.html">Atributos</a></li>
+    <li>Lendo Atributos com a API Reflection</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.attributes.reflection" class="sect1">
+  <h2 class="title">Lendo Atributos com a API Reflection</h2>
+
+  <p class="para">
+   Para acessar atributos de classes, métodos, funções, parâmetros, propriedades e constantes de classe,
+   a API Reflection fornece o método <span class="function"><strong>getAttributes()</strong></span> em cada um dos objetos
+   Reflection correspondentes. Este método retorna um array de instâncias de <span class="classname"><strong class="classname">ReflectionAttribute</strong></span>
+   que podem ser consultadas para o nome do atributo, argumentos e para criar uma instância do atributo representado.
+  </p>
+
+  <p class="para">
+   Essa separação da representação do atributo refletido da instância real aumenta o controle do programador
+   para lidar com erros relacionados a classes de atributos ausentes, erros de digitação ou argumentos ausentes. Somente após
+   chamar <span class="function"><strong>ReflectionAttribute::newInstance()</strong></span>, os objetos da classe de atributo são instanciados e a correspondência correta dos argumentos
+   é validada, não antes.
+  </p>
+
+  <div class="example" id="example-1049">
+   <p><strong>Exemplo #1 Lendo Atributos Usando a API Reflection</strong></p>
+
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">#[</span><span style="color: #0000BB">Attribute</span><span style="color: #007700">]<br />class </span><span style="color: #0000BB">MyAttribute<br /></span><span style="color: #007700">{<br />    public </span><span style="color: #0000BB">$value</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$value</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">value </span><span style="color: #007700">= </span><span style="color: #0000BB">$value</span><span style="color: #007700">;<br />    }<br />}<br /><br />#[</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">(</span><span style="color: #0000BB">value</span><span style="color: #007700">: </span><span style="color: #0000BB">1234</span><span style="color: #007700">)]<br />class </span><span style="color: #0000BB">Thing<br /></span><span style="color: #007700">{<br />}<br /><br />function </span><span style="color: #0000BB">dumpAttributeData</span><span style="color: #007700">(</span><span style="color: #0000BB">$reflection</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">$attributes </span><span style="color: #007700">= </span><span style="color: #0000BB">$reflection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getAttributes</span><span style="color: #007700">();<br /><br />    foreach (</span><span style="color: #0000BB">$attributes </span><span style="color: #007700">as </span><span style="color: #0000BB">$attribute</span><span style="color: #007700">) {<br />       </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$attribute</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getName</span><span style="color: #007700">());<br />       </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$attribute</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getArguments</span><span style="color: #007700">());<br />       </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$attribute</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">newInstance</span><span style="color: #007700">());<br />    }<br />}<br /><br /></span><span style="color: #0000BB">dumpAttributeData</span><span style="color: #007700">(new </span><span style="color: #0000BB">ReflectionClass</span><span style="color: #007700">(</span><span style="color: #0000BB">Thing</span><span style="color: #007700">::class));<br /></span><span style="color: #FF8000">/*<br />string(11) "MyAttribute"<br />array(1) {<br />  ["value"]=&gt;<br />  int(1234)<br />}<br />object(MyAttribute)#3 (1) {<br />  ["value"]=&gt;<br />  int(1234)<br />}<br />*/</span></span></code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Em vez de iterar todos os atributos na instância de reflexão, apenas aqueles
+   de uma determinada classe de atributo podem ser
+   recuperados passando o nome da classe de atributo pesquisado como argumento.
+  </p>
+
+  <div class="example" id="example-1052">
+   <p><strong>Exemplo #2 Lendo Atributos Específicos Usando a API Reflection</strong></p>
+
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">function </span><span style="color: #0000BB">dumpMyAttributeData</span><span style="color: #007700">(</span><span style="color: #0000BB">$reflection</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">$attributes </span><span style="color: #007700">= </span><span style="color: #0000BB">$reflection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getAttributes</span><span style="color: #007700">(</span><span style="color: #0000BB">MyAttribute</span><span style="color: #007700">::class);<br /><br />    foreach (</span><span style="color: #0000BB">$attributes </span><span style="color: #007700">as </span><span style="color: #0000BB">$attribute</span><span style="color: #007700">) {<br />       </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$attribute</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getName</span><span style="color: #007700">());<br />       </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$attribute</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getArguments</span><span style="color: #007700">());<br />       </span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$attribute</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">newInstance</span><span style="color: #007700">());<br />    }<br />}<br /><br /></span><span style="color: #0000BB">dumpMyAttributeData</span><span style="color: #007700">(new </span><span style="color: #0000BB">ReflectionClass</span><span style="color: #007700">(</span><span style="color: #0000BB">Thing</span><span style="color: #007700">::class));</span></span></code></div>
+   </div>
+
+  </div>
+ </div></div></div></body></html>

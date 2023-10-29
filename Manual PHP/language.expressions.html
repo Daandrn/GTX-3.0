@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Express&otilde;es</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.constants.magic.html">« Constantes M&aacute;gicas</a></li>
+      <li style="float: right;"><a href="language.operators.html">Operadores »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="langref.html">Refer&ecirc;ncia da Linguagem</a></li>
+    <li>Express&otilde;es</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.expressions" class="chapter">
+   <h1>Expressões</h1>
+
+   <p class="simpara">
+    Expressões são os blocos de construção mais importantes do PHP. No PHP,
+    quase tudo o que você escreve são expressões. A maneira mais simples e ainda
+    mais precisa de definir uma expressão é &quot;tudo o que tem um
+    valor&quot;.
+   </p>
+   <p class="simpara">
+    As formas mais básicas de expressões são constantes e variáveis.
+    Quando você digita <code class="code">$a = 5</code>, você está atribuindo <code class="code">5</code> dentro de
+    <var class="varname">$a</var>. <code class="code">5</code> obviamente
+    tem o valor 5, ou em outras palavras <code class="code">5</code> é uma expressão com o
+    valor de 5 (nesse caso <code class="code">5</code> é uma constante inteira).
+   </p>
+   <p class="simpara">
+    Depois desta atribuição, você pode esperar que o valor de <var class="varname">$a</var> seja 5
+    também, assim se você escrever <code class="code">$b = $a</code>, você pode esperar que ele se comporte
+    da mesma forma que se você escrevesse <code class="code">$b = 5</code>. Em outras palavras, <var class="varname">$a</var> é uma expressão com
+    valor 5 também. Se tudo funcionou bem isto é
+    exatamente o que aconteceu.
+   </p>
+   <p class="para">
+    Exemplos ligeiramente mais complexos para expressões são as funções. Por exemplo,
+    considere a seguinte função:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">foo </span><span style="color: #007700">()<br />{<br />    return </span><span style="color: #0000BB">5</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="simpara">
+    Assumindo que você está familiarizado com o conceito de funções (se não estiver,
+    dê uma olhada no capítulo sobre <a href="language.functions.html" class="link">funções</a>), você pode assumir que digitar
+    <code class="code">$c = foo()</code> é essencialmente a mesma coisa que escrever
+    <code class="code">$c = 5</code>, e você está certo. Funções são expressões com o valor
+    igual ao seu valor de retorno. Como <code class="code">foo()</code>
+    retorna 5, o valor da expressão &#039;<code class="code">foo()</code>&#039; é 5. Geralmente,
+    as funções não retornam apenas um valor estático, mas computam algo.
+   </p>
+   <p class="simpara">
+    Claro, valores em PHP não tem que ser inteiros, e muito comumente
+    eles não são. O PHP suporta quatro tipos de valores escalares: valores <span class="type">int</span>
+    (inteiros), valores de ponto flutuante (<span class="type">float</span>), valores <span class="type">string</span>
+    (caracteres) e valores <span class="type">bool</span> (booleano) (valores escalares são valores que
+    você não pode partir em peças menores, diferentemente de matrizes, por exemplo). O PHP também
+    suporta dois tipos compostos (não escalar): matrizes e objetos. Cada um desses
+    valores podem ser definidos em uma variável ou retornados de uma função.
+   </p>
+   <p class="simpara">
+    O PHP leva as expressões muito além, da mesma maneira que muitas outras linguagens
+    fazem. O PHP é uma linguagem orientada a expressões, no
+    sentido de que quase tudo são expressões. Considere o
+    exemplo com o qual já lidamos, <code class="code">$a = 5</code>. É fácil ver que
+    há dois valores envolvidos aqui, o valor da constante inteira
+    <code class="code">5</code>, e o valor de <var class="varname">$a</var> que está sendo atualizado para 5
+    também. Mas a verdade é que há um valor adicional envolvido
+    aqui, e que é o próprio valor da atribuição. A
+    própria atribuição é avaliada com o valor atribuído, neste caso 5.
+    Na prática, significa que <code class="code">$a = 5</code>, independente do que faça,
+    é uma expressão com o valor 5. Portanto, escrever algo como
+    <code class="code">$b = ($a = 5)</code> é como escrever
+    <code class="code">$a = 5; $b = 5;</code> (um ponto-e-vírgula
+    marca o fim do comando). Como atribuições são analisadas
+    da direita para a esquerda, você também pode escrever <code class="code">$b = $a = 5</code>.
+   </p>
+   <p class="simpara">
+    Outro bom exemplo de orientação de expressão é o pré e
+    o pós-incremento e decremento. Usuários de PHP 2 e muitas outras
+    linguagens podem estar familiarizados com a notação de <code class="code">variable++</code> e
+    <code class="code">variable--</code>. Este são <a href="language.operators.increment.html" class="link">
+    operadores de incremento e decremento</a>. Em PHP, como em C, há
+    dois tipos de incremento - pré-incremento e pós-incremento.
+    Tanto o pré-incremento quanto o pós-incremento, essencialmente, incrementam
+    as variáveis, e o efeito sobre a variável é idêntico. A
+    diferença é com o valor da expressão de incremento.
+    O pré-incremento, que é escrito <code class="code">++$variable</code>&#039;, é avaliado
+    como o valor de incremento (o PHP incrementa a variável antes
+    de ler seu valor, por isso o nome pré-incremento). O pós-incremento, que é
+    escrito <code class="code">$variable++</code> é avaliado como o valor original de
+    <var class="varname">$variable</var>, antes de ser incrementada (o PHP incrementa a variável
+    depois de ler seu valor, por isso o nome &#039;pós-incremento&#039;).
+   </p>
+   <p class="simpara">
+    Um tipo muito comum de expressões são expressões de <a href="language.operators.comparison.html" class="link">comparação</a>.
+    Estas expressões avaliam para ser <strong><code>false</code></strong> ou <strong><code>true</code></strong>. O PHP
+    suporta &gt; (maior que), &gt;= (maior ou igual a), == (igual),
+    != (diferente), &lt; (menor que) e &lt;= (menor ou igual a).
+    A linguagem também suporta um conjunto de operador de equivalência estrita: ===
+    (igual a e do mesmo tipo) e !== (diferente de ou não do mesmo tipo).
+    Estas expressões são mais comumente usada dentro de execução condicional
+    como comandos <code class="code">if</code>.
+   </p>
+   <p class="simpara">
+    O último exemplo de expressões com que nós vamos lidar aqui são as expressões combinadas
+    operador-atribuição. Você já sabe que se você
+    quer incrementar <var class="varname">$a</var> de 1, você só precisa escrever
+    <code class="code">$a++</code> ou <code class="code">++$a</code>.
+    Mas e se você quiser somar mais que um a ele, por exemplo 3?
+    Você poderia escrever <code class="code">$a++</code> várias vezes, mas esta
+    obviamente não é uma forma muito eficiente ou confortável. Uma prática muito
+    mais comum é escrever <code class="code">$a =
+    $a + 3</code>.  <code class="code">$a + 3</code> é avaliada
+    como o valor de <var class="varname">$a</var> mais 3, e é atribuído de volta
+    a <var class="varname">$a</var>, que resulta em incrementar <var class="varname">$a</var>
+    em 3. Em PHP, como em várias outras linguagens como o C você pode escrever isto
+    de uma forma mais curta, que com o tempo se torna mais limpa e rápida de se
+    entender. Somar 3 ao valor corrente de <var class="varname">$a</var>
+    pode ser escrito <code class="code">$a += 3</code>. Isto significa exatamente
+    &quot;pegue o valor de <var class="varname">$a</var>, some 3 a ele, e atribua-o
+    de volta a <var class="varname">$a</var>.&quot; Além de ser mais curto e mais
+    limpo, isto também resulta em execução mais rápida. O valor de
+    <code class="code">$a += 3</code>, como o valor de uma atribuição regular, é
+    o valor atribuído. Note que NÃO é 3, mas o valor combinado de
+    <var class="varname">$a</var> mais 3 (este é o valor que
+    é atribuído a <var class="varname">$a</var>). Qualquer operador de dois parâmetros pode ser usado
+    neste modo operador-atribuição, por exemplo <code class="code">$a -= 5</code>
+    (subtrai 5 do valor de <var class="varname">$a</var>), <code class="code">$b *= 7</code>
+    (multiplica o valor de <var class="varname">$b</var> por 7), etc.
+   </p>
+   <p class="para">
+    Há mais uma expressão que podem parecer estranha se você não a viu em outras linguagens,
+    o operador condicional ternário:
+   </p>
+   <p class="para">
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$primeira </span><span style="color: #007700">? </span><span style="color: #0000BB">$segunda </span><span style="color: #007700">: </span><span style="color: #0000BB">$terceira<br />?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    Se o valor da primeira sub-expressão é verdadeiro (<strong><code>true</code></strong>, não-zero), então
+    a segunda sub-expressão é avaliada, e este é o resultado da
+    expressão condicional. Caso contrário, a terceira sub-expressão é
+    avaliada e este é o valor.
+   </p>
+   <p class="para">
+    O seguinte exemplo deve ajudá-lo a entender um pouco melhor pré e
+    pós-incremento e expressões em geral:
+   </p>
+   <p class="para">
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">double</span><span style="color: #007700">(</span><span style="color: #0000BB">$i</span><span style="color: #007700">)<br />{<br />    return </span><span style="color: #0000BB">$i</span><span style="color: #007700">*</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #0000BB">$a </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">;        </span><span style="color: #FF8000">/* atribui o valor cinco às variáveis $a e $b */<br /></span><span style="color: #0000BB">$c </span><span style="color: #007700">= </span><span style="color: #0000BB">$a</span><span style="color: #007700">++;          </span><span style="color: #FF8000">/* pós-incremento, atribui o valor original de $a<br />                       (5) para $c */<br /></span><span style="color: #0000BB">$e </span><span style="color: #007700">= </span><span style="color: #0000BB">$d </span><span style="color: #007700">= ++</span><span style="color: #0000BB">$b</span><span style="color: #007700">;     </span><span style="color: #FF8000">/* pré-incremento, atribui o valor incrementado de<br />                       $b (6) a $d e $e */<br /><br />/* neste ponto, tanto $d quanto $e são iguais a 6 */<br /><br /></span><span style="color: #0000BB">$f </span><span style="color: #007700">= </span><span style="color: #0000BB">double</span><span style="color: #007700">(</span><span style="color: #0000BB">$d</span><span style="color: #007700">++);  </span><span style="color: #FF8000">/* atribui o dobro do valor de $d antes<br />                       do incremento, 2*6 = 12 a $f */<br /></span><span style="color: #0000BB">$g </span><span style="color: #007700">= </span><span style="color: #0000BB">double</span><span style="color: #007700">(++</span><span style="color: #0000BB">$e</span><span style="color: #007700">);  </span><span style="color: #FF8000">/* atribui o dobro do valor de $e depois<br />                       do incremento, 2*7 = 14 a $g */<br /></span><span style="color: #0000BB">$h </span><span style="color: #007700">= </span><span style="color: #0000BB">$g </span><span style="color: #007700">+= </span><span style="color: #0000BB">10</span><span style="color: #007700">;      </span><span style="color: #FF8000">/* primeiro, $g é incrementado de 10 e termina com o<br />                       valor 24. o valor da atribuição (24) é<br />                       então atribuído a $h, e $h termina com o valor<br />                       24 também. */<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="simpara">
+    Algumas expressões podem ser consideradas instruções. Neste
+    caso, uma instrução na forma &#039;<code class="code">expr ;</code>&#039; ou seja, uma
+    expressão seguida de um ponto e vírgula. Em <code class="code">$b = $a = 5;</code>,
+    <code class="code">$a = 5</code> é uma expressão válida, mas não é um comando
+    por si só. <code class="code">$b = $a = 5;</code> porém é um comando válido.
+   </p>
+   <p class="simpara">
+    Uma última coisa que vale mencionar é o valor-verdade de expressões.
+    Em muitos eventos, principalmente em instruções condicionais e loops, você não
+    está interessado no valor específico da expressão, mas somente se ela
+    significa <strong><code>true</code></strong> ou <strong><code>false</code></strong> (o PHP não tem um tipo booleano dedicado).
+
+    
+
+    As constantes <strong><code>true</code></strong> e <strong><code>false</code></strong> (insensitivas ao caso) são seus dois
+    valores booleanos possíveis. Às vezes uma expressão é
+    automaticamente convertida para um booleano. Veja a
+    <a href="language.types.type-juggling.html#language.types.typecasting" class="link">seção sobre
+    type-casting</a> para detalhes de como isso é feito.
+   </p>
+   <p class="simpara">
+    O PHP fornece uma implementação completa e poderosa de expressões, e a completa
+    documentação dela vai além do escopo deste manual. Os exemplos acima devem dar a
+    você uma boa ideia sobre o que são as expressões e como você pode construir
+    expressões úteis. Através do restante do manual nós escreveremos
+    <var class="varname">expr</var> (ou expressão)
+    para indicar qualquer expressão PHP válida.
+   </p>
+  </div>
+</div></div></body></html>

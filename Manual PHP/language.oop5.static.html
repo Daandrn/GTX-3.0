@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Palavra-Chave 'static'</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.oop5.paamayim-nekudotayim.html">« Operador de Resolu&ccedil;&atilde;o de Escopo (::)</a></li>
+      <li style="float: right;"><a href="language.oop5.abstract.html">Abstra&ccedil;&atilde;o de Classes »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.oop5.html">Classes e Objetos</a></li>
+    <li>Palavra-Chave 'static'</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.oop5.static" class="sect1">
+  <h2 class="title">Palavra-Chave &#039;static&#039;</h2>
+
+  <div class="tip"><strong class="tip">Dica</strong>
+   <p class="simpara">
+    Esta página descreve o uso da palavra-chave <code class="literal">static</code> na
+    definição de métodos e propriedades estáticas. A palavra-chave <code class="literal">static</code> também pode
+    ser utilizada para
+    <a href="language.variables.scope.html#language.variables.scope.static" class="link">definir variáveis estáticas</a>,
+    <a href="functions.anonymous.html#functions.anonymous-functions.static" class="link">definir funções anônimas estáticas</a>
+    e em
+    <a href="language.oop5.late-static-bindings.html" class="link">late static bindings</a>.
+    Veja essas páginas para informações desses outros usos de
+    <code class="literal">static</code>.
+   </p>
+  </div>
+
+  <p class="para">
+   Declarar propriedades ou métodos de uma classe como estáticos faz deles
+   acessíveis sem a necessidade de instanciar a classe. Um membro declarado como
+   estático não pode ser acessado através de uma instância da classe.
+  </p>
+
+  <div class="sect2" id="language.oop5.static.methods">
+   <h3 class="title">Métodos estáticos</h3>
+
+   <p class="para">
+    Como métodos estáticos podem ser chamados sem uma instância
+    do objeto criada, a pseudo-variável <var class="varname">$this</var> não
+    está disponível dentro de um método declarado como estático.
+   </p>
+
+   <div class="warning"><strong class="warning">Aviso</strong>
+    <p class="para">
+     Chamar métodos não estáticos, estaticamente, lança um <span class="classname"><a href="class.error.html" class="classname">Error</a></span>.
+    </p>
+    <p class="para">
+     Anteriormente ao PHP 8.0.0, chamar um método não estático estaticamente estava obsoleto, e
+     gerava um aviso <strong><code>E_DEPRECATED</code></strong>.
+    </p>
+   </div>
+
+   <div class="example" id="example-731">
+    <p><strong>Exemplo #1 Exemplo de método estático</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo </span><span style="color: #007700">{<br />    public static function </span><span style="color: #0000BB">aStaticMethod</span><span style="color: #007700">() {<br />        </span><span style="color: #FF8000">// ...<br />    </span><span style="color: #007700">}<br />}<br /><br /></span><span style="color: #0000BB">Foo</span><span style="color: #007700">::</span><span style="color: #0000BB">aStaticMethod</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$classname </span><span style="color: #007700">= </span><span style="color: #DD0000">'Foo'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$classname</span><span style="color: #007700">::</span><span style="color: #0000BB">aStaticMethod</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+   </div>
+  </div>
+
+  <div class="sect2" id="language.oop5.static.properties">
+   <h3 class="title">Propriedades estáticas</h3>
+
+   <p class="para">
+    Propriedades estáticas são acessíveis utilizando o
+    <a href="language.oop5.paamayim-nekudotayim.html" class="link">Operador de Resolução de Escopo</a>
+    (<code class="literal">::</code>) e não podem ser acessados através do operador de objeto
+    (<code class="literal">-&gt;</code>).
+   </p>
+
+   <p class="para">
+    É possível referenciar a classe usando uma variável.
+    O valor da variável não pode ser uma palavra chave (por exemplo, <code class="literal">self</code>,
+    <code class="literal">parent</code> e <code class="literal">static</code>).
+   </p>
+
+   <div class="example" id="example-734">
+    <p><strong>Exemplo #2 Exemplo de propriedade estática</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    public static </span><span style="color: #0000BB">$my_static </span><span style="color: #007700">= </span><span style="color: #DD0000">'foo'</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">staticValue</span><span style="color: #007700">() {<br />        return </span><span style="color: #0000BB">self</span><span style="color: #007700">::</span><span style="color: #0000BB">$my_static</span><span style="color: #007700">;<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">Bar </span><span style="color: #007700">extends </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">fooStatic</span><span style="color: #007700">() {<br />        return </span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">$my_static</span><span style="color: #007700">;<br />    }<br />}<br /><br /><br />print </span><span style="color: #0000BB">Foo</span><span style="color: #007700">::</span><span style="color: #0000BB">$my_static </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$foo </span><span style="color: #007700">= new </span><span style="color: #0000BB">Foo</span><span style="color: #007700">();<br />print </span><span style="color: #0000BB">$foo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">staticValue</span><span style="color: #007700">() . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />print </span><span style="color: #0000BB">$foo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">my_static </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">; </span><span style="color: #FF8000">// "Propriedade" não definida, my_static <br /><br /></span><span style="color: #007700">print </span><span style="color: #0000BB">$foo</span><span style="color: #007700">::</span><span style="color: #0000BB">$my_static </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$classname </span><span style="color: #007700">= </span><span style="color: #DD0000">'Foo'</span><span style="color: #007700">;<br />print </span><span style="color: #0000BB">$classname</span><span style="color: #007700">::</span><span style="color: #0000BB">$my_static </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br />print </span><span style="color: #0000BB">Bar</span><span style="color: #007700">::</span><span style="color: #0000BB">$my_static </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$bar </span><span style="color: #007700">= new </span><span style="color: #0000BB">Bar</span><span style="color: #007700">();<br />print </span><span style="color: #0000BB">$bar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fooStatic</span><span style="color: #007700">() . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>A saída do exemplo acima no PHP 8 é semelhante a:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+foo
+foo
+
+Notice: Accessing static property Foo::$my_static as non static in /in/V0Rvv on line 23
+
+Warning: Undefined property: Foo::$my_static in /in/V0Rvv on line 23
+
+foo
+foo
+foo
+foo
+</pre></div>
+    </div>
+   </div>
+  </div>
+ </div></div></div></body></html>

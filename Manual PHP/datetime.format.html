@@ -1,0 +1,559 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retorna a data formada de acordo com um formato informado</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="datetime.diff.html">« DateTime::diff</a></li>
+      <li style="float: right;"><a href="datetime.getoffset.html">DateTime::getOffset »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.datetimeinterface.html">DateTimeInterface</a></li>
+    <li>Retorna a data formada de acordo com um formato informado</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="datetime.format" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DateTimeInterface::format</h1>
+  <h1 class="refname">DateTimeImmutable::format</h1>
+  <h1 class="refname">DateTime::format</h1>
+  <h1 class="refname">date_format</h1>
+  <p class="refpurpose"><span class="refname">DateTimeInterface::format</span> -- <span class="refname">DateTimeImmutable::format</span> -- <span class="refname">DateTime::format</span> -- <span class="refname">date_format</span> &mdash; <span class="dc-title">Retorna a data formada de acordo com um formato informado</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-datetime.format-description">
+  <h3 class="title">Descrição</h3>
+  <p class="para">Estilo orientado a objetos</p>
+   <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>DateTimeInterface::format</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$format</code></span>): <span class="type">string</span></div>
+
+  <div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><strong>DateTimeImmutable::format</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$format</code></span>): <span class="type">string</span></div>
+
+  <div class="methodsynopsis dc-description"><span class="modifier">public</span> <span class="methodname"><strong>DateTime::format</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$format</code></span>): <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">Estilo procedural</p>
+  <div class="methodsynopsis dc-description"><span class="methodname"><a href="function.date-format.html" class="methodname">date_format</a></span>(<span class="methodparam"><span class="type"><a href="class.datetimeinterface.html" class="type DateTimeInterface">DateTimeInterface</a></span> <code class="parameter">$object</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$format</code></span>): <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Retorna a data formada de acordo com um formato informado.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-datetime.format-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <dl>
+   <dt>
+<code class="parameter">object</code></dt>
+
+<dd>
+<p class="para">Somente no estilo procedural: Um objeto <span class="classname"><a href="class.datetime.html" class="classname">DateTime</a></span>
+retornado por <span class="function"><a href="function.date-create.html" class="function">date_create()</a></span></p></dd>
+
+   
+    <dt>
+<code class="parameter">format</code></dt>
+
+    <dd>
+
+     <p class="para">
+      O formato da <span class="type">string</span> de data resultante. Veja abaixo as
+      opções de formatação. Existem também várias
+      <a href="class.datetime.html#datetime.constants.types" class="link">constantes de data predefinidas</a>
+      que podem ser usadas, por exemplo, <strong><code>DATE_RSS</code></strong>
+      contém a string de formatação <code class="literal">&#039;D, d M Y H:i:s&#039;</code>.
+     </p>
+     <p class="para">
+      <table class="doctable table">
+       <caption><strong>Os seguintes caracteres são reconhecidos na
+         string do parâmetro <code class="parameter">format</code></strong></caption>
+       
+        <thead>
+         <tr>
+          <th>Caractere <code class="parameter">format</code></th>
+          <th>Descrição</th>
+          <th>Exemplo de valores retornados</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         <tr>
+          <td style="text-align: center;"><em>Dia</em></td>
+          <td>---</td>
+          <td>---</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">d</code></td>
+          <td>Dia do mês, 2 digits com zeros à esquerda</td>
+          <td><code class="literal">01</code> a <code class="literal">31</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">D</code></td>
+          <td>Uma representação textual de um dia, três letras</td>
+          <td><code class="literal">Mon</code> a <code class="literal">Sun</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">j</code></td>
+          <td>Dia do mês sem zeros à esquerda</td>
+          <td><code class="literal">1</code> a <code class="literal">31</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">l</code> (lowercase &#039;L&#039;)</td>
+          <td>Uma representação textual completa do dia da semana</td>
+          <td><code class="literal">Sunday</code> a <code class="literal">Saturday</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">N</code></td>
+          <td>Representação numérica ISO 8601 do dia da semana</td>
+          <td><code class="literal">1</code> (para segunda-feira) a <code class="literal">7</code> (para domingo)</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">S</code></td>
+          <td>Sufixo ordinal inglês para o dia do mês, 2 caracteres</td>
+          <td>
+           <code class="literal">st</code>, <code class="literal">nd</code>, <code class="literal">rd</code> ou
+           <code class="literal">th</code>. Funciona bem com <code class="literal">j</code>
+          </td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">w</code></td>
+          <td>Representação numérica do dia da semana</td>
+          <td><code class="literal">0</code> (para domingo) a <code class="literal">6</code> (para sábado)</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">z</code></td>
+          <td>O dia do ano (começando em 0)</td>
+          <td><code class="literal">0</code> a <code class="literal">365</code></td>
+         </tr>
+
+         <tr>
+          <td style="text-align: center;"><em>Semana</em></td>
+          <td>---</td>
+          <td>---</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">W</code></td>
+          <td>Número da semana do mês ISO 8601, semanas começando na segunda-feira</td>
+          <td>Exemplo: <code class="literal">42</code> (a 42ª semana no ano)</td>
+         </tr>
+
+         <tr>
+          <td style="text-align: center;"><em>Mês</em></td>
+          <td>---</td>
+          <td>---</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">F</code></td>
+          <td>Uma representação textual completa do mês, como January ou March</td>
+          <td><code class="literal">January</code> a <code class="literal">December</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">m</code></td>
+          <td>Representação numérica de um mês, com zeros à esquerda</td>
+          <td><code class="literal">01</code> a <code class="literal">12</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">M</code></td>
+          <td>Uma representação textual curta de um mês, três letras</td>
+          <td><code class="literal">Jan</code> a <code class="literal">Dec</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">n</code></td>
+          <td>Representação numérica de um mês, sem zeros à esquerda</td>
+          <td><code class="literal">1</code> a <code class="literal">12</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">t</code></td>
+          <td>Número de dias em determinado mês</td>
+          <td><code class="literal">28</code> a <code class="literal">31</code></td>
+         </tr>
+
+         <tr>
+          <td style="text-align: center;"><em>Ano</em></td>
+          <td>---</td>
+          <td>---</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">L</code></td>
+          <td>Se é um ano bissexto</td>
+          <td><code class="literal">1</code> se for um ano bissexto, <code class="literal">0</code> caso contrário.</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">o</code></td>
+          <td>Ano de numeração da semana ISO 8601. Tem o mesmo valor que
+           <code class="literal">Y</code>, exceto que se o número da semana ISO
+           (<code class="literal">W</code>) pertencer ao ano anterior ou seguinte, esse ano
+           será usado.</td>
+          <td>Exemplos: <code class="literal">1999</code> ou <code class="literal">2003</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">X</code></td>
+          <td>Uma representação numérica completa expandida de um ano, pelo menos 4 dígitos,
+           com <code class="literal">-</code> para anos AEC, e <code class="literal">+</code>
+           para anos EC.</td>
+          <td>Exemplos: <code class="literal">-0055</code>, <code class="literal">+0787</code>,
+           <code class="literal">+1999</code>, <code class="literal">+10191</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">x</code></td>
+          <td>Uma representação numérica completa expandida se necessário, ou uma
+           representação numeral completa padrão se possível (como
+           <code class="literal">Y</code>). Pelo menos quatro dígitos. Anos AEC são prefixados
+           com um <code class="literal">-</code>. Anos além de (e incluindo)
+           <code class="literal">10000</code> são prefixados com um
+           <code class="literal">+</code>.</td>
+          <td>Exemplos: <code class="literal">-0055</code>, <code class="literal">0787</code>,
+           <code class="literal">1999</code>, <code class="literal">+10191</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">Y</code></td>
+          <td>Uma representação numérica completa de um ano, pelo menos 4 dígitos,
+           com <code class="literal">-</code> para anos AEC.</td>
+          <td>Exemplos: <code class="literal">-0055</code>, <code class="literal">0787</code>,
+           <code class="literal">1999</code>, <code class="literal">2003</code>,
+           <code class="literal">10191</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">y</code></td>
+          <td>Uma representação de dois digitos do ano</td>
+          <td>Exemplos: <code class="literal">99</code> ou <code class="literal">03</code></td>
+         </tr>
+
+         <tr>
+          <td style="text-align: center;"><em>Hora</em></td>
+          <td>---</td>
+          <td>---</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">a</code></td>
+          <td>Ante meridiem e Post meridiem em letras minúsculas</td>
+          <td><code class="literal">am</code> ou <code class="literal">pm</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">A</code></td>
+          <td>Ante meridiem e Post meridiem em letras maiúsculas</td>
+          <td><code class="literal">AM</code> ou <code class="literal">PM</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">B</code></td>
+          <td>Internet Time da Swatch</td>
+          <td><code class="literal">000</code> a <code class="literal">999</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">g</code></td>
+          <td>Formato de 12 horas de uma hora sem zeros à esquerda</td>
+          <td><code class="literal">1</code> a <code class="literal">12</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">G</code></td>
+          <td>Formato de 24 horas de uma hora sem zeros à esquerda</td>
+          <td><code class="literal">0</code> a <code class="literal">23</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">h</code></td>
+          <td>Formato de 12 horas de uma hora com zeros à esquerda</td>
+          <td><code class="literal">01</code> a <code class="literal">12</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">H</code></td>
+          <td>Formato de 24 horas de uma hora com zeros à esquerda</td>
+          <td><code class="literal">00</code> through <code class="literal">23</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">i</code></td>
+          <td>Minutos com zeros à esquerda</td>
+          <td><code class="literal">00</code> to <code class="literal">59</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">s</code></td>
+          <td>Segundos com zeros à esquerda</td>
+          <td><code class="literal">00</code> through <code class="literal">59</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">u</code></td>
+          <td>
+           Microssegundos. Note que
+           <span class="function"><a href="function.date.html" class="function">date()</a></span> sempre irá gerar
+           <code class="literal">000000</code> uma vez que leva um parâmetro <span class="type">int</span>,
+           enquanto <span class="methodname"><strong>DateTime::format()</strong></span>
+           suporta microssegundos se <span class="classname"><a href="class.datetime.html" class="classname">DateTime</a></span> foi
+           criada com microssegundos.
+          </td>
+          <td>Exemplo: <code class="literal">654321</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">v</code></td>
+          <td>
+           Millisegundos. A mesma nota se aplica como no
+           <code class="literal">u</code>.
+          </td>
+          <td>Exemplo: <code class="literal">654</code></td>
+         </tr>
+
+         <tr>
+          <td style="text-align: center;"><em>Fuso horário</em></td>
+          <td>---</td>
+          <td>---</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">e</code></td>
+          <td>Identificador do fuso horário</td>
+          <td>Exemplos: <code class="literal">UTC</code>, <code class="literal">GMT</code>, <code class="literal">Atlantic/Azores</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">I</code> (i maiúsculo)</td>
+          <td>Se a data está ou não no horário de verão</td>
+          <td><code class="literal">1</code> se está no horário de verão, <code class="literal">0</code> caso contrário.</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">O</code></td>
+          <td>Diferença para o horário de Greenwich (GMT) sem dois pontos entre horas e minutos</td>
+          <td>Example: <code class="literal">+0200</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">P</code></td>
+          <td>Diferença para o horário de Greenwich (GMT) com dois pontos entre horas e minutos</td>
+          <td>Exemplo: <code class="literal">+02:00</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">p</code></td>
+          <td>
+           O mesmo que <code class="literal">P</code>, mas retorna <code class="literal">Z</code> em vez de <code class="literal">+00:00</code>
+           (disponível a partir do PHP 8.0.0)
+          </td>
+           <td>Exemplo: <code class="literal">Z</code> or <code class="literal">+02:00</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">T</code></td>
+          <td>Abreviação do fuso horário, se conhecido; ou o deslocamento GMT caso contrário.</td>
+          <td>Exemplos: <code class="literal">EST</code>, <code class="literal">MDT</code>, <code class="literal">+05</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">Z</code></td>
+          <td>Deslocamento do fuso horário em segundos. O deslocamento para fusos a oeste de UTC é sempre
+          negativo, e para aqueles a leste de UTC é sempre positivo.</td>
+          <td><code class="literal">-43200</code> a <code class="literal">50400</code></td>
+         </tr>
+
+         <tr>
+          <td style="text-align: center;"><em>Data/Hora completa</em></td>
+          <td>---</td>
+          <td>---</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">c</code></td>
+          <td>Data ISO 8601</td>
+          <td>2004-02-12T15:19:21+00:00</td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">r</code></td>
+          <td>Data formatada <a href="http://www.faqs.org/rfcs/rfc2822" class="link external">&raquo;&nbsp;RFC 2822</a>/<a href="http://www.faqs.org/rfcs/rfc5322" class="link external">&raquo;&nbsp;RFC 5322</a></td>
+          <td>Exemplo: <code class="literal">Thu, 21 Dec 2000 16:01:07 +0200</code></td>
+         </tr>
+
+         <tr>
+          <td><code class="literal">U</code></td>
+          <td>Segundos desde a Era Unix (1 de janeiro de 1970 00:00:00 GMT)</td>
+          <td>Veja também <span class="function"><a href="function.time.html" class="function">time()</a></span></td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </p>
+     <p class="para">
+      Caracteres não reconhecidos na string de formatação serão impressos
+      como estão. O formato <code class="literal">Z</code> sempre retornará
+      <code class="literal">0</code> ao usar <span class="function"><a href="function.gmdate.html" class="function">gmdate()</a></span>.
+     </p>
+     <blockquote class="note"><p><strong class="note">Nota</strong>: 
+      <p class="para">
+       Uma vez que esta função só aceita timestamps <span class="type">int</span>, o caractere de formato
+       <code class="literal">u</code> só é útil ao usar a função
+       <span class="function"><a href="function.date-format.html" class="function">date_format()</a></span> com timestamps baseados no usuário
+       criados com <span class="function"><a href="function.date-create.html" class="function">date_create()</a></span>.
+      </p>
+     </p></blockquote>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-datetime.format-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna a data formada em caso de sucesso.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-datetime.format-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>8.2.0</td>
+      <td>
+       Os caracteres de formatação <code class="literal">X</code> e <code class="literal">x</code>
+       foram adicionados.
+      </td>
+     </tr>
+
+     <tr>
+      <td>8.0.0</td>
+      <td>
+       Antes desta versão, <strong><code>false</code></strong> era retornado em caso de falha.
+      </td>
+     </tr>
+
+     <tr>
+      <td>8.0.0</td>
+      <td>
+       O caractere de formatação <code class="literal">p</code> foi adicionado.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-datetime.format-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo de <span class="function"><strong>DateTimeInterface::format()</strong></span></strong></p>
+    <div class="example-contents"><p>Estilo orientado a objetos</p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTimeImmutable</span><span style="color: #007700">(</span><span style="color: #DD0000">'2000-01-01'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d H:i:s'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>Estilo procedural</p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$date </span><span style="color: #007700">= </span><span style="color: #0000BB">date_create</span><span style="color: #007700">(</span><span style="color: #DD0000">'2000-01-01'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">date_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$date</span><span style="color: #007700">, </span><span style="color: #DD0000">'Y-m-d H:i:s'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+2000-01-01 00:00:00
+</pre></div>
+    </div>
+   </div>
+  </p>
+
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #2 Mais exemplos</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// define o fuso horário padrão a ser usado.<br /></span><span style="color: #0000BB">date_default_timezone_set</span><span style="color: #007700">(</span><span style="color: #DD0000">'UTC'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// agora<br /></span><span style="color: #0000BB">$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTimeImmutable</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// Imprime algo como: Wednesday<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'l'</span><span style="color: #007700">), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Imprime algo como: Wednesday 19th of October 2022 08:40:48 AM<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'l jS \o\f F Y h:i:s A'</span><span style="color: #007700">), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/* usa as constantes no parâmetro format */<br />// Imprime algo como: Wed, 19 Oct 2022 08:40:48 +0000<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #0000BB">DateTimeInterface</span><span style="color: #007700">::</span><span style="color: #0000BB">RFC2822</span><span style="color: #007700">), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Você pode previnir um caractere reconhecido na string de formação de ser
+   expandido escapando-o com uma barra invertida antes. Se o caractere com
+   uma barra invertida já for uma sequência especial, você pode escapar também
+   a barra invertida.
+   <div class="example" id="">
+    <p><strong>Exemplo #3 Escapando caracteres ao formatar</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$date </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTimeImmutable</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// prints something like: Wednesday the 19th<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">$date</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'l \t\h\e jS'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Para formatar datas em outras línguas,
+   <span class="methodname"><a href="intldateformatter.format.html" class="methodname">IntlDateFormatter::format()</a></span>
+   pode ser usado em vez do <span class="methodname"><strong>DateTimeInterface::format()</strong></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-datetime.format-notes">
+  <h3 class="title">Notas</h3>
+  <p class="para">
+   Este método não utiliza configurações baseadas no idioma. Toda a saída será em Inglês.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-datetime.format-seealso">
+  <h3 class="title">Veja Também</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="methodname"><a href="intldateformatter.format.html" class="methodname" rel="rdfs-seeAlso">IntlDateFormatter::format()</a> - Format the date/time value as a string</span></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

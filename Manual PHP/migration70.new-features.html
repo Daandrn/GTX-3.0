@@ -1,0 +1,517 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Novos Recursos</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration70.incompatible.html">« Mudan&ccedil;as incompat&iacute;veis com vers&otilde;es anteriores</a></li>
+      <li style="float: right;"><a href="migration70.deprecated.html">Recursos depreciados no PHP 7.0.x »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration70.html">Migrando do PHP 5.6.x para o PHP 7.0.x</a></li>
+    <li>Novos Recursos</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration70.new-features" class="sect1">
+ <h2 class="title">Novos Recursos</h2>
+
+ <div class="sect2" id="migration70.new-features.scalar-type-declarations">
+  <h3 class="title">Declarações de tipos escalares</h3>
+
+  <p class="para">
+
+   <a href="language.types.declarations.html" class="link">Declarações de tipos</a> escalares
+   vêm em dois sabores: coercivo (padrão) e estrito. Para parâmetros os seguintes tipos
+   agora podem ser forçados (tanto coercivamente quanto estritamente): strings
+   (<span class="type">string</span>), inteiros (<code class="literal">int</code>), números
+   de ponto flutuante (<span class="type">float</span>) e booleanos (<code class="literal">bool</code>). Eles
+   incrementam os outros tipos introduzidos no PHP 5: nomes de classe, interfaces,
+   <span class="type">array</span> e <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Modo coercivo<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">sumOfInts</span><span style="color: #007700">(</span><span style="color: #0000BB">int </span><span style="color: #007700">...</span><span style="color: #0000BB">$ints</span><span style="color: #007700">)<br />{<br />    return </span><span style="color: #0000BB">array_sum</span><span style="color: #007700">(</span><span style="color: #0000BB">$ints</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">sumOfInts</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'3'</span><span style="color: #007700">, </span><span style="color: #0000BB">4.1</span><span style="color: #007700">));</span></span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+int(9)
+</pre></div>
+   </div>
+  </div>
+
+  <p class="para">
+   Para habilitar o modo estrito, uma única diretiva <a href="control-structures.declare.html" class="link"><code class="literal">declare</code></a> deve ser colocada no
+   topo do arquivo. Isto significa que a rigorosidade de tipificação para escalares é
+   configurada por arquivo. Esta diretiva não afeta somente as declarações de tipo
+   de parâmetros, mas também do tipo de retorno de funções (veja
+   <a href="language.types.declarations.html" class="link">declarações de tipo de retorno</a>),
+   funções internas do PHP e funções de extensões
+   carregadas.
+  </p>
+
+  <p class="para">
+   A documentação completa e exemplos de declarações de tipo escalar podem ser encontradas
+   na referência de
+   <a href="language.types.declarations.html" class="link">declaração de tipo
+   </a>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.return-type-declarations">
+  <h3 class="title">Declarações de tipo de retorno</h3>
+
+  <p class="para">
+   O PHP 7 adiciona suporte a
+   <a href="language.types.declarations.html" class="link">declarações de tipo de retorno</a>.
+   Similar às
+   <a href="language.types.declarations.html" class="link">declarações de tipo de argumento</a>
+   as declarações de tipo de retorno especificam o tipo do valor que será
+   retornado por uma função. Os mesmos
+   <a href="language.types.declarations.html" class="link">tipos</a>
+   estão disponíveis para declarações de tipo de retorno assim como estão disponíveis para declarações
+   de tipo de argumentos.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">function </span><span style="color: #0000BB">arraysSum</span><span style="color: #007700">(array ...</span><span style="color: #0000BB">$arrays</span><span style="color: #007700">): array<br />{<br />    return </span><span style="color: #0000BB">array_map</span><span style="color: #007700">(function(array </span><span style="color: #0000BB">$array</span><span style="color: #007700">): </span><span style="color: #0000BB">int </span><span style="color: #007700">{<br />        return </span><span style="color: #0000BB">array_sum</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br />    }, </span><span style="color: #0000BB">$arrays</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">arraysSum</span><span style="color: #007700">([</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">], [</span><span style="color: #0000BB">4</span><span style="color: #007700">,</span><span style="color: #0000BB">5</span><span style="color: #007700">,</span><span style="color: #0000BB">6</span><span style="color: #007700">], [</span><span style="color: #0000BB">7</span><span style="color: #007700">,</span><span style="color: #0000BB">8</span><span style="color: #007700">,</span><span style="color: #0000BB">9</span><span style="color: #007700">]));</span></span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; 6
+    [1] =&gt; 15
+    [2] =&gt; 24
+)
+</pre></div>
+   </div>
+  </div>
+
+  <p class="para">
+   A documentação completa e exemplos de declarações de tipo de retorno podem ser encontradas
+   na referência de
+   <a href="language.types.declarations.html" class="link">declarações de tipo de retorno
+   </a>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.null-coalesce-op">
+  <h3 class="title">Operador de coalescência nula</h3>
+
+  <p class="para">
+   O operador de coalescência nula (<code class="literal">??</code>) foi adicionado como
+   um truque sintático para o caso trivial de precisar usar um ternário em
+   conjunto com a função <span class="function"><a href="function.isset.html" class="function">isset()</a></span>. Ele retorna o primeiro operando
+   se este existir e não for <strong><code>null</code></strong>; caso contrário retorna o segundo operando.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Obtém o valor de $_GET['user'] e retorna 'nobody'<br />// se ele não existir.<br /></span><span style="color: #0000BB">$username </span><span style="color: #007700">= </span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'user'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'nobody'</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Isto equivale a:<br /></span><span style="color: #0000BB">$username </span><span style="color: #007700">= isset(</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'user'</span><span style="color: #007700">]) ? </span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'user'</span><span style="color: #007700">] : </span><span style="color: #DD0000">'nobody'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// A coalescência pode ser encadeada: isto irá retornar o primeiro<br />// valor definido entre $_GET['user'], $_POST['user'] e<br />// 'nobody'.<br /></span><span style="color: #0000BB">$username </span><span style="color: #007700">= </span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'user'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span style="color: #DD0000">'user'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'nobody'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+
+  
+ </div>
+
+ <div class="sect2" id="migration70.new-features.spaceship-op">
+  <h3 class="title">Operador &quot;nave espacial&quot; (spaceship)</h3>
+  <p class="para">
+   O operador nave espacial é utilizado para comparar duas expressões. Ele retorna -1, 0
+   ou 1 quando <var class="varname">$a</var> for respectivamente menor que, igual a ou maior
+   que <var class="varname">$b</var>. As comparações são feitas de acordo com as já conhecidas
+   <a href="types.comparisons.html" class="link">regras de comparação de tipos</a> do PHP.
+  </p>
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Inteiros<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">1 </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #FF8000">// 0<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">1 </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">; </span><span style="color: #FF8000">// -1<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">2 </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #FF8000">// 1<br /><br />// Números de ponto flutuante<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">1.5 </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #0000BB">1.5</span><span style="color: #007700">; </span><span style="color: #FF8000">// 0<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">1.5 </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #0000BB">2.5</span><span style="color: #007700">; </span><span style="color: #FF8000">// -1<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">2.5 </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #0000BB">1.5</span><span style="color: #007700">; </span><span style="color: #FF8000">// 1<br /><br />// Strings<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">"a" </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #DD0000">"a"</span><span style="color: #007700">; </span><span style="color: #FF8000">// 0<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">"a" </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #DD0000">"b"</span><span style="color: #007700">; </span><span style="color: #FF8000">// -1<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">"b" </span><span style="color: #007700">&lt;=&gt; </span><span style="color: #DD0000">"a"</span><span style="color: #007700">; </span><span style="color: #FF8000">// 1<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+
+  
+ </div>
+
+ <div class="sect2" id="migration70.new-features.define-array">
+  <h3 class="title">Arrays de constantes utilizando a função <span class="function"><a href="function.define.html" class="function">define()</a></span></h3>
+
+  <p class="para">
+   Constantes do tipo <span class="type">array</span> agora podem ser definidas com a função
+   <span class="function"><a href="function.define.html" class="function">define()</a></span>. No PHP 5.6 elas só poderiam ser definidas com
+   <a href="language.constants.syntax.html" class="link"><code class="literal">const</code></a>.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />define</span><span style="color: #007700">(</span><span style="color: #DD0000">'ANIMALS'</span><span style="color: #007700">, [<br />    </span><span style="color: #DD0000">'dog'</span><span style="color: #007700">,<br />    </span><span style="color: #DD0000">'cat'</span><span style="color: #007700">,<br />    </span><span style="color: #DD0000">'bird'<br /></span><span style="color: #007700">]);<br /><br />echo </span><span style="color: #0000BB">ANIMALS</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]; </span><span style="color: #FF8000">// imprime "cat"<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.anonymous-classes">
+  <h3 class="title">Classes anônimas</h3>
+
+  <p class="para">
+   O suporte a classes anônimas foi adicionado utilizando <code class="literal">new
+   class</code>. Estas podem ser utilizadas no lugar de definições completas de classes para
+   objetos descartáveis.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">interface </span><span style="color: #0000BB">Logger </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">log</span><span style="color: #007700">(</span><span style="color: #0000BB">string $msg</span><span style="color: #007700">);<br />}<br /><br />class </span><span style="color: #0000BB">Application </span><span style="color: #007700">{<br />    private </span><span style="color: #0000BB">$logger</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">getLogger</span><span style="color: #007700">(): </span><span style="color: #0000BB">Logger </span><span style="color: #007700">{<br />         return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">logger</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">setLogger</span><span style="color: #007700">(</span><span style="color: #0000BB">Logger $logger</span><span style="color: #007700">) {<br />         </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">logger </span><span style="color: #007700">= </span><span style="color: #0000BB">$logger</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$app </span><span style="color: #007700">= new </span><span style="color: #0000BB">Application</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$app</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setLogger</span><span style="color: #007700">(new class implements </span><span style="color: #0000BB">Logger </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">log</span><span style="color: #007700">(</span><span style="color: #0000BB">string $msg</span><span style="color: #007700">) {<br />        echo </span><span style="color: #0000BB">$msg</span><span style="color: #007700">;<br />    }<br />});<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$app</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getLogger</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+object(class@anonymous)#2 (0) {
+}
+</pre></div>
+   </div>
+  </div>
+
+  <p class="para">
+   A documentação completa pode ser encontrada na
+   <a href="language.oop5.anonymous.html" class="link">referência de classes anônimas</a>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.unicode-codepoint-escape-syntax">
+  <h3 class="title">Sintaxe de escape de códigos Unicode</h3>
+
+  <p class="para">
+   Toma um código Unicode em sua forma hexadecimal e imprime
+   esse código em UTF-8 em uma string delimitada por aspas ou um heredoc. Qualquer código
+   válido é aceito, com os zeros à esquerda sendo opcionais.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">echo "\u{aa}";<br />echo "\u{0000aa}";<br />echo "\u{9999}";</span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+ª
+ª (o mesmo que antes mas com os zeros à esquerda opcionais)
+香
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.closure-call-method">
+  <h3 class="title"><span class="methodname"><a href="closure.call.html" class="methodname">Closure::call()</a></span></h3>
+
+  <p class="para">
+   O método <span class="methodname"><a href="closure.call.html" class="methodname">Closure::call()</a></span> é uma forma mais eficaz
+   e abreviada de associar temporariamente um escopo de objeto a uma closure e invocá-la.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">A </span><span style="color: #007700">{private </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;}<br /><br /></span><span style="color: #FF8000">// Código anterior ao PHP 7<br /></span><span style="color: #0000BB">$getXCB </span><span style="color: #007700">= function() {return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">x</span><span style="color: #007700">;};<br /></span><span style="color: #0000BB">$getX </span><span style="color: #007700">= </span><span style="color: #0000BB">$getXCB</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindTo</span><span style="color: #007700">(new </span><span style="color: #0000BB">A</span><span style="color: #007700">, </span><span style="color: #DD0000">'A'</span><span style="color: #007700">); </span><span style="color: #FF8000">// intermediate closure<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">$getX</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">// Código do PHP 7+<br /></span><span style="color: #0000BB">$getX </span><span style="color: #007700">= function() {return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">x</span><span style="color: #007700">;};<br />echo </span><span style="color: #0000BB">$getX</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">call</span><span style="color: #007700">(new </span><span style="color: #0000BB">A</span><span style="color: #007700">);</span></span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+1
+1
+</pre></div>
+   </div>
+  </div>
+ </div>
+ <div class="sect2" id="migration70.new-features.filtered-unserialize">
+  <h3 class="title"><span class="function"><a href="function.unserialize.html" class="function">unserialize()</a></span> filtrado</h3>
+
+  <p class="para">
+   Esse recurso busca prover uma melhor segurança ao desserializar objetos
+   com informações não confiáveis. Ele impede possíveis injeções de código ao permitir que o
+   desenvolvedor liste as classes que podem ser desserializadas.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">// converte todos os objetos em objetos __PHP_Incomplete_Class<br /></span><span style="color: #0000BB">$data </span><span style="color: #007700">= </span><span style="color: #0000BB">unserialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">, [</span><span style="color: #DD0000">"allowed_classes" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">false</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">// converte todos os objetos em objetos __PHP_Incomplete_Class exceto aqueles de MyClass e MyClass2<br /></span><span style="color: #0000BB">$data </span><span style="color: #007700">= </span><span style="color: #0000BB">unserialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">, [</span><span style="color: #DD0000">"allowed_classes" </span><span style="color: #007700">=&gt; [</span><span style="color: #DD0000">"MyClass"</span><span style="color: #007700">, </span><span style="color: #DD0000">"MyClass2"</span><span style="color: #007700">]]);<br /><br /></span><span style="color: #FF8000">// comportamento padrão (o mesmo que omitir o segundo argumento) que aceita todas as classes<br /></span><span style="color: #0000BB">$data </span><span style="color: #007700">= </span><span style="color: #0000BB">unserialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">, [</span><span style="color: #DD0000">"allowed_classes" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">true</span><span style="color: #007700">]);</span></span></code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.intlchar">
+  <h3 class="title"><span class="classname"><a href="class.intlchar.html" class="classname">IntlChar</a></span></h3>
+
+  <p class="para">
+   A nova classe <span class="classname"><a href="class.intlchar.html" class="classname">IntlChar</a></span> busca expor funcionalidades adicionais
+   da ICU. A classe define alguns métodos estáticos e
+   constantes que podem ser utilizados para manipular caracteres Unicode.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />printf</span><span style="color: #007700">(</span><span style="color: #DD0000">'%x'</span><span style="color: #007700">, </span><span style="color: #0000BB">IntlChar</span><span style="color: #007700">::</span><span style="color: #0000BB">CODEPOINT_MAX</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">IntlChar</span><span style="color: #007700">::</span><span style="color: #0000BB">charName</span><span style="color: #007700">(</span><span style="color: #DD0000">'@'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">IntlChar</span><span style="color: #007700">::</span><span style="color: #0000BB">ispunct</span><span style="color: #007700">(</span><span style="color: #DD0000">'!'</span><span style="color: #007700">));</span></span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+10ffff
+COMMERCIAL AT
+bool(true)
+</pre></div>
+   </div>
+  </div>
+
+  <p class="para">
+   Para utilizar esta classe a extensão <a href="book.intl.html" class="link">Intl</a> deve estar instalada.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.expectations">
+  <h3 class="title">Expectations</h3>
+
+  <p class="para">
+   Expectations são
+   aprimoramentos compatíveis com versões anteriores para a antiga função <span class="function"><a href="function.assert.html" class="function">assert()</a></span>.
+   Permitem asserções com custo zero em código em produção e
+   fornecem a capacidade de lançar exceções personalizadas quando a asserção falha.
+  </p>
+
+  <p class="para">
+   Enquanto a API antiga continua sendo mantida por motivos de compatibilidade,
+   <span class="function"><a href="function.assert.html" class="function">assert()</a></span> agora é um construtor de linguagem, permitindo que
+   o primeiro parâmetro seja uma expressão, em vez de somente uma <span class="type">string</span> a ser
+   avaliada ou um valor <span class="type">bool</span> a ser testado.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">'assert.exception'</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br />class </span><span style="color: #0000BB">CustomError </span><span style="color: #007700">extends </span><span style="color: #0000BB">AssertionError </span><span style="color: #007700">{}<br /><br /></span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #0000BB">false</span><span style="color: #007700">, new </span><span style="color: #0000BB">CustomError</span><span style="color: #007700">(</span><span style="color: #DD0000">'Alguma mensagem de erro'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Fatal error: Uncaught CustomError: Alguma mensagem de erro
+</pre></div>
+   </div>
+  </div>
+
+  <p class="para">
+   Mais detalhes sobre este recurso, incluindo como configurá-lo tanto no
+   ambiente de desenvolvimento quanto em produção, podem ser encontrados no pagina do manual
+   do construtor de linguagem <span class="function"><a href="function.assert.html" class="function">assert()</a></span>;
+  </p>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.group-use-declarations">
+  <h3 class="title">Agrupamento de declarações <code class="literal">use</code></h3>
+
+  <p class="para">
+   Classes, funções e constantes importadas do mesmo <a href="language.namespaces.definition.html" class="link"><code class="literal">namespace</code></a>,
+   agora podem ser agrupadas em uma única declaração <a href="language.namespaces.importing.html" class="link"><code class="literal">use</code></a>
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Código anterior ao PHP 7<br /></span><span style="color: #007700">use </span><span style="color: #0000BB">some\namespace\ClassA</span><span style="color: #007700">;<br />use </span><span style="color: #0000BB">some\namespace\ClassB</span><span style="color: #007700">;<br />use </span><span style="color: #0000BB">some\namespace\ClassC </span><span style="color: #007700">as </span><span style="color: #0000BB">C</span><span style="color: #007700">;<br /><br />use function </span><span style="color: #0000BB">some\namespace\fn_a</span><span style="color: #007700">;<br />use function </span><span style="color: #0000BB">some\namespace\fn_b</span><span style="color: #007700">;<br />use function </span><span style="color: #0000BB">some\namespace\fn_c</span><span style="color: #007700">;<br /><br />use const </span><span style="color: #0000BB">some\namespace\ConstA</span><span style="color: #007700">;<br />use const </span><span style="color: #0000BB">some\namespace\ConstB</span><span style="color: #007700">;<br />use const </span><span style="color: #0000BB">some\namespace\ConstC</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Código do PHP 7+<br /></span><span style="color: #007700">use </span><span style="color: #0000BB">some\namespace</span><span style="color: #007700">\{</span><span style="color: #0000BB">ClassA</span><span style="color: #007700">, </span><span style="color: #0000BB">ClassB</span><span style="color: #007700">, </span><span style="color: #0000BB">ClassC </span><span style="color: #007700">as </span><span style="color: #0000BB">C</span><span style="color: #007700">};<br />use function </span><span style="color: #0000BB">some\namespace</span><span style="color: #007700">\{</span><span style="color: #0000BB">fn_a</span><span style="color: #007700">, </span><span style="color: #0000BB">fn_b</span><span style="color: #007700">, </span><span style="color: #0000BB">fn_c</span><span style="color: #007700">};<br />use const </span><span style="color: #0000BB">some\namespace</span><span style="color: #007700">\{</span><span style="color: #0000BB">ConstA</span><span style="color: #007700">, </span><span style="color: #0000BB">ConstB</span><span style="color: #007700">, </span><span style="color: #0000BB">ConstC</span><span style="color: #007700">};<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.generator-return-expressions">
+  <h3 class="title">Expressões de Retorno nos Geradores</h3>
+
+  <p class="para">
+   Este recurso foi construído em cima da funcionalidade de geradores introduzida no PHP 5.5.
+   Ele permite que uma declaração <code class="literal">return</code> seja usada dentro de um
+   gerador para permitir que uma expressão final seja retornada (retornar por
+   referência não é permitido). Este valor pode ser obtido usando o novo método
+   <code class="literal">Generator::getReturn()</code>, que deve ser usado somente
+   quando o gerador terminar a geração dos valores.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$gen </span><span style="color: #007700">= (function() {<br />    yield </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />    yield </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br /><br />    return </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br />})();<br /><br />foreach (</span><span style="color: #0000BB">$gen </span><span style="color: #007700">as </span><span style="color: #0000BB">$val</span><span style="color: #007700">) {<br />    echo </span><span style="color: #0000BB">$val</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />}<br /><br />echo </span><span style="color: #0000BB">$gen</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getReturn</span><span style="color: #007700">(), </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;</span></span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+1
+2
+3
+</pre></div>
+   </div>
+  </div>
+
+  <p class="para">
+   A habilidade de retornar explicitamente o valor final de um gerador é
+   conveniente de se ter. Ela permite que o retorno do valor final do
+   gerador (pode ser de uma computação concorrente) possa ser manipulado
+   especificamente pelo código cliente que executa o gerador. Isso é bem mais
+   simples que forçar o código cliente a primeiro checar se o valor final
+   já foi gerado, e em caso afirmativo, manipular esse valor especificamente.
+  </p>
+ </div>
+ <div class="sect2" id="migration70.new-features.generator-delegation">
+  <h3 class="title">Delegação de geradores</h3>
+
+  <p class="para">
+   Geradores agora podem delegar para outros geradores,
+   objetos <span class="classname"><a href="class.traversable.html" class="classname">Traversable</a></span> ou <span class="type">array</span>
+   automaticamente, sem a necessidade de escrever código repetitivo no gerador externo
+   utilizando o construtor <a href="language.generators.syntax.html#control-structures.yield.from" class="link"><code class="literal">yield from</code></a>
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">gen</span><span style="color: #007700">()<br />{<br />    yield </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />    yield </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br />    yield from </span><span style="color: #0000BB">gen2</span><span style="color: #007700">();<br />}<br /><br />function </span><span style="color: #0000BB">gen2</span><span style="color: #007700">()<br />{<br />    yield </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br />    yield </span><span style="color: #0000BB">4</span><span style="color: #007700">;<br />}<br /><br />foreach (</span><span style="color: #0000BB">gen</span><span style="color: #007700">() as </span><span style="color: #0000BB">$val</span><span style="color: #007700">)<br />{<br />    echo </span><span style="color: #0000BB">$val</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+1
+2
+3
+4
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.intdiv">
+  <h3 class="title">Divisão de inteiros com <span class="function"><a href="function.intdiv.html" class="function">intdiv()</a></span></h3>
+
+  <p class="para">
+   A nova função <span class="function"><a href="function.intdiv.html" class="function">intdiv()</a></span> realiza a divisão de inteiros
+   de seus operandos e a retorna.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">intdiv</span><span style="color: #007700">(</span><span style="color: #0000BB">10</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <p class="para">O exemplo acima produzirá:</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+int(3)
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.session-options">
+  <h3 class="title">Opções de sessões</h3>
+
+  <p class="para">
+   A função <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> agora aceita um <span class="type">array</span> de
+   opções que sobrescrevem as
+   <a href="session.configuration.html" class="link">diretivas de configuração de sessões</a>
+   normalmente configuradas no php.ini.
+  </p>
+
+  <p class="para">
+   Estas opções também foram expandidas para suportar
+   <a href="session.configuration.html#ini.session.lazy-write" class="link">session.lazy_write</a>, que está
+   habilitada por padrão e faz com que o PHP somente sobrescreva um arquivo de sessão se
+   a informação da sessão foi modificada, e <code class="literal">read_and_close</code>, que é
+   uma opção que só pode ser passada para a função <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> para
+   indicar que os dados da sessão devem ser lidos e, em seguida, a sessão deve
+   ser imediatamente fechada sem alterações.
+  </p>
+
+  <p class="para">
+   Por exemplo, para configurar
+   <a href="session.configuration.html#ini.session.cache-limiter" class="link">session.cache_limiter</a> para
+   <code class="literal">private</code> e fechar imediatamente a sessão após
+   lê-la:
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />session_start</span><span style="color: #007700">([<br />    </span><span style="color: #DD0000">'cache_limiter' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'private'</span><span style="color: #007700">,<br />    </span><span style="color: #DD0000">'read_and_close' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">true</span><span style="color: #007700">,<br />]);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.preg-repace-callback-array-function">
+  <h3 class="title"><span class="function"><a href="function.preg-replace-callback-array.html" class="function">preg_replace_callback_array()</a></span></h3>
+
+  <p class="para">
+   A nova função <span class="function"><a href="function.preg-replace-callback-array.html" class="function">preg_replace_callback_array()</a></span> permite
+   que o código seja escrito de forma mais limpa com a utilização da função
+   <span class="function"><a href="function.preg-replace-callback.html" class="function">preg_replace_callback()</a></span>. Antes do PHP 7,
+   callbacks que precisam ser executadas por expressões regulares exigiam que a
+   função de callback fosse poluída com muitas ramificações.
+  </p>
+
+  <p class="para">
+   Agora, funções de callback podem ser registradas em cada expressão regular utilizando um
+   array associativo, onde a chave é uma expressão regular e o valor é uma
+   função de callback.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.csprng-functions">
+  <h3 class="title">Funções CSPRNG</h3>
+
+  <p class="para">
+   Duas novas funções foram adicionadas para gerar inteiros e strings
+   criptograficamente seguros de maneira multiplataforma:
+   <span class="function"><a href="function.random-bytes.html" class="function">random_bytes()</a></span> e <span class="function"><a href="function.random-int.html" class="function">random_int()</a></span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.list-arrayaccess">
+  <h3 class="title">
+   A função <span class="function"><a href="function.list.html" class="function">list()</a></span> pode sempre desempacotar objetos que implementam
+   <span class="classname"><a href="class.arrayaccess.html" class="classname">ArrayAccess</a></span>
+  </h3>
+
+  <p class="para">
+   Antes a função <span class="function"><a href="function.list.html" class="function">list()</a></span> não garantia corretude
+   em operações com objetos que implementam <span class="classname"><a href="class.arrayaccess.html" class="classname">ArrayAccess</a></span>.
+   Isso foi corrigido.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration70.new-features.others">
+  <h3 class="title">Outros Recursos</h3>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     Acesso a membros de classe na clonagem foi adicionado,
+     por exemplo, <code class="literal">(clone $foo)-&gt;bar()</code>.
+    </span>
+   </li>
+  </ul>
+ </div>
+</div></div></div></body></html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Seguran&ccedil;a de Bancos de Dados</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="security.filesystem.nullbytes.html">« Problemas relacionados a bytes nulos (Null)</a></li>
+      <li style="float: right;"><a href="security.database.design.html">Desenhando Bancos de Dados »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="security.html">Seguran&ccedil;a</a></li>
+    <li>Seguran&ccedil;a de Bancos de Dados</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="security.database" class="chapter">
+   <h1>Segurança de Bancos de Dados</h1>
+<h2>Índice</h2><ul class="chunklist chunklist_chapter"><li><a href="security.database.design.html">Desenhando Bancos de Dados</a></li><li><a href="security.database.connection.html">Conectando com o Banco de Dados</a></li><li><a href="security.database.storage.html">Modelo de Armazenamento Criptografado</a></li><li><a href="security.database.sql-injection.html">Inje&ccedil;&atilde;o de SQL</a></li></ul>
+
+
+   <p class="simpara">
+    Hoje em dia, bancos de dados são componentes cardinais de qualquer aplicação web
+    permitindo que websites forneçam conteúdo dinâmico variável. Um vez que informações muito
+    sensíveis e/ou secretas podem ser guardadas em um banco de dados, proteger seus
+    bancos de dados é essencial.
+   </p>
+   <p class="simpara">
+    Para retirar ou guardar qualquer informação, você precisa conectar-se ao banco
+    de dados, enviar uma consulta (query) legítima, pegar o resultado e fechar a conexão.
+    Atualmente, a linguagem mais usada para consulta nessa interação é a
+    Structured Query Language (SQL). Veja como um atacante pode <a href="security.database.sql-injection.html" class="link">manipular uma consulta SQL</a>.
+   </p>
+   <p class="simpara">
+    O <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> não pode proteger seu banco de dados sozinho. As
+    seções a seguir tentam ser uma introdução básica em relação a como
+    acessar e manipular banco de dados a partir de scripts <abbr title="PHP: Hypertext Preprocessor">PHP</abbr>.
+   </p>
+   <p class="simpara">
+    É preciso manter em mente essa regra simples: defesa em profundidade. Em quanto mais lugares
+    há ações para aumentar a proteção do banco de dados, menor a probabilidade
+    de um atacante ter sucesso em expor ou abusar de qualquer informação
+    guardada. Uma boa modelagem do esquema (schema) do banco de dados e da aplicação
+    para lidar com os maiores medos.
+   </p>
+
+   
+
+   
+
+   
+
+   
+  </div>
+</div></div></body></html>

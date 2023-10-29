@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Obt&eacute;m as op&ccedil;&otilde;es de um analisador (parser) XML</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.xml-parser-free.html">« xml_parser_free</a></li>
+      <li style="float: right;"><a href="function.xml-parser-set-option.html">xml_parser_set_option »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.xml.html">Fun&ccedil;&otilde;es para analisar XML</a></li>
+    <li>Obt&eacute;m as op&ccedil;&otilde;es de um analisador (parser) XML</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.xml-parser-get-option" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xml_parser_get_option</h1>
+  <p class="refpurpose"><span class="refname">xml_parser_get_option</span> &mdash; <span class="dc-title">Obtém as opções de um analisador (parser) XML</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.xml-parser-get-option-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>xml_parser_get_option</strong></span>(<span class="methodparam"><span class="type">resource</span> <code class="parameter">$parser</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$option</code></span>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+
+  <p class="para rdfs-comment">
+   Obtém um valor de opção de um analisador XML.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.xml-parser-get-option-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">parser</code></dt>
+
+     <dd>
+
+      <span class="simpara">
+       Uma referência para o analisador XML para obter uma opção.
+      </span>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">option</code></dt>
+
+     <dd>
+
+      <span class="simpara">   
+       Qual opção buscar. <strong><code>XML_OPTION_CASE_FOLDING</code></strong>
+       e <strong><code>XML_OPTION_TARGET_ENCODING</code></strong> estão disponíveis.
+       Veja <span class="function"><a href="function.xml-parser-set-option.html" class="function">xml_parser_set_option()</a></span> para suas descrições.
+      </span>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.xml-parser-get-option-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Esta função retorna <strong><code>false</code></strong> se o <code class="parameter">parser</code> não se
+   referir a um analisador válido ou se a <code class="parameter">opção</code> não 
+   é válida (gera também um <strong><code>E_WARNING</code></strong>). 
+   Senão o valor da opção é retornado. 
+  </p>
+ </div>
+
+ 
+</div></div></div></body></html>

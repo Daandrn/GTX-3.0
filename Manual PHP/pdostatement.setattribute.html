@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Define um atributo na instru&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="pdostatement.rowcount.html">« PDOStatement::rowCount</a></li>
+      <li style="float: right;"><a href="pdostatement.setfetchmode.html">PDOStatement::setFetchMode »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.pdostatement.html">PDOStatement</a></li>
+    <li>Define um atributo na instru&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="pdostatement.setattribute" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">PDOStatement::setAttribute</h1>
+  <p class="refpurpose"><span class="refname">PDOStatement::setAttribute</span> &mdash; <span class="dc-title">
+   Define um atributo na instrução
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-pdostatement.setattribute-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>PDOStatement::setAttribute</strong></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$attribute</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>): <span class="type">bool</span></div>
+
+
+  <p class="para rdfs-comment">
+   Define um atributo na instrução. Atualmente não há atributos genericos definidos, apenas atributos específicos do driver: 
+   <ul class="itemizedlist">
+    <li class="listitem"><p class="para"><code class="literal">PDO::ATTR_CURSOR_NAME</code>
+     (Específico do Firebird e do ODBC):
+     Define o nome do cursor para <code class="literal">UPDATE ... WHERE CURRENT OF</code>.
+    </p></li>
+   </ul>
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-pdostatement.setattribute-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-pdostatement.setattribute-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="pdo.getattribute.html" class="function" rel="rdfs-seeAlso">PDO::getAttribute()</a> - Recuperar um atributo da conex&atilde;o com o banco de dados</span></li>
+    <li class="member"><span class="function"><a href="pdo.setattribute.html" class="function" rel="rdfs-seeAlso">PDO::setAttribute()</a> - Set an attribute</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.getattribute.html" class="function" rel="rdfs-seeAlso">PDOStatement::getAttribute()</a> - Retrieve a statement attribute</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

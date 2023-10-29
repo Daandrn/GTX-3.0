@@ -42,9 +42,9 @@ if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') 
             break;
             
         case 'excluiCanalStream':
-            $idStream = $_SESSION['id_sessao'];
+            $idExcluiStream = $_SESSION['id_sessao'];
 
-            $responseStream = excluiStream($idStream);
+            $responseStream = excluiStream($idExcluiStream);
             header("location: /gtx2/control/control.areaLogada.php");
 
             break;
@@ -77,7 +77,6 @@ if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') 
                 $pessoa = new pessoa;
                 $pessoa->alteraSenha($idSessao, $novaSenha);
                 $responseAlteraSenha = "Senha alterada com sucesso!";
-                //header("location: /gtx2/control/control.areaLogada.php");
 
             }
 

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Eleva um n&uacute;mero de precis&atilde;o arbitr&aacute;ria para outro, reduzido por um m&oacute;dulo especificado</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.bcpow.html">« bcpow</a></li>
+      <li style="float: right;"><a href="function.bcscale.html">bcscale »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.bc.html">BC Math Fun&ccedil;&otilde;es</a></li>
+    <li>Eleva um n&uacute;mero de precis&atilde;o arbitr&aacute;ria para outro, reduzido por um m&oacute;dulo especificado</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.bcpowmod" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">bcpowmod</h1>
+  <p class="refpurpose"><span class="refname">bcpowmod</span> &mdash; <span class="dc-title">Eleva um número de precisão arbitrária para outro, reduzido por um módulo especificado</span></p>
+
+ </div>
+      
+ <div class="refsect1 description" id="refsect1-function.bcpowmod-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>bcpowmod</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$num</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$exponent</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">string</span> <code class="parameter">$modulus</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">int</span><span class="type"></span></span> <code class="parameter">$scale</code><span class="initializer"> = <strong><code>null</code></strong></span></span><br>): <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Utiliza o método de exponenciação rápida para elevar
+   <code class="parameter">num</code> para a potência 
+   <code class="parameter">exponent</code> levando em conta o módulo
+   <code class="parameter">modulus</code>.
+  </p>
+ </div>
+
+    
+ <div class="refsect1 parameters" id="refsect1-function.bcpowmod-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">num</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O número base, na forma de inteiro em string (a escala tem de ser zero).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">exponent</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O número expoente, na forma de um inteiro não negativo, em string (a escala tem de ser zero).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">modulus</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O número módulo, na forma de um inteiro em string (a escala tem de ser zero).
+      </p>
+     </dd>
+
+    
+    <dt>
+
+<code class="parameter">scale</code></dt>
+<dd>
+<p class="para">Este parâmetro opcional é usado para definir o número
+de dígitos após a casa decimal do resultado. Se omitido, o padrão será a escala definida
+globalmente com a função <span class="function"><a href="function.bcscale.html" class="function">bcscale()</a></span> ou, em último caso, <code class="literal">0</code> se
+a escala não tiver sido definida.</p></dd>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.bcpowmod-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna o resultado como uma string, ou <strong><code>false</code></strong> se <code class="parameter">modulus</code>
+   for <code class="literal">0</code> ou o <code class="parameter">exponent</code> for negativo.
+  </p>
+ </div>
+ 
+ 
+ <div class="refsect1 changelog" id="refsect1-function.bcpowmod-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>8.0.0</td>
+      <td>
+       <code class="parameter">scale</code> agora pode ser null.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.bcpowmod-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   As seguintes instruções têm funcionalidades idênticas. A versão
+   <span class="function"><strong>bcpowmod()</strong></span>, no entanto, executa em
+   menos tempo e pode aceitar parâmetros maiores.
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$a </span><span style="color: #007700">= </span><span style="color: #0000BB">bcpowmod</span><span style="color: #007700">(</span><span style="color: #0000BB">$x</span><span style="color: #007700">, </span><span style="color: #0000BB">$y</span><span style="color: #007700">, </span><span style="color: #0000BB">$mod</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #0000BB">bcmod</span><span style="color: #007700">(</span><span style="color: #0000BB">bcpow</span><span style="color: #007700">(</span><span style="color: #0000BB">$x</span><span style="color: #007700">, </span><span style="color: #0000BB">$y</span><span style="color: #007700">), </span><span style="color: #0000BB">$mod</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// $a e $b são iguais.<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 notes" id="refsect1-function.bcpowmod-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Por esse método realizar operações em módulo, números que não sejam
+    inteiros positivos podem gerar resultados inesperados.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.bcpowmod-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.bcpow.html" class="function" rel="rdfs-seeAlso">bcpow()</a> - Eleva um n&uacute;mero de precis&atilde;o arbitr&aacute;ria a outro</span></li>
+    <li class="member"><span class="function"><a href="function.bcmod.html" class="function" rel="rdfs-seeAlso">bcmod()</a> - Obt&eacute;m o m&oacute;dulo de um n&uacute;mero com precis&atilde;o arbitr&aacute;ria</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

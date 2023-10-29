@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Set the internal pointer of an array to its last element</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.each.html">« each</a></li>
+      <li style="float: right;"><a href="function.extract.html">extract »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Set the internal pointer of an array to its last element</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.end" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">end</h1>
+  <p class="refpurpose"><span class="refname">end</span> &mdash; <span class="dc-title">Set the internal pointer of an array to its last element</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.end-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>end</strong></span>(<span class="methodparam"><span class="type"><span class="type">array</span>|<span class="type">object</span></span> <code class="parameter reference">&$array</code></span>): <span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>end()</strong></span> advances <code class="parameter">array</code>&#039;s
+   internal pointer to the last element, and returns its value.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.end-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">array</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The array.  This array is passed by reference because it is modified by
+       the function.  This means you must pass it a real variable and not
+       a function returning an array because only actual variables may be
+       passed by reference.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.end-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Returns the value of the last element or <strong><code>false</code></strong> for empty array.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.end-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+ <td>8.1.0</td>
+ <td>
+  Chamar esta função em <span class="type">object</span>s tornou-se obsoleto.
+  Converta o <span class="type">object</span> para um <span class="type">array</span> usando <span class="function"><a href="function.get-mangled-object-vars.html" class="function">get_mangled_object_vars()</a></span> primeiro ou, em vez disso, use os métodos
+  fornecidos por uma classe que implementa <span class="interfacename"><a href="class.iterator.html" class="interfacename">Iterator</a></span>, como <span class="classname"><a href="class.arrayiterator.html" class="classname">ArrayIterator</a></span>.
+   </td>
+</tr>
+
+<tr>
+ <td>7.4.0</td>
+ <td>
+  Instâncias de classes <a href="book.spl.html" class="link">SPL</a> agora são tratadas como objetos vazios que não possuem propriedades em vez de chamar o método da interface <span class="interfacename"><a href="class.iterator.html" class="interfacename">Iterator</a></span> com o mesmo nome desta função.
+ </td>
+</tr>
+
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.end-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 <span class="function"><strong>end()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$fruits </span><span style="color: #007700">= array(</span><span style="color: #DD0000">'apple'</span><span style="color: #007700">, </span><span style="color: #DD0000">'banana'</span><span style="color: #007700">, </span><span style="color: #DD0000">'cranberry'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">end</span><span style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span style="color: #007700">); </span><span style="color: #FF8000">// cranberry<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.end-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.current.html" class="function" rel="rdfs-seeAlso">current()</a> - Retorna o elemento atual em um array</span></li>
+    <li class="member"><span class="function"><a href="function.each.html" class="function" rel="rdfs-seeAlso">each()</a> - Return the current key and value pair from an array and advance the array cursor</span></li>
+    <li class="member"><span class="function"><a href="function.prev.html" class="function" rel="rdfs-seeAlso">prev()</a> - Retrocede o ponteiro interno de um array</span></li>
+    <li class="member"><span class="function"><a href="function.reset.html" class="function" rel="rdfs-seeAlso">reset()</a> - Faz o ponteiro interno de um array apontar para o seu primeiro elemento</span></li>
+    <li class="member"><span class="function"><a href="function.next.html" class="function" rel="rdfs-seeAlso">next()</a> - Avan&ccedil;a o ponteiro interno de um array</span></li>
+    <li class="member"><span class="function"><a href="function.array-key-last.html" class="function" rel="rdfs-seeAlso">array_key_last()</a> - Obt&eacute;m a &uacute;ltima chave de um array</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

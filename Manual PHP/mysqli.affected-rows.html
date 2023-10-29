@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retorna o n&uacute;mero de linhas afetadas pela opera&ccedil;&atilde;o MySQL anterior</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="class.mysqli.html">« mysqli</a></li>
+      <li style="float: right;"><a href="mysqli.autocommit.html">mysqli::autocommit »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mysqli.html">mysqli</a></li>
+    <li>Retorna o n&uacute;mero de linhas afetadas pela opera&ccedil;&atilde;o MySQL anterior</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqli.affected-rows" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli->affected_rows</h1>
+  <h1 class="refname">mysqli_affected_rows</h1>
+  <p class="refpurpose"><span class="refname">mysqli-&gt;affected_rows</span> -- <span class="refname">mysqli_affected_rows</span> &mdash; <span class="dc-title">Retorna o número de linhas afetadas pela operação MySQL anterior</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli.affected-rows-description">
+  <h3 class="title">Descrição</h3>
+  <p class="para">Estilo orientado a objetos (propriedades):</p>
+  <div class="classsynopsis">
+   <span class="ooclass"><strong class="classname"></strong></span>
+   <div class="fieldsynopsis"><span class="type">int</span> <var class="varname">$<var class="varname">affected_rows</var></var>;</div>
+
+  }</div>
+  <p class="para">Estilo de procedimento:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>mysqli_affected_rows</strong></span>(<span class="methodparam"><span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <code class="parameter">$link</code></span>): <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>mysqli_affected_rows()</strong></span> retorna o número de linhas afetadas pela ultima
+   consulta <code class="literal">INSERT</code>, <code class="literal">UPDATE</code>, <code class="literal">REPLACE</code> ou
+   <code class="literal">DELETE</code> associada ao parâmetro <code class="parameter">link</code>
+   indicado. Se a ultima consulta foi invalida, esta função irá retornar -1.
+  </p>
+  <p class="para">
+   Para comandos SELECT <span class="function"><strong>mysqli_affected_rows()</strong></span> funciona como
+   <span class="function"><a href="mysqli-result.num-rows.html" class="function">mysqli_num_rows()</a></span>.
+  </p>
+ </div>
+
+  
+  <div class="refsect1 parameters" id="refsect1-mysqli.affected-rows-parameters">
+   <h3 class="title">Parâmetros</h3>
+   <p class="para">
+    <dl>
+     <dt>
+
+<code class="parameter">mysql</code></dt>
+<dd>
+<p class="para">Somente no estilo procedural: Um objeto <span class="classname"><a href="class.mysqli.html" class="classname">mysqli</a></span>
+retornado por <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span> ou <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span>.
+</p></dd>
+
+    </dl>
+
+   </p>
+  </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli.affected-rows-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Um inteiro maior do que zero indica o número de linhas afetadas ou obtidas.
+   Zero indica que nenhum registro foi atualizado por um UPDATE, não foram encontradas
+   linhas em uma claúsula <code class="literal">WHERE</code> na consulta ou que a consulta ainda não foi executada.
+   -1 indica que a consulta retornou com erro.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>:  
+   <p class="para">
+    Se o número de linhas afetadas for maior do que o maior valor inteiro possível, o número de linhas afetadas
+    será retornado como uma string.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli.affected-rows-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="example-4352">
+   <p><strong>Exemplo #1 Estilo orientado a objeto</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$mysqli </span><span style="color: #007700">= new </span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">, </span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* check connection */<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">()) {<br />    </span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect failed: %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />    exit();<br />}<br /><br /></span><span style="color: #FF8000">/* Insert rows */<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE TABLE Language SELECT * from CountryLanguage"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected rows (INSERT): %d\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"ALTER TABLE Language ADD Status int default 0"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* update rows */<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"UPDATE Language SET Status=1 WHERE Percentage &gt; 50"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected rows (UPDATE): %d\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* delete rows */<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DELETE FROM Language WHERE Percentage &lt; 50"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected rows (DELETE): %d\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* select all rows */<br /></span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT CountryCode FROM Language"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected rows (SELECT): %d\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/* Delete table Language */<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP TABLE Language"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* close connection */<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-4355">
+   <p><strong>Exemplo #2 Estilo de procedimento</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$link </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">, </span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br />if (!</span><span style="color: #0000BB">$link</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Can't connect to localhost. Error: %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />    exit();<br />}<br /><br /></span><span style="color: #FF8000">/* Insert rows */<br /></span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #DD0000">"CREATE TABLE Language SELECT * from CountryLanguage"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected rows (INSERT): %d\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #DD0000">"ALTER TABLE Language ADD Status int default 0"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* update rows */<br /></span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #DD0000">"UPDATE Language SET Status=1 WHERE Percentage &gt; 50"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected rows (UPDATE): %d\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/* delete rows */<br /></span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #DD0000">"DELETE FROM Language WHERE Percentage &lt; 50"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected rows (DELETE): %d\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/* select all rows */<br /></span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #DD0000">"SELECT CountryCode FROM Language"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected rows (SELECT): %d\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">mysqli_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* Delete table Language */<br /></span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #DD0000">"DROP TABLE Language"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* close connection */<br /></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+  <p class="para">O exemplo acima produzirá:</p>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+Affected rows (INSERT): 984
+Affected rows (UPDATE): 168
+Affected rows (DELETE): 815
+Affected rows (SELECT): 169
+</pre></div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli.affected-rows-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli-result.num-rows.html" class="function" rel="rdfs-seeAlso">mysqli_num_rows()</a> - Gets the number of rows in the result set</span></li>
+    <li class="member"><span class="function"><a href="mysqli.info.html" class="function" rel="rdfs-seeAlso">mysqli_info()</a> - Recupera informa&ccedil;&atilde;o sobre a mais recente query executada</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

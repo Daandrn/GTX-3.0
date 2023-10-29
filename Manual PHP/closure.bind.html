@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Duplica uma closure com um objeto vinculado e um escopo de classe</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="closure.construct.html">« Closure::__construct</a></li>
+      <li style="float: right;"><a href="closure.bindto.html">Closure::bindTo »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.closure.html">Closure</a></li>
+    <li>Duplica uma closure com um objeto vinculado e um escopo de classe</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="closure.bind" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Closure::bind</h1>
+  <p class="refpurpose"><span class="refname">Closure::bind</span> &mdash; <span class="dc-title">
+   Duplica uma closure com um objeto vinculado e um escopo de classe
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-closure.bind-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><strong>Closure::bind</strong></span>(<span class="methodparam"><span class="type"><a href="class.closure.html" class="type Closure">Closure</a></span> <code class="parameter">$closure</code></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type">object</span><span class="type"></span></span> <code class="parameter">$newThis</code></span>, <span class="methodparam"><span class="type"><span class="type">object</span>|<span class="type">string</span>|<span class="type">null</span></span> <code class="parameter">$newScope</code><span class="initializer"> = &quot;static&quot;</span></span>): <span class="type"><span class="type">?</span><span class="type"><a href="class.closure.html" class="type Closure">Closure</a></span></span></div>
+
+  <p class="para rdfs-comment">
+   Este método é uma versão estática do <span class="methodname"><a href="closure.bindto.html" class="methodname">Closure::bindTo()</a></span>.
+   Veja a documentação do método para mais informações.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-closure.bind-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <dl>
+   
+    <dt>
+<code class="parameter">closure</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A função anônima a ser vincular.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">newThis</code></dt>
+
+    <dd>
+
+     <p class="para">
+      O objeto que a função anônima fornecida deve vincular, ou
+      <strong><code>null</code></strong> para a closure não vincular.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">newScope</code></dt>
+
+    <dd>
+
+     <p class="para">
+      O escopo da classe ao qual a closure deve ser informado, ou
+      &#039;static&#039; para manter o atual. Se um objeto é fornecido, o tipo do
+      objeto será usado. Isso determina a visibilidade dos métodos protegidos e
+      privados do objeto vinculado.
+      Não é permitido passar uma (objeto da) classe interna como parâmetro this.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-closure.bind-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna um novo objeto <span class="classname"><a href="class.closure.html" class="classname">Closure</a></span> ou <strong><code>null</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-closure.bind-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="example-1175">
+   <p><strong>Exemplo #1 Exemplo do método <span class="function"><strong>Closure::bind()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">A </span><span style="color: #007700">{<br />    private static </span><span style="color: #0000BB">$sfoo </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />    private </span><span style="color: #0000BB">$ifoo </span><span style="color: #007700">= </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">$cl1 </span><span style="color: #007700">= static function() {<br />    return </span><span style="color: #0000BB">A</span><span style="color: #007700">::</span><span style="color: #0000BB">$sfoo</span><span style="color: #007700">;<br />};<br /></span><span style="color: #0000BB">$cl2 </span><span style="color: #007700">= function() {<br />    return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ifoo</span><span style="color: #007700">;<br />};<br /><br /></span><span style="color: #0000BB">$bcl1 </span><span style="color: #007700">= </span><span style="color: #0000BB">Closure</span><span style="color: #007700">::</span><span style="color: #0000BB">bind</span><span style="color: #007700">(</span><span style="color: #0000BB">$cl1</span><span style="color: #007700">, </span><span style="color: #0000BB">null</span><span style="color: #007700">, </span><span style="color: #DD0000">'A'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$bcl2 </span><span style="color: #007700">= </span><span style="color: #0000BB">Closure</span><span style="color: #007700">::</span><span style="color: #0000BB">bind</span><span style="color: #007700">(</span><span style="color: #0000BB">$cl2</span><span style="color: #007700">, new </span><span style="color: #0000BB">A</span><span style="color: #007700">(), </span><span style="color: #DD0000">'A'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">$bcl1</span><span style="color: #007700">(), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo </span><span style="color: #0000BB">$bcl2</span><span style="color: #007700">(), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+1
+2
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+
+ <div class="refsect1 seealso" id="refsect1-closure.bind-seealso">
+  <h3 class="title">Veja Também</h3>
+  <ul class="simplelist">
+   <li class="member"><a href="functions.anonymous.html" class="link">Funções anônimas</a></li>
+   <li class="member"><span class="methodname"><a href="closure.bindto.html" class="methodname" rel="rdfs-seeAlso">Closure::bindTo()</a> - Duplicates the closure with a new bound object and class scope</span></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

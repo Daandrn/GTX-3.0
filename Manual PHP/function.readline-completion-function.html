@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Registra uma fun&ccedil;&atilde;o de completar</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.readline-clear-history.html">« readline_clear_history</a></li>
+      <li style="float: right;"><a href="function.readline-info.html">readline_info »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.readline.html">Fun&ccedil;&otilde;es da Readline</a></li>
+    <li>Registra uma fun&ccedil;&atilde;o de completar</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.readline-completion-function" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">readline_completion_function</h1>
+  <p class="refpurpose"><span class="refname">readline_completion_function</span> &mdash; <span class="dc-title">Registra uma função de completar</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.readline-completion-function-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>readline_completion_function</strong></span>(<span class="methodparam"><span class="type"><span class="type callback">callback</span></span> <code class="parameter">$function</code></span>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Esta função registra uma função de completar. Este é o mesmo
+   tipo de funcionamento que você tem se você pressionar a 
+   tecla tab enquanto estiver usando o Bash.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.readline-completion-function-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">function</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Você deve usar o nome de uma função existente a qual aceita uma 
+       linha de comando parcial e retorna uma matriz de possíveis combinações.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.readline-completion-function-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+</div></div></div></body></html>

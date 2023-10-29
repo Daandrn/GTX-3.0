@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Obtendo o PHP</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="faq.mailinglist.html">« Listas de Discuss&atilde;o</a></li>
+      <li style="float: right;"><a href="faq.databases.html">Quest&otilde;es sobre banco de dados »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li>Obtendo o PHP</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="faq.obtaining" class="chapter">
+ <h1>Obtendo o PHP</h1>
+
+  
+
+   <p class="para">
+    Essa seção tem detalhes sobre localizações de download do PHP e
+    problemas com Sistemas Operacionais.
+   </p>
+
+  <div class="qandaset"><ol class="qandaset_questions"><li><a href="#faq.obtaining.where">
+     Onde posso obter o PHP?
+    </a></li><li><a href="#faq.obtaining.precompiled">
+     Existem vers&otilde;es bin&aacute;rias pr&eacute;-compiladas?
+    </a></li><li><a href="#faq.obtaining.optional">
+     
+      Onde posso pegar as bibliotecas necess&aacute;rias para compilar
+      alguma das extens&otilde;es opcionais do PHP?
+     
+    </a></li><li><a href="#faq.obtaining.how">
+     Como fa&ccedil;o essas bibliotecas funcionarem?
+    </a></li><li><a href="#faq.obtaining.compilent">
+     
+      Eu peguei a &uacute;ltima vers&atilde;o do c&oacute;digo-fonte do PHP do reposit&oacute;rio Git
+      na minha m&aacute;quina Windows, o que eu preciso para compil&aacute;-lo?
+     
+    </a></li><li><a href="#faq.obtaining.browscap">
+     Onde eu acho o Arquivo de Capacidades do Navegador (Browser Capabilities File)?
+    </a></li><li><a href="#faq.obtaining.threadsafety">
+     O que significa thread safety quando estou fazendo o download do PHP?
+    </a></li></ol></div>
+   <dl class="qandaentry" id="faq.obtaining.where">
+    <dt><strong>
+     Onde posso obter o PHP?
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Você pode baixar o PHP de qualquer um dos membros da
+      rede de sites do PHP. Esses podem ser encontrados em
+      <a href="https://www.php.net/" class="link external">&raquo;&nbsp;https://www.php.net/</a>.
+      Você pode usar também um Git anônimo para pegar a última
+      versão do fonte. Para mais informações, vá até
+      <a href="https://www.php.net/git.php" class="link external">&raquo;&nbsp;https://www.php.net/git.php</a>.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.obtaining.precompiled">
+    <dt><strong>
+     Existem versões binárias pré-compiladas?
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Nós só distribuímos binários pré-compilados para sistemas Windows,
+      como não somos capazes de compilar o PHP para cada uma das
+      plataformas Linux/Unix com cada combinação de extensão. Perceba também, que
+      muitas distribuições Linux vem com o PHP instalado atualmente.
+      Binários do Windows podem ser baixados da nossa página de <a href="https://www.php.net/downloads.php" class="link external">&raquo;&nbsp;Downloads</a>, para binários do Linux, por favor visite o website de sua distribuição.
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.obtaining.optional">
+    <dt><strong>
+     
+      Onde posso pegar as bibliotecas necessárias para compilar
+      alguma das extensões opcionais do PHP?
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <span class="simpara">
+        Aquelas marcadas com um * são do melhor de nosso conhecimento não thread safe; elas não são recomendadas para utilização em um ambiente multi-thread.
+       </span>
+      </p></blockquote>
+     </p>
+     <p class="para">
+      <ul class="itemizedlist">
+       <li class="listitem">
+        <span class="simpara">
+         <a href="https://www.openldap.org/software/download/" class="link external">&raquo;&nbsp;LDAP (Unix)</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="https://wiki.mozilla.org/LDAP_C_SDK" class="link external">&raquo;&nbsp;LDAP (Unix/Win)</a> :
+         Diretório Mozilla (LDAP) SDK
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.bind9.net/download-openldap/" class="link external">&raquo;&nbsp;servidor LDAP livre</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.sleepycat.com/" class="link external">&raquo;&nbsp;Berkeley DB2 (Unix/Win)</a> :
+         http://www.sleepycat.com/.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.net-snmp.org/" class="link external">&raquo;&nbsp;SNMP* (Unix): </a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.libgd.org/" class="link external">&raquo;&nbsp;GD* (Unix/Win)</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="https://hughestech.com.au/products/msql/" class="link external">&raquo;&nbsp;mSQL* (Unix)</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.postgresql.org/" class="link external">&raquo;&nbsp;PostgreSQL (Unix)</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="https://github.com/uw-imap/imap" class="link external">&raquo;&nbsp;IMAP* (Win/Unix)</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.sybase.com/" class="link external">&raquo;&nbsp;Sybase-CT* (Linux, libc5)</a> :
+         Disponível localmente.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.freetype.org/" class="link external">&raquo;&nbsp;FreeType (libttf):</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.zlib.net/" class="link external">&raquo;&nbsp;ZLib (Unix/Win32)</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.jclark.com/xml/expat.html" class="link external">&raquo;&nbsp;expat XML parser (Unix/Win32)</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.pdflib.com/products/pdflib-family/" class="link external">&raquo;&nbsp;PDFLib</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://mcrypt.sourceforge.net/" class="link external">&raquo;&nbsp;mcrypt</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://mhash.sourceforge.net/" class="link external">&raquo;&nbsp;mhash</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://www.ibiblio.org/pub/Linux/libs/graphics/" class="link external">&raquo;&nbsp;t1lib</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://dmalloc.com/" class="link external">&raquo;&nbsp;dmalloc</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://aspell.net/" class="link external">&raquo;&nbsp;aspell</a>.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <a href="http://cnswww.cns.cwru.edu/~chet/readline/rltop.html" class="link external">&raquo;&nbsp;readline</a>.
+        </span>
+       </li>
+      </ul>
+     </p>
+    </dd>
+   </dl>
+
+   <dl class="qandaentry" id="faq.obtaining.how">
+    <dt><strong>
+     Como faço essas bibliotecas funcionarem?
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Você precisará seguir as instruções disponíveis com a biblioteca. Algumas dessas
+      bibliotecas são detectadas automaticamente quando você executar o
+      script &#039;configure&#039; do PHP (como a biblioteca GD), e outras você terá que
+      habilitar usando opções &#039;<code class="literal">--with-EXTENSION</code>&#039; do
+      &#039;<code class="literal">configure</code>&#039;. Execute
+      &#039;<code class="literal">configure --help</code>&#039; para listar essas opções.
+     </p>
+    </dd>
+   </dl>
+   <dl class="qandaentry" id="faq.obtaining.compilent">
+    <dt><strong>
+     
+      Eu peguei a última versão do código-fonte do PHP do repositório Git
+      na minha máquina Windows, o que eu preciso para compilá-lo?
+     
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Veja a Wiki do PHP para instruções atualizadas: <a href="https://wiki.php.net/internals/windows/stepbystepbuild" class="link external">&raquo;&nbsp;Instruções passo-a-passo</a>
+
+    </p>
+    </dd>
+   </dl>
+   <dl class="qandaentry" id="faq.obtaining.browscap">
+    <dt><strong>
+     Onde eu acho o Arquivo de Capacidades do Navegador (Browser Capabilities File)?
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Você pode achar um arquivo <var class="filename">browscap.ini</var> em
+      <a href="http://browscap.org/" class="link external">&raquo;&nbsp;http://browscap.org/</a>.
+     </p>
+    </dd>
+   </dl>
+   <dl class="qandaentry" id="faq.obtaining.threadsafety">
+    <dt><strong>
+     O que significa thread safety quando estou fazendo o download do PHP?
+    </strong></dt>
+    <dd class="answer">
+     <p class="para">
+      Thread Safety significa que o binário pode trabalhar em um contexto de servidor web multithread, como o Apache 2 no Windows.
+      Thread Safety funciona criando uma cópia local em cada thread, de modo que os dados não colidirão com outra thread.
+     </p>
+     <p class="para">
+      Então como eu escolho? Se você escolher rodar PHP como binário CGI, então
+      você não precisa do thread safe, porque o binário é chamado a cada requisição.
+      Para servidores web multithread, como o IIS5 e IIS6, você deve usar a versão thread do PHP.
+     </p>
+    </dd>
+   </dl>
+  
+ </div>
+</div></div></body></html>

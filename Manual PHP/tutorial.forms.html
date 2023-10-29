@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Tratando Formul&aacute;rios</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="tutorial.useful.html">« Algo &Uacute;til</a></li>
+      <li style="float: right;"><a href="tutorial.whatsnext.html">O que vem a seguir? »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="tutorial.html">Um simples tutorial</a></li>
+    <li>Tratando Formul&aacute;rios</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="tutorial.forms" class="section">
+   <div class="info"><h1 class="title">Tratando Formulários</h1></div>
+   <p class="para">
+    Uma das características mais fortes do PHP é o jeito como ele trata
+    formulários HTML. O conceito básico que é importante entender é que qualquer
+    elemento de formulário irá automaticamente ficar disponível para seus
+    scripts PHP. Por favor leia a seção
+    <a href="language.variables.external.html" class="link">Variáveis externas
+    do PHP</a> para mais informações e exemplos de como usar formulários
+    com PHP. Aqui vai um exemplo de formulário HTML:
+   </p>
+   <p class="para">
+    <div class="example" id="example-20">
+     <div class="info"><p><strong>Exemplo #1 Um simples formulário HTML</strong></p></div>
+     <div class="example-contents">
+<div class="htmlcode"><pre class="htmlcode">&lt;form action=&quot;action.php&quot; method=&quot;post&quot;&gt;
+    &lt;label for=&quot;name&quot;&gt;Your name:&lt;/label&gt;
+    &lt;input name=&quot;name&quot; id=&quot;name&quot; type=&quot;text&quot;&gt;
+
+    &lt;label for=&quot;age&quot;&gt;Your age:&lt;/label&gt;
+    &lt;input name=&quot;age&quot; id=&quot;age&quot; type=&quot;number&quot;&gt;
+
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+</div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    Não há nada de especial neste formulário. É um formulário HTML comum
+    sem nenhuma tag especial de qualquer tipo. Quando o usuário preencher este formulário
+    e clicar no botão enviar, a página <var class="filename">action.php</var>
+    é chamada. Neste arquivo nós teremos algo como isto:
+   </p>
+   <p class="para">
+    <div class="example" id="example-23">
+     <div class="info"><p><strong>Exemplo #2 Imprimindo dados de nosso formulário</strong></p></div>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">Hi <span style="color: #0000BB">&lt;?php </span><span style="color: #007700">echo </span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]); </span><span style="color: #0000BB">?&gt;</span>.<br />You are <span style="color: #0000BB">&lt;?php </span><span style="color: #007700">echo (int)</span><span style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span style="color: #DD0000">'age'</span><span style="color: #007700">]; </span><span style="color: #0000BB">?&gt;</span> years old.</span></code></div>
+     </div>
+
+     <div class="example-contents"><p>
+      Um exemplo de saída deste script seria:
+     </p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Hi Joe. You are 22 years old.
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <p class="para">
+    Para além de <span class="function"><a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span> e
+    <code class="literal">(int)</code>, deve ser óbvio o que o script faz.
+    <span class="function"><a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span> transforma caracteres que sejam
+    especiais no HTML na sua forma codificada, de forma que não seja possível injetar tags HTML
+    ou JavaScript em sua página. O campo age (idade), por ser um
+    número, podemos simplesmente <a href="language.types.type-juggling.html#language.types.typecasting" class="link">converter</a>
+    para um <span class="type">int</span> que automaticamente eliminará qualquer
+    caractere estranho. Você também pode fazer o PHP automaticamente fazer isso
+    utilizando a extensão <a href="ref.filter.html" class="link">filter</a>.
+    As variáveis <var class="varname"><a href="reserved.variables.post.html" class="classname">$_POST['name']</a></var> e <var class="varname"><a href="reserved.variables.post.html" class="classname">$_POST['age']</a></var>
+    são criadas automaticamente pelo PHP. Anteriormente
+    utilizamos a superglobal <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var>; acima
+    mostramos que a superglobal <var class="varname"><a href="reserved.variables.post.html" class="classname">$_POST</a></var>
+    contém todos os dados POST. Perceba como o
+    <em>method</em> (método) do formulário é POST. Se fosse utilizado
+    o método <em>GET</em> então os dados do formulário acabariam
+    na superglobal <var class="varname"><a href="reserved.variables.get.html" class="classname">$_GET</a></var>.
+    Você também pode utilizar a superglobal <var class="varname"><a href="reserved.variables.request.html" class="classname">$_REQUEST</a></var>,
+    se não se importar qual a origem do dado enviado. Ela
+    conterá os dados mesclados de origens GET, POST e COOKIE.
+   </p>
+   <p class="para">
+    Você também pode utilizar XForms no PHP, embora se sinta confortável
+    com os formulários HTML clássicos por um bom tempo.
+    Embora trabalhar com XForms não seja para iniciantes, você pode se interessar
+    por eles. Há uma seção com uma <a href="features.xforms.html" class="link">rápida introdução sobre
+    manipular dados recebidos de XForms</a> no manual.
+   </p>
+  </div></div></div></body></html>

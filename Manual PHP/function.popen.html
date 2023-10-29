@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Abre um processo como ponteiro de arquivo</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.pclose.html">« pclose</a></li>
+      <li style="float: right;"><a href="function.readfile.html">readfile »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.filesystem.html">Fun&ccedil;&otilde;es da Filesystem</a></li>
+    <li>Abre um processo como ponteiro de arquivo</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.popen" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">popen</h1>
+  <p class="refpurpose"><span class="refname">popen</span> &mdash; <span class="dc-title">Abre um processo como ponteiro de arquivo</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.popen-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>popen</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$command</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$mode</code></span>): <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   Abre uma pipe para um processo executado ao se dar um fork para o comando dado
+   por <code class="parameter">command</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.popen-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">command</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O comando
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O modo
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.popen-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna um ponteiro de arquivo idêntico ao retornado por
+   <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>, exceto que ele é unidirecional (pode
+   ser usado somente para leitura ou gravação) e tem que ser fechado com
+   <span class="function"><a href="function.pclose.html" class="function">pclose()</a></span>. Este ponteiro pode ser usado com
+   <span class="function"><a href="function.fgets.html" class="function">fgets()</a></span>, <span class="function"><a href="function.fgetss.html" class="function">fgetss()</a></span> e
+   <span class="function"><a href="function.fwrite.html" class="function">fwrite()</a></span>. Quando o modo é &#039;r&#039;, o ponteiro de arquivo
+   retornado é igual ao STDOUT do comando; quando o modo
+   é &#039;w&#039;, o ponteiro de arquivo é igual ao STDIN do
+   comando.
+  </p>
+   <p class="para">
+   Se um erro ocorrer, retorna <strong><code>false</code></strong>.
+  </p>
+</div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.popen-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo da <span class="function"><strong>popen()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$handle </span><span style="color: #007700">= </span><span style="color: #0000BB">popen</span><span style="color: #007700">(</span><span style="color: #DD0000">"/bin/ls"</span><span style="color: #007700">, </span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Se o comando a ser executado não for encontrado, um resource
+   válido é retornado. Isso pode parecer estranho, mas tem sentido:
+   permite que você acesse qualquer mensagem de erro retornado pelo sistema operacional.
+   <div class="example" id="">
+    <p><strong>Exemplo #2 Exemplo da <span class="function"><strong>popen()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />error_reporting</span><span style="color: #007700">(</span><span style="color: #0000BB">E_ALL</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* Add redirection so we can get stderr. */<br /></span><span style="color: #0000BB">$handle </span><span style="color: #007700">= </span><span style="color: #0000BB">popen</span><span style="color: #007700">(</span><span style="color: #DD0000">'/path/to/executable 2&gt;&amp;1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'r'</span><span style="color: #007700">);<br />echo </span><span style="color: #DD0000">"'</span><span style="color: #0000BB">$handle</span><span style="color: #DD0000">'; " </span><span style="color: #007700">. </span><span style="color: #0000BB">gettype</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$read </span><span style="color: #007700">= </span><span style="color: #0000BB">fread</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">, </span><span style="color: #0000BB">2096</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">$read</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">pclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 notes" id="refsect1-function.popen-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Se você precisa de suporte bidirecional (dois caminhos), use
+    <span class="function"><a href="function.proc-open.html" class="function">proc_open()</a></span>.
+    </p>
+  </p></blockquote>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.popen-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.pclose.html" class="function" rel="rdfs-seeAlso">pclose()</a> - Closes process file pointer</span></li>
+    <li class="member"><span class="function"><a href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a> - Opens file or URL</span></li>
+    <li class="member"><span class="function"><a href="function.proc-open.html" class="function" rel="rdfs-seeAlso">proc_open()</a> - Execute a command and open file pointers for input/output</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

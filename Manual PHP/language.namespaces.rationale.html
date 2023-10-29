@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Vis&atilde;o geral de Namespaces</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.namespaces.html">« Namespaces</a></li>
+      <li style="float: right;"><a href="language.namespaces.definition.html">Definindo namespaces »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.namespaces.html">Namespaces</a></li>
+    <li>Vis&atilde;o geral de Namespaces</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.namespaces.rationale" class="sect1">
+  <h2 class="title">Visão geral de Namespaces</h2>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PHP 8)</p>
+  <p class="simpara">
+   O que são namespaces? Na definição mais ampla, os namespaces (na tradução literal, &quot;espaços de nomes&quot;) são uma forma de encapsular
+   itens. Isso é visto como um conceito abstrato em muitos lugares. Por exemplo, em qualquer
+   sistema operacional, os diretórios servem para agrupar arquivos relacionados, e agem como um namespace para
+   os arquivos dentro deles. Como um exemplo concreto, o arquivo <code class="literal">foo.txt</code> pode
+   existir em ambos os diretórios <code class="literal">/home/greg</code> e <code class="literal">/home/other</code>,
+   mas duas cópias de <code class="literal">foo.txt</code> não podem coexistir em um mesmo diretório. Além
+   disso, para acessar o arquivo <code class="literal">foo.txt</code> fora do
+   diretório <code class="literal">/home/greg</code>, o nome do diretório deve ser prefixado ao nome
+   do arquivo usando o separador de diretórios para obter <code class="literal">/home/greg/foo.txt</code>. Esse
+   mesmo princípio se estende a namespaces no mundo da programação.
+  </p>
+
+  <p class="simpara">
+   No mundo PHP, os namespaces são projetados para resolver dois problemas que os autores
+   de bibliotecas e aplicações encontram ao criar elementos de código reutilizáveis,
+   como classes ou funções:
+  </p>
+  <p class="para">
+   <ol type="1">
+    <li class="listitem">
+     <span class="simpara">
+      Colisões de nomes entre o código criado e
+      classes/funções/constantes internas do PHP ou classes/funções/constantes de terceiros.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Capacidade de criar apelidos (ou encurtar) Nomes_Extralongos projetados para aliviar o primeiro problema,
+      melhorando a legibilidade do código-fonte.
+     </span>
+    </li>
+   </ol>
+  </p>
+  <p class="simpara">
+   Os Namespaces do PHP fornecem uma maneira de agrupar classes, interfaces,
+   funções e constantes relacionadas. Aqui está um exemplo da sintaxe de namespace em PHP:
+  </p>
+  <div class="example" id="example-872">
+   <p><strong>Exemplo #1 Exemplo da sintaxe de namespace</strong></p>
+   <div class="example-contents">
+   <div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">meu\nome</span><span style="color: #007700">; </span><span style="color: #FF8000">// veja a seção "Definindo Namespaces"<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">MinhaClasse </span><span style="color: #007700">{}<br />function </span><span style="color: #0000BB">minhafuncao</span><span style="color: #007700">() {}<br />const </span><span style="color: #0000BB">MINHACONST </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$a </span><span style="color: #007700">= new </span><span style="color: #0000BB">MinhaClasse</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$c </span><span style="color: #007700">= new </span><span style="color: #0000BB">\meu\nome\MinhaClasse</span><span style="color: #007700">; </span><span style="color: #FF8000">// veja a seção "Espaço Global"<br /><br /></span><span style="color: #0000BB">$a </span><span style="color: #007700">= </span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #DD0000">'oi'</span><span style="color: #007700">); </span><span style="color: #FF8000">// veja a seção "Usando namespaces: recorrendo a<br />                   // funções/constantes globais"<br /><br /></span><span style="color: #0000BB">$d </span><span style="color: #007700">= </span><span style="color: #0000BB">namespace\MINHACONST</span><span style="color: #007700">; </span><span style="color: #FF8000">// veja a seção "operador de namespace<br />                           // e constante __NAMESPACE__"<br /></span><span style="color: #0000BB">$d </span><span style="color: #007700">= </span><span style="color: #0000BB">__NAMESPACE__ </span><span style="color: #007700">. </span><span style="color: #DD0000">'\MINHACONST'</span><span style="color: #007700">;<br />echo </span><span style="color: #0000BB">constant</span><span style="color: #007700">(</span><span style="color: #0000BB">$d</span><span style="color: #007700">); </span><span style="color: #FF8000">// veja a seção "Namespaces e recursos de linguagem dinâmica"<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <span class="simpara">
+     Nomes de namespace não diferenciam maiúsculas de minúsculas.
+    </span>
+   </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    O nome do namespace <code class="literal">PHP</code> e os nomes compostos que começam
+    com esse nome (como <code class="literal">PHP\Classes</code>) são reservados para uso interno da linguagem
+    e não devem ser usados no código criado pelo usuário.
+   </p>
+  </p></blockquote>
+ </div></div></div></body></html>

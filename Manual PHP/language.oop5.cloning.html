@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Clonando objetos</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.oop5.final.html">« final</a></li>
+      <li style="float: right;"><a href="language.oop5.object-comparison.html">Comparando objetos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.oop5.html">Classes e Objetos</a></li>
+    <li>Clonando objetos</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.oop5.cloning" class="sect1">
+  <h2 class="title">Clonando objetos</h2>
+
+  <p class="para">
+   Criar uma cópia de um objeto com propriedades totalmente replicadas nem sempre
+   é o comportamento desejado. Um bom exemplo da necessidade para cópia de construtores,
+   e quando possuir um objeto que representa uma janela do GTK e o
+   objeto guarda o recurso dessa janela GTK. ao criar uma duplicata,
+   pode-se desejar a criação de uma nova janela com as mesmas propriedades e fazer o
+   novo objeto guardar o recurso da nova janela. Outro exemplo é se seu
+   objeto guarda uma referência a outro objeto que usa e ao
+   replicar o objeto pai, deseja-se que seja criada uma nova instância desse outro
+   objeto para que a réplica tenha sua própria cópia separada.
+  </p>
+
+  <p class="para">
+   Uma cópia de objeto é criada usando a palavra-chave <code class="literal">clone</code>
+   (que chama o método <a href="language.oop5.cloning.html#object.clone" class="link">__clone()</a> do objeto,
+   se possível).
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>
+$copia_do_objeto = clone $objeto;
+</pre></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Ao se clonar um objeto, o PHP fará uma cópia superficial de todas as
+   propriedades do objeto. Qualquer propriedade que seja referência a outra variável,
+   permanecerá como referência.
+  </p>
+
+  <div class="methodsynopsis dc-description" id="object.clone">
+   <span class="methodname"><strong>__clone</strong></span>(): <span class="type"><span class="type void">void</span></span></div>
+
+
+  <p class="para">
+   Depois que a clonagem se completa, se um método <a href="language.oop5.cloning.html#object.clone" class="link">__clone()</a> estiver definido,
+   o objeto recém criado terá seu método <a href="language.oop5.cloning.html#object.clone" class="link">__clone()</a> chamado, permitindo que
+   qualquer propriedade seja alterada.
+  </p>
+
+  <div class="example" id="example-848">
+   <p><strong>Exemplo #1 Clonando um objeto</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">SubObject<br /></span><span style="color: #007700">{<br />    static </span><span style="color: #0000BB">$instances </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />    public </span><span style="color: #0000BB">$instance</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">__construct</span><span style="color: #007700">() {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">instance </span><span style="color: #007700">= ++</span><span style="color: #0000BB">self</span><span style="color: #007700">::</span><span style="color: #0000BB">$instances</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">__clone</span><span style="color: #007700">() {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">instance </span><span style="color: #007700">= ++</span><span style="color: #0000BB">self</span><span style="color: #007700">::</span><span style="color: #0000BB">$instances</span><span style="color: #007700">;<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">MyCloneable<br /></span><span style="color: #007700">{<br />    public </span><span style="color: #0000BB">$object1</span><span style="color: #007700">;<br />    public </span><span style="color: #0000BB">$object2</span><span style="color: #007700">;<br /><br />    function </span><span style="color: #0000BB">__clone</span><span style="color: #007700">()<br />    {<br />        </span><span style="color: #FF8000">// Force a copy of this-&gt;object, otherwise<br />        // it will point to same object.<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">object1 </span><span style="color: #007700">= clone </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">object1</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$obj </span><span style="color: #007700">= new </span><span style="color: #0000BB">MyCloneable</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">object1 </span><span style="color: #007700">= new </span><span style="color: #0000BB">SubObject</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">object2 </span><span style="color: #007700">= new </span><span style="color: #0000BB">SubObject</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$obj2 </span><span style="color: #007700">= clone </span><span style="color: #0000BB">$obj</span><span style="color: #007700">;<br /><br /><br />print(</span><span style="color: #DD0000">"Original Object:\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">);<br /><br />print(</span><span style="color: #DD0000">"Cloned Object:\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj2</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Original Object:
+MyCloneable Object
+(
+    [object1] =&gt; SubObject Object
+        (
+            [instance] =&gt; 1
+        )
+
+    [object2] =&gt; SubObject Object
+        (
+            [instance] =&gt; 2
+        )
+
+)
+Cloned Object:
+MyCloneable Object
+(
+    [object1] =&gt; SubObject Object
+        (
+            [instance] =&gt; 3
+        )
+
+    [object2] =&gt; SubObject Object
+        (
+            [instance] =&gt; 2
+        )
+
+)
+</pre></div>
+
+   </div>
+
+  </div>
+
+  <p class="para">
+   É possível acessar um membro de um objeto recém clonado
+   em uma expressão única:
+  </p>
+  <div class="example" id="example-851">
+   <p><strong>Exemplo #2 Acessar um membro de um objeto recém clonado</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$dateTime </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">();<br />echo (clone </span><span style="color: #0000BB">$dateTime</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+2016
+</pre></div>
+   </div>
+  </div>
+
+ </div></div></div></body></html>

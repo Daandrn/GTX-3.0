@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Configura&ccedil;&otilde;es em Execu&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="filesystem.installation.html">« Instala&ccedil;&atilde;o</a></li>
+      <li style="float: right;"><a href="filesystem.resources.html">Tipos de Recurso »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="filesystem.setup.html">Instala&ccedil;&atilde;o/Configura&ccedil;&atilde;o</a></li>
+    <li>Configura&ccedil;&otilde;es em Execu&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="filesystem.configuration" class="section">
+ <h2 class="title">Configurações em Execução</h2>
+ <p class="simpara">
+O comportamento dessas funções é afetado pelas configurações do <var class="filename">php.ini</var>.
+</p>
+ <p class="para">
+  <table class="doctable table">
+   <caption><strong>Opções de configuração da Filesystem e da Streams</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Nome</th>
+      <th>Padrão</th>
+      <th>Modificável</th>
+      <th>Changelog</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">allow_url_fopen</a></td>
+      <td>&quot;1&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td><a href="filesystem.configuration.html#ini.allow-url-include" class="link">allow_url_include</a></td>
+      <td>&quot;0&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Obsoleta a partir do PHP 7.4.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="filesystem.configuration.html#ini.user-agent" class="link">user_agent</a></td>
+      <td>NULL</td>
+      <td>PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td><a href="filesystem.configuration.html#ini.default-socket-timeout" class="link">default_socket_timeout</a></td>
+      <td>&quot;60&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+    </tr>
+
+     <tr>
+      <td><a href="filesystem.configuration.html#ini.from" class="link">from</a></td>
+      <td>&quot;&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td><a href="filesystem.configuration.html#ini.auto-detect-line-endings" class="link">auto_detect_line_endings</a></td>
+      <td>&quot;0&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td>Obsoleta a partir do PHP 8.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="filesystem.configuration.html#ini.sys-temp-dir" class="link">sys_temp_dir</a></td>
+      <td>&quot;&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </p>
+
+ <p class="para">Aqui está uma breve explicação das
+diretivas de configuração.</p>
+
+ <p class="para">
+  <dl>
+   
+    <dt id="ini.allow-url-fopen">
+     <code class="parameter">allow_url_fopen</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Esta opção habilita os wrappers fopen sensíveis a URL que permitem o
+      acesso a objetos URL como arquivos.
+      Wrappers padrão são fornecidos para o acesso a
+      <a href="features.remote-files.html" class="link">arquivos remotos</a>
+      usando os protocolos <abbr title="File Transfer Protocol">FTP</abbr> ou <abbr title="Hypertext Transfer Protocol">HTTP</abbr>,
+      e algumas extensões como a
+      <a href="ref.zlib.html" class="link">zlib</a> podem registar wrappers
+      adicionais.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="ini.allow-url-include">
+     <code class="parameter">allow_url_include</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Esta opção permite o uso de wrappers fopen sensíveis a URL com as
+      seguintes funções: <span class="function"><a href="function.include.html" class="function">include</a></span>,
+      <span class="function"><a href="function.include-once.html" class="function">include_once</a></span>, <span class="function"><a href="function.require.html" class="function">require</a></span>
+      e <span class="function"><a href="function.require-once.html" class="function">require_once</a></span>.
+     </p>
+     <blockquote class="note"><p><strong class="note">Nota</strong>: 
+      <p class="para">
+       Esta configuração requer que a opção <strong class="option unknown">allow_url_fopen</strong>
+       esteja habilitada.
+      </p>
+     </p></blockquote>
+    </dd>
+
+   
+
+   
+    <dt id="ini.user-agent">
+     <code class="parameter">user_agent</code>
+     <span class="type">string</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Defina o agente do usuário que o PHP irá enviar.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="ini.default-socket-timeout">
+     <code class="parameter">default_socket_timeout</code>
+     <span class="type">int</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Tempo limite padrão (em segundos) para streams baseados em soquete.
+      Especificar um valor negativo significa um tempo limite infinito.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="ini.from">
+     <code class="parameter">from</code>
+     <span class="type">string</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      O endereço de e-mail que será usado em conexões <abbr title="File Transfer Protocol">FTP</abbr>
+      não autenticadas e como o valor do cabeçalho <code class="literal">From:</code>
+      em conexões <abbr title="Hypertext Transfer Protocol">HTTP</abbr>, ao usar os wrappers
+      <abbr title="File Transfer Protocol">FTP</abbr> e <abbr title="Hypertext Transfer Protocol">HTTP</abbr>, respectivamente.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="ini.auto-detect-line-endings">
+     <code class="parameter">auto_detect_line_endings</code>
+     <span class="type">bool</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Quando habilitada, o PHP examinará os dados lidos por
+      <span class="function"><a href="function.fgets.html" class="function">fgets()</a></span> e <span class="function"><a href="function.file.html" class="function">file()</a></span> para verificar se
+      está usando a convenção de fim de linha do Unix, <abbr>MS-DOS</abbr>
+      ou Macintosh.
+     </p>
+     <p class="para">
+      Isso permite que o PHP interopere com sistemas Macintosh, mas o padrão é
+      <code class="literal">Off</code>, pois há uma penalidade de desempenho muito pequena
+      ao detectar as convenções de <code class="literal">EOL</code> para a primeira linha
+      e também porque as pessoas que usam retornos de carro como separadores de
+      itens nos sistemas Unix podem experimentar problemas de incompatibilidade
+      com versões anteriores.
+     </p>
+    </dd>
+
+   
+
+   
+    <dt id="ini.sys-temp-dir">
+     <code class="parameter">sys_temp_dir</code>
+     <span class="type">string</span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+     </p>
+    </dd>
+
+   
+
+  </dl>
+
+ </p>
+</div></div></div></body></html>

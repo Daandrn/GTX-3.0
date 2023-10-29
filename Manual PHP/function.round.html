@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Arredonda um float</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.rad2deg.html">« rad2deg</a></li>
+      <li style="float: right;"><a href="function.sin.html">sin »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.math.html">Fun&ccedil;&otilde;es Matem&aacute;ticas</a></li>
+    <li>Arredonda um float</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.round" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">round</h1>
+  <p class="refpurpose"><span class="refname">round</span> &mdash; <span class="dc-title">Arredonda um float</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.round-description">
+  <h3 class="title">Descrição</h3>
+   <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>round</strong></span>(<span class="methodparam"><span class="type"><span class="type">int</span>|<span class="type">float</span></span> <code class="parameter">$num</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$precision</code><span class="initializer"> = 0</span></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code><span class="initializer"> = <strong><code>PHP_ROUND_HALF_UP</code></strong></span></span>): <span class="type">float</span></div>
+
+  <p class="para rdfs-comment">
+   Retorna um valor arredondado de <code class="parameter">num</code> para
+   <code class="parameter">precision</code> especificado
+   (número de dígitos depois do ponto decimal).
+   <code class="parameter">precision</code> pode ser negativo ou zero (padrão).
+  </p>
+  
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.round-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">num</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Valor para arredondar.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">precision</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O número opcional de dígitos decimais para arredondar.
+      </p>
+      <p class="para">
+       Se o <code class="parameter">precision</code> for positivo, <code class="parameter">num</code> será
+       arredondado para <code class="parameter">precision</code> de dígitos significativos depois do ponto decimal.
+      </p>
+      <p class="para">
+       Se o <code class="parameter">precision</code> for negativo, <code class="parameter">num</code> será
+       arredondado para <code class="parameter">precision</code> de dígitos significativos depois do ponto decimal,
+       isto é: o múltiplo mais próximo de <code class="code">pow(10, -$precision)</code>, por exemplo: para um
+       <code class="parameter">precision</code> de -1 <code class="parameter">num</code> é arredondado para dezenas,
+       para um <code class="parameter">precision</code> de -2 para centenas, etc.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Use uma das seguintes constantes para especificar o modo ao qual o arredondamento ocorre.
+       <table class="doctable informaltable">
+        
+         <thead>
+          <tr>
+           <th>Constantes</th>
+           <th>Descrição</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td><strong><code>PHP_ROUND_HALF_UP</code></strong></td>
+           <td>
+            Arredonda <code class="parameter">num</code> para longe de zero quando ele está na metade do caminho,
+            tornando 1.5 em 2 e -1.5 em -2.
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>PHP_ROUND_HALF_DOWN</code></strong></td>
+           <td>
+            Arredonda <code class="parameter">num</code> na direção de zero quando ele está na metade do caminho,
+            tornando 1.5 em 1 e -1.5 em -1.
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>PHP_ROUND_HALF_EVEN</code></strong></td>
+           <td>
+            Arredonda <code class="parameter">num</code> em direção ao valor par mais próximo quando ele está na metade do
+            caminho, tornando ambos 1.5 e 2.5 em 2.
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>PHP_ROUND_HALF_ODD</code></strong></td>
+           <td>
+            Arredonda <code class="parameter">num</code> em direção ao valor ímpar mais próximo quando ele está na metade do
+            caminho, tornando 1.5 em 1 e 2.5 em 3.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.round-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   O valor arredondado para <code class="parameter">precision</code> fornecido como um <span class="type">float</span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.round-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>8.0.0</td>
+      <td>
+       <code class="parameter">num</code> não aceita mais objetos internos que suportam
+       conversões numéricas.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.round-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplos de <span class="function"><strong>round()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">3.4</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">3.5</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">3.6</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">3.6</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">5.045</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">5.055</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">345</span><span style="color: #007700">, -</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">345</span><span style="color: #007700">, -</span><span style="color: #0000BB">3</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">678</span><span style="color: #007700">, -</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">678</span><span style="color: #007700">, -</span><span style="color: #0000BB">3</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+float(3)
+float(4)
+float(4)
+float(4)
+float(5.05)
+float(5.06)
+float(300)
+float(0)
+float(700)
+float(1000)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #2 Como <code class="parameter">precision</code> afeta um float</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$numero </span><span style="color: #007700">= </span><span style="color: #0000BB">135.79</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$numero</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$numero</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$numero</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$numero</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$numero</span><span style="color: #007700">, -</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$numero</span><span style="color: #007700">, -</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$numero</span><span style="color: #007700">, -</span><span style="color: #0000BB">3</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+float(135.79)
+float(135.79)
+float(135.8)
+float(136)
+float(140)
+float(100)
+float(0)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #3 Exemplos de <code class="parameter">mode</code></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">'Modos de arredondamento com 9.5' </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">9.5</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">9.5</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">9.5</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">9.5</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">));<br /><br />echo </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">'Modos de arredondamento com 8.5' </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">8.5</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">8.5</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">8.5</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">8.5</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Modos de arredondamento com 9.5
+float(10)
+float(9)
+float(10)
+float(9)
+
+Modos de arredondamento com 8.5
+float(9)
+float(8)
+float(8)
+float(9)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #4 Exemplos de <code class="parameter">mode</code> com <code class="parameter">precision</code></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">'Usando PHP_ROUND_HALF_UP com precisão decimal de 1 dígito' </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">( </span><span style="color: #0000BB">1.55</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.55</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_UP</span><span style="color: #007700">));<br /><br />echo </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">'Usando PHP_ROUND_HALF_DOWN com precisão decimal de 1 dígito' </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">( </span><span style="color: #0000BB">1.55</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.55</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_DOWN</span><span style="color: #007700">));<br /><br />echo </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">'Usando PHP_ROUND_HALF_EVEN com precisão decimal de 1 dígito' </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">( </span><span style="color: #0000BB">1.55</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.55</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_EVEN</span><span style="color: #007700">));<br /><br />echo </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">'Usando PHP_ROUND_HALF_ODD com precisão decimal de 1 dígito' </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">( </span><span style="color: #0000BB">1.55</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(-</span><span style="color: #0000BB">1.55</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_ROUND_HALF_ODD</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Usando PHP_ROUND_HALF_UP with 1 com precisão decimal de 1 digito
+float(1.6)
+float(-1.6)
+
+Usando PHP_ROUND_HALF_DOWN with 1 com precisão decimal de 1 digito
+float(1.5)
+float(-1.5)
+
+Usando PHP_ROUND_HALF_EVEN with 1 com precisão decimal de 1 digito
+float(1.6)
+float(-1.6)
+
+Usando PHP_ROUND_HALF_ODD with 1 com precisão decimal de 1 digito
+float(1.5)
+float(-1.5)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.round-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ceil.html" class="function" rel="rdfs-seeAlso">ceil()</a> - Arredonda fra&ccedil;&otilde;es para cima</span></li>
+    <li class="member"><span class="function"><a href="function.floor.html" class="function" rel="rdfs-seeAlso">floor()</a> - Arredonda fra&ccedil;&otilde;es para baixo</span></li>
+    <li class="member"><span class="function"><a href="function.number-format.html" class="function" rel="rdfs-seeAlso">number_format()</a> - Format a number with grouped thousands</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

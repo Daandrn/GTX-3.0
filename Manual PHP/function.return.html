@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>return</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="control-structures.declare.html">« declare</a></li>
+      <li style="float: right;"><a href="function.require.html">require »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.control-structures.html">Estruturas de Controle</a></li>
+    <li>return</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.return" class="sect1">
+ <h2 class="title">return</h2>
+ <p class="verinfo">(PHP 4, PHP 5, PHP 7, PHP 8)</p>
+ <p class="simpara">
+  A declaração <code class="literal">return</code> retorna o controle do programa para o módulo que o chamou.
+  A execução continuará na expressão seguinte à invocação do módulo.
+ </p>
+ <p class="simpara">
+  Se chamada dentro de uma função, a declaração <code class="literal">return</code>
+  terminará imediatamente sua execução, e
+  retornará seus argumentos como valor à chamada da função.
+  A declaração <code class="literal">return</code> também terminar a execução de
+  uma declaração <span class="function"><a href="function.eval.html" class="function">eval()</a></span> ou um arquivo de script.
+ </p>
+ <p class="simpara">
+  Se chamada no escopo global, a execução do script corrente
+  é finalizada. Se o arquivo de script corrente for incluído
+  ou requerido com as funções <span class="function"><a href="function.include.html" class="function">include</a></span> ou  or <span class="function"><a href="function.require.html" class="function">require</a></span>,
+  o controle é passado de volta ao script que está chamando. Além disso, se
+  o script corrente foi incluído com a função <span class="function"><a href="function.include.html" class="function">include</a></span>, o
+  valor informado ao <code class="literal">return</code> será retornado como
+  o valor da chamada de <span class="function"><a href="function.include.html" class="function">include</a></span>. Se um
+  <code class="literal">return</code> for chamado de dentro do script principal,
+  sua execução será finalizada. Se o script corrente for
+  mencionado nas opções de configuração <a href="ini.core.html#ini.auto-prepend-file" class="link">auto_prepend_file</a> ou <a href="ini.core.html#ini.auto-append-file" class="link">auto_append_file</a>
+  <var class="filename">php.ini</var>,
+  a execução do script será finalizada.
+ </p>
+ <p class="simpara">For more information, see <a href="functions.returning-values.html" class="link">Returning values</a>.
+ </p>
+ <p class="para">
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Note que, como <code class="literal">return</code> é um construtor
+    de linguagem e não uma função, os parênteses que envolvem seus
+    argumentos não são exigidos e seu uso é desencorajado.
+   </span>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Se nenhum parâmetro for informado, e os parênteses omitidos,
+    <strong><code>null</code></strong> será
+    retornado. Chamar um <code class="literal">return</code> com parênteses, mas
+    sem argumentos resultará em um erro de interpretação.
+   </span>
+  </p></blockquote>
+ </p>
+
+ <p class="para">
+  A partir do PHP 7.1.0, declarações return sem um argumento em funções que declaram um tipo de returno acionam <strong><code>E_COMPILE_ERROR</code></strong>,
+  a não ser que o tipo de retorno seja <span class="type"><span class="type void">void</span></span>, nesse caso declarações return
+  com um argumento acionam esse erro.
+ </p>
+</div></div></div></body></html>

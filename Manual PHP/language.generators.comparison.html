@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Comparando generators com objetos Iterator</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.generators.syntax.html">« Sintaxe do Generator</a></li>
+      <li style="float: right;"><a href="language.attributes.html">Atributos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.generators.html">Generators</a></li>
+    <li>Comparando generators com objetos Iterator</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.generators.comparison" class="sect1">
+  <h2 class="title">Comparando generators com objetos <span class="classname"><a href="class.iterator.html" class="classname">Iterator</a></span></h2>
+
+  <p class="para">
+   A principal vantagem dos generators é a sua simplicidade. Muito menos código
+   clichê tem de ser reescrito em comparação com a implementação de uma classe
+   <span class="classname"><a href="class.iterator.html" class="classname">Iterator</a></span>, e o código geralmente é muito mais legível.
+   Por exemplo, a seguinte função e classe são equivalentes:
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">getLinesFromFile</span><span style="color: #007700">(</span><span style="color: #0000BB">$fileName</span><span style="color: #007700">) {<br />    if (!</span><span style="color: #0000BB">$fileHandle </span><span style="color: #007700">= </span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #0000BB">$fileName</span><span style="color: #007700">, </span><span style="color: #DD0000">'r'</span><span style="color: #007700">)) {<br />        return;<br />    }<br /><br />    while (</span><span style="color: #0000BB">false </span><span style="color: #007700">!== </span><span style="color: #0000BB">$line </span><span style="color: #007700">= </span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$fileHandle</span><span style="color: #007700">)) {<br />        yield </span><span style="color: #0000BB">$line</span><span style="color: #007700">;<br />    }<br /><br />    </span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fileHandle</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">// ao invéz de:<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">LineIterator </span><span style="color: #007700">implements </span><span style="color: #0000BB">Iterator </span><span style="color: #007700">{<br />    protected </span><span style="color: #0000BB">$fileHandle</span><span style="color: #007700">;<br /><br />    protected </span><span style="color: #0000BB">$line</span><span style="color: #007700">;<br />    protected </span><span style="color: #0000BB">$i</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$fileName</span><span style="color: #007700">) {<br />        if (!</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fileHandle </span><span style="color: #007700">= </span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #0000BB">$fileName</span><span style="color: #007700">, </span><span style="color: #DD0000">'r'</span><span style="color: #007700">)) {<br />            throw new </span><span style="color: #0000BB">RuntimeException</span><span style="color: #007700">(</span><span style="color: #DD0000">'Couldn\'t open file "' </span><span style="color: #007700">. </span><span style="color: #0000BB">$fileName </span><span style="color: #007700">. </span><span style="color: #DD0000">'"'</span><span style="color: #007700">);<br />        }<br />    }<br /><br />    public function </span><span style="color: #0000BB">rewind</span><span style="color: #007700">() {<br />        </span><span style="color: #0000BB">fseek</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fileHandle</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line </span><span style="color: #007700">= </span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fileHandle</span><span style="color: #007700">);<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">valid</span><span style="color: #007700">() {<br />        return </span><span style="color: #0000BB">false </span><span style="color: #007700">!== </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">current</span><span style="color: #007700">() {<br />        return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">key</span><span style="color: #007700">() {<br />        return </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">i</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">next</span><span style="color: #007700">() {<br />        if (</span><span style="color: #0000BB">false </span><span style="color: #007700">!== </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line</span><span style="color: #007700">) {<br />            </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">line </span><span style="color: #007700">= </span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fileHandle</span><span style="color: #007700">);<br />            </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">i</span><span style="color: #007700">++;<br />        }<br />    }<br /><br />    public function </span><span style="color: #0000BB">__destruct</span><span style="color: #007700">() {<br />        </span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fileHandle</span><span style="color: #007700">);<br />    }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   No entanto essa flexibilidade tem um custo: os generators somente movem-se
+   para frente e não podem ser rebobinados após a iteração ter sido iniciada.
+   Isso também significa que o generator não pode ser iterado múltiplas vezes:
+   o gerador precisará ser reconstruído chamando a função geradora novamente.
+  </p>
+
+  <div class="simplesect">
+   <h3 class="title">Veja Também</h3>
+   <p class="para">
+    <ul class="simplelist">
+     <li class="member"><a href="language.oop5.iterations.html" class="link">Iteração de Objetos</a></li>
+    </ul>
+   </p>
+  </div>
+
+ </div></div></div></body></html>

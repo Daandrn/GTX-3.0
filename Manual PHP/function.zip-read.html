@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>L&ecirc; o pr&oacute;ximo item em um arquivo ZIP</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.zip-open.html">« zip_open</a></li>
+      <li style="float: right;"><a href="book.zlib.html">Zlib »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.zip.html">Fun&ccedil;&otilde;es Zip</a></li>
+    <li>L&ecirc; o pr&oacute;ximo item em um arquivo ZIP</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.zip-read" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">zip_read</h1>
+  <p class="refpurpose"><span class="refname">zip_read</span> &mdash; <span class="dc-title">Lê o próximo item em um arquivo ZIP</span></p>
+
+ </div>
+
+ <div id="function.zip-read-refsynopsisdiv">
+   <div class="warning"><strong class="warning">Aviso</strong><p class="simpara">Esta função tornou-se
+<em>OBSOLETA</em> a partir do PHP 8.0.0. O uso desta função
+é fortemente desencorajado.</p></div>
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.zip-read-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>zip_read</strong></span>(<span class="methodparam"><span class="type">resource</span> <code class="parameter">$zip</code></span>): <span class="type"><span class="type">resource</span>|<span class="type"><span class="type false">false</span></span></span></div>
+
+  <p class="para rdfs-comment">
+   Lê o próximo item dentro de uma arquivo ZIP.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.zip-read-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">zip</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Um arquivo ZIP anteriormente aberto com <span class="function"><a href="function.zip-open.html" class="function">zip_open()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.zip-read-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna uma conexao com o arquivo ZIP para ser usado com as funções
+   <code class="literal">zip_entry_...</code>, ou <strong><code>false</code></strong> se não houver
+   arquivos para serem lidos, ou um código de erro caso ocorra
+   algum.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.zip-read-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>8.0.0</td>
+       <td>
+        Essa função está desencorajada em relação à API orientada a objetos,
+        veja <span class="methodname"><a href="ziparchive.statindex.html" class="methodname">ZipArchive::statIndex()</a></span>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.zip-read-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.zip-open.html" class="function" rel="rdfs-seeAlso">zip_open()</a> - Abre um arquivo ZIP</span></li>
+    <li class="member"><span class="function"><a href="function.zip-close.html" class="function" rel="rdfs-seeAlso">zip_close()</a> - Fecha um arquivo ZIP</span></li>
+    <li class="member"><span class="function"><a href="function.zip-entry-open.html" class="function" rel="rdfs-seeAlso">zip_entry_open()</a> - Abre um arquivo para leitura</span></li>
+    <li class="member"><span class="function"><a href="function.zip-entry-read.html" class="function" rel="rdfs-seeAlso">zip_entry_read()</a> - Obt&eacute;m dados de um arquivo</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

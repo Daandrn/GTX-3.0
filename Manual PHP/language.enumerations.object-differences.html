@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Diferen&ccedil;as de objetos</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.enumerations.expressions.html">« Valores enum em express&otilde;es constantes</a></li>
+      <li style="float: right;"><a href="language.enumerations.listing.html">Listagem de valores »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.enumerations.html">Enumera&ccedil;&otilde;es</a></li>
+    <li>Diferen&ccedil;as de objetos</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.enumerations.object-differences" class="sect1">
+  <h2 class="title">Diferenças de objetos</h2>
+
+  <p class="para">
+   Apesar de Enums serem construídas sobre classes e objetos, elas não suportam todas as funcionalidades relacionadas a objetos.
+   Em particular, casos Enum são proibidos de ter estado.
+  </p>
+
+  <ul class="simplelist">
+   <li class="member">Construtores e Destrutores são proibidos.</li>
+   <li class="member">Herança não é suportada. Enums não podem estender ou ser estendidos.</li>
+   <li class="member">Propriedades estáticas ou de objeto não são permitidas.</li>
+   <li class="member">Clonar um caso Enum não é suportado, pois os casos devem ser instâncias singleton.</li>
+   <li class="member"><a href="language.oop5.magic.html" class="link">Métodos mágicos</a>, exceto para aqueles listados abaixo, não são permitidos.</li>
+   <li class="member">Enums sempre precisam ser declarados antes de serem utilizados.</li>
+  </ul>
+
+  <p class="para">As seguintes funcionalidades de objeto estão disponíveis, e se comportam exatamente como em qualquer outro objeto:</p>
+
+  <ul class="simplelist">
+   <li class="member">Métodos públicos, privados e protegidos.</li>
+   <li class="member">Métodos estáticos públicos, privados e protegidos.</li>
+   <li class="member">Constantes públicas, privadas e protegidas.</li>
+   <li class="member">Enums podem implementar qualquer número de interfaces.</li>
+   <li class="member">
+    Enums e casos podem ter <a href="language.attributes.html" class="link">atributos</a> anexados
+    a eles. O filtro de alvo <strong><code>TARGET_CLASS</code></strong>
+    inclui as próprias Enums. O filtro de alvo <strong><code>TARGET_CLASS_CONST</code></strong>
+    inclui Casos Enum.
+   </li>
+   <li class="member">
+    Os métodos mágicos <a href="language.oop5.overloading.html#object.call" class="link">__call</a>, <a href="language.oop5.overloading.html#object.callstatic" class="link">__callStatic</a>,
+    e <a href="language.oop5.magic.html#object.invoke" class="link">__invoke</a>
+   </li>
+   <li class="member">Constantes <strong><code>__CLASS__</code></strong> e <strong><code>__FUNCTION__</code></strong> se comportam normalmente</li>
+  </ul>
+
+  <p class="para">
+   A constante mágica <code class="literal">::class</code> em um tipo Enum avalia ao nome
+   do tipo incluindo qualquer namespace, exatamente o mesmo que um objeto. A constante mágica <code class="literal">::class</code>
+   em uma instância de Caso também avalia para o tipo Enum, pois ele é uma
+   instância daquele tipo.
+  </p>
+
+  <p class="para">
+   Adicionalmente, casos não podem ser instanciados diretamente com <code class="literal">new</code>, nem com
+   <span class="methodname"><a href="reflectionclass.newinstancewithoutconstructor.html" class="methodname">ReflectionClass::newInstanceWithoutConstructor()</a></span> em reflexão. Ambos resultarão em um erro.
+  </p>
+
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$trevos </span><span style="color: #007700">= new </span><span style="color: #0000BB">Naipe</span><span style="color: #007700">();<br /></span><span style="color: #FF8000">// Error: Cannot instantiate enum Naipe<br /></span><span style="color: #0000BB">$ferraduras </span><span style="color: #007700">= (new </span><span style="color: #0000BB">ReflectionClass</span><span style="color: #007700">(</span><span style="color: #0000BB">Naipe</span><span style="color: #007700">::class))-&gt;</span><span style="color: #0000BB">newInstanceWithoutConstructor</span><span style="color: #007700">()<br /></span><span style="color: #FF8000">// Error: Cannot instantiate enum Naipe<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+ </div></div></div></body></html>

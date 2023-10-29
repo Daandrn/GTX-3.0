@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Valores enum em express&otilde;es constantes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.enumerations.traits.html">« Traits</a></li>
+      <li style="float: right;"><a href="language.enumerations.object-differences.html">Diferen&ccedil;as de objetos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.enumerations.html">Enumera&ccedil;&otilde;es</a></li>
+    <li>Valores enum em express&otilde;es constantes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.enumerations.expressions" class="sect1">
+  <h2 class="title">Valores enum em expressões constantes</h2>
+
+  <p class="para">
+   Como os casos são representados como constantes no próprio enum, eles podem ser usados como valores
+   estáticos na maioria das expressões constantes: padrões de propriedades, padrões de variáveis estáticas, padrões
+   de parâmetros, valores constantes globais e de classes. Eles não podem ser usados em outros valores de caso enum, mas
+   constantes normais podem se referir a um caso enum.
+  </p>
+
+  <p class="para">
+   No entanto, chamadas implícitas de métodos mágicos como <span class="classname"><a href="class.arrayaccess.html" class="classname">ArrayAccess</a></span> em enums não são permitidas em definições estáticas
+   ou de constantes já que não podemos garantir absolutamente que o valor resultante é determinístico
+   ou que a invocação do método é livre de efeitos colaterais. Chamadas de funções, chamadas de métodos e
+   acesso às propriedades continuam a ser operações inválidas em expressões constantes.
+  </p>
+
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Esta é uma definição de Enum perfeitamente legal.<br /></span><span style="color: #007700">enum </span><span style="color: #0000BB">Direcao </span><span style="color: #007700">implements </span><span style="color: #0000BB">ArrayAccess<br /></span><span style="color: #007700">{<br />    case </span><span style="color: #0000BB">Cima</span><span style="color: #007700">;<br />    case </span><span style="color: #0000BB">Baixo</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">offsetGet</span><span style="color: #007700">(</span><span style="color: #0000BB">$val</span><span style="color: #007700">) { ... }<br />    public function </span><span style="color: #0000BB">offsetExists</span><span style="color: #007700">(</span><span style="color: #0000BB">$val</span><span style="color: #007700">) { ... }<br />    public function </span><span style="color: #0000BB">offsetSet</span><span style="color: #007700">(</span><span style="color: #0000BB">$val</span><span style="color: #007700">) { throw new </span><span style="color: #0000BB">Exception</span><span style="color: #007700">(); }<br />    public function </span><span style="color: #0000BB">offsetUnset</span><span style="color: #007700">(</span><span style="color: #0000BB">$val</span><span style="color: #007700">) { throw new </span><span style="color: #0000BB">Exception</span><span style="color: #007700">(); }<br />}<br /><br />class </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">// Isto é permitido.<br />    </span><span style="color: #007700">const </span><span style="color: #0000BB">Bar </span><span style="color: #007700">= </span><span style="color: #0000BB">Direcao</span><span style="color: #007700">::</span><span style="color: #0000BB">Baixo</span><span style="color: #007700">;<br /><br />    </span><span style="color: #FF8000">// Isto não é permitido, pois pode não ser determinístico.<br />    </span><span style="color: #007700">const </span><span style="color: #0000BB">Bar </span><span style="color: #007700">= </span><span style="color: #0000BB">Direcao</span><span style="color: #007700">::</span><span style="color: #0000BB">Cima</span><span style="color: #007700">[</span><span style="color: #DD0000">'curta'</span><span style="color: #007700">];<br />    </span><span style="color: #FF8000">// Fatal error: Cannot use [] on enums in constant expression<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #FF8000">// Isto é perfeitamente legal, porque não é uma expressão constante.<br /></span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #0000BB">Direcao</span><span style="color: #007700">::</span><span style="color: #0000BB">Cima</span><span style="color: #007700">[</span><span style="color: #DD0000">'curta'</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+ </div></div></div></body></html>

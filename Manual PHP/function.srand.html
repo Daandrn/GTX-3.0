@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Seed the random number generator</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.random-int.html">« random_int</a></li>
+      <li style="float: right;"><a href="class.random-randomizer.html">Random\Randomizer »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.random.html">Random Fun&ccedil;&otilde;es</a></li>
+    <li>Seed the random number generator</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.srand" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">srand</h1>
+  <p class="refpurpose"><span class="refname">srand</span> &mdash; <span class="dc-title">Seed the random number generator</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.srand-description">
+  <h3 class="title">Descrição</h3>
+   <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>srand</strong></span>(<span class="methodparam"><span class="type">int</span> <code class="parameter">$seed</code><span class="initializer"> = 0</span></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code><span class="initializer"> = <strong><code>MT_RAND_MT19937</code></strong></span></span>): <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Seeds the random number generator with <code class="parameter">seed</code>
+   or with a random value if <code class="parameter">seed</code> is <code class="literal">0</code>.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">Não é necessário
+inicializar o gerador de números aleatórios com <span class="function"><strong>srand()</strong></span> ou
+<span class="function"><a href="function.mt-srand.html" class="function">mt_srand()</a></span>, pois isso é feito automaticamente.
+</span></p></blockquote>
+  <div class="caution"><strong class="caution">Cuidado</strong>
+ <p class="para">
+  Como o mecanismo Mt19937 (“Mersenne Twister”) aceita apenas um único inteiro de 32 bits como
+  semente, o número de sequências aleatórias possíveis é limitado a apenas 2<sup class="superscript">32</sup>
+  (ou seja, 4.294.967.296), embora o Mt19937 possua um gigantesco período de 2<sup class="superscript">19937</sup>-1.
+ </p>
+ <p class="para">
+  Ao depender da geração aleatória implícita ou explícita de sementes, as duplicações aparecerão
+  muito mais cedo. Sementes duplicadas são esperadas com probabilidade de 50% depois de menos de
+  80.000 sementes geradas aleatoriamente de acordo com o problema do aniversário. Uma probabilidade de 10%
+  de uma semente duplicada acontece depois de gerar aleatoriamente cerca de 30.000 sementes.
+ </p>
+ <p class="para">
+  Isso torna o Mt19937 inadequado para aplicações em que sequências duplicadas não devem ocorrer com
+  mais do que uma probabilidade desprezível. Se a geração reproduzível de sementes for necessária, ambos os mecanismos
+  <span class="classname"><a href="class.random-engine-xoshiro256starstar.html" class="classname">Random\Engine\Xoshiro256StarStar</a></span> e <span class="classname"><a href="class.random-engine-pcgoneseq128xslrr64.html" class="classname">Random\Engine\PcgOneseq128XslRr64</a></span>
+  suportam sementes muito maiores que são improváveis de colidir aleatoriamente. Se a reprodutibilidade
+  não for necessária, o mecanismo <span class="classname"><a href="class.random-engine-secure.html" class="classname">Random\Engine\Secure</a></span> fornece aleatoriedade
+  criptograficamente segura.
+ </p>
+</div>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">As of PHP 7.1.0, <span class="function"><strong>srand()</strong></span> has been made
+   an alias of <span class="function"><a href="function.mt-srand.html" class="function">mt_srand()</a></span>.</span>
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.srand-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">seed</code></dt>
+
+     <dd>
+
+      <p class="para">
+       An arbitrary <span class="type">int</span> seed value.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.srand-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Nenhum valor é retornado.
+  </p>
+ </div>
+
+ <div class="refsect1 changelog" id="refsect1-function.srand-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.1.0</td>
+       <td>
+        <span class="function"><strong>srand()</strong></span> <a href="migration71.incompatible.html#migration71.incompatible.rand-srand-aliases" class="link">has been made</a> an alias of <span class="function"><a href="function.mt-srand.html" class="function">mt_srand()</a></span>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.srand-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.rand.html" class="function" rel="rdfs-seeAlso">rand()</a> - Generate a random integer</span></li>
+    <li class="member"><span class="function"><a href="function.getrandmax.html" class="function" rel="rdfs-seeAlso">getrandmax()</a> - Show largest possible random value</span></li>
+    <li class="member"><span class="function"><a href="function.mt-srand.html" class="function" rel="rdfs-seeAlso">mt_srand()</a> - Seeds the Mersenne Twister Random Number Generator</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

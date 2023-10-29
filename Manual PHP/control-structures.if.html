@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>if</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="control-structures.intro.html">« Introdu&ccedil;&atilde;o</a></li>
+      <li style="float: right;"><a href="control-structures.else.html">else »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.control-structures.html">Estruturas de Controle</a></li>
+    <li>if</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="control-structures.if" class="sect1">
+ <h2 class="title">if</h2>
+ <p class="verinfo">(PHP 4, PHP 5, PHP 7, PHP 8)</p>
+ <p class="para">
+  O construtor <code class="literal">if</code> é um dos recursos mais importantes
+  em muitas linguagens, inclusive no PHP. Permite a
+  execução condicional de fragmentos de código. O PHP apresenta uma estrutura
+  <code class="literal">if</code> semelhante a do C:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>
+if (expr)
+  statement
+</pre></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="simpara">
+  Como descrito na <a href="language.expressions.html" class="link">seção sobre
+  expressões</a>, <span class="replaceable">expressões</span> são avaliadas por seus
+  valores Booleanos. Se uma <span class="replaceable">expressão</span> for avaliada como <strong><code>true</code></strong>,
+  o PHP executará a <span class="replaceable">declaração</span>, e se avaliá-la
+  como <strong><code>false</code></strong> - ignorá-la. Mais informações sobre quais valores são avaliados
+  como <strong><code>false</code></strong> pode ser encontrada na seção <a href="language.types.boolean.html#language.types.boolean.casting" class="link">&#039;Conversão para booleano&#039;
+  </a>.
+ </p>
+ <p class="para">
+  O exemplo a seguir exibirá <span class="computeroutput">a is bigger
+  than b</span> se <var class="varname">$a</var> for maior
+  que <var class="varname">$b</var>:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$b</span><span style="color: #007700">)<br />  echo </span><span style="color: #DD0000">"a is bigger than b"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  Muitas vezes deseja-se que mais de uma declaração seja condicionalmente
+  executada. É claro que não é necessário envolver cada declaração
+  em uma cláusula <code class="literal">if</code>. Em vez disso, pode-se agrupar
+  várias declarações em grupos. Por exemplo, este código
+  exibirá <span class="computeroutput">a is bigger than b</span>
+  se <var class="varname">$a</var> for maior que
+  <var class="varname">$b</var>, e atribuirá o valor de
+  <var class="varname">$a</var> em <var class="varname">$b</var>:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br />  echo </span><span style="color: #DD0000">"a is bigger than b"</span><span style="color: #007700">;<br />  </span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #0000BB">$a</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="simpara">
+  A declaração <code class="literal">If</code> pode ser aninhada indefinidamente dentro de outras
+  declarações <code class="literal">if</code>, fornecendo completa flexibilidade
+  para execução condicional de várias partes do
+  programa.
+ </p>
+</div></div></div></body></html>

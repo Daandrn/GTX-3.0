@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cria vari&aacute;veis como se fossem arrays</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ksort.html">« ksort</a></li>
+      <li style="float: right;"><a href="function.natcasesort.html">natcasesort »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Cria vari&aacute;veis como se fossem arrays</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.list" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">list</h1>
+  <p class="refpurpose"><span class="refname">list</span> &mdash; <span class="dc-title">Cria variáveis como se fossem arrays</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.list-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>list</strong></span>(<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$var</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">...$vars</code><span class="initializer"> = ?</span></span>): <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Assim como <span class="function"><a href="function.array.html" class="function">array()</a></span>, não é exatamente uma função,
+   e sim uma construção da própria linguagem. <span class="function"><strong>list()</strong></span> é usada
+   para criar uma lista de variáveis em apenas uma operação.
+   String não pode ser desempacotada e expressões como <span class="function"><strong>list()</strong></span>
+   não pode ser completamente vazia.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Antes, PHP 7.1.0, <span class="function"><strong>list()</strong></span> apenas funcionava em arrays numéricos e assume
+    o índice numérico começando em 0.
+   </p>
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.list-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">var</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A variável.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+   <dl>
+    
+     <dt>
+<code class="parameter">vars</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Outras variaveis.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.list-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna o array atribuído.
+  </p>
+ </div>
+
+ <div class="refsect1 changelog" id="refsect1-function.list-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.3.0</td>
+       <td>
+        Foi adicionado suporte para atribuições de referência na desestruturação de array.
+       </td>
+      </tr>
+
+      <tr>
+       <td>7.1.0</td>
+       <td>
+        Agora é possível especificar chaves em <span class="function"><strong>list()</strong></span>. Isso
+        habilita desestruturar os arrays com chaves não-integer e não-sequencial.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.list-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo da <span class="function"><strong>list()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$info </span><span style="color: #007700">= array(</span><span style="color: #DD0000">'Café'</span><span style="color: #007700">, </span><span style="color: #DD0000">'marrom'</span><span style="color: #007700">, </span><span style="color: #DD0000">'cafeína'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Listando todas as variáveis<br /></span><span style="color: #007700">list(</span><span style="color: #0000BB">$bebida</span><span style="color: #007700">, </span><span style="color: #0000BB">$cor</span><span style="color: #007700">, </span><span style="color: #0000BB">$substancia</span><span style="color: #007700">) = </span><span style="color: #0000BB">$info</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$bebida</span><span style="color: #DD0000"> é </span><span style="color: #0000BB">$cor</span><span style="color: #DD0000"> e </span><span style="color: #0000BB">$substancia</span><span style="color: #DD0000"> o faz especial.\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Listando apenas alguns deles<br /></span><span style="color: #007700">list(</span><span style="color: #0000BB">$bebida</span><span style="color: #007700">, , </span><span style="color: #0000BB">$substancia</span><span style="color: #007700">) = </span><span style="color: #0000BB">$info</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$bebida</span><span style="color: #DD0000"> tem </span><span style="color: #0000BB">$substancia</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Ou ignoramos os primeiros valores para conseguir apenas o último<br /></span><span style="color: #007700">list( , , </span><span style="color: #0000BB">$substancia</span><span style="color: #007700">) = </span><span style="color: #0000BB">$info</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">"I need </span><span style="color: #0000BB">$substancia</span><span style="color: #DD0000">!\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// list() não funciona com strings<br /></span><span style="color: #007700">list(</span><span style="color: #0000BB">$bar</span><span style="color: #007700">) = </span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span style="color: #007700">); </span><span style="color: #FF8000">// NULL<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #2 Exemplo da <span class="function"><strong>list()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$resultado </span><span style="color: #007700">= </span><span style="color: #0000BB">$pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT id, nome FROM empregados"</span><span style="color: #007700">);<br />while (list(</span><span style="color: #0000BB">$id</span><span style="color: #007700">, </span><span style="color: #0000BB">$nome</span><span style="color: #007700">) = </span><span style="color: #0000BB">$resultado</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_NUM</span><span style="color: #007700">)) {<br />    echo </span><span style="color: #DD0000">"id: </span><span style="color: #0000BB">$id</span><span style="color: #DD0000">, nome: </span><span style="color: #0000BB">$nome</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #3 <span class="function"><strong>list()</strong></span> e ordem das definições de índice </strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">list(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, list(</span><span style="color: #0000BB">$b</span><span style="color: #007700">, </span><span style="color: #0000BB">$c</span><span style="color: #007700">)) = array(</span><span style="color: #0000BB">1</span><span style="color: #007700">, array(</span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">, </span><span style="color: #0000BB">$c</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+int(1)
+int(2)
+int(3)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #4 Usando <span class="function"><strong>list()</strong></span> com índices de array</strong></p>
+    <div class="example-contents"><p>
+     A ordem em que são definidos os índices do array para
+     ser consumido pela <span class="function"><strong>list()</strong></span> é irrelevante.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$foo </span><span style="color: #007700">= array(</span><span style="color: #0000BB">2 </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'foo' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'c'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$foo</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #DD0000">'d'</span><span style="color: #007700">;<br />list(</span><span style="color: #0000BB">$x</span><span style="color: #007700">, </span><span style="color: #0000BB">$y</span><span style="color: #007700">, </span><span style="color: #0000BB">$z</span><span style="color: #007700">) = </span><span style="color: #0000BB">$foo</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">, </span><span style="color: #0000BB">$x</span><span style="color: #007700">, </span><span style="color: #0000BB">$y</span><span style="color: #007700">, </span><span style="color: #0000BB">$z</span><span style="color: #007700">);</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     O retorno desse script é o seguinte (note a ordem dos elementos em
+     comparação com a ordem que foram escritos com a sintaxe <span class="function"><strong>list()</strong></span>):
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(4) {
+  [2]=&gt;
+  string(1) &quot;a&quot;
+  [&quot;foo&quot;]=&gt;
+  string(1) &quot;b&quot;
+  [0]=&gt;
+  string(1) &quot;c&quot;
+  [1]=&gt;
+  string(1) &quot;d&quot;
+}
+string(1) &quot;c&quot;
+string(1) &quot;d&quot;
+string(1) &quot;a&quot;
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #5 <span class="function"><strong>list()</strong></span> com chaves</strong></p>
+    <div class="example-contents"><p>
+     A partir do PHP 7.1.0 <span class="function"><strong>list()</strong></span> também pode agora conter
+     chaves explícitas, na qual pode ser dada expressões arbitrárias.
+     A mistura chaves de integer e string é permitida; no entanto, elementos
+     com e sem chaves não podem ser misturados.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$dados </span><span style="color: #007700">= [<br />    [</span><span style="color: #DD0000">"id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">"nome" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mario'</span><span style="color: #007700">],<br />    [</span><span style="color: #DD0000">"id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">"nome" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Frederico'</span><span style="color: #007700">],<br />];<br />foreach (</span><span style="color: #0000BB">$dados </span><span style="color: #007700">as [</span><span style="color: #DD0000">"id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$id</span><span style="color: #007700">, </span><span style="color: #DD0000">"nome" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$nome</span><span style="color: #007700">]) {<br />    echo </span><span style="color: #DD0000">"id: </span><span style="color: #0000BB">$id</span><span style="color: #DD0000">, nome: </span><span style="color: #0000BB">$nome</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br />echo </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />list(</span><span style="color: #0000BB">1 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$segundo</span><span style="color: #007700">, </span><span style="color: #0000BB">3 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$quarto</span><span style="color: #007700">) = [</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">4</span><span style="color: #007700">];<br />echo </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$segundo</span><span style="color: #DD0000">, </span><span style="color: #0000BB">$quarto</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+id: 1, name: Mario
+id: 2, name: Frederico
+
+2, 4
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.list-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.each.html" class="function" rel="rdfs-seeAlso">each()</a> - Return the current key and value pair from an array and advance the array cursor</span></li>
+    <li class="member"><span class="function"><a href="function.array.html" class="function" rel="rdfs-seeAlso">array()</a> - Create an array</span></li>
+    <li class="member"><span class="function"><a href="function.extract.html" class="function" rel="rdfs-seeAlso">extract()</a> - Importa vari&aacute;veis para a tabela de s&iacute;mbolos a partir de um array</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

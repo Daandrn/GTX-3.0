@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Obt&eacute;m o tamanho comprimido do item</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.zip-entry-close.html">« zip_entry_close</a></li>
+      <li style="float: right;"><a href="function.zip-entry-compressionmethod.html">zip_entry_compressionmethod »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.zip.html">Fun&ccedil;&otilde;es Zip</a></li>
+    <li>Obt&eacute;m o tamanho comprimido do item</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.zip-entry-compressedsize" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">zip_entry_compressedsize</h1>
+  <p class="refpurpose"><span class="refname">zip_entry_compressedsize</span> &mdash; <span class="dc-title">Obtém o tamanho comprimido do item</span></p>
+
+ </div>
+
+ <div id="function.zip-entry-compressedsize-refsynopsisdiv">
+   <div class="warning"><strong class="warning">Aviso</strong><p class="simpara">Esta função tornou-se
+<em>OBSOLETA</em> a partir do PHP 8.0.0. O uso desta função
+é fortemente desencorajado.</p></div>
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.zip-entry-compressedsize-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>zip_entry_compressedsize</strong></span>(<span class="methodparam"><span class="type">resource</span> <code class="parameter">$zip_entry</code></span>): <span class="type"><span class="type">int</span>|<span class="type"><span class="type false">false</span></span></span></div>
+
+  <p class="para rdfs-comment">
+   Retorna o tamanho do arquivo compactado dentro do arquivo ZIP especificado.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.zip-entry-compressedsize-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">zip_entry</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Uma lista de entrada retornada pela <span class="function"><a href="function.zip-read.html" class="function">zip_read()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.zip-entry-compressedsize-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   O tamanho comprimido,  ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.zip-entry-compressedsize-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>8.0.0</td>
+       <td>
+        Esta função está obsoleta, em relação a API orientada a objetos,
+        veja <span class="methodname"><a href="ziparchive.statindex.html" class="methodname">ZipArchive::statIndex()</a></span>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.zip-entry-compressedsize-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.zip-open.html" class="function" rel="rdfs-seeAlso">zip_open()</a> - Abre um arquivo ZIP</span></li>
+    <li class="member"><span class="function"><a href="function.zip-read.html" class="function" rel="rdfs-seeAlso">zip_read()</a> - L&ecirc; o pr&oacute;ximo item em um arquivo ZIP</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

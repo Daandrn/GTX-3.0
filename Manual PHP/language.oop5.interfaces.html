@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Interfaces de Objetos</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.oop5.abstract.html">« Abstra&ccedil;&atilde;o de Classes</a></li>
+      <li style="float: right;"><a href="language.oop5.traits.html">Traits »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.oop5.html">Classes e Objetos</a></li>
+    <li>Interfaces de Objetos</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.oop5.interfaces" class="sect1">
+  <h2 class="title">Interfaces de Objetos</h2>
+  <p class="para">
+   Interfaces de objetos permitem a criação de códigos que especificam quais métodos
+   uma classe deve implementar, sem definir como esses métodos serão
+   implementados. Interfaces compartilham o namespace com classes e traits, então eles
+   não podem usar os mesmos nomes.
+  </p>
+  <p class="para">
+   Interfaces são definidas da mesma forma que classes, mas com a palavra-chave <code class="literal">interface</code>
+   substituindo <code class="literal">class</code> e com nenhum dos métodos tendo
+   seu conteúdo definido.
+  </p>
+  <p class="para">
+   Todos os métodos declarados em uma interface devem ser públicos, essa é a natureza
+   de uma interface.
+  </p>
+  <p class="para">
+   Na prática, interfaces servem a dois propósitos distintos:
+  </p>
+  <ul class="simplelist">
+   <li class="member">
+    Elas permitem os desenvolvedores de criar objetos de classes diferentes que podem ser substituídos
+    dado que eles implementam a mesma ou as mesmas interfaces. Um exemplo seriam os serviços variados de acesso a banco de dados,
+    vários sistemas de pagamentos, ou estratégias de cache. Implementações diferentes podem
+    ser substituídas sem requerer modificações nos códigos que as usam.
+   </li>
+   <li class="member">
+    Para permitir que uma função ou método aceite e opere em um parâmetro que se molda a uma
+    interface, ao mesmo tempo que não se importa como a funcionalidade é implementada. Estas interfaces
+    são conhecidas como <code class="literal">Iterable</code>, <code class="literal">Cacheable</code>, <code class="literal">Renderable</code>,
+    e assim por diante, e descrevem o comportamento significativo.
+   </li>
+  </ul>
+  <p class="para">
+   Interfaces podem definir
+   <a href="language.oop5.magic.html" class="link">métodos mágicos</a> para exigir que as classes
+   implementantes também implementem esses métodos.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Apesar de possível, incluir <a href="language.oop5.decon.html#language.oop5.decon.constructor" class="link">construtores</a>
+    em interfaces é altamente desencorajado. Fazer isso reduz significativamente a flexibilidade do objeto implementante
+    da interface. Além disso, construtores não são verificados pelas regras de herança, o que pode causar comportamentos
+    inconsistentes ou inesperados.
+   </p>
+  </p></blockquote>
+
+  <div class="sect2" id="language.oop5.interfaces.implements">
+   <h3 class="title"><code class="literal">implements</code></h3>
+   <p class="para">
+    Para implementar uma interface, o operador <code class="literal">implements</code> é utilizado.
+    Todos os métodos na interface devem ser implementados na classe; não fazê-lo
+    resultará em um erro fatal. Classes podem implementar mais de uma interface se
+    assim for desejado, separando cada interface com uma vírgula.
+   </p>
+   <div class="warning"><strong class="warning">Aviso</strong>
+    <p class="para">
+     Uma classe que implemente uma interface pode utilizar um nome diferente para seus parâmetros,
+     em relação à interface. Entretanto, o PHP 8.0 suporta <a href="functions.arguments.html#functions.named-arguments" class="link">argumentos nomeados</a>, ou seja,
+     chamadores podem usar os nomes de parâmetros conforme definidos na interface implementada. Por essa razão, é altamente
+     recomendado que desenvolvedores utilizem os mesmos nomes de parâmetros que da interface implementada.
+    </p>
+   </div>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     Interfaces podem ser estendidas como as classes, usando o operador
+     <a href="language.oop5.inheritance.html" class="link">extends</a>.
+    </p>
+   </p></blockquote>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     A classe que implementa a interface precisa declarar todos os métodos da interface
+     com uma <a href="language.oop5.basic.html#language.oop.lsp" class="link">assinatura compatível</a>. Uma classe pode implementar várias interfaces
+     que declarem um método com o mesmo nome. Neste caso, a implementação precisa seguir as
+     <a href="language.oop5.basic.html#language.oop.lsp" class="link">regras de compatibilidade de assinaturas</a> de todas as interfaces. É possível
+     assim aplicar <a href="language.oop5.variance.html" class="link">covariância e contravariância</a>.
+    </p>
+   </p></blockquote>
+  </div>
+ 
+  <div class="sect2" id="language.oop5.interfaces.constants">
+   <h3 class="title">Constantes</h3>
+   <p class="para">
+    É possível ter constantes em interfaces. Constantes de interfaces funcionam exatamente
+    como <a href="language.oop5.constants.html" class="link">constantes de classes</a>, com exceção de
+    não podem ser sobrescritas por uma classe/interface herdeira.
+   </p>
+  </div>
+  <div class="sect2" id="language.oop5.interfaces.examples">
+   <h3 class="title">Exemplos</h3>
+   <div class="example" id="example-743">
+    <p><strong>Exemplo #1 Exemplo de Interface</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">// Declara a interface 'Template'<br /></span><span style="color: #007700">interface </span><span style="color: #0000BB">Template<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">setVariable</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">, </span><span style="color: #0000BB">$var</span><span style="color: #007700">);<br />    public function </span><span style="color: #0000BB">getHtml</span><span style="color: #007700">(</span><span style="color: #0000BB">$template</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">// Implementa a interface<br />// Exemplo correto<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">WorkingTemplate </span><span style="color: #007700">implements </span><span style="color: #0000BB">Template<br /></span><span style="color: #007700">{<br />    private </span><span style="color: #0000BB">$vars </span><span style="color: #007700">= [];<br /><br />    public function </span><span style="color: #0000BB">setVariable</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">, </span><span style="color: #0000BB">$var</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">vars</span><span style="color: #007700">[</span><span style="color: #0000BB">$name</span><span style="color: #007700">] = </span><span style="color: #0000BB">$var</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">getHtml</span><span style="color: #007700">(</span><span style="color: #0000BB">$template</span><span style="color: #007700">)<br />    {<br />        foreach(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">vars </span><span style="color: #007700">as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$value</span><span style="color: #007700">) {<br />            </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'{' </span><span style="color: #007700">. </span><span style="color: #0000BB">$name </span><span style="color: #007700">. </span><span style="color: #DD0000">'}'</span><span style="color: #007700">, </span><span style="color: #0000BB">$value</span><span style="color: #007700">, </span><span style="color: #0000BB">$template</span><span style="color: #007700">);<br />        }<br /><br />        return </span><span style="color: #0000BB">$template</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #FF8000">// Exemplo incorreto<br />// Fatal error: Class BadTemplate contains 1 abstract methods<br />// and must therefore be declared abstract (Template::getHtml)<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">BadTemplate </span><span style="color: #007700">implements </span><span style="color: #0000BB">Template<br /></span><span style="color: #007700">{<br />    private </span><span style="color: #0000BB">$vars </span><span style="color: #007700">= [];<br /><br />    public function </span><span style="color: #0000BB">setVariable</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">, </span><span style="color: #0000BB">$var</span><span style="color: #007700">)<br />    {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">vars</span><span style="color: #007700">[</span><span style="color: #0000BB">$name</span><span style="color: #007700">] = </span><span style="color: #0000BB">$var</span><span style="color: #007700">;<br />    }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-746">
+    <p><strong>Exemplo #2 Interfaces estendíveis</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">interface </span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br />}<br /><br />interface </span><span style="color: #0000BB">B </span><span style="color: #007700">extends </span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">baz</span><span style="color: #007700">(</span><span style="color: #0000BB">Baz $baz</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">// This will work<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">C </span><span style="color: #007700">implements </span><span style="color: #0000BB">B<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">()<br />    {<br />    }<br /><br />    public function </span><span style="color: #0000BB">baz</span><span style="color: #007700">(</span><span style="color: #0000BB">Baz $baz</span><span style="color: #007700">)<br />    {<br />    }<br />}<br /><br /></span><span style="color: #FF8000">// Isso não funcionará, e gerará um erro fatal<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">D </span><span style="color: #007700">implements </span><span style="color: #0000BB">B<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">()<br />    {<br />    }<br /><br />    public function </span><span style="color: #0000BB">baz</span><span style="color: #007700">(</span><span style="color: #0000BB">Foo $foo</span><span style="color: #007700">)<br />    {<br />    }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+   </div>
+   <div class="example" id="example-749">
+    <p><strong>Exemplo #3 Compatibilidade de variância com interfaces múltiplas</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo </span><span style="color: #007700">{}<br />class </span><span style="color: #0000BB">Bar </span><span style="color: #007700">extends </span><span style="color: #0000BB">Foo </span><span style="color: #007700">{}<br /><br />interface </span><span style="color: #0000BB">A </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">myfunc</span><span style="color: #007700">(</span><span style="color: #0000BB">Foo $arg</span><span style="color: #007700">): </span><span style="color: #0000BB">Foo</span><span style="color: #007700">;<br />}<br /><br />interface </span><span style="color: #0000BB">B </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">myfunc</span><span style="color: #007700">(</span><span style="color: #0000BB">Bar $arg</span><span style="color: #007700">): </span><span style="color: #0000BB">Bar</span><span style="color: #007700">;<br />}<br /><br />class </span><span style="color: #0000BB">MyClass </span><span style="color: #007700">implements </span><span style="color: #0000BB">A</span><span style="color: #007700">, </span><span style="color: #0000BB">B<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">myfunc</span><span style="color: #007700">(</span><span style="color: #0000BB">Foo $arg</span><span style="color: #007700">): </span><span style="color: #0000BB">Bar<br />    </span><span style="color: #007700">{<br />        return new </span><span style="color: #0000BB">Bar</span><span style="color: #007700">();<br />    }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+   </div>
+   <div class="example" id="example-752">
+    <p><strong>Exemplo #4 Herança de várias interfaces</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">interface </span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br />}<br /><br />interface </span><span style="color: #0000BB">B<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">bar</span><span style="color: #007700">();<br />}<br /><br />interface </span><span style="color: #0000BB">C </span><span style="color: #007700">extends </span><span style="color: #0000BB">A</span><span style="color: #007700">, </span><span style="color: #0000BB">B<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">baz</span><span style="color: #007700">();<br />}<br /><br />class </span><span style="color: #0000BB">D </span><span style="color: #007700">implements </span><span style="color: #0000BB">C<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">()<br />    {<br />    }<br /><br />    public function </span><span style="color: #0000BB">bar</span><span style="color: #007700">()<br />    {<br />    }<br /><br />    public function </span><span style="color: #0000BB">baz</span><span style="color: #007700">()<br />    {<br />    }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+   </div>
+   <div class="example" id="example-755">
+    <p><strong>Exemplo #5 Interfaces com constantes</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">interface </span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />    const </span><span style="color: #0000BB">B </span><span style="color: #007700">= </span><span style="color: #DD0000">'Constante de interface'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">// Imprime: Constante de interface<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">A</span><span style="color: #007700">::</span><span style="color: #0000BB">B</span><span style="color: #007700">;<br /><br /><br />class </span><span style="color: #0000BB">B </span><span style="color: #007700">implements </span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />    const </span><span style="color: #0000BB">B </span><span style="color: #007700">= </span><span style="color: #DD0000">'Constante de classe'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">// Imprime: Constante de classe<br />// Anteriormente ao PHP 8.1.0 isto não funcionaria porque não era possível<br />// sobrescrever constantes.<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">B</span><span style="color: #007700">::</span><span style="color: #0000BB">B</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+   </div>
+   <div class="example" id="example-758">
+    <p><strong>Exemplo #6 Interfaces with abstract classes</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">interface </span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">string $s</span><span style="color: #007700">): </span><span style="color: #0000BB">string</span><span style="color: #007700">;<br /><br />    public function </span><span style="color: #0000BB">bar</span><span style="color: #007700">(</span><span style="color: #0000BB">int $i</span><span style="color: #007700">): </span><span style="color: #0000BB">int</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">// Uma classe abstrata pode implementar apenas uma parte da interface.<br />// Classes que extendam a classe abstrata precisam implementar o resto.<br /></span><span style="color: #007700">abstract class </span><span style="color: #0000BB">B </span><span style="color: #007700">implements </span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">string $s</span><span style="color: #007700">): </span><span style="color: #0000BB">string<br />    </span><span style="color: #007700">{<br />        return </span><span style="color: #0000BB">$s </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">C </span><span style="color: #007700">extends </span><span style="color: #0000BB">B<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">bar</span><span style="color: #007700">(</span><span style="color: #0000BB">int $i</span><span style="color: #007700">): </span><span style="color: #0000BB">int<br />    </span><span style="color: #007700">{<br />        return </span><span style="color: #0000BB">$i </span><span style="color: #007700">* </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br />    }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+   </div>
+   <div class="example" id="example-761">
+    <p><strong>Exemplo #7 Extendendo e implementando ao mesmo tempo</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">One<br /></span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">/* ... */<br /></span><span style="color: #007700">}<br /><br />interface </span><span style="color: #0000BB">Usable<br /></span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">/* ... */<br /></span><span style="color: #007700">}<br /><br />interface </span><span style="color: #0000BB">Updatable<br /></span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">/* ... */<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #FF8000">// A ordem de palavras chave aqui é importante. 'extends' precisa aprecer primeiro.<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Two </span><span style="color: #007700">extends </span><span style="color: #0000BB">One </span><span style="color: #007700">implements </span><span style="color: #0000BB">Usable</span><span style="color: #007700">, </span><span style="color: #0000BB">Updatable<br /></span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">/* ... */<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+   </div>
+   <p class="para">
+     Uma interface, juntamente com a declaração de tipo, fornecem uma boa maneira de garantir
+     que um objeto em particular possua determinados métodos. Veja o operador
+     <a href="language.operators.type.html" class="link">instanceof</a> e
+     <a href="language.types.declarations.html" class="link">declaração de tipo</a>.
+   </p>
+  </div>
+
+ </div></div></div></body></html>

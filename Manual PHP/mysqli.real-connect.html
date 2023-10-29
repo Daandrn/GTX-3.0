@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Abre uma conex&atilde;o com um servidor mysql</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqli.query.html">« mysqli::query</a></li>
+      <li style="float: right;"><a href="mysqli.real-escape-string.html">mysqli::real_escape_string »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mysqli.html">mysqli</a></li>
+    <li>Abre uma conex&atilde;o com um servidor mysql</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqli.real-connect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli::real_connect</h1>
+  <h1 class="refname">mysqli_real_connect</h1>
+  <p class="refpurpose"><span class="refname">mysqli::real_connect</span> -- <span class="refname">mysqli_real_connect</span> &mdash; <span class="dc-title">Abre uma conexão com um servidor mysql</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli.real-connect-description">
+  <h3 class="title">Descrição</h3>
+  <p class="para">Estilo orientado a objetos</p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>mysqli::real_connect</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$hostname</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$username</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$password</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$database</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">int</span><span class="type"></span></span> <code class="parameter">$port</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$socket</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span><br>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">Estilo procedural</p>
+  <div class="methodsynopsis dc-description"><span class="methodname"><strong>mysqli_real_connect</strong></span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <code class="parameter">$mysql</code></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$hostname</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$username</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$password</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$database</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">int</span><span class="type"></span></span> <code class="parameter">$port</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">?</span><span class="type"><span class="type">string</span><span class="type"></span></span> <code class="parameter">$socket</code><span class="initializer"> = <strong><code>null</code></strong></span></span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span><br>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Estabeleça uma conexão com um mecanismo de banco de dados MySQL.
+  </p>
+  <p class="para">
+   Esta função difere de <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span>:
+  </p>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><strong>mysqli_real_connect()</strong></span> precisa de um objeto válido que
+     deve ser criado pela função <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Com a função <span class="function"><a href="mysqli.options.html" class="function">mysqli_options()</a></span> você pode definir várias
+     opções de conexão.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Existe um parâmetro <code class="parameter">flags</code>.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli.real-connect-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    <dt>
+
+<code class="parameter">mysql</code></dt>
+<dd>
+<p class="para">Somente no estilo procedural: Um objeto <span class="classname"><a href="class.mysqli.html" class="classname">mysqli</a></span>
+retornado por <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span> ou <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span>.
+</p></dd>
+
+    
+     <dt>
+<code class="parameter">hostname</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Pode ser um nome de host ou um endereço IP. Ao passar <strong><code>null</code></strong>, o valor é recuperado de
+       <a href="mysqli.configuration.html#ini.mysqli.default-host" class="link">mysqli.default_host</a>.
+       Quando possível, serão usados pipes em vez do protocolo TCP/IP.
+       O protocolo TCP/IP é usado se um nome de host e um número de porta forem fornecidos juntos, por ex. <code class="literal">localhost:3308</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">username</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O nome de usuário do MySQL ou <strong><code>null</code></strong> para assumir o nome de usuário com base na opção ini
+       <a href="mysqli.configuration.html#ini.mysqli.default-user" class="link">mysqli.default_user</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">password</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A senha do MySQL ou <strong><code>null</code></strong> para assumir a senha com base na opção ini.
+       <a href="mysqli.configuration.html#ini.mysqli.default-pw" class="link">mysqli.default_pw</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">database</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O banco de dados padrão a ser usado ao realizar consultas ou <strong><code>null</code></strong>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">port</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O número da porta para tentar conectar ao servidor MySQL ou <strong><code>null</code></strong> para assumir a porta com base na opção
+       <a href="mysqli.configuration.html#ini.mysqli.default-port" class="link">mysqli.default_port</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">socket</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O socket ou pipe nomeado que deve ser usado ou <strong><code>null</code></strong> para assumir o socket com base na opção ini
+       <a href="mysqli.configuration.html#ini.mysqli.default-socket" class="link">mysqli.default_socket</a>.
+      </p>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <p class="para">
+        A especificação do parâmetro <code class="parameter">socket</code> não determinará
+        explicitamente o tipo de conexão a ser usada ao
+        conectar-se ao servidor MySQL. A forma como a conexão é feita com o
+        banco de dados MySQL é determinada pelo parâmetro
+        <code class="parameter">hostname</code>.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Com as <code class="parameter">flags</code> de parâmetro, você pode definir diferentes
+       opções de conexão:
+      </p>
+      <table id="mysqli.real-connect.flags" class="doctable table">
+       <caption><strong>Supported flags</strong></caption>
+       
+       <thead>
+        <tr>
+         <th>Nome</th>
+         <th>Descrição</th>
+        </tr>
+
+       </thead>
+
+       <tbody class="tbody">
+        <tr>
+         <td><strong><code>MYSQLI_CLIENT_COMPRESS</code></strong></td>
+         <td>Usar protocolo de compressão</td>
+        </tr>
+
+        <tr>
+         <td><strong><code>MYSQLI_CLIENT_FOUND_ROWS</code></strong></td>
+         <td>retorna o número de linhas correspondentes, não o número de linhas afetadas</td>
+        </tr>
+
+        <tr>
+         <td><strong><code>MYSQLI_CLIENT_IGNORE_SPACE</code></strong></td>
+         <td>Permita espaços após os nomes das funções. Torna todos os nomes de função palavras reservadas.</td>
+        </tr>
+
+        <tr>
+         <td><strong><code>MYSQLI_CLIENT_INTERACTIVE</code></strong></td>
+         <td>
+          Permita segundos de <code class="literal">interactive_timeout</code> (em vez de
+          <code class="literal">wait_timeout</code> segundos) de inatividade antes de fechar a conexão
+         </td>
+        </tr>
+
+        <tr>
+         <td><strong><code>MYSQLI_CLIENT_SSL</code></strong></td>
+         <td>Usar SSL (criptografia)</td>
+        </tr>
+
+        <tr>
+         <td><strong><code>MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT</code></strong></td>
+         <td>
+          Como <strong><code>MYSQLI_CLIENT_SSL</code></strong>, mas desabilita a validação do certificado
+          SSL fornecido. Isso é apenas para instalações usando MySQL Native Driver e MySQL 5.6 ou posterior.
+         </td>
+        </tr>
+
+        </tbody>
+       
+      </table>
+
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+       <p class="para">
+        Por motivos de segurança, o sinalizador <strong><code>MULTI_STATEMENT</code></strong>
+        não é suportado no PHP. Se você deseja executar várias consultas, use a
+        função <span class="function"><a href="mysqli.multi-query.html" class="function">mysqli_multi_query()</a></span>.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli.real-connect-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna <strong><code>true</code></strong> em caso de sucesso ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mysqli.real-connect-errors">
+  <h3 class="title">Erros</h3>
+  <p class="para">
+Se o relatório de erros da extensão mysqli estiver habilitado (<strong><code>MYSQLI_REPORT_ERROR</code></strong>) e a operação solicitada falhar,
+um aviso será gerado. Se, além disso, o modo for definido como <strong><code>MYSQLI_REPORT_STRICT</code></strong>,
+uma exceção <span class="classname"><a href="class.mysqli-sql-exception.html" class="classname">mysqli_sql_exception</a></span> será lançada em vez do aviso.</p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mysqli.real-connect-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.4.0</td>
+       <td>
+        All parameters are now nullable.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli.real-connect-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="example-4493">
+   <p><strong>Exemplo #1 <span class="methodname"><strong>mysqli::real_connect()</strong></span> exemplo</strong></p>
+   <div class="example-contents"><p>Estilo orientado a objetos</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$mysqli </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_init</span><span style="color: #007700">();<br />if (!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">) {<br />    die(</span><span style="color: #DD0000">'mysqli_init failed'</span><span style="color: #007700">);<br />}<br /><br />if (!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">options</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_INIT_COMMAND</span><span style="color: #007700">, </span><span style="color: #DD0000">'SET AUTOCOMMIT = 0'</span><span style="color: #007700">)) {<br />    die(</span><span style="color: #DD0000">'A configuração MYSQLI_INIT_COMMAND falhou'</span><span style="color: #007700">);<br />}<br /><br />if (!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">options</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_OPT_CONNECT_TIMEOUT</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">)) {<br />    die(</span><span style="color: #DD0000">'A configuração MYSQLI_OPT_CONNECT_TIMEOUT falhou'</span><span style="color: #007700">);<br />}<br /><br />if (!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">real_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_user'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_password'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_db'</span><span style="color: #007700">)) {<br />    die(</span><span style="color: #DD0000">'Erro de conexão (' </span><span style="color: #007700">. </span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">() . </span><span style="color: #DD0000">') '<br />            </span><span style="color: #007700">. </span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />}<br /><br />echo </span><span style="color: #DD0000">'Sucesso... ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">host_info </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>Estilo orientado a objetos ao estender a classe mysqli</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">foo_mysqli </span><span style="color: #007700">extends </span><span style="color: #0000BB">mysqli </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$host</span><span style="color: #007700">, </span><span style="color: #0000BB">$user</span><span style="color: #007700">, </span><span style="color: #0000BB">$pass</span><span style="color: #007700">, </span><span style="color: #0000BB">$db</span><span style="color: #007700">) {<br />        </span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">init</span><span style="color: #007700">();<br /><br />        if (!</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">options</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_INIT_COMMAND</span><span style="color: #007700">, </span><span style="color: #DD0000">'SET AUTOCOMMIT = 0'</span><span style="color: #007700">)) {<br />            die(</span><span style="color: #DD0000">'A configuração MYSQLI_INIT_COMMAND falhou'</span><span style="color: #007700">);<br />        }<br /><br />        if (!</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">options</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_OPT_CONNECT_TIMEOUT</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">)) {<br />            die(</span><span style="color: #DD0000">'A configuração MYSQLI_OPT_CONNECT_TIMEOUT falhou'</span><span style="color: #007700">);<br />        }<br /><br />        if (!</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">real_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$host</span><span style="color: #007700">, </span><span style="color: #0000BB">$user</span><span style="color: #007700">, </span><span style="color: #0000BB">$pass</span><span style="color: #007700">, </span><span style="color: #0000BB">$db</span><span style="color: #007700">)) {<br />            die(</span><span style="color: #DD0000">'Erro de conexão (' </span><span style="color: #007700">. </span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">() . </span><span style="color: #DD0000">') '<br />                    </span><span style="color: #007700">. </span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />        }<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$db </span><span style="color: #007700">= new </span><span style="color: #0000BB">foo_mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_user'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_password'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_db'</span><span style="color: #007700">);<br /><br />echo </span><span style="color: #DD0000">'Sucesso... ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">host_info </span><span style="color: #007700">. </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>Estilo procedural</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$link </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_init</span><span style="color: #007700">();<br />if (!</span><span style="color: #0000BB">$link</span><span style="color: #007700">) {<br />    die(</span><span style="color: #DD0000">'mysqli_init failed'</span><span style="color: #007700">);<br />}<br /><br />if (!</span><span style="color: #0000BB">mysqli_options</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #0000BB">MYSQLI_INIT_COMMAND</span><span style="color: #007700">, </span><span style="color: #DD0000">'SET AUTOCOMMIT = 0'</span><span style="color: #007700">)) {<br />    die(</span><span style="color: #DD0000">'A configuração MYSQLI_INIT_COMMAND falhou'</span><span style="color: #007700">);<br />}<br /><br />if (!</span><span style="color: #0000BB">mysqli_options</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #0000BB">MYSQLI_OPT_CONNECT_TIMEOUT</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">)) {<br />    die(</span><span style="color: #DD0000">'A configuração MYSQLI_OPT_CONNECT_TIMEOUT falhou'</span><span style="color: #007700">);<br />}<br /><br />if (!</span><span style="color: #0000BB">mysqli_real_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_user'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_password'</span><span style="color: #007700">, </span><span style="color: #DD0000">'my_db'</span><span style="color: #007700">)) {<br />    die(</span><span style="color: #DD0000">'Erro de conexão (' </span><span style="color: #007700">. </span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">() . </span><span style="color: #DD0000">') '<br />            </span><span style="color: #007700">. </span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />}<br /><br />echo </span><span style="color: #DD0000">'Sucesso... ' </span><span style="color: #007700">. </span><span style="color: #0000BB">mysqli_get_host_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>Os exemplos acima produzirão:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Sucesso... Informações do host MySQL: localhost via TCP/IP
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-mysqli.real-connect-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+<p class="para">O MySQLnd sempre assume o conjunto de caracteres padrão do servidor. Este conjunto de caracteres é enviado durante a
+criação/autenticação da conexão e será usado pelo mysqlnd.</p><p class="para">A libmysqlclient usa o conjunto de caracteres padrão definido no
+arquivo <var class="filename">my.cnf</var> ou definido por uma chamada explícita a <span class="function"><a href="mysqli.options.html" class="function">mysqli_options()</a></span> antes de
+chamar <span class="function"><strong>mysqli_real_connect()</strong></span>, mas depois de chamar <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span>.</p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli.real-connect-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.mysqli-connect.html" class="function" rel="rdfs-seeAlso">mysqli_connect()</a> - Sin&ocirc;nimo de mysqli::__construct</span></li>
+    <li class="member"><span class="function"><a href="mysqli.init.html" class="function" rel="rdfs-seeAlso">mysqli_init()</a> - Initializes MySQLi and returns an object for use with mysqli_real_connect()</span></li>
+    <li class="member"><span class="function"><a href="mysqli.options.html" class="function" rel="rdfs-seeAlso">mysqli_options()</a> - Define op&ccedil;&otilde;es</span></li>
+    <li class="member"><span class="function"><a href="mysqli.ssl-set.html" class="function" rel="rdfs-seeAlso">mysqli_ssl_set()</a> - Usado para estabelecer conex&otilde;es seguras usando SSL</span></li>
+    <li class="member"><span class="function"><a href="mysqli.close.html" class="function" rel="rdfs-seeAlso">mysqli_close()</a> - Closes a previously opened database connection</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

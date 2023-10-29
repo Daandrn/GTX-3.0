@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Dom&iacute;nios da Internet: TCP, UDP, SSL, e TLS</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="transports.html">« Lista de Transportes via Socket Suportados</a></li>
+      <li style="float: right;"><a href="transports.unix.html">Dom&iacute;nio Unix: Unix e UDG »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="transports.html">Lista de Transportes via Socket Suportados</a></li>
+    <li>Dom&iacute;nios da Internet: TCP, UDP, SSL, e TLS</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="transports.inet" class="section">
+  <h2 class="title">Domínios da Internet: TCP, UDP, SSL, e TLS</h2>
+  <p class="simpara">
+   <code class="literal">ssl://</code>, <code class="literal">tls://</code>,
+   <code class="literal">sslv2://</code> &amp; <code class="literal">sslv3://</code>.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Se nenhum transporte for especificado, <code class="literal">tcp://</code> será usado.
+   </span>
+  </p></blockquote>
+
+  <ul class="itemizedlist">
+   <li class="listitem"><span class="simpara"><code class="literal">127.0.0.1</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">fe80::1</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">www.example.com</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">tcp://127.0.0.1</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">tcp://fe80::1</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">tcp://www.example.com</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">udp://www.example.com</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">ssl://www.example.com</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">sslv2://www.example.com</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">sslv3://www.example.com</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">tls://www.example.com</code></span></li>
+  </ul>
+
+  <p class="simpara">
+   Sockets nos Domínios da Internet esperam um número de porta além
+   do endereço desejado. No caso de <span class="function"><a href="function.fsockopen.html" class="function">fsockopen()</a></span>,
+   esta é especificada no segundo parâmetro e, portanto, não
+   afeta a formatação da URL. Com
+   <span class="function"><a href="function.stream-socket-client.html" class="function">stream_socket_client()</a></span> e funções relacionadas
+   como com as URLs tradicionais, no entanto, o número da porta é especificado
+   como um sufixo à URL delimitada por dois pontos.
+  </p>
+
+  <ul class="itemizedlist">
+   <li class="listitem"><span class="simpara"><code class="literal">tcp://127.0.0.1:80</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">tcp://[fe80::1]:80</code></span></li>
+   <li class="listitem"><span class="simpara"><code class="literal">tcp://www.example.com:80</code></span></li>
+  </ul>
+
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <strong>Endereços numéricos com número de porta em IPv6</strong><br />
+   <span class="simpara">
+    No segundo exemplo acima, enquanto os exemplos em IPv4 e
+    nome de host permaneceram iguais, exceto pela adição do
+    dois pontos e número da porta, o endereço em IPv6 é envolto em
+    colchetes: <code class="literal">[fe80::1]</code>. Isso é para
+    distinguir entre os dois pontos de um endereço IPv6
+    e como separador de porta no IPv4.
+   </span>
+  </p></blockquote>
+
+  <p class="simpara">
+   Os transportes <code class="literal">ssl://</code> e <code class="literal">tls://</code>
+   (disponíveis apenas quando o suporte a openssl é compilado no PHP) são extensões
+   do transporte <code class="literal">tcp://</code> que incluem encriptação SSL.
+  </p>
+
+  <p class="simpara">
+   <code class="literal">ssl://</code> tentará negociar uma conexão SSL V2
+   ou SSL V3, dependendo das capacidades e preferências do
+   host remoto. <code class="literal">sslv2://</code> e
+   <code class="literal">sslv3://</code> selecionará o protocolo de maneira
+   explícita.
+  </p>
+ </div></div></div></body></html>

@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Altera&ccedil;&otilde;es incompat&iacute;veis com vers&otilde;es anteriores</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration83.constants.html">« Novas Constantes Globais</a></li>
+      <li style="float: right;"><a href="migration83.deprecated.html">Recursos Obsoletos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration83.html">Migrando do PHP 8.2.x para o PHP 8.3.x</a></li>
+    <li>Altera&ccedil;&otilde;es incompat&iacute;veis com vers&otilde;es anteriores</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration83.incompatible" class="sect1">
+ <h2 class="title">Alterações incompatíveis com versões anteriores</h2>
+
+ <div class="sect2" id="migration83.incompatible.core">
+  <h3 class="title">PHP Core</h3>
+
+  <div class="sect3" id="migration83.incompatible.core.overflowing-call-stack">
+
+   <h4 class="title">Programas que estavam muito próximos de estourar a pilha de chamadas.</h4>
+   <p class="para">
+    Programas que estavam muito próximos de esgotar a pilha de chamadas agora podem lançar um
+    <span class="classname"><a href="class.error.html" class="classname">Error</a></span> ao usar mais do que
+    !-- link linkend=&quot;zend.max_allowed_stack_size-zend.reserved_stack_size&quot; --&gt;zend.max_allowed_stack_size-zend.reserved_stack_size bytes de pilha
+    (fiber.stack_size-zend.reserved_stack_size para fibers).
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.incompatible.core.proc-get-status-multiple-times">
+   <h4 class="title">Executando proc_get_status() várias vezes</h4>
+   <p class="para">
+    Executar <span class="function"><a href="function.proc-get-status.html" class="function">proc_get_status()</a></span> várias vezes agora sempre
+    retornará o valor correto em sistemas POSIX. Anteriormente, apenas a primeira chamada
+    da função retornava o valor correto. Executar
+    <span class="function"><a href="function.proc-close.html" class="function">proc_close()</a></span> após <span class="function"><a href="function.proc-get-status.html" class="function">proc_get_status()</a></span>
+    agora também retornará o código de saída correto. Anteriormente, isso retornaria
+    <code class="literal">-1</code>.
+    Internamente, isso funciona armazenando em cache o resultado em sistemas POSIX.
+    Se for necessário o comportamento anterior, é possível verificar a chave
+    <code class="literal">&quot;cached&quot;</code> no array retornado por
+    <span class="function"><a href="function.proc-get-status.html" class="function">proc_get_status()</a></span> para verificar se o resultado foi armazenado em cache.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.incompatible.core.zend-max-execution-timers">
+   <h4 class="title">Temporizadores Máximos de Execução do Zend</h4>
+   <p class="para">
+    Os Temporizadores Máximos de Execução do Zend agora estão habilitados por padrão para compilações ZTS no
+    Linux.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.incompatible.core.traits-with-static-properties">
+   <h4 class="title">Usos de traits com propriedades estáticas</h4>
+   <p class="para">
+    O uso de traits com propriedades estáticas agora irá redeclarar as propriedades
+    estáticas herdadas da classe pai. Isso criará um armazenamento de propriedade estática
+    separado para a classe atual. Isso é análogo a adicionar a
+    propriedade estática diretamente à classe sem o uso de traits.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.incompatible.core.negative-index-to-empty-array">
+   <h4 class="title">Atribuir um índice negativo a um array vazio</h4>
+   <p class="para">
+    Atribuir um índice negativo <var class="varname">$n</var> a um array vazio agora garantirá que o
+    próximo índice seja <code class="code">$n+1</code>, em vez de <code class="literal">0</code>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.incompatible.core.class-constant-visibility-check">
+   <h4 class="title">Verificação de consistência na visibilidade de constantes de classe</h4>
+   <p class="para">
+    A variação na visibilidade de constantes de classe agora é verificada corretamente
+    quando herdada de interfaces.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration83.incompatible.core.weakmap-entries-maps-to-itself">
+   <h4 class="title">Entradas WeakMap cuja chave mapeia para si mesma</h4>
+   <p class="para">
+    As entradas <span class="classname"><a href="class.weakmap.html" class="classname">WeakMap</a></span> cuja chave mapeia para si mesma (possivelmente
+    de forma transitiva) agora podem ser removidas durante a coleta de ciclos se a chave não
+    for alcançável, exceto por meio da iteração sobre o WeakMap (a alcançabilidade por iteração é
+    considerada fraca).
+    Anteriormente, tais entradas nunca seriam removidas automaticamente.
+   </p>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration83.incompatible.date">
+  <h3 class="title">Date</h3>
+
+  <p class="para">
+   A extensão DateTime introduziu exceções e erros específicos da extensão Date sob
+   as hierarquias <span class="classname"><strong class="classname">DateError</strong></span> e
+   <span class="classname"><strong class="classname">DateException</strong></span>, em vez de avisos e
+   exceções genéricas. Isso melhora o tratamento de erros, embora exija que se
+   verifiquem erros e exceções.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.incompatible.dom">
+  <h3 class="title">DOM</h3>
+
+  <p class="para">
+   Chamar <span class="methodname"><a href="domchildnode.after.html" class="methodname">DOMChildNode::after()</a></span>,
+   <span class="methodname"><a href="domchildnode.before.html" class="methodname">DOMChildNode::before()</a></span>,
+   <span class="methodname"><a href="domchildnode.replacewith.html" class="methodname">DOMChildNode::replaceWith()</a></span>
+   em um nó que não tem pai agora não faz nada (no-op) em vez de gerar
+   uma exceção de hierarquia, conforme exigido pela especificação DOM.
+  </p>
+
+  <p class="para">
+   Usar os métodos <span class="classname"><a href="class.domparentnode.html" class="classname">DOMParentNode</a></span>
+   e <span class="classname"><a href="class.domchildnode.html" class="classname">DOMChildNode</a></span> sem um documento agora funciona
+   em vez de lançar uma exceção <strong><code>DOM_HIERARCHY_REQUEST_ERR</code></strong>
+   <span class="classname"><a href="class.domexception.html" class="classname">DOMException</a></span>.
+   Isso está de acordo com o comportamento exigido pela especificação DOM.
+  </p>
+
+  <p class="para">
+   Chamar <span class="methodname"><a href="domdocument.createattributens.html" class="methodname">DOMDocument::createAttributeNS()</a></span> sem especificar
+   um prefixo criaria incorretamente um namespace padrão, colocando o elemento
+   dentro do namespace em vez do atributo. Esse erro foi corrigido.
+  </p>
+
+  <p class="para">
+   Anteriormente, <span class="methodname"><a href="domdocument.createattributens.html" class="methodname">DOMDocument::createAttributeNS()</a></span>
+   lançaria incorretamente uma exceção <strong><code>DOM_NAMESPACE_ERRNAMESPACE_ERR</code></strong>
+   <span class="classname"><a href="class.domexception.html" class="classname">DOMException</a></span> quando o prefixo já estivesse sendo usado para
+   outro URI. Agora, ele escolhe corretamente um prefixo diferente quando há conflito
+   de nomes de prefixo.
+  </p>
+
+  <p class="para">
+   Foram adicionados novos métodos e propriedades a algumas classes DOM.
+   Se uma classe definida pelo usuário herda dessas classes e declara um método ou
+   propriedade com o mesmo nome, as declarações devem ser compatíveis. Caso contrário,
+   ocorrerá um erro de compilação típico relacionado a declarações incompatíveis.
+   Consulte a <a href="migration83.new-features.html#migration83.new-features.dom" class="link">lista de novas funcionalidades</a>
+   e <a href="migration83.new-functions.html#migration83.new-functions.dom" class="link">novas funções</a> para
+   obter uma lista dos métodos e propriedades recém-implementados.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.incompatible.ffi">
+  <h3 class="title">FFI</h3>
+
+  <p class="para">
+   As funções C que têm um tipo de retorno <span class="type"><span class="type void">void</span></span> agora retornam <strong><code>null</code></strong> em vez de
+   retornar o seguinte objeto <code class="literal">object(FFI\CData:void) { }</code>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.incompatible.opcache">
+  <h3 class="title">Opcache</h3>
+
+  <p class="para">
+   A diretiva INI <a href="opcache.configuration.html#ini.opcache.consistency-checks" class="link">opcache.consistency_checks</a>
+   foi removida. Essa funcionalidade estava quebrada com o tracing JIT,
+   bem como com o inheritance cache, e foi desativada sem a possibilidade de ser habilitada
+   desde o PHP 8.1.18 e o PHP 8.2.5.
+   Tanto o tracing JIT quanto o inheritance cache podem modificar a memória compartilhada (shm)
+   depois que o script foi persistido, invalidando seu checksum. A tentativa de correção ignorou
+   os ponteiros modificáveis, mas foi rejeitada devido à complexidade. Por esse motivo,
+   foi decidido remover a funcionalidade em vez de mantê-la.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.incompatible.phar">
+  <h3 class="title">Phar</h3>
+
+  <p class="para">
+   O tipo das constantes de classe da classe <span class="classname"><a href="class.phar.html" class="classname">Phar</a></span> agora está declarado.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.incompatible.standard">
+  <h3 class="title">Standard</h3>
+
+  <p class="para">
+   A função <span class="function"><a href="function.range.html" class="function">range()</a></span> sofreu várias mudanças:
+   <ul class="simplelist">
+    <li class="member">Agora é lançado um <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> ao passar <span class="type">object</span>s,
+     <span class="type">resource</span>s ou <span class="type">array</span>s como entradas de limite.</li>
+    <li class="member">Agora é lançado um <span class="classname"><a href="class.valueerror.html" class="classname">ValueError</a></span> mais descritivo
+     ao passar <code class="literal">0</code> para <code class="parameter">$step</code>.</li>
+    <li class="member">Agora é lançado um <span class="classname"><a href="class.valueerror.html" class="classname">ValueError</a></span> ao usar um
+     <code class="parameter">$step</code> negativo para intervalos crescentes.</li>
+    <li class="member">Se <code class="parameter">$step</code> for um número em ponto flutuante
+     que pode ser interpretado como um número inteiro, ele agora será tratado como tal.</li>
+    <li class="member">Agora, um <span class="classname"><a href="class.valueerror.html" class="classname">ValueError</a></span> é lançado se qualquer
+     argumento for infinito ou NAN.</li>
+    <li class="member">Agora, é gerado um <strong><code>E_WARNING</code></strong> se
+     <code class="parameter">$start</code> ou <code class="parameter">$end</code> for uma
+     string vazia. O valor ainda é convertido para o valor <code class="literal">0</code>.</li>
+    <li class="member">Agora, é gerado um <strong><code>E_WARNING</code></strong> se
+     <code class="parameter">$start</code> ou <code class="parameter">$end</code> tiver mais de
+     um byte, desde que seja uma string não numérica.</li>
+    <li class="member">Agora, é gerado um <strong><code>E_WARNING</code></strong> se
+     <code class="parameter">$start</code> ou <code class="parameter">$end</code> for convertido para um
+     inteiro porque a outra entrada de limite é um número
+     (por exemplo, <code class="code">range(5, &#039;z&#039;);</code>).</li>
+    <li class="member">Agora, é gerado um <strong><code>E_WARNING</code></strong> se
+     <code class="parameter">$step</code> for um número em ponto flutuante ao tentar gerar
+     um intervalo de caracteres, exceto se ambas as entradas de limite forem strings numéricas (por exemplo,
+     <code class="code">range(&#039;5&#039;, &#039;9&#039;, 0.5);</code> não gera um aviso).</li>
+    <li class="member"><span class="function"><a href="function.range.html" class="function">range()</a></span> agora gera uma lista de caracteres se uma das
+     entradas de limite for um dígito em forma de string, em vez de converter a outra entrada
+     para um número inteiro (por exemplo, <code class="code">range(&#039;9&#039;, &#039;A&#039;);</code>).</li>
+   </ul>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />range</span><span style="color: #007700">(</span><span style="color: #DD0000">'9'</span><span style="color: #007700">, </span><span style="color: #DD0000">'A'</span><span style="color: #007700">); </span><span style="color: #FF8000">// ["9", ":", ";", "&lt;", "=", "&gt;", "?", "@", "A"], a partir do PHP 8.3.0<br /></span><span style="color: #0000BB">range</span><span style="color: #007700">(</span><span style="color: #DD0000">'9'</span><span style="color: #007700">, </span><span style="color: #DD0000">'A'</span><span style="color: #007700">); </span><span style="color: #FF8000">// [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], antes do PHP 8.3.0<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+
+  <p class="para">
+   A verificação de erros das flags da função <span class="function"><a href="function.file.html" class="function">file()</a></span> agora identifica todas as flags inválidas.
+   Notavelmente, <strong><code>FILE_APPEND</code></strong> era anteriormente aceito silenciosamente.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration83.incompatible.SNMP">
+  <h3 class="title">SNMP</h3>
+
+  <p class="para">
+   O tipo das constantes de classe da classe <span class="classname"><a href="class.snmp.html" class="classname">SNMP</a></span> agora está declarado.
+  </p>
+ </div>
+
+</div></div></div></body></html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cria uma nova imagem a partir de um arquivo ou URL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.imagecreatefromwebp.html">« imagecreatefromwebp</a></li>
+      <li style="float: right;"><a href="function.imagecreatefromxpm.html">imagecreatefromxpm »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.image.html">GD and Image Fun&ccedil;&otilde;es</a></li>
+    <li>Cria uma nova imagem a partir de um arquivo ou URL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.imagecreatefromxbm" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagecreatefromxbm</h1>
+  <p class="refpurpose"><span class="refname">imagecreatefromxbm</span> &mdash; <span class="dc-title">Cria uma nova imagem a partir de um arquivo ou URL</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.imagecreatefromxbm-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>imagecreatefromxbm</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$filename</code></span>): <span class="type"><span class="type"><a href="class.gdimage.html" class="type GdImage">GdImage</a></span>|<span class="type"><span class="type false">false</span></span></span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>imagecreatefromxbm()</strong></span> returns an image identifier
+   representing the image obtained from the given filename.
+  </p>
+  <div class="tip"><strong class="tip">Dica</strong><p class="simpara">Uma URL pode ser usada como um
+nome de arquivo com esta função se os <a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">wrappers fopen</a> estiverem habilitados.
+Consulte a função <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span> para mais detalhes sobre como especificar
+o nome do arquivo. Consulte os <a href="wrappers.html" class="xref">Protocolos e Wrappers suportados</a> para obter links para informações
+sobre as capacidades de cada wrapper, notas de uso
+e informações sobre quaisquer variáveis predefinidas que eles possam
+fornecer.</p></div>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.imagecreatefromxbm-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">filename</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Path to the XBM image.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.imagecreatefromxbm-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">Retorna um objeto de imagem em caso de sucesso, <strong><code>false</code></strong> em caso de erros.</p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.imagecreatefromxbm-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>8.0.0</td>
+      <td>
+       On success, this function returns a <span class="classname"><a href="class.gdimage.html" class="classname">GDImage</a></span> instance now;
+       previously, a <span class="type">resource</span> was returned.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.imagecreatefromxbm-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Convert an XBM image to a png image using <span class="function"><strong>imagecreatefromxbm()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Load the xbm file<br /></span><span style="color: #0000BB">$xbm </span><span style="color: #007700">= </span><span style="color: #0000BB">imagecreatefromxbm</span><span style="color: #007700">(</span><span style="color: #DD0000">'./example.xbm'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Convert it to a png file<br /></span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$xbm</span><span style="color: #007700">, </span><span style="color: #DD0000">'./example.png'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$xbm</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div></div></div></body></html>

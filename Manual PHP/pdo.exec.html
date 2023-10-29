@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Executa uma instru&ccedil;&atilde;o SQL e retornar o n&uacute;mero de linhas afetadas</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="pdo.errorinfo.html">« PDO::errorInfo</a></li>
+      <li style="float: right;"><a href="pdo.getattribute.html">PDO::getAttribute »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.pdo.html">PDO</a></li>
+    <li>Executa uma instru&ccedil;&atilde;o SQL e retornar o n&uacute;mero de linhas afetadas</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="pdo.exec" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">PDO::exec</h1>
+  <p class="refpurpose"><span class="refname">PDO::exec</span> &mdash; <span class="dc-title">
+   Executa uma instrução SQL e retornar o número de linhas afetadas
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-pdo.exec-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>PDO::exec</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$statement</code></span>): <span class="type">int</span></div>
+
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>PDO::exec()</strong></span> executa uma instrução SQL em
+   uma única chamada de função, retornando o número de linhas afetadas pela
+   instrução.
+  </p>
+  <p class="para">
+   <span class="function"><strong>PDO::exec()</strong></span> não retorna resultados de uma instrução
+   SELECT. Para uma instrução SELECT que você só precisa emitir uma vez
+   durante seu programa, considere a emissão de <span class="function"><a href="pdo.query.html" class="function">PDO::query()</a></span>.
+   Para uma instrução que você precisa emitir várias vezes, prepare um objeto
+   PDOStatement com <span class="function"><a href="pdo.prepare.html" class="function">PDO::prepare()</a></span> e emita a
+   instrução com <span class="function"><a href="pdostatement.execute.html" class="function">PDOStatement::execute()</a></span>.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-pdo.exec-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">statement</code></dt>
+
+      <dd>
+
+       <p class="para">
+        A instrução SQL para preparar e executar.
+       </p>
+       <p class="para">
+        Os dados dentro da consulta devem ser <a href="pdo.quote.html" class="link">adequadamente escapados</a>.
+       </p>
+      </dd>
+
+     
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-pdo.exec-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   <span class="function"><strong>PDO::exec()</strong></span> retorna o número de linhas que foram
+   modificadas ou excluídas pela instrução SQL que você emitiu. Se nenhuma linha
+   for afetada, <span class="function"><strong>PDO::exec()</strong></span> retorna <code class="literal">0</code>.
+  </p>
+
+  <div class="warning"><strong class="warning">Aviso</strong><p class="simpara">Esta função pode
+retornar o valor booleano <strong><code>false</code></strong>, mas também pode retornar um valor não booleano que pode ser
+avaliado como <strong><code>false</code></strong>. Leia a seção sobre <a href="language.types.boolean.html" class="link">Booleanos</a> para mais
+informações. Use o <a href="language.operators.comparison.html" class="link">operador
+===</a> para testar o valor retornado por esta
+função.</p></div>
+  <p class="para">
+   O exemplo a seguir depende incorretamente do valor de retorno de
+   <span class="function"><strong>PDO::exec()</strong></span>, em que uma instrução que afetou 0 linhas
+   resulta em uma chamada para <span class="function"><a href="function.die.html" class="function">die()</a></span>:
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exec</span><span style="color: #007700">() or die(</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errorInfo</span><span style="color: #007700">(), </span><span style="color: #0000BB">true</span><span style="color: #007700">)); </span><span style="color: #FF8000">// incorrect<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-pdo.exec-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="example-3143">
+    <p><strong>Exemplo #1 Emitindo uma instrução DELETE</strong></p>
+    <div class="example-contents"><p>
+     Conte o número de linhas excluídas por uma instrução DELETE sem
+     cláusula WHERE.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$dbh </span><span style="color: #007700">= new </span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #DD0000">'odbc:sample'</span><span style="color: #007700">, </span><span style="color: #DD0000">'db2inst1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'ibmdb2'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* Delete all rows from the FRUIT table */<br /></span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exec</span><span style="color: #007700">(</span><span style="color: #DD0000">"DELETE FROM fruit"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* Return number of rows that were deleted */<br /></span><span style="color: #007700">print(</span><span style="color: #DD0000">"Deleted </span><span style="color: #0000BB">$count</span><span style="color: #DD0000"> rows.\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Deleted 1 rows.
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 seealso" id="refsect1-pdo.exec-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="pdo.prepare.html" class="function" rel="rdfs-seeAlso">PDO::prepare()</a> - Prepares a statement for execution and returns a statement object</span></li>
+    <li class="member"><span class="function"><a href="pdo.query.html" class="function" rel="rdfs-seeAlso">PDO::query()</a> - Prepares and executes an SQL statement without placeholders</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.execute.html" class="function" rel="rdfs-seeAlso">PDOStatement::execute()</a> - Executes a prepared statement</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div></div></div></body></html>

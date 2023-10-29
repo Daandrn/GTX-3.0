@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Obtem uma linha do conjunto de resultados como uma matriz associativa</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqli-result.fetch-array.html">« mysqli_result::fetch_array</a></li>
+      <li style="float: right;"><a href="mysqli-result.fetch-column.html">mysqli_result::fetch_column »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mysqli-result.html">mysqli_result</a></li>
+    <li>Obtem uma linha do conjunto de resultados como uma matriz associativa</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqli-result.fetch-assoc" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli_result::fetch_assoc</h1>
+  <h1 class="refname">mysqli_fetch_assoc</h1>
+  <p class="refpurpose"><span class="refname">mysqli_result::fetch_assoc</span> -- <span class="refname">mysqli_fetch_assoc</span> &mdash; <span class="dc-title">Obtem uma linha do conjunto de resultados como uma matriz associativa</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli-result.fetch-assoc-description">
+  <h3 class="title">Descrição</h3>
+  <p class="para">Estilo orientado a objeto (metodo):</p>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>mysqli_result::fetch_assoc</strong></span>(): <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">Estilo de procedimento:</p>
+  <div class="methodsynopsis dc-description"><span class="methodname"><strong>mysqli_fetch_assoc</strong></span>(<span class="methodparam"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span> <code class="parameter">$result</code></span>): <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Retorna uma matriz associativa que corresponde a linha obtida, ou <strong><code>null</code></strong> se não houverem
+   mais linhas.
+  </p>
+  <p class="para">
+   A função <span class="function"><strong>mysqli_fetch_assoc()</strong></span> é usada para retornar uma matriz associativa
+   representando a próxima linha no conjunto de resultados representado pelo
+   parâmetro <code class="parameter">result</code>, aonde cada chave representa o nome de
+   uma coluna do conjunto de resultados. 
+  </p>
+  <p class="para">
+   Se duas ou mais colunas do resultado tiverem o mesmo nome do campo,
+   a ultima coluna terá precedencia, Paa acessar as outra
+   coluna(s) com o mesmo nome, você pode acessar o
+   resultados com índices númericos usando a função
+   <span class="function"><a href="mysqli-result.fetch-row.html" class="function">mysqli_fetch_row()</a></span> ou adicionar apelidos.
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">Os nomes de campos retornados por esta função
+<em>diferenciam maiúsculas e minúsculas</em>.</span></p></blockquote>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">Esta função define campos NULL como o
+valor <strong><code>null</code></strong> do PHP.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli-result.fetch-assoc-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    <dt>
+
+<code class="parameter">result</code></dt>
+<dd>
+<p class="para">Somente no estilo procedural: Um objeto <span class="classname"><a href="class.mysqli-result.html" class="classname">mysqli_result</a></span>
+retornado por <span class="function"><a href="mysqli.query.html" class="function">mysqli_query()</a></span>, <span class="function"><a href="mysqli.store-result.html" class="function">mysqli_store_result()</a></span>,
+<span class="function"><a href="mysqli.use-result.html" class="function">mysqli_use_result()</a></span> ou <span class="function"><a href="mysqli-stmt.get-result.html" class="function">mysqli_stmt_get_result()</a></span>.</p></dd>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli-result.fetch-assoc-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna uma matriz que corresponde a linha obtida <strong><code>null</code></strong> se não houverem mais linhas no conjunto de resultados.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli-result.fetch-assoc-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="example-4643">
+   <p><strong>Exemplo #1 Estilo orientado a objeto</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$mysqli </span><span style="color: #007700">= new </span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">, </span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* check connection */<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">()) {<br />    </span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect failed: %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />    exit();<br />}<br /> <br /></span><span style="color: #0000BB">$query </span><span style="color: #007700">= </span><span style="color: #DD0000">"SELECT Name, CountryCode FROM City ORDER by ID DESC LIMIT 50,5"</span><span style="color: #007700">;<br /><br />if (</span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">)) {<br /><br />    </span><span style="color: #FF8000">/* fetch associative array */<br />    </span><span style="color: #007700">while (</span><span style="color: #0000BB">$row </span><span style="color: #007700">= </span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">()) {<br />        </span><span style="color: #0000BB">printf </span><span style="color: #007700">(</span><span style="color: #DD0000">"%s (%s)\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"Name"</span><span style="color: #007700">], </span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"CountryCode"</span><span style="color: #007700">]);<br />    }<br /><br />    </span><span style="color: #FF8000">/* free result set */<br />    </span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #FF8000">/* close connection */<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-4646">
+   <p><strong>Exemplo #2 Estilo de procedimento</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$link </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">, </span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* check connection */<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">()) {<br />    </span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect failed: %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />    exit();<br />}<br /><br /></span><span style="color: #0000BB">$query </span><span style="color: #007700">= </span><span style="color: #DD0000">"SELECT Name, CountryCode FROM City ORDER by ID DESC LIMIT 50,5"</span><span style="color: #007700">;<br /><br />if (</span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #0000BB">$query</span><span style="color: #007700">)) {<br /><br />    </span><span style="color: #FF8000">/* fetch associative array */<br />    </span><span style="color: #007700">while (</span><span style="color: #0000BB">$row </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">)) {<br />        </span><span style="color: #0000BB">printf </span><span style="color: #007700">(</span><span style="color: #DD0000">"%s (%s)\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"Name"</span><span style="color: #007700">], </span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"CountryCode"</span><span style="color: #007700">]);<br />    }<br /><br />    </span><span style="color: #FF8000">/* free result set */<br />    </span><span style="color: #0000BB">mysqli_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/* close connection */<br /></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+  <p class="para">O exemplo acima produzirá:</p>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+Pueblo (USA)
+Arvada (USA)
+Cape Coral (USA)
+Green Bay (USA)
+Santa Clara (USA)
+</pre></div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli-result.fetch-assoc-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli-result.fetch-array.html" class="function" rel="rdfs-seeAlso">mysqli_fetch_array()</a> - Fetch the next row of a result set as an associative, a numeric array, or both</span></li>
+    <li class="member"><span class="function"><a href="mysqli-result.fetch-row.html" class="function" rel="rdfs-seeAlso">mysqli_fetch_row()</a> - Obt&eacute;m uma linha do resultado como uma matriz numerada</span></li>
+    <li class="member"><span class="function"><a href="mysqli-result.fetch-object.html" class="function" rel="rdfs-seeAlso">mysqli_fetch_object()</a> - Fetch the next row of a result set as an object</span></li>
+    <li class="member"><span class="function"><a href="mysqli.query.html" class="function" rel="rdfs-seeAlso">mysqli_query()</a> - Executa uma consulta no banco de dados</span></li>
+    <li class="member"><span class="function"><a href="mysqli-result.data-seek.html" class="function" rel="rdfs-seeAlso">mysqli_data_seek()</a> - Ajusta o ponteiro do resultado para uma linha arbritaria no conjunto de resutados</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

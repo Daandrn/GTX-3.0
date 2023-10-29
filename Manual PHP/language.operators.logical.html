@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Operadores L&oacute;gicos</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.operators.execution.html">« Operadores de Execu&ccedil;&atilde;o</a></li>
+      <li style="float: right;"><a href="language.operators.string.html">Operadores de String »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.operators.html">Operadores</a></li>
+    <li>Operadores L&oacute;gicos</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.operators.logical" class="sect1">
+ <h2 class="title">Operadores Lógicos</h2>
+
+ <table class="doctable table">
+  <caption><strong>Operadores Lógicos</strong></caption>
+  
+   <thead>
+    <tr>
+     <th>Exemplo</th>
+     <th>Nome</th>
+     <th>Resultado</th>
+    </tr>
+
+   </thead>
+
+   <tbody class="tbody">
+    <tr>
+     <td>$a and $b</td>
+     <td>E</td>
+     <td><strong><code>true</code></strong> se ambos <var class="varname">$a</var> e <var class="varname">$b</var> é <strong><code>true</code></strong>.</td>
+    </tr>
+
+    <tr>
+     <td>$a or $b</td>
+     <td>OU</td>
+     <td><strong><code>true</code></strong> se <var class="varname">$a</var> ou <var class="varname">$b</var> é <strong><code>true</code></strong>.</td>
+    </tr>
+
+    <tr>
+     <td>$a xor $b</td>
+     <td>XOR</td>
+     <td><strong><code>true</code></strong> se <var class="varname">$a</var> ou <var class="varname">$b</var> é <strong><code>true</code></strong>, mas não ambos ao mesmo tempo.</td>
+    </tr>
+
+    <tr>
+     <td>! $a</td>
+     <td>Não</td>
+     <td><strong><code>true</code></strong> se <var class="varname">$a</var> não é <strong><code>true</code></strong>.</td>
+    </tr>
+
+    <tr>
+     <td>$a &amp;&amp; $b</td>
+     <td>E</td>
+     <td><strong><code>true</code></strong> se ambos <var class="varname">$a</var> e <var class="varname">$b</var> são <strong><code>true</code></strong>.</td>
+    </tr>
+
+    <tr>
+     <td>$a || $b</td>
+     <td>OU</td>
+     <td><strong><code>true</code></strong> se <var class="varname">$a</var> ou <var class="varname">$b</var> é <strong><code>true</code></strong>.</td>
+    </tr>
+
+   </tbody>
+  
+ </table>
+
+ <p class="simpara">
+  A razão para as duas variantes dos operandos &quot;and&quot; e &quot;or&quot;
+  é que eles operam com precedências diferentes. (Veja
+  <a href="language.operators.precedence.html" class="link">Precedência
+   de Operadores</a>.)
+ </p>
+ <div class="example" id="variable.globals.entire_write_error">
+  <p><strong>Exemplo #1 Ilustrando operadores lógicos</strong></p>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">// --------------------<br />// foo() nunca será chamada porque toda a expressão sofre curto circuito<br /><br /></span><span style="color: #0000BB">$a </span><span style="color: #007700">= (</span><span style="color: #0000BB">false </span><span style="color: #007700">&amp;&amp; </span><span style="color: #0000BB">foo</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$b </span><span style="color: #007700">= (</span><span style="color: #0000BB">true  </span><span style="color: #007700">|| </span><span style="color: #0000BB">foo</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$c </span><span style="color: #007700">= (</span><span style="color: #0000BB">false </span><span style="color: #007700">and </span><span style="color: #0000BB">foo</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$d </span><span style="color: #007700">= (</span><span style="color: #0000BB">true  </span><span style="color: #007700">or  </span><span style="color: #0000BB">foo</span><span style="color: #007700">());<br /><br /></span><span style="color: #FF8000">// --------------------<br />// "||" tem maior precedência que "or"<br /><br />// O resultado da expressão (false || true) é atribuido em $e<br />// Funciona como: ($e = (false || true))<br /></span><span style="color: #0000BB">$e </span><span style="color: #007700">= </span><span style="color: #0000BB">false </span><span style="color: #007700">|| </span><span style="color: #0000BB">true</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// A constante false é atribuída a $f antes que o "or" ocorra<br />// Funciona como: (($f = false) or true)<br /></span><span style="color: #0000BB">$f </span><span style="color: #007700">= </span><span style="color: #0000BB">false </span><span style="color: #007700">or </span><span style="color: #0000BB">true</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">, </span><span style="color: #0000BB">$f</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// --------------------<br />// "&amp;&amp;" tem maior precedência que "and"<br /><br />// O resultado da expressão (true &amp;&amp; false) é atribuído em $g<br />// Funciona como: ($g = (true &amp;&amp; false))<br /></span><span style="color: #0000BB">$g </span><span style="color: #007700">= </span><span style="color: #0000BB">true </span><span style="color: #007700">&amp;&amp; </span><span style="color: #0000BB">false</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// A constante true é atribuída em $h antes que o "and" ocorra<br />// Funciona como: (($h = true) and false)<br /></span><span style="color: #0000BB">$h </span><span style="color: #007700">= </span><span style="color: #0000BB">true </span><span style="color: #007700">and </span><span style="color: #0000BB">false</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$g</span><span style="color: #007700">, </span><span style="color: #0000BB">$h</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+  <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+bool(true)
+bool(false)
+bool(false)
+bool(true)
+</pre></div>
+  </div>
+ </div>
+</div></div></div></body></html>

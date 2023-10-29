@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>final</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.oop5.magic.html">« M&eacute;todos m&aacute;gicos</a></li>
+      <li style="float: right;"><a href="language.oop5.cloning.html">Clonando objetos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.oop5.html">Classes e Objetos</a></li>
+    <li>final</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.oop5.final" class="sect1">
+  <h2 class="title">final</h2>
+  <p class="para">
+   A palavra-chave final, previne que classes filhas sobrescrevam uma definição
+   prefixada com <code class="literal">final</code>. Se a própria classe
+   estiver definida como final, ela não pode ser estendida.
+  </p>
+  <p class="para">
+   <div class="example" id="example-839">
+    <p><strong>Exemplo #1 Exemplo de métodos final</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">ClasseBase </span><span style="color: #007700">{<br />   public function </span><span style="color: #0000BB">teste</span><span style="color: #007700">() {<br />       echo </span><span style="color: #DD0000">"ClasseBase::teste() chamado\n"</span><span style="color: #007700">;<br />   }<br /><br />   final public function </span><span style="color: #0000BB">maisTeste</span><span style="color: #007700">() {<br />       echo </span><span style="color: #DD0000">"ClasseBase::maisTeste() chamado\n"</span><span style="color: #007700">;<br />   }<br />}<br /><br />class </span><span style="color: #0000BB">ClasseFilha </span><span style="color: #007700">extends </span><span style="color: #0000BB">ClasseBase </span><span style="color: #007700">{<br />   public function </span><span style="color: #0000BB">maisTeste</span><span style="color: #007700">() {<br />       echo </span><span style="color: #DD0000">"ClasseFilha::maisTeste() called\n"</span><span style="color: #007700">;<br />   }<br />}<br /></span><span style="color: #FF8000">// Resulta em erro Fatal: Não pode sobrescrever método final ClasseBase::maisTeste()<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-842">
+    <p><strong>Exemplo #2 Exemplo de classe Final</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">final class </span><span style="color: #0000BB">ClasseBase </span><span style="color: #007700">{<br />   public function </span><span style="color: #0000BB">teste</span><span style="color: #007700">() {<br />       echo </span><span style="color: #DD0000">"Método ClasseBase::teste() chamado\n"</span><span style="color: #007700">;<br />   }<br /><br />   </span><span style="color: #FF8000">// A classe já foi marcada como final, esse final aqui é rendundante.<br />   </span><span style="color: #007700">final public function </span><span style="color: #0000BB">maisTeste</span><span style="color: #007700">() {<br />       echo </span><span style="color: #DD0000">"Método ClasseBase::maisTeste() chamado\n"</span><span style="color: #007700">;<br />   }<br />}<br /><br />class </span><span style="color: #0000BB">ClasseFilha </span><span style="color: #007700">extends </span><span style="color: #0000BB">ClasseBase </span><span style="color: #007700">{<br />}<br /></span><span style="color: #FF8000">// Resulta em erro Fatal: Class ClasseFilha may not inherit from final class (ClasseBase)<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-845">
+    <p><strong>Exemplo #3 Exemplo de constantes finais (PHP 8.1.0 em diante)</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    final public const </span><span style="color: #0000BB">X </span><span style="color: #007700">= </span><span style="color: #DD0000">"foo"</span><span style="color: #007700">;<br />}<br /><br />class </span><span style="color: #0000BB">Bar </span><span style="color: #007700">extends </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    public const </span><span style="color: #0000BB">X </span><span style="color: #007700">= </span><span style="color: #DD0000">"bar"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">// Fatal error: Bar::X cannot override final constant Foo::X<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Propriedades não podem ser declaradas finais: somente classes, métodos e constantes (a partir do PHP 8.1.0).
+   </span>
+   <span class="simpara">
+    A partir do PHP 8.0.0, métodos privados não podem ser declarados privados, com exceção do construtor.
+   </span>
+  </p></blockquote>
+ </div></div></div></body></html>

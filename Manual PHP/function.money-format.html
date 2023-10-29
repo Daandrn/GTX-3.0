@@ -1,0 +1,402 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Formata um n&uacute;mero como uma string de moeda</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.metaphone.html">« metaphone</a></li>
+      <li style="float: right;"><a href="function.nl-langinfo.html">nl_langinfo »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.strings.html">Fun&ccedil;&otilde;es de String</a></li>
+    <li>Formata um n&uacute;mero como uma string de moeda</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.money-format" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">money_format</h1>
+  <p class="refpurpose"><span class="refname">money_format</span> &mdash; <span class="dc-title">Formata um número como uma string de moeda</span></p>
+
+ </div>
+
+ <div id="function.money-format-refsynopsisdiv">
+   <div class="warning"><strong class="warning">Aviso</strong><p class="simpara">Esta função tornou-se
+<em>OBSOLETA</em> a partir do PHP 7.4.0 e foi <em>REMOVIDA</em> a partir do PHP 8.0.0. O uso desta função
+é fortemente desencorajado.</p></div>
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.money-format-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>money_format</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$format</code></span>, <span class="methodparam"><span class="type">float</span> <code class="parameter">$number</code></span>): <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>money_format()</strong></span> retorna uma versão formatada de um
+   <code class="parameter">number</code>.  Esta função engloba a biblioteca de
+   função do C <span class="function"><strong>strfmon()</strong></span>, com a diferença que esta
+   implementação converte apenas um número por vez.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.money-format-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">format</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A especificação do formato consistem da seguinte sequência:
+       <ul class="itemizedlist">
+        <li class="listitem"><p class="para">a <code class="literal">%</code> character</p></li>
+        <li class="listitem"><p class="para">flags opcionais</p></li>
+        <li class="listitem"><p class="para">largura de campo opcional</p></li>
+        <li class="listitem"><p class="para">precisão da esquerda opcional</p></li>
+        <li class="listitem"><p class="para">precisão da direita opcional</p></li>
+        <li class="listitem"><p class="para">conversão de caractere requerida</p></li>
+       </ul>
+      </p>
+      <p class="formalpara">
+       <h5 class="title">Flags</h5>
+       <p class="para">
+        Uma ou mais, das flags opcionais abaixo podem ser usadas:
+        <dl>
+         
+          <dt>
+<code class="literal">=</code><span class="replaceable">f</span></dt>
+
+          <dd>
+
+           <p class="para">
+            O caracter <code class="literal">=</code> seguido por um caractere (único byte)
+            <span class="replaceable">f</span> para ser usado como o caracter númerico de
+            preenchimento. O caractere de preenchimento padrão é o espaço.
+           </p>
+          </dd>
+
+         
+         
+          <dt>
+<code class="literal">^</code></dt>
+
+          <dd>
+
+           <p class="para">
+            Desabilite o uso de agrupamento de caractere (como definido
+            pela localidade atual).
+           </p>
+          </dd>
+
+         
+         
+          <dt>
+<code class="literal">+</code> ou <code class="literal">(</code></dt>
+
+          <dd>
+
+           <p class="para">
+            Especifique o estilo de formatação para números positivos e negativos.
+            Se <code class="literal">+</code> é usado, o equivalente da localidade para
+            <code class="literal">+</code> e <code class="literal">-</code> será usado. Se
+            <code class="literal">(</code> é usado, quantias negativas são fechadas em parêntesis.
+            se nenhuma especificação é dada, o padrão será
+            <code class="literal">+</code>.
+           </p>
+          </dd>
+
+         
+         
+          <dt>
+<code class="literal">!</code></dt>
+
+          <dd>
+
+           <p class="para">
+            Suprima o símbolo atual da string de saída.
+           </p>
+          </dd>
+
+         
+         
+          <dt>
+<code class="literal">-</code></dt>
+
+          <dd>
+
+           <p class="para">
+            Se presente, isso fará todos os campos esquerda-justificados (arrumados para a
+            direita), em oposição ao padrão que é para campos serem direita-justificados
+            (arrumados para a esquerda).
+           </p>
+          </dd>
+
+         
+        </dl>
+
+       </p>
+      </p>
+      <p class="formalpara">
+       <h5 class="title">Largura de campo</h5>
+       <p class="para">
+        <dl>
+         
+          <dt>
+<span class="replaceable">w</span></dt>
+
+          <dd>
+
+           <p class="para">
+            Uma string de dígito decimal especificando uma largura de campo mínima. O campo
+            será direita-justificado a menos que o flag <code class="literal">-</code> seja usado.
+            Valor padrão é 0 (zero) por definição.
+           </p>
+          </dd>
+
+         
+        </dl>
+
+       </p>
+      </p>
+      <p class="formalpara">
+       <h5 class="title">Precisão de esquerdan</h5>
+       <p class="para">
+        <dl>
+         
+          <dt>
+<code class="literal">#</code><span class="replaceable">n</span></dt>
+
+          <dd>
+
+           <p class="para">
+            O número máximo de dígitos (<span class="replaceable">n</span>) esperado para a
+            esquerda do caracatere decimal(ex. ponto decimal). Isso é usado
+            normalmente para manter a saída formatada alinhada nas mesmas colunas,
+            usando o caractere de preenchimento se o número de dígitos é menor do que
+            <span class="replaceable">n</span>. Se o número de dígitos atual é maior do que
+             <span class="replaceable">n</span>, então esta especificação é
+             ignorada.
+           </p>
+           <p class="para">
+            Se agrupamento foi suprimido usando a flag <code class="literal">^</code>,
+            separatores de agrupamento serão inseridos antes dos caracteres  de
+            preenchimento (se algum) são adicionados, mesmo se o caractere de preenchimento
+            é um dígito.
+           </p>
+           <p class="para">
+            Para garantir alinhamento, quaisquer caracteres aparecendo, antes ou depois do
+            número em saída formatada, como moeda ou simbolos de sinal, são arrumado conforme
+            necessário, com caracteres de espaço para fazer seus formatos positivos e negativos
+            num comprimento igual.
+           </p>
+          </dd>
+
+         
+        </dl>
+
+       </p>
+      </p>
+      <p class="formalpara">
+       <h5 class="title">
+        Precisão de direita
+       </h5>
+       <p class="para">
+        <dl>
+         
+          <dt>
+<code class="literal">.</code><span class="replaceable">p</span></dt>
+
+          <dd>
+
+           <p class="para">
+            Um período seguido por um número de dígitos (<span class="replaceable">p</span>) depois
+             do caractere decimal. Se o valor de <span class="replaceable">p</span> é 0 (zero), o
+             caractere decimal e os digitos à sua direita serão omitidos. Se nenhuma precisão de
+            direita é incluida, o padrão será ditado pela localidade atual em uso. A quantia sendo
+            formatada é arredondada para o número de dígitos especificados a priori para ser
+            formatado.
+
+           </p>
+          </dd>
+
+         
+        </dl>
+
+       </p>
+      </p>
+      <p class="formalpara">
+       <h5 class="title">
+        Caracteres de conversão
+       </h5>
+       <p class="para">
+        <dl>
+         
+          <dt>
+<code class="literal">i</code></dt>
+
+          <dd>
+
+           <p class="para">
+            O número é formatado de acordo com o formato de moeda internacional da localidade
+             (ex para a localidade de EUA: USD 1,234.56).
+           </p>
+          </dd>
+
+         
+         
+          <dt>
+<code class="literal">n</code></dt>
+
+          <dd>
+
+           <p class="para">
+            O número é formatado de acordo com o formato de moeda nacional da localidade
+            (ex: para a localidade de_DE: DM1.234,56).
+           </p>
+          </dd>
+
+         
+         
+          <dt>
+<code class="literal">%</code></dt>
+
+          <dd>
+
+           <p class="para">
+            Retorna o caractere <code class="literal">%</code>.
+           </p>
+          </dd>
+
+         
+        </dl>
+
+       </p>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">number</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O número para ser formatado.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.money-format-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna a string formatada. Os caracteres antes e depois da string de
+   formatação serão retornados sem modificação.
+   O parâmetro <code class="parameter">number</code> com dígitos inválidos causa o retorno de <strong><code>null</code></strong> e
+   o lançamento de um <strong><code>E_WARNING</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.money-format-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.4.0</td>
+       <td>
+        Esta função está obsoleta. Utilize
+        <span class="methodname"><a href="numberformatter.formatcurrency.html" class="methodname">NumberFormatter::formatCurrency()</a></span>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.money-format-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo da <span class="function"><strong>money_format()</strong></span></strong></p>
+    <div class="example-contents"><p>
+     Nós usaremos localidades diferentes e especificações de formatos e localidades para
+     ilustrar o uso desta função.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$number </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.56</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// let's print the international format for the en_US locale<br /></span><span style="color: #0000BB">setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_MONETARY</span><span style="color: #007700">, </span><span style="color: #DD0000">'en_US'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">money_format</span><span style="color: #007700">(</span><span style="color: #DD0000">'%i'</span><span style="color: #007700">, </span><span style="color: #0000BB">$number</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// USD 1,234.56<br /><br />// Italian national format with 2 decimals`<br /></span><span style="color: #0000BB">setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_MONETARY</span><span style="color: #007700">, </span><span style="color: #DD0000">'it_IT'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">money_format</span><span style="color: #007700">(</span><span style="color: #DD0000">'%.2n'</span><span style="color: #007700">, </span><span style="color: #0000BB">$number</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Eu 1.234,56<br /><br />// Using a negative number<br /></span><span style="color: #0000BB">$number </span><span style="color: #007700">= -</span><span style="color: #0000BB">1234.5672</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// US national format, using () for negative numbers<br />// and 10 digits for left precision<br /></span><span style="color: #0000BB">setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_MONETARY</span><span style="color: #007700">, </span><span style="color: #DD0000">'en_US'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">money_format</span><span style="color: #007700">(</span><span style="color: #DD0000">'%(#10n'</span><span style="color: #007700">, </span><span style="color: #0000BB">$number</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// ($        1,234.57)<br /><br />// Similar format as above, adding the use of 2 digits of right<br />// precision and '*' as a fill character<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">money_format</span><span style="color: #007700">(</span><span style="color: #DD0000">'%=*(#10.2n'</span><span style="color: #007700">, </span><span style="color: #0000BB">$number</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// ($********1,234.57)<br /><br />// Let's justify to the left, with 14 positions of width, 8 digits of<br />// left precision, 2 of right precision, without the grouping character<br />// and using the international format for the de_DE locale.<br /></span><span style="color: #0000BB">setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_MONETARY</span><span style="color: #007700">, </span><span style="color: #DD0000">'de_DE'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">money_format</span><span style="color: #007700">(</span><span style="color: #DD0000">'%=*^-14#8.2i'</span><span style="color: #007700">, </span><span style="color: #0000BB">1234.56</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Eu 1234,56****<br /><br />// Let's add some blurb before and after the conversion specification<br /></span><span style="color: #0000BB">setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_MONETARY</span><span style="color: #007700">, </span><span style="color: #DD0000">'en_GB'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$fmt </span><span style="color: #007700">= </span><span style="color: #DD0000">'The final value is %i (after a 10%% discount)'</span><span style="color: #007700">;<br />echo </span><span style="color: #0000BB">money_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">, </span><span style="color: #0000BB">1234.56</span><span style="color: #007700">) . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// The final value is  GBP 1,234.56 (after a 10% discount)<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.money-format-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    A função <span class="function"><strong>money_format()</strong></span> é apenas definida se
+    o sistema tem capacidades de strfmon. Por exemplo, o  Windows não tem,
+    então <span class="function"><strong>money_format()</strong></span> está indefinida o Windows.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    A categoria <strong><code>LC_MONETARY</code></strong> de configurações de localidade,
+    afeta o comportamento desta função. Utilize <span class="function"><a href="function.setlocale.html" class="function">setlocale()</a></span> para definir
+    a localidade padrão apropriadamente antes de usar esta função.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.money-format-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.setlocale.html" class="function" rel="rdfs-seeAlso">setlocale()</a> - Set locale information</span></li>
+    <li class="member"><span class="function"><a href="function.sscanf.html" class="function" rel="rdfs-seeAlso">sscanf()</a> - Interpreta a entrada de uma string de acordo com um formato</span></li>
+    <li class="member"><span class="function"><a href="function.sprintf.html" class="function" rel="rdfs-seeAlso">sprintf()</a> - Return a formatted string</span></li>
+    <li class="member"><span class="function"><a href="function.printf.html" class="function" rel="rdfs-seeAlso">printf()</a> - Output a formatted string</span></li>
+    <li class="member"><span class="function"><a href="function.number-format.html" class="function" rel="rdfs-seeAlso">number_format()</a> - Format a number with grouped thousands</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

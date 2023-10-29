@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Obt&eacute;m o tipo da vari&aacute;vel</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.get-resource-type.html">« get_resource_type</a></li>
+      <li style="float: right;"><a href="function.intval.html">intval »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.var.html">Fun&ccedil;&otilde;es para Manipula&ccedil;&atilde;o de vari&aacute;veis</a></li>
+    <li>Obt&eacute;m o tipo da vari&aacute;vel</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.gettype" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gettype</h1>
+  <p class="refpurpose"><span class="refname">gettype</span> &mdash; <span class="dc-title">Obtém o tipo da variável</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.gettype-description">
+   <h3 class="title">Descrição</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="methodname"><strong>gettype</strong></span>(<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$var</code></span>): <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Retorna o tipo da variável no PHP <code class="parameter">var</code>. Para
+   checagem de tipo, utilize as funções <code class="literal">is_*</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.gettype-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">var</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A variável a ter o tipo verificado.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.gettype-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Os possíveis valores retornados pela função são:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      &quot;<span class="type">boolean</span>&quot;
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;<span class="type">integer</span>&quot;
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;<span class="type">double</span>&quot; (por razões históricas &quot;double&quot; é
+      é retornado no caso de <span class="type">float</span>, e não simplesmente
+      &quot;float&quot;)
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;<span class="type">string</span>&quot;
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;<span class="type">array</span>&quot;
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;<span class="type">object</span>&quot;
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;<span class="type">resource</span>&quot;
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;<span class="type">NULL</span>&quot;
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;unknown type&quot;
+     </span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.gettype-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo da função <span class="function"><strong>gettype()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$data </span><span style="color: #007700">= array(</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">1.</span><span style="color: #007700">, </span><span style="color: #0000BB">NULL</span><span style="color: #007700">, new </span><span style="color: #0000BB">stdClass</span><span style="color: #007700">, </span><span style="color: #DD0000">'foo'</span><span style="color: #007700">);<br /><br />foreach (</span><span style="color: #0000BB">$data </span><span style="color: #007700">as </span><span style="color: #0000BB">$value</span><span style="color: #007700">) {<br />    echo </span><span style="color: #0000BB">gettype</span><span style="color: #007700">(</span><span style="color: #0000BB">$value</span><span style="color: #007700">), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+integer
+double
+NULL
+object
+string
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.gettype-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.settype.html" class="function" rel="rdfs-seeAlso">settype()</a> - Atribui um tipo para a vari&aacute;vel</span></li>
+    <li class="member"><span class="function"><a href="function.get-class.html" class="function" rel="rdfs-seeAlso">get_class()</a> - Returns the name of the class of an object</span></li>
+    <li class="member"><span class="function"><a href="function.is-array.html" class="function" rel="rdfs-seeAlso">is_array()</a> - Verifica se a vari&aacute;vel &eacute; um array</span></li>
+    <li class="member"><span class="function"><a href="function.is-bool.html" class="function" rel="rdfs-seeAlso">is_bool()</a> - Verifica se a vari&aacute;vel &eacute; um boleano</span></li>
+    <li class="member"><span class="function"><a href="function.is-callable.html" class="function" rel="rdfs-seeAlso">is_callable()</a> - Verify that a value can be called as a function from the current scope.</span></li>
+    <li class="member"><span class="function"><a href="function.is-float.html" class="function" rel="rdfs-seeAlso">is_float()</a> - Informa se a vari&aacute;vel &eacute; do tipo float</span></li>
+    <li class="member"><span class="function"><a href="function.is-int.html" class="function" rel="rdfs-seeAlso">is_int()</a> - Informa se a vari&aacute;vel &eacute; do tipo inteiro</span></li>
+    <li class="member"><span class="function"><a href="function.is-null.html" class="function" rel="rdfs-seeAlso">is_null()</a> - Finds whether a variable is null</span></li>
+    <li class="member"><span class="function"><a href="function.is-numeric.html" class="function" rel="rdfs-seeAlso">is_numeric()</a> - Finds whether a variable is a number or a numeric string</span></li>
+    <li class="member"><span class="function"><a href="function.is-object.html" class="function" rel="rdfs-seeAlso">is_object()</a> - Finds whether a variable is an object</span></li>
+    <li class="member"><span class="function"><a href="function.is-resource.html" class="function" rel="rdfs-seeAlso">is_resource()</a> - Informa se a vari&aacute;vel &eacute; um resource</span></li>
+    <li class="member"><span class="function"><a href="function.is-scalar.html" class="function" rel="rdfs-seeAlso">is_scalar()</a> - Informa se &eacute; uma v&aacute;riavel escalar</span></li>
+    <li class="member"><span class="function"><a href="function.is-string.html" class="function" rel="rdfs-seeAlso">is_string()</a> - Informa se a vari&aacute;vel &eacute; do tipo string</span></li>
+    <li class="member"><span class="function"><a href="function.function-exists.html" class="function" rel="rdfs-seeAlso">function_exists()</a> - Retorna true se a fun&ccedil;&atilde;o dada est&aacute; definida</span></li>
+    <li class="member"><span class="function"><a href="function.method-exists.html" class="function" rel="rdfs-seeAlso">method_exists()</a> - Checks if the class method exists</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

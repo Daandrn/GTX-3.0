@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Realiza uma sub-requisi&ccedil;&atilde;o Apache</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.getallheaders.html">« getallheaders</a></li>
+      <li style="float: right;"><a href="book.fpm.html">FastCGI Process Manager »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.apache.html">Apache Fun&ccedil;&otilde;es</a></li>
+    <li>Realiza uma sub-requisi&ccedil;&atilde;o Apache</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.virtual" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">virtual</h1>
+  <p class="refpurpose"><span class="refname">virtual</span> &mdash; <span class="dc-title">Realiza uma sub-requisição Apache</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.virtual-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>virtual</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$uri</code></span>): <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>virtual()</strong></span> é uma função específica do Apache
+   equivalente a <code class="literal">&lt;!--#include virtual...--&gt;</code>
+   no <code class="literal">mod_include</code>.
+   Realiza uma sub-requisição do Apache. Util na inclusão de
+   scripts CGI ou arquivos <var class="filename">.shtml</var>, ou qualquer outra coisa que você possa interpretar
+   no Apache. Note que para um script CGI, o script precisa gerar um cabeçalho
+   CGI válido. Isto significa que, no mínimo, ele precisa
+   gerar um header <code class="literal">Content-Type</code>.
+  </p>
+  <p class="para">
+   Para executar a sub-requisição, todos os buffers são finalizados e enviados para o
+   browser. Cabeçalhos pendentes também serão enviados.
+  </p>
+  <p class="simpara">Esta função é suportada quando o PHP
+é instalado como um módulo do servidor web Apache.
+</p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.virtual-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">uri</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A URL no qual o comando virtual será realizado.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.virtual-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Realizada o comando virtual em sucesso, retorna <strong><code>false</code></strong> em erros.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.virtual-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   Veja <span class="function"><a href="function.apache-note.html" class="function">apache_note()</a></span> para um exemplo.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.virtual-notes">
+  <h3 class="title">Notas</h3>
+  <div class="warning"><strong class="warning">Aviso</strong>
+   <p class="para">
+    Uma query string pode ser passada para o arquivo incluído mas
+    <var class="varname"><a href="reserved.variables.get.html" class="classname">$_GET</a></var> é copiado do script anterior somente se
+    <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['QUERY_STRING']</a></var> é preenchido com o valor da
+    query string. A query string pode ser passada somente no Apache 2.
+    A página requisitada não será listada nos logs do Apache.
+   </p>
+  </div>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Variáveis de ambiente configuradas no arquivo requisitado não estarão visíveis
+    no script incluído.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Essa função pode ser utilizada em scripts PHP. Entretanto é geralmente melhor
+    utilizar as funções <span class="function"><a href="function.include.html" class="function">include</a></span> ou <span class="function"><a href="function.require.html" class="function">require</a></span> para
+    arquivos PHP.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.virtual-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.apache-note.html" class="function" rel="rdfs-seeAlso">apache_note()</a> - Obt&ecirc;m e configura notas de requisi&ccedil;&atilde;o</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

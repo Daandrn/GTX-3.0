@@ -1,0 +1,429 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Convers&atilde;o autom&aacute;tica de tipos</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.types.declarations.html">« Declara&ccedil;&otilde;es de tipo</a></li>
+      <li style="float: right;"><a href="language.variables.html">Vari&aacute;veis »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.types.html">Tipos</a></li>
+    <li>Convers&atilde;o autom&aacute;tica de tipos</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.types.type-juggling" class="sect1">
+ <h2 class="title">Conversão automática de tipos</h2>
+
+ <p class="simpara">
+  O PHP não requer a tipagem explícita em declarações de variáveis.
+  Nesse caso, o tipo de uma variável é determinado pelo valor armazenado.
+  Ou seja, se uma <span class="type">string</span> é armazenada numa variável
+  <var class="varname">$var</var>, então <var class="varname">$var</var> terá o tipo
+  <span class="type">string</span>. Se após isso um valor <span class="type">int</span> value é armazenado
+  em <var class="varname">$var</var>, ele será do tipo <span class="type">int</span>.
+ </p>
+
+ <p class="para">
+  O PHP pode tentar converter o tipo de um valor em outro, automaticamente,
+  em alguns contextos. Esses contextos são:
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">Numérico</span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">String</span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">Lógico</span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">Inteiro e string</span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">Comparação</span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">Função</span>
+   </li>
+  </ul>
+ </p>
+
+ <blockquote class="note"><p><strong class="note">Nota</strong>: 
+  <span class="simpara">
+   Quando um valor precisa ser interpretado como um tipo diferente, o valor
+   em si <em>não</em> se altera, apenas uma &quot;cópia&quot; é convertido.
+  </span>
+ </p></blockquote>
+
+ <p class="simpara">
+  Para forçar uma variável ser avaliada como um certo tipo, veja a seção
+  <a href="language.types.type-juggling.html#language.types.typecasting" class="link">Conversão de tipo</a>. Se
+  desejar mudar o tipo de uma variável, veja a função <span class="function"><a href="function.settype.html" class="function">settype()</a></span>.
+ </p>
+
+ <div class="sect2">
+  <h3 class="title">Contexto numérico</h3>
+
+  <p class="simpara">
+   Esse é contexto quando da utilização de
+   <a href="language.operators.arithmetic.html" class="link">operadores aritméticos</a>.
+  </p>
+
+  <p class="simpara">
+   Esse contexto ocorre se um dos operandos é um <span class="type">float</span> (e não
+   interpretável como <span class="type">int</span>), se ambos os operandos são interpretados como
+   <span class="type">float</span>, ou se o resultado é um <span class="type">float</span>.
+   Se não, se os operandos são interpretados como <span class="type">int</span>,
+   ou o resultado é um <span class="type">int</span>.
+   A partir do 8.0.0, se um dos operandos não pode ser reinterpretado, um erro do tipo
+   <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> é lançado.
+  </p>
+ </div>
+
+ <div class="sect2">
+  <h3 class="title">Contextos string</h3>
+
+  <p class="simpara">
+   Esse contexto ocorre ao se utilizar <span class="function"><a href="function.echo.html" class="function">echo</a></span>,
+   <span class="function"><a href="function.print.html" class="function">print</a></span>,
+   <a href="language.types.string.html#language.types.string.parsing" class="link">interpolação de strings</a>,
+   o
+   <a href="language.operators.string.html" class="link">operador de concatenação</a>.
+  </p>
+
+  <p class="simpara">
+   Nesse contexto, o valor será interpretado como <span class="type">string</span>.
+   Se o valor não puder ser interpretado, então <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> é lançado.
+   Anteriormente ao 7.4.0, um alerta <strong><code>E_RECOVERABLE_ERROR</code></strong> era emitido.
+  </p>
+ </div>
+
+ <div class="sect2">
+  <h3 class="title">Contextos lógicos</h3>
+
+  <p class="simpara">
+   Este contexto ocorre em instruções condicionais, no uso do
+   <a href="language.operators.comparison.html#language.operators.comparison.ternary" class="link">operador ternário</a>,
+   ou em uma <a href="language.operators.logical.html" class="link">operação lógica</a>.
+  </p>
+
+  <p class="simpara">
+   Nesse contexto, o valor será interpretado como <span class="type">bool</span>.
+  </p>
+ </div>
+
+ <div class="sect2">
+  <h3 class="title">Contextos inteiros e string</h3>
+
+  <p class="simpara">
+   Este contexto ocorre quando utilizando
+   <a href="language.operators.bitwise.html" class="link">operadores bitwise</a>.
+  </p>
+
+  <p class="simpara">
+   Este contexto ocorre se todos os operandos são do tipo <span class="type">string</span>,
+   ou o valor retornado é <span class="type">string</span>.
+   Se não, os operados são interpretados como <span class="type">int</span>,
+   ou o resultado é um <span class="type">int</span>.
+   A partir do PHP 8.0.0, se um dos operandos não puder ser reinterpretado, então
+   <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> é lançado.
+  </p>
+ </div>
+
+ <div class="sect2">
+  <h3 class="title">Contextos de comparação</h3>
+
+  <p class="simpara">
+   Este contexto ocorre quando utilizando
+   <a href="language.operators.comparison.html" class="link">operadores de comparação</a>.
+  </p>
+
+  <p class="simpara">
+   As conversões de tipo que ocorrem nesse contexto são explicados na
+   tabela de sobre comparação entre vários tipos, explicadas
+   <a href="language.operators.comparison.html#language.operators.comparison.types" class="link">aqui</a>.
+  </p>
+ </div>
+
+ <div class="sect2" id="language.types.type-juggling.function">
+  <h3 class="title">Contextos de função</h3>
+
+  <p class="simpara">
+   Este contexto ocorre quando um valor é um parâmetro tipado, ou quando uma propriedade
+   ou valor retornado de uma função declara um tipo.
+  </p>
+
+  <p class="para">
+   Nesse contexto, o valor precisa do tipo informado.
+   Duas alternativas existem. A primeira: se o valor é do tipo
+   <span class="type">int</span> e o tipo declarado é <span class="type">float</span>, então o
+   inteiro é convertido num número de ponto flutuante.
+   A segunda alternativa: se o tipo declarado é um <em>escalar</em>,
+   
+   e o valor é conversível no tipo escalar, juntamente com
+   o modo de conversão coercivo no estado ativo
+   (o padrão), o valor pode ser convertido no valor escalar.
+   Veja abaixo uma descrição detalhada desse comportamento.
+  </p>
+
+  <div class="warning"><strong class="warning">Aviso</strong>
+   <p class="simpara">
+    <a href="functions.internal.html" class="link">Funções internas</a>
+    convertem automaticamente <strong><code>null</code></strong> para tipos escalares, mas
+    mas esse comportamento é <em>OBSOLETO</em> desde o PHP 8.1.0.
+   </p>
+  </div>
+
+  <div class="sect3" id="language.types.type-juggling.function.simple">
+   <h4 class="title">Coerção de tipos com tipos declarados</h4>
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Declaração <span class="type">bool</span>: o valor é convertido para <span class="type">bool</span>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Declaração <span class="type">int</span>: o valor é convertido para <span class="type">int</span>
+      quando a conversão for bem definida. Por exemplo, quando uma string é
+      <a href="language.types.numeric-strings.html" class="link">numérica</a>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Declaração <span class="type">float</span>: o valor é convertido para <span class="type">float</span>
+      quando a conversão for bem definida. Por exemplo, quando uma string é
+      <a href="language.types.numeric-strings.html" class="link">numérica</a>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Declaração <span class="type">string</span>: o valor é convertido para <span class="type">string</span>.
+     </span>
+    </li>
+   </ul>
+  </div>
+
+  <div class="sect3" id="language.types.type-juggling.function.union">
+   <h4 class="title">Conversão de tipos em tipos union</h4>
+   <p class="para">
+    Quando <code class="literal">strict_types</code> está desativado, declarações de tipos escalares
+    estão sujeitas a conversões implícitas e limitadas.
+    Se o tipo exato do valor não é parte da união, então o tipo final da conversão
+    é escolhido na seguinte ordem de preferência:
+
+    <ol type="1">
+     <li class="listitem">
+      <span class="simpara">
+       <span class="type">int</span>
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <span class="type">float</span>
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <span class="type">string</span>
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <span class="type">bool</span>
+      </span>
+     </li>
+    </ol>
+
+    Se o tipo existe na união e o valor puder ser convertido pela mesma
+    semântica do PHP, então esse tipo é escolhido.
+    Senão, um tipo seguinte é tentado.
+   </p>
+
+   <div class="caution"><strong class="caution">Cuidado</strong>
+    <p class="para">
+     Existe uma exceção, no caso do valor ser uma string, e ambos int e float serem partes
+     da união, o tipo preferido será determinado pela semântica de
+     <a href="language.types.numeric-strings.html" class="link">strings numéricas</a>.
+     
+     Por exemplo, para <code class="literal">&quot;42&quot;</code> o tipo <span class="type">int</span> é escolhido,
+     enquanto que para <code class="literal">&quot;42.0&quot;</code> o tipo escolhido é <span class="type">float</span>.
+    </p>
+   </div>
+
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     Tipos que não são parte da lista acima não são elegíveis para destinos
+     da conversão implícita. Em particular, não existem conversões implícitas para
+     os tipos <span class="type">null</span>, <span class="type"><span class="type false">false</span></span> e <span class="type"><span class="type true">true</span></span>.
+     
+    </p>
+   </p></blockquote>
+
+   <div class="example" id="language.oop5.traits.visibility.ex1">
+    <p><strong>Exemplo #1 Exemplo de tipos que podem ser convertidos em tipos union</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// int|string<br /></span><span style="color: #0000BB">42    </span><span style="color: #007700">--&gt; </span><span style="color: #0000BB">42          </span><span style="color: #FF8000">// tipo exato<br /></span><span style="color: #DD0000">"42"  </span><span style="color: #007700">--&gt; </span><span style="color: #DD0000">"42"        </span><span style="color: #FF8000">// tipo exato<br /></span><span style="color: #007700">new </span><span style="color: #0000BB">ObjectWithToString </span><span style="color: #007700">--&gt; </span><span style="color: #DD0000">"Resultado de __toString()"<br />                      </span><span style="color: #FF8000">// e objero não compatível com int, padrão para string<br /></span><span style="color: #0000BB">42.0  </span><span style="color: #007700">--&gt; </span><span style="color: #0000BB">42          </span><span style="color: #FF8000">// float compatível com int<br /></span><span style="color: #0000BB">42.1  </span><span style="color: #007700">--&gt; </span><span style="color: #0000BB">42          </span><span style="color: #FF8000">// float compatível com int<br /></span><span style="color: #0000BB">1e100 </span><span style="color: #007700">--&gt; </span><span style="color: #DD0000">"1.0E+100"  </span><span style="color: #FF8000">// float muito grande para int, padrão para string<br /></span><span style="color: #0000BB">INF   </span><span style="color: #007700">--&gt; </span><span style="color: #DD0000">"INF"       </span><span style="color: #FF8000">// float muito grande para int, padrão para string<br /></span><span style="color: #0000BB">true  </span><span style="color: #007700">--&gt; </span><span style="color: #0000BB">1           </span><span style="color: #FF8000">// bool compatível com int<br /></span><span style="color: #007700">[]    --&gt; </span><span style="color: #0000BB">TypeError   </span><span style="color: #FF8000">// array não é compatível com int ou string<br /><br />// int|float|bool<br /></span><span style="color: #DD0000">"45"    </span><span style="color: #007700">--&gt; </span><span style="color: #0000BB">45        </span><span style="color: #FF8000">// string numérica int<br /></span><span style="color: #DD0000">"45.0"  </span><span style="color: #007700">--&gt; </span><span style="color: #0000BB">45.0      </span><span style="color: #FF8000">// string numérica float<br /><br /></span><span style="color: #DD0000">"45X"   </span><span style="color: #007700">--&gt; </span><span style="color: #0000BB">true      </span><span style="color: #FF8000">// string não numérica, padrão para bool<br /></span><span style="color: #DD0000">""      </span><span style="color: #007700">--&gt; </span><span style="color: #0000BB">false     </span><span style="color: #FF8000">// string não numérica, padrão para bool<br /></span><span style="color: #DD0000">"X"     </span><span style="color: #007700">--&gt; </span><span style="color: #0000BB">true      </span><span style="color: #FF8000">// string não numérica, padrão para bool<br /></span><span style="color: #007700">[]      --&gt; </span><span style="color: #0000BB">TypeError </span><span style="color: #FF8000">// array não é compatível com int, float ou bool<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </div>
+
+ </div>
+
+ <div class="sect2" id="language.types.typecasting">
+  <h3 class="title">Conversão explícita (cast)</h3>
+
+  <p class="simpara">
+   Converte o valor do tipo para o tipo escolhido através da escrita do tipo
+   entre parênteses, antes do valor a ser convertido.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$foo </span><span style="color: #007700">= </span><span style="color: #0000BB">10</span><span style="color: #007700">;           </span><span style="color: #FF8000">// $foo é int<br /></span><span style="color: #0000BB">$bar </span><span style="color: #007700">= (bool) </span><span style="color: #0000BB">$foo</span><span style="color: #007700">;  </span><span style="color: #FF8000">// $bar é bool<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+
+  <p class="simpara">
+   As conversões previstas são:
+  </p>
+
+  <ul class="simplelist">
+   <li class="member"><code class="literal">(int)</code> - converte para <span class="type">int</span></li>
+   <li class="member"><code class="literal">(bool)</code> - converte para <span class="type">bool</span></li>
+   <li class="member"><code class="literal">(float)</code> - converte para <span class="type">float</span></li>
+   <li class="member"><code class="literal">(string)</code> - converte para <span class="type">string</span></li>
+   <li class="member"><code class="literal">(array)</code> - converte para <span class="type">array</span></li>
+   <li class="member"><code class="literal">(object)</code> - converte para <span class="type">object</span></li>
+   <li class="member"><code class="literal">(unset)</code> - converte para <span class="type">NULL</span></li>
+  </ul>
+
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    <code class="literal">(integer)</code> converte igual a <code class="literal">(int)</code>.
+    <code class="literal">(boolean)</code> converte igual a <code class="literal">(bool)</code>.
+    <code class="literal">(binary)</code> converte igual a <code class="literal">(string)</code>.
+    <code class="literal">(double)</code> e <code class="literal">(real)</code> converte igual a
+    <code class="literal">(float)</code>.
+    Esses casts alternativas não são recomendados, ainda que existentes.
+   </p>
+  </p></blockquote>
+
+  <div class="warning"><strong class="warning">Aviso</strong>
+   <p class="simpara">
+    O cast <code class="literal">(real)</code> está obsoleto desde o PHP 8.0.0.
+   </p>
+  </div>
+
+  <div class="warning"><strong class="warning">Aviso</strong>
+   <p class="simpara">
+    O cast <code class="literal">(unset)</code> está obsoleto desde o PHP 7.2.0.
+    Note que o cast <code class="literal">(unset)</code> tem o mesmo efeito que
+    informar o valor <span class="type">NULL</span> para a variável ou chamada de função.
+    O cast <code class="literal">(unset)</code> foi removido no PHP 8.0.0.
+   </p>
+  </div>
+
+  <div class="caution"><strong class="caution">Cuidado</strong>
+   <p class="simpara">
+    O cast <code class="literal">(binary)</code> e prefixo <code class="literal">b</code> ainda existem
+    para compatibilidade. Atualmente <code class="literal">(binary)</code> e
+    <code class="literal">(string)</code> são idênticos, no entanto isso pode mudar
+    e não deve ser considera estável
+   </p>
+  </div>
+
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Espaços são ignorados dentro dos parênteses de um cast.
+    Portanto, as linhas seguintes são equivalentes:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$foo </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">$bar</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$foo </span><span style="color: #007700">= ( int ) </span><span style="color: #0000BB">$bar</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+  </p></blockquote>
+
+  <div class="informalexample">
+   <p class="simpara">
+    Convertendo <span class="type">string</span> e variáveis para
+    <span class="type">string</span>s binárias:
+   </p>
+
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$binary </span><span style="color: #007700">= (binary) </span><span style="color: #0000BB">$string</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$binary </span><span style="color: #007700">= </span><span style="color: #DD0000">b"binary string"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+
+  
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Em vez de converter uma variável para <span class="type">string</span>, é possível
+    empacotar a variável dentro de aspas.
+   </span>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$foo </span><span style="color: #007700">= </span><span style="color: #0000BB">10</span><span style="color: #007700">;            </span><span style="color: #FF8000">// $foo é int<br /></span><span style="color: #0000BB">$str </span><span style="color: #007700">= </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$foo</span><span style="color: #DD0000">"</span><span style="color: #007700">;        </span><span style="color: #FF8000">// $str é string<br /></span><span style="color: #0000BB">$fst </span><span style="color: #007700">= (string) </span><span style="color: #0000BB">$foo</span><span style="color: #007700">; </span><span style="color: #FF8000">// $fst também é string<br /><br />// Isto imprive "são iguais"<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$fst </span><span style="color: #007700">=== </span><span style="color: #0000BB">$str</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"são iguais"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p></blockquote>
+
+  <p class="para">
+   Não é tão óbvio o que acontece quando convertendo entre certos
+   tipos. Para mais informações, veja as seções:
+   <ul class="simplelist">
+    <li class="member"><a href="language.types.boolean.html#language.types.boolean.casting" class="link">Convertendo para boolean</a></li>
+    <li class="member"><a href="language.types.integer.html#language.types.integer.casting" class="link">Convertendo para integer</a></li>
+    <li class="member"><a href="language.types.float.html#language.types.float.casting" class="link">Convertendo para float</a></li>
+    <li class="member"><a href="language.types.string.html#language.types.string.casting" class="link">Convertendo para string</a></li>
+    <li class="member"><a href="language.types.array.html#language.types.array.casting" class="link">Convertendo para array</a></li>
+    <li class="member"><a href="language.types.object.html#language.types.object.casting" class="link">Convertendo para object</a></li>
+    <li class="member"><a href="language.types.resource.html#language.types.resource.casting" class="link">Convertendo para resource</a></li>
+    <li class="member"><a href="language.types.null.html#language.types.null.casting" class="link">Convertendo para NULL</a></li>
+    <li class="member"><a href="types.comparisons.html" class="link">A tabela de conversão de tipos</a></li>
+   </ul>
+  </p>
+ </div>
+
+ <div class="simplesect">
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    O PHP suporta a indexação de <span class="type">string</span> utilizando
+    a mesma sintaxe de <span class="type">array</span>s, de forma que o exemplo seguinte
+    é válido em todas as versões do PHP:
+   </span>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$a    </span><span style="color: #007700">= </span><span style="color: #DD0000">'car'</span><span style="color: #007700">; </span><span style="color: #FF8000">// $a é uma string<br /></span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] = </span><span style="color: #DD0000">'b'</span><span style="color: #007700">;   </span><span style="color: #FF8000">// $a ainda é uma string<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">$a</span><span style="color: #007700">;       </span><span style="color: #FF8000">// bar<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+
+   <span class="simpara">
+    Veja a seção sobre <a href="language.types.string.html#language.types.string.substr" class="link">Acesso a caracteres
+    da string</a> para mais informações.
+   </span>
+  </p></blockquote>
+ </div>
+
+</div></div></div></body></html>

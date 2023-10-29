@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Prepara uma instru&ccedil;&atilde;o SQL para execu&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqli.poll.html">« mysqli::poll</a></li>
+      <li style="float: right;"><a href="mysqli.query.html">mysqli::query »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mysqli.html">mysqli</a></li>
+    <li>Prepara uma instru&ccedil;&atilde;o SQL para execu&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqli.prepare" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli::prepare</h1>
+  <h1 class="refname">mysqli_prepare</h1>
+  <p class="refpurpose"><span class="refname">mysqli::prepare</span> -- <span class="refname">mysqli_prepare</span> &mdash; <span class="dc-title">Prepara uma instrução SQL para execução</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli.prepare-description">
+  <h3 class="title">Descrição</h3>
+  <p class="para">Estilo orientado a objetos</p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>mysqli::prepare</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>): <span class="type"><span class="type"><a href="class.mysqli-stmt.html" class="type mysqli_stmt">mysqli_stmt</a></span>|<span class="type"><span class="type false">false</span></span></span></div>
+
+  <p class="para rdfs-comment">Estilo procedural</p>
+  <div class="methodsynopsis dc-description"><span class="methodname"><strong>mysqli_prepare</strong></span>(<span class="methodparam"><span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <code class="parameter">$mysql</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>): <span class="type"><span class="type"><a href="class.mysqli-stmt.html" class="type mysqli_stmt">mysqli_stmt</a></span>|<span class="type"><span class="type false">false</span></span></span></div>
+
+  <p class="para rdfs-comment">
+   Prepara a consulta SQL e retorna um identificador de instrução a ser usado para outras
+   operações na instrução. A consulta deve consistir em uma única instrução SQL.
+  </p>
+  <p class="para">
+   O modelo de instrução pode conter zero ou mais marcadores de parâmetro de ponto de interrogação
+   (<code class="literal">?</code>) também chamados de espaços reservados.
+   Os marcadores de parâmetro devem ser vinculados às variáveis do aplicativo usando
+   <span class="function"><a href="mysqli-stmt.bind-param.html" class="function">mysqli_stmt_bind_param()</a></span> antes de executar a instrução.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli.prepare-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    <dt>
+
+<code class="parameter">mysql</code></dt>
+<dd>
+<p class="para">Somente no estilo procedural: Um objeto <span class="classname"><a href="class.mysqli.html" class="classname">mysqli</a></span>
+retornado por <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span> ou <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span>.
+</p></dd>
+
+    
+     <dt>
+<code class="parameter">query</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A consulta, como uma string. Deve consistir em uma única instrução SQL.
+      </p>
+      <p class="para">
+       A instrução SQL pode conter zero ou mais marcadores de
+       parâmetro representados por caracteres de ponto de interrogação (<code class="literal">?</code>)
+       nas posições apropriadas.
+      </p>
+      <blockquote class="note"><p><strong class="note">Nota</strong>: 
+
+       <p class="para">
+        Os marcadores são válidos apenas em determinados locais nas instruções SQL.
+        Por exemplo, eles são permitidos na lista <code class="literal">VALUES()</code>
+        de uma instrução <code class="literal">INSERT</code> (para especificar valores de
+        coluna para uma linha) ou em uma comparação com uma coluna em uma cláusula
+        <code class="literal">WHERE</code> para especificar um valor de comparação.
+        No entanto, eles não são permitidos para identificadores (como nomes de tabelas ou
+        colunas).
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli.prepare-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   <span class="function"><strong>mysqli_prepare()</strong></span> retorna um objeto de instrução ou <strong><code>false</code></strong> se ocorreu um erro.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mysqli.prepare-errors">
+  <h3 class="title">Erros</h3>
+  <p class="para">
+Se o relatório de erros da extensão mysqli estiver habilitado (<strong><code>MYSQLI_REPORT_ERROR</code></strong>) e a operação solicitada falhar,
+um aviso será gerado. Se, além disso, o modo for definido como <strong><code>MYSQLI_REPORT_STRICT</code></strong>,
+uma exceção <span class="classname"><a href="class.mysqli-sql-exception.html" class="classname">mysqli_sql_exception</a></span> será lançada em vez do aviso.</p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli.prepare-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="example-4487">
+   <p><strong>Exemplo #1 <span class="methodname"><strong>mysqli::prepare()</strong></span> exemplo</strong></p>
+   <div class="example-contents"><p>Estilo orientado a objetos</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />mysqli_report</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_REPORT_ERROR </span><span style="color: #007700">| </span><span style="color: #0000BB">MYSQLI_REPORT_STRICT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli </span><span style="color: #007700">= new </span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">, </span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$city </span><span style="color: #007700">= </span><span style="color: #DD0000">"Amersfoort"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/* criar uma declaração preparada */<br /></span><span style="color: #0000BB">$stmt </span><span style="color: #007700">= </span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT District FROM City WHERE Name=?"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* parâmetros de ligação para marcadores */<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bind_param</span><span style="color: #007700">(</span><span style="color: #DD0000">"s"</span><span style="color: #007700">, </span><span style="color: #0000BB">$city</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* executar consulta */<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/* vincular variáveis de resultado */<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bind_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$district</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* buscar valor */<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s está no distrito %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$city</span><span style="color: #007700">, </span><span style="color: #0000BB">$district</span><span style="color: #007700">);</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>Estilo procedural</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />mysqli_report</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_REPORT_ERROR </span><span style="color: #007700">| </span><span style="color: #0000BB">MYSQLI_REPORT_STRICT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$link </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">, </span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">, </span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$city </span><span style="color: #007700">= </span><span style="color: #DD0000">"Amersfoort"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/* criar uma declaração preparada */<br /></span><span style="color: #0000BB">$stmt </span><span style="color: #007700">= </span><span style="color: #0000BB">mysqli_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">, </span><span style="color: #DD0000">"SELECT District FROM City WHERE Name=?"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* parâmetros de ligação para marcadores */<br /></span><span style="color: #0000BB">mysqli_stmt_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">, </span><span style="color: #DD0000">"s"</span><span style="color: #007700">, </span><span style="color: #0000BB">$city</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* executar consulta */<br /></span><span style="color: #0000BB">mysqli_stmt_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* vincular variáveis de resultado */<br /></span><span style="color: #0000BB">mysqli_stmt_bind_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">, </span><span style="color: #0000BB">$district</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/* buscar valor */<br /></span><span style="color: #0000BB">mysqli_stmt_fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s está no distrito %s\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$city</span><span style="color: #007700">, </span><span style="color: #0000BB">$district</span><span style="color: #007700">);</span></span></code></div>
+   </div>
+
+   <div class="example-contents"><p>Os exemplos acima produzirão:</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Amersfoort está no distrito de Utrecht
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli.prepare-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli-stmt.execute.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_execute()</a> - Executes a prepared statement</span></li>
+    <li class="member"><span class="function"><a href="mysqli-stmt.fetch.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_fetch()</a> - Fetch results from a prepared statement into the bound variables</span></li>
+    <li class="member"><span class="function"><a href="mysqli-stmt.bind-param.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_bind_param()</a> - Passa vari&aacute;veis para um preparado comando como par&acirc;metros</span></li>
+    <li class="member"><span class="function"><a href="mysqli-stmt.bind-result.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_bind_result()</a> - Passa vari&aacute;veis para um preparado comando por resultado armazenado</span></li>
+    <li class="member"><span class="function"><a href="mysqli-stmt.get-result.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_get_result()</a> - Gets a result set from a prepared statement as a mysqli_result object</span></li>
+    <li class="member"><span class="function"><a href="mysqli-stmt.close.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_close()</a> - Closes a prepared statement</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

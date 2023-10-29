@@ -1,0 +1,386 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Altera&ccedil;&otilde;es incompat&iacute;veis com vers&otilde;es anteriores</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration81.constants.html">« Novas Constantes Globais</a></li>
+      <li style="float: right;"><a href="migration81.deprecated.html">Funcionalidades depreciadas »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration81.html">Migrando do PHP 8.0.x para o PHP 8.1.x</a></li>
+    <li>Altera&ccedil;&otilde;es incompat&iacute;veis com vers&otilde;es anteriores</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration81.incompatible" class="sect1">
+ <h2 class="title">Alterações incompatíveis com versões anteriores</h2>
+
+ <div class="sect2" id="migration81.incompatible.core">
+  <h3 class="title">PHP Core</h3>
+
+  <div class="sect3" id="migration81.incompatible.core.globals-access">
+   <h4 class="title">Restrições de acesso ao $GLOBALS</h4>
+
+   <p class="para">
+    Acesso ao array <var class="varname"><a href="reserved.variables.globals.html" class="classname">$GLOBALS</a></var> agora está sujeito a
+    uma série de restrições.
+    Acesso de leitura e escrita a elementos individuais de array como
+    <code class="code">$GLOBALS[&#039;var&#039;]</code> continuam funcionando como estão.
+    Acesso somente leitura para todo o array <var class="varname"><a href="reserved.variables.globals.html" class="classname">$GLOBALS</a></var> também
+    continua a ser suportado.
+    No entanto, acesso de escrita para todo o array <var class="varname"><a href="reserved.variables.globals.html" class="classname">$GLOBALS</a></var>
+    não é mais suportado. Por exemplo, <code class="code">array_pop($GLOBALS)</code>
+    resultará em um erro.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration81.incompatible.core.static-variable-inheritance">
+   <h4 class="title">
+    Uso de variáveis <span class="modifier">static</span> em Métodos Herdados
+   </h4>
+
+   <p class="para">
+    Quando um método usando variáveis estáticas é herdado (mas não sobreposto), o
+    método herdado agora irá compartilhar variáveis estáticas com o método pai.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">A </span><span style="color: #007700">{<br />    public static function </span><span style="color: #0000BB">counter</span><span style="color: #007700">() {<br />        static </span><span style="color: #0000BB">$counter </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />        </span><span style="color: #0000BB">$counter</span><span style="color: #007700">++;<br />        return </span><span style="color: #0000BB">$counter</span><span style="color: #007700">;<br />    }<br />}<br />class </span><span style="color: #0000BB">B </span><span style="color: #007700">extends </span><span style="color: #0000BB">A </span><span style="color: #007700">{}<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">A</span><span style="color: #007700">::</span><span style="color: #0000BB">counter</span><span style="color: #007700">()); </span><span style="color: #FF8000">// int(1)<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">A</span><span style="color: #007700">::</span><span style="color: #0000BB">counter</span><span style="color: #007700">()); </span><span style="color: #FF8000">// int(2)<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">B</span><span style="color: #007700">::</span><span style="color: #0000BB">counter</span><span style="color: #007700">()); </span><span style="color: #FF8000">// int(3), anteriormente int(1)<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">B</span><span style="color: #007700">::</span><span style="color: #0000BB">counter</span><span style="color: #007700">()); </span><span style="color: #FF8000">// int(4), anteriormente int(2)<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+
+    Isso significa que variávies estáticas em métodos agora se comportam da mesma maneira que
+    propriedades estáticas.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration81.incompatible.core.optional-before-required">
+   <h4 class="title">Parâmetros opcionais especificados antes de parâmetros obrigatórios</h4>
+
+   <p class="para">
+    Um <a href="functions.arguments.html#functions.arguments.default" class="link">parâmetro opcional</a>
+    especificado antes de parâmetros obrigatórios agora é sempre tratado como obrigatório,
+    mesmo ao chamar usando
+    <a href="functions.arguments.html#functions.named-arguments" class="link">argumentos nomeados</a>.
+    A partir do PHP 8.0.0, mas antes do PHP 8.1.0, a função abaixo emite uma notícia de depreciação
+    na definição, mas executa com sucesso quando chamada. A partir do PHP 8.1.0, um erro
+    da classe <span class="classname"><a href="class.argumentcounterror.html" class="classname">ArgumentCountError</a></span> é lançado, assim como seria lançado ao
+    chamar argumentos posicionais.
+
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">fazeriogurte</span><span style="color: #007700">(</span><span style="color: #0000BB">$recipiente </span><span style="color: #007700">= </span><span style="color: #DD0000">"tigela"</span><span style="color: #007700">, </span><span style="color: #0000BB">$sabor</span><span style="color: #007700">)<br />{<br />    return </span><span style="color: #DD0000">"Fazendo um(a) </span><span style="color: #0000BB">$recipiente</span><span style="color: #DD0000"> de iogurte de </span><span style="color: #0000BB">$sabor</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />try<br />{<br />    echo </span><span style="color: #0000BB">fazeriogurte</span><span style="color: #007700">(</span><span style="color: #0000BB">sabor</span><span style="color: #007700">: </span><span style="color: #DD0000">"framboesa"</span><span style="color: #007700">);<br />}<br />catch (</span><span style="color: #0000BB">Error $e</span><span style="color: #007700">)<br />{<br />    echo </span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">), </span><span style="color: #DD0000">' - '</span><span style="color: #007700">, </span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">(), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+     <p class="para">Saída do exemplo acima no PHP 8.0:</p>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Deprecated: Required parameter $sabor follows optional parameter $recipiente
+ in example.php on line 3
+Fazendo um(a) tigela de iogurte de framboesa.
+</pre></div>
+     </div>
+     <p class="para">Saída do exemplo acima no PHP 8.1:</p>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Deprecated: Optional parameter $recepiente declared before required parameter
+ $sabor is implicitly treated as a required parameter in example.php on line 3
+ArgumentCountError - fazeriogurte(): Argument #1 ($recepiente) not passed
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <p class="para">
+    Note que um valor padrão de <strong><code>null</code></strong> pode ser usado antes de parâmetros obrigatórios para
+    especificar um <a href="language.types.declarations.html#language.types.declarations.nullable" class="link">tipo anulável</a>,
+    mas o parâmetro ainda será obrigatório.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration81.incompatible.core.type-compatibility-internal">
+   <h4 class="title">Compatibilidade de Tipo de Retorno com Classes Internas</h4>
+
+   <p class="para">
+    A maioria dos métodos internos não-finais agora obrigam métodos que fazem sobrescrita a declarar
+    um tipo de retorno compatível, do contrário um aviso de depreciação é emitido durante
+    a validação de herança.
+    Caso o tipo de retorno não possa ser declarado para um método que faz sobrescrita devido a
+    questões de compatilidade entre versões PHP,
+    um atributo <span class="classname"><a href="class.returntypewillchange.html" class="classname">ReturnTypeWillChange</a></span> pode ser adicionado para silenciar
+    o aviso de depreciação.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration81.incompatible.core.new-keywords">
+   <h4 class="title">Novas Palavras-chave</h4>
+   <p class="para">
+    <code class="literal">readonly</code> agora é uma palavra-chave. No entanto, ela ainda pode ser usada
+    como nome de função.
+   </p>
+   <p class="para">
+    <code class="literal">never</code> agora é uma palavra reservada, então ela não pode ser usada para nomear uma classe,
+    interface ou trait, e também é proibida de ser usada em namespaces.
+   </p>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration81.incompatible.resource2object">
+  <h3 class="title">Migração de Recurso para Objeto</h3>
+
+  <p class="para">
+   Diversos <a href="language.types.resource.html" class="link">resource</a>s foram migrados para <span class="type">object</span>s.
+   Checagens de valor de retorno usando <span class="function"><a href="function.is-resource.html" class="function">is_resource()</a></span> devem ser trocadas para checagens por <strong><code>false</code></strong>.
+  </p>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.fileinfo.html" class="link">FileInfo</a> agora aceitam e retornam
+     objetos <span class="classname"><a href="class.finfo.html" class="classname">finfo</a></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">fileinfo</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.ftp.html" class="link">FTP</a> agora aceitam e retornam
+     objetos <span class="classname"><strong class="classname">FTP\Connection</strong></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">ftp</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.imap.html" class="link">IMAP</a> agora aceitam e retornam
+     objetos <span class="classname"><a href="class.imap-connection.html" class="classname">IMAP\Connection</a></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">imap</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.ldap.html" class="link">LDAP</a> agora aceitam e retornam
+     objetos <span class="classname"><a href="class.ldap-connection.html" class="classname">LDAP\Connection</a></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">ldap link</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.ldap.html" class="link">LDAP</a> agora aceitam e retornam
+     objetos <span class="classname"><a href="class.ldap-result.html" class="classname">LDAP\Result</a></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">ldap result</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.ldap.html" class="link">LDAP</a> agora aceitam e retornam
+     objetos <span class="classname"><a href="class.ldap-result-entry.html" class="classname">LDAP\ResultEntry</a></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">ldap result entry</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.pgsql.html" class="link">PgSQL</a> agora aceitam e retornam
+     objetos <span class="classname"><strong class="classname">PgSql\Connection</strong></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">pgsql link</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.pgsql.html" class="link">PgSQL</a> agora aceitam e retornam
+     objetos <span class="classname"><strong class="classname">PgSql\Result</strong></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">pgsql result</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.pgsql.html" class="link">PgSQL</a> agora aceitam e retornam
+     objetos <span class="classname"><strong class="classname">PgSql\Lob</strong></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">pgsql large object</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.pspell.html" class="link">PSpell</a> agora aceitam e retornam
+     objetos <span class="classname"><a href="class.pspell-dictionary.html" class="classname">PSpell\Dictionary</a></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">pspell</code>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções <a href="book.pspell.html" class="link">PSpell</a> agora aceitam e retornam
+     objetos <span class="classname"><a href="class.pspell-config.html" class="classname">PSpell\Config</a></span> em vez de
+     <a href="language.types.resource.html" class="link">resource</a>s <code class="literal">pspell config</code>.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration81.incompatible.mysqli">
+  <h3 class="title">MySQLi</h3>
+
+  <p class="para">
+   <span class="function"><a href="mysqli-result.fetch-fields.html" class="function">mysqli_fetch_fields()</a></span>, e
+   <span class="function"><a href="mysqli-result.fetch-field-direct.html" class="function">mysqli_fetch_field_direct()</a></span> agora irão sempre retornar
+   <code class="literal">0</code> para a <span class="property">max_length</span>.
+   Essa informação pode ser computada iterando sobre o conjunto de resultados,
+   e obtendo o tamanho máximo. Era isso que o PHP estava fazendo
+   internamente anteriormente.
+  </p>
+
+  <p class="para">
+   A opção <strong><code>MYSQLI_STMT_ATTR_UPDATE_MAX_LENGTH</code></strong>
+   não tem mais efeito.
+  </p>
+
+  <p class="para">
+   A opção <strong><code>MYSQLI_STORE_RESULT_COPY_DATA</code></strong>
+   Não tem mais efeito. Passar qualquer valor para o
+   parâmetro <code class="parameter">mode</code> do
+   <span class="methodname"><a href="mysqli.store-result.html" class="methodname">mysqli::store_result()</a></span> não tem mais efeito.
+  </p>
+
+  <p class="para">
+   <span class="methodname"><a href="function.mysqli-connect.html" class="methodname">mysqli::connect()</a></span> agora retorna <strong><code>true</code></strong> em vez de <strong><code>null</code></strong> em caso de sucesso.
+  </p>
+
+  <p class="para">
+   O modo de manipulação de erros padrão foi alterado de &quot;silent&quot; para &quot;exceptions&quot;
+   Veja a página <a href="mysqli-driver.report-mode.html" class="link">Modo de relatório do MySQLi</a>
+   para mais detalhes sobre o que isso emplica,
+   e como definir esse atributo explicitamente.
+   Para restaurar o comportamento anterior use:
+   <code class="code">mysqli_report(MYSQLI_REPORT_OFF);</code>
+  </p>
+
+  <p class="para">
+   Classes estendendo <span class="methodname"><a href="mysqli-stmt.execute.html" class="methodname">mysqli_stmt::execute()</a></span>
+   agora são obrigadas a especificar o parâmetro opcional adicional.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration81.incompatible.mysqlnd">
+  <h3 class="title">MySQLnd</h3>
+
+  <p class="para">
+   A diretiva INI <a href="mysqlnd.config.html#ini.mysqlnd.fetch_data_copy" class="link">mysqlnd.fetch_data_copy</a>
+   foi removida.
+   Isso não deve resultar em mudanças comportamentais visíveis pelo usuário.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration81.incompatible.openssl">
+  <h3 class="title">OpenSSL</h3>
+
+  <p class="para">
+   Chaves privadas EC agora serão exportadas no formato <abbr title="Public Key Cryptography Standards">PKCS</abbr>#8 em vez de
+   formatos tradicionais, assim como todas as outras chaves.
+  </p>
+  <p class="para">
+   <span class="function"><a href="function.openssl-pkcs7-encrypt.html" class="function">openssl_pkcs7_encrypt()</a></span> e
+   <span class="function"><a href="function.openssl-cms-encrypt.html" class="function">openssl_cms_encrypt()</a></span> agora irão por padrão usar
+   AES-128-CBC em vez de RC2-40. O cifrador RC2-40 é considerado
+   inseguro e não é habilitado por padrão pelo OpenSSL 3.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration81.incompatible.pdo">
+  <h3 class="title">PHP Data Objects</h3>
+
+  <p class="para">
+   <strong><code>PDO::ATTR_STRINGIFY_FETCHES</code></strong> agora stringifica valores
+   de tipo <span class="type">bool</span> para <code class="literal">&quot;0&quot;</code> iy
+   <code class="literal">&quot;1&quot;</code>. Anteriormente <span class="type">bool</span>s não eram stringificados.
+  </p>
+  <p class="para">
+   Chamar <span class="methodname"><a href="pdostatement.bindcolumn.html" class="methodname">PDOStatement::bindColumn()</a></span> com
+   <strong><code>PDO::PARAM_LOB</code></strong> agor irá constantemente vincular um resultado de stream
+   quando <strong><code>PDO::ATTR_STRINGIFY_FETCHES</code></strong> não está habilitado.
+   Anteriormente, o resultado seria uma stream ou string dependendo do
+   driver de banco de dados utilizado e a hora que a vinculação é realizada.
+  </p>
+
+  <div class="sect3" id="migration81.incompatible.pdo.mysql">
+   <h4 class="title">Driver MySQL</h4>
+
+   <p class="para">
+    Inteiros e floats em conjuntos de resultados agora serão retornados usando
+    tipos nativos do PHP em vez de <span class="type">string</span>s ao usar declarações preparadas emuladas.
+    Isso corresponde ao comportamento das declarações preparadas nativas.
+    O comportamento anterior pode ser restaurado habilitando a
+    opção <strong><code>PDO::ATTR_STRINGIFY_FETCHES</code></strong>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration81.incompatible.pdo.sqlite">
+   <h4 class="title">Driver SQLite</h4>
+
+   <p class="para">
+    Inteiros e floats em conjuntos de resultados agora serão retornados usando
+    tipos nativos do PHP.
+    O comportamento anterior pode ser restaurado habilitando a
+    opção <strong><code>PDO::ATTR_STRINGIFY_FETCHES</code></strong>.
+   </p>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration81.incompatible.phar">
+  <h3 class="title">Phar</h3>
+
+  <p class="para">
+   Para cumprir com a interface <span class="interfacename"><a href="class.arrayaccess.html" class="interfacename">ArrayAccess</a></span>,
+   <span class="methodname"><a href="phar.offsetunset.html" class="methodname">Phar::offsetUnset()</a></span> e
+   <span class="methodname"><a href="phardata.offsetunset.html" class="methodname">PharData::offsetUnset()</a></span> não retorna mais um <span class="type">bool</span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration81.incompatible.standard">
+  <h3 class="title">Biblioteca Padrão</h3>
+
+  <p class="para">
+   <span class="function"><a href="function.version-compare.html" class="function">version_compare()</a></span> não aceita mais abreviações de operadores não documentados.
+  </p>
+
+  <p class="para">
+   <span class="function"><a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>,
+   <span class="function"><a href="function.htmlentities.html" class="function">htmlentities()</a></span>,
+   <span class="function"><a href="function.htmlspecialchars-decode.html" class="function">htmlspecialchars_decode()</a></span>,
+   <span class="function"><a href="function.html-entity-decode.html" class="function">html_entity_decode()</a></span>,
+   e <span class="function"><a href="function.get-html-translation-table.html" class="function">get_html_translation_table()</a></span>
+   agora usam <code class="literal">ENT_QUOTES | ENT_SUBSTITUTE</code> em vez de
+   <strong><code>ENT_COMPAT</code></strong> por padrão.
+   Isso significa que <code class="literal">&#039;</code> é escapada para
+   <code class="literal">&amp;#039;</code> enquanto antes nada era feito.
+   Adicionalmente, UTF-8 malformado será substituído por um caractere de substituição
+   Unicode, ao invés de resultar em uma string vazia.
+  </p>
+
+  <p class="para">
+   <span class="function"><a href="function.debug-zval-dump.html" class="function">debug_zval_dump()</a></span> agora imprime a refcount de wrappers de
+   referência com sua refcount, em vez de apenas prefixar
+   <code class="literal">&amp;</code> ao valor.
+   Isso modela de forma mais precisa a representação de referência desde o PHP 7.0.
+  </p>
+
+  <p class="para">
+   <span class="function"><a href="function.debug-zval-dump.html" class="function">debug_zval_dump()</a></span> agora imprime <code class="literal">interned</code>
+   em vez de uma refcount falso para strings internadas e arrays imutáveis.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration81.incompatible.spl">
+  <h3 class="title">Biblioteca Padrão do PHP (SPL)</h3>
+
+  <p class="para">
+   <span class="classname"><a href="class.splfixedarray.html" class="classname">SplFixedArray</a></span>, agora será codificado em JSON como um <span class="type">array</span>
+  </p>
+ </div>
+
+</div></div></div></body></html>

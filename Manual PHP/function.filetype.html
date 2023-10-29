@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>L&ecirc; o tipo do arquivo</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.filesize.html">« filesize</a></li>
+      <li style="float: right;"><a href="function.flock.html">flock »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.filesystem.html">Fun&ccedil;&otilde;es da Filesystem</a></li>
+    <li>L&ecirc; o tipo do arquivo</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.filetype" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">filetype</h1>
+  <p class="refpurpose"><span class="refname">filetype</span> &mdash; <span class="dc-title">Lê o tipo do arquivo</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.filetype-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>filetype</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$filename</code></span>): <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Retorna o tipo do arquivo.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.filetype-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">filename</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Caminho até o arquivo.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.filetype-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna o tipo do arquivo. Os valores possíveis são fifo, char, dir, block,
+   link, file, socket e unknown (desconhecido).
+  </p>
+  <p class="para">
+   Retorna <strong><code>false</code></strong> se ocorrer algum erro. <span class="function"><strong>filetype()</strong></span> também
+   produzirá uma mensagem <strong><code>E_NOTICE</code></strong> se a chamada stat
+   falhar ou se o tipo do arquivo for desconhecido.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.filetype-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo de <span class="function"><strong>filetype()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">filetype</span><span style="color: #007700">(</span><span style="color: #DD0000">'/etc/passwd'</span><span style="color: #007700">);  </span><span style="color: #FF8000">// file<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">filetype</span><span style="color: #007700">(</span><span style="color: #DD0000">'/etc/'</span><span style="color: #007700">);        </span><span style="color: #FF8000">// dir<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+  <div class="refsect1 errors" id="refsect1-function.filetype-errors">
+   <h3 class="title">Erros</h3>
+   <p class="para">
+Em caso de falha, um <strong><code>E_WARNING</code></strong> será emitido.
+</p>
+  </div>
+
+ 
+ <div class="refsect1 notes" id="refsect1-function.filetype-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">Os resultados desta
+função são armazenados em cache. Consulte a função <span class="function"><a href="function.clearstatcache.html" class="function">clearstatcache()</a></span> para
+mais detalhes.</span></p></blockquote>
+  <div class="tip"><strong class="tip">Dica</strong><p class="simpara">A partir do PHP 5.0.0, esta função
+também pode ser usada com <em>alguns</em> wrappers URL. Consulte os
+<a href="wrappers.html" class="xref">Protocolos e Wrappers suportados</a> para determinar quais wrappers suportam
+a família de funções <span class="function"><a href="function.stat.html" class="function">stat()</a></span>.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.filetype-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.is-dir.html" class="function" rel="rdfs-seeAlso">is_dir()</a> - Diz se o caminho &eacute; um diret&oacute;rio</span></li>
+    <li class="member"><span class="function"><a href="function.is-file.html" class="function" rel="rdfs-seeAlso">is_file()</a> - Informa se o arquivo &eacute; um arquivo comum</span></li>
+    <li class="member"><span class="function"><a href="function.is-link.html" class="function" rel="rdfs-seeAlso">is_link()</a> - Tells whether the filename is a symbolic link</span></li>
+    <li class="member"><span class="function"><a href="function.file-exists.html" class="function" rel="rdfs-seeAlso">file_exists()</a> - Verifica se um arquivo ou diret&oacute;rio existe</span></li>
+    <li class="member"><span class="function"><a href="function.mime-content-type.html" class="function" rel="rdfs-seeAlso">mime_content_type()</a> - Detecta o tipo de conte&uacute;do MIME de um arquivo</span></li>
+     <li class="member"><span class="function"><a href="function.pathinfo.html" class="function" rel="rdfs-seeAlso">pathinfo()</a> - Returns information about a file path</span></li>
+     <li class="member"><span class="function"><a href="function.stat.html" class="function" rel="rdfs-seeAlso">stat()</a> - Gives information about a file</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

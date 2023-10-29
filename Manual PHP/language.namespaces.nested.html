@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Declarando subnamespaces</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.namespaces.definition.html">« Definindo namespaces</a></li>
+      <li style="float: right;"><a href="language.namespaces.definitionmultiple.html">Definindo v&aacute;rios namespaces no mesmo arquivo »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.namespaces.html">Namespaces</a></li>
+    <li>Declarando subnamespaces</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.namespaces.nested" class="sect1">
+  <h2 class="title">Declarando subnamespaces</h2>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PHP 8)</p>
+  <p class="para">
+   Assim como diretórios e arquivos, os namespaces do PHP podem especificar
+   uma hierarquia de namespaces. Assim, um namespace pode ser definido com
+   subníveis.
+   <div class="example" id="example-881">
+    <p><strong>Exemplo #1 Declarando um único namespace com hierarquia</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">MeuProjeto\Nivel\SubNivel</span><span style="color: #007700">;<br /><br />const </span><span style="color: #0000BB">CONEXAO_OK </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />class </span><span style="color: #0000BB">Conexao </span><span style="color: #007700">{ </span><span style="color: #FF8000">/* ... */ </span><span style="color: #007700">}<br />function </span><span style="color: #0000BB">conectar</span><span style="color: #007700">() { </span><span style="color: #FF8000">/* ... */  </span><span style="color: #007700">}<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+   O exemplo acima cria a constante <code class="literal">MeuProjeto\Nivel\SubNivel\CONEXAO_OK</code>,
+   a classe <code class="literal">MeuProjeto\Nivel\SubNivel\Conexao</code> e a função
+   <code class="literal">MeuProjeto\Nivel\SubNivel\conectar</code>.
+  </p>
+ </div></div></div></body></html>

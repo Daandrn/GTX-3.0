@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Heran&ccedil;a de Objetos</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.oop5.visibility.html">« Visibilidade</a></li>
+      <li style="float: right;"><a href="language.oop5.paamayim-nekudotayim.html">Operador de Resolu&ccedil;&atilde;o de Escopo (::) »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.oop5.html">Classes e Objetos</a></li>
+    <li>Heran&ccedil;a de Objetos</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.oop5.inheritance" class="sect1">
+  <h2 class="title">Herança de Objetos</h2>
+  <p class="para">
+   Herança é um conceito de programação estabelecido, e o PHP faz
+   use deste em seu modelo de objetos. Este princípio afeta a forma
+   com que classes e objetos se relacionam com outras.
+  </p>
+  <p class="para">
+   Por exemplo, ao estender uma classe, a subclasse herda todos os métodos
+   públicos e protegidos, propriedades e constantes da classe pai.
+   A não que uma classe sobrescreva
+   estes métodos, eles manterão sua funcionalidade original.
+  </p>
+  <p class="para">
+   Isto é útil para definir uma funcionalidade abstrata, e permitir a
+   implementação de uma funcionalidade adicional em objetos similares sem a
+   necessidade de reimplementar todas as funcionalidades compartilhadas.
+  </p>
+  <p class="para">
+   Os métodos privados de uma classe pai não são acessíveis a uma classe filha. Como resultado,
+   as classes filhas podem reimplementar um método privado sem levar em conta as regras normais
+   de herança. Antes do PHP 8.0.0, entretanto, as restrições <code class="literal">final</code> e <code class="literal">static</code>
+   eram aplicadas aos métodos privados. Desde o PHP 8.0.0, a única restrição de método privado
+   que é aplicada é <code class="literal">private final</code> para construtores, já que essa
+   é uma maneira comum de &quot;desabilitar&quot; o construtor ao usar métodos de fábricação estáticos.
+  </p>
+ <p class="para">
+  A <a href="language.oop5.visibility.html" class="link">visibilidade</a>
+  de métodos, propriedades e constantes pode ser relaxada, por exemplo, um
+  método com <code class="literal">protected</code> pode ser marcado como
+  <code class="literal">public</code>, mas não pode ser restrito, por exemplo,
+  marcar uma propriedade que tenha <code class="literal">public</code> como <code class="literal">private</code>.
+  Uma exceção são os construtores, cuja visibilidade pode ser restrita, ou seja,
+  um construtor <code class="literal">public</code> pode ser declarado como <code class="literal">private</code>
+  numa classe filha.
+ </p>
+
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    A não ser que o autoload seja usado, as classes devem ser definidas antes de
+    utilizadas. Se uma classe estende outra, a classe pai deve ser declarada
+    antes da estrutura da classe filha. Esta regra se aplica a classes que herdam
+    outras classes e interfaces.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Não é permitido sobrescrever uma propriedade de leitura/gravação com um <a href="language.oop5.properties.html#language.oop5.properties.readonly-properties" class="link">propriedade somente de leitura</a> ou vice versa.
+    <div class="example" id="example-707">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">A </span><span style="color: #007700">{<br />    public </span><span style="color: #0000BB">int $prop</span><span style="color: #007700">;<br />}<br />class </span><span style="color: #0000BB">B </span><span style="color: #007700">extends </span><span style="color: #0000BB">A </span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">// Illegal: read-write -&gt; readonly<br />    </span><span style="color: #007700">public readonly </span><span style="color: #0000BB">int $prop</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+  </p></blockquote>
+  
+  <div class="sect2" id="language.oop5.inheritance.examples">
+   <div class="example" id="example-710">
+    <p><strong>Exemplo #1 Exemplo de Herança</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">printItem</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">)<br />    {<br />        echo </span><span style="color: #DD0000">'Foo: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$string </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />    }<br /><br />    public function </span><span style="color: #0000BB">printPHP</span><span style="color: #007700">()<br />    {<br />        echo </span><span style="color: #DD0000">'PHP is great.' </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />    }<br />}<br /><br />class </span><span style="color: #0000BB">Bar </span><span style="color: #007700">extends </span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">printItem</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">)<br />    {<br />        echo </span><span style="color: #DD0000">'Bar: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$string </span><span style="color: #007700">. </span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #0000BB">$foo </span><span style="color: #007700">= new </span><span style="color: #0000BB">Foo</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$bar </span><span style="color: #007700">= new </span><span style="color: #0000BB">Bar</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$foo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">printItem</span><span style="color: #007700">(</span><span style="color: #DD0000">'baz'</span><span style="color: #007700">); </span><span style="color: #FF8000">// Output: 'Foo: baz'<br /></span><span style="color: #0000BB">$foo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">printPHP</span><span style="color: #007700">();       </span><span style="color: #FF8000">// Output: 'PHP is great'<br /></span><span style="color: #0000BB">$bar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">printItem</span><span style="color: #007700">(</span><span style="color: #DD0000">'baz'</span><span style="color: #007700">); </span><span style="color: #FF8000">// Output: 'Bar: baz'<br /></span><span style="color: #0000BB">$bar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">printPHP</span><span style="color: #007700">();       </span><span style="color: #FF8000">// Output: 'PHP is great'<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </div>
+
+  <div class="sect2" id="language.oop5.inheritance.internal-classes">
+   <h3 class="title">Compatibilidade de Tipo de Retorno com Classes Internas</h3>
+
+   <p class="para">
+    Antes do PHP 8.1, a maioria das classes ou métodos internos não declaravam seus tipos de retorno,
+    e qualquer tipo de retorno era permitido ao estendê-los.
+   </p>
+
+   <p class="para">
+    A partir do PHP 8.1.0, a maioria dos métodos internos começaram a declarar seu tipo de retorno de forma &quot;experimental&quot;,
+    nesse caso o tipo de retorno dos métodos deve ser compatível com o pai sendo estendido,
+    do contrário, uma notícia de depreciação é emitida.
+    Note que a ausência de uma declaração de retorno explícita também é considerada uma incompatibilidade de assinatura
+    e, portanto, resulta no aviso de depreciação.
+   </p>
+
+   <p class="para">
+    Se o tipo de retorno não puder ser declarado para um método que sobrepõe devido à preocupações com compatibilidade entre versões PHP,
+    um atributo <span class="classname"><a href="class.returntypewillchange.html" class="classname">ReturnTypeWillChange</a></span> pode ser adicionado para silenciar a notícia de depreciação.
+   </p>
+
+   <div class="example" id="example-713">
+    <p><strong>Exemplo #2 O método que sobrepõe não declara nenhum tipo de retorno</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">MeuDateTime </span><span style="color: #007700">extends </span><span style="color: #0000BB">DateTime<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">modify</span><span style="color: #007700">(</span><span style="color: #0000BB">string $modifier</span><span style="color: #007700">) { return </span><span style="color: #0000BB">false</span><span style="color: #007700">; }<br />}<br /><br /></span><span style="color: #FF8000">// "Deprecated: Return type of MeuDateTime::modify(string $modifier) should either be compatible with DateTime::modify(string $modifier): DateTime|false, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice" a partir do PHP 8.1.0<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+
+   <div class="example" id="example-716">
+    <p><strong>Exemplo #3 O método que sobrepõe declara um tipo de retorno errado</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">MeuDateTime </span><span style="color: #007700">extends </span><span style="color: #0000BB">DateTime<br /></span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">modify</span><span style="color: #007700">(</span><span style="color: #0000BB">string $modifier</span><span style="color: #007700">): ?</span><span style="color: #0000BB">DateTime </span><span style="color: #007700">{ return </span><span style="color: #0000BB">null</span><span style="color: #007700">; }<br />}<br /><br /></span><span style="color: #FF8000">// "Deprecated: Return type of MeuDateTime::modify(string $modifier): ?DateTime should either be compatible with DateTime::modify(string $modifier): DateTime|false, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice" a partir do PHP 8.1.0<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+
+   <div class="example" id="example-719">
+    <p><strong>Exemplo #4 O método que sobrepõe declara um tipo de retorno errado sem uma notícia de depreciação</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">MeuDateTime </span><span style="color: #007700">extends </span><span style="color: #0000BB">DateTime<br /></span><span style="color: #007700">{<br />    </span><span style="color: #FF8000">/**<br />     * @return DateTime|false<br />     */<br />    </span><span style="color: #007700">#[</span><span style="color: #0000BB">\ReturnTypeWillChange</span><span style="color: #007700">]<br />    public function </span><span style="color: #0000BB">modify</span><span style="color: #007700">(</span><span style="color: #0000BB">string $modifier</span><span style="color: #007700">) { return </span><span style="color: #0000BB">false</span><span style="color: #007700">; }<br />}<br /><br /></span><span style="color: #FF8000">// Nenhuma notícia é acionada<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+
+  </div>
+
+ </div></div></div></body></html>

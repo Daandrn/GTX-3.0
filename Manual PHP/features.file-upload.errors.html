@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Explicando mensagens de erro</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="features.file-upload.post-method.html">« Upload de arquivos com o m&eacute;todo POST</a></li>
+      <li style="float: right;"><a href="features.file-upload.common-pitfalls.html">Problemas Comuns »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="features.file-upload.html">Gerenciar o upload de arquivos</a></li>
+    <li>Explicando mensagens de erro</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="features.file-upload.errors" class="sect1">
+   <h2 class="title">Explicando mensagens de erro</h2>
+   <p class="simpara">
+    O PHP retorna um código de erro apropriado na array do arquivo.
+    O código de erro pode ser encontrado no segmento
+    <code class="literal">error</code> da array que é criada pelo PHP durante o upload do arquivo.
+    Em outras palavras, o erro pode ser encontrado em
+    <var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['error']</a></var>.
+   </p>
+   <p class="para">
+    <dl>
+     
+      <dt>
+<strong><code>UPLOAD_ERR_OK</code></strong></dt>
+
+      <dd>
+
+       <p class="para">
+        Valor: 0; não houve erro, o upload foi bem sucedido.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+<strong><code>UPLOAD_ERR_INI_SIZE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">
+        Valor 1; O arquivo enviado excede o limite definido na diretiva
+        <a href="ini.core.html#ini.upload-max-filesize" class="link">upload_max_filesize</a>
+        do <var class="filename">php.ini</var>.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+<strong><code>UPLOAD_ERR_FORM_SIZE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">
+        Valor: 2; O arquivo excede o limite definido em <em>MAX_FILE_SIZE</em>
+        no formulário HTML.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+<strong><code>UPLOAD_ERR_PARTIAL</code></strong></dt>
+
+      <dd>
+
+       <p class="para">
+        Valor: 3; O upload do arquivo foi feito parcialmente.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+<strong><code>UPLOAD_ERR_NO_FILE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">
+        Valor: 4; Nenhum arquivo foi enviado.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+<strong><code>UPLOAD_ERR_NO_TMP_DIR</code></strong></dt>
+
+      <dd>
+
+       <p class="para">
+        Valor: 6; Pasta temporária ausente.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+<strong><code>UPLOAD_ERR_CANT_WRITE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">
+        Valor: 7; Falha ao escrever o arquivo no disco.
+       </p>
+      </dd>
+
+     
+     
+       <dt>
+<strong><code>UPLOAD_ERR_EXTENSION</code></strong></dt>
+
+       <dd>
+
+         <p class="para">
+           Valor: 8; Uma extensão do PHP interrompeu o upload do arquivo. O PHP não
+           fornece uma maneira de determinar qual extensão causou a interrupção do upload.
+           Examinar a lista das extensões carregadas com o <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span> pode ajudar.
+         </p>
+       </dd>
+
+     
+    </dl>
+
+   </p>
+  </div></div></div></body></html>

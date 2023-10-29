@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Porque enums n&atilde;o s&atilde;o extens&iacute;veis</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.enumerations.serialization.html">« Serializa&ccedil;&atilde;o</a></li>
+      <li style="float: right;"><a href="language.enumerations.examples.html">Exemplos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.enumerations.html">Enumera&ccedil;&otilde;es</a></li>
+    <li>Porque enums n&atilde;o s&atilde;o extens&iacute;veis</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.enumerations.object-differences.inheritance" class="sect1">
+
+  <h2 class="title">Porque enums não são extensíveis</h2>
+
+  <p class="simpara">
+   Classes possuem contratos em seus métodos:
+  </p>
+
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class </span><span style="color: #0000BB">A </span><span style="color: #007700">{}<br />class </span><span style="color: #0000BB">B </span><span style="color: #007700">extends </span><span style="color: #0000BB">A </span><span style="color: #007700">{}<br /><br />function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">A $a</span><span style="color: #007700">) {}<br /><br />function </span><span style="color: #0000BB">bar</span><span style="color: #007700">(</span><span style="color: #0000BB">B $b</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$b</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+ </div>
+
+
+  <p class="simpara">
+   Esse código é correto para tipos, pois B segue o contrato de A, e através da
+   co e contra variância, quaisquer expectativas a respeito dos métodos será
+   atendida.
+  </p>
+
+  <p class="simpara">
+   Enums possuem contratos em seus itens, não em seus métodos:
+  </p>
+
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">enum </span><span style="color: #0000BB">ErrorCode </span><span style="color: #007700">{<br />    case </span><span style="color: #0000BB">SOMETHING_BROKE</span><span style="color: #007700">;<br />}<br /><br />function </span><span style="color: #0000BB">quux</span><span style="color: #007700">(</span><span style="color: #0000BB">ErrorCode $errorCode</span><span style="color: #007700">)<br />{<br />    </span><span style="color: #FF8000">// Nesse primeiro momento, esse código prevê todos os casos<br />    </span><span style="color: #007700">match (</span><span style="color: #0000BB">$errorCode</span><span style="color: #007700">) {<br />        </span><span style="color: #0000BB">ErrorCode</span><span style="color: #007700">::</span><span style="color: #0000BB">SOMETHING_BROKE </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">true</span><span style="color: #007700">,<br />    }<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+  </div>
+
+
+  <p class="simpara">
+   A instrução <a href="control-structures.match.html" class="link">match</a> na função <code class="code">quux</code> pode ser analisada estaticamente
+   para verificar se cobre todos os casos possíveis em ErrorCode.
+  </p>
+
+  <p class="simpara">
+   Mas imagine que seja possível estender enums, assim:
+  </p>
+
+
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Apenas para o exemplo onde enums não são finais.<br />// Isto *não* funciona no PHP.<br /></span><span style="color: #007700">enum </span><span style="color: #0000BB">MoreErrorCode </span><span style="color: #007700">extends </span><span style="color: #0000BB">ErrorCode </span><span style="color: #007700">{<br />    case </span><span style="color: #0000BB">PEBKAC</span><span style="color: #007700">;<br />}<br /><br />function </span><span style="color: #0000BB">fot</span><span style="color: #007700">(</span><span style="color: #0000BB">MoreErrorCode $errorCode</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">quux</span><span style="color: #007700">(</span><span style="color: #0000BB">$errorCode</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">fot</span><span style="color: #007700">(</span><span style="color: #0000BB">MoreErrorCode</span><span style="color: #007700">::</span><span style="color: #0000BB">PEBKAC</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+ </div>
+
+
+  <p class="simpara">
+   Em condições normais de herança, uma classe que estende outro passará
+   na checagem de tipos.
+  </p>
+
+  <p class="simpara">
+   O problema ocorreria na instrução <a href="control-structures.match.html" class="link">match</a> da função <code class="code">quux()</code> que agora não cobre todos
+   os casos. Porque a função não prevê o item <code class="code">MoreErrorCode::PEBKAC</code> o match irá falhar com uma exceção.
+  </p>
+
+  <p class="simpara">
+   Por conta disso, enums são finais e não podem ser estendidos.
+  </p>
+ </div></div></div></body></html>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Definindo namespaces</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.namespaces.rationale.html">« Vis&atilde;o geral de Namespaces</a></li>
+      <li style="float: right;"><a href="language.namespaces.nested.html">Declarando subnamespaces »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.namespaces.html">Namespaces</a></li>
+    <li>Definindo namespaces</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.namespaces.definition" class="sect1">
+  <h2 class="title">Definindo namespaces</h2>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PHP 8)</p>
+  <p class="para">
+   Embora qualquer código PHP válido possa estar contido em um namespace, apenas os seguintes
+   tipos de código são afetados por namespaces: classes (incluindo abstratas e traits), interfaces, funções e constantes.
+  </p>
+  <p class="para">
+   Namespaces são declarados usando a palavra-chave <code class="literal">namespace</code>.
+   Um arquivo contendo um namespace deve declarar o namespace
+   no início do arquivo antes de qualquer outro código - com uma exceção: a
+   palavra-chave <a href="control-structures.declare.html" class="xref">declare</a>.
+   <div class="example" id="example-875">
+    <p><strong>Exemplo #1 Declarando um único namespace</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">MeuProjeto</span><span style="color: #007700">;<br /><br />const </span><span style="color: #0000BB">CONEXAO_OK </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />class </span><span style="color: #0000BB">Conexao </span><span style="color: #007700">{ </span><span style="color: #FF8000">/* ... */ </span><span style="color: #007700">}<br />function </span><span style="color: #0000BB">conectar</span><span style="color: #007700">() { </span><span style="color: #FF8000">/* ... */ </span><span style="color: #007700">}<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <span class="simpara">
+     Nomes totalmente qualificados (ou seja, nomes que começam com uma barra invertida) não são permitidos em declarações
+     de namespace, por serem construções interpretadas como expressões de namespace relativos.
+    </span>
+   </p></blockquote>
+   A única construção de código permitida antes de uma declaração de namespace é a
+   declaração <code class="literal">declare</code>, para definir a codificação de um arquivo-fonte. Além disso,
+   nenhum código não-PHP pode preceder uma declaração de namespace, incluindo espaço em branco extra:
+   <div class="example" id="example-878">
+    <p><strong>Exemplo #2 Declarando um único namespace</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">&lt;html&gt;<br /><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">namespace </span><span style="color: #0000BB">MeuProjeto</span><span style="color: #007700">; </span><span style="color: #FF8000">// fatal error - namespace must be the first statement in the script<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Além disso, ao contrário de qualquer outra construção do PHP, o mesmo namespace pode ser definido
+   em vários arquivos, permitindo a divisão do conteúdo de um namespace no sistema de arquivos.
+  </p>
+ </div></div></div></body></html>

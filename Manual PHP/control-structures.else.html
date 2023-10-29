@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>else</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="control-structures.if.html">« if</a></li>
+      <li style="float: right;"><a href="control-structures.elseif.html">elseif/else if »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.control-structures.html">Estruturas de Controle</a></li>
+    <li>else</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="control-structures.else" class="sect1">
+ <h2 class="title">else</h2>
+ <p class="verinfo">(PHP 4, PHP 5, PHP 7, PHP 8)</p>
+ <p class="para">
+  Muitas vezes deseja-se executar uma instrução se uma certa condição
+  for válida, e uma instrução diferente se a mesma condição não for válida. Para isso
+  que o <code class="literal">else</code> serve. O <code class="literal">else</code>
+  estende a instrução <code class="literal">if</code> para executar outras
+  caso a expressão no <code class="literal">if</code> retornar
+  <strong><code>false</code></strong>. Por exemplo, o código a
+  seguir exibirá <span class="computeroutput">a is greater than
+  b</span> se <var class="varname">$a</var> for maior que
+  <var class="varname">$b</var>, e <span class="computeroutput">a is NOT greater
+  than b</span> caso contrário:
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br />  echo </span><span style="color: #DD0000">"a is greater than b"</span><span style="color: #007700">;<br />} else {<br />  echo </span><span style="color: #DD0000">"a is NOT greater than b"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+
+  A instrução <code class="literal">else</code> só é executada se a
+  expressão de avaliação do <code class="literal">if</code> for avaliada como
+  <strong><code>false</code></strong>, e se tiver qualquer expressão
+  <code class="literal">elseif</code> - somente se também retornarem
+  <strong><code>false</code></strong> (veja <a href="control-structures.elseif.html" class="link">elseif</a>).
+
+ </p>
+ <blockquote class="note"><p><strong class="note">Nota</strong>: 
+  <strong>Else pendurado</strong><br />
+  <p class="para">
+   Em caso de declarações <code class="literal">if</code>-<code class="literal">else</code> aninhadas,
+   um <code class="literal">else</code> é sempre associado com o <code class="literal">if</code> mais próximo.
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$a </span><span style="color: #007700">= </span><span style="color: #0000BB">false</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #0000BB">true</span><span style="color: #007700">;<br />if (</span><span style="color: #0000BB">$a</span><span style="color: #007700">)<br />    if (</span><span style="color: #0000BB">$b</span><span style="color: #007700">)<br />        echo </span><span style="color: #DD0000">"b"</span><span style="color: #007700">;<br />else<br />    echo </span><span style="color: #DD0000">"c"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+   Apesar da indentação (o que não importa para o PHP), o <code class="literal">else</code>
+   é associado com o <code class="literal">if ($b)</code>, então o exemplo não produz
+   nenhuma saída. Embora seja válido confiar nesse comportamento, é recomendado evitá-lo
+   usando chaves para resolver ambiguidades em potencial.
+  </p>
+ </p></blockquote>
+</div></div></div></body></html>

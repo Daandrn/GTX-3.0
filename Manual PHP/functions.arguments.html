@@ -1,0 +1,408 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Argumentos de fun&ccedil;&otilde;es</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="functions.user-defined.html">« Fun&ccedil;&otilde;es definidas pelo usu&aacute;rio</a></li>
+      <li style="float: right;"><a href="functions.returning-values.html">Retornando valores »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.functions.html">Fun&ccedil;&otilde;es</a></li>
+    <li>Argumentos de fun&ccedil;&otilde;es</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="functions.arguments" class="sect1">
+   <h2 class="title">Argumentos de funções</h2>
+
+   <p class="simpara">
+    Informações podem ser passadas para funções através da lista de argumentos, que é uma
+    lista de expressões delimitados por vírgulas. Os argumentos são avaliados
+    da esquerda para a direita, e antes que a função seja efetivamente chamada
+    (avaliação antecipada <em>eager</em>).
+   </p>
+
+   <p class="para">
+    O PHP suporta a passagem de argumentos por valor (o padrão), <a href="functions.arguments.html#functions.arguments.by-reference" class="link">passagem por
+    referência</a>, e <a href="functions.arguments.html#functions.arguments.default" class="link">valores padrões de
+    argumentos</a>. <a href="functions.arguments.html#functions.variable-arg-list" class="link">lista de argumentos de
+    tamanho variável</a> e <a href="functions.arguments.html#functions.named-arguments" class="link">argumentos nomeados</a>
+    também são suportadas.
+   </p>
+   <p class="para">
+    <div class="example" id="example-452">
+     <p><strong>Exemplo #1 Passando arrays para funções</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">takes_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">)<br />{<br />    echo </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]</span><span style="color: #DD0000"> + </span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]</span><span style="color: #DD0000"> = "</span><span style="color: #007700">, </span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]+</span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    A partir do PHP 8.0.0, a lista de argumentos de uma função pode incluir uma vírgula final,
+    que será ignorada. Isto é particularmente útil nos casos que a quantidade de argumentos é
+    longa ou contém nomes longos, sendo conveniente listar os argumentos verticalmente.
+   </p>
+   <div class="example" id="example-455">
+    <p><strong>Exemplo #2 Argumentos de função com uma vírgula final</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">takes_many_args</span><span style="color: #007700">(<br />    </span><span style="color: #0000BB">$primeiro</span><span style="color: #007700">,<br />    </span><span style="color: #0000BB">$segundo</span><span style="color: #007700">,<br />    </span><span style="color: #0000BB">$uma_variavel_com_nome_longo</span><span style="color: #007700">,<br />    </span><span style="color: #0000BB">$parametro_com_default </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">,<br />    </span><span style="color: #0000BB">$de_novo </span><span style="color: #007700">= </span><span style="color: #DD0000">'argumento padrão'</span><span style="color: #007700">, </span><span style="color: #FF8000">// Essa vírgula final não era permitida antes do PHP 8.0.0.<br /></span><span style="color: #007700">)<br />{<br />    </span><span style="color: #FF8000">// ...<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+
+   <div class="sect2" id="functions.arguments.by-reference">
+    <h3 class="title">Passando argumentos por referência</h3>
+
+    <p class="simpara">
+     Por padrão, argumentos de função são passados por valor (de forma que se
+     você mudar o valor do parâmetro dentro da função, ele não é alterado fora
+     da função). Para permitir que uma função modifique os
+     seus argumentos, eles devem ser passados por referência.
+    </p>
+    <p class="para">
+     Para ter um argumento para uma função sempre passado por referência, adicione
+     antes dele um &quot;e comercial&quot; (&amp;) ao nome do argumento na definição da função:
+    </p>
+    <p class="para">
+     <div class="example" id="example-458">
+      <p><strong>Exemplo #3 Passando parâmetros de função por referência</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">add_some_extra</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">)<br />{<br />    </span><span style="color: #0000BB">$string </span><span style="color: #007700">.= </span><span style="color: #DD0000">' e alguma coisa mais.'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">$str </span><span style="color: #007700">= </span><span style="color: #DD0000">'Isto é uma string,'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">add_some_extra</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">$str</span><span style="color: #007700">;    </span><span style="color: #FF8000">// imprime 'Isto é uma string, e alguma coisa mais.'<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </div>
+    </p>
+    <p class="para">
+     É um erro passar um argumento por valor onde é esperado a passagem por referência.
+    </p>
+   </div>
+   <div class="sect2" id="functions.arguments.default">
+    <h3 class="title">Valores padrão de argumentos</h3>
+
+    <p class="para">
+     Uma função pode definir valores padrão para argumentos usando sintaxe similar
+     a atribuição de uma variável. O padrão é usado apenas quando o parâmetro não
+     é especificado. Em particular, note que passar <strong><code>null</code></strong> <em>não</em>
+     atribui o valor padrão.
+    </p>
+    <p class="para">
+     <div class="example" id="example-461">
+      <p><strong>Exemplo #4 Utilizando parâmetros padrão em funções</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">makecoffee</span><span style="color: #007700">(</span><span style="color: #0000BB">$type </span><span style="color: #007700">= </span><span style="color: #DD0000">"cappuccino"</span><span style="color: #007700">)<br />{<br />    return </span><span style="color: #DD0000">"Fazendo uma xícara de café </span><span style="color: #0000BB">$type</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />echo </span><span style="color: #0000BB">makecoffee</span><span style="color: #007700">();<br />echo </span><span style="color: #0000BB">makecoffee</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">makecoffee</span><span style="color: #007700">(</span><span style="color: #DD0000">"espresso"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Fazendo uma xícara de café cappuccino.
+Fazendo uma xícara de café.
+Fazendo uma xícara de café espresso.
+</pre></div>
+      </div>
+     </div>
+    </p>
+    <p class="para">
+     Valores padrões de parâmetro podem ser valores escalares, <span class="type">array</span>s,
+     o tipo especial <strong><code>null</code></strong> e, a partir do PHP 8.1.0, objetos usando a
+     sintaxe <a href="language.oop5.basic.html#language.oop5.basic.new" class="link">new ClassName()</a>.
+    </p>
+    <p class="para">
+     <div class="example" id="example-464">
+      <p><strong>Exemplo #5 Usando tipos não escalares como valores padrões</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">fazercafe</span><span style="color: #007700">(</span><span style="color: #0000BB">$tipos </span><span style="color: #007700">= array(</span><span style="color: #DD0000">"cappuccino"</span><span style="color: #007700">), </span><span style="color: #0000BB">$cafeteira </span><span style="color: #007700">= </span><span style="color: #0000BB">NULL</span><span style="color: #007700">)<br />{<br />    </span><span style="color: #0000BB">$dispositivo </span><span style="color: #007700">= </span><span style="color: #0000BB">is_null</span><span style="color: #007700">(</span><span style="color: #0000BB">$cafeteira</span><span style="color: #007700">) ? </span><span style="color: #DD0000">"mãos" </span><span style="color: #007700">: </span><span style="color: #0000BB">$cafeteira</span><span style="color: #007700">;<br />    return </span><span style="color: #DD0000">"Fazendo uma xícara de "</span><span style="color: #007700">.</span><span style="color: #0000BB">join</span><span style="color: #007700">(</span><span style="color: #DD0000">", "</span><span style="color: #007700">, </span><span style="color: #0000BB">$tipos</span><span style="color: #007700">).</span><span style="color: #DD0000">" com </span><span style="color: #0000BB">$dispositivo</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />echo </span><span style="color: #0000BB">fazercafe</span><span style="color: #007700">();<br />echo </span><span style="color: #0000BB">fazercafe</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"cappuccino"</span><span style="color: #007700">, </span><span style="color: #DD0000">"lavazza"</span><span style="color: #007700">), </span><span style="color: #DD0000">"chaleira"</span><span style="color: #007700">);</span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </div>
+    </p>
+    <p class="para">
+     <div class="example" id="example-467">
+      <p><strong>Exemplo #6 Usando objetos como valores padrão (a partir do PHP 8.1.0)</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">CafeteiraPadrao </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">preparar</span><span style="color: #007700">() {<br />        return </span><span style="color: #DD0000">'Fazendo café.'</span><span style="color: #007700">;<br />    }<br />}<br />class </span><span style="color: #0000BB">CafeteiraChique </span><span style="color: #007700">{<br />    public function </span><span style="color: #0000BB">preparar</span><span style="color: #007700">() {<br />        return </span><span style="color: #DD0000">'Preparando um belo café só para você.'</span><span style="color: #007700">;<br />    }<br />}<br />function </span><span style="color: #0000BB">fazercafe</span><span style="color: #007700">(</span><span style="color: #0000BB">$cafeteira </span><span style="color: #007700">= new </span><span style="color: #0000BB">CafeteiraPadrao</span><span style="color: #007700">)<br />{<br />    return </span><span style="color: #0000BB">$cafeteira</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">preparar</span><span style="color: #007700">();<br />}<br />echo </span><span style="color: #0000BB">fazercafe</span><span style="color: #007700">();<br />echo </span><span style="color: #0000BB">fazercafe</span><span style="color: #007700">(new </span><span style="color: #0000BB">CafeteiraChique</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </div>
+    </p>
+    <p class="simpara">
+     O valor padrão precisa ser uma expressão constante, não (por
+     exemplo) uma variável, um membro de classe ou uma chamada de função.
+    </p>
+    <p class="para">
+     Note que quaisquer argumentos opcionais devem ser especificados após os
+     argumentos obrigatórios, caso contrário, eles não podem ser omitidos das chamadas.
+     Considere o seguinte exemplo:
+    </p>
+    <p class="para">
+     <div class="example" id="example-470">
+      <p><strong>Exemplo #7 Uso incorreto de parâmetros padrão de função</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">fazeriogurte</span><span style="color: #007700">(</span><span style="color: #0000BB">$recipiente </span><span style="color: #007700">= </span><span style="color: #DD0000">"tigela"</span><span style="color: #007700">, </span><span style="color: #0000BB">$sabor</span><span style="color: #007700">)<br />{<br />    return </span><span style="color: #DD0000">"Fazendo um(a) </span><span style="color: #0000BB">$recipiente</span><span style="color: #DD0000"> de iogurte de </span><span style="color: #0000BB">$sabor</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br /><br />echo </span><span style="color: #0000BB">fazeriogurte</span><span style="color: #007700">(</span><span style="color: #DD0000">"framboesa"</span><span style="color: #007700">); </span><span style="color: #FF8000">// "framboesa" é $recipiente, não $sabor<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Fatal error: Uncaught ArgumentCountError: Too few arguments
+ to function fazeriogurte(), 1 passed in example.php on line 42
+</pre></div>
+      </div>
+     </div>
+    </p>
+    <p class="para">
+     Agora, compare o que está acima com este:
+    </p>
+    <p class="para">
+     <div class="example" id="example-473">
+      <p><strong>Exemplo #8 Uso correto de parâmetros padrão de função</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">fazeriogurte</span><span style="color: #007700">(</span><span style="color: #0000BB">$sabor</span><span style="color: #007700">, </span><span style="color: #0000BB">$recipiente </span><span style="color: #007700">= </span><span style="color: #DD0000">"tigela"</span><span style="color: #007700">)<br />{<br />    return </span><span style="color: #DD0000">"Fazendo um(a) </span><span style="color: #0000BB">$recipiente</span><span style="color: #DD0000"> de iogurte de </span><span style="color: #0000BB">$sabor</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br /><br />echo </span><span style="color: #0000BB">fazeriogurte</span><span style="color: #007700">(</span><span style="color: #DD0000">"framboesa"</span><span style="color: #007700">); </span><span style="color: #FF8000">// "framboesa" é $sabor<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Fazendo um(a) tigela de iogurte de framboesa.
+</pre></div>
+      </div>
+     </div>
+    </p>
+    <p class="para">
+     A partir do PHP 8.0.0, <a href="functions.arguments.html#functions.named-arguments" class="link">argumentos nomeados</a>
+     podem ser usados para pular vários parâmetros opcionais.
+    </p>
+    <p class="para">
+     <div class="example" id="example-476">
+      <p><strong>Exemplo #9 Uso correto de argumentos padrão de função</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">fazeriogurte</span><span style="color: #007700">(</span><span style="color: #0000BB">$recipiente </span><span style="color: #007700">= </span><span style="color: #DD0000">"tigela"</span><span style="color: #007700">, </span><span style="color: #0000BB">$sabor </span><span style="color: #007700">= </span><span style="color: #DD0000">"framboesa"</span><span style="color: #007700">, </span><span style="color: #0000BB">$estilo </span><span style="color: #007700">= </span><span style="color: #DD0000">"Grego"</span><span style="color: #007700">)<br />{<br />    return </span><span style="color: #DD0000">"Fazendo um(a) </span><span style="color: #0000BB">$recipiente</span><span style="color: #DD0000"> de iogurte </span><span style="color: #0000BB">$estilo</span><span style="color: #DD0000"> de </span><span style="color: #0000BB">$sabor</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br /><br />echo </span><span style="color: #0000BB">fazeriogurte</span><span style="color: #007700">(</span><span style="color: #0000BB">estilo</span><span style="color: #007700">: </span><span style="color: #DD0000">"natural"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+Fazendo um(a) tigela de iogurte natural de framboesa.
+</pre></div>
+      </div>
+     </div>
+    </p>
+    <p class="para">
+     A partir do PHP 8.0.0, declarar argumentos obrigatórios após argumentos opcionais
+     está <em>depreciado</em>. Isso geralmente pode ser resolvido descartando
+     o valor padrão, pois nunca será usado.
+     Uma exceção a essa regra são argumentos no formato
+     <code class="code">Type $param = null</code>, onde o padrão <strong><code>null</code></strong> torna o tipo implicitamente
+     anulável. Este uso continua permitido, embora seja recomendado usar um
+     <a href="language.types.declarations.html#language.types.declarations.nullable" class="link">tipo anulável</a> explícito.
+     <div class="example" id="example-479">
+      <p><strong>Exemplo #10 Declarando argumentos opcionais após argumentos obrigatórios</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /> </span><span style="color: #007700">function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$a </span><span style="color: #007700">= [], </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {} </span><span style="color: #FF8000">// Padrão não utilizado; depreciado a partir do PHP 8.0.0<br /> </span><span style="color: #007700">function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {}      </span><span style="color: #FF8000">// Funcionalmente equivalente, sem notícia de depreciação<br /><br /> </span><span style="color: #007700">function </span><span style="color: #0000BB">bar</span><span style="color: #007700">(</span><span style="color: #0000BB">A $a </span><span style="color: #007700">= </span><span style="color: #0000BB">null</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {} </span><span style="color: #FF8000">// Ainda permitido; $a é obrigatório porém anulável<br /> </span><span style="color: #007700">function </span><span style="color: #0000BB">bar</span><span style="color: #007700">(?</span><span style="color: #0000BB">A $a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {}       </span><span style="color: #FF8000">// Recomendado<br /> </span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </div>
+    </p>
+    <blockquote class="note"><p><strong class="note">Nota</strong>: 
+     <span class="simpara">
+      A partir do PHP 7.1.0, omitir um parâmetro que não especifica um padrão
+      lança um <span class="classname"><a href="class.argumentcounterror.html" class="classname">ArgumentCountError</a></span>; em versões anteriores
+      isso emitia um Aviso.
+     </span>
+    </p></blockquote>
+    <blockquote class="note"><p><strong class="note">Nota</strong>: 
+     <span class="simpara">
+      Argumentos passados por referência podem ter um valor padrão.
+     </span>
+    </p></blockquote>
+   </div>
+
+   <div class="sect2" id="functions.variable-arg-list">
+    <h3 class="title">Número variável de argumentos</h3>
+
+    <p class="simpara">
+     O PHP suporta argumentos em quantidade variável em
+     funções definidas pelo usuário, utilizando o token
+     <code class="literal">...</code>.
+    </p>
+
+    <p class="para">
+     Lista de argumentos que contém o token
+     <code class="literal">...</code> token para indicam que a função aceita uma
+     quantidade variável de argumentos. Os argumentos serão passados
+     na variável como um <span class="type">array</span>:
+
+     <div class="example" id="example-482">
+      <p><strong>Exemplo #11 Utilizando <code class="literal">...</code> para acessar argumentos variáveis</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">sum</span><span style="color: #007700">(...</span><span style="color: #0000BB">$numbers</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">$acc </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />    foreach (</span><span style="color: #0000BB">$numbers </span><span style="color: #007700">as </span><span style="color: #0000BB">$n</span><span style="color: #007700">) {<br />        </span><span style="color: #0000BB">$acc </span><span style="color: #007700">+= </span><span style="color: #0000BB">$n</span><span style="color: #007700">;<br />    }<br />    return </span><span style="color: #0000BB">$acc</span><span style="color: #007700">;<br />}<br /><br />echo </span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">4</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+10
+</pre></div>
+      </div>
+     </div>
+    </p>
+
+    <p class="para">
+     Você também pode utilizar <code class="literal">...</code> quando chamando funções para
+     transformar uma variável <span class="type">array</span>, <span class="classname"><a href="class.traversable.html" class="classname">Traversable</a></span> ou
+     literal em uma lista de argumentos.
+
+     <div class="example" id="example-485">
+      <p><strong>Exemplo #12 Utilizando <code class="literal">...</code> para fornecer argumentos</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br />    return </span><span style="color: #0000BB">$a </span><span style="color: #007700">+ </span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br />}<br /><br />echo </span><span style="color: #0000BB">add</span><span style="color: #007700">(...[</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">]).</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$a </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">];<br />echo </span><span style="color: #0000BB">add</span><span style="color: #007700">(...</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+3
+3
+</pre></div>
+      </div>
+     </div>
+    </p>
+
+    <p class="para">
+     Você pode especificar argumentos posicionais antes do indicador.
+     <code class="literal">...</code>. Nesse caso comente os argumentos finais,
+     que não pareiam com um argumento posicional, serão adicionados ao
+     array gerado por <code class="literal">...</code>.
+    </p>
+
+    <p class="para">
+     É também possível adicionar um
+     <a href="language.types.declarations.html" class="link">type hint</a> antes do indicador
+     <code class="literal">...</code>. Se presente então todos os argumentos
+     capturados por <code class="literal">...</code> deverão conformar com o tipo do parâmetro.
+
+     <div class="example" id="example-488">
+      <p><strong>Exemplo #13 Argumentos variáveis com type hint</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">total_intervals</span><span style="color: #007700">(</span><span style="color: #0000BB">$unit</span><span style="color: #007700">, </span><span style="color: #0000BB">DateInterval </span><span style="color: #007700">...</span><span style="color: #0000BB">$intervals</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">$time </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />    foreach (</span><span style="color: #0000BB">$intervals </span><span style="color: #007700">as </span><span style="color: #0000BB">$interval</span><span style="color: #007700">) {<br />        </span><span style="color: #0000BB">$time </span><span style="color: #007700">+= </span><span style="color: #0000BB">$interval</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">$unit</span><span style="color: #007700">;<br />    }<br />    return </span><span style="color: #0000BB">$time</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$a </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateInterval</span><span style="color: #007700">(</span><span style="color: #DD0000">'P1D'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$b </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateInterval</span><span style="color: #007700">(</span><span style="color: #DD0000">'P2D'</span><span style="color: #007700">);<br />echo </span><span style="color: #0000BB">total_intervals</span><span style="color: #007700">(</span><span style="color: #DD0000">'d'</span><span style="color: #007700">, </span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">).</span><span style="color: #DD0000">' days'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// This will fail, since null isn't a DateInterval object.<br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">total_intervals</span><span style="color: #007700">(</span><span style="color: #DD0000">'d'</span><span style="color: #007700">, </span><span style="color: #0000BB">null</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+3 days
+Catchable fatal error: Argument 2 passed to total_intervals() must be an instance of DateInterval, null given, called in - on line 14 and defined in - on line 2
+</pre></div>
+      </div>
+     </div>
+    </p>
+
+    <p class="para">
+     Finalmente, você também pode passar argumentos variáveis
+     <a href="functions.arguments.html#functions.arguments.by-reference" class="link">por referência</a> ao
+     prefixar <code class="literal">...</code> com um
+     <code class="literal">&amp;</code>.
+    </p>
+
+   </div>
+
+   <div class="sect2" id="functions.named-arguments">
+    <h3 class="title">Argumentos nomeados</h3>
+
+    <p class="para">
+     O PHP 8.0.0 introduziu argumentos nomeados como uma extensão aos
+     parâmetros posicionais. Argumentos nomeados permitem a passagem de argumentos para uma
+     função utilizando-se os nomes de parâmetros, ao invés da posição do parâmetro.
+     Isto torna o significado do argumento auto documentável, e tornam os argumentos
+     independente de ordem, além de permitir pular argumentos com defaults.
+    </p>
+
+    <p class="para">
+     Argumentos nomeados são passados ao prefixar o valor um o nome do parâmetro
+     e um dois pontos. Usar palavras reservadas como nomes de parâmetro é permitido.
+     O nome de parâmetro precisa ser um identificados, e uma resolução dinâmica
+     não é permitida.
+    </p>
+
+    <div class="example" id="example-491">
+     <p><strong>Exemplo #14 Sintaxe dos argumentos nomeados</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />minhaFuncao</span><span style="color: #007700">(</span><span style="color: #0000BB">nomeParametro</span><span style="color: #007700">: </span><span style="color: #0000BB">$valor</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">array_foobar</span><span style="color: #007700">(array: </span><span style="color: #0000BB">$value</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// NÃO suportado<br /></span><span style="color: #0000BB">nome_funcao</span><span style="color: #007700">(</span><span style="color: #0000BB">$variaveoQueGuardaNomeDoParametro</span><span style="color: #007700">: </span><span style="color: #0000BB">$valor</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+
+    <div class="example" id="example-494">
+     <p><strong>Exemplo #15 Comparando argumentos posicionais e nomeados</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Utilizando argumentos posicionais:<br /></span><span style="color: #0000BB">array_fill</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">50</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Utilizando argumetos nomeados:<br /></span><span style="color: #0000BB">array_fill</span><span style="color: #007700">(</span><span style="color: #0000BB">start_index</span><span style="color: #007700">: </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">count</span><span style="color: #007700">: </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">value</span><span style="color: #007700">: </span><span style="color: #0000BB">50</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+
+    <p class="para">
+     A ordem em que argumentos nomeados são passados não importa.
+    </p>
+
+    <div class="example" id="example-497">
+     <p><strong>Exemplo #16 Mesmo exemplo com argumentos em ordem diferente</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />array_fill</span><span style="color: #007700">(</span><span style="color: #0000BB">value</span><span style="color: #007700">: </span><span style="color: #0000BB">50</span><span style="color: #007700">, </span><span style="color: #0000BB">count</span><span style="color: #007700">: </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">start_index</span><span style="color: #007700">: </span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+
+    <p class="para">
+     Argumentos nomeados podem ser combinados com argumentos posicionais. Nesse caso,
+     os argumentos nomeados precisam estar depois dos argumentos posicionais.
+     Também é possível especificar somente alguns dos argumentos opcionais de
+     uma função, independente da ordem.
+    </p>
+
+    <div class="example" id="example-500">
+     <p><strong>Exemplo #17 Combinando argumentos posicionais e nomeados</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">, </span><span style="color: #0000BB">double_encode</span><span style="color: #007700">: </span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">// Mesmo que<br /></span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">, </span><span style="color: #0000BB">ENT_QUOTES </span><span style="color: #007700">| </span><span style="color: #0000BB">ENT_SUBSTITUTE </span><span style="color: #007700">| </span><span style="color: #0000BB">ENT_HTML401</span><span style="color: #007700">, </span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">, </span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+
+    <p class="para">
+     Passar o mesmo argumento mais de uma vez resulta em um Error.
+    </p>
+
+    <div class="example" id="example-503">
+     <p><strong>Exemplo #18 Erro lançado ao passar o mesmo argumento nomeado mais de uma vez</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$param</span><span style="color: #007700">) { ... }<br /><br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">param</span><span style="color: #007700">: </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">param</span><span style="color: #007700">: </span><span style="color: #0000BB">2</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">// Error: Named parameter $param overwrites previous argument<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">param</span><span style="color: #007700">: </span><span style="color: #0000BB">2</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">// Error: Named parameter $param overwrites previous argument<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+
+    <p class="para">
+     A partir do PHP 8.1.0, é possível usar argumentos nomeados após desempacotar os argumentos.
+     Um argumento nomeado <em>não deve</em> sobrepor argumentos já desempacotados.
+    </p>
+
+    <div class="example" id="example-506">
+     <p><strong>Exemplo #19 Usando argumentos nomeados após desempacotar</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">, </span><span style="color: #0000BB">$c </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">$d </span><span style="color: #007700">= </span><span style="color: #0000BB">4</span><span style="color: #007700">) {<br />  return </span><span style="color: #0000BB">$a </span><span style="color: #007700">+ </span><span style="color: #0000BB">$b </span><span style="color: #007700">+ </span><span style="color: #0000BB">$c </span><span style="color: #007700">+ </span><span style="color: #0000BB">$d</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">foo</span><span style="color: #007700">(...[</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">], </span><span style="color: #0000BB">d</span><span style="color: #007700">: </span><span style="color: #0000BB">40</span><span style="color: #007700">)); </span><span style="color: #FF8000">// 46<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">foo</span><span style="color: #007700">(...[</span><span style="color: #DD0000">'b' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">], </span><span style="color: #0000BB">d</span><span style="color: #007700">: </span><span style="color: #0000BB">40</span><span style="color: #007700">)); </span><span style="color: #FF8000">// 46<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">foo</span><span style="color: #007700">(...[</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">], </span><span style="color: #0000BB">b</span><span style="color: #007700">: </span><span style="color: #0000BB">20</span><span style="color: #007700">)); </span><span style="color: #FF8000">// Fatal error. Named parameter $b overwrites previous argument<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </div>
+
+   </div>
+  </div></div></div></body></html>

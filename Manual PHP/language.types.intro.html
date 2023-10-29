@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Introdu&ccedil;&atilde;o</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.types.html">« Tipos</a></li>
+      <li style="float: right;"><a href="language.types.type-system.html">Sistema de tipo »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.types.html">Tipos</a></li>
+    <li>Introdu&ccedil;&atilde;o</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.types.intro" class="sect1">
+  <h2 class="title">Introdução</h2>
+
+  <p class="para">
+   Cada expressão no PHP tem um dos seguintes
+   tipos ou valores internos:
+   <ul class="itemizedlist">
+    <li class="listitem"><span class="simpara"><span class="type">null</span></span></li>
+    <li class="listitem"><span class="simpara"><span class="type">bool</span></span></li>
+    <li class="listitem"><span class="simpara"><span class="type">int</span></span></li>
+    <li class="listitem"><span class="simpara"><span class="type">float</span> (número de ponto flutuante)</span></li>
+    <li class="listitem"><span class="simpara"><span class="type">string</span></span></li>
+    <li class="listitem"><span class="simpara"><span class="type">array</span></span></li>
+    <li class="listitem"><span class="simpara"><span class="type">object</span></span></li>
+    <li class="listitem"><span class="simpara"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span></span></li>
+    <li class="listitem"><span class="simpara"><span class="type">resource</span></span></li>
+   </ul>
+  </p>
+
+  <p class="para">
+   O PHP é uma linguagem com tipagem dinâmica, o que significa que por padrão não
+   existe a necessidade de especificar o tipo de uma variável, já que isso será
+   determinado em tempo de execução. Entretanto, é possível de restringir estaticamente os tipos
+   através do uso de 
+   <a href="language.types.declarations.html" class="link">declarações de tipo</a>.
+  </p>
+
+  <p class="para">
+   Os tipos restringem quais operações podem ser realizadas nos valores.
+   Entretanto, se uma expressão ou variável for utilizada numa operação que
+   o tipo não suporte, o PHP tentará
+   <a href="language.types.type-juggling.html" class="link">transformar o valor</a>
+   em um tipo que suporte a operação.
+   Esse processo depende do contexto de onde o valor é utilizado.
+   Para mais informações, veja a seção sobre
+   <a href="language.types.type-juggling.html" class="link">Transformações de tipos</a>.
+  </p>
+
+  <div class="tip"><strong class="tip">Dica</strong>
+   <p class="simpara">
+    <a href="types.comparisons.html" class="link">A tabela de comparação de tipos</a>
+    também pode ser útil, pelos vários exemplos de comparação de valores
+    demonstrados.
+   </p>
+  </div>
+  
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    É possível forçar a reavaliação de uma expressão para um tipo específico
+    através do uso de <a href="language.types.type-juggling.html#language.types.typecasting" class="link">cast</a>.
+    Uma variável pode ser modificada para um tipo através da função
+    <span class="function"><a href="function.settype.html" class="function">settype()</a></span>.
+   </span>
+  </p></blockquote>
+
+  <p class="para">
+   Para verificar o valor e tipo de uma
+   <a href="language.expressions.html" class="link">expressão</a>,
+   utilize a função<span class="function"><a href="function.var-dump.html" class="function">var_dump()</a></span>.
+   Para extrair o tipo de uma
+   <a href="language.expressions.html" class="link">expressão</a>,
+   utilize a função<span class="function"><a href="function.get-debug-type.html" class="function">get_debug_type()</a></span>.
+   Para apenas validar se uma expressão é de um certo tipo, utilize as funções
+   
+   <code class="literal">is_<span class="replaceable">type</span></code>.
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$a_bool </span><span style="color: #007700">= </span><span style="color: #0000BB">true</span><span style="color: #007700">;   </span><span style="color: #FF8000">// um valor boleano<br /></span><span style="color: #0000BB">$a_str  </span><span style="color: #007700">= </span><span style="color: #DD0000">"foo"</span><span style="color: #007700">;  </span><span style="color: #FF8000">// um texto<br /></span><span style="color: #0000BB">$a_str2 </span><span style="color: #007700">= </span><span style="color: #DD0000">'foo'</span><span style="color: #007700">;  </span><span style="color: #FF8000">// um texto<br /></span><span style="color: #0000BB">$an_int </span><span style="color: #007700">= </span><span style="color: #0000BB">12</span><span style="color: #007700">;     </span><span style="color: #FF8000">// um inteiro<br /><br /></span><span style="color: #007700">echo </span><span style="color: #0000BB">get_debug_type</span><span style="color: #007700">(</span><span style="color: #0000BB">$a_bool</span><span style="color: #007700">), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo </span><span style="color: #0000BB">get_debug_type</span><span style="color: #007700">(</span><span style="color: #0000BB">$a_str</span><span style="color: #007700">), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Se essa variável conter um inteiro, aumento o número por quatro<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">is_int</span><span style="color: #007700">(</span><span style="color: #0000BB">$an_int</span><span style="color: #007700">)) {<br />    </span><span style="color: #0000BB">$an_int </span><span style="color: #007700">+= </span><span style="color: #0000BB">4</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$an_int</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Se $a_bool for um texto, imprima<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">is_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$a_bool</span><span style="color: #007700">)) {<br />    echo </span><span style="color: #DD0000">"String: </span><span style="color: #0000BB">$a_bool</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <p class="para">Saída do exemplo acima no PHP 8:</p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+bool
+string
+int(16)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    <span class="function"><a href="function.get-debug-type.html" class="function">get_debug_type()</a></span> se tornou disponível no PHP 8.0.0.
+    Anteriormente, a função <span class="function"><a href="function.gettype.html" class="function">gettype()</a></span> pode ser utilizada.
+    Entretanto, a função antiga não retorna nomes bem definidos.
+   </span>
+  </p></blockquote>
+ </div></div></div></body></html>

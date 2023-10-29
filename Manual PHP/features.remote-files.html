@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Usando arquivos remotos</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="features.file-upload.errors.seealso.html">« Veja Tamb&eacute;m</a></li>
+      <li style="float: right;"><a href="features.connection-handling.html">Tratamento de Conex&otilde;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="features.html">Caracter&iacute;sticas</a></li>
+    <li>Usando arquivos remotos</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="features.remote-files" class="chapter">
+  <h1>Usando arquivos remotos</h1>
+
+
+  <p class="para">
+   Enquanto <strong class="option unknown">allow_url_fopen</strong> estiver disponível no arquivo
+   <var class="filename">php.ini</var>, você pode usar URLs <abbr title="Hypertext Transfer Protocol">HTTP</abbr> e <abbr title="File Transfer Protocol">FTP</abbr>
+   com a maioria das funções
+   que recebem um nome de arquivo como parâmetro. Além disso, URLs podem ser
+   usadas com as funções <span class="function"><a href="function.include.html" class="function">include</a></span>,
+   <span class="function"><a href="function.include-once.html" class="function">include_once</a></span>, <span class="function"><a href="function.require.html" class="function">require</a></span> e
+   <span class="function"><a href="function.require-once.html" class="function">require_once</a></span>
+   (<strong class="option unknown">allow_url_include</strong> precisa estar habilitado para isto).
+   Veja <a href="wrappers.html" class="xref">Protocolos e Wrappers suportados</a> para mais informações sobre protocolos
+   suportados pelo PHP.
+  </p>
+  <p class="para">
+   Por exemplo, você pode usar isso para abrir um arquivo em um web server remoto,
+   avaliar a saída para a informação que você precisa, e então usar a informação em uma
+   query de banco de dados, ou simplesmente mostrar em um estilo que combine com o resto
+   do seu website.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1376">
+    <p><strong>Exemplo #1 Pegando o título de uma página remota</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$file </span><span style="color: #007700">= </span><span style="color: #0000BB">fopen </span><span style="color: #007700">(</span><span style="color: #DD0000">"http://www.example.com/"</span><span style="color: #007700">, </span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br />if (!</span><span style="color: #0000BB">$file</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"&lt;p&gt;Incapaz de abrir arquivo remoto.\n"</span><span style="color: #007700">;<br />    exit;<br />}<br />while (!</span><span style="color: #0000BB">feof </span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">)) {<br />    </span><span style="color: #0000BB">$line </span><span style="color: #007700">= </span><span style="color: #0000BB">fgets </span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #0000BB">1024</span><span style="color: #007700">);<br />    </span><span style="color: #FF8000">/* Isso só funciona se o título e suas tags estiverem na mesma linha */<br />    </span><span style="color: #007700">if (</span><span style="color: #0000BB">eregi </span><span style="color: #007700">(</span><span style="color: #DD0000">"&lt;title&gt;(.*)&lt;/title&gt;"</span><span style="color: #007700">, </span><span style="color: #0000BB">$line</span><span style="color: #007700">, </span><span style="color: #0000BB">$out</span><span style="color: #007700">)) {<br />        </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #0000BB">$out</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br />        break;<br />    }<br />}<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Você também pode escrever arquivos em um servidor FTP (presumindo que
+   você se conectou como um usuário com os direitos de acesso corretos). Você
+   só pode criar arquivos novos usando esse método. Se você tentar sobrescrever
+   um arquivo que já existe, a chamada para <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>
+   falhará.
+  </p>
+  <p class="para">
+   Para conectar como um usuário diferente de &#039;anonymous&#039;, você precisa especificar
+   o nome de usuário (e possivelmente a senha) dentro da URL, como
+   &#039;<code class="literal">ftp://user:password@ftp.example.com/path/to/file</code>&#039;.
+   (Você pode usar o mesmo tipo de sintaxe para acessar arquivos via
+   <abbr title="Hypertext Transfer Protocol">HTTP</abbr> quando eles requerem autenticação Basic).
+  </p>
+  <p class="para">
+   <div class="example" id="example-1379">
+    <p><strong>Exemplo #2 Guardando informação em um servidor remoto</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$file </span><span style="color: #007700">= </span><span style="color: #0000BB">fopen </span><span style="color: #007700">(</span><span style="color: #DD0000">"ftp://ftp.example.com/incoming/outputfile"</span><span style="color: #007700">, </span><span style="color: #DD0000">"w"</span><span style="color: #007700">);<br />if (!</span><span style="color: #0000BB">$file</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"&lt;p&gt;Incapaz de abrir arquivo remoto para escrita.\n"</span><span style="color: #007700">;<br />    exit;<br />}<br /></span><span style="color: #FF8000">/* Escreva informação aqui. */<br /></span><span style="color: #0000BB">fwrite </span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'HTTP_USER_AGENT'</span><span style="color: #007700">] . </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fclose </span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <blockquote class="note"><p><strong class="note">Nota</strong>: 
+    <p class="para">
+     Você talvez tenha tido a idéia, pelo exemplo acima, de usar
+     essa técnica para escrever para um arquivo de log remoto. Infelizmente
+     isso não funcionaria porque a chamada a <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span> falhará
+     se o arquivo remoto já existir. Para fazer logs distribuídos
+     dessa maneira, você deve dar uma olhada na função <span class="function"><a href="function.syslog.html" class="function">syslog()</a></span>.
+    </p>
+   </p></blockquote>
+  </p>
+
+ </div>
+</div></div></body></html>

@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Computa a diferen&ccedil;a de arrays usando uma fun&ccedil;&atilde;o de callback para compara&ccedil;&atilde;o dos dados</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.array-udiff-uassoc.html">« array_udiff_uassoc</a></li>
+      <li style="float: right;"><a href="function.array-uintersect-assoc.html">array_uintersect_assoc »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.array.html">Fun&ccedil;&otilde;es para Array</a></li>
+    <li>Computa a diferen&ccedil;a de arrays usando uma fun&ccedil;&atilde;o de callback para compara&ccedil;&atilde;o dos dados</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.array-udiff" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_udiff</h1>
+  <p class="refpurpose"><span class="refname">array_udiff</span> &mdash; <span class="dc-title">Computa a diferença de arrays usando uma função de callback para comparação dos dados</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.array-udiff-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>array_udiff</strong></span>(<span class="methodparam"><span class="type">array</span> <code class="parameter">$array</code></span>, <span class="methodparam"><span class="type">array</span> <code class="parameter">...$arrays</code></span>, <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$value_compare_func</code></span>): <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Computa a diferença de arrays usando uma função de callback para comparação
+   dos dados. Esta é contrária a <span class="function"><a href="function.array-diff.html" class="function">array_diff()</a></span> que usa uma
+   função interna para comparar os dados.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.array-udiff-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">array</code></dt>
+
+     <dd>
+
+      <p class="para">
+       O primeiro array.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">arrays</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Arrays para comparar.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">value_compare_func</code></dt>
+
+     <dd>
+
+      <p class="para">
+ A função de comparação deve retornar um inteiro menor que, igual ou maior que zero se o primeiro argumento for considerado respectivamente menor que, igual ou maior que o segundo.
+</p>
+<div class="methodsynopsis dc-description"><span class="methodname"><span class="replaceable">callback</span></span>(<span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$a</code></span>, <span class="methodparam"><span class="type"><a href="language.types.declarations.html#language.types.declarations.mixed" class="type mixed">mixed</a></span> <code class="parameter">$b</code></span>): <span class="type">int</span></div>
+
+<div class="caution"><strong class="caution">Cuidado</strong>
+ <p class="para">
+  Retornar valores <em>não inteiros</em> da função de
+  comparação, como <span class="type">float</span>, resultará em uma conversão interna
+  do valor retornado da função callback para <span class="type">int</span>. Portanto, valores como
+  <code class="literal">0.99</code> e <code class="literal">0.1</code> serão convertidos para o
+  valor inteiro <code class="literal">0</code>, o que comparará esses valores como iguais.
+ </p>
+</div>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.array-udiff-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Retorna um array contendo todos os valores de <code class="parameter">array</code>
+   que não estão presentes em qualquer dos outros argumentos.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.array-udiff-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #1 Exemplo de <span class="function"><strong>array_udiff()</strong></span> usando Objetos stdClass</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Arrays para comprar<br /></span><span style="color: #0000BB">$array1 </span><span style="color: #007700">= array(new </span><span style="color: #0000BB">stdClass</span><span style="color: #007700">, new </span><span style="color: #0000BB">stdClass</span><span style="color: #007700">,<br />                new </span><span style="color: #0000BB">stdClass</span><span style="color: #007700">, new </span><span style="color: #0000BB">stdClass</span><span style="color: #007700">,<br />               );<br /><br /></span><span style="color: #0000BB">$array2 </span><span style="color: #007700">= array(<br />                new </span><span style="color: #0000BB">stdClass</span><span style="color: #007700">, new </span><span style="color: #0000BB">stdClass</span><span style="color: #007700">,<br />               );<br /><br /></span><span style="color: #FF8000">// Define algumas propriedades para cada objeto<br /></span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">largura </span><span style="color: #007700">= </span><span style="color: #0000BB">11</span><span style="color: #007700">; </span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">altura </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">largura </span><span style="color: #007700">= </span><span style="color: #0000BB">7</span><span style="color: #007700">;  </span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">altura </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">largura </span><span style="color: #007700">= </span><span style="color: #0000BB">2</span><span style="color: #007700">;  </span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">altura </span><span style="color: #007700">= </span><span style="color: #0000BB">9</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">largura </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">;  </span><span style="color: #0000BB">$array1</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">altura </span><span style="color: #007700">= </span><span style="color: #0000BB">7</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$array2</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">largura </span><span style="color: #007700">= </span><span style="color: #0000BB">7</span><span style="color: #007700">;  </span><span style="color: #0000BB">$array2</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">altura </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$array2</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">largura </span><span style="color: #007700">= </span><span style="color: #0000BB">9</span><span style="color: #007700">;  </span><span style="color: #0000BB">$array2</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">altura </span><span style="color: #007700">= </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br /><br />function </span><span style="color: #0000BB">comparar_por_area</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br />    </span><span style="color: #0000BB">$areaA </span><span style="color: #007700">= </span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">largura </span><span style="color: #007700">* </span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">altura</span><span style="color: #007700">;<br />    </span><span style="color: #0000BB">$areaB </span><span style="color: #007700">= </span><span style="color: #0000BB">$b</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">largura </span><span style="color: #007700">* </span><span style="color: #0000BB">$b</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">altura</span><span style="color: #007700">;<br /><br />    if (</span><span style="color: #0000BB">$areaA </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">$areaB</span><span style="color: #007700">) {<br />        return -</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />    } elseif (</span><span style="color: #0000BB">$areaA </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$areaB</span><span style="color: #007700">) {<br />        return </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />    } else {<br />        return </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />    }<br />}<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">array_udiff</span><span style="color: #007700">(</span><span style="color: #0000BB">$array1</span><span style="color: #007700">, </span><span style="color: #0000BB">$array2</span><span style="color: #007700">, </span><span style="color: #DD0000">'comparar_por_area'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; stdClass Object
+        (
+            [largura] =&gt; 11
+            [altura] =&gt; 3
+        )
+
+    [1] =&gt; stdClass Object
+        (
+            [largura] =&gt; 7
+            [altura] =&gt; 1
+        )
+
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="">
+    <p><strong>Exemplo #2 Exemplo de <span class="function"><strong>array_udiff()</strong></span> usando Objetos DateTime</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">MeuCalendario </span><span style="color: #007700">{<br />    public </span><span style="color: #0000BB">$livres </span><span style="color: #007700">= array();<br />    public </span><span style="color: #0000BB">$reservadas </span><span style="color: #007700">= array();<br /><br />    public function </span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$semana </span><span style="color: #007700">= </span><span style="color: #DD0000">'now'</span><span style="color: #007700">) {<br />        </span><span style="color: #0000BB">$inicio </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #0000BB">$semana</span><span style="color: #007700">);<br />        </span><span style="color: #0000BB">$inicio</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">modify</span><span style="color: #007700">(</span><span style="color: #DD0000">'Monday this week midnight'</span><span style="color: #007700">);<br />        </span><span style="color: #0000BB">$fim </span><span style="color: #007700">= clone </span><span style="color: #0000BB">$inicio</span><span style="color: #007700">;<br />        </span><span style="color: #0000BB">$fim</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">modify</span><span style="color: #007700">(</span><span style="color: #DD0000">'Friday this week midnight'</span><span style="color: #007700">);<br />        </span><span style="color: #0000BB">$intervalo </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateInterval</span><span style="color: #007700">(</span><span style="color: #DD0000">'P1D'</span><span style="color: #007700">);<br />        foreach (new </span><span style="color: #0000BB">DatePeriod</span><span style="color: #007700">(</span><span style="color: #0000BB">$inicio</span><span style="color: #007700">, </span><span style="color: #0000BB">$intervalo</span><span style="color: #007700">, </span><span style="color: #0000BB">$fim</span><span style="color: #007700">) as </span><span style="color: #0000BB">$tempoLivre</span><span style="color: #007700">) {<br />            </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">livres</span><span style="color: #007700">[] = </span><span style="color: #0000BB">$tempoLivre</span><span style="color: #007700">;<br />        }<br />    }<br /><br />    public function </span><span style="color: #0000BB">marcarCompromisso</span><span style="color: #007700">(</span><span style="color: #0000BB">DateTime $data</span><span style="color: #007700">, </span><span style="color: #0000BB">$nota</span><span style="color: #007700">) {<br />        </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">reservadas</span><span style="color: #007700">[] = array(</span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$data</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">modify</span><span style="color: #007700">(</span><span style="color: #DD0000">'midnight'</span><span style="color: #007700">), </span><span style="color: #DD0000">'nota' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$nota</span><span style="color: #007700">);<br />    }<br /><br />    public function </span><span style="color: #0000BB">checarDisponibilidade</span><span style="color: #007700">() {<br />        return </span><span style="color: #0000BB">array_udiff</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">livres</span><span style="color: #007700">, </span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">reservadas</span><span style="color: #007700">, array(</span><span style="color: #0000BB">$this</span><span style="color: #007700">, </span><span style="color: #DD0000">'compararPersonalizado'</span><span style="color: #007700">));<br />    }<br /><br />    public function </span><span style="color: #0000BB">compararPersonalizado</span><span style="color: #007700">(</span><span style="color: #0000BB">$livres</span><span style="color: #007700">, </span><span style="color: #0000BB">$reservadas</span><span style="color: #007700">) {<br />        if (</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$livres</span><span style="color: #007700">)) </span><span style="color: #0000BB">$a </span><span style="color: #007700">= </span><span style="color: #0000BB">$livres</span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br />        else </span><span style="color: #0000BB">$a </span><span style="color: #007700">= </span><span style="color: #0000BB">$livres</span><span style="color: #007700">;<br />        if (</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$reservadas</span><span style="color: #007700">)) </span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #0000BB">$reservadas</span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br />        else </span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #0000BB">$reservadas</span><span style="color: #007700">;<br />        if (</span><span style="color: #0000BB">$a </span><span style="color: #007700">== </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br />            return </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />        } elseif (</span><span style="color: #0000BB">$a </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br />            return </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />        } else {<br />            return -</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />        }<br />    }<br />}<br /><br /></span><span style="color: #FF8000">// Cria um calendário para compromissos semanais<br /></span><span style="color: #0000BB">$meuCalendario </span><span style="color: #007700">= new </span><span style="color: #0000BB">MeuCalendario</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">// Marca alguns compromissos para esta semana<br /></span><span style="color: #0000BB">$meuCalendario</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">marcarCompromisso</span><span style="color: #007700">(new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">'Monday this week'</span><span style="color: #007700">), </span><span style="color: #DD0000">"Limpando apartamento do GoogleGuy."</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$meuCalendario</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">marcarCompromisso</span><span style="color: #007700">(new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">'Wednesday this week'</span><span style="color: #007700">), </span><span style="color: #DD0000">"Fazendo uma viagem de snowboarding."</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$meuCalendario</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">marcarCompromisso</span><span style="color: #007700">(new </span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">'Friday this week'</span><span style="color: #007700">), </span><span style="color: #DD0000">"Corrigindo código bugado."</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Checar disponibilidade de dias comparando datas $reservadas com datas $livres<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">"Estou disponível nos seguintes dias desta semana...\n\n"</span><span style="color: #007700">;<br />foreach (</span><span style="color: #0000BB">$meuCalendario</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">checarDisponibilidade</span><span style="color: #007700">() as </span><span style="color: #0000BB">$livre</span><span style="color: #007700">) {<br />    echo </span><span style="color: #0000BB">$livre</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'l'</span><span style="color: #007700">), </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br />echo </span><span style="color: #DD0000">"\n\n"</span><span style="color: #007700">;<br />echo </span><span style="color: #DD0000">"Estou ocupado(a) nos seguintes dias desta semana...\n\n"</span><span style="color: #007700">;<br />foreach (</span><span style="color: #0000BB">$meuCalendario</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">reservadas </span><span style="color: #007700">as </span><span style="color: #0000BB">$reservada</span><span style="color: #007700">) {<br />    echo </span><span style="color: #0000BB">$reservada</span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'l'</span><span style="color: #007700">), </span><span style="color: #DD0000">": "</span><span style="color: #007700">, </span><span style="color: #0000BB">$reservada</span><span style="color: #007700">[</span><span style="color: #DD0000">'nota'</span><span style="color: #007700">], </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Estou disponível nos seguintes dias desta semana...
+
+Tuesday
+Thursday
+
+
+Estou ocupado(a) nos seguintes dias desta semana...
+
+Monday: Limpando apartamento do GoogleGuy.
+Wednesday: Fazendo uma viagem de snowboarding.
+Friday: Corrigindo código bugado.
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes" id="refsect1-function.array-udiff-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <span class="simpara">
+    Por favor note que esta função somente checa uma dimensão de um array
+    n-dimensional. É claro que você pode checar dimensões mais profundas
+    usando <code class="literal">array_udiff($array1[0], $array2[0], &quot;data_compare_func&quot;);</code>.
+   </span>
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.array-udiff-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.array-diff.html" class="function" rel="rdfs-seeAlso">array_diff()</a> - Computa as diferen&ccedil;as entre arrays</span></li>
+    <li class="member"><span class="function"><a href="function.array-diff-assoc.html" class="function" rel="rdfs-seeAlso">array_diff_assoc()</a> - Computa a diferen&ccedil;a entre arrays com checagem adicional de &iacute;ndice</span></li>
+    <li class="member"><span class="function"><a href="function.array-diff-uassoc.html" class="function" rel="rdfs-seeAlso">array_diff_uassoc()</a> - Computa a diferen&ccedil;a entre arrays com checagem adicional de &iacute;ndice que feita por uma fun&ccedil;&atilde;o de callback fornecida pelo usu&aacute;rio</span></li>
+    <li class="member"><span class="function"><a href="function.array-udiff-assoc.html" class="function" rel="rdfs-seeAlso">array_udiff_assoc()</a> - Computa a diferen&ccedil;a entre arrays com checagem adicional de &iacute;ndice, compara dados por uma fun&ccedil;&atilde;o de callback</span></li>
+    <li class="member"><span class="function"><a href="function.array-udiff-uassoc.html" class="function" rel="rdfs-seeAlso">array_udiff_uassoc()</a> - Computa a diferen&ccedil;a entre arrays com checagem adicional de &iacute;ndice, compara dados e &iacute;ndices por uma fun&ccedil;&atilde;o de callback</span></li>
+    <li class="member"><span class="function"><a href="function.array-intersect.html" class="function" rel="rdfs-seeAlso">array_intersect()</a> - Calcula a interse&ccedil;&atilde;o entre arrays</span></li>
+    <li class="member"><span class="function"><a href="function.array-intersect-assoc.html" class="function" rel="rdfs-seeAlso">array_intersect_assoc()</a> - Computa a interse&ccedil;&atilde;o de arrays com uma adicional verifica&ccedil;&atilde;o de &iacute;ndice</span></li>
+    <li class="member"><span class="function"><a href="function.array-uintersect.html" class="function" rel="rdfs-seeAlso">array_uintersect()</a> - Computa a interse&ccedil;&atilde;o de array, comparando dados com uma fun&ccedil;&atilde;o callback</span></li>
+    <li class="member"><span class="function"><a href="function.array-uintersect-assoc.html" class="function" rel="rdfs-seeAlso">array_uintersect_assoc()</a> - Computa a interse&ccedil;&atilde;o de arrays com checagem adicional de &iacute;ndice, compara os dados utilizando uma fun&ccedil;&atilde;o de callback</span></li>
+    <li class="member"><span class="function"><a href="function.array-uintersect-uassoc.html" class="function" rel="rdfs-seeAlso">array_uintersect_uassoc()</a> - Computa a interse&ccedil;&atilde;o de arrays com checagem adicional de &iacute;ndice, compara os dados e os &iacute;ndices utilizando fun&ccedil;&otilde;es de callback separadas</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

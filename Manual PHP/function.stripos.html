@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Find the position of the first occurrence of a case-insensitive substring in a string</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.stripcslashes.html">« stripcslashes</a></li>
+      <li style="float: right;"><a href="function.stripslashes.html">stripslashes »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.strings.html">Fun&ccedil;&otilde;es de String</a></li>
+    <li>Find the position of the first occurrence of a case-insensitive substring in a string</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.stripos" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stripos</h1>
+  <p class="refpurpose"><span class="refname">stripos</span> &mdash; <span class="dc-title">Find the position of the first occurrence of a case-insensitive substring in a string</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.stripos-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>stripos</strong></span>(<span class="methodparam"><span class="type">string</span> <code class="parameter">$haystack</code></span>, <span class="methodparam"><span class="type">string</span> <code class="parameter">$needle</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code><span class="initializer"> = 0</span></span>): <span class="type"><span class="type">int</span>|<span class="type"><span class="type false">false</span></span></span></div>
+
+  <p class="para rdfs-comment">
+   Find the numeric position of the first occurrence of
+   <code class="parameter">needle</code> in the <code class="parameter">haystack</code> string.
+  </p>
+  <p class="para">
+   Unlike the <span class="function"><a href="function.strpos.html" class="function">strpos()</a></span>, <span class="function"><strong>stripos()</strong></span> is
+   case-insensitive.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.stripos-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    
+     <dt>
+<code class="parameter">haystack</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The string to search in.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">needle</code></dt>
+
+     <dd>
+
+      <p class="para">
+       The string to search for.
+      </p>
+      
+ <p class="para">
+  Antes do PHP 8.0.0, se <code class="parameter">needle</code> não for uma string, ela será convertida
+  para um número inteiro e aplicada como o valor ordinal de um caractere.
+  Este comportamento tornou-se obsoleto a partir do PHP 7.3.0 e depender dele é altamente
+  desaconselhado. Dependendo do comportamento pretendido, o parâmetro
+  <code class="parameter">needle</code> deve ser explicitamente convertido em string
+  ou uma chamada explícita para <span class="function"><a href="function.chr.html" class="function">chr()</a></span> deve ser realizada.
+ </p>
+
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">offset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       If specified, search will start this number of characters counted from
+       the beginning of the string. If the offset is negative, the search will start
+       this number of characters counted from the end of the string.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.stripos-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Returns the position of where the needle exists relative to the beginning of
+   the <code class="parameter">haystack</code> string (independent of offset).
+   Also note that string positions start at 0, and not 1.
+  </p>
+  <p class="para">
+   Returns <strong><code>false</code></strong> if the needle was not found.
+  </p>
+  <div class="warning"><strong class="warning">Aviso</strong><p class="simpara">Esta função pode
+retornar o valor booleano <strong><code>false</code></strong>, mas também pode retornar um valor não booleano que pode ser
+avaliado como <strong><code>false</code></strong>. Leia a seção sobre <a href="language.types.boolean.html" class="link">Booleanos</a> para mais
+informações. Use o <a href="language.operators.comparison.html" class="link">operador
+===</a> para testar o valor retornado por esta
+função.</p></div>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.stripos-changelog">
+  <h3 class="title">Changelog</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Versão</th>
+      <th>Descrição</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     
+ <tr>
+  <td>8.2.0</td>
+  <td>
+   A redução de todas as letras a maiúsculas ou minúsculas não depende mais da localidade definida com
+   <span class="function"><a href="function.setlocale.html" class="function">setlocale()</a></span>. Somente a redução de todas as letras ASCII a maiúsculas ou minúsculas será feita.
+   Os bytes não ASCII serão comparados por seu valor de byte.
+  </td>
+ </tr>
+
+
+     <tr>
+ <td>8.0.0</td>
+ <td>
+  O parâmetro <code class="parameter">needle</code> agora aceita uma string vazia.
+ </td>
+</tr>
+
+     <tr>
+      <td>8.0.0</td>
+      <td>
+       Passing an <span class="type">int</span> as <code class="parameter">needle</code> is no longer supported.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.3.0</td>
+      <td>
+       Passing an <span class="type">int</span> as <code class="parameter">needle</code> has been deprecated.
+      </td>
+     </tr>
+
+     <tr>
+      <td>7.1.0</td>
+      <td>
+       Support for negative <code class="parameter">offset</code>s has been added.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.stripos-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="">
+   <p><strong>Exemplo #1 <span class="function"><strong>stripos()</strong></span> examples</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$findme    </span><span style="color: #007700">= </span><span style="color: #DD0000">'a'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$mystring1 </span><span style="color: #007700">= </span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$mystring2 </span><span style="color: #007700">= </span><span style="color: #DD0000">'ABC'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$pos1 </span><span style="color: #007700">= </span><span style="color: #0000BB">stripos</span><span style="color: #007700">(</span><span style="color: #0000BB">$mystring1</span><span style="color: #007700">, </span><span style="color: #0000BB">$findme</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$pos2 </span><span style="color: #007700">= </span><span style="color: #0000BB">stripos</span><span style="color: #007700">(</span><span style="color: #0000BB">$mystring2</span><span style="color: #007700">, </span><span style="color: #0000BB">$findme</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">// Nope, 'a' is certainly not in 'xyz'<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$pos1 </span><span style="color: #007700">=== </span><span style="color: #0000BB">false</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"The string '</span><span style="color: #0000BB">$findme</span><span style="color: #DD0000">' was not found in the string '</span><span style="color: #0000BB">$mystring1</span><span style="color: #DD0000">'"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">// Note our use of ===.  Simply == would not work as expected<br />// because the position of 'a' is the 0th (first) character.<br /></span><span style="color: #007700">if (</span><span style="color: #0000BB">$pos2 </span><span style="color: #007700">!== </span><span style="color: #0000BB">false</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">"We found '</span><span style="color: #0000BB">$findme</span><span style="color: #DD0000">' in '</span><span style="color: #0000BB">$mystring2</span><span style="color: #DD0000">' at position </span><span style="color: #0000BB">$pos2</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.stripos-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: <span class="simpara">Esta função é
+compatível com dados binários.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.stripos-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.mb-stripos.html" class="function" rel="rdfs-seeAlso">mb_stripos()</a> - Finds position of first occurrence of a string within another, case insensitive</span></li>
+    <li class="member"><span class="function"><a href="function.str-contains.html" class="function" rel="rdfs-seeAlso">str_contains()</a> - Determina se uma string cont&eacute;m uma substring fornecida</span></li>
+    <li class="member"><span class="function"><a href="function.str-ends-with.html" class="function" rel="rdfs-seeAlso">str_ends_with()</a> - Verifica se uma string termina com uma substring fornecida</span></li>
+    <li class="member"><span class="function"><a href="function.str-starts-with.html" class="function" rel="rdfs-seeAlso">str_starts_with()</a> - Verifica se uma string come&ccedil;a com uma substring fornecida</span></li>
+    <li class="member"><span class="function"><a href="function.strpos.html" class="function" rel="rdfs-seeAlso">strpos()</a> - Find the position of the first occurrence of a substring in a string</span></li>
+    <li class="member"><span class="function"><a href="function.strrpos.html" class="function" rel="rdfs-seeAlso">strrpos()</a> - Find the position of the last occurrence of a substring in a string</span></li>
+    <li class="member"><span class="function"><a href="function.strripos.html" class="function" rel="rdfs-seeAlso">strripos()</a> - Find the position of the last occurrence of a case-insensitive substring in a string</span></li>
+    <li class="member"><span class="function"><a href="function.stristr.html" class="function" rel="rdfs-seeAlso">stristr()</a> - Case-insensitive strstr</span></li>
+    <li class="member"><span class="function"><a href="function.substr.html" class="function" rel="rdfs-seeAlso">substr()</a> - Retorna uma parte de uma string</span></li>
+    <li class="member"><span class="function"><a href="function.str-ireplace.html" class="function" rel="rdfs-seeAlso">str_ireplace()</a> - Case-insensitive version of str_replace</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

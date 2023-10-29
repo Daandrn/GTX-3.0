@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Add a delete operation to the bulk</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongodb-driver-bulkwrite.count.html">« MongoDB\Driver\BulkWrite::count</a></li>
+      <li style="float: right;"><a href="mongodb-driver-bulkwrite.insert.html">MongoDB\Driver\BulkWrite::insert »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongodb-driver-bulkwrite.html">MongoDB\Driver\BulkWrite</a></li>
+    <li>Add a delete operation to the bulk</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongodb-driver-bulkwrite.delete" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoDB\Driver\BulkWrite::delete</h1>
+  <p class="refpurpose"><span class="refname">MongoDB\Driver\BulkWrite::delete</span> &mdash; <span class="dc-title">Add a delete operation to the bulk</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongodb-driver-bulkwrite.delete-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>MongoDB\Driver\BulkWrite::delete</strong></span>(<span class="methodparam"><span class="type"><span class="type">array</span>|<span class="type">object</span></span> <code class="parameter">$filter</code></span>, <span class="methodparam"><span class="type">?</span><span class="type"><span class="type">array</span><span class="type"></span></span> <code class="parameter">$deleteOptions</code><span class="initializer"> = <strong><code>null</code></strong></span></span>): <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Adds a delete operation to the
+   <span class="classname"><a href="class.mongodb-driver-bulkwrite.html" class="classname">MongoDB\Driver\BulkWrite</a></span>.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongodb-driver-bulkwrite.delete-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <dl>
+   
+   
+    <dt>
+<code class="parameter">filter</code> (<span class="type"><span class="type">array</span>|<span class="type">object</span></span>)</dt>
+
+    <dd>
+
+     <p class="para">
+      O <a href="https://www.mongodb.com/docs/manual/tutorial/query-documents/" class="link external">&raquo;&nbsp;predicado de consulta</a>.
+      Um predicado vazio corresponderá a todos os documentos da coleção.
+     </p>
+     <blockquote class="note"><p><strong class="note">Nota</strong>: 
+      <span class="simpara">
+       Ao avaliar os critérios de consulta, o MongoDB compara os tipos e valores de acordo com suas próprias <a href="https://www.mongodb.com/docs/manual/reference/bson-type-comparison-order/" class="link external">&raquo;&nbsp;regras de comparação para tipos BSON</a>, que diferem das regras de <a href="types.comparisons.html" class="link">comparação</a> e do <a href="language.types.type-juggling.html" class="link">malabarismo de tipos</a> do PHP. Ao corresponder a um tipo especial de BSON, os critérios de consulta devem usar a respectiva <a href="book.bson.html" class="link">classe BSON</a> (por exemplo, use <span class="classname"><a href="class.mongodb-bson-objectid.html" class="classname">MongoDB\BSON\ObjectId</a></span> para corresponder a um <a href="https://www.mongodb.com/docs/manual/reference/bson-types/#objectid" class="link external">&raquo;&nbsp;ObjectId</a>).
+      </span>
+     </p></blockquote>
+    </dd>
+
+   
+
+   
+    <dt>
+<code class="parameter">deleteOptions</code></dt>
+
+    <dd>
+
+     <p class="para">
+      <table class="doctable table">
+       <caption><strong>deleteOptions</strong></caption>
+       
+        <thead>
+         <tr>
+          <th>Option</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         
+         <tr>
+          <td>collation</td>
+          <td><span class="type"><span class="type">array</span>|<span class="type">object</span></span></td>
+          <td>
+           <p class="para">
+            <a href="https://www.mongodb.com/docs/upcoming/reference/collation/" class="link external">&raquo;&nbsp;Collation</a> permite que os usuários especifiquem regras específicas do idioma para comparação de strings, como regras para maiúsculas e minúsculas e acentos. Ao especificar a collation, o campo <code class="literal">&quot;locale&quot;</code> é obrigatório; todos os outros campos de collation são opcionais. Para obter descrições dos campos, veja o <a href="https://www.mongodb.com/docs/upcoming/reference/collation/#collation-document" class="link external">&raquo;&nbsp;Documento de Collation</a>.
+           </p>
+           <p class="para">
+            Se a collation não for especificada, mas a coleção tiver uma collation padrão, a operação usará a collation especificada para a coleção. Se nenhuma collation for especificada para a coleção ou para a operação, o MongoDB usará a comparação binária simples usada em versões anteriores para comparações de strings.
+           </p>
+           <p class="para">
+            Esta opção está disponível no MongoDB 3.4+ e resultará em uma exceção em tempo de execução se for especificada para uma versão de servidor mais antiga.
+           </p>
+          </td>
+         </tr>
+
+
+         <tr>
+          <td>hint</td>
+          <td><span class="type"><span class="type">string</span>|<span class="type">array</span>|<span class="type">object</span></span></td>
+          <td>
+           <p class="para">
+            Index specification. Specify either the index name as a string or
+            the index key pattern. If specified, then the query system will only
+            consider plans using the hinted index.
+           </p>
+           <p class="para">
+            This option is available in MongoDB 4.4+ and will result in an
+            exception at execution time if specified for an older server
+            version.
+           </p>
+          </td>
+         </tr>
+
+         <tr>
+          <td>limit</td>
+          <td><span class="type">bool</span></td>
+          <td>Delete all matching documents (<strong><code>false</code></strong>), or only the first matching document (<strong><code>true</code></strong>)</td>
+          <td><strong><code>false</code></strong></td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongodb-driver-bulkwrite.delete-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Nenhum valor é retornado.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongodb-driver-bulkwrite.delete-errors">
+  <h3 class="title">Erros</h3>
+  <ul class="simplelist">
+   <li class="member">Lança uma exceção <span class="classname"><a href="class.mongodb-driver-exception-invalidargumentexception.html" class="classname">MongoDB\Driver\Exception\InvalidArgumentException</a></span> em caso de erro ao analisar argumentos.</li>
+  </ul>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mongodb-driver-bulkwrite.delete-changelog">
+  <h3 class="title">Changelog</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Versão</th>
+       <th>Descrição</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>PECL mongodb 1.8.0</td>
+       <td>
+        Added the <code class="literal">&quot;hint&quot;</code> option.
+       </td>
+      </tr>
+
+      <tr>
+       <td>PECL mongodb 1.2.0</td>
+       <td>
+        Added the <code class="literal">&quot;collation&quot;</code> option.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongodb-driver-bulkwrite.delete-examples">
+  <h3 class="title">Exemplos</h3>
+  <div class="example" id="example-3962">
+   <p><strong>Exemplo #1 <span class="function"><strong>MongoDB\Driver\BulkWrite::delete()</strong></span> example</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /><br />$bulk </span><span style="color: #007700">= new </span><span style="color: #0000BB">MongoDB\Driver\BulkWrite</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$bulk</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">delete</span><span style="color: #007700">([</span><span style="color: #DD0000">'x' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">], [</span><span style="color: #DD0000">'limit' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$bulk</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">delete</span><span style="color: #007700">([</span><span style="color: #DD0000">'x' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">], [</span><span style="color: #DD0000">'limit' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br /><br /></span><span style="color: #0000BB">$manager </span><span style="color: #007700">= new </span><span style="color: #0000BB">MongoDB\Driver\Manager</span><span style="color: #007700">(</span><span style="color: #DD0000">'mongodb://localhost:27017'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result </span><span style="color: #007700">= </span><span style="color: #0000BB">$manager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeBulkWrite</span><span style="color: #007700">(</span><span style="color: #DD0000">'db.collection'</span><span style="color: #007700">, </span><span style="color: #0000BB">$bulk</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+
+ <div class="refsect1 seealso" id="refsect1-mongodb-driver-bulkwrite.delete-seealso">
+  <h3 class="title">Veja Também</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="methodname"><a href="mongodb-driver-manager.executebulkwrite.html" class="methodname" rel="rdfs-seeAlso">MongoDB\Driver\Manager::executeBulkWrite()</a> - Execute one or more write operations</span></li>
+   <li class="member"><span class="classname"><a href="class.mongodb-driver-writeresult.html" class="classname">MongoDB\Driver\WriteResult</a></span></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

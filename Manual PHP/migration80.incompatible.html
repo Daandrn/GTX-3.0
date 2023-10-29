@@ -1,0 +1,1645 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Altera&ccedil;&otilde;es incompat&iacute;veis com vers&otilde;es anteriores</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration80.new-features.html">« Novas Funcionalidades</a></li>
+      <li style="float: right;"><a href="migration80.deprecated.html">Recursos depreciados »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration80.html">Migrando do PHP 7.4.x para o PHP 8.0.x</a></li>
+    <li>Altera&ccedil;&otilde;es incompat&iacute;veis com vers&otilde;es anteriores</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration80.incompatible" class="sect1">
+ <h2 class="title">Alterações incompatíveis com versões anteriores</h2>
+
+ <div class="sect2" id="migration80.incompatible.core">
+  <h3 class="title">PHP Core</h3>
+
+  <div class="sect3" id="migration80.incompatible.core.string-number-comparision">
+   <h4 class="title">Comparação entre String e Número</h4>
+
+   <p class="para">
+    Comparações não estritas entre números e strings não numéricas, agora funcionam convertendo o número em
+    string e comparando as strings. As comparações entre números e strings numéricas continuam
+    funcionando como antes. Notavelmente, isso significa que a comparação: <code class="code">0 == &quot;not-a-number&quot;</code> agora é considerada
+    falsa.
+    <table class="doctable informaltable">
+     
+      <thead>
+       <tr>
+        <th>Comparação</th>
+        <th>Antes</th>
+        <th>Depois</th>
+       </tr>
+
+      </thead>
+
+      <tbody class="tbody">
+       <tr>
+        <td><code class="code">0 == &quot;0&quot;</code></td>
+        <td><strong><code>true</code></strong></td>
+        <td><strong><code>true</code></strong></td>
+       </tr>
+
+       <tr>
+        <td><code class="code">0 == &quot;0.0&quot;</code></td>
+        <td><strong><code>true</code></strong></td>
+        <td><strong><code>true</code></strong></td>
+       </tr>
+
+       <tr>
+        <td><code class="code">0 == &quot;foo&quot;</code></td>
+        <td><strong><code>true</code></strong></td>
+        <td><strong><code>false</code></strong></td>
+       </tr>
+
+       <tr>
+        <td><code class="code">0 == &quot;&quot;</code></td>
+        <td><strong><code>true</code></strong></td>
+        <td><strong><code>false</code></strong></td>
+       </tr>
+
+       <tr>
+        <td><code class="code">42 == &quot;   42&quot;</code></td>
+        <td><strong><code>true</code></strong></td>
+        <td><strong><code>true</code></strong></td>
+       </tr>
+
+       <tr>
+        <td><code class="code">42 == &quot;42foo&quot;</code></td>
+        <td><strong><code>true</code></strong></td>
+        <td><strong><code>false</code></strong></td>
+       </tr>
+
+      </tbody>
+     
+    </table>
+
+    
+   </p>
+  </div>
+
+  <div class="sect3" id="migration80.incompatible.core.other">
+   <h4 class="title">Outras mudanças incompatíveis</h4>
+
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">match</code> agora é uma palavra reservada.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">mixed</code> agora é uma palavra reservada, portanto, não pode ser usado para nomear uma classe, interface ou trait, e também é proibido de ser usado em namespaces.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      As falhas de asserção agora são lançadas por padrão. Se o comportamento antigo é desejado,
+      <code class="code">assert.exception=0</code> pode ser definido nas configurações INI.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Métodos com o mesmo nome de classe não são mais interpretados como construtores. O
+      método <a href="language.oop5.decon.html#object.construct" class="link">__construct()</a> deve ser utilizado em seu lugar.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A capacidade de chamar métodos não estáticos estaticamente foi removida. Por isso
+      a função <span class="function"><a href="function.is-callable.html" class="function">is_callable()</a></span> irá falhar ao verificar um método não estático com
+      um nome de classe (deve se realizar uma verificação com uma instância de objeto).
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Foram removidas as conversões de tipos, <code class="code">(real)</code> e <code class="code">(unset)</code>.
+     </p>
+    </li>
+    <li class="listitem">
+      <p class="para">
+       A diretiva do php.ini <a href="errorfunc.configuration.html#ini.track-errors" class="link">track_errors</a> foi removida. Isto
+       significa que a variável <var class="varname">php_errormsg</var> não está mais disponível. A função
+       <span class="function"><a href="function.error-get-last.html" class="function">error_get_last()</a></span> deve ser utilizada em seu lugar.
+      </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A capacidade de definir constantes que não diferenciam maiúsculas de minúsculas foi removida. O
+      terceiro argumento para a função <span class="function"><a href="function.define.html" class="function">define()</a></span> não pode ser mais <strong><code>true</code></strong>.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A capacidade de especificar um auto carregamento utilizando a função <span class="function"><a href="function.autoload.html" class="function">__autoload()</a></span> foi
+      removida. A função <span class="function"><a href="function.spl-autoload-register.html" class="function">spl_autoload_register()</a></span> deve ser utilizada em seu lugar.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      O argumento <code class="parameter">errcontext</code> não será mais usado para manipulação de erros personalizados
+      definido com a função <span class="function"><a href="function.set-error-handler.html" class="function">set_error_handler()</a></span>.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A função <span class="function"><a href="function.create-function.html" class="function">create_function()</a></span> foi removida. Ao invés disso, funções anônimas devem ser utilizadas.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A função <span class="function"><a href="function.each.html" class="function">each()</a></span> foi removida. <a href="control-structures.foreach.html" class="link">foreach</a> ou <span class="classname"><a href="class.arrayiterator.html" class="classname">ArrayIterator</a></span>
+      devem ser utilizados em seu lugar.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Foi removida a capacidade de desvincular <var class="varname">this</var> de closures que foram
+      criadas a partir de um método, usando <span class="methodname"><a href="closure.fromcallable.html" class="methodname">Closure::fromCallable()</a></span> ou
+      <span class="methodname"><a href="reflectionmethod.getclosure.html" class="methodname">ReflectionMethod::getClosure()</a></span>.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A habilidade de desvincular <var class="varname">this</var> de closures que contêm usos de
+      <var class="varname">this</var> também foi removida.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A habilidade de utilizar a função <span class="function"><a href="function.array-key-exists.html" class="function">array_key_exists()</a></span> com objetos foi removida.
+      as funções <span class="function"><a href="function.isset.html" class="function">isset()</a></span> ou <span class="function"><a href="function.property-exists.html" class="function">property_exists()</a></span> devem ser usadas em seu lugar.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      O comportamento da função <span class="function"><a href="function.array-key-exists.html" class="function">array_key_exists()</a></span> com relação ao tipo do parâmetro
+      <code class="parameter">key</code> agora é consistente com a função <span class="function"><a href="function.isset.html" class="function">isset()</a></span> e
+      acesso normal à arrays. Todos os tipos de chave agora usam as coerções usuais e as chaves de
+      array/objeto lançam um <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span>.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Qualquer array com número <span class="replaceable">n</span> em sua primeira posição utilizará
+      <span class="replaceable">n+1</span> em sua próxima chave implícita mesmo se <span class="replaceable">n</span>
+      for negativo.
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      O nível de error_reporting padrão agora é <strong><code>E_ALL</code></strong>. Anteriormente excluía
+      <strong><code>E_NOTICE</code></strong> e <strong><code>E_DEPRECATED</code></strong>.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <a href="errorfunc.configuration.html#ini.display-startup-errors" class="link">display_startup_errors</a> agora é habilitado por
+      padrão.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Usar <span class="type"><span class="type parent">parent</span></span> dentro de uma classe sem pai agora produzirá um erro fatal
+      em tempo de execução.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      O operador <code class="literal">@</code> não irá mais silenciar erros fatais
+      (<strong><code>E_ERROR</code></strong>, <strong><code>E_CORE_ERROR</code></strong>,
+      <strong><code>E_COMPILE_ERROR</code></strong>, <strong><code>E_USER_ERROR</code></strong>,
+      <strong><code>E_RECOVERABLE_ERROR</code></strong>, <strong><code>E_PARSE</code></strong>). Manipuladores de erros que
+      esperam que error_reporting seja <code class="literal">0</code> quando <code class="literal">@</code> é usado, devem
+      ser ajustados para usar uma verificação de máscara:
+     </p>
+     <p class="para">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Substituir isso ...<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">my_error_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$err_no</span><span style="color: #007700">, </span><span style="color: #0000BB">$err_msg</span><span style="color: #007700">, </span><span style="color: #0000BB">$filename</span><span style="color: #007700">, </span><span style="color: #0000BB">$linenum</span><span style="color: #007700">) {<br />    if (</span><span style="color: #0000BB">error_reporting</span><span style="color: #007700">() == </span><span style="color: #0000BB">0</span><span style="color: #007700">) {<br />        return </span><span style="color: #0000BB">false</span><span style="color: #007700">;<br />    }<br />    </span><span style="color: #FF8000">// ...<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #FF8000">// ... por isso:<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">my_error_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$err_no</span><span style="color: #007700">, </span><span style="color: #0000BB">$err_msg</span><span style="color: #007700">, </span><span style="color: #0000BB">$filename</span><span style="color: #007700">, </span><span style="color: #0000BB">$linenum</span><span style="color: #007700">) {<br />    if (!(</span><span style="color: #0000BB">error_reporting</span><span style="color: #007700">() &amp; </span><span style="color: #0000BB">$err_no</span><span style="color: #007700">)) {<br />        return </span><span style="color: #0000BB">false</span><span style="color: #007700">;<br />    }<br />    </span><span style="color: #FF8000">// ...<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </p>
+     <p class="para">
+      Adicionalmente, cuidados devem ser tomados para que mensagens de erro não sejam mostradas
+      no ambiente de produção, o que pode resultar em vazamento de informações. Certifique-se
+      de que a diretiva <code class="code">display_errors=Off</code> seja usada em conjunto com o log de erros.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">#[</code> não é mais interpretado como o início de um comentário,
+      já que esta sintaxe é utilizada agora para atributos.
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Erros de herança devido a assinaturas de método incompatíveis (violações de LSP) agora sempre gerarão
+      um erro fatal. Antes, um aviso era gerado em alguns casos.
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A precedência dos operadores de concatenação foi modificada em relação ao bitshifts tanto na adição
+      como na subtração.
+     </p>
+     <p class="para">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">"Sum: " </span><span style="color: #007700">. </span><span style="color: #0000BB">$a </span><span style="color: #007700">+ </span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Era interpretado como:<br /></span><span style="color: #007700">echo (</span><span style="color: #DD0000">"Sum: " </span><span style="color: #007700">. </span><span style="color: #0000BB">$a</span><span style="color: #007700">) + </span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// e passa a ser interpretado como:<br /></span><span style="color: #007700">echo </span><span style="color: #DD0000">"Sum:" </span><span style="color: #007700">. (</span><span style="color: #0000BB">$a </span><span style="color: #007700">+ </span><span style="color: #0000BB">$b</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Argumentos com um valor padrão que avaliam <strong><code>null</code></strong> em tempo de execução, não irão mais marcar
+      o tipo do parâmetro como implícito. Um tipo explícito nulo, ou explicitamente <strong><code>null</code></strong> como argumento padrão
+      deve ser usado em seu lugar.
+     </p>
+     <p class="para">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Subistituir<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">int $arg </span><span style="color: #007700">= </span><span style="color: #0000BB">CONST_RESOLVING_TO_NULL</span><span style="color: #007700">) {}<br /></span><span style="color: #FF8000">// Por isso<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">test</span><span style="color: #007700">(?</span><span style="color: #0000BB">int $arg </span><span style="color: #007700">= </span><span style="color: #0000BB">CONST_RESOLVING_TO_NULL</span><span style="color: #007700">) {}<br /></span><span style="color: #FF8000">// Ou isso<br /></span><span style="color: #007700">function </span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">int $arg </span><span style="color: #007700">= </span><span style="color: #0000BB">null</span><span style="color: #007700">) {}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Uma série de avisos foram convertidos para exceções do tipo <span class="classname"><a href="class.error.html" class="classname">Error</a></span>:
+     </p>
+     <p class="para">
+      <ul class="simplelist">
+       <li class="member">
+        A tentativa de escrita em uma propriedade de um não-objeto. Anteriormente isso
+        criava implicitamente um objeto stdClass para strings nulas, falsas e vazias.
+       </li>
+       <li class="member">
+        A tentativa de anexar um elemento a um array para a qual a chave PHP_INT_MAX
+        já está em uso.
+       </li>
+       <li class="member">
+        Tentar usar um tipo inválido (array ou objeto) como uma chave de array ou
+        deslocamento de string.
+       </li>
+       <li class="member">A tentativa de escrever em um índice de array de um valor escalar.</li>
+       <li class="member">Tentar descompactar um não-array/Traversable.</li>
+       <li class="member">
+        Tentar acessar constantes não qualificadas que são indefinidas.
+        Anteriormente, os acessos constantes não qualificados resultavam em um aviso e eram interpretados como strings.
+       </li>
+       <li class="member">
+        Passar o número errado de argumentos para uma função sem argumento variadic
+        ira lançar uma exceção <span class="classname"><a href="class.argumentcounterror.html" class="classname">ArgumentCountError</a></span>.
+       </li>
+      </ul>
+     </p>
+     <p class="para">
+      Uma série de notificações foram convertidas em avisos:
+     </p>
+     <p class="para">
+      <ul class="simplelist">
+       <li class="member">A tentativa de leitura em uma variável não definida.</li>
+       <li class="member">A tentativa de leitura em uma propriedade não definida.</li>
+       <li class="member">A tentativa de leitura em uma chave de array não definido.</li>
+       <li class="member">A tentativa de leitura em uma propriedade de um não-objeto.</li>
+       <li class="member">A tentativa de acesso em um índice de array em um não-array.</li>
+       <li class="member">A tentativa de conversão de um array para uma string.</li>
+       <li class="member">A tentativa de usar um resource como uma chave de array.</li>
+       <li class="member">A tentativa de usar null, um booleano ou um número de ponto flutuante(float) como uma posição em uma string.</li>
+       <li class="member">A tentativa de leitura em uma posição fora dos limites de uma string.</li>
+       <li class="member">A tentativa de atribuir uma string vazia a uma posição de uma string.</li>
+      </ul>
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A tentativa de atribuir múltiplos bytes em uma posição de uma string agora emite um aviso.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Caracteres inesperados no código fonte (como bytes NUL fora de strings) agora irá resultar em uma
+      exceção <span class="classname"><a href="class.parseerror.html" class="classname">ParseError</a></span> em vez de um aviso do compilador.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      As exceções não capturadas agora passam por &quot;desligamento limpo&quot;, o que significa que os destrutores são chamados
+      após uma exceção não detectada.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      O erro fatal em tempo de compilação &quot;Only variables can be passed by reference&quot; foi adiado até o
+      tempo de execução, e convertido em uma exceção de <span class="classname"><a href="class.error.html" class="classname">Error</a></span>
+      &quot;Argument cannot be passed by reference&quot;.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Alguns alertas do tipo &quot;Only variables should be passed by reference&quot; foram convertidas para
+      exceções do tipo &quot;Argument cannot be passed by reference&quot;
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      O nome gerado para classes anônimas foi modificado. Agora, inclui o nome da primeira classe ou
+      interface:
+     </p>
+     <p class="para">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">new class extends </span><span style="color: #0000BB">ParentClass </span><span style="color: #007700">{};<br /></span><span style="color: #FF8000">// -&gt; ParentClass@anonymous<br /></span><span style="color: #007700">new class implements </span><span style="color: #0000BB">FirstInterface</span><span style="color: #007700">, </span><span style="color: #0000BB">SecondInterface </span><span style="color: #007700">{};<br /></span><span style="color: #FF8000">// -&gt; FirstInterface@anonymous<br /></span><span style="color: #007700">new class {};<br /></span><span style="color: #FF8000">// -&gt; class@anonymous<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </p>
+     <p class="para">
+      O nome mostrado acima ainda é seguido por um byte NUL e um sufixo único.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      As referências de método de traits não absolutas em adaptações de alias de traits agora precisam ser
+      inequívocas:
+     </p>
+     <p class="para">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class </span><span style="color: #0000BB">X </span><span style="color: #007700">{<br />    use </span><span style="color: #0000BB">T1</span><span style="color: #007700">, </span><span style="color: #0000BB">T2 </span><span style="color: #007700">{<br />        </span><span style="color: #0000BB">func </span><span style="color: #007700">as </span><span style="color: #0000BB">otherFunc</span><span style="color: #007700">;<br />    }<br />    function </span><span style="color: #0000BB">func</span><span style="color: #007700">() {}<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </p>
+     <p class="para">
+      Se <code class="code">T1::func()</code> e <code class="code">T2::func()</code> existem, este código anteriormente era
+      aceito de forma silenciosa e func assumia referência a <code class="code">T1::func</code>. Agora irá gerar um
+      erro fatal, e <code class="code">T1::func</code> ou <code class="code">T2::func</code> precisam ser
+      escritos explicitamente.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A assinatura de métodos abstratos definido nas características agora é verificada no método de implementação
+      da classe:
+     </p>
+     <p class="para">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">trait </span><span style="color: #0000BB">MyTrait </span><span style="color: #007700">{<br />    abstract private function </span><span style="color: #0000BB">neededByTrait</span><span style="color: #007700">(): </span><span style="color: #0000BB">string</span><span style="color: #007700">;<br />}<br /><br />class </span><span style="color: #0000BB">MyClass </span><span style="color: #007700">{<br />    use </span><span style="color: #0000BB">MyTrait</span><span style="color: #007700">;<br /><br />    </span><span style="color: #FF8000">// Erro por conta do retorno desalinhado.<br />    </span><span style="color: #007700">private function </span><span style="color: #0000BB">neededByTrait</span><span style="color: #007700">(): </span><span style="color: #0000BB">int </span><span style="color: #007700">{ return </span><span style="color: #0000BB">42</span><span style="color: #007700">; }<br />}<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Funções desabilitadas agora são tratadas da mesma forma que funções não existentes. Ao chamar
+      uma função desabilitada será informado que ela é desconhecida, e redefinir uma função desabilitada agora é possível.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Os stream wrappers <code class="literal">data://</code> não podem mais ser writable (gravável), indo
+      de encontro ao comportamento documentado.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Os operadores aritméticos e bitwise (bit a bit) <code class="literal">+</code>, <code class="literal">-</code>,
+      <code class="literal">*</code>, <code class="literal">/</code>, <code class="literal">**</code>, <code class="literal">%</code>,
+      <code class="literal">&lt;&lt;</code>, <code class="literal">&gt;&gt;</code>, <code class="literal">&amp;</code>,
+      <code class="literal">|</code>, <code class="literal">^</code>, <code class="literal">~</code>, <code class="literal">++</code>,
+      <code class="literal">--</code> irão agora apresentar um <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> quando um dos
+      operandos estiver em um <span class="type">array</span>, <a href="language.types.resource.html" class="link">resource</a> ou em um <span class="type">object</span> não sobrecarregado (non-overloaded). A única exceção a isto é
+      a operação de mesclagem de array com <code class="literal">+</code>, que permanece suportada.
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A conversão de float para string agora sempre terá o mesmo comportamento, independentemente da localidade.
+     </p>
+     <p class="para">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_ALL</span><span style="color: #007700">, </span><span style="color: #DD0000">"de_DE"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$f </span><span style="color: #007700">= </span><span style="color: #0000BB">3.14</span><span style="color: #007700">;<br />echo </span><span style="color: #0000BB">$f</span><span style="color: #007700">, </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">// Anteriormente: 3,14<br />// Agora:         3.14<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+     </p>
+     <p class="para">
+      Veja as funções <span class="function"><a href="function.printf.html" class="function">printf()</a></span>, <span class="function"><a href="function.number-format.html" class="function">number_format()</a></span> e
+      <span class="methodname"><strong>NumberFormatter()</strong></span> para customizar a formatação de números.
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      O suporte para chaves (curly braces) obsoletas para acesso de deslocamento foi removida.
+     </p>
+     <p class="para">
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">// Ao invés de:<br /></span><span style="color: #0000BB">$array</span><span style="color: #007700">{</span><span style="color: #0000BB">0</span><span style="color: #007700">};<br /></span><span style="color: #0000BB">$array</span><span style="color: #007700">{</span><span style="color: #DD0000">"key"</span><span style="color: #007700">};<br /></span><span style="color: #FF8000">// Usar:<br /></span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #DD0000">"key"</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+      </div>
+
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Aplicar o modificador final ou método privado agora irá produzir um aviso, a menos que o método
+      seja o construtor.
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Se um objeto construtor chama a função <span class="function"><a href="function.exit.html" class="function">exit()</a></span>, o objeto destrutor não será chamado.
+      Isto vai de encontro ao comportamento que o construtor lança.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Nomes de Namespace não podem mais conter espaços em branco: Enquanto <code class="code">Foo\Bar</code> será reconhecido
+      como um nome de Namespace, <code class="code">Foo \ Bar</code> não será. Por outro lado, as palavras-chave agora serão
+      permitidas como segmentos de um namespace, o que permite a mudança na interpretação do código:
+      <code class="code">new\x</code> agora é o mesmo que <code class="code">constant(&#039;new\x&#039;)</code>,
+      e não <code class="code">new \x()</code>.
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Os ternários aninhados agora exigem parênteses explícitos.
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <span class="function"><a href="function.debug-backtrace.html" class="function">debug_backtrace()</a></span> e <span class="methodname"><a href="exception.gettrace.html" class="methodname">Exception::getTrace()</a></span> agora não mais
+      apresentam referências aos argumentos. Não será possível mudar os argumentos de uma função
+      através de um backtrace.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      O uso de strings numéricas foi modificado para ser mais intuitivo e menos sujeito a erros. Seguindo
+      os espaços em branco, é permitido agora strings numéricas para tratamento de consistência contendo espaços em branco.
+      Isso afeta principalmente:
+     </p>
+     <p class="para">
+      <ul class="simplelist">
+       <li class="member">A função <span class="function"><a href="function.is-numeric.html" class="function">is_numeric()</a></span></li>
+       <li class="member">Comparações string a string </li>
+       <li class="member">Declaração de tipos</li>
+       <li class="member">Operações de incremento e decremento</li>
+      </ul>
+     </p>
+     <p class="para">
+      O conceito de um &quot;leading-numeric string&quot; foi praticamente abandonado; os casos onde permanecem
+      são para facilitar a migração. Strings que emitem um <strong><code>E_NOTICE</code></strong> &quot;A non
+      well-formed numeric value encountered&quot; agora emitirão um <strong><code>E_WARNING</code></strong> &quot;A
+      non-numeric value encountered&quot; e todas as strings que emitiram um <strong><code>E_WARNING</code></strong> &quot;A
+      non-numeric value encountered&quot; agora lançarão um erro
+      <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span>. Isso afeta principalmente:
+     </p>
+     <p class="para">
+      <ul class="simplelist">
+       <li class="member">Operações aritméticas</li>
+       <li class="member">Operações bit a bit</li>
+      </ul>
+     </p>
+     <p class="para">
+      Esta mudança do <strong><code>E_WARNING</code></strong> para <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> também afeta o
+      <strong><code>E_WARNING</code></strong> &quot;Illegal string offset &#039;string&#039;&quot; para o posicionamento ilegal de strings. O
+      comportamento de conversões explícitas de strings para int/float não foi alterado.
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Métodos mágicos agora podem ter argumentos e retornar tipos verificados se eles foram declarados.
+      As assinaturas devem corresponder à seguinte lista:
+     </p>
+     <p class="para">
+      <ul class="simplelist">
+       <li class="member"><code class="code">__call(string $name, array $arguments): mixed</code></li>
+       <li class="member"><code class="code">__callStatic(string $name, array $arguments): mixed</code></li>
+       <li class="member"><code class="code">__clone(): void</code></li>
+       <li class="member"><code class="code">__debugInfo(): ?array</code></li>
+       <li class="member"><code class="code">__get(string $name): mixed</code></li>
+       <li class="member"><code class="code">__invoke(mixed $arguments): mixed</code></li>
+       <li class="member"><code class="code">__isset(string $name): bool</code></li>
+       <li class="member"><code class="code">__serialize(): array</code></li>
+       <li class="member"><code class="code">__set(string $name, mixed $value): void</code></li>
+       <li class="member"><code class="code">__set_state(array $properties): object</code></li>
+       <li class="member"><code class="code">__sleep(): array</code></li>
+       <li class="member"><code class="code">__unserialize(array $data): void</code></li>
+       <li class="member"><code class="code">__unset(string $name): void</code></li>
+       <li class="member"><code class="code">__wakeup(): void</code></li>
+      </ul>
+      
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      As chaves do array passados para a função <span class="function"><a href="function.call-user-func-array.html" class="function">call_user_func_array()</a></span> agora podem ser interpretadas
+      como nomes de parâmetros, em vez de serem silenciosamente ignoradas.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A declaração da função chamada <code class="literal">assert()</code> dentro de um namespace não é
+      mais permitida e gera um <strong><code>E_COMPILE_ERROR</code></strong>.
+      A função <span class="function"><a href="function.assert.html" class="function">assert()</a></span> recebe um tratamento especial pelo motor do PHP,
+      o que pode levar a comportamentos inconsistentes quando definido como uma função de namespace com o mesmo nome.
+     </p>
+    </li>
+   </ul>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.resource2object">
+  <h3 class="title">Migração de Resource para Objeto</h3>
+
+  <p class="para">
+   Diversos <a href="language.types.resource.html" class="link">resource</a>s foram migrados para <span class="type">object</span>s.
+   Verificações de valor de retorno usando a função <span class="function"><a href="function.is-resource.html" class="function">is_resource()</a></span> devem ser substituídas por checagens para <strong><code>false</code></strong>.
+  </p>
+  <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      A função <span class="function"><a href="function.curl-init.html" class="function">curl_init()</a></span> agora retornará um objeto <span class="classname"><a href="class.curlhandle.html" class="classname">CurlHandle</a></span> ao invés
+      de um <a href="language.types.resource.html" class="link">resource</a>. A função <span class="function"><a href="function.curl-close.html" class="function">curl_close()</a></span> não tem mais efeito,
+      em vez disso a instância da classe <span class="classname"><a href="class.curlhandle.html" class="classname">CurlHandle</a></span> é destruída automaticamente se não for
+      mais referenciada.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      A função <span class="function"><a href="function.curl-multi-init.html" class="function">curl_multi_init()</a></span> agora retornará um objeto <span class="classname"><a href="class.curlmultihandle.html" class="classname">CurlMultiHandle</a></span> ao invés
+      de um <a href="language.types.resource.html" class="link">resource</a>. A função <span class="function"><a href="function.curl-multi-close.html" class="function">curl_multi_close()</a></span> não tem mais efeito,
+      em vez disso a instância da classe <span class="classname"><a href="class.curlmultihandle.html" class="classname">CurlMultiHandle</a></span> é destruída automaticamente se não for
+      mais referenciada.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <span class="function"><a href="function.curl-share-init.html" class="function">curl_share_init()</a></span> agora retornará um objeto <span class="classname"><a href="class.curlsharehandle.html" class="classname">CurlShareHandle</a></span>
+      em vez de um <a href="language.types.resource.html" class="link">resource</a>. A função <span class="function"><a href="function.curl-share-close.html" class="function">curl_share_close()</a></span> não tem mais efeito,
+      em vez disso a instância da classe <span class="classname"><a href="class.curlsharehandle.html" class="classname">CurlShareHandle</a></span> é
+      destruída automaticamente se não for mais referenciada.
+     </p>
+    </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.enchant-broker-init.html" class="function">enchant_broker_init()</a></span> agora retornará um objeto <span class="classname"><a href="class.enchantbroker.html" class="classname">EnchantBroker</a></span>
+     em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.enchant-broker-request-dict.html" class="function">enchant_broker_request_dict()</a></span> e
+     <span class="function"><a href="function.enchant-broker-request-pwl-dict.html" class="function">enchant_broker_request_pwl_dict()</a></span> agora retornarão um objeto
+     <span class="classname"><a href="class.enchantdictionary.html" class="classname">EnchantDictionary</a></span> em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A extensão GD agora usa objetos <span class="classname"><a href="class.gdimage.html" class="classname">GdImage</a></span> como a estrutura de dados interna
+     para imagens, em vez de <a href="language.types.resource.html" class="link">resource</a>s.
+     A função <span class="function"><a href="function.imagedestroy.html" class="function">imagedestroy()</a></span> não tem mais efeito; em vez disso a
+     instância <span class="classname"><a href="class.gdimage.html" class="classname">GdImage</a></span> é destruída automaticmanete se não for mais referenciada.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.openssl-x509-read.html" class="function">openssl_x509_read()</a></span> e <span class="function"><a href="function.openssl-csr-sign.html" class="function">openssl_csr_sign()</a></span> agora retornarão
+     um objeto <span class="classname"><a href="class.opensslcertificate.html" class="classname">OpenSSLCertificate</a></span> em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+     A função <span class="function"><a href="function.openssl-x509-free.html" class="function">openssl_x509_free()</a></span> está depreciada e não tem mais efeito,
+     em vez disso a instância <span class="classname"><a href="class.opensslcertificate.html" class="classname">OpenSSLCertificate</a></span> é destruída automaticamente se
+     não for mais referenciada.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.openssl-csr-new.html" class="function">openssl_csr_new()</a></span> agora retornará um
+     objeto <span class="classname"><a href="class.opensslcertificatesigningrequest.html" class="classname">OpenSSLCertificateSigningRequest</a></span> em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.openssl-pkey-new.html" class="function">openssl_pkey_new()</a></span> agora retornará um
+     objeto <span class="classname"><a href="class.opensslasymmetrickey.html" class="classname">OpenSSLAsymmetricKey</a></span> em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+     A função <span class="function"><a href="function.openssl-pkey-free.html" class="function">openssl_pkey_free()</a></span> está depreciada e não tem mais efeito,
+     em vez disso a instância <span class="classname"><a href="class.opensslasymmetrickey.html" class="classname">OpenSSLAsymmetricKey</a></span> é destruída automaticamente se
+     não for mais referenciada.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.shmop-open.html" class="function">shmop_open()</a></span> irá agora retornar um objeto <span class="classname"><strong class="classname">Shmop</strong></span> ao invés de
+     um <a href="language.types.resource.html" class="link">resource</a>. A função <span class="function"><a href="function.shmop-close.html" class="function">shmop_close()</a></span> não tem mais efeitos, e está
+     obsoleta. A instância de <span class="classname"><strong class="classname">Shmop</strong></span> será automaticamente destruída quando
+     não seja mais referenciada.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.socket-create.html" class="function">socket_create()</a></span>, <span class="function"><a href="function.socket-create-listen.html" class="function">socket_create_listen()</a></span>,
+     <span class="function"><a href="function.socket-accept.html" class="function">socket_accept()</a></span>, <span class="function"><a href="function.socket-import-stream.html" class="function">socket_import_stream()</a></span>,
+     <span class="function"><a href="function.socket-addrinfo-connect.html" class="function">socket_addrinfo_connect()</a></span>, <span class="function"><a href="function.socket-addrinfo-bind.html" class="function">socket_addrinfo_bind()</a></span>, e
+     <span class="function"><a href="function.socket-wsaprotocol-info-import.html" class="function">socket_wsaprotocol_info_import()</a></span> agora retornarão um
+     objeto <span class="classname"><a href="class.socket.html" class="classname">Socket</a></span> em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+     <span class="function"><a href="function.socket-addrinfo-lookup.html" class="function">socket_addrinfo_lookup()</a></span> agora retornará um array de
+     objetos <span class="classname"><a href="class.addressinfo.html" class="classname">AddressInfo</a></span> em vez de <a href="language.types.resource.html" class="link">resource</a>s.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.msg-get-queue.html" class="function">msg_get_queue()</a></span> agora retornará um objeto <span class="classname"><a href="class.sysvmessagequeue.html" class="classname">SysvMessageQueue</a></span>
+     em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.sem-get.html" class="function">sem_get()</a></span> agora retornará um objeto <span class="classname"><a href="class.sysvsemaphore.html" class="classname">SysvSemaphore</a></span>
+     em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.shm-attach.html" class="function">shm_attach()</a></span> agora retornará um objeto <span class="classname"><a href="class.sysvsharedmemory.html" class="classname">SysvSharedMemory</a></span>
+     em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.xml-parser-create.html" class="function">xml_parser_create()</a></span> e <span class="function"><a href="function.xml-parser-create-ns.html" class="function">xml_parser_create_ns()</a></span> agora
+     retornarão um objeto <span class="classname"><strong class="classname">XMLParser</strong></span> em vez de um <a href="language.types.resource.html" class="link">resource</a>. A função
+     <span class="function"><a href="function.xml-parser-free.html" class="function">xml_parser_free()</a></span> não tem mais efeito, em vez disso a instância XMLParser
+     é automaticamente destruída se não for mais referenciada.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A função <a href="book.xmlwriter.html" class="link">XMLWriter</a> agora aceita e retorna, respectivamente,
+     objetos <span class="classname"><a href="class.xmlwriter.html" class="classname">XMLWriter</a></span> em vez de <a href="language.types.resource.html" class="link">resource</a>s.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.inflate-init.html" class="function">inflate_init()</a></span> agora retornará um objeto <span class="classname"><a href="class.inflatecontext.html" class="classname">InflateContext</a></span>
+     em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.deflate-init.html" class="function">deflate_init()</a></span> agora retornará um objeto <span class="classname"><a href="class.deflatecontext.html" class="classname">DeflateContext</a></span>
+     em vez de um <a href="language.types.resource.html" class="link">resource</a>.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.com">
+  <h3 class="title">COM e .Net (Windows)</h3>
+
+  <p class="para">
+   A capacidade de importar constantes que não diferenciam maiúsculas de minúsculas de bibliotecas de tipos foi removida.
+   O segundo argumento para <span class="function"><a href="function.com-load-typelib.html" class="function">com_load_typelib()</a></span> não pode mais ser falso;
+   <a href="com.configuration.html#ini.com.autoregister-casesensitive" class="link">com.autoregister_casesensitive</a>
+   não pode mais ser desabilitado; marcadores que não diferenciam maiúsculas de minúsculas em
+   <a href="com.configuration.html#ini.com.typelib-file" class="link">com.typelib_file</a> são ignorados.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.curl">
+  <h3 class="title">CURL</h3>
+
+  <p class="para">
+   <strong><code>CURLOPT_POSTFIELDS</code></strong> não aceita mais objetos como arrays. Para
+   interpretar um objeto como um array, executar uma conversão explícita de <code class="code">(array)</code>. O
+   mesmo se aplica a outras opções que aceitam arrays também.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.datetime">
+  <h3 class="title">Data e hora</h3>
+
+  <p class="para">
+   <span class="function"><a href="function.mktime.html" class="function">mktime()</a></span> e <span class="function"><a href="function.gmmktime.html" class="function">gmmktime()</a></span> agora requer pelo menos um
+   argumento. <span class="function"><a href="function.time.html" class="function">time()</a></span> pode ser usado para obter o registro de data e hora atual.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.dom">
+  <h3 class="title">DOM</h3>
+
+  <p class="para">
+   Classes não implementadas da extensão DOM que não tinham comportamento e continham dados
+   de teste foram removidos. Essas classes também foram removidas na versão mais recente do
+   DOM padrão:
+  </p>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="classname"><strong class="classname">DOMNameList</strong></span></li>
+    <li class="member"><span class="classname"><strong class="classname">DomImplementationList</strong></span></li>
+    <li class="member"><span class="classname"><strong class="classname">DOMConfiguration</strong></span></li>
+    <li class="member"><span class="classname"><strong class="classname">DomError</strong></span></li>
+    <li class="member"><span class="classname"><strong class="classname">DomErrorHandler</strong></span></li>
+    <li class="member"><span class="classname"><strong class="classname">DOMImplementationSource</strong></span></li>
+    <li class="member"><span class="classname"><strong class="classname">DOMLocator</strong></span></li>
+    <li class="member"><span class="classname"><strong class="classname">DOMUserDataHandler</strong></span></li>
+    <li class="member"><span class="classname"><strong class="classname">DOMTypeInfo</strong></span></li>
+    <li class="member"><span class="classname"><strong class="classname">DOMStringExtend</strong></span></li>
+   </ul>
+  </p>
+  <p class="para">
+   Métodos não implementados da extensão DOM que não tinham comportamento foram removidos:
+  </p>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><strong>DOMNamedNodeMap::setNamedItem()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMNamedNodeMap::removeNamedItem()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMNamedNodeMap::setNamedItemNS()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMNamedNodeMap::removeNamedItemNS()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMText::replaceWholeText()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMNode::compareDocumentPosition()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMNode::isEqualNode()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMNode::getFeature()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMNode::setUserData()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMNode::getUserData()</strong></span></li>
+    <li class="member"><span class="methodname"><strong>DOMDocument::renameNode()</strong></span></li>
+   </ul>
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.enchant">
+  <h3 class="title">Enchant</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.enchant-broker-list-dicts.html" class="function">enchant_broker_list_dicts()</a></span>, <span class="function"><a href="function.enchant-broker-describe.html" class="function">enchant_broker_describe()</a></span> e
+     <span class="function"><a href="function.enchant-dict-suggest.html" class="function">enchant_dict_suggest()</a></span> agora retornam um array vazio no lugar de <strong><code>null</code></strong>.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.exif">
+  <h3 class="title">Exif</h3>
+
+  <p class="para">
+   <span class="function"><a href="function.read-exif-data.html" class="function">read_exif_data()</a></span> foi removido; <span class="function"><a href="function.exif-read-data.html" class="function">exif_read_data()</a></span>
+   deve ser usado em seu lugar.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.filter">
+  <h3 class="title">Filter</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     A <strong><code>FILTER_FLAG_SCHEME_REQUIRED</code></strong> e
+     <strong><code>FILTER_FLAG_HOST_REQUIRED</code></strong> sinalizadores para o filtro
+     <strong><code>FILTER_VALIDATE_URL</code></strong> foram removidas. O <code class="literal">scheme</code>
+     e <code class="literal">host</code> são (e foram) sempre necessários.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A fonte <strong><code>INPUT_REQUEST</code></strong> e <strong><code>INPUT_SESSION</code></strong> para
+     <span class="function"><a href="function.filter-input.html" class="function">filter_input()</a></span> etc. foram removidos. Estes nunca foram implementados e seu
+     uso sempre gerou um warning.d
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.gd">
+  <h3 class="title">GD</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     A função obsoleta <span class="function"><a href="function.image2wbmp.html" class="function">image2wbmp()</a></span> foi removida.
+     
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As funções obsoletas <span class="function"><a href="function.png2wbmp.html" class="function">png2wbmp()</a></span> e <span class="function"><a href="function.jpeg2wbmp.html" class="function">jpeg2wbmp()</a></span> foram
+     removidas.
+     
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O parametro padrão <code class="parameter">mode</code> de <span class="function"><a href="function.imagecropauto.html" class="function">imagecropauto()</a></span> não aceita mais
+     <code class="literal">-1</code>. <strong><code>IMG_CROP_DEFAULT</code></strong> deve ser usado no lugar.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     No Windows, <var class="filename">php_gd2.dll</var> foi renomeado para <var class="filename">php_gd.dll</var>.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.gmp">
+  <h3 class="title">GMP</h3>
+
+  <p class="para">
+   <span class="function"><a href="function.gmp-random.html" class="function">gmp_random()</a></span> foi removida. Uma das <span class="function"><a href="function.gmp-random-range.html" class="function">gmp_random_range()</a></span> ou
+   <span class="function"><a href="function.gmp-random-bits.html" class="function">gmp_random_bits()</a></span> deve ser usado no lugar.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.iconv">
+  <h3 class="title">Iconv</h3>
+
+  <p class="para">
+   implementações de iconv que não definem corretamente <var class="varname">errno</var> em caso de erros não são
+   mais suportadas.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.imap">
+  <h3 class="title">IMAP</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     O argumento <code class="parameter">default_host</code> não utilizado de <span class="function"><a href="function.imap-headerinfo.html" class="function">imap_headerinfo()</a></span>
+     foi removido.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A função <span class="function"><a href="function.imap-header.html" class="function">imap_header()</a></span> que é um alias de
+     <span class="function"><a href="function.imap-headerinfo.html" class="function">imap_headerinfo()</a></span> foi removida.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.intl">
+  <h3 class="title">Funções de Internacionalização</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     A constante obsoleta <strong><code>INTL_IDNA_VARIANT_2003</code></strong> foi removida.
+     
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A constante obsoleta <strong><code>Normalizer::NONE</code></strong> foi removida.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.ldap">
+  <h3 class="title">LDAP</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     The deprecated functions <span class="function"><a href="function.ldap-sort.html" class="function">ldap_sort()</a></span>,
+     <span class="function"><a href="function.ldap-control-paged-result.html" class="function">ldap_control_paged_result()</a></span> and
+     <span class="function"><a href="function.ldap-control-paged-result-response.html" class="function">ldap_control_paged_result_response()</a></span> have been removed.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A interface de<span class="function"><a href="function.ldap-set-rebind-proc.html" class="function">ldap_set_rebind_proc()</a></span> foi mudada; o parâmetro
+     <code class="parameter">callback</code> não aceita strings vazias; <strong><code>null</code></strong> deve ser
+     usado no lugar.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.mbstring">
+  <h3 class="title">MBString</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     A diretiva <a href="mbstring.configuration.html#ini.mbstring.func-overload" class="link">mbstring.func_overload</a> foi
+     removida. The related <strong><code>MB_OVERLOAD_MAIL</code></strong>,
+     as constantes <strong><code>MB_OVERLOAD_STRING</code></strong>, e <strong><code>MB_OVERLOAD_REGEX</code></strong>
+     também foram removidas. Finalmente, a <code class="literal">&quot;func_overload&quot;</code> e a
+     <code class="literal">&quot;func_overload_list&quot;</code> entradas <span class="function"><a href="function.mb-get-info.html" class="function">mb_get_info()</a></span> foram
+     removidas.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.mb-parse-str.html" class="function">mb_parse_str()</a></span> não pode mais ser usado sem especificar um array de resultados.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Vários aliases mbregex obsoletos foram removidos. Veja o seguinte
+     lista para quais funções devem ser usadas:
+    </p>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><span class="function"><strong>mbregex_encoding()</strong></span> → <span class="function"><a href="function.mb-regex-encoding.html" class="function">mb_regex_encoding()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg()</strong></span> → <span class="function"><a href="function.mb-ereg.html" class="function">mb_ereg()</a></span></li>
+      <li class="member"><span class="function"><strong>mberegi()</strong></span> → <span class="function"><a href="function.mb-eregi.html" class="function">mb_eregi()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg_replace()</strong></span> → <span class="function"><a href="function.mb-ereg-replace.html" class="function">mb_ereg_replace()</a></span></li>
+      <li class="member"><span class="function"><strong>mberegi_replace()</strong></span> → <span class="function"><a href="function.mb-eregi-replace.html" class="function">mb_eregi_replace()</a></span></li>
+      <li class="member"><span class="function"><strong>mbsplit()</strong></span> → <span class="function"><a href="function.mb-split.html" class="function">mb_split()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg_match()</strong></span> → <span class="function"><a href="function.mb-ereg-match.html" class="function">mb_ereg_match()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg_search()</strong></span> → <span class="function"><a href="function.mb-ereg-search.html" class="function">mb_ereg_search()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg_search_pos()</strong></span> → <span class="function"><a href="function.mb-ereg-search-pos.html" class="function">mb_ereg_search_pos()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg_search_regs()</strong></span> → <span class="function"><a href="function.mb-ereg-search-regs.html" class="function">mb_ereg_search_regs()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg_search_init()</strong></span> → <span class="function"><a href="function.mb-ereg-search-init.html" class="function">mb_ereg_search_init()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg_search_getregs()</strong></span> → <span class="function"><a href="function.mb-ereg-search-getregs.html" class="function">mb_ereg_search_getregs()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg_search_getpos()</strong></span> → <span class="function"><a href="function.mb-ereg-search-getpos.html" class="function">mb_ereg_search_getpos()</a></span></li>
+      <li class="member"><span class="function"><strong>mbereg_search_setpos()</strong></span> → <span class="function"><a href="function.mb-ereg-search-setpos.html" class="function">mb_ereg_search_setpos()</a></span></li>
+     </ul>
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O modificador <code class="literal">e</code> para <span class="function"><a href="function.mb-ereg-replace.html" class="function">mb_ereg_replace()</a></span> foi removido.
+     <span class="function"><a href="function.mb-ereg-replace-callback.html" class="function">mb_ereg_replace_callback()</a></span> deve ser usado em seu lugar.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Um argumento de padrão não string para <span class="function"><a href="function.mb-ereg-replace.html" class="function">mb_ereg_replace()</a></span> agora será interpretado como
+     uma string em vez de um ponto de código ASCII. O comportamento anterior pode ser restaurado com uma chamada
+     explícita para <span class="function"><a href="function.chr.html" class="function">chr()</a></span>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O argumento <code class="parameter">needle</code> para <span class="function"><a href="function.mb-strpos.html" class="function">mb_strpos()</a></span>,
+     <span class="function"><a href="function.mb-strrpos.html" class="function">mb_strrpos()</a></span>, <span class="function"><a href="function.mb-stripos.html" class="function">mb_stripos()</a></span>,
+     <span class="function"><a href="function.mb-strripos.html" class="function">mb_strripos()</a></span>, <span class="function"><a href="function.mb-strstr.html" class="function">mb_strstr()</a></span>,
+     <span class="function"><a href="function.mb-stristr.html" class="function">mb_stristr()</a></span>, <span class="function"><a href="function.mb-strrchr.html" class="function">mb_strrchr()</a></span> e
+     <span class="function"><a href="function.mb-strrichr.html" class="function">mb_strrichr()</a></span> agora pode estar vazio.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O parâmetro <code class="parameter">is_hex</code>, que não era usado internamente, foi removido de
+     <span class="function"><a href="function.mb-decode-numericentity.html" class="function">mb_decode_numericentity()</a></span>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O comportamento herdado de passar a codificação como o terceiro argumento em vez de um deslocamento para
+     a função <span class="function"><a href="function.mb-strrpos.html" class="function">mb_strrpos()</a></span> foi removida; um <code class="literal">0</code> explícito
+     offset com a codificação deve ser fornecido como o quarto argumento.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Os aliases de codificação de caracteres <code class="literal">ISO_8859-*</code> foram substituídos por
+     Aliases <code class="literal">ISO8859-*</code> para melhor interoperabilidade com a extensão iconv. os
+     aliases mbregex ISO 8859 com sublinhados (<code class="literal">ISO_8859_*</code> e
+     <code class="literal">ISO8859_*</code>) também foram removidos.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.mb-ereg.html" class="function">mb_ereg()</a></span> e <span class="function"><a href="function.mb-eregi.html" class="function">mb_eregi()</a></span> agora retornarão valores booleanos <strong><code>true</code></strong> sobre
+     uma partida de sucesso. Anteriormente, eles retornavam inteiro <code class="literal">1</code> se
+     <code class="parameter">matches</code> não foi passado, ou <code class="code">max(1, strlen($matches[0]))</code> se
+     <code class="parameter">matches</code> foi passado.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.oci8">
+  <h3 class="title">OCI8</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     A classe <span class="classname"><strong class="classname">OCI-Lob</strong></span> agora é chamada de <span class="classname"><a href="class.ocilob.html" class="classname">OCILob</a></span>, e a
+     a classe <span class="classname"><a href="class.ocicollection.html" class="classname">OCI-Collection</a></span> agora se chama <span class="classname"><strong class="classname">OCICollection</strong></span>
+     para conformidade de nome imposta pelas ferramentas de anotação de tipo PHP 8 arginfo.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Várias funções de alias foram marcadas como obsoletas.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.oci-internal-debug.html" class="function">oci_internal_debug()</a></span> e seu alias <span class="function"><a href="function.ociinternaldebug.html" class="function">ociinternaldebug()</a></span> foram
+     removidos.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.odbc">
+  <h3 class="title">ODBC</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.odbc-connect.html" class="function">odbc_connect()</a></span> não reutiliza mais conexões.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O parâmetro <code class="parameter">flags</code> não usado de <span class="function"><a href="function.odbc-exec.html" class="function">odbc_exec()</a></span> foi
+     removido.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.openssl">
+  <h3 class="title">OpenSSL</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.openssl-seal.html" class="function">openssl_seal()</a></span> e <span class="function"><a href="function.openssl-open.html" class="function">openssl_open()</a></span> agora requerem
+     <code class="parameter">method</code> a ser passado, como o padrão anterior de <code class="literal">&quot;RC4&quot;</code>
+     é considerado inseguro.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.pcre">
+  <h3 class="title">Expressões regulares (Perl-Compatible)</h3>
+
+  <p class="para">
+   Ao passar sequências de escape inválidas, elas não são mais interpretadas como literais. Esse comportamento
+   anteriormente exigia o modificador <code class="literal">X</code> – que agora é ignorado.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.pdo">
+  <h3 class="title">Objetos de dados do PHP</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     The default error handling mode has been changed from &quot;silent&quot; to &quot;exceptions&quot;. See
+     <a href="pdo.error-handling.html" class="link">Errors and error handling</a> for details.
+     
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As assinaturas de alguns métodos PDO foram alteradas:
+    </p>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><code class="code">PDO::query(string $query, ?int $fetchMode = null, mixed ...$fetchModeArgs)</code></li>
+      <li class="member"><code class="code">PDOStatement::setFetchMode(int $mode, mixed ...$args)</code></li>
+     </ul>
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.pdo-odbc">
+  <h3 class="title">PDO ODBC</h3>
+
+  <p class="para">
+   The <var class="filename">php.ini</var> directive
+   <a href="ref.pdo-odbc.html#ini.pdo-odbc.db2-instance-name" class="link">pdo_odbc.db2_instance_name</a> foi
+   removido.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.pdo-mysql">
+  <h3 class="title">PDO MySQL</h3>
+
+  <p class="para">
+   <span class="methodname"><a href="pdo.intransaction.html" class="methodname">PDO::inTransaction()</a></span> agora relata o estado real da transação da
+   conexão, em vez de uma aproximação mantida pelo PDO. Se uma consulta que é
+   sujeito para &quot;confirmação implícita&quot; é executado, <span class="methodname"><a href="pdo.intransaction.html" class="methodname">PDO::inTransaction()</a></span>
+   posteriormente retornará <strong><code>false</code></strong>, pois uma transação não está mais ativa.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.pgsql">
+  <h3 class="title">PostgreSQL</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     A sintaxe obsoleta <span class="function"><a href="function.pg-connect.html" class="function">pg_connect()</a></span> usando vários parâmetros em vez de um
+     cadeia de conexão não é mais suportada.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As assinaturas obsoletas <span class="function"><a href="function.pg-lo-import.html" class="function">pg_lo_import()</a></span> e <span class="function"><a href="function.pg-lo-export.html" class="function">pg_lo_export()</a></span>
+     que passam a conexão como o último argumento não são mais suportadas. A conexão deve ser
+     passada como primeiro argumento.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.pg-fetch-all.html" class="function">pg_fetch_all()</a></span> agora retornará uma matriz vazia em vez de <strong><code>false</code></strong> para resultado
+     conjuntos com zero linhas.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.phar">
+  <h3 class="title">Phar</h3>
+
+  <p class="para">
+   Os metadados associados a um phar não serão mais serializados automaticamente, para corrigir possíveis
+   vulnerabilidades de segurança devido à instanciação de objetos, carregamento automático etc.
+   
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.reflection">
+  <h3 class="title">Reflection</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     As assinaturas do método
+    </p>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><code class="code">ReflectionClass::newInstance($args)</code></li>
+      <li class="member"><code class="code">ReflectionFunction::invoke($args)</code></li>
+      <li class="member"><code class="code">ReflectionMethod::invoke($object, $args)</code></li>
+     </ul>
+    </p>
+    <p class="para">
+     foram alterados para:
+    </p>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><code class="code">ReflectionClass::newInstance(...$args)</code></li>
+      <li class="member"><code class="code">ReflectionFunction::invoke(...$args)</code></li>
+      <li class="member"><code class="code">ReflectionMethod::invoke($object, ...$args)</code></li>
+     </ul>
+    </p>
+    <p class="para">
+     O código que deve ser compatível com PHP 7 e PHP 8 pode usar as seguintes
+     assinaturas para serem compatíveis com ambas as versões:
+    </p>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><code class="code">ReflectionClass::newInstance($arg = null, ...$args)</code></li>
+      <li class="member"><code class="code">ReflectionFunction::invoke($arg = null, ...$args)</code></li>
+      <li class="member"><code class="code">ReflectionMethod::invoke($object, $arg = null, ...$args)</code></li>
+     </ul>
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O método <span class="methodname"><a href="reflectiontype.tostring.html" class="methodname">ReflectionType::__toString()</a></span> agora retornará uma completa representação
+     de depuração do tipo, e não está mais obsoleta. Em particular, o resultado incluirá um
+     indicador de nulidade para tipos anuláveis. O formato do valor de retorno não é estável e pode
+     mudar entre as versões do PHP.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Métodos export() de reflexão foram removidos.
+     Em vez disso, os objetos de reflexão podem ser convertidos em string.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="methodname"><a href="reflectionmethod.isconstructor.html" class="methodname">ReflectionMethod::isConstructor()</a></span> e
+     <span class="methodname"><a href="reflectionmethod.isdestructor.html" class="methodname">ReflectionMethod::isDestructor()</a></span> agora também retorna <strong><code>true</code></strong> por
+     <a href="language.oop5.decon.html#object.construct" class="link">__construct()</a> e
+     <a href="language.oop5.decon.html#object.destruct" class="link">__destruct()</a> métodos de interfaces.
+     Anteriormente, isso só seria verdade para métodos de classes e traits.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O método <span class="methodname"><strong>ReflectionType::isBuiltin()</strong></span> foi movido para
+     <span class="classname"><a href="class.reflectionnamedtype.html" class="classname">ReflectionNamedType</a></span>. <span class="classname"><a href="class.reflectionuniontype.html" class="classname">ReflectionUnionType</a></span> não
+     possui esse método.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.sockets">
+  <h3 class="title">Sockets</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     As constantes obsoletas <strong><code>AI_IDN_ALLOW_UNASSIGNED</code></strong> e
+     <strong><code>AI_IDN_USE_STD3_ASCII_RULES</code></strong> <code class="parameter">flags</code> para
+     <span class="function"><a href="function.socket-addrinfo-lookup.html" class="function">socket_addrinfo_lookup()</a></span> foram removidas.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.spl">
+  <h3 class="title">Biblioteca PHP padrão (SPL)</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <span class="methodname"><a href="splfileobject.fgetss.html" class="methodname">SplFileObject::fgetss()</a></span> foi removido.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="methodname"><a href="splfileobject.seek.html" class="methodname">SplFileObject::seek()</a></span> agora sempre posiciona no começo da linha.
+     Anteriormente, posições <code class="literal">&gt;=1</code> resultavam no começo da linha seguinte.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="methodname"><a href="splheap.compare.html" class="methodname">SplHeap::compare()</a></span> agora especifica uma assinatura de método. Herdando classes,
+     implementar este método agora terá que usar uma assinatura de método compatível.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="methodname"><a href="spldoublylinkedlist.push.html" class="methodname">SplDoublyLinkedList::push()</a></span>,
+     <span class="methodname"><a href="spldoublylinkedlist.unshift.html" class="methodname">SplDoublyLinkedList::unshift()</a></span> e
+     <span class="methodname"><a href="splqueue.enqueue.html" class="methodname">SplQueue::enqueue()</a></span> agora retornam <span class="type"><span class="type void">void</span></span> no lugar de <strong><code>true</code></strong>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.spl-autoload-register.html" class="function">spl_autoload_register()</a></span> agora sempre lançará um
+     <span class="classname"><a href="class.typeerror.html" class="classname">TypeError</a></span> em argumentos inválidos, portanto, o segundo argumento
+     <code class="parameter">do_throw</code> é ignorado e um aviso será emitido se for definido como <strong><code>false</code></strong>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="classname"><a href="class.splfixedarray.html" class="classname">SplFixedArray</a></span> agora é um <span class="interfacename"><a href="class.iteratoraggregate.html" class="interfacename">IteratorAggregate</a></span>
+     e não um <span class="interfacename"><a href="class.iterator.html" class="interfacename">Iterator</a></span>.
+     <span class="methodname"><a href="splfixedarray.rewind.html" class="methodname">SplFixedArray::rewind()</a></span>, <span class="methodname"><a href="splfixedarray.current.html" class="methodname">SplFixedArray::current()</a></span>,
+     <span class="methodname"><a href="splfixedarray.key.html" class="methodname">SplFixedArray::key()</a></span>, <span class="methodname"><a href="splfixedarray.next.html" class="methodname">SplFixedArray::next()</a></span> e
+     <span class="methodname"><a href="splfixedarray.valid.html" class="methodname">SplFixedArray::valid()</a></span> foram removidos. Em seu lugar,
+     <span class="methodname"><a href="splfixedarray.getiterator.html" class="methodname">SplFixedArray::getIterator()</a></span> foi adicionado. Qualquer código que usa explicitamente
+     iteração sobre SplFixedArray agora deve obter um
+     <span class="interfacename"><a href="class.iterator.html" class="interfacename">Iterator</a></span> até
+     <span class="methodname"><a href="splfixedarray.getiterator.html" class="methodname">SplFixedArray::getIterator()</a></span>. Isso significa que
+     <span class="classname"><a href="class.splfixedarray.html" class="classname">SplFixedArray</a></span> agora é seguro para uso em loops aninhados.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.standard">
+  <h3 class="title">Biblioteca padrão</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.assert.html" class="function">assert()</a></span> não avaliará mais argumentos de string, em vez disso, eles serão
+     tratados como qualquer outro argumento. <code class="code">assert($a == $b)</code> deve ser usado em vez de
+     <code class="code">assert(&#039;$a == $b&#039;)</code>. O <a href="info.configuration.html#ini.assert.quiet-eval" class="link">assert.quiet_eval</a> diretiva ini e
+     as constantes <strong><code>ASSERT_QUIET_EVAL</code></strong> também foram removidas, pois não seriam mais
+     ter qualquer efeito.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.parse-str.html" class="function">parse_str()</a></span> não pode mais ser usado sem especificar um array de resultados.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     The <a href="filters.string.html#filters.string.strip_tags" class="link">string.strip_tags</a> filter has been removed.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O argumento <code class="parameter">needle</code> de <span class="function"><a href="function.strpos.html" class="function">strpos()</a></span>,
+     <span class="function"><a href="function.strrpos.html" class="function">strrpos()</a></span>, <span class="function"><a href="function.stripos.html" class="function">stripos()</a></span>, <span class="function"><a href="function.strripos.html" class="function">strripos()</a></span>,
+     <span class="function"><a href="function.strstr.html" class="function">strstr()</a></span>, <span class="function"><a href="function.strchr.html" class="function">strchr()</a></span>, <span class="function"><a href="function.strrchr.html" class="function">strrchr()</a></span> e
+     <span class="function"><a href="function.stristr.html" class="function">stristr()</a></span> agora sempre será interpretado como uma string. Anteriormente agulhas não-string
+     foram interpretadas como um ponto de código ASCII. Uma chamada explícita para <span class="function"><a href="function.chr.html" class="function">chr()</a></span> pode
+     ser usado para restaurar o comportamento anterior.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O argumento <code class="parameter">needle</code> para <span class="function"><a href="function.strpos.html" class="function">strpos()</a></span>,
+     <span class="function"><a href="function.strrpos.html" class="function">strrpos()</a></span>, <span class="function"><a href="function.stripos.html" class="function">stripos()</a></span>, <span class="function"><a href="function.strripos.html" class="function">strripos()</a></span>,
+     <span class="function"><a href="function.strstr.html" class="function">strstr()</a></span>, <span class="function"><a href="function.stristr.html" class="function">stristr()</a></span> e <span class="function"><a href="function.strrchr.html" class="function">strrchr()</a></span> podem
+     agora estar vazios.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O argumento <code class="parameter">length</code> para <span class="function"><a href="function.substr.html" class="function">substr()</a></span>,
+     <span class="function"><a href="function.substr-count.html" class="function">substr_count()</a></span>, <span class="function"><a href="function.substr-compare.html" class="function">substr_compare()</a></span> e
+     <span class="function"><a href="function.iconv-substr.html" class="function">iconv_substr()</a></span> agora pode ser <strong><code>null</code></strong>. <strong><code>null</code></strong> os valores se comportarão como se não houvesse
+     argumento de comprimento fornecido e, portanto, retornará o restante da string em vez de uma string
+     vazia.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O argumento <code class="parameter">length</code> para <span class="function"><a href="function.array-splice.html" class="function">array_splice()</a></span> agora pode ser
+     <strong><code>null</code></strong>. <strong><code>null</code></strong> os valores se comportarão de forma idêntica à omissão do argumento, removendo assim tudo
+     do <code class="parameter">offset</code> até o final do array.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O argumento <code class="parameter">args</code> de <span class="function"><a href="function.vsprintf.html" class="function">vsprintf()</a></span>,
+     <span class="function"><a href="function.vfprintf.html" class="function">vfprintf()</a></span> e <span class="function"><a href="function.vprintf.html" class="function">vprintf()</a></span> agora devem ser um array. Anteriormente
+     qualquer tipo era aceito.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A opção <code class="literal">&#039;salt&#039;</code> de <span class="function"><a href="function.password-hash.html" class="function">password_hash()</a></span> não é mais
+     suportado. Se a opção <code class="literal">&#039;salt&#039;</code> for usada, um aviso será gerado, o
+     salt é ignorado e um salt gerado é usado em seu lugar.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A função <span class="function"><a href="function.quotemeta.html" class="function">quotemeta()</a></span> agora retornará uma string vazia se uma string vazia
+     foi passada. Anteriormente <strong><code>false</code></strong> era devolvido.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     As seguintes funções foram removidas.
+    </p>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><span class="function"><a href="function.hebrevc.html" class="function">hebrevc()</a></span></li>
+      <li class="member"><span class="function"><a href="function.convert-cyr-string.html" class="function">convert_cyr_string()</a></span></li>
+      <li class="member"><span class="function"><a href="function.money-format.html" class="function">money_format()</a></span></li>
+      <li class="member"><span class="function"><a href="function.ezmlm-hash.html" class="function">ezmlm_hash()</a></span></li>
+      <li class="member"><span class="function"><a href="function.restore-include-path.html" class="function">restore_include_path()</a></span></li>
+      <li class="member"><span class="function"><a href="function.get-magic-quotes-gpc.html" class="function">get_magic_quotes_gpc()</a></span></li>
+      <li class="member"><span class="function"><a href="function.get-magic-quotes-runtime.html" class="function">get_magic_quotes_runtime()</a></span></li>
+      <li class="member"><span class="function"><a href="function.fgetss.html" class="function">fgetss()</a></span></li>
+     </ul>
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <strong><code>FILTER_SANITIZE_MAGIC_QUOTES</code></strong> foi removida.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Chamar <span class="function"><a href="function.implode.html" class="function">implode()</a></span> com parâmetros na ordem inversa <code class="code">($pieces,
+     $glue)</code> não é mais suportado.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.parse-url.html" class="function">parse_url()</a></span> agora distinguirá consultas e fragmentos ausentes e vazios:
+    </p>
+    <p class="para">
+     <ul class="simplelist">
+      <li class="member"><code class="code">http://example.com/foo → query = null, fragment = null</code></li>
+      <li class="member"><code class="code">http://example.com/foo? → query = &quot;&quot;,   fragment = null</code></li>
+      <li class="member"><code class="code">http://example.com/foo# → query = null, fragment = &quot;&quot;</code></li>
+      <li class="member"><code class="code">http://example.com/foo?# → query = &quot;&quot;,   fragment = &quot;&quot;</code></li>
+     </ul>
+      Anteriormente, todos os casos resultavam em consultas e fragmentos <strong><code>null</code></strong>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.var-dump.html" class="function">var_dump()</a></span> e <span class="function"><a href="function.debug-zval-dump.html" class="function">debug_zval_dump()</a></span> agora serão
+     números de ponto flutuante usando <a href="ini.core.html#ini.serialize-precision" class="link">serialize_precision</a>
+     em vez de <a href="ini.core.html#ini.precision" class="link">precisão</a>. Em uma configuração padrão, isto
+     significa que os números de ponto flutuante agora são impressos com total precisão por essas funções
+     depuradoras.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Se o array retornado por <a href="language.oop5.magic.html#object.sleep" class="link">__sleep()</a> contiver propriedades
+     inexistentes, estas agora são silenciosamente ignoradas. Anteriormente, tais propriedades teriam sido
+     serializadas como se tivessem o valor <strong><code>null</code></strong>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A localidade padrão na inicialização agora é sempre <code class="literal">&quot;C&quot;</code>. Nenhuma localidade é herdada do
+     ambiente por padrão. Anteriormente, <strong><code>LC_ALL</code></strong> era definida como
+     <code class="literal">&quot;C&quot;</code>, enquanto <strong><code>LC_CTYPE</code></strong> era herdada do ambiente.
+     No entanto, algumas funções não respeitavam a localidade herdada sem uma chamada
+     explícita <span class="function"><a href="function.setlocale.html" class="function">setlocale()</a></span>. Uma chamada <span class="function"><a href="function.setlocale.html" class="function">setlocale()</a></span> explícita agora é
+     sempre necessária se um componente de localidade deve ser alterado do padrão.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O fallback DES obsoleto em <span class="function"><a href="function.crypt.html" class="function">crypt()</a></span> foi removido. Se um desconhecido formato salt
+     for passado para <span class="function"><a href="function.crypt.html" class="function">crypt()</a></span>, a função falhará com <code class="literal">*0</code>
+     em vez de voltar para um hash DES fraco agora.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     A especificação de rodadas fora do intervalo para SHA256/SHA512 <span class="function"><a href="function.crypt.html" class="function">crypt()</a></span> agora falhará com
+     <code class="literal">*0</code> em vez de fixar no limite mais próximo. Isso corresponde ao comportamento da glibc.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O resultado das funções de classificação pode ter mudado, se o array contiver elementos que comparam como
+     igual.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Quaisquer funções que aceitam retornos de chamada que não são explicitamente especificados para aceitar parâmetros por
+     referência agora avisará se um retorno de chamada com parâmetros de referência for usado. Exemplos incluem
+     <span class="function"><a href="function.array-filter.html" class="function">array_filter()</a></span> e <span class="function"><a href="function.array-reduce.html" class="function">array_reduce()</a></span>. Este já era o
+     caso para a maioria, mas não para todas as funções anteriormente.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     O wrapper de fluxo HTTP usado por funções como <span class="function"><a href="function.file-get-contents.html" class="function">file_get_contents()</a></span>
+     agora anuncia HTTP/1.1 em vez de HTTP/1.0 por padrão. Isso não muda o comportamento do
+     cliente, mas pode fazer com que os servidores respondam de forma diferente. Para manter o comportamento antigo, defina a
+     opção de contexto de fluxo <code class="literal">&#039;protocol_version&#039;</code>, por exemplo
+    </p>
+    <p class="para">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$ctx </span><span style="color: #007700">= </span><span style="color: #0000BB">stream_context_create</span><span style="color: #007700">([</span><span style="color: #DD0000">'http' </span><span style="color: #007700">=&gt; [</span><span style="color: #DD0000">'protocol_version' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1.0'</span><span style="color: #007700">]]);<br />echo </span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://example.org'</span><span style="color: #007700">, </span><span style="color: #0000BB">false</span><span style="color: #007700">, </span><span style="color: #0000BB">$ctx</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+     </div>
+
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Chamar <span class="function"><a href="function.crypt.html" class="function">crypt()</a></span> sem um salt explícito não é mais suportado. Se você
+     gostaria de produzir um hash forte com salt gerado automaticamente, use
+     <span class="function"><a href="function.password-hash.html" class="function">password_hash()</a></span> em vez disso.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+    <span class="function"><a href="function.substr.html" class="function">substr()</a></span>, <span class="function"><a href="function.mb-substr.html" class="function">mb_substr()</a></span>, <span class="function"><a href="function.iconv-substr.html" class="function">iconv_substr()</a></span> e
+    <span class="function"><a href="function.grapheme-substr.html" class="function">grapheme_substr()</a></span> agora fixa consistentemente os deslocamentos fora dos limites à string
+    fronteira. Anteriormente, <strong><code>false</code></strong> era retornado em vez da string vazia em alguns casos.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     No Windows, as funções de execução do programa (<span class="function"><a href="function.proc-open.html" class="function">proc_open()</a></span>, <span class="function"><a href="function.exec.html" class="function">exec()</a></span>,
+     <span class="function"><a href="function.popen.html" class="function">popen()</a></span> etc.) usando o shell, agora execute consistentemente <strong class="command">%comspec% /s
+     /c &quot;$commandline&quot;</strong>, que tem o mesmo efeito que executar
+     <strong class="command">$commandline</strong> (sem aspas adicionais).
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.sysvsem">
+  <h3 class="title">Sysvsem</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     O parâmetro <code class="parameter">auto_release</code> de <span class="function"><a href="function.sem-get.html" class="function">sem_get()</a></span> foi alterado para
+     aceitar valores booleanos em vez de int.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.tidy">
+  <h3 class="title">Tidy</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     O parâmetro <code class="parameter">use_include_path</code>, que não era usado internamente, foi
+     removido de <span class="function"><a href="tidy.repairstring.html" class="function">tidy_repair_string()</a></span>.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <span class="methodname"><a href="tidy.repairstring.html" class="methodname">tidy::repairString()</a></span> e <span class="methodname"><a href="tidy.repairfile.html" class="methodname">tidy::repairFile()</a></span> se tornaram
+     métodos estáticos.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.tokenizer">
+  <h3 class="title">Tokenizer</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     Tokens <code class="literal">T_COMMENT</code> não incluirão mais uma quebra de linha à direita. Em vez disso, a quebra de linha será
+     parte de um token <code class="literal">T_WHITESPACE</code> seguinte. Deve-se notar que
+     <code class="literal">T_COMMENT</code> nem sempre é seguido de espaço em branco, Ele também pode ser seguido de
+     <code class="literal">T_CLOSE_TAG</code> ou o fim do arquivo (end-of-file).
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Nomes com agora são representados usando os tokens <code class="literal">T_NAME_QUALIFIED</code>
+     (<code class="code">Foo\Bar</code>), <code class="literal">T_NAME_FULLY_QUALIFIED</code> (<code class="code">\Foo\Bar</code>) e
+     <code class="literal">T_NAME_RELATIVE</code> (<code class="code">namespace\Foo\Bar</code>).
+     <code class="literal">T_NS_SEPARATOR</code> é usado apenas para separadores de namespace independentes, e só é sintaticamente
+     válido em conjuncão com declarações de uso de grupo.
+     
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.xmlreader">
+  <h3 class="title">XMLReader</h3>
+
+  <p class="para">
+   <span class="methodname"><a href="xmlreader.open.html" class="methodname">XMLReader::open()</a></span> e <span class="methodname"><a href="xmlreader.xml.html" class="methodname">XMLReader::xml()</a></span> agora são
+   métodos estáticos. Eles ainda podem ser chamados como métodos de instância, mas classes herdadas precisam declará-los
+   como estáticos se elas sobrescrevem esses métodos.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.xmlrpc">
+  <h3 class="title">XML-RPC</h3>
+
+  <p class="para">
+   A extensão XML-RPC foi movida para PECL e não é mais parte da distribuição
+   PHP.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.zip">
+  <h3 class="title">Zip</h3>
+
+  <p class="para">
+   <strong><code>ZipArchive::OPSYS_Z_CPM</code></strong> foi removida (esse nome era um erro de digitação). Em vez dela,
+   use <strong><code>ZipArchive::OPSYS_CPM</code></strong>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.zlib">
+  <h3 class="title">Zlib</h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <span class="function"><a href="function.gzgetss.html" class="function">gzgetss()</a></span> foi removida.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <a href="zlib.configuration.html#ini.zlib.output-compression" class="link">zlib.output_compression</a> não é mais
+     desabilitado automaticamente para o <code class="literal">Content-Type: image/*</code>.
+    </p>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration80.incompatible.php-test-packs">
+  <h3 class="title">Pacotes de teste para PHP no Windows</h3>
+
+  <p class="para">
+   O executor de testes foi renomeado de <var class="filename">run-test.php</var> para
+   <var class="filename">run-tests.php</var>, para coincidir com seu nome em php-src.
+  </p>
+ </div>
+</div></div></div></body></html>

@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Get the flags associated with the specified field in a result</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.mysql-fetch-row.html">« mysql_fetch_row</a></li>
+      <li style="float: right;"><a href="function.mysql-field-len.html">mysql_field_len »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.mysql.html">Fun&ccedil;&otilde;es da MySQL</a></li>
+    <li>Get the flags associated with the specified field in a result</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.mysql-field-flags" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_field_flags</h1>
+  <p class="refpurpose"><span class="refname">mysql_field_flags</span> &mdash; <span class="dc-title">Get the flags associated with the specified field in a result</span></p>
+
+ </div>
+
+ <div id="function.mysql-field-flags-refsynopsisdiv">
+  <div class="warning"><strong class="warning">Aviso</strong>
+   <p class="para">Esta extensão tornou-se obsoleta a partir do PHP 5.5.0 e foi removida no PHP 7.0.0.
+Em vez disso, as extensões <a href="book.mysqli.html" class="link">MySQLi</a> ou <a href="ref.pdo-mysql.html" class="link">PDO_MySQL</a> devem ser usadas.
+Veja também o guia <a href="mysqlinfo.api.choosing.html" class="link">MySQL: escolhendo uma API</a>.
+Alternativas a esta função incluem:</p>
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli-result.fetch-field-direct.html" class="function">mysqli_fetch_field_direct()</a></span> [flags]</li>
+    <li class="member"><span class="methodname"><a href="pdostatement.getcolumnmeta.html" class="methodname">PDOStatement::getColumnMeta()</a></span> [flags]</li>
+   </ul>
+  </div>
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mysql-field-flags-description">
+  <h3 class="title">Descrição</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>mysql_field_flags</strong></span>(<span class="methodparam"><span class="type">resource</span> <code class="parameter">$result</code></span>, <span class="methodparam"><span class="type">int</span> <code class="parameter">$field_offset</code></span>): <span class="type"><span class="type">string</span>|<span class="type"><span class="type false">false</span></span></span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>mysql_field_flags()</strong></span> returns the field flags of
+   the specified field. The flags are reported as a single word
+   per flag separated by a single space, so that you can split the
+   returned value using <span class="function"><a href="function.explode.html" class="function">explode()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mysql-field-flags-parameters">
+  <h3 class="title">Parâmetros</h3>
+  <p class="para">
+   <dl>
+    <dt>
+
+<code class="parameter">result</code></dt>
+<dd>
+<p class="para">O <span class="type">resource</span> do resultado que
+está sendo avaliado. Este resultado vem de uma chamada a
+<span class="function"><a href="function.mysql-query.html" class="function">mysql_query()</a></span>.</p></dd>
+
+    <dt>
+
+<code class="parameter">field_offset</code></dt>
+<dd>
+<p class="para">O deslocamento numérico do campo.
+<code class="parameter">field_offset</code> começa em <code class="literal">0</code>. Se
+<code class="parameter">field_offset</code> não existir, um erro de nível
+<strong><code>E_WARNING</code></strong> também será emitido.</p></dd>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mysql-field-flags-returnvalues">
+  <h3 class="title">Valor Retornado</h3>
+  <p class="para">
+   Returns a string of flags associated with the result ou <strong><code>false</code></strong> em caso de falha.
+  </p>
+  <p class="para">
+   The following flags are reported, if your version of MySQL
+   is current enough to support them: <code class="literal">&quot;not_null&quot;</code>, 
+   <code class="literal">&quot;primary_key&quot;</code>, <code class="literal">&quot;unique_key&quot;</code>, 
+   <code class="literal">&quot;multiple_key&quot;</code>, <code class="literal">&quot;blob&quot;</code>, 
+   <code class="literal">&quot;unsigned&quot;</code>, <code class="literal">&quot;zerofill&quot;</code>,
+   <code class="literal">&quot;binary&quot;</code>, <code class="literal">&quot;enum&quot;</code>, 
+   <code class="literal">&quot;auto_increment&quot;</code> and <code class="literal">&quot;timestamp&quot;</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mysql-field-flags-examples">
+  <h3 class="title">Exemplos</h3>
+  <p class="para">
+   <div class="example" id="example-5366">
+    <p><strong>Exemplo #1 A <span class="function"><strong>mysql_field_flags()</strong></span> example</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000"><span style="color: #0000BB">&lt;?php<br />$result </span><span style="color: #007700">= </span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT id,email FROM people WHERE id = '42'"</span><span style="color: #007700">);<br />if (!</span><span style="color: #0000BB">$result</span><span style="color: #007700">) {<br />    echo </span><span style="color: #DD0000">'Could not run query: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">();<br />    exit;<br />}<br /></span><span style="color: #0000BB">$flags </span><span style="color: #007700">= </span><span style="color: #0000BB">mysql_field_flags</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br />echo </span><span style="color: #0000BB">$flags</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">explode</span><span style="color: #007700">(</span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">$flags</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span></span></code></div>
+    </div>
+
+    <div class="example-contents"><p>O exemplo acima produzirá
+algo semelhante a:</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+not_null primary_key auto_increment
+Array
+(
+    [0] =&gt; not_null
+    [1] =&gt; primary_key
+    [2] =&gt; auto_increment
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.mysql-field-flags-notes">
+  <h3 class="title">Notas</h3>
+  <blockquote class="note"><p><strong class="note">Nota</strong>: 
+   <p class="para">
+    Para compatibilidade com versões anteriores, o seguinte
+apelido obsoleto pode ser usado: 
+    <span class="function"><strong>mysql_fieldflags()</strong></span>
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mysql-field-flags-seealso">
+  <h3 class="title">Veja Também</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.mysql-field-type.html" class="function" rel="rdfs-seeAlso">mysql_field_type()</a> - Obt&eacute;m o tipo do campo especificado em um resultado</span></li>
+    <li class="member"><span class="function"><a href="function.mysql-field-len.html" class="function" rel="rdfs-seeAlso">mysql_field_len()</a> - Retorna o tamanho do campo especificado</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>
