@@ -1,24 +1,13 @@
 <?php 
 
-function formatLink($string) {
+$val = 12345678;
 
-    $string = str_ireplace(["www.", "https://", "http://"], "", $string);
 
-    return $string;
-}
+$result = strlen($val);
 
-$texto = 'HTTPS://www.twitch.com';
+echo $result . PHP_EOL;
 
-$texto = formatLink($texto);
+var_dump($result);
 
-echo $texto . PHP_EOL;
-
-$texto = formatLink($texto);
-
-echo $texto . PHP_EOL;
-
-$texto = formatLink($texto);
-
-echo $texto . PHP_EOL;
-
+var_dump(strlen($val))
 ?>

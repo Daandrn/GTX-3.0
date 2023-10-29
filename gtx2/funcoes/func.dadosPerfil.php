@@ -1,13 +1,13 @@
 <?php 
 
-function carregaPerfil($nick)
+function carregaPerfil($id)
 {
     require __DIR__ . "/../configuracao/conexao.php";
     
     try {
     
-        $consulta = $conexao->prepare("SELECT * FROM pessoa WHERE nick = :nick");
-        $consulta->bindParam(':nick', $nick);
+        $consulta = $conexao->prepare("SELECT * FROM pessoa WHERE id = :id");
+        $consulta->bindParam(':id', $id);
         $consulta->execute();
 
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);

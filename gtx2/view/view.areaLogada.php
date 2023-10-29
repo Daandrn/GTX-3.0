@@ -89,10 +89,10 @@
                         <h3>Perfil</h3>
                         <div>
                             <label for="">Nick/origin</label>
-                            <input type="text" name="origin" value="<?php echo $nickPerfil?>" maxlength="20" pattern="[a-zA-Z0-9]*" required>
+                            <input type="text" name="origin" value="<?php echo $nickPerfil?>" maxlength="20" pattern="[a-zA-Z0-9]*">
                         </div>
                         <input type="hidden" name="formLogado" value="perfilNick">
-                        <input type="submit" value="Salvar Nick" id="salvarPerfil">
+                        <input type="submit" value="Salvar Nick" class="salvarPerfil">
                     </form>
                     <script>
 
@@ -110,10 +110,10 @@
                     <form method="POST">
                         <div>
                             <label for="novaSenha">Nova senha</label>
-                            <input type="password" name="novaSenha" id="" pattern="[0-9]*" placeholder="Nova senha" maxlength="10" title="Insira sua senha numérica." required>
+                            <input type="password" name="novaSenha" id="" pattern="[0-9]*" placeholder="Nova senha" maxlength="10" title="Insira sua senha numérica.">
                         </div>
                         <input type="hidden" name="formLogado" value="perfilSenha">
-                        <input type="submit" value="Salvar Senha" id="salvarPerfil">
+                        <input type="submit" value="Salvar Senha" class="salvarPerfil">
                     </form>
                 <script>
 

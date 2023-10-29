@@ -1,9 +1,10 @@
 <?php
 
+require __DIR__ . "/../classe/class.pessoa.php";
 require __DIR__ . "/../funcoes/func.verificaSessao.php";
 require __DIR__ . "/../funcoes/func.dadosPerfil.php";
 require __DIR__ . "/../funcoes/func.dadoStream.php";
-require __DIR__ . "/../funcoes//func.plataformaStream.php";
+require __DIR__ . "/../funcoes/func.plataformaStream.php";
 require __DIR__ . "/../funcoes/func.versao.php";
 require __DIR__ . "/../funcoes/func.salvaVersao.php";
 require __DIR__ . "/../funcoes/func.alteraStream.php";
@@ -13,15 +14,13 @@ verificaSessao();
 
 $boasvindas = $_SESSION['nome'];
 
-$nickSessao = $_SESSION['nick'];
-$nickPerfil = carregaPerfil($nickSessao);
-
 $idSessao = $_SESSION['id_sessao'];
-$dadoStream =carregaStream($idSessao);
+$nickPerfil = carregaPerfil($idSessao);
+$dadoStream = carregaStream($idSessao);
 
 $plataformasStream = carregaPlataformas();
 
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $formularios = $_POST['formLogado'];
     
@@ -51,16 +50,36 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
 
         case 'perfilNick':
+            $idSessao = $_SESSION['id_sessao'];
             $novoOrigin = $_POST['origin'];
 
-            //$responseAlteraNick = ;
+            $responseAlteraNick = "Nick/origin não pode ser vazio!";
+
+            if (!empty($novoOrigin)) {
+                
+                $pessoa = new pessoa;
+                $pessoa->alteraNick($idSessao, $novoOrigin);
+                $responseAlteraNick = "Nick/origin alterado com sucesso!";
+                header("location: /gtx2/control/control.areaLogada.php");
+
+            }
 
             break;
             
         case 'perfilSenha':
+            $idSessao = $_SESSION['id_sessao'];
             $novaSenha = $_POST['novaSenha'];
 
-            //$responseAlteraSenha = ;
+            $responseAlteraSenha = "Falha. Use senha uma numérica de 10 digitos!";
+
+            if (!empty($novaSenha) && (strlen($novaSenha) == 10)) {
+                
+                $pessoa = new pessoa;
+                $pessoa->alteraSenha($idSessao, $novaSenha);
+                $responseAlteraSenha = "Senha alterada com sucesso!";
+                //header("location: /gtx2/control/control.areaLogada.php");
+
+            }
 
             break;
             
