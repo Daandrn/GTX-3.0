@@ -42,7 +42,7 @@
                         <input type="text" name="nickStream" value="<?php echo $dadoStream['nickStream']; ?>" placeholder="Nickstream" maxlength="30">
                     </div>
                     <div>
-                        <label for="linkstream">Link canal</label>
+                        <label for="linkStream">Link canal</label>
                         <input type="text" name="linkStream" value="<?php echo $dadoStream['linkCanal']; ?>" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv." maxlength="50">
                     </div>
                     <div>
@@ -54,11 +54,34 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
+
+                    <div id="baguncinha">
+
                     <span id="salvarStream">
                         <input type="hidden" name="formLogado" value="canalStream">
                         <input type="submit" value="Salvar">
                     </span>
                 </form>
+                <span>
+                    <form method="POST">
+                        <input type="hidden" name="formLogado" value="excluiCanalStream">
+                        <input type="submit" value="Excluir">
+                    </form>
+                </span>
+
+                    </div>
+
+                <script>
+
+                    let respostaAlteraStream = <?php $alert = isset($responseStream) ? $responseStream : 1;
+                                            echo json_encode($alert);
+                                            ?>;
+
+                    if (respostaAlteraStream != 1) {
+                        alert(respostaAlteraStream)
+                    }
+
+                </script>
             </div>
             <div id="perfil">
                 <div>
@@ -71,16 +94,38 @@
                         <input type="hidden" name="formLogado" value="perfilNick">
                         <input type="submit" value="Salvar Nick" id="salvarPerfil">
                     </form>
+                    <script>
+
+                        let respostaAlteraNick = <?php $alert = isset($responseAlteraNick) ? $responseAlteraNick : 1;
+                                                echo json_encode($alert);
+                                                ?>;
+
+                        if (respostaAlteraNick != 1) {
+                            alert(respostaAlteraNick)
+                        }
+
+                    </script>
                 </div>
                 <div>
                     <form method="POST">
                         <div>
-                            <label for="">Nova senha</label>
-                            <input type="password" name="senha" id="" pattern="[0-9]*" placeholder="Nova senha" maxlength="10" title="Insira sua senha numérica." required>
+                            <label for="novaSenha">Nova senha</label>
+                            <input type="password" name="novaSenha" id="" pattern="[0-9]*" placeholder="Nova senha" maxlength="10" title="Insira sua senha numérica." required>
                         </div>
                         <input type="hidden" name="formLogado" value="perfilSenha">
                         <input type="submit" value="Salvar Senha" id="salvarPerfil">
                     </form>
+                <script>
+
+                    let respostaAlteraSenha = <?php $alert = isset($responseAlteraSenha) ? $responseAlteraSenha : 1;
+                                            echo json_encode($alert);
+                                            ?>;
+
+                    if (respostaAlteraSenha != 1) {
+                        alert(respostaAlteraSenha)
+                    }
+
+                </script>
                 </div>
             </div>
         </div>
