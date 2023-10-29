@@ -52,13 +52,9 @@ function excluiStream($id) {
     }
 }
 
-function formatLink(string $string): string {
+function formatLink($string) {
 
-    $string = ltrim($string, "http://");
-    $string = ltrim($string, "HTTP://");
-    $string = ltrim($string, "https://");
-    $string = ltrim($string, "HTTPS://");
-    $string = ltrim($string, "www.");
+    $string = str_ireplace(["www.", "https://", "http://"], "", $string);
 
     return $string;
 }
