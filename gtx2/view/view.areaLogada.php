@@ -134,7 +134,7 @@
         <div>
             <p>Ghost tóxic team&trade;</p>
             <p>Todos os direitos reservados&copy;</p>
-            <p>2023</p>
+            <p><a href="/Documentacao PHP/Index.html" target="_blank" rel="noopener noreferrer">Documentacao PHP</a></p>
         </div>
         <div id="versiona">
             <form method="post">
