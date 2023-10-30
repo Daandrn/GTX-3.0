@@ -420,3 +420,26 @@ tr#lista td {
 #rodapeLogado p {
     margin: 5px;
 }
+
+/** tabelas de adm */
+
+#notice {
+    display: flex;
+    width: 100%;
+}
+
+#eventosLogado {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    position: absolute;
+    padding: 10px;
+}
+
+#tabelasLogado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 0 auto;
+    padding: 10px;
+}

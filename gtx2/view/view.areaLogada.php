@@ -129,6 +129,106 @@
                 </div>
             </div>
         </div>
+        <div id="notice">
+            <aside id="eventosLogado">
+                <article>
+                    <h1>Noticias</h1>
+                </article>
+                <article>
+                    <h1>Eventos</h1>
+                </article>
+            </aside>
+            <section id=tabelasLogado>
+                <div id="membrosAdm">
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Nick</th>
+                            <th>Plataforma</th>
+                            <th>Status Membro</th>
+                            <th>Ação</th>
+                        </tr>
+                        <?php foreach ($a as $b): ?>
+                        <tr>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <div id="recrutAdm">
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Nick</th>
+                            <th>Plataforma</th>
+                            <th>Status Solicitação</th>
+                            <th>Ação</th>
+                        </tr>
+                        <?php foreach ($a as $b): ?>
+                        <tr>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <div id="recusadosAdm">
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Nick</th>
+                            <th>Plataforma</th>
+                            <th>Status Solicitação</th>
+                            <th>Ação</th>
+                        </tr>
+                        <?php foreach ($a as $b): ?>
+                        <tr>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <div id="recuperaSenha">
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Nick</th>
+                            <th>Plataforma</th>
+                            <th>Status Solicitação</th>
+                            <th>Ação</th>
+                        </tr>
+                        <?php foreach ($a as $b): ?>
+                        <tr>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                            <td><?php echo $b['nome']; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+            </section>
+        </div>
     </main>
     <footer id="rodapeLogado">
         <div>
