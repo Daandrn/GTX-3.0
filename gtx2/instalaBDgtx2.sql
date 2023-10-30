@@ -17,7 +17,6 @@ CREATE DATABASE "GTX2"
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 
-
 /*
 Executar o sql no ADM do BD
 */
@@ -64,7 +63,6 @@ CREATE TABLE recuperasenha(
     data_solicit DATE,
     FOREIGN KEY (solicit_senha) REFERENCES statussenha(solicit_senha)
 );
-
 CREATE TABLE versao (
     id INT UNIQUE,
     descricao TEXT,
