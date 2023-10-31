@@ -20,9 +20,10 @@ function login($nick, $password){
             if($nick == $resultado['nick'] && $password == $resultado['senha'] && ($resultado['status_solicit'] == 1 || $resultado['status_solicit'] == 4)){
                 session_start();
                 $_SESSION = array (
-                    'nome' => $resultado['nome'],
-                    'id_sessao' => $resultado['id'],
-                    'nick' => $resultado['nick']
+                    "nome" => $resultado['nome'],
+                    "id_sessao" => $resultado['id'],
+                    "nick" => $resultado['nick'],
+                    "statusMembro" => $resultado['status_solicit']
                 );
                 header("location: /gtx2/control/control.arealogada.php");
                 exit;

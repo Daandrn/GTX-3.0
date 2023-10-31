@@ -8,17 +8,21 @@ require __DIR__ . "/../funcoes/func.plataformaStream.php";
 require __DIR__ . "/../funcoes/func.versao.php";
 require __DIR__ . "/../funcoes/func.salvaVersao.php";
 require __DIR__ . "/../funcoes/func.alteraStream.php";
+require __DIR__ . "/../funcoes/func.carregaMembros.php";
 require __DIR__ . "/../model/model.areaLogada.php";
 
 verificaSessao();
 
 $boasvindas = $_SESSION['nome'];
-
 $idSessao = $_SESSION['id_sessao'];
+
 $nickPerfil = carregaPerfil($idSessao);
 $dadoStream = carregaStream($idSessao);
-
 $plataformasStream = carregaPlataformas();
+$listaMembros = carregaMembros();
+$listaRecrut = carregaRecrut();
+$listaRejeitados = carregaRejeitados();
+$listaNovaSenha = carregaNovaSenha();
 
 if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     

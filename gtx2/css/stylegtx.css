@@ -2,7 +2,7 @@
 
 body {
     height: 100vh;
-    min-width: 962px;
+    min-width: 1280px;
     margin: 0 0 0 0;
     background-color: black;
     font-family: 'Times New Roman', Times, serif;
@@ -426,6 +426,9 @@ tr#lista td {
 #notice {
     display: flex;
     width: 100%;
+    margin-top: 15px;
+    color: white;
+    padding-bottom: 10px;
 }
 
 #eventosLogado {
@@ -442,4 +445,49 @@ tr#lista td {
     align-items: center;
     margin: 0 auto 0 auto;
     padding: 10px;
+    color: white;
+}
+
+#notice caption {
+    margin: 10px;
+}
+
+#notice tr {
+    height: 25px;
+}
+
+.formatID {
+    width: 23px;
+}
+
+.formatNome {
+    width: 163px;
+}
+
+.formatNick {
+    width: 103px;
+}
+
+.formatPlataforma {
+    width: 83px;
+}
+
+.formatStatus {
+    width: 123px;
+}
+
+.formatAcao {
+    width: 100px;
+}
+
+#tabAdmMembros {
+    text-align: center;
+    text-justify: auto;
+    box-shadow: 0 0 10px black;
+    border-radius: 7px;
+    padding: 7px;
+}
+
+.formatNoresult {
+    width: 500px;
 }

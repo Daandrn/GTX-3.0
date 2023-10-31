@@ -140,93 +140,127 @@
             </aside>
             <section id=tabelasLogado>
                 <div id="membrosAdm">
-                    <table>
+                    <table id="tabAdmMembros">
+                        <caption>
+                            Membros
+                        </caption>
                         <tr>
-                            <th>Id</th>
                             <th>Nome</th>
                             <th>Nick</th>
                             <th>Plataforma</th>
                             <th>Status Membro</th>
                             <th>Ação</th>
                         </tr>
-                        <?php foreach ($a as $b): ?>
+                        <?php if (!empty($listaMembros)): ?>
+                        <?php foreach ($listaMembros as $membros): ?>
                         <tr>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
+                            <td class="formatNome"><?php echo $membros['nome']; ?></td>
+                            <td class="formatNick"><?php echo $membros['nick']; ?></td>
+                            <td class="formatPlataforma"><?php echo $membros['plataforma']; ?></td>
+                            <td class="formatStatus"><?php echo $membros['status_membro']; ?></td>
+                            <td class="formatAcao"></td>
                         </tr>
                         <?php endforeach; ?>
+                        <?php else: ?>
+                        <tr>
+                            <td class="formatNoresult" colspan="5">Nenhum membro econtrado!</td>
+                        </tr>
+                        <?php endif; ?>
                     </table>
                 </div>
+                <?php if ($_SESSION['statusMembro'] == 4) : ?>
                 <div id="recrutAdm">
-                    <table>
+                    <table id="tabAdmMembros">
+                        <caption>
+                            Solicitações
+                        </caption>
                         <tr>
-                            <th>Id</th>
                             <th>Nome</th>
                             <th>Nick</th>
                             <th>Plataforma</th>
                             <th>Status Solicitação</th>
                             <th>Ação</th>
                         </tr>
-                        <?php foreach ($a as $b): ?>
+                        <?php if (!empty($listaRecrut)): ?>
+                        <?php foreach ($listaRecrut as $recrut): ?>
                         <tr>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
+                            <td class="formatNome"><?php echo $recrut['nome']; ?></td>
+                            <td class="formatNick"><?php echo $recrut['nick']; ?></td>
+                            <td class="formatPlataforma"><?php echo $recrut['plataforma']; ?></td>
+                            <td class="formatStatus"><?php echo $recrut['status_membro']; ?></td>
+                            <td class="formatAcao"></td>
                         </tr>
                         <?php endforeach; ?>
+                        <?php else: ?>
+                        <tr>
+                            <td class="formatNoresult" colspan="5">Nenhuma solicitação pendente!</td>
+                        </tr>
+                        <?php endif; ?>
                     </table>
                 </div>
+                <?php endif; ?>
+                <?php if ($_SESSION['statusMembro'] == 4) : ?>
                 <div id="recusadosAdm">
-                    <table>
+                    <table id="tabAdmMembros">
+                        <caption>
+                            Rejeitados e expulsos
+                        </caption>
                         <tr>
-                            <th>Id</th>
                             <th>Nome</th>
                             <th>Nick</th>
                             <th>Plataforma</th>
                             <th>Status Solicitação</th>
                             <th>Ação</th>
                         </tr>
-                        <?php foreach ($a as $b): ?>
+                        <?php if (!empty($listaRejeitados)): ?>
+                        <?php foreach ($listaRejeitados as $rejeitados): ?>
                         <tr>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
+                            <td class="formatNome"><?php echo $rejeitados['nome']; ?></td>
+                            <td class="formatNick"><?php echo $rejeitados['nick']; ?></td>
+                            <td class="formatPlataforma"><?php echo $rejeitados['plataforma']; ?></td>
+                            <td class="formatStatus"><?php echo $rejeitados['status_membro']; ?></td>
+                            <td class="formatAcao"></td>
                         </tr>
                         <?php endforeach; ?>
+                        <?php else: ?>
+                        <tr>
+                            <td class="formatNoresult" colspan="5">Nenhum membro expulso/rejeitado!</td>
+                        </tr>
+                        <?php endif; ?>
                     </table>
                 </div>
+                <?php endif; ?>
+                <?php if ($_SESSION['statusMembro'] == 4) : ?>
                 <div id="recuperaSenha">
-                    <table>
+                    <table id="tabAdmMembros">
+                        <caption>
+                            Solicitação de nova senha
+                        </caption>
                         <tr>
-                            <th>Id</th>
                             <th>Nome</th>
                             <th>Nick</th>
                             <th>Plataforma</th>
                             <th>Status Solicitação</th>
                             <th>Ação</th>
                         </tr>
-                        <?php foreach ($a as $b): ?>
+                        <?php if (!empty($listaNovaSenha)): ?>
+                        <?php foreach ($listaNovaSenha as $novaSenha): ?>
                         <tr>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
-                            <td><?php echo $b['nome']; ?></td>
+                            <td class="formatNome"><?php //echo $novaSenha['nome']; ?></td>
+                            <td class="formatNick"><?php echo $novaSenha['nick']; ?></td>
+                            <td class="formatPlataforma"><?php //echo $novaSenha['plataforma']; ?></td>
+                            <td class="formatStatusSenha"><?php echo $novaSenha['statusSenha']; ?></td>
+                            <td class="formatAcao"></td>
                         </tr>
                         <?php endforeach; ?>
+                        <?php else: ?>
+                        <tr>
+                            <td class="formatNoresult" colspan="5">Nenhuma solicitação pendente</td>
+                        </tr>
+                        <?php endif; ?>
                     </table>
                 </div>
+                <?php endif; ?>
             </section>
         </div>
     </main>
