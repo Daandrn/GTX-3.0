@@ -24,11 +24,11 @@ $listaRecrut = carregaRecrut();
 $listaRejeitados = carregaRejeitados();
 $listaNovaSenha = carregaNovaSenha();
 
-if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['formLogado'])) {
     
-    $formularios = $_POST['formLogado'];
+    $formPerfil = $_POST['formLogado'];
     
-    switch ($formularios) {
+    switch ($formPerfil) {
         case 'canalStream':
             $idStream = $_SESSION['id_sessao'];
             $nickStream = $_POST['nickStream'];
@@ -99,6 +99,22 @@ if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') 
             sair();
             break;
     }
+}
+
+if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acaoMembrosAdm'])) {
+
+    $formMembrosAdm = $_POST['acaoMembrosAdm'];
+
+    switch ($formMembrosAdm[2]) {
+        case 'Salvar' :
+
+            $idExcluir = $formMembrosAdm[1];
+            $pessoa = new pessoa;
+            //$pessoa->excluiPessoa()
+
+            break;
+        }
+
 }
 
 require __DIR__ . "/../view/view.areaLogada.php";

@@ -31,24 +31,20 @@ class pessoa {
         return $retornoPessoa;
     }
 
-    function pendente() {
-        $this->statusPessoa = 0;
-    }
+    function alteraStatus($idPessoa, $statusPessoa) {
+         try {
 
-    function membro() {
-        $this->statusPessoa = 1;
-    }
+            require __DIR__ . "/../configuracao/conexao.php";
 
-    function rejeitado() {
-        $this->statusPessoa = 2;
-    }
+            $consulta = $conexao->prepare("UPDATE pessoa SET status_solicit = :statusSolicit WHERE id = :id");
+            $consulta->bindParam(':id', $idPessoa, PDO::PARAM_INT);
+            $consulta->bindParam(':statusSolicit', $statusPessoa, PDO::PARAM_INT);
 
-    function expulso() {
-        $this->statusPessoa = 3;
-    }
-
-    function administrador() {
-        $this->statusPessoa = 4;
+            $consulta->execute();
+            
+         } catch (PDOException $erro) {
+            echo "Erro no banco de dados: " . $erro->getMessage();
+         }
     }
 
     function alteraNick($idPessoa, $nickPessoa) {
