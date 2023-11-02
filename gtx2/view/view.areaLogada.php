@@ -39,7 +39,7 @@
                     <h3>Canal Stream</h3>
                     <div>
                         <label for="nickStream">Nick stream</label>
-                        <input type="text" name="nickStream" value="<?php echo $dadoStream['nickStream']; ?>" placeholder="Nickstream" maxlength="30">
+                        <input type="text" name="nickStream" value="<?php echo $dadoStream['nickStream']; ?>" placeholder="Nickstream" maxlength="20">
                     </div>
                     <div>
                         <label for="linkStream">Link canal</label>
@@ -89,7 +89,7 @@
                         <h3>Perfil</h3>
                         <div>
                             <label for="">Nick/origin</label>
-                            <input type="text" name="origin" value="<?php echo $nickPerfil?>" maxlength="20" pattern="[a-zA-Z0-9]*">
+                            <input type="text" name="origin" value="<?php echo $nickPerfil?>" maxlength="15" pattern="[a-zA-Z0-9]*">
                         </div>
                         <input type="hidden" name="formLogado" value="perfilNick">
                         <input type="submit" value="Salvar Nick" class="salvarPerfil">
