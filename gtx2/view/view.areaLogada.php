@@ -31,7 +31,9 @@
     </header>
     <main class="principal">
         <h1 id="boasVindas">
-        Seja bem vindo, <?php echo $boasvindas;?>!
+            <a href="/gtx2/teste/bd.php" target="_blank" rel="noopener noreferrer">
+                Seja bem vindo, <?php echo $boasvindas;?>!
+            </a>
         </h1>
         <div id="dadosPessoais">
             <div id="canalStream">
@@ -317,7 +319,7 @@
         <div>
             <p>Ghost tóxic team&trade;</p>
             <p>Todos os direitos reservados&copy;</p>
-            <p><a href="/Documentacao PHP/Index.html" target="_blank" rel="noopener noreferrer">Documentacao PHP</a></p>
+            <p>2023</p>
         </div>
         <div id="versiona">
             <form method="post">
