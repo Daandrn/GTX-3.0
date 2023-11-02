@@ -26,12 +26,12 @@ O app foi otimizado para o Firefox.
 A criação do banco e tabelas devem ser feitas a partir dos arquivos 'instalaBDgtx.sql' e 'instalaBDgtx2.sql', disponíveis nas pastas gtx1 e gtx2
 
 - A conexão ao banco de dados deve ser feita nos arquivos 'conexao.php', em ambas as versoes.
-Obs.: cada versao tem seu próprio arquivo conexão.
+ Obs.: cada versao tem seu próprio arquivo conexão.
 
-- Requer as seguintes configurações para correto funcionamento
+- Requer as seguintes configurações para correto funcionamento:
 
-;extension=pgsql
-;date.timezone = America/Sao_Paulo
-;session.gc_probability = 1
-;session.gc_divisor = 100
-;session.gc_maxlifetime = 300
+- ;extension=pgsql
+- ;date.timezone = America/Sao_Paulo
+- ;session.gc_probability = 1
+- ;session.gc_divisor = 100
+- ;session.gc_maxlifetime = 300
