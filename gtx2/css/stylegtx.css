@@ -324,6 +324,12 @@ tr#lista td {
     color: white;
 }
 
+#boasVindas a {
+    color: white;
+    text-decoration: none;
+    text-decoration-line: none;
+}
+
 #dadosPessoais {
     display: flex;
     gap: 12px;
