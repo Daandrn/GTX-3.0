@@ -30,8 +30,8 @@ A criação do banco e tabelas devem ser feitas a partir dos arquivos 'instalaBD
 
 - Requer as seguintes configurações para correto funcionamento:
 
-- ;extension=pgsql
-- ;date.timezone = America/Sao_Paulo
-- ;session.gc_probability = 1
-- ;session.gc_divisor = 100
-- ;session.gc_maxlifetime = 300
+;extension=pgsql
+;date.timezone = America/Sao_Paulo
+;session.gc_probability = 1
+;session.gc_divisor = 100
+;session.gc_maxlifetime = 300
