@@ -1,5 +1,5 @@
 /*
-Neste arquivo contém querys responsáveis pela criação do banco de dados, tabelas e registros essenciais para funcionamento da aplicação.
+Neste arquivo contém querys responsáveis pela criação do banco de dados, tabelas e registros essenciais para funcionamento da versao 2.0 da aplicação.
 O arquivo 'conexao.php' é utilizado para conexao ao BD, sendo que nele contém os dados correspondentes aos que serão criados com este SQL.
 
 O sql abaixo deve ser utilizado após criar o servidor e a base de dados com as configurações abaixo:

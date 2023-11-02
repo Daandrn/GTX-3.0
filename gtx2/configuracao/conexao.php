@@ -1,10 +1,10 @@
 <?php 
 
 $bancoDeDados = "pgsql";
-$host = "localhost";
+//$host = "localhost";
 $baseDeDados = "GTX2";
-$usuario = "postgres";
-$senha = "123";
+//$usuario = "postgres";
+//$senha = "123";
 
 try {
     
