@@ -19,6 +19,7 @@ class pessoa {
             $this->nomePessoa = $nomePessoa;
             $this->nickPessoa = $nickPessoa;
             $this->plataformaPessoa = $plataformaPessoa;
+            $this->statusPessoa = 0;
             
             salvaPessoa($this->idPessoa, $this->nomePessoa, $this->nickPessoa, $this->plataformaPessoa, $this->statusPessoa);
 
@@ -68,19 +69,37 @@ class pessoa {
 
     }
 
-    function alteraSenha($idPessoa, $novaSenha) {
+    function alteraSenha($idPessoa) {
 
         try {
 
             require __DIR__ . "/../configuracao/conexao.php";
 
-            $consulta = $conexao->prepare("UPDATE pessoa SET senha = :novaSenha WHERE id = :id");
-            $consulta->bindParam(':novaSenha', $novaSenha, PDO::PARAM_STR);
+            $consulta = $conexao->prepare("UPDATE pessoa 
+                                            SET senha = (SELECT novasenha 
+                                                            FROM recuperasenha 
+                                                            WHERE id = :id AND solicit_senha = 1 
+                                                            ORDER BY data_solicit DESC LIMIT 1)
+                                            WHERE id = :id");
             $consulta->bindParam(':id', $idPessoa, PDO::PARAM_INT);
             $consulta->execute();
 
         } catch (PDOException $erro) {
-            echo "Erro no banco de dados: " . $erro->getMessage();
+            echo "Erro ao alterar senha: " . $erro->getMessage();
+        }
+
+        try {
+
+            $consulta2 = $conexao->prepare("UPDATE recuperasenha
+                                                SET solicit_senha = 0
+                                                WHERE id = (SELECT id FROM recuperasenha 
+                                                                WHERE id = :id AND solicit_senha = 1 
+                                                                ORDER BY data_solicit LIMIT 1)");
+            $consulta2->bindParam(':id', $idPessoa, PDO::PARAM_INT);
+            $consulta2->execute();
+
+        } catch (PDOException $erro) {
+            echo "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
         }
 
         return;

@@ -79,7 +79,8 @@ INSERT INTO statusmembro (status_solicit, descricao) VALUES
 
 INSERT INTO statussenha (solicit_senha, descricao) VALUES
 (0, 'Aprovado'),
-(1, 'Solicitado');
+(1, 'Solicitado'),
+(2,'Reprovado');
 
 INSERT INTO plataformastream (id, descricao) VALUES
 (1, 'Youtube'),

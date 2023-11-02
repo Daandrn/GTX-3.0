@@ -105,17 +105,52 @@ if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST' &
 
     $formMembrosAdm = $_POST['acaoMembrosAdm'];
 
-    switch ($formMembrosAdm[2]) {
+    switch ($formMembrosAdm[1]) {
         case 'Salvar' :
 
-            $idExcluir = $formMembrosAdm[1];
             $pessoa = new pessoa;
-            //$pessoa->excluiPessoa()
+            $pessoa->alteraStatus($formMembrosAdm[2], $formMembrosAdm[0]);
+            header("location: /gtx2/control/control.areaLogada.php");
 
             break;
+
+        case 'Excluir' :
+
+            $pessoa = new pessoa;
+            $pessoa->excluiPessoa($formMembrosAdm[2]);
+            header("location: /gtx2/control/control.arealogada.php");
+
+            break;
+
         }
 
 }
+
+if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acaoAlteraSenha'])) {
+
+    $acaoAlteraSenha = $_POST['acaoAlteraSenha'];
+
+    switch ($acaoAlteraSenha[0]) {
+
+        case 'Aprovar' :
+        
+            $pessoa = new pessoa;
+            $pessoa->alteraSenha($acaoAlteraSenha[1]);
+            header("location: /gtx2/control/control.arealogada.php");
+        
+            break;
+        
+        case 'Reprovar' :
+        
+            $pessoa = new pessoa;
+            //$pessoa->alteraSenha($acaoAlteraSenha[1]);
+            //header("location: /gtx2/control/control.arealogada.php");
+        
+            break;
+            
+    }
+}
+
 
 require __DIR__ . "/../view/view.areaLogada.php";
 

@@ -56,7 +56,13 @@ try {
     function carregaNovaSenha() {
         
         require __DIR__ . "/../configuracao/conexao.php";
-        $consulta = $conexao->query("SELECT id, nick, solicit_senha AS statusSenha FROM recuperasenha WHERE solicit_senha = 1 ORDER BY data_solicit ASC");
+        $consulta = $conexao->query("SELECT recuperasenha.id, pessoa.nome, recuperasenha.nick, plataformagame.descricao, statussenha.descricao AS statusSenha 
+                                        FROM recuperasenha 
+                                        INNER JOIN pessoa ON recuperasenha.id = pessoa.id
+                                        INNER JOIN plataformagame ON pessoa.plataforma = plataformagame.id
+                                        INNER JOIN statussenha ON recuperasenha.solicit_senha = statussenha.solicit_senha
+                                        WHERE recuperasenha.solicit_senha = 1 
+                                        ORDER BY data_solicit ASC");
         $consulta->execute();
     
         $resultado = $consulta->fetchall(PDO::FETCH_ASSOC);

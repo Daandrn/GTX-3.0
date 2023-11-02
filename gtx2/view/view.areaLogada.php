@@ -130,14 +130,6 @@
             </div>
         </div>
         <div id="notice">
-            <aside id="eventosLogado">
-                <article>
-                    <h1>Noticias</h1>
-                </article>
-                <article>
-                    <h1>Eventos</h1>
-                </article>
-            </aside>
             <section id=tabelasLogado>
                 <div id="membrosAdm">
                     <table id="tabAdmMembros">
@@ -212,7 +204,19 @@
                             <td class="formatNick"><?php echo $recrut['nick']; ?></td>
                             <td class="formatPlataforma"><?php echo $recrut['plataforma']; ?></td>
                             <td class="formatStatus"><?php echo $recrut['status_membro']; ?></td>
-                            <td class="formatAcao"></td>
+                            <td class="formatAcao">
+                                <form method="post">
+                                    <div>
+                                        <select name="acaoMembrosAdm[]">
+                                            <option value="">Selecione</option>
+                                            <option value="1">Aceitar</option>
+                                            <option value="2">Rejeitar</option>
+                                        </select>
+                                        <input type="submit" name="acaoMembrosAdm[]" value="Salvar">
+                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $recrut['id']; ?>">
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                         <?php else: ?>
@@ -243,7 +247,19 @@
                             <td class="formatNick"><?php echo $rejeitados['nick']; ?></td>
                             <td class="formatPlataforma"><?php echo $rejeitados['plataforma']; ?></td>
                             <td class="formatStatus"><?php echo $rejeitados['status_membro']; ?></td>
-                            <td class="formatAcao"></td>
+                            <td class="formatAcao">
+                                <form method="post">
+                                    <div>
+                                        <select name="acaoMembrosAdm[]">
+                                            <option value="">Selecione</option>
+                                            <option value="1">Recrutar</option>
+                                        </select>
+                                        <input type="submit" name="acaoMembrosAdm[]" value="Salvar">
+                                        <input type="submit" name="acaoMembrosAdm[]" value="Excluir">
+                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $rejeitados['id']; ?>">
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                         <?php else: ?>
@@ -270,11 +286,19 @@
                         <?php if (!empty($listaNovaSenha)): ?>
                         <?php foreach ($listaNovaSenha as $novaSenha): ?>
                         <tr>
-                            <td class="formatNome"><?php //echo $novaSenha['nome']; ?></td>
+                            <td class="formatNome"><?php echo $novaSenha['nome']; ?></td>
                             <td class="formatNick"><?php echo $novaSenha['nick']; ?></td>
-                            <td class="formatPlataforma"><?php //echo $novaSenha['plataforma']; ?></td>
-                            <td class="formatStatusSenha"><?php echo $novaSenha['statusSenha']; ?></td>
-                            <td class="formatAcao"></td>
+                            <td class="formatPlataforma"><?php echo $novaSenha['descricao']; ?></td>
+                            <td class="formatStatusSenha"><?php echo $novaSenha['statussenha']; ?></td>
+                            <td class="formatAcao">
+                                <form method="post">
+                                    <div>
+                                        <input type="submit" name="acaoAlteraSenha[]" value="Aprovar">
+                                        <input type="submit" name="acaoAlteraSenha[]" value="Reprovar">
+                                        <input type="hidden" name="acaoAlteraSenha[]" value="<?php echo $novaSenha['id']; ?>">
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                         <?php else: ?>
