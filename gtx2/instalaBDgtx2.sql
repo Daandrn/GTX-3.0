@@ -61,6 +61,7 @@ CREATE TABLE recuperasenha(
     novasenha TEXT NOT NULL,
     solicit_senha INT,
     data_solicit DATE,
+    id_unico INT UNIQUE,
     FOREIGN KEY (solicit_senha) REFERENCES statussenha(solicit_senha)
 );
 CREATE TABLE versao (

@@ -135,7 +135,7 @@ if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST' &
         case 'Aprovar' :
         
             $pessoa = new pessoa;
-            $pessoa->alteraSenha($acaoAlteraSenha[1]);
+            $pessoa->alteraSenha($acaoAlteraSenha[1], $acaoAlteraSenha[2]);
             header("location: /gtx2/control/control.arealogada.php");
         
             break;
@@ -143,8 +143,8 @@ if (!empty($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST' &
         case 'Reprovar' :
         
             $pessoa = new pessoa;
-            //$pessoa->alteraSenha($acaoAlteraSenha[1]);
-            //header("location: /gtx2/control/control.arealogada.php");
+            $pessoa->reprovaNovaSenha($acaoAlteraSenha[2]);
+            header("location: /gtx2/control/control.arealogada.php");
         
             break;
             

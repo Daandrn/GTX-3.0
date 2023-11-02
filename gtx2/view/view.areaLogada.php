@@ -279,7 +279,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Nick</th>
-                            <th>Plataforma</th>
+                            <th>Data</th>
                             <th>Status Solicitação</th>
                             <th>Ação</th>
                         </tr>
@@ -288,14 +288,15 @@
                         <tr>
                             <td class="formatNome"><?php echo $novaSenha['nome']; ?></td>
                             <td class="formatNick"><?php echo $novaSenha['nick']; ?></td>
-                            <td class="formatPlataforma"><?php echo $novaSenha['descricao']; ?></td>
-                            <td class="formatStatusSenha"><?php echo $novaSenha['statussenha']; ?></td>
+                            <td class="formatPlataforma"><?php echo $novaSenha['data_solicit']; ?></td>
+                            <td class="formatStatus"><?php echo $novaSenha['statussenha']; ?></td>
                             <td class="formatAcao">
                                 <form method="post">
                                     <div>
                                         <input type="submit" name="acaoAlteraSenha[]" value="Aprovar">
                                         <input type="submit" name="acaoAlteraSenha[]" value="Reprovar">
                                         <input type="hidden" name="acaoAlteraSenha[]" value="<?php echo $novaSenha['id']; ?>">
+                                        <input type="hidden" name="acaoAlteraSenha[]" value="<?php echo $novaSenha['id_unico']; ?>">
                                     </div>
                                 </form>
                             </td>

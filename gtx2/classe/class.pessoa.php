@@ -69,7 +69,7 @@ class pessoa {
 
     }
 
-    function alteraSenha($idPessoa) {
+    function alteraSenha($idPessoa, $idUnico) {
 
         try {
 
@@ -78,10 +78,10 @@ class pessoa {
             $consulta = $conexao->prepare("UPDATE pessoa 
                                             SET senha = (SELECT novasenha 
                                                             FROM recuperasenha 
-                                                            WHERE id = :id AND solicit_senha = 1 
-                                                            ORDER BY data_solicit DESC LIMIT 1)
+                                                            WHERE id_unico = :id_unico)
                                             WHERE id = :id");
             $consulta->bindParam(':id', $idPessoa, PDO::PARAM_INT);
+            $consulta->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
             $consulta->execute();
 
         } catch (PDOException $erro) {
@@ -92,11 +92,29 @@ class pessoa {
 
             $consulta2 = $conexao->prepare("UPDATE recuperasenha
                                                 SET solicit_senha = 0
-                                                WHERE id = (SELECT id FROM recuperasenha 
-                                                                WHERE id = :id AND solicit_senha = 1 
-                                                                ORDER BY data_solicit LIMIT 1)");
-            $consulta2->bindParam(':id', $idPessoa, PDO::PARAM_INT);
+                                                WHERE id_unico = :id_unico AND solicit_senha = 1");
+            $consulta2->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
             $consulta2->execute();
+
+        } catch (PDOException $erro) {
+            echo "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
+        }
+
+        return;
+
+    }
+
+    function reprovaNovaSenha($idUnico) {
+
+        require __DIR__ . "/../configuracao/conexao.php";
+
+        try {
+
+            $consulta = $conexao->prepare("UPDATE recuperasenha
+                                                SET solicit_senha = 2
+                                                WHERE id_unico = :id_unico");
+            $consulta->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
+            $consulta->execute();
 
         } catch (PDOException $erro) {
             echo "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
