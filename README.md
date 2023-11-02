@@ -9,6 +9,7 @@ Listagem de membros
 Listagem de Canal de stream dos membros
 
 -- GTX 2.0 é o meu primeiro projeto --
+
 foram utilizadas as seguintes tecnologias:
 - PHP
 - HTML
