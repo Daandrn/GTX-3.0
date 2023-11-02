@@ -40,30 +40,35 @@
                         <div>
                             <input type="hidden" name="formInicio" value="form_login">
                             <input type="submit" value="Login" id="login">
-                            <button onclick="window.location.href='/gtx2/control/control.recuperaSenha.php'";>Esqueci senha</button>
+                            <button onclick="window.location.href='/gtx2/control/control.inicio.php?recuperaSenhaFrame=1'";>Esqueci senha</button>
                         </div>
                     </form>
                     <div id="respostaLogin">
-                    <script>
-
-                        let respostaLogin = <?php $alert = isset($responseLogin) ? $responseLogin : 1;
+                        <script>
+                            
+                            let respostaLogin = <?php $alert = isset($responseLogin) ? $responseLogin : 1;
                             echo json_encode($alert);
                             ?>;
 
-                        if (respostaLogin != 1) {
-                            alert(respostaLogin)
-                        }
+if (respostaLogin != 1) {
+    alert(respostaLogin)
+}
 
-                        </script>
-                    </div>
-                </div>
-                <div id="quemsomos">
-                    <h1>Quem somos</h1>
-                    <p>O Ghost Tóxic é um time dedicado ao battlefield 2042, formado por brasileiros para jogar
-                            casual&shy;mente e enfrentar outras equipes nos modos Rush x4 e Tatical conquest x6.</p>
-                        <p><a href="https://discord.gg/M4Bet5sCyh" target="_blank">Nosso discord</a></p>
-                </div>
-                <div id="recrut">
+</script>
+</div>
+</div>
+<?php if (isset($_GET['recuperaSenhaFrame']) && $_GET['recuperaSenhaFrame'] == 1): ?>
+<span id="recuperaSenhaFrame">
+    <iframe src="/gtx2/view/view.recuperaSenha.php" frameborder="2" id="frameRecuperaSenha"></iframe>
+</span>
+<?php endif; ?>
+<div id="quemsomos">
+    <h1>Quem somos</h1>
+    <p>O Ghost Tóxic é um time dedicado ao battlefield 2042, formado por brasileiros para jogar
+        casual&shy;mente e enfrentar outras equipes nos modos Rush x4 e Tatical conquest x6.</p>
+        <p><a href="https://discord.gg/M4Bet5sCyh" target="_blank">Nosso discord</a></p>
+    </div>
+    <div id="recrut">
                     <h1>Quero fazer parte</h1>
                     <form name="formrecrut" method="POST">
                         <div>

@@ -179,6 +179,19 @@ h3 {
     height: 80px;
 }
 
+#recuperaSenhaFrame {
+    position: absolute;
+    top: 100px;
+    left: 21%;
+    z-index: 2;
+}
+
+#frameRecuperaSenha {
+    border-radius: 7px;
+    width: 396px;
+    height: 292.5px;
+}
+
 /** imagem no index **/
 #imagemind {
 	display: flex;

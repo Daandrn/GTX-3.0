@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+#bodyRecuperaSenha {
+    margin: 0;
+}
+
+h4 {
+    margin-top: 0;
+}
+
+form {
+    gap: 4px;
+}
+
+#divRecuperaSenha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:#525252;
+    border-radius: 7px;
+    width: 396px;
+    height: 292.5px;
+    color: white;
+}
+
+#divRecuperaSenha div {
+    margin-bottom: 4px;
+}
+
+#divRecuperaSenha input {
+    height: 20px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 210px;
+}
+
+#divRecuperaSenha label {
+    display: inline-block;
+    width: 76px;
+}
+
+#botaoRecuperaSenha {
+    width: 120px !important;
+    margin-left: 80px;
+}

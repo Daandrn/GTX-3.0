@@ -145,6 +145,34 @@ class pessoa {
         return;
     }
 
+    function recuperaSenha($nickPessoa, $novaSenha) {
+        
+        try {
+
+            require __DIR__ . "/../configuracao/conexao.php";
+
+            $consulta1 = $conexao->query("SELECT max(id_unico) AS id_unico FROM recuperasenha");
+            $resultado = $consulta1->fetch(PDO::FETCH_ASSOC);
+            $maxIdUnico = $resultado['id_unico'] + 1;
+
+            $dataSolicit = date('d-m-Y');
+
+            $consulta2 = $conexao->prepare("INSERT INTO recuperasenha VALUES ((SELECT id FROM pessoa WHERE nick = :nick), :nick, :novaSenha, 1, :dataSolicit, :id_unico)");
+            $consulta2->bindParam(':nick', $nickPessoa, PDO::PARAM_STR);
+            $consulta2->bindParam(':novaSenha', $novaSenha, PDO::PARAM_STR);
+            $consulta2->bindParam(':dataSolicit', $dataSolicit, PDO::PARAM_STR);
+            $consulta2->bindParam('id_unico', $maxIdUnico, PDO::PARAM_INT);
+            $consulta2->execute();
+
+            
+        } catch (PDOexception $erro) {
+            echo "Erro ao solicitar nova senha: " . $erro->getMessage();
+        }
+        
+        return;
+
+    }
+
 }
 
 ?>

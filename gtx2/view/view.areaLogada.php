@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/gtx2/css/stylegtx.css">
     <link rel="shortcut icon" href="/gtx2/css/imagens/logotrans.png" type="image/x-png">
 </head>
-<body>
+<body class="bodyPrincipal">
     <header>
         <div class="cabecalho">
             <h1>GHOST TÓXIC TEAM</h1>
