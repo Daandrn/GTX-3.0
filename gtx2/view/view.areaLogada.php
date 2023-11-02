@@ -158,7 +158,31 @@
                             <td class="formatNick"><?php echo $membros['nick']; ?></td>
                             <td class="formatPlataforma"><?php echo $membros['plataforma']; ?></td>
                             <td class="formatStatus"><?php echo $membros['status_membro']; ?></td>
-                            <td class="formatAcao"></td>
+                            <?php if ($_SESSION['statusMembro'] == 4) : ?>
+                            <td class="formatAcao">
+                                <form method="post">
+                                    <div>
+                                        <select name="acaoMembrosAdm[]">
+                                            <option value="">Selecione</option>
+                                            <option value="4">Administrador</option>
+                                            <option value="1">Membro</option>
+                                            <option value="3">Expulsar</option>
+                                        </select>
+                                        <input type="submit" name="acaoMembrosAdm[]" value="Salvar">
+                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $membros['id']; ?>">
+                                    </div>
+                                </form>
+                            </td>
+                            <?php endif; ?>
+                            <?php if ($_SESSION['statusMembro'] == 1) : ?>
+                            <td class="formatAcao">
+                                <form method="post">
+                                    <input type="submit" value="Elogiar">
+                                    <input type="submit" value="Xingar">
+                                    <input type="hidden" name="acaoMembros" value="<?php echo $membros['id']; ?>">
+                                </form>
+                            </td>
+                            <?php endif; ?>
                         </tr>
                         <?php endforeach; ?>
                         <?php else: ?>
