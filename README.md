@@ -22,7 +22,7 @@ O app foi otimizado para o Firefox.
 ----------------------------------------------------------------------
 ----------------------INSTRUÇÕES PARA INSTALAÇÃO----------------------
 
-- A versão 1.0 está integrada a 2.0, portante é importante a criação de ambos os bancos de dados
+- A versão 1.0 está integrada a 2.0, portanto é importante a criação de ambos os bancos de dados
 A criação do banco e tabelas devem ser feitas a partir dos arquivos 'instalaBDgtx.sql' e 'instalaBDgtx2.sql', disponíveis nas pastas gtx1 e gtx2
 
 - A conexão ao banco de dados deve ser feita nos arquivos 'conexao.php', em ambas as versoes.
