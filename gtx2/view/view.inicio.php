@@ -40,7 +40,7 @@
                         <div>
                             <input type="hidden" name="formInicio" value="form_login">
                             <input type="submit" value="Login" id="login">
-                            <button onclick="window.location.href='/gtx2/control/control.inicio.php?recuperaSenhaFrame=1'";>Esqueci senha</button>
+                            <button onclick="window.location.href='/gtx2/control/control.inicio.php?recuperaSenhaFrame=1'">Esqueci senha</button>
                         </div>
                     </form>
                     <div id="respostaLogin">

@@ -1,12 +1,11 @@
 <?php 
 
-
+require_once 'dbConnection.php';
+$conexao = getDbConnection();
 function alteraStream($id, $nickStream, $linkStream, $plataforma) {
     
     try {
-        
-        require __DIR__ . "/../configuracao/conexao.php";
-        
+        $conexao = getDbConnection();
         $consulta = $conexao->prepare("UPDATE canalstream SET 
                                         nickstream = :nickStream,
                                         link_canal = :linkCanal, 
@@ -16,15 +15,12 @@ function alteraStream($id, $nickStream, $linkStream, $plataforma) {
         $consulta->bindParam(':linkCanal', $linkStream, PDO::PARAM_STR);
         $consulta->bindParam(':plataforma', $plataforma, PDO::PARAM_INT);
         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
-        
         $consulta->execute();
-        
-        $return = "Alteração realizada com sucesso!";
-        
-        return $return;
-        
+
+        return ["status" => true, "message" => "Alteração realizada com sucesso!"];
+
     } catch (PDOexception $erro) {
-        echo "Erro no banco de dados: " . $erro->getMessage();        
+        return ["status" => false, "message" => "Erro ao alterar o stream."];
     }
     
 }
@@ -32,9 +28,7 @@ function alteraStream($id, $nickStream, $linkStream, $plataforma) {
 function excluiStream($id) {
 
     try {
-        
-        require __DIR__ . "/../configuracao/conexao.php";
-        
+        $conexao = getDbConnection();
         $consulta = $conexao->prepare("UPDATE canalstream SET 
                                                             nickstream = null,
                                                             link_canal = null, 
@@ -43,19 +37,15 @@ function excluiStream($id) {
         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
         $consulta->execute();
 
-        $return = "Exclusão realizada com sucesso!";
-        
-        return $return;
+        return ["status" => true, "message" => "Exclusão realizada com sucesso!"];
 
     } catch (PDOException $erro) {
-        echo "Erro no banco de dados: " . $erro->getMessage();        
+        return ["status" => false, "message" => "Erro ao excluir o stream."];
     }
 }
 
 function formatLink($string) {
-
     $string = str_ireplace(["www.", "https://", "http://"], "", $string);
-
     return $string;
 }
 
