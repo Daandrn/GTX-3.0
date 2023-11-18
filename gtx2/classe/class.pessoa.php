@@ -1,14 +1,22 @@
 <?php 
 
+/**
+ * Possibilita inclusão e iteração com a entidade pessoa
+ */
+
 class pessoa {
     
-    var $idPessoa;
-    var $nomePessoa;
-    var $nickPessoa;
-    var $plataformaPessoa;
-    var $statusPessoa;
+    public $idPessoa;
+    public $nomePessoa;
+    public $nickPessoa;
+    public $plataformaPessoa;
+    public $statusPessoa;
     
-    function incluiPessoa($nomePessoa, $nickPessoa, $plataformaPessoa) {
+    /**
+     * Construtor que recebe nome, nick e a plataforma de jogo da pessoa
+     */
+    
+    public function incluiPessoa($nomePessoa, $nickPessoa, $plataformaPessoa) {
 
         require __DIR__ . "/../funcoes/func.verificaPessoa.php";
         require __DIR__ . "/../funcoes/func.verificaMaiorId.php";
@@ -32,7 +40,11 @@ class pessoa {
         return $retornoPessoa;
     }
 
-    function alteraStatus($idPessoa, $statusPessoa) {
+    /**
+     * Altera o status da pessoa.
+     */
+
+    public function alteraStatus($idPessoa, $statusPessoa) {
          try {
 
             require __DIR__ . "/../configuracao/conexao.php";
@@ -48,7 +60,11 @@ class pessoa {
          }
     }
 
-    function alteraNick($idPessoa, $nickPessoa) {
+    /**
+     * altera o nick name da pessoa.
+     */
+
+    public function alteraNick($idPessoa, $nickPessoa) {
 
         try {
             
@@ -69,7 +85,11 @@ class pessoa {
 
     }
 
-    function alteraSenha($idPessoa, $idUnico) {
+    /**
+     * altera senha da pessoa
+     */
+
+    public function alteraSenha($idPessoa, $idUnico) {
 
         try {
 
@@ -104,7 +124,11 @@ class pessoa {
 
     }
 
-    function reprovaNovaSenha($idUnico) {
+    /**
+     * Usado quando é necessário negar uma solicitação de nova senha
+     */
+
+    public function reprovaNovaSenha($idUnico) {
 
         require __DIR__ . "/../configuracao/conexao.php";
 
@@ -124,7 +148,11 @@ class pessoa {
 
     }
 
-    function excluiPessoa($idPessoa) {
+    /**
+     * usado para excluir uma pessoa 
+     */
+    
+    public function excluiPessoa($idPessoa) {
 
         try {
             
@@ -145,7 +173,11 @@ class pessoa {
         return;
     }
 
-    function recuperaSenha($nickPessoa, $novaSenha) {
+    /**
+     * função para alterar senha da pessoa
+     */
+    
+    public function recuperaSenha($nickPessoa, $novaSenha) {
         
         try {
 
