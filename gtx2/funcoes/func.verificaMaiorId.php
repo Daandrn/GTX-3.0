@@ -1,21 +1,19 @@
-<?php 
+<?php
+require_once __DIR__ . "/../configuracao/connection.php";
 
-function maiorID() {
-    
-    require __DIR__ . "/../configuracao/conexao.php";
-    
+use function gtx2\configuracao\connection;
+
+function maiorID(): string
+{
     try {
-        $consulta = $conexao->prepare("SELECT max(id) AS maior_id FROM pessoa");
+        $consulta = connection()->prepare("SELECT max(id) AS maior_id FROM pessoa");
         $consulta->execute();
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
     
         $retornoMaiorId = $resultado['maior_id'];
     
+        return $retornoMaiorId;
     } catch (PDOException $erro) {
-        echo "Erro no banco de dados: " . $erro->getMessage();
+        return "Erro ao verificar maior id: " . $erro->getMessage();
     }
-
-    return $retornoMaiorId;
 }
-
-?>

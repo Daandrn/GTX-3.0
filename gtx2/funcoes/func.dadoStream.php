@@ -1,13 +1,14 @@
-<?php 
+<?php
 
-function carregaStream($id)
+require_once __DIR__ . "/../configuracao/connection.php";
+
+use function gtx2\configuracao\connection;
+
+function carregaStream(int $id): array|string
 {
-    require __DIR__ . "/../configuracao/conexao.php";
-    
     try {
-    
-        $consulta = $conexao->prepare("SELECT * FROM canalstream WHERE id = :id");
-        $consulta->bindParam(':id', $id);
+        $consulta = connection()->prepare("SELECT * FROM canalstream WHERE id = :id");
+        $consulta->bindParam(':id', $id, PDO::PARAM_INT);
         $consulta->execute();
 
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
@@ -17,11 +18,8 @@ function carregaStream($id)
             "linkCanal" => $resultado['link_canal'],
             "plataforma" => $resultado['plataforma']
         ];
-        return $perfilStream;
-
+        return (array) $perfilStream;
     } catch (PDOException $erro) {
-        echo "Erro no banco de dados: " . $erro->getMessage();
+        return "Erro no banco de dados: " . $erro->getMessage();
     }
 }
-
-?>

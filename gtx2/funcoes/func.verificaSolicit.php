@@ -1,13 +1,13 @@
-<?php 
+<?php
 
+require_once __DIR__ . "/../configuracao/connection.php";
 
-function verificaSolicit($nickSolicit) {
+use function gtx2\configuracao\connection;
 
+function verificaSolicit($nickSolicit): bool|string
+{
     try {
-
-        require __DIR__ . "/../configuracao/conexao.php";
-
-        $consulta = $conexao->prepare("SELECT id_unico FROM recuperasenha WHERE nick = :nick AND solicit_senha = 1");
+        $consulta = connection()->prepare("SELECT id_unico FROM recuperasenha WHERE nick = :nick AND solicit_senha = 1");
         $consulta->bindParam(':nick', $nickSolicit, PDO::PARAM_STR);
         $consulta->execute();
 
@@ -17,12 +17,8 @@ function verificaSolicit($nickSolicit) {
             $response = false;
         }
         
+        return $response;
     } catch (PDOException $erro) {
-        echo "Erro ao verificar solicitações: " . $erro->getMessage();
+        return "Erro ao verificar solicitações: " . $erro->getMessage();
     }
-
-    return $response;
-    
 }
-
-?>

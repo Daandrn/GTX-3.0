@@ -1,62 +1,49 @@
 <?php 
 
+require_once __DIR__ . "/../configuracao/connection.php";
 
-function alteraStream($id, $nickStream, $linkStream, $plataforma) {
-    
+use function gtx2\configuracao\connection;
+
+function alteraStream(int $id, string $nickStream, string $linkStream, int $plataforma): string
+{
     try {
-        
-        require __DIR__ . "/../configuracao/conexao.php";
-        
-        $consulta = $conexao->prepare("UPDATE canalstream SET 
-                                        nickstream = :nickStream,
-                                        link_canal = :linkCanal, 
-                                        plataforma = :plataforma
-                                        WHERE id = :id");
+        $consulta = connection()->prepare("UPDATE canalstream SET 
+                                                nickstream = :nickStream,
+                                                link_canal = :linkCanal, 
+                                                plataforma = :plataforma
+                                            WHERE id = :id");
         $consulta->bindParam(':nickStream', $nickStream, PDO::PARAM_STR);
         $consulta->bindParam(':linkCanal', $linkStream, PDO::PARAM_STR);
         $consulta->bindParam(':plataforma', $plataforma, PDO::PARAM_INT);
         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
-        
         $consulta->execute();
         
-        $return = "Alteração realizada com sucesso!";
-        
-        return $return;
-        
+        return "Alteração realizada com sucesso!";
     } catch (PDOexception $erro) {
-        echo "Erro no banco de dados: " . $erro->getMessage();        
+        return "Erro no banco de dados: " . $erro->getMessage();        
     }
-    
 }
 
-function excluiStream($id) {
-
+function excluiStream(int $id): string
+{
     try {
-        
-        require __DIR__ . "/../configuracao/conexao.php";
-        
-        $consulta = $conexao->prepare("UPDATE canalstream SET 
-                                                            nickstream = null,
-                                                            link_canal = null, 
-                                                            plataforma = null
-                                                            WHERE id = :id");
+        $consulta = connection()->prepare("UPDATE canalstream SET 
+                                                nickstream = null,
+                                                link_canal = null, 
+                                                plataforma = null
+                                            WHERE id = :id");
         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
         $consulta->execute();
 
-        $return = "Exclusão realizada com sucesso!";
-        
-        return $return;
-
+        return "Exclusão realizada com sucesso!";
     } catch (PDOException $erro) {
-        echo "Erro no banco de dados: " . $erro->getMessage();        
+        return "Erro no banco de dados: " . $erro->getMessage();        
     }
 }
 
-function formatLink($string) {
-
+function formatLink($string) 
+{
     $string = str_ireplace(["www.", "https://", "http://"], "", $string);
 
     return $string;
 }
-
-?>

@@ -1,23 +1,21 @@
-<?php 
+<?php
 
-function carregaPerfil($id)
+require_once __DIR__ . "/../configuracao/connection.php";
+
+use function gtx2\configuracao\connection;
+
+function carregaPerfil(int $id): string
 {
-    require __DIR__ . "/../configuracao/conexao.php";
-    
     try {
-    
-        $consulta = $conexao->prepare("SELECT * FROM pessoa WHERE id = :id");
-        $consulta->bindParam(':id', $id);
+        $consulta = connection()->prepare("SELECT * FROM pessoa WHERE id = :id");
+        $consulta->bindParam(':id', $id, PDO::PARAM_INT);
         $consulta->execute();
-
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 
-        $origin = $resultado['nick'];
+        $origin = (string) $resultado['nick'];
+        
         return $origin;
-
     } catch (PDOException $erro) {
-        echo "Erro no banco de dados: " . $erro->getMessage();
+        return "Erro no banco de dados: " . $erro->getMessage();
     }
 }
-
-?>

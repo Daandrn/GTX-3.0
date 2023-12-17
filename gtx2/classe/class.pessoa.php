@@ -1,23 +1,25 @@
 <?php 
 
+require __DIR__ . "/../configuracao/connection.php";
+
+use function gtx2\configuracao\connection;
+
 /**
  * Possibilita inclusão e iteração com a entidade pessoa
  */
-
-class pessoa {
-    
-    public $idPessoa;
-    public $nomePessoa;
-    public $nickPessoa;
-    public $plataformaPessoa;
-    public $statusPessoa;
+class Pessoa 
+{
+    public int $idPessoa;
+    public string $nomePessoa;
+    public string $nickPessoa;
+    public int $plataformaPessoa;
+    public int $statusPessoa;
     
     /**
      * Construtor que recebe nome, nick e a plataforma de jogo da pessoa
      */
-    
-    public function incluiPessoa($nomePessoa, $nickPessoa, $plataformaPessoa) {
-
+    public function incluiPessoa(string $nomePessoa, string $nickPessoa, int $plataformaPessoa): string
+    {
         require __DIR__ . "/../funcoes/func.verificaPessoa.php";
         require __DIR__ . "/../funcoes/func.verificaMaiorId.php";
         require __DIR__ . "/../funcoes/func.salvaPessoa.php";
@@ -31,180 +33,143 @@ class pessoa {
             
             salvaPessoa($this->idPessoa, $this->nomePessoa, $this->nickPessoa, $this->plataformaPessoa, $this->statusPessoa);
 
-            $retornoPessoa = "Solicitação realizada com sucesso! Aguarde a aprovação de um dos administradores.";
-
+            return "Solicitação realizada com sucesso! Aguarde a aprovação de um dos administradores.";
         } elseif (verificaPessoa($nickPessoa)) {
-            $retornoPessoa = "Erro: O nick \"$nickPessoa\" já existe! tente novamente ou tente o recuperar senha.";
+            return "Erro: O nick \"$nickPessoa\" já existe! tente novamente ou tente o recuperar senha.";
         }
-
-        return $retornoPessoa;
     }
 
     /**
      * Altera o status da pessoa.
      */
-
-    public function alteraStatus($idPessoa, $statusPessoa) {
-         try {
-
-            require __DIR__ . "/../configuracao/conexao.php";
-
-            $consulta = $conexao->prepare("UPDATE pessoa SET status_solicit = :statusSolicit WHERE id = :id");
+    public function alteraStatus(int $idPessoa, int $statusPessoa): bool|string
+    {
+        try {
+            $consulta = connection()->prepare("UPDATE pessoa SET status_solicit = :statusSolicit WHERE id = :id");
             $consulta->bindParam(':id', $idPessoa, PDO::PARAM_INT);
             $consulta->bindParam(':statusSolicit', $statusPessoa, PDO::PARAM_INT);
-
-            $consulta->execute();
-            
-         } catch (PDOException $erro) {
-            echo "Erro no banco de dados: " . $erro->getMessage();
-         }
+            return $consulta->execute();
+        } catch (PDOException $erro) {
+            return "Erro no banco de dados: " . $erro->getMessage();
+        }
     }
 
     /**
      * altera o nick name da pessoa.
      */
-
-    public function alteraNick($idPessoa, $nickPessoa) {
-
+    public function alteraNick(int $idPessoa, string $nickPessoa): bool|string
+    {
         try {
-            
-            require __DIR__ . "/../configuracao/conexao.php";
-
-            $consulta = $conexao->prepare("UPDATE pessoa SET nick = :nick WHERE id = :id");
+            $consulta = connection()->prepare("UPDATE pessoa SET nick = :nick WHERE id = :id");
             $consulta->bindParam(':nick', $nickPessoa, PDO::PARAM_STR);
             $consulta->bindParam(':id', $idPessoa, PDO::PARAM_INT);
-            $consulta->execute();
-
+            
             $_SESSION['nick'] = $nickPessoa;
-
+            return $consulta->execute();
         } catch (PDOException $erro) {
-            echo "Erro no banco de dados: " . $erro->getMessage();
+            return "Erro no banco de dados: " . $erro->getMessage();
         }
-
-        return;
-
     }
 
     /**
-     * altera senha da pessoa
+     * altera senha da pessoa pelo perfil
      */
-
-    public function alteraSenha($idPessoa, $idUnico) {
-
+    public function atualizaSenha(int $id, int $novaSenha): bool|string
+    {
         try {
+            $consulta = connection()->prepare("UPDATE pessoa SET senha = :novasenha WHERE id = :id");
+            $consulta->bindParam(":id", $id, PDO::PARAM_INT);
+            $consulta->bindParam(":novasenha", $novaSenha, PDO::PARAM_INT);
+             
+            return $consulta->execute();
+        } catch (PDOException $error) {
+            return "Erro ao atualizar senha: " . $error->getMessage();
+        }
+    }
 
-            require __DIR__ . "/../configuracao/conexao.php";
-
-            $consulta = $conexao->prepare("UPDATE pessoa 
-                                            SET senha = (SELECT novasenha 
-                                                            FROM recuperasenha 
-                                                            WHERE id_unico = :id_unico)
-                                            WHERE id = :id");
+    /**
+     * altera senha da pessoa pela solicitação de recuperação
+     */
+    public function alteraSenha(int $idPessoa, int $idUnico): bool|string
+    {
+        try {
+            $consulta = connection()->prepare("UPDATE pessoa 
+                                                SET senha = (SELECT novasenha 
+                                                             FROM recuperasenha 
+                                                             WHERE id_unico = :id_unico)
+                                                WHERE id = :id");
             $consulta->bindParam(':id', $idPessoa, PDO::PARAM_INT);
             $consulta->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
             $consulta->execute();
-
         } catch (PDOException $erro) {
-            echo "Erro ao alterar senha: " . $erro->getMessage();
+            return "Erro ao alterar senha: " . $erro->getMessage();
         }
 
         try {
-
-            $consulta2 = $conexao->prepare("UPDATE recuperasenha
+            $consulta2 = connection()->prepare("UPDATE recuperasenha
                                                 SET solicit_senha = 0
                                                 WHERE id_unico = :id_unico AND solicit_senha = 1");
             $consulta2->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
-            $consulta2->execute();
-
+            return $consulta2->execute();
         } catch (PDOException $erro) {
-            echo "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
+            return "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
         }
-
-        return;
-
     }
 
     /**
      * Usado quando é necessário negar uma solicitação de nova senha
      */
-
-    public function reprovaNovaSenha($idUnico) {
-
-        require __DIR__ . "/../configuracao/conexao.php";
-
+    public function reprovaNovaSenha(int $idUnico): bool|string
+    {
         try {
-
-            $consulta = $conexao->prepare("UPDATE recuperasenha
+            $consulta = connection()->prepare("UPDATE recuperasenha
                                                 SET solicit_senha = 2
                                                 WHERE id_unico = :id_unico");
             $consulta->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
-            $consulta->execute();
-
+            return $consulta->execute();
         } catch (PDOException $erro) {
-            echo "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
+            return "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
         }
-
-        return;
-
     }
 
     /**
      * usado para excluir uma pessoa 
      */
-    
-    public function excluiPessoa($idPessoa) {
-
+    public function excluiPessoa(int $idPessoa): bool|string
+    {
         try {
-            
-            require __DIR__ . "/../configuracao/conexao.php";
-
-            $consulta1 = $conexao->prepare("DELETE FROM canalstream WHERE id = :id");
+            $consulta1 = connection()->prepare("DELETE FROM canalstream WHERE id = :id");
             $consulta1->bindParam(':id', $idPessoa, PDO::PARAM_INT);
             $consulta1->execute();
 
-            $consulta2 = $conexao->prepare("DELETE FROM pessoa WHERE id = :id");
+            $consulta2 = connection()->prepare("DELETE FROM pessoa WHERE id = :id");
             $consulta2->bindParam(':id', $idPessoa, PDO::PARAM_INT);
-            $consulta2->execute();
-
+            return $consulta2->execute();
         } catch (PDOException $erro) {
-            echo "Erro no banco de dados: " . $erro->getMessage();
+            return "Erro no banco de dados: " . $erro->getMessage();
         }
-
-        return;
     }
 
     /**
      * função para alterar senha da pessoa
      */
-    
-    public function recuperaSenha($nickPessoa, $novaSenha) {
-        
+    public function recuperaSenha(string $nickPessoa, int $novaSenha): bool|string
+    {
         try {
-
-            require __DIR__ . "/../configuracao/conexao.php";
-
-            $consulta1 = $conexao->query("SELECT max(id_unico) AS id_unico FROM recuperasenha");
+            $consulta1 = connection()->query("SELECT max(id_unico) AS id_unico FROM recuperasenha");
             $resultado = $consulta1->fetch(PDO::FETCH_ASSOC);
             $maxIdUnico = $resultado['id_unico'] + 1;
 
             $dataSolicit = date('d-m-Y');
 
-            $consulta2 = $conexao->prepare("INSERT INTO recuperasenha VALUES ((SELECT id FROM pessoa WHERE nick = :nick), :nick, :novaSenha, 1, :dataSolicit, :id_unico)");
+            $consulta2 = connection()->prepare("INSERT INTO recuperasenha VALUES ((SELECT id FROM pessoa WHERE nick = :nick), :nick, :novaSenha, 1, :dataSolicit, :id_unico)");
             $consulta2->bindParam(':nick', $nickPessoa, PDO::PARAM_STR);
             $consulta2->bindParam(':novaSenha', $novaSenha, PDO::PARAM_STR);
             $consulta2->bindParam(':dataSolicit', $dataSolicit, PDO::PARAM_STR);
             $consulta2->bindParam('id_unico', $maxIdUnico, PDO::PARAM_INT);
-            $consulta2->execute();
-
-            
+            return $consulta2->execute();
         } catch (PDOexception $erro) {
-            echo "Erro ao solicitar nova senha: " . $erro->getMessage();
+            return "Erro ao solicitar nova senha: " . $erro->getMessage();
         }
-        
-        return;
-
     }
-
 }
-
-?>

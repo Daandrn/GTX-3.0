@@ -1,77 +1,66 @@
 <?php 
 
-try {
+require_once __DIR__ . "/../configuracao/connection.php";
 
-    function carregaMembros() {
-        
-        require __DIR__ . "/../configuracao/conexao.php";
-        $consulta = $conexao->query("SELECT pessoa.id AS id, pessoa.nome AS nome, pessoa.nick AS nick, plataformagame.descricao AS plataforma, statusmembro.descricao AS status_membro 
-                                        FROM pessoa 
-                                        INNER JOIN plataformagame ON pessoa.plataforma = plataformagame.id
-                                        INNER JOIN statusmembro ON pessoa.status_solicit = statusmembro.status_solicit
-                                        WHERE pessoa.status_solicit IN (1,4) 
-                                        ORDER BY pessoa.status_solicit DESC");
+use function gtx2\configuracao\connection;
+
+try {
+    function carregaMembros()
+    {
+        $consulta = connection()->query("SELECT pessoa.id AS id, pessoa.nome AS nome, pessoa.nick AS nick, plataformagame.descricao AS plataforma, statusmembro.descricao AS status_membro 
+                                            FROM pessoa 
+                                            INNER JOIN plataformagame ON pessoa.plataforma = plataformagame.id
+                                            INNER JOIN statusmembro ON pessoa.status_solicit = statusmembro.status_solicit
+                                            WHERE pessoa.status_solicit IN (1,4) 
+                                            ORDER BY pessoa.status_solicit DESC");
         $consulta->execute();
-        
         $resultado = $consulta->fetchall(PDO::FETCH_ASSOC);
         
         return $resultado;
-        
     }
     
-    function carregaRecrut() {
-        
-        require __DIR__ . "/../configuracao/conexao.php";
-        $consulta = $conexao->query("SELECT pessoa.id AS id, pessoa.nome AS nome, pessoa.nick AS nick, plataformagame.descricao AS plataforma, statusmembro.descricao AS status_membro 
-                                        FROM pessoa 
-                                        INNER JOIN plataformagame ON pessoa.plataforma = plataformagame.id
-                                        INNER JOIN statusmembro ON pessoa.status_solicit = statusmembro.status_solicit
-                                        WHERE pessoa.status_solicit = 0 
-                                        ORDER BY pessoa.id ASC");
+    function carregaRecrut() 
+    {
+        $consulta = connection()->query("SELECT pessoa.id AS id, pessoa.nome AS nome, pessoa.nick AS nick, plataformagame.descricao AS plataforma, statusmembro.descricao AS status_membro 
+                                            FROM pessoa 
+                                            INNER JOIN plataformagame ON pessoa.plataforma = plataformagame.id
+                                            INNER JOIN statusmembro ON pessoa.status_solicit = statusmembro.status_solicit
+                                            WHERE pessoa.status_solicit = 0 
+                                            ORDER BY pessoa.id ASC");
         $consulta->execute();
-    
         $resultado = $consulta->fetchall(PDO::FETCH_ASSOC);
     
         return $resultado;
-    
     }
     
-    function carregaRejeitados() {
-        
-        require __DIR__ . "/../configuracao/conexao.php";
-        $consulta = $conexao->query("SELECT pessoa.id AS id, pessoa.nome AS nome, pessoa.nick AS nick, plataformagame.descricao AS plataforma, statusmembro.descricao AS status_membro
-                                        FROM pessoa
-                                        INNER JOIN plataformagame ON pessoa.plataforma = plataformagame.id
-                                        INNER JOIN statusmembro ON pessoa.status_solicit = statusmembro.status_solicit 
-                                        WHERE pessoa.status_solicit IN (2,3) 
-                                        ORDER BY pessoa.status_solicit ASC");
+    function carregaRejeitados() 
+    {    
+        $consulta = connection()->query("SELECT pessoa.id AS id, pessoa.nome AS nome, pessoa.nick AS nick, plataformagame.descricao AS plataforma, statusmembro.descricao AS status_membro
+                                            FROM pessoa
+                                            INNER JOIN plataformagame ON pessoa.plataforma = plataformagame.id
+                                            INNER JOIN statusmembro ON pessoa.status_solicit = statusmembro.status_solicit 
+                                            WHERE pessoa.status_solicit IN (2,3) 
+                                            ORDER BY pessoa.status_solicit ASC");
         $consulta->execute();
-    
         $resultado = $consulta->fetchall(PDO::FETCH_ASSOC);
     
         return $resultado;
-    
     }
     
-    function carregaNovaSenha() {
-        
-        require __DIR__ . "/../configuracao/conexao.php";
-        $consulta = $conexao->query("SELECT recuperasenha.id, recuperasenha.id_unico, pessoa.nome, recuperasenha.nick, recuperasenha.data_solicit, statussenha.descricao AS statusSenha 
-                                        FROM recuperasenha 
-                                        INNER JOIN pessoa ON recuperasenha.id = pessoa.id
-                                        INNER JOIN statussenha ON recuperasenha.solicit_senha = statussenha.solicit_senha
-                                        WHERE recuperasenha.solicit_senha = 1 
-                                        ORDER BY data_solicit ASC");
+    function carregaNovaSenha() 
+    {
+        $consulta = connection()->query("SELECT recuperasenha.id, recuperasenha.id_unico, pessoa.nome, recuperasenha.nick, recuperasenha.data_solicit, statussenha.descricao AS statusSenha 
+                                            FROM recuperasenha 
+                                            INNER JOIN pessoa ON recuperasenha.id = pessoa.id
+                                            INNER JOIN statussenha ON recuperasenha.solicit_senha = statussenha.solicit_senha
+                                            WHERE recuperasenha.solicit_senha = 1 
+                                            ORDER BY data_solicit ASC");
         $consulta->execute();
-    
         $resultado = $consulta->fetchall(PDO::FETCH_ASSOC);
     
         return $resultado;
-    
     }
     
 } catch (PDOException $erro) {
     echo "Erro no banco de dados: " . $erro->getMessage();
 }
-
-?>

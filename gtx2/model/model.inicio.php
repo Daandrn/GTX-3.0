@@ -1,5 +1,5 @@
 <?php 
 
-require __DIR__ . "/../configuracao/conexao.php";
+use gtx2\configuracao\connection;
 
 ?>

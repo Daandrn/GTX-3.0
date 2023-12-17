@@ -1,19 +1,17 @@
-<?php 
+<?php
 
-function carregaPlataformas() {
+require_once __DIR__ . "/../configuracao/connection.php";
 
-    require __DIR__ . "/../configuracao/conexao.php";
-    
+use function gtx2\configuracao\connection;
+
+function carregaPlataformas() 
+{
     try {
-        $consulta = $conexao->query("SELECT * FROM plataformastream ORDER BY id");
+        $consulta = connection()->query("SELECT * FROM plataformastream ORDER BY id");
         $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
-        $plataformas = $resultado;
-
-        return $plataformas;
-    } catch (PDOException $e) {
-        echo "Erro no banco de dados: " . $e->getMessage();
+        return $resultado;
+    } catch (PDOException $error) {
+        return "Erro ao carregar plataforma: " . $error->getMessage();
     }
 }
-
-?>

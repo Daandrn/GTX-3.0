@@ -1,21 +1,20 @@
-<?php 
+<?php
 
+require_once __DIR__ . "/../configuracao/connection.php";
 
-function verificaVersao() {
+use function gtx2\configuracao\connection;
+
+function verificaVersao(): string
+{
     try {
-
-        require __DIR__ . "/../configuracao/conexao.php";
         $sql = ("SELECT id FROM versao WHERE selected = 1");
-        $consulta = $conexao->prepare($sql);
+        $consulta = connection()->prepare($sql);
         $consulta->execute();
 
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 
         return $resultado['id'];
-
     } catch (PDOException $erro) {
-        echo "Erro no banco de dados: " . $erro->getMessage();
+        return "Erro no banco de dados: " . $erro->getMessage();
     }
 }
-
-?>

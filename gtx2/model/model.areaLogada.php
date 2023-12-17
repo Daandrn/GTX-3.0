@@ -1,13 +1,13 @@
-<?php 
+<?php
 
-    require __DIR__ . "/../configuracao/conexao.php";
+require_once __DIR__ . "/../configuracao/connection.php";
 
-        try {
-            //consulta as versoes do BD para montar o select na tela
-            $sql = $conexao->query("SELECT * FROM versao ORDER BY id");
+use function gtx2\configuracao\connection;
 
-        } catch (PDOexception $erro) {
-            echo "Erro no banco de dados: " . $erro->getMessage();
-        }
+try {
+    //consulta as versoes do BD para montar o select na tela
+    $sql = connection()->query("SELECT * FROM versao ORDER BY id");
 
-?>
+} catch (PDOexception $erro) {
+    return "Erro no banco de dados: " . $erro->getMessage();
+}

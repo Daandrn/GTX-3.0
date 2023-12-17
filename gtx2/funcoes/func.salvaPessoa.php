@@ -1,14 +1,18 @@
-<?php 
-function salvaPessoa($id, $nome, $nick, $plataforma, $status_solicit) {
-    try {
-        require __DIR__ . "/../configuracao/conexao.php";
+<?php
 
-        $consulta = $conexao->prepare("INSERT INTO pessoa VALUES (:id, :nome, :nick, :plataforma, :status_solicit, '123456')");
-        $consulta->bindParam(':id', $id);
-        $consulta->bindParam(':nome', $nome);
-        $consulta->bindParam(':nick', $nick);
-        $consulta->bindParam(':plataforma', $plataforma);
-        $consulta->bindParam(':status_solicit', $status_solicit);
+require_once __DIR__ . "/../configuracao/connection.php";
+
+use function gtx2\configuracao\connection;
+
+function salvaPessoa(int $id, string $nome, string $nick, int $plataforma, int $status_solicit) 
+{
+    try {
+        $consulta = connection()->prepare("INSERT INTO pessoa VALUES (:id, :nome, :nick, :plataforma, :status_solicit, 123456)");
+        $consulta->bindParam(':id', $id, PDO::PARAM_INT);
+        $consulta->bindParam(':nome', $nome, PDO::PARAM_STR);
+        $consulta->bindParam(':nick', $nick, PDO::PARAM_STR);
+        $consulta->bindParam(':plataforma', $plataforma, PDO::PARAM_INT);
+        $consulta->bindParam(':status_solicit', $status_solicit, PDO::PARAM_INT);
         $consulta->execute();
 
         if ($consulta->rowCount() == 1) {
@@ -18,8 +22,8 @@ function salvaPessoa($id, $nome, $nick, $plataforma, $status_solicit) {
             $retornoSalvaPessoa = false;
         }
 
-        $consulta2 = $conexao->prepare("INSERT INTO canalstream VALUES (:id, null, null, null)");
-        $consulta2->bindParam(':id', $id);
+        $consulta2 = connection()->prepare("INSERT INTO canalstream VALUES (:id, null, null, null)");
+        $consulta2->bindParam(':id', $id, PDO::PARAM_INT);
         $consulta2->execute();
     
     } catch (PDOException $erro) {
@@ -28,5 +32,3 @@ function salvaPessoa($id, $nome, $nick, $plataforma, $status_solicit) {
     
     return $retornoSalvaPessoa;
 }
-
-?>

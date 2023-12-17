@@ -5,22 +5,25 @@
 
 
 <textarea name="result" id="result" cols="90" rows="20">
-<?php 
+    <?php
+    
+    require_once __DIR__ . "/../configuracao/connection.php";
+    
+    use function gtx2\configuracao\connection;
 
-try {
-    require __DIR__ . "/../configuracao/conexao.php";
-    
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['Processar'] == 'Processar') {
-        $sql = $_POST['query'];
-        $consulta = $conexao->query($sql);
-    
-        $result = $consulta->fetchAll(PDO::FETCH_ASSOC);
+    try {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['Processar'] == 'Processar') {
+            $sql = $_POST['query'];
+            $consulta = connection()->query($sql);
+            $result = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        }
+    } catch (PDOException $erro) {
+        echo "Erro no banco de dados: " . $erro->getMessage();
     }
-
-} catch (PDOException $erro) {
-    echo "Erro no banco de dados: " . $erro->getMessage();
-}
-
-?>
-    <?php if (isset($result)) { var_dump($result); } ?>
+    ?>
+    <?php 
+        if (isset($result)) { 
+            var_dump($result); 
+        } 
+    ?>
 </textarea>
