@@ -23,14 +23,8 @@ if (
         }
 } 
 
-if (
-    $url == "/testephp"
-) {
+if ($url == "/testephp") {
     header("location: /gtx2/teste/teste.php");
-}
-
-else {
+} else {
     echo "Página não encontrada.";
 }
-
-?>

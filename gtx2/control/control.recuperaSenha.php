@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use classe\Pessoa;
 
 require __DIR__ . "/../classe/class.pessoa.php";
 require __DIR__ . "/../funcoes/func.verificaPessoa.php";
@@ -11,11 +13,11 @@ if (
     ) {
     $nickNovaSenha = (string) $_POST['origin'];
     $novaSenha = (int) $_POST['newSenha'];
-    
+
     if (verificaPessoa($nickNovaSenha)) {
-        if (verificaSolicit($nickNovaSenha)) {
+        if (!verificaSolicit($nickNovaSenha)) {
             if (!empty($novaSenha) && (strlen($novaSenha) == 10)) {
-                $pessoa = new pessoa;
+                $pessoa = new Pessoa;
                 $pessoa->recuperaSenha($nickNovaSenha, $novaSenha);
                 $responseRecuperaSenha = "Solicitação realizada com sucesso. Aguarde aprovação de um Adm!";
             } else {

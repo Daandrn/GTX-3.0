@@ -1,9 +1,14 @@
 <?php
 
-require_once __DIR__ . "/../configuracao/connection.php";
-
 use function gtx2\configuracao\connection;
 
+require_once __DIR__ . "/../configuracao/connection.php";
+
+/**
+ * Carrega canal de stream da pessoa
+ * @param int $id id da pessoa 
+ * @return array Dados do canal de stream
+ */
 function carregaStream(int $id): array|string
 {
     try {
@@ -20,6 +25,6 @@ function carregaStream(int $id): array|string
         ];
         return (array) $perfilStream;
     } catch (PDOException $erro) {
-        return "Erro no banco de dados: " . $erro->getMessage();
+        return "Erro ao carregar canal stream: " . $erro->getMessage();
     }
 }

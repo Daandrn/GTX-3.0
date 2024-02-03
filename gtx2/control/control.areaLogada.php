@@ -1,5 +1,7 @@
 <?php
 
+use classe\Pessoa;
+
 require __DIR__ . "/../classe/class.pessoa.php";
 require __DIR__ . "/../funcoes/func.verificaSessao.php";
 require __DIR__ . "/../funcoes/func.dadosPerfil.php";

@@ -1,5 +1,7 @@
 <?php
 
+use classe\Pessoa;
+
 if (
     isset($_SERVER['REQUEST_METHOD']) && 
     $_SERVER['REQUEST_METHOD'] == 'POST'
@@ -23,7 +25,7 @@ if (
 
             require_once __DIR__ . "/../classe/class.pessoa.php";
 
-            $recrutado = new pessoa();
+            $recrutado = new Pessoa();
             $responseRecrut = $recrutado->incluiPessoa($nomeRecrut, $nickRecrut, $plataformaRecrut);
 
             break;

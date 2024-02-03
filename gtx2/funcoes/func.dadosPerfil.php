@@ -1,9 +1,13 @@
 <?php
 
-require_once __DIR__ . "/../configuracao/connection.php";
-
 use function gtx2\configuracao\connection;
 
+require_once __DIR__ . "/../configuracao/connection.php";
+
+/**
+ * Busca nick da pessoa
+ * @param int $id id da pessoa
+ */
 function carregaPerfil(int $id): string
 {
     try {
@@ -12,9 +16,7 @@ function carregaPerfil(int $id): string
         $consulta->execute();
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 
-        $origin = (string) $resultado['nick'];
-        
-        return $origin;
+        return (string) $resultado['nick'];
     } catch (PDOException $erro) {
         return "Erro no banco de dados: " . $erro->getMessage();
     }

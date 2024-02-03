@@ -1,17 +1,16 @@
 <?php 
 
-require_once __DIR__ . "/../configuracao/connection.php";
-
 use function gtx2\configuracao\connection;
 
-/* 
-Verifica as credenciais do usuário no banco 
+require_once __DIR__ . "/../configuracao/connection.php";
+
+/**
+* Verifica as credenciais do usuário no banco 
 */
 function login(string $nick, int $password)
 {
     try {
-        $sql = "SELECT * FROM pessoa WHERE nick = :nick AND status_solicit in (0, 1, 4)";
-        $consulta = connection()->prepare($sql);
+        $consulta = connection()->prepare("SELECT * FROM pessoa WHERE nick = :nick AND status_solicit in (0, 1, 4)");
         $consulta->bindParam(':nick', $nick, PDO::PARAM_STR);
         $consulta->execute();
          
@@ -25,24 +24,24 @@ function login(string $nick, int $password)
                 ($resultado['status_solicit'] == 1 || $resultado['status_solicit'] == 4)
                 ) {
                 session_start();
-                $_SESSION = array (
+                $_SESSION = [
                     "nome" => $resultado['nome'],
                     "id_sessao" => $resultado['id'],
                     "nick" => $resultado['nick'],
                     "statusMembro" => $resultado['status_solicit']
-                );
+                ];
                 header("location: /gtx2/control/control.arealogada.php");
                 
                 exit;
             }
 
             // se a consulta retornar pessoa com cuja solicitação ainda esta pendente, retorna aviso.
-            elseif ($resultado['status_solicit'] == 0) {
+            if ($resultado['status_solicit'] == 0) {
                 return "Aguardando aprovação! entre em contato com um dos administradores ou aguarde.";
             }
 
             // se a consulta retornar pessoa com cuja senha esteja incorreta, retorna erro.
-            elseif ($password != $resultado['senha']) {
+            if ($password != $resultado['senha']) {
                 return "Senha incorreta! tente novamente ou use o esqueci senha.";
             }
         } 

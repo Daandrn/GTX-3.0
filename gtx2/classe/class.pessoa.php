@@ -1,11 +1,16 @@
 <?php 
 
-require __DIR__ . "/../configuracao/connection.php";
+namespace classe;
+
+use PDO;
+use PDOException;
 
 use function gtx2\configuracao\connection;
 
+require __DIR__ . "/../configuracao/connection.php";
+
 /**
- * Possibilita inclusão e iteração com a entidade pessoa
+ * Classe da entidade pessoa
  */
 class Pessoa 
 {
@@ -16,7 +21,7 @@ class Pessoa
     public int $statusPessoa;
     
     /**
-     * Construtor que recebe nome, nick e a plataforma de jogo da pessoa
+     * Inclui pessoa com nome, nick e a plataforma de jogo da pessoa
      */
     public function incluiPessoa(string $nomePessoa, string $nickPessoa, int $plataformaPessoa): string
     {
@@ -48,14 +53,15 @@ class Pessoa
             $consulta = connection()->prepare("UPDATE pessoa SET status_solicit = :statusSolicit WHERE id = :id");
             $consulta->bindParam(':id', $idPessoa, PDO::PARAM_INT);
             $consulta->bindParam(':statusSolicit', $statusPessoa, PDO::PARAM_INT);
+
             return $consulta->execute();
         } catch (PDOException $erro) {
-            return "Erro no banco de dados: " . $erro->getMessage();
+            return "Erro ao alterar status: " . $erro->getMessage();
         }
     }
 
     /**
-     * altera o nick name da pessoa.
+     * Altera o nick name da pessoa.
      */
     public function alteraNick(int $idPessoa, string $nickPessoa): bool|string
     {
@@ -63,16 +69,16 @@ class Pessoa
             $consulta = connection()->prepare("UPDATE pessoa SET nick = :nick WHERE id = :id");
             $consulta->bindParam(':nick', $nickPessoa, PDO::PARAM_STR);
             $consulta->bindParam(':id', $idPessoa, PDO::PARAM_INT);
-            
             $_SESSION['nick'] = $nickPessoa;
+
             return $consulta->execute();
         } catch (PDOException $erro) {
-            return "Erro no banco de dados: " . $erro->getMessage();
+            return "Erro ao alterar nick: " . $erro->getMessage();
         }
     }
 
     /**
-     * altera senha da pessoa pelo perfil
+     * Altera senha da pessoa pelo perfil
      */
     public function atualizaSenha(int $id, int $novaSenha): bool|string
     {
@@ -88,7 +94,7 @@ class Pessoa
     }
 
     /**
-     * altera senha da pessoa pela solicitação de recuperação
+     * Altera senha da pessoa pela solicitação de recuperação
      */
     public function alteraSenha(int $idPessoa, int $idUnico): bool|string
     {
@@ -110,6 +116,7 @@ class Pessoa
                                                 SET solicit_senha = 0
                                                 WHERE id_unico = :id_unico AND solicit_senha = 1");
             $consulta2->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
+
             return $consulta2->execute();
         } catch (PDOException $erro) {
             return "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
@@ -126,6 +133,7 @@ class Pessoa
                                                 SET solicit_senha = 2
                                                 WHERE id_unico = :id_unico");
             $consulta->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
+
             return $consulta->execute();
         } catch (PDOException $erro) {
             return "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
@@ -133,7 +141,7 @@ class Pessoa
     }
 
     /**
-     * usado para excluir uma pessoa 
+     * Usado para excluir uma pessoa 
      */
     public function excluiPessoa(int $idPessoa): bool|string
     {
@@ -144,6 +152,7 @@ class Pessoa
 
             $consulta2 = connection()->prepare("DELETE FROM pessoa WHERE id = :id");
             $consulta2->bindParam(':id', $idPessoa, PDO::PARAM_INT);
+
             return $consulta2->execute();
         } catch (PDOException $erro) {
             return "Erro no banco de dados: " . $erro->getMessage();
@@ -151,7 +160,7 @@ class Pessoa
     }
 
     /**
-     * função para alterar senha da pessoa
+     * Recuperar senha da pessoa
      */
     public function recuperaSenha(string $nickPessoa, int $novaSenha): bool|string
     {
@@ -167,6 +176,7 @@ class Pessoa
             $consulta2->bindParam(':novaSenha', $novaSenha, PDO::PARAM_STR);
             $consulta2->bindParam(':dataSolicit', $dataSolicit, PDO::PARAM_STR);
             $consulta2->bindParam('id_unico', $maxIdUnico, PDO::PARAM_INT);
+            
             return $consulta2->execute();
         } catch (PDOexception $erro) {
             return "Erro ao solicitar nova senha: " . $erro->getMessage();

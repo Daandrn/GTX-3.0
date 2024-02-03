@@ -1,14 +1,14 @@
 <?php 
 
-require_once __DIR__ . "/../configuracao/connection.php";
-
 use function gtx2\configuracao\connection;
+
+require_once __DIR__ . "/../configuracao/connection.php";
 
 function alteraStream(int $id, string $nickStream, string $linkStream, int $plataforma): string
 {
     try {
-        $consulta = connection()->prepare("UPDATE canalstream SET 
-                                                nickstream = :nickStream,
+        $consulta = connection()->prepare("UPDATE canalstream 
+                                            SET nickstream = :nickStream,
                                                 link_canal = :linkCanal, 
                                                 plataforma = :plataforma
                                             WHERE id = :id");
@@ -27,8 +27,8 @@ function alteraStream(int $id, string $nickStream, string $linkStream, int $plat
 function excluiStream(int $id): string
 {
     try {
-        $consulta = connection()->prepare("UPDATE canalstream SET 
-                                                nickstream = null,
+        $consulta = connection()->prepare("UPDATE canalstream 
+                                            SET nickstream = null,
                                                 link_canal = null, 
                                                 plataforma = null
                                             WHERE id = :id");
@@ -41,9 +41,7 @@ function excluiStream(int $id): string
     }
 }
 
-function formatLink($string) 
+function formatLink(string $string) 
 {
-    $string = str_ireplace(["www.", "https://", "http://"], "", $string);
-
-    return $string;
+    return str_ireplace(["www.", "https://", "http://"], "", $string);
 }

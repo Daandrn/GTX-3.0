@@ -5,7 +5,7 @@ namespace gtx2\configuracao;
 use PDO;
 use PDOException;
 
-function connection(): PDO
+function connection(): PDO|string
 {
     $drive    = "pgsql";
     $host     = "localhost";
@@ -19,6 +19,6 @@ function connection(): PDO
 
         return $conn;
     } catch (PDOException $error){
-        return "Erro no banco de dados: ". $error->getMessage();
+        return "Erro ao conectar ao banco de dados: ". $error->getMessage();
     }
 }
