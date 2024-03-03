@@ -45,30 +45,28 @@
                     </form>
                     <div id="respostaLogin">
                         <script>
-                            
                             let respostaLogin = <?php $alert = isset($responseLogin) ? $responseLogin : 1;
                             echo json_encode($alert);
                             ?>;
 
-if (respostaLogin != 1) {
-    alert(respostaLogin)
-}
-
-</script>
-</div>
-</div>
-<?php if (isset($_GET['recuperaSenhaFrame']) && $_GET['recuperaSenhaFrame'] == 1): ?>
-<span id="recuperaSenhaFrame">
-    <iframe src="/gtx2/view/view.recuperaSenha.php" frameborder="2" id="frameRecuperaSenha"></iframe>
-</span>
-<?php endif; ?>
-<div id="quemsomos">
-    <h1>Quem somos</h1>
-    <p>O Ghost Tóxic é um time dedicado ao battlefield 2042, formado por brasileiros para jogar
-        casual&shy;mente e enfrentar outras equipes nos modos Rush x4 e Tatical conquest x6.</p>
-        <p><a href="https://discord.gg/M4Bet5sCyh" target="_blank">Nosso discord</a></p>
-    </div>
-    <div id="recrut">
+                            if (respostaLogin != 1) {
+                                alert(respostaLogin)
+                            }
+                        </script>
+                    </div>
+                </div>
+                <?php if (isset($_GET['recuperaSenhaFrame']) && $_GET['recuperaSenhaFrame'] == 1): ?>
+                    <span id="recuperaSenhaFrame">
+                        <iframe src="/gtx2/view/view.recuperaSenha.php" frameborder="2" id="frameRecuperaSenha"></iframe>
+                    </span>
+                <?php endif; ?>
+                <div id="quemsomos">
+                    <h1>Quem somos</h1>
+                    <p>O Ghost Tóxic é um time dedicado ao battlefield 2042, formado por brasileiros para jogar
+                        casual&shy;mente e enfrentar outras equipes nos modos Rush x4 e Tatical conquest x6.</p>
+                    <p><a href="https://discord.gg/M4Bet5sCyh" target="_blank">Nosso discord</a></p>
+                </div>
+                <div id="recrut">
                     <h1>Quero fazer parte</h1>
                     <form name="formrecrut" method="POST">
                         <div>
@@ -95,15 +93,13 @@ if (respostaLogin != 1) {
                     </form>
                     <div id="respostaRecrut">
                         <script>
+                            let respostaRecrut = <?php $alert = isset($responseRecrut) ? $responseRecrut : 1;
+                                                    echo json_encode($alert);
+                                                    ?>;
 
-                        let respostaRecrut = <?php $alert = isset($responseRecrut) ? $responseRecrut : 1;
-                                                echo json_encode($alert);
-                                                ?>;
-
-                        if (respostaRecrut != 1) {
-                            alert(respostaRecrut)
-                        }
-
+                            if (respostaRecrut != 1) {
+                                alert(respostaRecrut)
+                            }
                         </script>
                     </div>
                 </div>

@@ -1,30 +1,22 @@
-<?php 
-
-$url = $_SERVER['REQUEST_URI'];
+<?php declare(strict_types=1);
 
 require __DIR__ . "/gtx2/funcoes/func.versao.php";
 
-if (
-    $url == "/inicio.php" || 
-    $url == "/index.php" || 
-    $url == "/inicio" || 
-    $url == "/Inicio.php" || 
-    $url == "/Index.php" || 
-    $url == "/Inicio" || 
-    $url == "/"
-    ) {
-        switch (verificaVersao()) {
-            case 1:
-                header("location: /gtx1/index.php");
-                break;
-            case 2:
-                header("location: /gtx2/control/control.inicio.php");
-                break;
-        }
-} 
+$url = explode('/' , $_SERVER['REQUEST_URI']);
 
-if ($url == "/testephp") {
-    header("location: /gtx2/teste/teste.php");
-} else {
-    echo "Página não encontrada.";
+switch ($url[1]) {
+    case '':
+    case 'inicio':
+        header("location: /gtx2/control/control.inicio.php");
+        break;
+    case 'inicio-v1':
+        header("location: /gtx1/index.php");
+        break;
+    case 'teste':
+        header("location: /gtx2/teste/teste.php");
+        break;
+    default:
+        http_response_code(404);
+        echo "<h3>Página não encontrada.</h3>";
+        break;
 }
