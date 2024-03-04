@@ -21,6 +21,3 @@ function connection(): PDO|string
         return "Erro ao conectar ao banco de dados: ". $error->getMessage();
     }
 }
-
-
-teste
