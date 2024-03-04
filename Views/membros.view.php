@@ -13,16 +13,16 @@
                     <th style="width: 78px;">Plataforma</th>
                 </tr>
             </thead>
-            <?php if ($consulta->rowCount() > 0): ?>
-            <?php while ($resultado = $consulta->fetch(PDO::FETCH_ASSOC)):?>
+            <?php if (!empty($items)): ?>
+            <?php foreach ($items as $item): ?>
             <tr id="lista">
-                <td><?php echo $resultado['nome'];?></td>
-                <td><?php echo $resultado['nick'];?></td>
-                <td><?php echo $resultado['cargo'];?></td>
-                <td><a id="linkcanal" href="https://<?php echo $resultado['link_canal'];?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $resultado['nickstream'];?></a></td>
-                <td><?php echo $resultado['plataforma'];?></td>
+                <td><?php echo $item['nome'];?></td>
+                <td><?php echo $item['nick'];?></td>
+                <td><?php echo $item['cargo'];?></td>
+                <td><a id="linkcanal" href="https://<?php echo $item['link_canal'];?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $item['nickstream'];?></a></td>
+                <td><?php echo $item['plataforma'];?></td>
             </tr>
-            <?php endwhile ?>
+            <?php endforeach; ?>
             <?php else: ?>
                 <tr id="lista">
                     <td colspan="5">Nenhum membro encontrado!</td>

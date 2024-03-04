@@ -5,6 +5,7 @@ namespace Routes;
 use App\controllers\MembrosController;
 use App\controllers\SalaVideosController;
 use App\controllers\InicioController;
+use App\Models\Membros;
 use Vendor\Routes\Route;
 require __DIR__.'/../Vendor/Routes/Route.php';
 

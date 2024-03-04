@@ -1,8 +1,13 @@
-<?php 
+<?php declare(strict_types=1);
 
-use function gtx2\configuracao\connection;
+namespace App\Models;
 
-require_once __DIR__ . "/../configuracao/connection.php";
+use App\Interfaces\ModelInterface;
+
+class CanalStream implements ModelInterface
+{
+    # code...
+}
 
 function alteraStream(int $id, string $nickStream, string $linkStream, int $plataforma): string
 {
@@ -45,3 +50,37 @@ function formatLink(string $string)
 {
     return str_ireplace(["www.", "https://", "http://"], "", $string);
 }
+
+/**
+ * Carrega canal de stream da pessoa
+ * @param int $id id da pessoa 
+ * @return array Dados do canal de stream
+ */
+function carregaStream(int $id): array|string
+{
+    try {
+        $consulta = connection()->prepare("SELECT * FROM canalstream WHERE id = :id");
+        $consulta->bindParam(':id', $id, PDO::PARAM_INT);
+        $consulta->execute();
+
+        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        $perfilStream = [
+            "nickStream" => $resultado['nickstream'],
+            "linkCanal" => $resultado['link_canal'],
+            "plataforma" => $resultado['plataforma']
+        ];
+        return (array) $perfilStream;
+    } catch (PDOException $erro) {
+        return "Erro ao carregar canal stream: " . $erro->getMessage();
+    }
+}
+
+// cria canal stram da pessoa que esta sendo cadastrada.
+$consulta2 = connection()->prepare("INSERT INTO canalstream VALUES (:id, null, null, null)");
+$consulta2->bindParam(':id', $id, PDO::PARAM_INT);
+
+// exclui canal stream
+$consulta1 = connection()->prepare("DELETE FROM canalstream WHERE id = :id");
+$consulta1->bindParam(':id', $idPessoa, PDO::PARAM_INT);
+$consulta1->execute();

@@ -7,7 +7,7 @@ O sql abaixo deve ser utilizado após criar o servidor e a base de dados com as 
 */
 
 -- configurações da base de dados
-CREATE DATABASE "GTX2"
+CREATE DATABASE "GTX3"
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -23,19 +23,19 @@ Executar o sql no ADM do BD
 -- Cria as tabelas
 CREATE TABLE statusmembro (
     status_solicit INT PRIMARY KEY UNIQUE,
-    descricao TEXT
+    descricao TEXT NOT NULL
 );
 CREATE TABLE plataformagame (
     id INT PRIMARY KEY UNIQUE,
     descricao TEXT
 );
-CREATE TABLE pessoa (
-    id INT PRIMARY KEY UNIQUE,
+CREATE TABLE membros (
+    id SERIAL PRIMARY KEY,
     nome VARCHAR(30) NOT NULL,
     nick VARCHAR(20) UNIQUE NOT NULL,
-    plataforma INT,
+    plataforma INT NOT NULL,
     status_solicit INT NOT NULL,
-    senha TEXT,
+    senha TEXT NOT NULL,
     FOREIGN KEY (status_solicit) REFERENCES statusmembro(status_solicit),
     FOREIGN KEY (plataforma) REFERENCES plataformagame(id)
 );
@@ -48,26 +48,21 @@ CREATE TABLE canalstream (
     plataforma INT,
     link_canal VARCHAR(50),
     nickstream VARCHAR(20),
-    FOREIGN KEY (id) REFERENCES pessoa(id),
+    FOREIGN KEY (id) REFERENCES membros(id),
     FOREIGN KEY (plataforma) REFERENCES plataformastream(id)
 );
 CREATE TABLE statussenha(
     solicit_senha INT PRIMARY KEY NOT NULL,
-    descricao TEXT
+    descricao TEXT NOT NULL
 );
 CREATE TABLE recuperasenha(
     id INT NOT NULL,
     nick VARCHAR(20) NOT NULL,
     novasenha TEXT NOT NULL,
-    solicit_senha INT,
-    data_solicit DATE,
-    id_unico INT UNIQUE,
+    solicit_senha INT NOT NULL,
+    data_solicit DATE NOT NULL,
+    id_unico SERIAL,
     FOREIGN KEY (solicit_senha) REFERENCES statussenha(solicit_senha)
-);
-CREATE TABLE versao (
-    id INT UNIQUE,
-    descricao TEXT,
-    selected INT
 );
 
 -- Insere os dados constantes da aplicação
@@ -96,13 +91,8 @@ INSERT INTO plataformagame (id, descricao) VALUES
 (3, 'Ps5');
 
 -- cria um usuário administrador com senha '456' (que deve ser alterado posteriormente)
-INSERT INTO pessoa (id, nome, nick, plataforma, status_solicit, senha) VALUES 
-(1, 'Administrador', 'adm', 1, 4, '456');
+INSERT INTO membros (nome, nick, plataforma, status_solicit, senha) VALUES 
+('Administrador', 'adm', 1, 4, '456');
 
 INSERT INTO canalstream (id, plataforma, link_canal, nickstream) VALUES
 (1, NULL, NULL, NULL);
-
--- versiona o banco de dados
-INSERT INTO versao (id, descricao, selected) VALUES 
-(1, 'GTX V1', null),
-(2, 'GTX V2', 1);

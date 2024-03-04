@@ -44,6 +44,7 @@ if (
             require_once __DIR__ . "/../classe/class.pessoa.php";
 
             $recrutado = new Pessoa();
+            // ao salvar a pessoa ainda não esta inserindo o canalstream, verificar
             $responseRecrut = $recrutado->incluiPessoa($nomeRecrut, $nickRecrut, $plataformaRecrut);
 
             break;

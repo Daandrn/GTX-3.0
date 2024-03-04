@@ -2,15 +2,25 @@
 
 namespace App\controllers;
 
+use App\Services\MembrosService;
+
 use function Vendor\renderView\view;
 
 class MembrosController
 {
+    protected MembrosService $service;
+    
+    public function __construct() 
+    {
+        require __DIR__.'/../Services/MembrosService.php';
+        
+        $this->service = $service;
+    }
+    
     public function index()
     {
-        require __DIR__ . "/../model/model.membros.php";
-        $teste = "aaa";
+        $membros = $this->service->all();
 
-        return view('membros', compact('teste'));
+        return view('membros', $membros);
     }
 }
