@@ -11,7 +11,7 @@ function connection(): PDO|string
     $host     = "localhost";
     $dataBase = "GTX3";
     $user     = "postgres";
-    $password = "5";
+    $password = "123";
     
     try {
         $conn = new PDO("$drive:host=$host;dbname=$dataBase", $user, $password);
