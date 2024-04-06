@@ -90,9 +90,9 @@ INSERT INTO plataformagame (id, descricao) VALUES
 (2, 'Xbox Séries'),
 (3, 'Ps5');
 
--- cria um usuário administrador com senha '456' (que deve ser alterado posteriormente)
+-- cria um usuário administrador com o rash da senha '1234567890' (que deve ser alterada posteriormente)
 INSERT INTO membros (nome, nick, plataforma, status_solicit, senha) VALUES 
-('Administrador', 'adm', 1, 4, '456');
+('Administrador', 'adm', 1, 4, '$2y$10$PHBLahBLh4F0oX4iBcpUmef7o1TzdA6x3dIGYkR3v3xWrrRWRYwyS');
 
 INSERT INTO canalstream (id, plataforma, link_canal, nickstream) VALUES
 (1, NULL, NULL, NULL);
