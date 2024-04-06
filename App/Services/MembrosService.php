@@ -8,16 +8,16 @@ require __DIR__.'/../Repositories/MembrosRepository.php';
 class MembrosService
 {
     public function __construct(
-        protected MembrosRepository $repository,
+        protected MembrosRepository $membrosRepository,
     ) {
     }
 
-    public function all(): array|null
+    public function allMembers(): array|null
     {
-        $membros = $this->repository->getAll();
+        $membros = $this->membrosRepository->getAllMembers();
 
         return $membros;
     }
 }
 
-$service = new MembrosService($repository);
+$membrosService = new MembrosService($membrosRepository);

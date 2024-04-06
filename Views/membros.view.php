@@ -14,13 +14,15 @@
                 </tr>
             </thead>
             <?php if (!empty($items)): ?>
-            <?php foreach ($items as $item): ?>
+            <?php foreach ($items as $membro): ?>
             <tr id="lista">
-                <td><?php echo $item['nome'];?></td>
-                <td><?php echo $item['nick'];?></td>
-                <td><?php echo $item['cargo'];?></td>
-                <td><a id="linkcanal" href="https://<?php echo $item['link_canal'];?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $item['nickstream'];?></a></td>
-                <td><?php echo $item['plataforma'];?></td>
+                <td><?php echo $membro->nome;?></td>
+                <td><?php echo $membro->nick;?></td>
+                <td><?php echo $membro->cargo_membro;?></td>
+                <td>
+                    <a id="linkcanal" href="https://<?php echo $membro->link_canal;?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $membro->nickstream;?></a>
+                </td>
+                <td><?php echo $membro->plataforma_game;?></td>
             </tr>
             <?php endforeach; ?>
             <?php else: ?>
