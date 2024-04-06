@@ -3,52 +3,57 @@
 namespace App\controllers;
 
 use function Vendor\renderView\view;
-require __DIR__.'/../../Vendor/renderView/View.php';
 
+require __DIR__.'/../../Vendor/renderView/View.php';
 
 Class InicioController
 {
-    public function __construct()
-    {
-        //
-    }
-
     public function index()
     {
         return view('inicio');
     }
-}
 
-/*
-if (
-    isset($_SERVER['REQUEST_METHOD']) && 
-    $_SERVER['REQUEST_METHOD'] == 'POST'
-    ) {
-    $formulario = (string) $_POST['formInicio'];
+    public function inicioLogin()
+    {
+        require __DIR__.'/LoginController.php';
+        require __DIR__.'/../../Vendor/Helpers/dd.php';
+        
+        if (
+            isset($_SERVER['REQUEST_METHOD']) 
+            && $_SERVER['REQUEST_METHOD'] === 'POST'
+            && $_POST['formInicio'] === 'form_login'
+        ) {
+            $usuarioLogin = $_POST['nick_login'];
+            $senhaLogin   = $_POST['senha_login'];
+            
+            if (
+                strlen($usuarioLogin) === 0
+                || strlen($senhaLogin) === 0
+            ) {
+                return view('inicio', ['message' => "Usuário e senha são obrigatórios!"]);
+            }
 
-    switch ($formulario) {
-        case 'form_login':
-            $usuarioLogin = (string) $_POST['nick_login'];
-            $senhaLogin = (int) $_POST['senha_login'];
+            if (
+                strlen($usuarioLogin) < 3
+                || strlen($senhaLogin) !== 10
+            ) {
+                return view('inicio', ['message' => "Usuário e/ou senha inválido(os)!"]);
+            }
 
-            require __DIR__ . "/../funcoes/func.login.php";
+            $loginMembro = new LoginController;
+            $response    = $loginMembro->login($usuarioLogin, $senhaLogin);
 
-            $responseLogin = login($usuarioLogin, $senhaLogin);
+            if (empty($response['status_login'])) {
+                return header("location: /arealogada");
+            }
+            
+            if (! empty($response['status_login'])) {
+                $message = ['message' => $response['message']];
 
-            break;
-        case 'form_recrut':
-            $nomeRecrut = (string) $_POST['nome_recrut'];
-            $nickRecrut = (string) $_POST['nick_recrut'];
-            $plataformaRecrut = $_POST['plataforma_recrut'];
+                return view('inicio', $message);
+            }
+        }
 
-            require_once __DIR__ . "/../classe/class.pessoa.php";
-
-            $recrutado = new Pessoa();
-            // ao salvar a pessoa ainda não esta inserindo o canalstream, verificar
-            $responseRecrut = $recrutado->incluiPessoa($nomeRecrut, $nickRecrut, $plataformaRecrut);
-
-            break;
+        return view('inicio', ['message' => "Erro na requisição!"]);
     }
 }
-
-require __DIR__ . "/../view/view.inicio.php";*/

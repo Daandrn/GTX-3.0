@@ -1,3 +1,3 @@
-if (true) {
-    alert('implementar');
+if (message) {
+    alert(message);
 }

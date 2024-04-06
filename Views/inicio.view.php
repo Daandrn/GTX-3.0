@@ -1,18 +1,20 @@
-<?php include __DIR__.'/parts/top.php';?>
+<?php
+
+ include __DIR__.'/parts/top.php';?>
 
 <main class="principal">
     <div id="separador">
         <span id="formularios">
             <div id="login">
                 <h1>Sou membro</h1>
-                <form name="formlogin" method="POST">
+                <form action="/login" name="formlogin" method="POST">
                     <div>
                         <label for="nick_login">Login: </label>
-                        <input type="text" name="nick_login" id="nick_login" maxlength="15" size="30" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick sem espaços ou caracteres especiais." required>
+                        <input type="text" name="nick_login" id="nick_login" maxlength="15" size="30" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick sem espaços ou caracteres especiais.">
                     </div>
                     <div>
                     <label for="senha_login">Senha: </label>
-                        <input type="password" name="senha_login" id="senha_login" maxlength="10" size="10" pattern="[0-9]*" placeholder="Senha" title="Insira sua senha numérica." autocomplete="off" required>
+                        <input type="password" name="senha_login" id="senha_login" maxlength="10" size="10" pattern="[0-9]*" placeholder="Senha" title="Insira sua senha numérica." autocomplete="off">
                     </div>
                     <div>
                         <input type="hidden" name="formInicio" value="form_login">
@@ -37,11 +39,11 @@
                 <form name="formrecrut" method="POST">
                     <div>
                         <label for="nome_recrut">Nome: </label>
-                        <input type="text" name="nome_recrut" id="nome_recrut" maxlength="24" size="40" pattern="[A-Za-z\s']+" placeholder="Nome" title="Insira seu nome sem caracteres especiais." required>
+                        <input type="text" name="nome_recrut" id="nome_recrut" maxlength="24" size="40" pattern="[A-Za-z\s']+" placeholder="Nome" title="Insira seu nome sem caracteres especiais.">
                     </div>
                     <div>
                         <label for="nick_recrut">Nick: </label>
-                        <input type="text" name="nick_recrut" id="nick_recrut" maxlength="15" size="40" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick/origin." required>
+                        <input type="text" name="nick_recrut" id="nick_recrut" maxlength="15" size="40" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick/origin.">
                     </div>
                     <div>
                         <label for="plataforma_recrut">Plataforma: </label>
@@ -65,6 +67,9 @@
     <div id="imagemind">
         <img src="/public/css/imagens/logotrans.png">
     </div>
+    <script>
+        let message = <?php echo isset($items['message']) ? json_encode($items['message']) : null; ?>;
+    </script>
     <script src="/Public/Js/alert.js"></script>
 </main>
 
