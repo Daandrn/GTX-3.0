@@ -3,21 +3,55 @@
 namespace App\Repository;
 
 use App\Models\Membros;
+use stdClass;
+
 require __DIR__.'/../Models/Membros.php';
 
 class MembrosRepository
 {
     public function __construct(
-        protected Membros $model,
+        protected Membros $membrosModel,
     ) {
     }
     
-    public function getAll(): array|null
+    public function getAllMembers(): array|null
     {
-        $membros = $this->model->select(['status_solicit','in', '(1,4)','ORDER BY id DESC']);
+        $membros = $this->membrosModel->select(
+            fields: [
+                'membros.nome', 
+                'membros.nick', 
+                'statusmembro.descricao as cargo_membro', 
+                'canalstream.link_canal', 
+                'canalstream.nickstream', 
+                'plataformagame.descricao as plataforma_game'
+            ],
+            join: [
+                ['statusmembro', 'status_solicit', 'left'],
+                ['canalstream', 'id', 'left'],
+                ['plataformagame', 'id', 'left'],
+            ],
+            where: [
+                'status_solicit','in', '(1,4)',
+                'ORDER BY membros.id DESC'
+            ],
+        );
 
-        return !empty($membros) ? $membros : null;
+        return !empty($membros) 
+                ? $membros 
+                : null;
+    }
+
+    public function loginSenhaMembro(string $nick): array|null
+    {
+        $membro = $this->membrosModel->select(
+            fields: ['nome', 'nick', 'status_solicit', 'senha'],
+            where: ['nick', '=', "'$nick'", 'AND status_solicit IN (0, 1, 4)']
+        );
+        
+        return !empty($membro)
+                ? $membro
+                : null;
     }
 }
 
-$repository = new MembrosRepository($model);
+$membrosRepository = new MembrosRepository($membrosModel);
