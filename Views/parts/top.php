@@ -15,7 +15,7 @@
         <div class="navegador">
             <nav>
                 <ul>
-                    <li><a class="aNavegador" href="/inicio" >Inicio</a></li>
+                    <li><a class="aNavegador" href="/inicio">Inicio</a></li>
                     <li><a class="aNavegador" href="/arealogada">Área logada</a></li>
                     <li><a class="aNavegador" href="/salavideos">Sala de videos</a></li>
                     <li><a class="aNavegador" href="/membros">Membros</a></li>
@@ -23,3 +23,4 @@
             </nav>
         </div>
     </header>
+    
