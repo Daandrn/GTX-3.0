@@ -2,7 +2,7 @@
 
 use function gtx2\configuracao\connection;
 
-require_once __DIR__ . "/../configuracao/connection.php";
+require __DIR__."/../../Config/Connection.php";
 
 /**
  * Verifica se há solicitação de alteração de senha pendente

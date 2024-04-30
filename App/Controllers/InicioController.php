@@ -1,13 +1,24 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\controllers;
 
+use App\Services\MembrosService;
+
 use function Vendor\renderView\view;
 
-require __DIR__.'/../../Vendor/renderView/View.php';
+require_once __DIR__.'/../../Vendor/renderView/View.php';
 
 Class InicioController
 {
+    protected MembrosService $membrosService;
+    
+    public function __construct()
+    {
+        require __DIR__.'/../Services/MembrosService.php';
+
+        $this->membrosService = new MembrosService;
+    }
+    
     public function index()
     {
         return view('inicio');
@@ -15,9 +26,6 @@ Class InicioController
 
     public function inicioLogin()
     {
-        require __DIR__.'/LoginController.php';
-        require __DIR__.'/../../Vendor/Helpers/dd.php';
-        
         if (
             isset($_SERVER['REQUEST_METHOD']) 
             && $_SERVER['REQUEST_METHOD'] === 'POST'
@@ -40,20 +48,38 @@ Class InicioController
                 return view('inicio', ['message' => "Usuário e/ou senha inválido(os)!"]);
             }
 
-            $loginMembro = new LoginController;
-            $response    = $loginMembro->login($usuarioLogin, $senhaLogin);
+            require __DIR__.'/LoginController.php';
 
-            if (empty($response['status_login'])) {
+            $loginMembro = new LoginController;
+            $response = $loginMembro->login($usuarioLogin, $senhaLogin);
+
+            if (
+                isset($response['status_login'])
+                && $response['status_login']
+            ) {
                 return header("location: /arealogada");
             }
-            
-            if (! empty($response['status_login'])) {
-                $message = ['message' => $response['message']];
 
-                return view('inicio', $message);
-            }
+            return view('inicio', ['message' => $response['message']]);
         }
 
         return view('inicio', ['message' => "Erro na requisição!"]);
+    }
+
+    public function inicioRecruit()
+    {
+        if (
+            isset($_SERVER['REQUEST_METHOD']) 
+            && $_SERVER['REQUEST_METHOD'] === 'POST'
+            && $_POST['formInicio'] === 'form_recrut'
+        ) {
+            $response = $this->membrosService->newMember($_POST);
+
+            if (! $response) {
+                return view('inicio', ['message' => "Erro ao realizar cadastro!"]);
+            }
+            
+            return view('inicio', ['message' => "Solicitação realizada com sucesso, aguarde que seja aprovada por um dos administradores!"]);
+        }
     }
 }

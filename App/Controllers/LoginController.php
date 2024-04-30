@@ -2,58 +2,62 @@
 
 namespace App\controllers;
 
-use App\Repository\MembrosRepository;
-
-use function Vendor\Helpers\dd;
+use App\Models\Login;
+use App\Repositories\MembrosRepository;
 
 class LoginController
 {
     protected MembrosRepository $membrosRepository;
+    protected Login $loginModel;
 
     public function __construct()
     {
-        require __DIR__.'/../Repositories/MembrosRepository.php';
+        require __DIR__.'/../Models/login.php';
         
-        $this->membrosRepository = $membrosRepository;
+        $this->loginModel = $loginModel;
     }
     
-    public function login($usuarioLogin, $senhaLogin)
+    public function login($usuarioLogin, $senhaLogin): array
     {
-        return $this->auth($usuarioLogin, $senhaLogin);;
+        return $this->auth($usuarioLogin, $senhaLogin);
     }
 
-    private function auth(string $nick, string $password)
+    private function auth(string $nick, string $password): array
     {
-        $membro = $this->membrosRepository->loginSenhaMembro($nick);
+        $membro = $this->loginModel->loginPasswordMember($nick);
 
         if (! $membro) {
             return [
-                'message'      => "Usuário não encontrado!",
-                'status_login' => false,
+                'message' => "Usuário não encontrado!",
             ];
         }
 
-        $membro = $membro[0];
-
-        if ($membro->status_solicit === "0") {
+        if ($membro->status_solicit === 0) {
             return [
-                'message'      => "Aguardando aprovação! entre em contato com um dos administradores ou aguarde.", 
-                'status_login' => false,
+                'message' => "Aguardando aprovação! entre em contato com um dos administradores ou aguarde.", 
+            ];
+        }
+
+        if (
+            $membro->status_solicit === 2
+            || $membro->status_solicit === 3
+        ) {
+            return [
+                'message' => "Acesso negado!", 
             ];
         }
 
         if (! password_verify($password, $membro->senha)) {
             return [
-                'message'      => "Senha incorreta! tente novamente ou use o esqueci senha.", 
-                'status_login' => false,
+                'message' => "Senha incorreta! tente novamente ou use o esqueci senha.", 
             ];
         }
 
         if (
             $nick === $membro->nick
             && password_verify($password, $membro->senha) 
-            && ($membro->status_solicit === '1'
-                || $membro->status_solicit === "4")
+            && ($membro->status_solicit === 1
+                || $membro->status_solicit === 4)
         ) {
             session_start();
 
@@ -69,5 +73,9 @@ class LoginController
                 'status_login' => true,
             ];
         }
+
+        return [
+            'message' => "Não foi possível validar suas credenciais, tente novamente ou entre em contato com a administração!",
+        ];
     }
 }

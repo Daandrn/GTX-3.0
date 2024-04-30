@@ -6,17 +6,14 @@ use Vendor\Model\Model;
 
 require_once __DIR__.'/../../Vendor/Model/Model.php';
 
-class Membros extends Model
+class StreamingPlatform extends Model
 {
     //
 }
 
 $fillable = [
-    'nome', 
-    'nick', 
-    'plataforma', 
-    'status_solicit', 
-    'senha',
+    'id',
+    'descricao',
 ];
 
-$membrosModel = new Membros('membros', $fillable);
+$streamingPlatformModel = new StreamingPlatform('plataformastream', $fillable);
