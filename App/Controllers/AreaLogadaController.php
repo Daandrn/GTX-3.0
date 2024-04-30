@@ -54,6 +54,16 @@ class AreaLogadaController
 
         return view('areaLogada', $data);
     }
+
+    public function exit(): void
+    {
+        session_start();
+        session_regenerate_id(true);
+        session_destroy();
+        header("location: /inicio");
+    
+        return;
+    }
 }
 
 /*

@@ -20,7 +20,7 @@
                     <li><a class="aNavegador" href="/salavideos">Sala de videos</a></li>
                     <li><a class="aNavegador" href="/membros">Membros</a></li>
                     <li>
-                        <form method="POST">
+                        <form action="/sair" method="POST">
                             <input type="hidden" name="formLogado" value="form_sair" >
                             <input type="submit" value="Sair" id="botaoSair">
                         </form>
