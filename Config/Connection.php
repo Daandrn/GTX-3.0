@@ -2,8 +2,8 @@
 
 namespace Config;
 
+use Exception;
 use PDO;
-use PDOException;
 
 function connection(): PDO|string
 {
@@ -11,13 +11,13 @@ function connection(): PDO|string
     $host     = "localhost";
     $dataBase = "GTX3";
     $user     = "postgres";
-    $password = "123";
+    $password = "Danillo@126";
     
     try {
         $conn = new PDO("$drive:host=$host;dbname=$dataBase", $user, $password);
 
         return $conn;
-    } catch (PDOException $error){
-        return "Erro ao conectar ao banco de dados: ". $error->getMessage();
+    } catch (\Throwable $error){
+        throw new Exception("Erro ao conectar ao banco de dados: ".$error->getMessage());
     }
 }

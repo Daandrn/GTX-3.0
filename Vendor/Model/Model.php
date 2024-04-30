@@ -3,8 +3,8 @@
 namespace Vendor\Model;
 
 use PDO;
-
 use Vendor\Interfaces\ModelInterface;
+
 use function Config\connection;
 
 require __DIR__.'/../Interfaces/ModelInterface.php';
@@ -12,12 +12,12 @@ require __DIR__ .'/../../Config/Connection.php';
 
 class Model implements ModelInterface
 {
-    protected ?string $className;
+    protected string $tableName;
     protected array $fillable;
     
-    public function __construct(string $className = null, array $fillable)
+    public function __construct(string $tableName, array $fillable)
     {
-        $this->className = $className;
+        $this->tableName = $tableName;
         $this->fillable = $fillable;
     }
     
@@ -33,25 +33,24 @@ class Model implements ModelInterface
 
         if ($join) {
             if (! is_array($join[0])) {
-                $join = $join[2]." JOIN ".$join[0]." ON ".$join[0].".".$join[1]." = ".$this->className.".".$join[1];
+                $join = $join[2]." JOIN ".$join[0]." ON ".$join[0].".".$join[1]." = ".$this->tableName.".".$join[1];
             }
 
             if (is_array($join[0])) {
                 $join = array_reduce(
-                            $join, function ($return, $value): string {
-                                $return .= $value[2]." JOIN ".$value[0]." ON ".$value[0].".".$value[1]." = ".$this->className.".".$value[1]." ";
+                    $join, function ($return, $value): string {
+                        $return .= $value[2]." JOIN ".$value[0]." ON ".$value[0].".".$value[1]." = ".$this->tableName.".".$value[1]." ";
 
-                                return $return;
-                            }
-                        );
+                        return $return;
+                    }
+                );
             }
         }
 
-        $where = $where ? "WHERE ".$this->className.".".$where[0]." ".$where[1]." ".$where[2]." ".$where[3] : '';
+        $where = $where ? "WHERE ".$this->tableName.".".$where[0]." ".$where[1]." ".$where[2]." ".$where[3] : '';
 
-        //var_dump("SELECT {$fields} FROM {$this->className} {$join} {$where}");
-        $consulta = connection()->prepare("SELECT {$fields} FROM {$this->className} {$join} {$where}");
-
+        $sql = "SELECT {$fields} FROM {$this->tableName} {$join} {$where}";
+        $consulta = connection()->prepare($sql);
         $consulta->execute();
         $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
 
@@ -59,9 +58,9 @@ class Model implements ModelInterface
     }
     
     /**
-     * @param array $params Recomenda-se receber um dto.
+     * @param object $data Recomenda-se receber um dto.
      */
-    public function insert(array $params): bool
+    public function insert(object $data): bool
     {
         $fillable = implode(', ', $this->fillable);
 
@@ -76,31 +75,33 @@ class Model implements ModelInterface
 
         $values = rtrim($values, ',');
         
-        $consulta = connection()->prepare("INSERT INTO {$this->className} ({$fillable})
-                                                VALUES ({$values})");
+        $sql = "INSERT INTO {$this->tableName} ({$fillable})
+                VALUES ({$values})";
+        $consulta = connection()->prepare($sql);
 
         foreach ($this->fillable as $key => $value) {
-            $consulta->bindParam(":{$key}", $params[$key]);
+            $consulta->bindParam(":{$key}", $data[$key]);
         }
         
         return $consulta->execute();
     }
 
-    public function update(string $id = null, array $data): bool
+    public function update(int $id = null, array $data): bool
     {
-        $values = array_reduce($data, function ($return, $value, $key): string {    
-            $return .= "{$key} = {$value},";  
-            return $return;
+        $values = "";
+        array_walk($data, function ($value, $key) use (&$values): string {  
+            $values .= "{$key} = :{$key},";
+            
+            return $values;
         });
 
         $values = rtrim($values, ',');
         $where = $id ? 'WHERE id = :id' : '';
 
-        $consulta = connection()->prepare("UPDATE {$this->className} SET {$values} {$where}");
+        $sql = "UPDATE {$this->tableName} SET {$values} {$where}";
+        $consulta = connection()->prepare($sql);
 
-        if ($id) {
-            $consulta->bindParam(":id", $id);
-        }
+        $consulta->bindParam(":id", $id);
 
         foreach ($data as $key => $value) {
             $consulta->bindParam(":{$key}", $value);
@@ -109,13 +110,19 @@ class Model implements ModelInterface
         return $consulta->execute();
     }
 
-    public function delete(string $id): bool
+    public function deleteOne(int $id): bool
     {
-        $where = $id ? 'WHERE id = :id' : '';
+        $where = 'WHERE id = :id';
         
-        $consulta = connection()->prepare("DELETE FROM {$this->className} {$where}");
+        $sql = "DELETE FROM {$this->tableName} {$where}";
+        $consulta = connection()->prepare($sql);
         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
 
         return $consulta->execute();
+    }
+
+    public function delete(array $where = null): bool
+    {
+        return true;
     }
 }
