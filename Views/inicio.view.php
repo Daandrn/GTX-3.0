@@ -1,6 +1,4 @@
-<?php
-
- include __DIR__.'/parts/top.php';?>
+<?php include __DIR__.'/parts/top.php';?>
 
 <main class="principal">
     <div id="separador">
@@ -19,15 +17,13 @@
                     <div>
                         <input type="hidden" name="formInicio" value="form_login">
                         <input type="submit" value="Login" id="login">
-                        <button onclick="window.location.href='/gtx2/control/control.inicio.php?recuperaSenhaFrame=1'";>Esqueci senha</button>
+                        <button type="button" id="buttonNovaSenha">Nova senha</button>
                     </div>
                 </form>
             </div>
-            <?php if (isset($_GET['recuperaSenhaFrame']) && $_GET['recuperaSenhaFrame'] == 1): ?>
-                <span id="recuperaSenhaFrame">
-                    <iframe src="/gtx2/view/view.recuperaSenha.php" frameborder="2" id="frameRecuperaSenha"></iframe>
-                </span>
-            <?php endif; ?>
+            <span id="recuperaSenhaFrame" style="display: none;">
+                <iframe src="/Views/recuperaSenha.view.php" frameborder="2" id="frameRecuperaSenha"></iframe>
+            </span>
             <div id="quemsomos">
                 <h1>Quem somos</h1>
                 <p>O Ghost Tóxic é um time dedicado ao battlefield 2042, formado por brasileiros para jogar
@@ -36,7 +32,7 @@
             </div>
             <div id="recrut">
                 <h1>Quero fazer parte</h1>
-                <form name="formrecrut" method="POST">
+                <form action="/novo" name="formrecrut" method="POST">
                     <div>
                         <label for="nome_recrut">Nome: </label>
                         <input type="text" name="nome_recrut" id="nome_recrut" maxlength="24" size="40" pattern="[A-Za-z\s']+" placeholder="Nome" title="Insira seu nome sem caracteres especiais.">
@@ -56,7 +52,7 @@
                     </div>
                     <div>
                         <input type="hidden" name="formInicio" value="form_recrut">
-                        <input type="submit" value="Solicitar recrutamento" id="solicitar">
+                        <input type="submit" value="Solicitar cadastro" id="solicitar">
                     </div>
                 </form>
                 <div id="respostaRecrut">
@@ -68,7 +64,12 @@
         <img src="/public/css/imagens/logotrans.png">
     </div>
     <script>
-        let message = <?php echo isset($items['message']) ? json_encode($items['message']) : null; ?>;
+        let message = <?php echo isset($items['message']) ? json_encode($items['message']) : json_decode(0); ?>;
+
+        let recuperaSenhaFrame = document.querySelector('#recuperaSenhaFrame');
+        const buttonNovaSenha = document.querySelector('#buttonNovaSenha').addEventListener('click', function () {
+            recuperaSenhaFrame.style.display = '';
+        });
     </script>
     <script src="/Public/Js/alert.js"></script>
 </main>

@@ -6,7 +6,7 @@
     </h1>
     <section id="videos">
         <div >
-            <video src="/gtx2/css/videos/introgtx.mp4" autoplay type="video/mp4"></video>
+            <video src="/Public/Css/videos/introgtx.mp4" autoplay type="video/mp4"></video>
         </div>
     </section>
 </main>

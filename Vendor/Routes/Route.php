@@ -5,7 +5,7 @@ namespace Vendor\Routes;
 use Exception;
 
 final class Route
-{  
+{
     private static function url(): string
     {
         $url = explode('/' , $_SERVER['REQUEST_URI']);
@@ -16,6 +16,10 @@ final class Route
     public static function get(array $route, string $class, string $method)
     {
         if (! self::getRequestVerify()) {
+            return;
+        }
+
+        if (! in_array(self::url(), $route, true)) {
             return;
         }
 
@@ -38,6 +42,10 @@ final class Route
             return;
         }
 
+        if (! in_array(self::url(), $route, true)) {
+            return;
+        }
+
         require __DIR__."/../../{$class}.php";
 
         if (! class_exists($class)) {
@@ -45,7 +53,7 @@ final class Route
         }
 
         if (! method_exists($class, $method)) {
-            throw new Exception("O metodo utilizado não existe: {$method}");
+            throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
         }
 
         return self::redirectPost($route, $class, $method);
@@ -57,12 +65,18 @@ final class Route
             return;
         }
 
+        if (! in_array(self::url(), $route, true)) {
+            return;
+        }
+
+        require __DIR__."/../../{$class}.php";
+
         if (! class_exists($class)) {
             throw new Exception("A classe utilizada não existe: {$class}");
         }
 
         if (! method_exists($class, $method)) {
-            throw new Exception("O metodo utilizado não existe: {$method}");
+            throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
         }
 
         return self::redirectPost($route, $class, $method);
@@ -74,12 +88,18 @@ final class Route
             return;
         }
 
+        if (! in_array(self::url(), $route, true)) {
+            return;
+        }
+
+        require __DIR__."/../../{$class}.php";
+
         if (! class_exists($class)) {
             throw new Exception("A classe utilizada não existe: {$class}");
         }
 
         if (! method_exists($class, $method)) {
-            throw new Exception("O metodo utilizado não existe: {$method}");
+            throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
         }
 
         return self::redirectPost($route, $class, $method);
@@ -91,12 +111,18 @@ final class Route
             return;
         }
 
+        if (! in_array(self::url(), $route, true)) {
+            return;
+        }
+
+        require __DIR__."/../../{$class}.php";
+
         if (! class_exists($class)) {
             throw new Exception("A classe utilizada não existe: {$class}");
         }
 
         if (! method_exists($class, $method)) {
-            throw new Exception("O metodo utilizado não existe: {$method}");
+            throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
         }
 
         return self::redirectPost($route, $class, $method);
@@ -121,26 +147,18 @@ final class Route
     }
 
     private static function redirectGet(array $route, string $class, string $method)
-    {
-        if (! in_array(self::url(), $route, true)) {
-            http_response_code(404);
-            return;
-        }
-        
+    {        
         http_response_code(200);
         $action = new $class;
         $action->{$method}();
+        return;
     }
 
     private static function redirectPost(array $route, string $class, string $method)
-    {
-        if (! in_array(self::url(), $route, true)) {
-            http_response_code(404);
-            return;
-        }
-        
+    {        
         http_response_code(200);
         $action = new $class;
         $action->{$method}();
+        return;
     }
 }

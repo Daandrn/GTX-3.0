@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/gtx2/css/styleFrame.css">
+    <link rel="stylesheet" href="/Public/Css/styleFrame.css">
     <title>Recupera senha</title>
 </head>
 <body id="bodyRecuperaSenha">
@@ -20,6 +20,7 @@
             </div>
             <input type="hidden" name="recuperaSenhaFrame" value="recuperarSenha">
             <input type="submit" id="botaoRecuperaSenha" value="Recuperar senha">
+            <button type="button" id="botaoFecharRecuperaSenha">fechar</button>
         </form>
     </div>
     <script>
@@ -47,7 +48,11 @@
         if ((responseExisteSolicit) != 1) {
             alert(responseExisteSolicit)
         }
-        
+
+        let recuperaSenhaFrame = document.querySelector('#recuperaSenhaFrame');
+        const botaoFecharRecuperaSenha = document.querySelector('#botaoFecharRecuperaSenha').addEventListener('click', function () {
+            recuperaSenhaFrame.style.display = 'none';
+        });
     </script>
 </body>
 </html>

@@ -15,10 +15,10 @@
         <div class="navegador">
             <nav>
                 <ul>
-                    <li><a class="aNavegador" href="/gtx2/control/control.inicio.php" >Inicio</a></li>
-                    <li><a class="aNavegador" href="/gtx2/control/control.areaLogada.php">Área logada</a></li>
-                    <li><a class="aNavegador" href="/gtx2/control/control.salaVideos.php">Sala de videos</a></li>
-                    <li><a class="aNavegador" href="/gtx2/control/control.membros.php">Membros</a></li>
+                    <li><a class="aNavegador" href="/inicio" >Inicio</a></li>
+                    <li><a class="aNavegador" href="/arealogada">Área logada</a></li>
+                    <li><a class="aNavegador" href="/salavideos">Sala de videos</a></li>
+                    <li><a class="aNavegador" href="/membros">Membros</a></li>
                     <li>
                         <form method="POST">
                             <input type="hidden" name="formLogado" value="form_sair" >
@@ -32,7 +32,7 @@
     <main class="principal">
         <h1 id="boasVindas">
             <a href="/gtx2/teste/bd.php" target="_blank" rel="noopener noreferrer">
-                Seja bem vindo, <?php echo $boasvindas;?>!
+                Seja bem vindo, <?php echo $items['nomeSessao']; ?>!
             </a>
         </h1>
         <div id="dadosPessoais">
@@ -41,18 +41,18 @@
                     <h3>Canal Stream</h3>
                     <div>
                         <label for="nickStream">Nick stream</label>
-                        <input type="text" name="nickStream" value="<?php echo $dadoStream['nickStream']; ?>" placeholder="Nickstream" maxlength="20">
+                        <input type="text" name="nickStream" value="<?php echo $items['dadoStream']['nickStream'] ?? ''; ?>" placeholder="Nickstream" maxlength="20">
                     </div>
                     <div>
                         <label for="linkStream">Link canal</label>
-                        <input type="text" name="linkStream" value="<?php echo $dadoStream['linkCanal']; ?>" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv." maxlength="50">
+                        <input type="text" name="linkStream" value="<?php echo $items['dadoStream']['linkcanal'] ?? ''; ?>" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv." maxlength="50">
                     </div>
                     <div>
                         <label for="plataforma">Plataforma</label>
                         <select name="plataforma" id="">
                             <option value=""></option>
-                            <?php foreach ($plataformasStream as $plat) : ?>
-                            <option value="<?php echo $plat['id']?>" <?php if ($plat['id'] == $dadoStream['plataforma']) {echo "selected";} ?>><?php echo $plat['descricao']?></option>
+                            <?php foreach ($items['plataformasStream'] as $plat) : ?>
+                            <option value="<?php echo $plat->id; ?>" <?php echo $plat->id == ($items['dadoStream']['plataforma'] ?? '') ? "selected" : ''; ?>><?php echo $plat->descricao; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -91,7 +91,7 @@
                         <h3>Perfil</h3>
                         <div>
                             <label for="">Nick/origin</label>
-                            <input type="text" name="origin" value="<?php echo $nickPerfil?>" maxlength="15" pattern="[a-zA-Z0-9]*">
+                            <input type="text" name="origin" value="<?php echo $nickPerfil ?? ''?>" maxlength="15" pattern="[a-zA-Z0-9]*">
                         </div>
                         <input type="hidden" name="formLogado" value="perfilNick">
                         <input type="submit" value="Salvar Nick" class="salvarPerfil">
@@ -145,16 +145,16 @@
                             <th>Status Membro</th>
                             <th>Ação</th>
                         </tr>
-                        <?php if (!empty($listaMembros)): ?>
-                        <?php foreach ($listaMembros as $membros): ?>
+                        <?php if (! empty($items['listaMembros'])): ?>
+                        <?php foreach ($items['listaMembros'] as $membros): ?>
                         <tr>
-                            <td class="formatNome"><?php echo $membros['nome']; ?></td>
-                            <td class="formatNick"><?php echo $membros['nick']; ?></td>
-                            <td class="formatPlataforma"><?php echo $membros['plataforma']; ?></td>
-                            <td class="formatStatus"><?php echo $membros['status_membro']; ?></td>
-                            <?php if ($_SESSION['statusMembro'] == 4) : ?>
+                            <td class="formatNome"><?php echo $membros->nome; ?></td>
+                            <td class="formatNick"><?php echo $membros->nick; ?></td>
+                            <td class="formatPlataforma"><?php echo $membros->plataforma_game; ?></td>
+                            <td class="formatStatus"><?php echo $membros->cargo_membro; ?></td>
                             <td class="formatAcao">
-                                <form method="post">
+                                <?php if ($_SESSION['statusMembro'] === 4) : ?>
+                                <form action="/alterastatusmembro" method="post">
                                     <div>
                                         <select name="acaoMembrosAdm[]">
                                             <option value="">Selecione</option>
@@ -163,20 +163,18 @@
                                             <option value="3">Expulsar</option>
                                         </select>
                                         <input type="submit" name="acaoMembrosAdm[]" value="Salvar">
-                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $membros['id']; ?>">
+                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $membros->id; ?>">
                                     </div>
                                 </form>
+                                <?php endif; ?>
+                                <?php if (in_array($_SESSION['statusMembro'], [1,4], true)) : ?>
+                                    <form action="/elogiar" method="post">
+                                        <input type="submit" value="Elogiar">
+                                        <input type="submit" value="Xingar">
+                                        <input type="hidden" name="acaoMembros" value="<?php echo $membros->id; ?>">
+                                    </form>
+                                <?php endif; ?>
                             </td>
-                            <?php endif; ?>
-                            <?php if ($_SESSION['statusMembro'] == 1) : ?>
-                            <td class="formatAcao">
-                                <form method="post">
-                                    <input type="submit" value="Elogiar">
-                                    <input type="submit" value="Xingar">
-                                    <input type="hidden" name="acaoMembros" value="<?php echo $membros['id']; ?>">
-                                </form>
-                            </td>
-                            <?php endif; ?>
                         </tr>
                         <?php endforeach; ?>
                         <?php else: ?>
@@ -186,7 +184,7 @@
                         <?php endif; ?>
                     </table>
                 </div>
-                <?php if ($_SESSION['statusMembro'] == 4) : ?>
+                <?php if ($_SESSION['statusMembro'] === 4) : ?>
                 <div id="recrutAdm">
                     <table id="tabAdmMembros">
                         <caption>
@@ -199,15 +197,15 @@
                             <th>Status Solicitação</th>
                             <th>Ação</th>
                         </tr>
-                        <?php if (!empty($listaRecrut)): ?>
-                        <?php foreach ($listaRecrut as $recrut): ?>
+                        <?php if (! empty($items['listaRecrut'])): ?>
+                        <?php foreach ($items['listaRecrut'] as $recrut): ?>
                         <tr>
-                            <td class="formatNome"><?php echo $recrut['nome']; ?></td>
-                            <td class="formatNick"><?php echo $recrut['nick']; ?></td>
-                            <td class="formatPlataforma"><?php echo $recrut['plataforma']; ?></td>
-                            <td class="formatStatus"><?php echo $recrut['status_membro']; ?></td>
+                            <td class="formatNome"><?php echo $recrut->nome; ?></td>
+                            <td class="formatNick"><?php echo $recrut->nick; ?></td>
+                            <td class="formatPlataforma"><?php echo $recrut->plataforma; ?></td>
+                            <td class="formatStatus"><?php echo $recrut->status_membro; ?></td>
                             <td class="formatAcao">
-                                <form method="post">
+                                <form action="/alterastatusmembro" method="post">
                                     <div>
                                         <select name="acaoMembrosAdm[]">
                                             <option value="">Selecione</option>
@@ -215,7 +213,7 @@
                                             <option value="2">Rejeitar</option>
                                         </select>
                                         <input type="submit" name="acaoMembrosAdm[]" value="Salvar">
-                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $recrut['id']; ?>">
+                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $recrut->id; ?>">
                                     </div>
                                 </form>
                             </td>
@@ -229,7 +227,7 @@
                     </table>
                 </div>
                 <?php endif; ?>
-                <?php if ($_SESSION['statusMembro'] == 4) : ?>
+                <?php if ($_SESSION['statusMembro'] === 4) : ?>
                 <div id="recusadosAdm">
                     <table id="tabAdmMembros">
                         <caption>
@@ -242,23 +240,27 @@
                             <th>Status Solicitação</th>
                             <th>Ação</th>
                         </tr>
-                        <?php if (!empty($listaRejeitados)): ?>
-                        <?php foreach ($listaRejeitados as $rejeitados): ?>
+                        <?php if (! empty($items['listaRejeitados'])): ?>
+                        <?php foreach ($items['listaRejeitados'] as $rejeitados): ?>
                         <tr>
-                            <td class="formatNome"><?php echo $rejeitados['nome']; ?></td>
-                            <td class="formatNick"><?php echo $rejeitados['nick']; ?></td>
-                            <td class="formatPlataforma"><?php echo $rejeitados['plataforma']; ?></td>
-                            <td class="formatStatus"><?php echo $rejeitados['status_membro']; ?></td>
+                            <td class="formatNome"><?php echo $rejeitados->nome; ?></td>
+                            <td class="formatNick"><?php echo $rejeitados->nick; ?></td>
+                            <td class="formatPlataforma"><?php echo $rejeitados->plataforma; ?></td>
+                            <td class="formatStatus"><?php echo $rejeitados->status_membro; ?></td>
                             <td class="formatAcao">
-                                <form method="post">
+                                <form action="/alterastatusmembro" method="post">
                                     <div>
                                         <select name="acaoMembrosAdm[]">
                                             <option value="">Selecione</option>
                                             <option value="1">Recrutar</option>
                                         </select>
                                         <input type="submit" name="acaoMembrosAdm[]" value="Salvar">
+                                    </div>
+                                </form>
+                                <form action="/excluir" method="post">
+                                    <div>
                                         <input type="submit" name="acaoMembrosAdm[]" value="Excluir">
-                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $rejeitados['id']; ?>">
+                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $rejeitados->id; ?>">
                                     </div>
                                 </form>
                             </td>
@@ -272,7 +274,7 @@
                     </table>
                 </div>
                 <?php endif; ?>
-                <?php if ($_SESSION['statusMembro'] == 4) : ?>
+                <?php if ($_SESSION['statusMembro'] === 4) : ?>
                 <div id="recuperaSenha">
                     <table id="tabAdmMembros">
                         <caption>
@@ -285,20 +287,20 @@
                             <th>Status Solicitação</th>
                             <th>Ação</th>
                         </tr>
-                        <?php if (!empty($listaNovaSenha)): ?>
+                        <?php if (! empty($itms['listaNovaSenha'])): ?>
                         <?php foreach ($listaNovaSenha as $novaSenha): ?>
                         <tr>
-                            <td class="formatNome"><?php echo $novaSenha['nome']; ?></td>
-                            <td class="formatNick"><?php echo $novaSenha['nick']; ?></td>
-                            <td class="formatPlataforma"><?php echo $novaSenha['data_solicit']; ?></td>
-                            <td class="formatStatus"><?php echo $novaSenha['statussenha']; ?></td>
+                            <td class="formatNome"><?php echo $novaSenha->nome; ?></td>
+                            <td class="formatNick"><?php echo $novaSenha->nick; ?></td>
+                            <td class="formatPlataforma"><?php echo $novaSenha->data_solicit; ?></td>
+                            <td class="formatStatus"><?php echo $novaSenha->statussenha; ?></td>
                             <td class="formatAcao">
-                                <form method="post">
+                                <form action="/alterastatusmembro" method="post">
                                     <div>
                                         <input type="submit" name="acaoAlteraSenha[]" value="Aprovar">
                                         <input type="submit" name="acaoAlteraSenha[]" value="Reprovar">
-                                        <input type="hidden" name="acaoAlteraSenha[]" value="<?php echo $novaSenha['id']; ?>">
-                                        <input type="hidden" name="acaoAlteraSenha[]" value="<?php echo $novaSenha['id_unico']; ?>">
+                                        <input type="hidden" name="acaoAlteraSenha[]" value="<?php echo $novaSenha->id; ?>">
+                                        <input type="hidden" name="acaoAlteraSenha[]" value="<?php echo $novaSenha->id_unico; ?>">
                                     </div>
                                 </form>
                             </td>
@@ -315,26 +317,5 @@
             </section>
         </div>
     </main>
-    <footer id="rodapeLogado">
-        <div>
-            <p>Ghost tóxic team&trade;</p>
-            <p>Todos os direitos reservados&copy;</p>
-            <p>2023</p>
-        </div>
-        <div id="versiona">
-            <form method="post">
-                <div>
-                    <label for="versao">Versao</label>
-                    <select name="versao">
-                        <?php while ($resutado = $sql->fetch(PDO::FETCH_ASSOC)): ?>
-                        <option value="<?php echo $resutado['id'];?>" <?php if ($resutado['selected'] == 1) {echo "selected";} ?>><?php echo $resutado['descricao'];?></option>
-                        <?php endwhile; ?>
-                    </select>
-                </div>
-                    <input type="hidden" name="formLogado" value="salvaVersao">
-                    <input type="submit" value="Salvar">
-            </form>
-        </div>
-    </footer>
-</body>
-</html>
+    
+<?php include __DIR__.'/parts/footer.php';?>
