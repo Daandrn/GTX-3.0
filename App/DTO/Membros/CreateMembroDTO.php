@@ -1,27 +1,28 @@
 <?php declare(strict_types=1);
 
 namespace App\DTO\Membros;
+use App\Enums\StatusSolicit;
+
+require __DIR__.'/../../Enums/statusSolicit.php';
 
 class CreateMembroDTO
-{
-    protected static const STATUS_PENDENTE = 0;
-    
+{   
     public function __construct(
-        protected string $nome, 
-        protected string $nick, 
-        protected string $plataforma, 
-        protected int    $status_solicit,
-        protected string $senha,
+        public string $nome, 
+        public string $nick, 
+        public string $plataforma, 
+        public int    $status_solicit,
+        public string $senha,
     ) {
     }
-
+        
     public static function make(array $request): self
     {
         return new self(
             $request['nome_recrut'],
             $request['nick_recrut'],
             $request['plataforma_recrut'],
-            self::STATUS_PENDENTE,
+            StatusSolicit::STATUS_PENDENTE->value,
             password_hash('123456', PASSWORD_BCRYPT),
         );
     }
