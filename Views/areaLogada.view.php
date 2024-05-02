@@ -31,7 +31,6 @@
     </header>
     <main class="principal">
         <h1 id="boasVindas">
-            <a href="/gtx2/teste/bd.php" target="_blank" rel="noopener noreferrer">
                 Seja bem vindo, <?php echo $items['nomeSessao']; ?>!
             </a>
         </h1>
@@ -255,6 +254,7 @@
                                             <option value="1">Recrutar</option>
                                         </select>
                                         <input type="submit" name="acaoMembrosAdm[]" value="Salvar">
+                                        <input type="hidden" name="acaoMembrosAdm[]" value="<?php echo $rejeitados->id; ?>">
                                     </div>
                                 </form>
                                 <form action="/excluir" method="post">

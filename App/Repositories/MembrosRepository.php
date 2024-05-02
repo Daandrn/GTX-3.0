@@ -45,7 +45,7 @@ class MembrosRepository
             join: [
                 ['statusmembro', 'status_solicit', 'left'],
                 ['canalstream', 'id', 'left'],
-                ['plataformagame', 'id', 'left'],
+                ['plataformagame', 'id', 'left', 'plataforma'],
             ],
             where: [
                 'status_solicit','in', '(1,4)',
@@ -70,7 +70,7 @@ class MembrosRepository
             ],
             join: [
                 ['statusmembro', 'status_solicit', 'left'],
-                ['plataformagame', 'id', 'left'],
+                ['plataformagame', 'id', 'left', 'plataforma'],
             ],
             where: [
                 'status_solicit','in', '(0)',
@@ -93,7 +93,7 @@ class MembrosRepository
             ],
             join: [
                 ['statusmembro', 'status_solicit', 'left'],
-                ['plataformagame', 'id', 'left'],
+                ['plataformagame', 'id', 'left', 'plataforma'],
             ],
             where: [
                 'status_solicit','in', '(2,3)',

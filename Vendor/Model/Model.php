@@ -23,7 +23,7 @@ class Model implements ModelInterface
     
     /**
      * @param array $fields Deve ter o seguinte padrão: ['id', 'nome', 5, '*'] ou ['id as codigo', 'nome'] ou ['tabela.descricao']
-     * @param array $join Deve ter o seguinte padrão: ['nome_tabela', 'campo_referencia', 'tipo_join'] ou [['nome_tabela', 'campo_referencia', 'tipo_join'], ['nome_tabela', 'campo_referencia', 'tipo_join']]
+     * @param array $join Deve ter o seguinte padrão: ['nome_tabela', 'campo_referencia', 'tipo_join', 'alias_campo_referencia'] ou [['nome_tabela', 'campo_referencia', 'tipo_join', 'alias_campo_referencia'], ['nome_tabela', 'campo_referencia', 'tipo_join', 'alias_campo_referencia']]
      * @param array $where Deve ter o seguinte padrão: ['id', '=', 5, 'ORDER...DESC'] ou ['status', 'in', '(1,2,3)', 'ORDER...DESC']
      */
     public function select(array $fields = ['*'], array $join = null, array $where = null): array
@@ -39,7 +39,7 @@ class Model implements ModelInterface
             if (is_array($join[0])) {
                 $join = array_reduce(
                     $join, function ($return, $value): string {
-                        $return .= $value[2]." JOIN ".$value[0]." ON ".$value[0].".".$value[1]." = ".$this->tableName.".".$value[1]." ";
+                        $return .= $value[2]." JOIN ".$value[0]." ON ".$value[0].".".$value[1]." = ".$this->tableName.".".($value[3] ?? $value[1])." ";
 
                         return $return;
                     }
