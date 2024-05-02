@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-body {
+html, body {
     height: 100vh;
     min-width: 1280px;
-    margin: 0 0 0 0;
+    margin: 0;
     background-color: black;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -65,13 +65,26 @@ h3 {
     text-shadow: 0 0 15px #25fad3;
 }
 
-.principal {
-    min-height: calc(100vh - 200px);
-    background-color: #525252;
-    border-radius: 0 0 7px 7px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media only screen and (max-width: 900px) {
+    .principal {
+        min-height: calc(2800px - 200px);
+        background-color: #525252;
+        border-radius: 0 0 7px 7px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 901px) {
+    .principal {
+        min-height: calc(100% - 200px);
+        background-color: #525252;
+        border-radius: 0 0 7px 7px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 #separador {
