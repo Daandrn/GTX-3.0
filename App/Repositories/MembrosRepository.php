@@ -17,6 +17,18 @@ class MembrosRepository
 
         $this->membrosModel = $membrosModel;
     }
+
+    public function memberExists(string $nick): bool
+    {
+        $memberExists = $this->membrosModel->select(
+            fields: ['id', 'nick'],
+            where: ['nick', '=', "'$nick'", 'limit 1'],
+        );
+
+        return $memberExists
+                ? true 
+                : false;
+    }
     
     public function getAllMembers(): array|null
     {
@@ -117,12 +129,12 @@ class MembrosRepository
 
     public function insert(CreateMembroDTO $dto): stdClass|false
     {
-        $insert = $this->membrosModel->insert($dto);
+        $insert = $this->membrosModel->insert((array) $dto);
 
         if ($insert) {
             $newMember = $this->membrosModel->select(
                 fields: ['*'],
-                where: ['max(id)'],
+                where: ['id', '=', '(SELECT max(id) FROM membros)', 'limit 1'],
             );
         }
 

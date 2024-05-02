@@ -17,6 +17,6 @@ class StreamChannelService
 
     public function newChannel(int $id): void
     {
-        # code...
+        $this->streamChannelRepository->newChannel($id);
     }
 }

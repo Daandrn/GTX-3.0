@@ -60,7 +60,7 @@ class Model implements ModelInterface
     /**
      * @param object $data Recomenda-se receber um dto.
      */
-    public function insert(object $data): bool
+    public function insert(array $data): bool
     {
         $fillable = implode(', ', $this->fillable);
 
@@ -80,7 +80,7 @@ class Model implements ModelInterface
         $consulta = connection()->prepare($sql);
 
         foreach ($this->fillable as $key => $value) {
-            $consulta->bindParam(":{$key}", $data[$key]);
+            $consulta->bindParam(":{$key}", $data["$value"]);
         }
         
         return $consulta->execute();

@@ -73,13 +73,9 @@ Class InicioController
             && $_SERVER['REQUEST_METHOD'] === 'POST'
             && $_POST['formInicio'] === 'form_recrut'
         ) {
-            $response = $this->membrosService->newMember($_POST);
-
-            if (! $response) {
-                return view('inicio', ['message' => "Erro ao realizar cadastro!"]);
-            }
+            $response = $this->membrosService->newMember((object) $_POST);
             
-            return view('inicio', ['message' => "Solicitação realizada com sucesso, aguarde que seja aprovada por um dos administradores!"]);
+            return view('inicio', $response);
         }
     }
 }

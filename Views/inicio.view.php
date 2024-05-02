@@ -35,7 +35,7 @@
                 <form action="/novo" name="formrecrut" method="POST">
                     <div>
                         <label for="nome_recrut">Nome: </label>
-                        <input type="text" name="nome_recrut" id="nome_recrut" maxlength="24" size="40" pattern="[A-Za-z\s']+" placeholder="Nome" title="Insira seu nome sem caracteres especiais.">
+                        <input type="text" name="nome_recrut" id="nome_recrut" maxlength="24" size="40" pattern="[A-Za-z\s'ãáâéêíõôóúÃÁÂÉÊÍÕÔÓÚ]+" placeholder="Nome" title="Insira seu nome.">
                     </div>
                     <div>
                         <label for="nick_recrut">Nick: </label>

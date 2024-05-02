@@ -47,17 +47,38 @@ class MembrosService
         return $this->membrosRepository->memberWithStream($id);
     }
 
-    public function newMember(array $request): stdClass|null
+    public function newMember(object $request): array
     {
+        $nome = preg_replace("/[^A-Za-z\s'ãáâéêíõôóúÃÁÂÉÊÍÕÔÓÚ]/", '', $request->nome_recrut);
+        
+        if (strlen($nome) < 3) {
+            return ['message' => "Nome inválido!"];
+        }
+
+        if (
+            strlen($request->nick_recrut) < 5
+            || preg_match('/[^a-zA-Z0-9\s]/', $request->nick_recrut)
+        ) {
+            return ['message' => "Nick inválido!"];
+        }
+
+        $memberExists = $this->membrosRepository->memberExists($request->nick_recrut);
+        
+        if ($memberExists) {
+            return ['message' => "O nick {$request->nick_recrut} já está sendo utilizado! Utilize o recuperar senha ou procure um administrador."];
+        }
+        
+        require __DIR__.'/../DTO/Membros/CreateMembroDTO.php';
+        
         $response = $this->membrosRepository->insert(
-            CreateMembroDTO::make($request),
+            CreateMembroDTO::make((array) $request),
         );
 
-        if (! empty($response)) {
+        if ($response) {
             $this->streamChannelService->newChannel($response->id);
         }
 
-        return $response;
+        return ['message' => "Solicitação realizada com sucesso, aguarde que seja aprovada por um dos administradores!"];
     }
 
     public function update(array $request): bool
