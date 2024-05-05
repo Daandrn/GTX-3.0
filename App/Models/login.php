@@ -5,7 +5,7 @@ namespace App\Models;
 use stdClass;
 use Vendor\Model\Model;
 
-require_once __DIR__.'/../../Vendor/Model/Model.php';
+require_once __DIR__ . '/../../Vendor/Model/Model.php';
 
 class Login extends Model
 {
@@ -20,7 +20,7 @@ class Login extends Model
             ],
             where: ['nick', '=', "'$nick'", 'AND status_solicit IN (0, 1, 4) limit 1'],
         );
-        
+
         return !empty($membro)
                 ? $membro[0]
                 : null;
@@ -28,10 +28,10 @@ class Login extends Model
 }
 
 $fillable = [
-    'nome', 
-    'nick', 
-    'plataforma', 
-    'status_solicit', 
+    'nome',
+    'nick',
+    'plataforma',
+    'status_solicit',
     'senha',
 ];
 

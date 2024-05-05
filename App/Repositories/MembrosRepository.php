@@ -10,10 +10,10 @@ use stdClass;
 class MembrosRepository
 {
     protected Membros $membrosModel;
-    
-    public function __construct() 
+
+    public function __construct()
     {
-        require __DIR__.'/../Models/Membros.php';
+        require __DIR__ . '/../Models/Membros.php';
 
         $this->membrosModel = $membrosModel;
     }
@@ -26,20 +26,20 @@ class MembrosRepository
         );
 
         return $memberExists
-                ? true 
+                ? true
                 : false;
     }
-    
+
     public function getAllMembers(): array|null
     {
         $membros = $this->membrosModel->select(
             fields: [
-                'membros.id', 
-                'membros.nome', 
-                'membros.nick', 
-                'statusmembro.descricao as cargo_membro', 
-                'canalstream.link_canal', 
-                'canalstream.nickstream', 
+                'membros.id',
+                'membros.nome',
+                'membros.nick',
+                'statusmembro.descricao as cargo_membro',
+                'canalstream.link_canal',
+                'canalstream.nickstream',
                 'plataformagame.descricao as plataforma_game',
             ],
             join: [
@@ -48,13 +48,13 @@ class MembrosRepository
                 ['plataformagame', 'id', 'left', 'plataforma'],
             ],
             where: [
-                'status_solicit','in', '(1,4)',
+                'status_solicit', 'in', '(1,4)',
                 'ORDER BY membros.id DESC',
             ],
         );
 
-        return !empty($membros) 
-                ? $membros 
+        return !empty($membros)
+                ? $membros
                 : null;
     }
 
@@ -73,7 +73,7 @@ class MembrosRepository
                 ['plataformagame', 'id', 'left', 'plataforma'],
             ],
             where: [
-                'status_solicit','in', '(0)',
+                'status_solicit', 'in', '(0)',
                 'ORDER BY membros.id ASC',
             ],
         );
@@ -96,14 +96,14 @@ class MembrosRepository
                 ['plataformagame', 'id', 'left', 'plataforma'],
             ],
             where: [
-                'status_solicit','in', '(2,3)',
+                'status_solicit', 'in', '(2,3)',
                 'ORDER BY membros.id ASC',
             ],
         );
 
         return $rejected;
     }
-    
+
     public function memberWithStream(int $id): stdClass|null
     {
         $membro = $this->membrosModel->select(
@@ -146,13 +146,13 @@ class MembrosRepository
     public function update(UpdateStatusMembroDTO $dto): bool
     {
         return $this->membrosModel->update(
-            id: $dto->id, 
+            id: $dto->id,
             data: ['status_solicit' => $dto->status_solicit],
         );
     }
 
     public function delete(int $id): bool
-    {     
+    {
         return $this->membrosModel->deleteOne($id);
     }
 }

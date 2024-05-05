@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use classe\Pessoa;
 
@@ -7,8 +7,8 @@ require __DIR__ . "/../funcoes/func.verificaPessoa.php";
 require __DIR__ . "/../funcoes/func.verificaSolicit.php";
 
 if (
-    $_SERVER['REQUEST_METHOD'] == 'POST' 
-    && isset($_POST['recuperaSenhaFrame']) 
+    $_SERVER['REQUEST_METHOD'] == 'POST'
+    && isset($_POST['recuperaSenhaFrame'])
     && $_POST['recuperaSenhaFrame'] == 'recuperarSenha'
 ) {
     $nickNovaSenha = (string) $_POST['origin'];
@@ -34,4 +34,4 @@ if (
     // }
 }
 
-include __DIR__.'/../view/view.recuperaSenha.php';
+include __DIR__ . '/../view/view.recuperaSenha.php';

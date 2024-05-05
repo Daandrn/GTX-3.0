@@ -7,14 +7,14 @@ use App\Models\RecuperaSenha;
 class RecuperaSenhaRepository
 {
     protected RecuperaSenha $recuperaSenha;
-    
+
     public function __construct()
     {
-        require_once __DIR__.'/../Models/RecuperaSenha.php';
-        
+        require_once __DIR__ . '/../Models/RecuperaSenha.php';
+
         $this->recuperaSenha = $recuperaSenha;
     }
-    
+
     public function getPendingSolicities(): array|null
     {
         $solicities = $this->recuperaSenha->select(
@@ -102,7 +102,7 @@ class RecuperaSenhaRepository
     //         $consulta2->bindParam(':novaSenha', $novaSenha, PDO::PARAM_STR);
     //         $consulta2->bindParam(':dataSolicit', $dataSolicit, PDO::PARAM_STR);
     //         $consulta2->bindParam('id_unico', $maxIdUnico, PDO::PARAM_INT);
-            
+
     //         return $consulta2->execute();
     //     } catch (PDOexception $erro) {
     //         return "Erro ao solicitar nova senha: " . $erro->getMessage();

@@ -12,10 +12,10 @@ class MembrosService
     protected MembrosRepository $membrosRepository;
     protected StreamChannelService $streamChannelService;
 
-    public function __construct(
-    ) {
-        require_once __DIR__.'/../Repositories/MembrosRepository.php';
-        require_once __DIR__.'/../Services/StreamChannelService.php';
+    public function __construct()
+    {
+        require_once __DIR__ . '/../Repositories/MembrosRepository.php';
+        require_once __DIR__ . '/../Services/StreamChannelService.php';
 
         $this->membrosRepository = new MembrosRepository;
         $this->streamChannelService = new StreamChannelService;
@@ -50,7 +50,7 @@ class MembrosService
     public function newMember(object $request): array
     {
         $nome = preg_replace("/[^A-Za-z\s'ãáâéêíõôóúÃÁÂÉÊÍÕÔÓÚ]/", '', $request->nome_recrut);
-        
+
         if (strlen($nome) < 3) {
             return ['message' => "Nome inválido!"];
         }
@@ -63,13 +63,13 @@ class MembrosService
         }
 
         $memberExists = $this->membrosRepository->memberExists($request->nick_recrut);
-        
+
         if ($memberExists) {
             return ['message' => "O nick {$request->nick_recrut} já está sendo utilizado! Utilize o recuperar senha ou procure um administrador."];
         }
-        
-        require __DIR__.'/../DTO/Membros/CreateMembroDTO.php';
-        
+
+        require __DIR__ . '/../DTO/Membros/CreateMembroDTO.php';
+
         $response = $this->membrosRepository->insert(
             CreateMembroDTO::make((array) $request),
         );
@@ -83,7 +83,7 @@ class MembrosService
 
     public function update(array $request): bool
     {
-        require __DIR__.'/../DTO/Membros/UpdateStatusMembroDTO.php';
+        require __DIR__ . '/../DTO/Membros/UpdateStatusMembroDTO.php';
 
         return $this->membrosRepository->update(
             UpdateStatusMembroDTO::make($request['acaoMembrosAdm'])

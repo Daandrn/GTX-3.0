@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Vendor\Model\Model;
 
-require_once __DIR__.'/../../Vendor/Model/Model.php';
+require_once __DIR__ . '/../../Vendor/Model/Model.php';
 
 class RecuperaSenha extends Model
 {
@@ -12,10 +12,10 @@ class RecuperaSenha extends Model
 }
 
 $fillable = [
-    'id', 
-    'nick', 
-    'novasenha', 
-    'solicit_senha', 
+    'id',
+    'nick',
+    'novasenha',
+    'solicit_senha',
     'data_solicit',
     'id_unico',
 ];

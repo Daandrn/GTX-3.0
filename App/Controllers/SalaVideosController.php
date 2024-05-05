@@ -4,7 +4,7 @@ namespace App\controllers;
 
 use function Vendor\renderView\view;
 
-require __DIR__.'/../../Vendor/renderView/View.php';
+require __DIR__ . '/../../Vendor/renderView/View.php';
 
 class SalaVideosController
 {

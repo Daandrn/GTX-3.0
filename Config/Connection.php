@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Config;
 
@@ -12,12 +12,12 @@ function connection(): PDO|string
     $dataBase = "GTX3";
     $user     = "postgres";
     $password = "Danillo@126";
-    
+
     try {
         $conn = new PDO("$drive:host=$host;dbname=$dataBase", $user, $password);
 
         return $conn;
-    } catch (\Throwable $error){
-        throw new Exception("Erro ao conectar ao banco de dados: ".$error->getMessage());
+    } catch (\Throwable $error) {
+        throw new Exception("Erro ao conectar ao banco de dados: " . $error->getMessage());
     }
 }

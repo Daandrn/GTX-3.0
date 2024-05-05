@@ -1,4 +1,4 @@
-<?php include __DIR__.'/parts/top.php';?>
+<?php include __DIR__ . '/parts/top.php'; ?>
 
 <main class="principal">
     <div id="separador">
@@ -11,7 +11,7 @@
                         <input type="text" name="nick_login" id="nick_login" maxlength="15" size="30" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick sem espaços ou caracteres especiais.">
                     </div>
                     <div>
-                    <label for="senha_login">Senha: </label>
+                        <label for="senha_login">Senha: </label>
                         <input type="password" name="senha_login" id="senha_login" maxlength="10" size="10" pattern="[0-9]*" placeholder="Senha" title="Insira sua senha numérica." autocomplete="off">
                     </div>
                     <div>
@@ -67,11 +67,11 @@
         let message = <?php echo isset($items['message']) ? json_encode($items['message']) : json_decode(0); ?>;
 
         let recuperaSenhaFrame = document.querySelector('#recuperaSenhaFrame');
-        const buttonNovaSenha = document.querySelector('#buttonNovaSenha').addEventListener('click', function () {
+        const buttonNovaSenha = document.querySelector('#buttonNovaSenha').addEventListener('click', function() {
             recuperaSenhaFrame.style.display = '';
         });
     </script>
     <script src="/Public/Js/alert.js"></script>
 </main>
 
-<?php include __DIR__.'/parts/footer.php';?>
+<?php include __DIR__ . '/parts/footer.php'; ?>

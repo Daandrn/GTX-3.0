@@ -2,7 +2,8 @@
 
 namespace App\Enums;
 
-enum StatusSolicit : int {
+enum StatusSolicit: int
+{
     case STATUS_PENDENTE = 0;
     case STATUS_MEMBRO = 1;
     case STATUS_REJEITADO = 2;

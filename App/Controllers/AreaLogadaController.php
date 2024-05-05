@@ -8,7 +8,7 @@ use App\Services\RecuperaSenhaService;
 
 use function Vendor\renderView\view;
 
-require_once __DIR__.'/../../Vendor/renderView/View.php';
+require_once __DIR__ . '/../../Vendor/renderView/View.php';
 
 class AreaLogadaController
 {
@@ -16,26 +16,26 @@ class AreaLogadaController
     protected MembrosService $membrosService;
     protected RecuperaSenhaService $recuperaSenhaService;
 
-    public function __construct() 
+    public function __construct()
     {
-        require __DIR__.'/../Services/AreaLogadaService.php';
-        require __DIR__.'/../Services/MembrosService.php';
-        require __DIR__.'/../Services/RecuperaSenhaService.php';
+        require __DIR__ . '/../Services/AreaLogadaService.php';
+        require __DIR__ . '/../Services/MembrosService.php';
+        require __DIR__ . '/../Services/RecuperaSenhaService.php';
 
         $this->areaLogadaService    = new AreaLogadaService;
         $this->membrosService       = new MembrosService;
         $this->recuperaSenhaService = new RecuperaSenhaService;
     }
-    
+
     public function index()
     {
-        if (! $this->areaLogadaService->sessionExists()) {
+        if (!$this->areaLogadaService->sessionExists()) {
             header("location: /inicio");
         }
 
         $nomeSessao = (string) $_SESSION['nome'];
         $idSessao   = (int) $_SESSION['id_sessao'];
-        
+
         $memberLogged = $this->membrosService->memberWithStream(1);
 
         $nickPerfil        = $memberLogged->nick;
@@ -66,7 +66,7 @@ class AreaLogadaController
         session_regenerate_id(true);
         session_destroy();
         header("location: /inicio");
-    
+
         return;
     }
 }

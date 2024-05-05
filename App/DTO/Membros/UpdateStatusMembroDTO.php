@@ -14,7 +14,7 @@ class UpdateStatusMembroDTO
     {
         $id = (int) $request[2];
         $status_solicit = (int) $request[0];
-        
+
         return new self(
             $id,
             $status_solicit,

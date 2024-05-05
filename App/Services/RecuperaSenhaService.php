@@ -10,8 +10,8 @@ class RecuperaSenhaService
 
     public function __construct()
     {
-        require_once __DIR__.'/../Repositories/RecuperaSenhaRepository.php';
-        
+        require_once __DIR__ . '/../Repositories/RecuperaSenhaRepository.php';
+
         $this->recuperaSenhaRepository = new RecuperaSenhaRepository;
     }
 

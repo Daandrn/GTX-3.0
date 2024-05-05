@@ -1,21 +1,22 @@
 <?php declare(strict_types=1);
 
 namespace App\DTO\Membros;
+
 use App\Enums\StatusSolicit;
 
-require __DIR__.'/../../Enums/statusSolicit.php';
+require __DIR__ . '/../../Enums/statusSolicit.php';
 
 class CreateMembroDTO
-{   
+{
     public function __construct(
-        public string $nome, 
-        public string $nick, 
-        public string $plataforma, 
+        public string $nome,
+        public string $nick,
+        public string $plataforma,
         public int    $status_solicit,
         public string $senha,
     ) {
     }
-        
+
     public static function make(array $request): self
     {
         return new self(

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Vendor\Model\Model;
 
-require_once __DIR__.'/../../Vendor/Model/Model.php';
+require_once __DIR__ . '/../../Vendor/Model/Model.php';
 
 class StreamingPlatform extends Model
 {

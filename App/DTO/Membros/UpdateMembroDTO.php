@@ -6,9 +6,9 @@ class UpdateMembroDTO
 {
     public function __construct(
         public int    $id,
-        public string $nome, 
-        public string $nick, 
-        public int    $plataforma, 
+        public string $nome,
+        public string $nick,
+        public int    $plataforma,
         public int    $status_solicit,
         public int    $senha,
     ) {

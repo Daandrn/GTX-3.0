@@ -10,8 +10,8 @@ class StreamChannelRepository
 
     public function __construct()
     {
-        require_once __DIR__.'/../Models/StreamChannel.php';
-        
+        require_once __DIR__ . '/../Models/StreamChannel.php';
+
         $this->streamChannelModel = $streamChannelModel;
     }
 
@@ -19,7 +19,7 @@ class StreamChannelRepository
     {
         return $this->streamChannelModel->new($id);
     }
-    
+
     // public function alteraStream(int $id, string $nickStream, string $linkStream, int $plataforma): string
     // {
     //     try {
@@ -33,7 +33,7 @@ class StreamChannelRepository
     //         $consulta->bindParam(':plataforma', $plataforma, PDO::PARAM_INT);
     //         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
     //         $consulta->execute();
-            
+
     //         return "Alteração realizada com sucesso!";
     //     } catch (PDOexception $erro) {
     //         return "Erro no banco de dados: " . $erro->getMessage();        

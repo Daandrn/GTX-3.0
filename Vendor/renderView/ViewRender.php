@@ -10,24 +10,23 @@ final class ViewRender
     ) {
         self::render($viewName, $data);
     }
-    
+
     private static function render(string $viewName, ?array $data): void
     {
         if (!self::fileVerify($viewName)) {
             echo "A view '{$viewName}' solicitada não existe. Verifique!";
             return;
         }
-    
+
         if ($data) {
             $items = $data;
         }
 
-        require __DIR__."/../../Views/{$viewName}.view.php";
+        require __DIR__ . "/../../Views/{$viewName}.view.php";
     }
 
     private static function fileVerify(string $viewName): bool
     {
-        return file_exists(__DIR__."/../../Views/{$viewName}.view.php");
+        return file_exists(__DIR__ . "/../../Views/{$viewName}.view.php");
     }
-
 }

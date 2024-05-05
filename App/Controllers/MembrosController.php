@@ -6,19 +6,19 @@ use App\Services\MembrosService;
 
 use function Vendor\renderView\view;
 
-require_once __DIR__.'/../../Vendor/renderView/View.php';
+require_once __DIR__ . '/../../Vendor/renderView/View.php';
 
 class MembrosController
 {
     protected MembrosService $membrosService;
-    
-    public function __construct() 
+
+    public function __construct()
     {
-        require __DIR__.'/../Services/MembrosService.php';
-        
+        require __DIR__ . '/../Services/MembrosService.php';
+
         $this->membrosService = new MembrosService;
     }
-    
+
     public function listaMembros()
     {
         $membros = $this->membrosService->allMembers();
@@ -27,7 +27,7 @@ class MembrosController
     }
 
     public function alteraStatusMembro()
-    {        
+    {
         $this->membrosService->update($_REQUEST);
 
         return header('location: arealogada');
@@ -36,7 +36,7 @@ class MembrosController
     public function delete()
     {
         $this->membrosService->delete($_REQUEST);
-        
+
         return header('location: arealogada');
     }
 }

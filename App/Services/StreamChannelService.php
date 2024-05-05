@@ -7,10 +7,10 @@ use App\Repositories\StreamChannelRepository;
 class StreamChannelService
 {
     protected StreamChannelRepository $streamChannelRepository;
-    
+
     public function __construct()
     {
-        require __DIR__.'/../Repositories/StreamChannelRepository.php';
+        require __DIR__ . '/../Repositories/StreamChannelRepository.php';
 
         $this->streamChannelRepository = new StreamChannelRepository;
     }

@@ -8,7 +8,7 @@ use App\controllers\SalaVideosController;
 use App\controllers\InicioController;
 use Vendor\Routes\Route;
 
-require __DIR__.'/../Vendor/Routes/Route.php';
+require __DIR__ . '/../Vendor/Routes/Route.php';
 
 Route::post(['login'], InicioController::class, 'inicioLogin');
 Route::post(['novo'], InicioController::class, 'inicioRecruit');

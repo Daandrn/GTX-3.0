@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Public/Css/styleFrame.css">
     <title>Recupera senha</title>
 </head>
+
 <body id="bodyRecuperaSenha">
     <div id="divRecuperaSenha">
         <h4>Recuperação de senha</h4>
@@ -24,19 +26,19 @@
         </form>
     </div>
     <script>
-        let responseRecuperaSenha = <?php 
-                                        $alert = isset($responseRecuperaSenha) ? $responseRecuperaSenha : 1;
-                                        echo json_encode($alert); 
-                                    ?>
-            
-        let responseExistePessoa = <?php 
-                                        $alert2 = isset($responseExistePessoa) ? $responseExistePessoa : 1;
-                                         echo json_encode($alert2); 
+        let responseRecuperaSenha = <?php
+                                    $alert = isset($responseRecuperaSenha) ? $responseRecuperaSenha : 1;
+                                    echo json_encode($alert);
                                     ?>
 
-        let responseExisteSolicit = <?php 
-                                        $alert3 = isset($responseExisteSolicit) ? $responseExisteSolicit : 1;
-                                         echo json_encode($alert3); 
+        let responseExistePessoa = <?php
+                                    $alert2 = isset($responseExistePessoa) ? $responseExistePessoa : 1;
+                                    echo json_encode($alert2);
+                                    ?>
+
+        let responseExisteSolicit = <?php
+                                    $alert3 = isset($responseExisteSolicit) ? $responseExisteSolicit : 1;
+                                    echo json_encode($alert3);
                                     ?>
 
         if (responseExistePessoa != 1) {
@@ -50,9 +52,10 @@
         }
 
         let recuperaSenhaFrame = document.querySelector('#recuperaSenhaFrame');
-        const botaoFecharRecuperaSenha = document.querySelector('#botaoFecharRecuperaSenha').addEventListener('click', function () {
+        const botaoFecharRecuperaSenha = document.querySelector('#botaoFecharRecuperaSenha').addEventListener('click', function() {
             recuperaSenhaFrame.style.display = 'none';
         });
     </script>
 </body>
+
 </html>
