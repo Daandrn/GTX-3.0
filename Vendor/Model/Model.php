@@ -8,7 +8,7 @@ use Vendor\Interfaces\ModelInterface;
 use function Config\connection;
 
 require __DIR__ . '/../Interfaces/ModelInterface.php';
-require __DIR__ . '/../../Config/Connection.php';
+require __DIR__ . '/../../Config/conn.php';
 
 class Model implements ModelInterface
 {
