@@ -36,7 +36,7 @@
         </h1>
         <div id="dadosPessoais">
             <div id="canalStream">
-                <form method="POST">
+                <form action="/alteracanalstream" method="POST">
                     <h3>Canal Stream</h3>
                     <div>
                         <label for="nickStream">Nick stream</label>

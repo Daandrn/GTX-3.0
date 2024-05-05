@@ -16,8 +16,8 @@ class AreaLogadaController
     protected MembrosService $membrosService;
     protected RecuperaSenhaService $recuperaSenhaService;
 
-    public function __construct(
-    ) {
+    public function __construct() 
+    {
         require __DIR__.'/../Services/AreaLogadaService.php';
         require __DIR__.'/../Services/MembrosService.php';
         require __DIR__.'/../Services/RecuperaSenhaService.php';
@@ -53,6 +53,11 @@ class AreaLogadaController
         $data = compact('nomeSessao', 'idSessao', 'nickPerfil', 'dadoStream', 'plataformasStream', 'listaMembros', 'listaRecrut', 'listaRejeitados', 'listaNovaSenha');
 
         return view('areaLogada', $data);
+    }
+
+    public function alteracanalstream()
+    {
+        return view('areaLogada');
     }
 
     public function exit(): void
