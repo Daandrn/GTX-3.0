@@ -1,0 +1,23 @@
+{
+    "name": "daandrn/gtx-3.0",
+    "description": "GTX3.0",
+    "type": "project",
+    "require": {
+        "ext-pgsql": "*"
+    },
+    "require-dev": {
+        "ext-pgsql": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Daandrn\\Gtx-3.0\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "daandrn",
+            "email": "dandrn7@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
