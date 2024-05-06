@@ -6,5 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Daandrn\\Gtx-3.0\\' => array($baseDir . '/src'),
+    'Vendor\\' => array($vendorDir . ''),
+    'Routes\\' => array($baseDir . '/Routes'),
+    'Config\\' => array($baseDir . '/Config'),
+    'App\\' => array($baseDir . '/App'),
 );

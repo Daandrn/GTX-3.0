@@ -7,16 +7,40 @@ namespace Composer\Autoload;
 class ComposerStaticInit62b74622a43c8a1df9560dd635597f81
 {
     public static $prefixLengthsPsr4 = array (
-        'D' => 
+        'V' => 
         array (
-            'Daandrn\\Gtx-3.0\\' => 16,
+            'Vendor\\' => 7,
+        ),
+        'R' => 
+        array (
+            'Routes\\' => 7,
+        ),
+        'C' => 
+        array (
+            'Config\\' => 7,
+        ),
+        'A' => 
+        array (
+            'App\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Daandrn\\Gtx-3.0\\' => 
+        'Vendor\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => 'C:\\Users\\dandr\\Desktop\\estudo\\PHP\\GTX-3.0\\Vendor',
+        ),
+        'Routes\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Routes',
+        ),
+        'Config\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Config',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/App',
         ),
     );
 

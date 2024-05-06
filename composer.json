@@ -10,7 +10,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Daandrn\\Gtx-3.0\\": "src/"
+            "App\\": "App/",
+            "Config\\": "Config/",
+            "Routes\\": "Routes/",
+            "Vendor\\": "Vendor/"
         }
     },
     "authors": [
