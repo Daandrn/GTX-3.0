@@ -7,6 +7,8 @@ use App\DTO\Membros\UpdateStatusMembroDTO;
 use App\Repositories\MembrosRepository;
 use stdClass;
 
+require_once __DIR__ . '/../../Vendor/autoload.php';
+
 class MembrosService
 {
     protected MembrosRepository $membrosRepository;
@@ -14,9 +16,6 @@ class MembrosService
 
     public function __construct()
     {
-        require_once __DIR__ . '/../Repositories/MembrosRepository.php';
-        require_once __DIR__ . '/../Services/StreamChannelService.php';
-
         $this->membrosRepository = new MembrosRepository;
         $this->streamChannelService = new StreamChannelService;
     }

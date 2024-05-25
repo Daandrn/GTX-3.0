@@ -1,9 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\controllers;
+namespace App\Controllers;
 
 use App\Models\Login;
 use App\Repositories\MembrosRepository;
+
+require_once __DIR__.'/../../Vendor/autoload.php';
 
 class LoginController
 {
@@ -12,8 +14,8 @@ class LoginController
 
     public function __construct()
     {
-        require __DIR__ . '/../Models/login.php';
-
+        require_once __DIR__.'/../Models/login.php';
+        
         $this->loginModel = $loginModel;
     }
 

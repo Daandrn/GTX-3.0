@@ -2,13 +2,11 @@
 
 namespace Vendor\Model;
 
+use Config\DataBase;
 use PDO;
 use Vendor\Interfaces\ModelInterface;
 
-use function Config\connection;
-
-require __DIR__ . '/../Interfaces/ModelInterface.php';
-require __DIR__ . '/../../Config/conn.php';
+require_once __DIR__ . '/../autoload.php';
 
 class Model implements ModelInterface
 {
@@ -51,7 +49,7 @@ class Model implements ModelInterface
         $where = $where ? "WHERE " . $this->tableName . "." . $where[0] . " " . $where[1] . " " . $where[2] . " " . $where[3] : '';
 
         $sql = "SELECT {$fields} FROM {$this->tableName} {$join} {$where}";
-        $consulta = connection()->prepare($sql);
+        $consulta = DataBase::conn()->prepare($sql);
         $consulta->execute();
         $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
 
@@ -78,7 +76,7 @@ class Model implements ModelInterface
 
         $sql = "INSERT INTO {$this->tableName} ({$fillable})
                 VALUES ({$values})";
-        $consulta = connection()->prepare($sql);
+        $consulta = DataBase::conn()->prepare($sql);
 
         foreach ($this->fillable as $key => $value) {
             $consulta->bindParam(":{$key}", $data["$value"]);
@@ -100,7 +98,7 @@ class Model implements ModelInterface
         $where = $id ? 'WHERE id = :id' : '';
 
         $sql = "UPDATE {$this->tableName} SET {$values} {$where}";
-        $consulta = connection()->prepare($sql);
+        $consulta = DataBase::conn()->prepare($sql);
 
         $consulta->bindParam(":id", $id);
 
@@ -116,7 +114,7 @@ class Model implements ModelInterface
         $where = 'WHERE id = :id';
 
         $sql = "DELETE FROM {$this->tableName} {$where}";
-        $consulta = connection()->prepare($sql);
+        $consulta = DataBase::conn()->prepare($sql);
         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
 
         return $consulta->execute();

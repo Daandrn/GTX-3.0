@@ -2,13 +2,14 @@
 
 namespace Routes;
 
-use App\controllers\AreaLogadaController;
-use App\controllers\MembrosController;
-use App\controllers\SalaVideosController;
-use App\controllers\InicioController;
+use App\Controllers\AreaLogadaController;
+use App\Controllers\InicioController;
+use App\Controllers\MembrosController;
+use App\Controllers\SalaVideosController;
+use Tests\Teste;
 use Vendor\Routes\Route;
 
-require __DIR__ . '/../Vendor/Routes/Route.php';
+require_once __DIR__ . '/../Vendor/autoload.php';
 
 Route::post(['login'], InicioController::class, 'inicioLogin');
 Route::post(['novo'], InicioController::class, 'inicioRecruit');
@@ -19,7 +20,9 @@ Route::patch(['alterastatusmembro'], MembrosController::class, 'alteraStatusMemb
 Route::get(['membros'], MembrosController::class, 'listaMembros');
 
 Route::post(['sair'], AreaLogadaController::class, 'exit');
-Route::put(['alteracanalstream'], AreaLogadaController::class, 'alteracanalstream');
+Route::get(['alteracanalstream'], AreaLogadaController::class, 'alteraCanalStream');
 Route::get(['arealogada'], AreaLogadaController::class, 'index');
 
 Route::get(['salavideos'], SalaVideosController::class, 'index');
+
+Route::get(['teste'], Teste::class, 'teste');

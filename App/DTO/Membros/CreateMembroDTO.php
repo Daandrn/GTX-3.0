@@ -4,7 +4,7 @@ namespace App\DTO\Membros;
 
 use App\Enums\StatusSolicit;
 
-require __DIR__ . '/../../Enums/statusSolicit.php';
+require_once __DIR__.'/../../../Vendor/autoload.php';
 
 class CreateMembroDTO
 {

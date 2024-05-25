@@ -4,13 +4,15 @@ namespace App\Repositories;
 
 use App\Models\RecuperaSenha;
 
+require_once __DIR__ . '/../../Vendor/autoload.php';
+
 class RecuperaSenhaRepository
 {
     protected RecuperaSenha $recuperaSenha;
 
     public function __construct()
     {
-        require_once __DIR__ . '/../Models/RecuperaSenha.php';
+        require_once __DIR__.'/../Models/RecuperaSenha.php';
 
         $this->recuperaSenha = $recuperaSenha;
     }

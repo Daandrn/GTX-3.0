@@ -1,8 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Vendor\renderView;
+namespace Vendor\RenderView;
 
-final class ViewRender
+require_once __DIR__ . '/../autoload.php';
+
+class ViewRender
 {
     public function __construct(
         private string $viewName,

@@ -2,6 +2,8 @@
 
 namespace Vendor\Interfaces;
 
+require_once __DIR__ . '/../autoload.php';
+
 interface ModelInterface
 {
     public function select(array $params): array;

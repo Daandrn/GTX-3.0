@@ -7,7 +7,7 @@ use Vendor\Model\Model;
 
 use function Config\connection;
 
-require_once __DIR__ . '/../../Vendor/Model/Model.php';
+require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class StreamChannel extends Model
 {

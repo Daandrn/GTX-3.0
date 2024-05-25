@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace App\controllers;
+namespace App\Controllers;
 
-use function Vendor\renderView\view;
+use Vendor\RenderView\View;
 
-require __DIR__ . '/../../Vendor/renderView/View.php';
+require_once __DIR__.'/../../Vendor/autoload.php';
 
 class SalaVideosController
 {
     public function index()
     {
-        return view('salaVideos');
+        return View::view('salaVideos');
     }
 }

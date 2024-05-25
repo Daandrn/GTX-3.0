@@ -4,13 +4,15 @@ namespace App\Repositories;
 
 use App\Models\StreamChannel;
 
+require_once __DIR__ . '/../../Vendor/autoload.php';
+
 class StreamChannelRepository
 {
     protected StreamChannel $streamChannelModel;
 
     public function __construct()
     {
-        require_once __DIR__ . '/../Models/StreamChannel.php';
+        require_once __DIR__.'/../Models/StreamChannel.php';
 
         $this->streamChannelModel = $streamChannelModel;
     }

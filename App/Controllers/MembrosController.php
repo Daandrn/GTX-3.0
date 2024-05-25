@@ -1,12 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\controllers;
+namespace App\Controllers;
 
 use App\Services\MembrosService;
+use Vendor\RenderView\View;
 
-use function Vendor\renderView\view;
+use function Vendor\Helpers\redirect;
 
-require_once __DIR__ . '/../../Vendor/renderView/View.php';
+require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class MembrosController
 {
@@ -14,8 +15,6 @@ class MembrosController
 
     public function __construct()
     {
-        require __DIR__ . '/../Services/MembrosService.php';
-
         $this->membrosService = new MembrosService;
     }
 
@@ -23,20 +22,20 @@ class MembrosController
     {
         $membros = $this->membrosService->allMembers();
 
-        return view('membros', $membros);
+        return View::view('membros', $membros);
     }
 
     public function alteraStatusMembro()
     {
         $this->membrosService->update($_REQUEST);
 
-        return header('location: arealogada');
+        return redirect('arealogada');
     }
 
     public function delete()
     {
         $this->membrosService->delete($_REQUEST);
 
-        return header('location: arealogada');
+        return redirect('arealogada');
     }
 }

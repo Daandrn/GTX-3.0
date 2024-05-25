@@ -5,7 +5,7 @@ namespace App\Models;
 use stdClass;
 use Vendor\Model\Model;
 
-require_once __DIR__ . '/../../Vendor/Model/Model.php';
+require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class Login extends Model
 {

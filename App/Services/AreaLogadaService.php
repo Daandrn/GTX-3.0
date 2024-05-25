@@ -4,14 +4,16 @@ namespace App\Services;
 
 use App\Models\StreamingPlatform;
 
+require_once __DIR__ . '/../../Vendor/autoload.php';
+
 class AreaLogadaService
 {
     protected StreamingPlatform $streamingPlatformModel;
 
     public function __construct()
     {
-        require_once __DIR__ . '/../Models/StreamingPlatform.php';
-
+        require_once __DIR__.'/../Models/StreamingPlatform.php';
+        
         $this->streamingPlatformModel = $streamingPlatformModel;
     }
 

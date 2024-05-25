@@ -1,10 +1,6 @@
 <?php declare(strict_types=1);
 
-use classe\Pessoa;
-
-require __DIR__ . "/../classe/class.pessoa.php";
-require __DIR__ . "/../funcoes/func.verificaPessoa.php";
-require __DIR__ . "/../funcoes/func.verificaSolicit.php";
+require_once __DIR__.'/../../Vendor/autoload.php';
 
 if (
     $_SERVER['REQUEST_METHOD'] == 'POST'

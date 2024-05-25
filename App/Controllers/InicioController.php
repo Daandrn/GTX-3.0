@@ -1,14 +1,13 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace App\controllers;
+namespace App\Controllers;
 
 use App\Services\MembrosService;
+use Vendor\RenderView\View;
 
-use function Vendor\renderView\view;
+use function Vendor\Helpers\redirect;
 
-require_once __DIR__ . '/../../Vendor/renderView/View.php';
+require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class InicioController
 {
@@ -16,14 +15,12 @@ class InicioController
 
     public function __construct()
     {
-        require __DIR__ . '/../Services/MembrosService.php';
-
         $this->membrosService = new MembrosService;
     }
 
     public function index()
     {
-        return view('inicio');
+        return View::view('inicio');
     }
 
     public function inicioLogin()
@@ -40,17 +37,15 @@ class InicioController
                 strlen($usuarioLogin) === 0
                 || strlen($senhaLogin) === 0
             ) {
-                return view('inicio', ['message' => "Usuário e senha são obrigatórios!"]);
+                return View::view('inicio', ['message' => "Usuário e senha são obrigatórios!"]);
             }
 
             if (
                 strlen($usuarioLogin) < 3
                 || strlen($senhaLogin) !== 10
             ) {
-                return view('inicio', ['message' => "Usuário e/ou senha inválido(os)!"]);
+                return View::view('inicio', ['message' => "Usuário e/ou senha inválido(os)!"]);
             }
-
-            require __DIR__ . '/LoginController.php';
 
             $loginMembro = new LoginController;
             $response = $loginMembro->login($usuarioLogin, $senhaLogin);
@@ -59,13 +54,13 @@ class InicioController
                 isset($response['status_login'])
                 && $response['status_login']
             ) {
-                return header("location: /arealogada");
+                return redirect("arealogada");
             }
 
-            return view('inicio', ['message' => $response['message']]);
+            return View::view('inicio', ['message' => $response['message']]);
         }
 
-        return view('inicio', ['message' => "Erro na requisição!"]);
+        return View::view('inicio', ['message' => "Erro na requisição!"]);
     }
 
     public function inicioRecruit()
@@ -77,7 +72,7 @@ class InicioController
         ) {
             $response = $this->membrosService->newMember((object) $_POST);
 
-            return view('inicio', $response);
+            return View::view('inicio', $response);
         }
     }
 }

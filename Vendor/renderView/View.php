@@ -1,12 +1,14 @@
 <?php
 
-namespace Vendor\renderView;
+namespace Vendor\RenderView;
 
-use Vendor\renderView\ViewRender;
+require_once __DIR__ . '/../autoload.php';
 
-require __DIR__ . '/ViewRender.php';
-
-function view(string $viewName, ?array $data = null): ViewRender|string 
+class View
 {
-    return new ViewRender($viewName, $data);
+    public static function view(string $viewName, ?array $data = null): ViewRender|string 
+    {
+        return new ViewRender($viewName, $data);
+    }
 }
+

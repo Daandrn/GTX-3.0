@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace App\controllers;
+namespace App\Controllers;
 
 use App\Services\AreaLogadaService;
 use App\Services\MembrosService;
 use App\Services\RecuperaSenhaService;
+use Vendor\RenderView\View;
 
-use function Vendor\renderView\view;
+use function Vendor\Helpers\redirect;
 
-require_once __DIR__ . '/../../Vendor/renderView/View.php';
+require_once __DIR__.'/../../Vendor/autoload.php';
 
 class AreaLogadaController
 {
@@ -18,19 +19,15 @@ class AreaLogadaController
 
     public function __construct()
     {
-        require __DIR__ . '/../Services/AreaLogadaService.php';
-        require __DIR__ . '/../Services/MembrosService.php';
-        require __DIR__ . '/../Services/RecuperaSenhaService.php';
-
         $this->areaLogadaService    = new AreaLogadaService;
         $this->membrosService       = new MembrosService;
         $this->recuperaSenhaService = new RecuperaSenhaService;
     }
 
-    public function index()
+    public function index(?array $errors = null, ?array $data = null)
     {
         if (!$this->areaLogadaService->sessionExists()) {
-            header("location: /inicio");
+            redirect("inicio");
         }
 
         $nomeSessao = (string) $_SESSION['nome'];
@@ -49,15 +46,18 @@ class AreaLogadaController
         $listaRecrut       = $this->membrosService->allRecruits();
         $listaRejeitados   = $this->membrosService->allRejected();
         $listaNovaSenha    = $this->recuperaSenhaService->pendingSolicities();
+        $message           = $errors['message'] ?? 0;
 
-        $data = compact('nomeSessao', 'idSessao', 'nickPerfil', 'dadoStream', 'plataformasStream', 'listaMembros', 'listaRecrut', 'listaRejeitados', 'listaNovaSenha');
+        $data = compact('nomeSessao', 'idSessao', 'nickPerfil', 'dadoStream', 'plataformasStream', 'listaMembros', 'listaRecrut', 'listaRejeitados', 'listaNovaSenha', 'message');
 
-        return view('areaLogada', $data);
+        return View::view('areaLogada', $data);
     }
 
-    public function alteracanalstream()
+    public function alteraCanalStream()
     {
-        return view('areaLogada');
+        $response = ['message' => "Beleza!"];
+        
+        return redirect(classMethod: 'InicioController.index', errors: $response);
     }
 
     public function exit(): void
@@ -65,7 +65,7 @@ class AreaLogadaController
         session_start();
         session_regenerate_id(true);
         session_destroy();
-        header("location: /inicio");
+        redirect("inicio");
 
         return;
     }

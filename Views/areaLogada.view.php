@@ -282,8 +282,8 @@
                                 <th>Status Solicitação</th>
                                 <th>Ação</th>
                             </tr>
-                            <?php if (!empty($itms['listaNovaSenha'])) : ?>
-                                <?php foreach ($listaNovaSenha as $novaSenha) : ?>
+                            <?php if (!empty($items['listaNovaSenha'])) : ?>
+                                <?php foreach ($items['listaNovaSenha'] as $novaSenha) : ?>
                                     <tr>
                                         <td class="formatNome"><?php echo $novaSenha->nome; ?></td>
                                         <td class="formatNick"><?php echo $novaSenha->nick; ?></td>
@@ -311,6 +311,10 @@
                 <?php endif; ?>
             </section>
         </div>
+        <script>
+            let message = <?php echo isset($items['message']) ? json_encode($items['message']) : json_decode(0); ?>;
+        </script>
+        <script src="/Public/Js/alert.js"></script>
     </main>
 
     <?php include __DIR__ . '/parts/footer.php'; ?>

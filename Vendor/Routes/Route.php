@@ -4,6 +4,8 @@ namespace Vendor\Routes;
 
 use Exception;
 
+require_once __DIR__ . '/../autoload.php';
+
 final class Route
 {
     private static function url(): string
@@ -23,17 +25,15 @@ final class Route
             return;
         }
 
-        require __DIR__ . "/../../{$class}.php";
-
         if (!class_exists($class)) {
             throw new Exception("A classe utilizada não existe: {$class}");
         }
-
+        
         if (!method_exists($class, $method)) {
             throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
         }
 
-        return self::redirectGet($route, $class, $method);
+        return self::redirectGet($class, $method);
     }
 
     public static function post(array $route, string $class, string $method)
@@ -46,8 +46,6 @@ final class Route
             return;
         }
 
-        require __DIR__ . "/../../{$class}.php";
-
         if (!class_exists($class)) {
             throw new Exception("A classe utilizada não existe: {$class}");
         }
@@ -56,7 +54,7 @@ final class Route
             throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
         }
 
-        return self::redirectPost($route, $class, $method);
+        return self::redirectPost($class, $method);
     }
 
     public static function put(array $route, string $class, string $method)
@@ -69,8 +67,6 @@ final class Route
             return;
         }
 
-        require __DIR__ . "/../../{$class}.php";
-
         if (!class_exists($class)) {
             throw new Exception("A classe utilizada não existe: {$class}");
         }
@@ -79,7 +75,7 @@ final class Route
             throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
         }
 
-        return self::redirectPost($route, $class, $method);
+        return self::redirectPost($class, $method);
     }
 
     public static function patch(array $route, string $class, string $method)
@@ -92,8 +88,6 @@ final class Route
             return;
         }
 
-        require __DIR__ . "/../../{$class}.php";
-
         if (!class_exists($class)) {
             throw new Exception("A classe utilizada não existe: {$class}");
         }
@@ -102,7 +96,7 @@ final class Route
             throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
         }
 
-        return self::redirectPost($route, $class, $method);
+        return self::redirectPost($class, $method);
     }
 
     public static function delete(array $route, string $class, string $method)
@@ -115,7 +109,22 @@ final class Route
             return;
         }
 
-        require __DIR__ . "/../../{$class}.php";
+        if (!class_exists($class)) {
+            throw new Exception("A classe utilizada não existe: {$class}");
+        }
+
+        if (!method_exists($class, $method)) {
+            throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
+        }
+
+        return self::redirectPost($class, $method);
+    }
+
+    /**
+     * Realiza redireciamento para as rotas definidas.
+     */
+    public static function redirection(string $class, string $method, ?array $errors = null, ?array $data = null)
+    {
 
         if (!class_exists($class)) {
             throw new Exception("A classe utilizada não existe: {$class}");
@@ -125,7 +134,7 @@ final class Route
             throw new Exception("O metodo utilizado não existe: {$method}. Da classe: {$class}");
         }
 
-        return self::redirectPost($route, $class, $method);
+        return self::redirectGetWithData($class, $method, $errors, $data);
     }
 
     /**
@@ -146,7 +155,15 @@ final class Route
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
 
-    private static function redirectGet(array $route, string $class, string $method)
+    private static function redirectGetWithData(string $class, string $method, ?array $errors = null, ?array $data = null)
+    {
+        http_response_code(200);
+        $action = new $class;
+        $action->{$method}($errors, $data);
+        return;
+    }
+
+    private static function redirectGet(string $class, string $method)
     {
         http_response_code(200);
         $action = new $class;
@@ -154,7 +171,7 @@ final class Route
         return;
     }
 
-    private static function redirectPost(array $route, string $class, string $method)
+    private static function redirectPost(string $class, string $method)
     {
         http_response_code(200);
         $action = new $class;
