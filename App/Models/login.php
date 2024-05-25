@@ -13,6 +13,7 @@ class Login extends Model
     {
         $membro = $this->select(
             fields: [
+                'id',
                 'nome',
                 'nick',
                 'status_solicit',
