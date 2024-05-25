@@ -51,7 +51,7 @@ class MembrosRepository
             ],
             where: [
                 'status_solicit', 'in', '(1,4)',
-                'ORDER BY membros.id DESC',
+                'ORDER BY membros.id ASC',
             ],
         );
 
