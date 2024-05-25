@@ -74,7 +74,7 @@ class MembrosService
         );
 
         if ($response) {
-            $this->streamChannelService->newChannel($response->id);
+            $this->streamChannelService->newStream($response->id);
         }
 
         return ['message' => "Solicitação realizada com sucesso, aguarde que seja aprovada por um dos administradores!"];
@@ -92,7 +92,8 @@ class MembrosService
     public function delete(array $request): bool
     {
         $id = (int) $request['acaoMembrosAdm'][1];
-
+        $this->streamChannelService->deleteStream($id);
+        
         return $this->membrosRepository->delete($id);
     }
 }

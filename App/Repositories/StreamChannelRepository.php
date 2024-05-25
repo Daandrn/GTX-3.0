@@ -17,9 +17,14 @@ class StreamChannelRepository
         $this->streamChannelModel = $streamChannelModel;
     }
 
-    public function newChannel(int $id): bool
+    public function newStream(int $id): bool
     {
         return $this->streamChannelModel->new($id);
+    }
+
+    public function deleteStream(int $id): bool
+    {
+        return $this->streamChannelModel->deleteOne($id);
     }
 
     // public function alteraStream(int $id, string $nickStream, string $linkStream, int $plataforma): string
@@ -38,23 +43,6 @@ class StreamChannelRepository
 
     //         return "Alteração realizada com sucesso!";
     //     } catch (PDOexception $erro) {
-    //         return "Erro no banco de dados: " . $erro->getMessage();        
-    //     }
-    // }
-
-    // public function excluiStream(int $id): string
-    // {
-    //     try {
-    //         $consulta = connection()->prepare("UPDATE canalstream 
-    //                                             SET nickstream = null,
-    //                                                 link_canal = null, 
-    //                                                 plataforma = null
-    //                                             WHERE id = :id");
-    //         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
-    //         $consulta->execute();
-
-    //         return "Exclusão realizada com sucesso!";
-    //     } catch (PDOException $erro) {
     //         return "Erro no banco de dados: " . $erro->getMessage();        
     //     }
     // }

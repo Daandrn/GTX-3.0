@@ -15,8 +15,13 @@ class StreamChannelService
         $this->streamChannelRepository = new StreamChannelRepository;
     }
 
-    public function newChannel(int $id): void
+    public function newStream(int $id): void
     {
-        $this->streamChannelRepository->newChannel($id);
+        $this->streamChannelRepository->newStream($id);
+    }
+
+    public function deleteStream(int $id): bool
+    {
+        return $this->streamChannelRepository->deleteStream($id);
     }
 }
