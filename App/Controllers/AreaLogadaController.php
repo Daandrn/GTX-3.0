@@ -5,9 +5,8 @@ namespace App\Controllers;
 use App\Services\AreaLogadaService;
 use App\Services\MembrosService;
 use App\Services\RecuperaSenhaService;
+use Vendor\Helpers\Redirect;
 use Vendor\RenderView\View;
-
-use function Vendor\Helpers\redirect;
 
 require_once __DIR__.'/../../Vendor/autoload.php';
 
@@ -27,7 +26,7 @@ class AreaLogadaController
     public function index(?array $errors = null, ?array $data = null)
     {
         if (!$this->areaLogadaService->sessionExists()) {
-            redirect("inicio");
+            Redirect::to("inicio");
         }
 
         $nomeSessao = (string) $_SESSION['nome'];
@@ -57,7 +56,7 @@ class AreaLogadaController
     {
         $response = ['message' => "Beleza!"];
         
-        return redirect(classMethod: 'InicioController.index', errors: $response);
+        return Redirect::to(classMethod: 'InicioController.index', errors: $response);
     }
 
     public function exit(): void
@@ -65,7 +64,7 @@ class AreaLogadaController
         session_start();
         session_regenerate_id(true);
         session_destroy();
-        redirect("inicio");
+        Redirect::to("inicio");
 
         return;
     }

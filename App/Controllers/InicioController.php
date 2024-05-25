@@ -3,9 +3,8 @@
 namespace App\Controllers;
 
 use App\Services\MembrosService;
+use Vendor\Helpers\Redirect;
 use Vendor\RenderView\View;
-
-use function Vendor\Helpers\redirect;
 
 require_once __DIR__ . '/../../Vendor/autoload.php';
 
@@ -54,7 +53,7 @@ class InicioController
                 isset($response['status_login'])
                 && $response['status_login']
             ) {
-                return redirect("arealogada");
+                return Redirect::to("arealogada");
             }
 
             return View::view('inicio', ['message' => $response['message']]);

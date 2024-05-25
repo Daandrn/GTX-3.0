@@ -3,9 +3,8 @@
 namespace App\Controllers;
 
 use App\Services\MembrosService;
+use Vendor\Helpers\Redirect;
 use Vendor\RenderView\View;
-
-use function Vendor\Helpers\redirect;
 
 require_once __DIR__ . '/../../Vendor/autoload.php';
 
@@ -29,13 +28,13 @@ class MembrosController
     {
         $this->membrosService->update($_REQUEST);
 
-        return redirect('arealogada');
+        return Redirect::to('arealogada');
     }
 
     public function delete()
     {
         $this->membrosService->delete($_REQUEST);
 
-        return redirect('arealogada');
+        return Redirect::to('arealogada');
     }
 }
