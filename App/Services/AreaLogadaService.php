@@ -12,9 +12,7 @@ class AreaLogadaService
 
     public function __construct()
     {
-        require_once __DIR__.'/../Models/StreamingPlatform.php';
-        
-        $this->streamingPlatformModel = $streamingPlatformModel;
+        $this->streamingPlatformModel = StreamingPlatform::newInstance();
     }
 
     public function sessionExists(): bool
@@ -32,7 +30,7 @@ class AreaLogadaService
         return false;
     }
 
-    function getStreamingPlatform(): array|null
+    function getStreamingPlatforms(): array|null
     {
         $platforms = $this->streamingPlatformModel->select();
 

@@ -12,9 +12,7 @@ class RecuperaSenhaRepository
 
     public function __construct()
     {
-        require_once __DIR__.'/../Models/RecuperaSenha.php';
-
-        $this->recuperaSenha = $recuperaSenha;
+        $this->recuperaSenha = RecuperaSenha::newInstance();
     }
 
     public function getPendingSolicities(): array|null

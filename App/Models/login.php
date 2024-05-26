@@ -9,6 +9,19 @@ require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class Login extends Model
 {
+    public static function newInstance(): self
+    {
+        $fillable = [
+            'nome',
+            'nick',
+            'plataforma',
+            'status_solicit',
+            'senha',
+        ];
+        
+        return new Login('membros', $fillable);
+    }
+    
     public function loginPasswordMember(string $nick): stdClass|null
     {
         $membro = $this->select(
@@ -27,13 +40,3 @@ class Login extends Model
                 : null;
     }
 }
-
-$fillable = [
-    'nome',
-    'nick',
-    'plataforma',
-    'status_solicit',
-    'senha',
-];
-
-$loginModel = new Login('membros', $fillable);

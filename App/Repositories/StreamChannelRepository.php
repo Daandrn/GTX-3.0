@@ -12,14 +12,19 @@ class StreamChannelRepository
 
     public function __construct()
     {
-        require_once __DIR__.'/../Models/StreamChannel.php';
-
-        $this->streamChannelModel = $streamChannelModel;
+        $this->streamChannelModel = StreamChannel::newInstance();
     }
 
     public function newStream(int $id): bool
     {
-        return $this->streamChannelModel->new($id);
+        $data = [
+            'id'         => $id,
+            'plataforma' => null,
+            'link_canal' => null,
+            'nickstream' => null,
+        ];
+        
+        return $this->streamChannelModel->insert($data);
     }
 
     public function deleteStream(int $id): bool

@@ -2,30 +2,23 @@
 
 namespace App\Models;
 
+use Config\DataBase;
 use PDO;
 use Vendor\Model\Model;
-
-use function Config\connection;
 
 require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class StreamChannel extends Model
 {
-    public function new(int $id): bool
+    public static function newInstance(): self
     {
-        $sql = "INSERT INTO canalstream VALUES (:id, null, null, null)";
-        $canalstream = connection()->prepare($sql);
-        $canalstream->bindParam(':id', $id, PDO::PARAM_INT);
-
-        return $canalstream->execute();
+        $fillable = [
+            'id',
+            'plataforma',
+            'link_canal',
+            'nickstream',
+        ];
+        
+        return new StreamChannel('canalstream', $fillable);
     }
 }
-
-$fillable = [
-    'id',
-    'plataforma',
-    'link_canal',
-    'nickstream',
-];
-
-$streamChannelModel = new StreamChannel('canalstream', $fillable);

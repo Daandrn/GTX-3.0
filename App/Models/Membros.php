@@ -8,15 +8,16 @@ require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class Membros extends Model
 {
-    //
+    public static function newInstance(): self
+    {
+        $fillable = [
+            'nome',
+            'nick',
+            'plataforma',
+            'status_solicit',
+            'senha',
+        ];
+        
+        return new Membros('membros', $fillable);     
+    }
 }
-
-$fillable = [
-    'nome',
-    'nick',
-    'plataforma',
-    'status_solicit',
-    'senha',
-];
-
-$membrosModel = new Membros('membros', $fillable);

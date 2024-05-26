@@ -14,9 +14,7 @@ class LoginController
 
     public function __construct()
     {
-        require_once __DIR__.'/../Models/login.php';
-        
-        $this->loginModel = $loginModel;
+        $this->loginModel = Login::newInstance();
     }
 
     public function login($usuarioLogin, $senhaLogin): array

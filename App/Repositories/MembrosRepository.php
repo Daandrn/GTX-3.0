@@ -14,10 +14,8 @@ class MembrosRepository
     protected Membros $membrosModel;
 
     public function __construct()
-    {
-        require_once __DIR__.'/../Models/Membros.php';
-        
-        $this->membrosModel = $membrosModel;
+    { 
+        $this->membrosModel = Membros::newInstance();
     }
 
     public function memberExists(string $nick): bool
@@ -51,7 +49,7 @@ class MembrosRepository
             ],
             where: [
                 'status_solicit', 'in', '(1,4)',
-                'ORDER BY membros.id ASC',
+                'ORDER BY membros.status_solicit DESC',
             ],
         );
 

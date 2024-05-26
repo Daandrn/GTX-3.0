@@ -8,12 +8,13 @@ require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class StreamingPlatform extends Model
 {
-    //
+    public static function newInstance(): self
+    {
+        $fillable = [
+            'id',
+            'descricao',
+        ];
+        
+        return new StreamingPlatform('plataformastream', $fillable);     
+    }
 }
-
-$fillable = [
-    'id',
-    'descricao',
-];
-
-$streamingPlatformModel = new StreamingPlatform('plataformastream', $fillable);
