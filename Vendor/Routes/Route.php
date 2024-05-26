@@ -8,7 +8,7 @@ require_once __DIR__ . '/../autoload.php';
 
 final class Route
 {
-    private static function url(): string
+    public static function url(): string
     {
         $url = explode('/', $_SERVER['REQUEST_URI']);
 
@@ -121,11 +121,10 @@ final class Route
     }
 
     /**
-     * Realiza redireciamento para as rotas definidas.
+     * Realiza redirecionamento para as rotas definidas.
      */
     public static function redirection(string $class, string $method, ?array $errors = null, ?array $data = null)
     {
-
         if (!class_exists($class)) {
             throw new Exception("A classe utilizada não existe: {$class}");
         }

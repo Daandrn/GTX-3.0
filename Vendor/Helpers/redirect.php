@@ -10,8 +10,8 @@ require_once __DIR__.'/../autoload.php';
 class Redirect
 {
     /**
-     * Realiza redireciamento para as rotas definidas.
-     * @param string $classMethod Deve receber a classe e methodo para onde será redirecionado no padrão "Class.method".
+     * Realiza redirecionamento para as rotas definidas.
+     * @param string $classMethod Deve receber a classe e metodo para onde será redirecionado no padrão "Class.method".
      */
     public static function to(?string $route = null, ?string $classMethod = null, ?array $errors = null, ?array $data = null)
     {   
@@ -25,16 +25,13 @@ class Redirect
             || !preg_match('/\A\w{1,}\.\w{1,}\z/', $classMethod)
             || strlen($classMethod) < 7
         ) {
-            throw new Exception("Classe ou methodo inválidos: {$classMethod}");
+            throw new Exception("Classe ou metodo inválidos: {$classMethod}");
         }
 
         $classMethod = explode('.', $classMethod);
-
-        $class  = $classMethod[0];
+        $class  = "App\Controllers\\".$classMethod[0];
         $method = $classMethod[1];
 
-        if ($class && $method) {    
-            return Route::redirection("$class", $method, $errors, $data);
-        }
+        return Route::redirection($class, $method, $errors, $data);
     }
 }
