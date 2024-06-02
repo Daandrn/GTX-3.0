@@ -21,9 +21,12 @@ $routes = [
     'membros',
     'sair',
     'alteracanalstream',
+    'limpacanalstream',
     'arealogada',
     'salavideos',
     'teste',
+    'alteranick',
+    'alterasenha',
 ];
 
 if (!in_array(Route::url(), $routes, false)) {
@@ -41,9 +44,12 @@ Route::patch(['alterastatusmembro'], MembrosController::class, 'alteraStatusMemb
 Route::get(['membros'], MembrosController::class, 'listaMembros');
 
 Route::post(['sair'], AreaLogadaController::class, 'exit');
-Route::post(['alteracanalstream'], AreaLogadaController::class, 'alteraCanalStream');
+Route::patch(['alteracanalstream'], AreaLogadaController::class, 'alteraCanalStream');
+Route::patch(['limpacanalstream'], AreaLogadaController::class, 'limpaCanalStream');
+Route::patch(['alteranick'], AreaLogadaController::class, 'alteraNick');
+Route::patch(['alterasenha'], AreaLogadaController::class, 'alteraSenha');
 Route::get(['arealogada'], AreaLogadaController::class, 'index');
 
 Route::get(['salavideos'], SalaVideosController::class, 'index');
 
-Route::get(['teste'], Testes::class, 'teste');
+Route::get(['teste'], Testes::class, 'init');
