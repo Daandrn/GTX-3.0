@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Requests\Request;
 use App\Services\MembrosService;
 use Vendor\Helpers\Redirect;
 use Vendor\RenderView\View;
@@ -24,13 +25,15 @@ class InicioController
 
     public function inicioLogin()
     {
+        $request = Request::new();
+        
         if (
             isset($_SERVER['REQUEST_METHOD'])
             && $_SERVER['REQUEST_METHOD'] === 'POST'
-            && $_POST['formInicio'] === 'form_login'
+            && $request->formInicio === 'form_login'
         ) {
-            $usuarioLogin = $_POST['nick_login'];
-            $senhaLogin   = $_POST['senha_login'];
+            $usuarioLogin = $request->nick_login;
+            $senhaLogin   = $request->senha_login;
 
             if (
                 strlen($usuarioLogin) === 0
@@ -39,11 +42,12 @@ class InicioController
                 return View::view('inicio', ['message' => "Usuário e senha são obrigatórios!"]);
             }
 
-            if (
-                strlen($usuarioLogin) < 3
-                || strlen($senhaLogin) !== 10
-            ) {
-                return View::view('inicio', ['message' => "Usuário e/ou senha inválido(os)!"]);
+            if (strlen($usuarioLogin) < 3) {
+                return View::view('inicio', ['message' => "Usuário inválido!"]);
+            }
+
+            if (strlen($senhaLogin) < 8) {
+                return View::view('inicio', ['message' => "Senha inválida!"]);
             }
 
             $loginMembro = new LoginController;
@@ -64,12 +68,14 @@ class InicioController
 
     public function inicioRecruit()
     {
+        $request = Request::new();
+        
         if (
             isset($_SERVER['REQUEST_METHOD'])
             && $_SERVER['REQUEST_METHOD'] === 'POST'
-            && $_POST['formInicio'] === 'form_recrut'
+            && $request->formInicio === 'form_recrut'
         ) {
-            $response = $this->membrosService->newMember((object) $_POST);
+            $response = $this->membrosService->newMember($request);
 
             return View::view('inicio', $response);
         }

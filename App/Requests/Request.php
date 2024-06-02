@@ -15,14 +15,14 @@ class Request
     
     public static function new(): object
     {
-        $request = new Request();
+        $request = new self();
         
         return (object) $request->request;
     }
 
     public static function toArray(): array
     {
-        $request = new Request();
+        $request = new self();
 
         return $request->request;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Requests\Request;
 use App\Services\MembrosService;
 use Vendor\Helpers\Redirect;
 use Vendor\RenderView\View;
@@ -26,14 +27,16 @@ class MembrosController
 
     public function alteraStatusMembro()
     {
-        $this->membrosService->update($_REQUEST);
+        $request = Request::toArray();
+        $this->membrosService->updateStatusMember($request);
 
         return Redirect::to('arealogada');
     }
 
     public function delete()
     {
-        $this->membrosService->delete($_REQUEST);
+        $request = Request::toArray();
+        $this->membrosService->delete($request);
 
         return Redirect::to('arealogada');
     }
