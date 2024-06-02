@@ -2,6 +2,8 @@
 
 namespace App\DTO\Membros;
 
+require_once __DIR__.'/../../../Vendor/autoload.php';
+
 class UpdateMembroDTO
 {
     public function __construct(
