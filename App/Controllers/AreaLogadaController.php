@@ -2,9 +2,14 @@
 
 namespace App\Controllers;
 
+use App\DTO\Membros\UpdateNickDTO;
+use App\DTO\Membros\UpdatePasswordDTO;
+use App\DTO\UpdateStreamChannelDTO;
+use App\Requests\Request;
 use App\Services\AreaLogadaService;
 use App\Services\MembrosService;
 use App\Services\RecuperaSenhaService;
+use App\Services\StreamChannelService;
 use Vendor\Helpers\Redirect;
 use Vendor\RenderView\View;
 
@@ -12,35 +17,39 @@ require_once __DIR__.'/../../Vendor/autoload.php';
 
 class AreaLogadaController
 {
-    protected AreaLogadaService $areaLogadaService;
-    protected MembrosService $membrosService;
+    protected AreaLogadaService    $areaLogadaService;
+    protected MembrosService       $membrosService;
     protected RecuperaSenhaService $recuperaSenhaService;
+    protected StreamChannelService $streamChannelService;
 
     public function __construct()
     {
         $this->areaLogadaService    = new AreaLogadaService;
+
+        if (!$this->areaLogadaService->sessionExists()) {
+            Redirect::to("inicio");
+            return;
+        }
+        
         $this->membrosService       = new MembrosService;
         $this->recuperaSenhaService = new RecuperaSenhaService;
+        $this->streamChannelService = new StreamChannelService;
     }
 
     public function index(?array $errors = null, ?array $data = null)
     {
-        if (!$this->areaLogadaService->sessionExists()) {
-            Redirect::to("inicio");
-        }
-
         $nomeSessao = (string) $_SESSION['nome'];
         $idSessao   = (int) $_SESSION['id_sessao'];
 
-        $memberLogged = $this->membrosService->memberWithStream(1);
+        $memberLogged = $this->membrosService->memberWithStream($idSessao);
 
         $nickPerfil        = $memberLogged->nick;
         $dadoStream        = [
-            'nickStream' => $memberLogged->nickstream,
+            'nickStream' => $memberLogged->nick_stream,
             'linkCanal'  => $memberLogged->link_canal,
             'plataforma' => $memberLogged->plataforma,
         ];
-        $plataformasStream = $this->areaLogadaService->getStreamingPlatform();
+        $plataformasStream = $this->areaLogadaService->getStreamingPlatforms();
         $listaMembros      = $this->membrosService->allMembers();
         $listaRecrut       = $this->membrosService->allRecruits();
         $listaRejeitados   = $this->membrosService->allRejected();
@@ -54,9 +63,63 @@ class AreaLogadaController
 
     public function alteraCanalStream()
     {
-        $response = ['message' => "Beleza!"];
+        $request = Request::new();
+        $id = (int) $_SESSION['id_sessao'];
+
+        $response = $this->streamChannelService->updateStream(
+            $id, UpdateStreamChannelDTO::make($request)
+        );
         
-        return Redirect::to(classMethod: 'InicioController.index', errors: $response);
+        return Redirect::to(classMethod: 'AreaLogadaController.index', errors: $response);
+    }
+
+    public function limpaCanalStream()
+    {
+        $id = (int) $_SESSION['id_sessao'];
+        
+        $data = (object) [
+            'plataforma'  => null,
+            'link_canal'  => null,
+            'nick_stream' => null,
+        ];
+
+        $response = $this->streamChannelService->limpaStream(
+            $id, UpdateStreamChannelDTO::make($data)
+        );
+        
+        return Redirect::to(classMethod: 'AreaLogadaController.index', errors: $response);
+    }
+
+    public function excluiCanalStream()
+    {
+        $id = (int) $_SESSION['id_sessao'];
+        $response = $this->streamChannelService->deleteStream($id);
+
+        return Redirect::to(classMethod: 'AreaLogadaController.index', errors: $response);
+    }
+
+    public function alteraNick()
+    {
+        $Request = Request::new();
+        $id =$_SESSION['id_sessao'];
+        
+        $response = $this->membrosService->updateNick(
+            UpdateNickDTO::make($Request), $id
+        );
+
+        return Redirect::to(classMethod: 'AreaLogadaController.index', errors: $response);
+    }
+
+    public function alteraSenha()
+    {
+        $Request = Request::new();
+        $id = $_SESSION['id_sessao'];
+        
+        $response = $this->membrosService->updatePassword(
+            UpdatePasswordDTO::make($Request), $id
+        );
+
+        return Redirect::to(classMethod: 'AreaLogadaController.index', errors: $response);
     }
 
     public function exit(): void
@@ -77,106 +140,7 @@ if (
     && $_SERVER['REQUEST_METHOD'] == 'POST' 
     && isset($_POST['formLogado'])
 ) {
-    $formPerfil = (string) $_POST['formLogado'];
-    
-    switch ($formPerfil) {
-        case 'canalStream':
-            $idStream   = (int)    $_SESSION['id_sessao'];
-            $nickStream = (string) $_POST['nickStream'];
-            $linkStream = (string) $_POST['linkStream'];
-            $plataforma = (int)    $_POST['plataforma'];
-            
-            $responseStream = "Todos os campos devem ser preenchidos!";
-            
-            if (
-                isset($idStream) 
-                && !empty($nickStream) 
-                && !empty($linkStream) 
-                && !empty($plataforma)
-            ) {
-                $linkStream           = formatLink($linkStream);
-                $responseAlteraStream = alteraStream($idStream, $nickStream, $linkStream, $plataforma);
 
-                header("location: /gtx2/control/control.areaLogada.php");
-            }
-            
-            break;            
-        case 'excluiCanalStream':
-            $idExcluiStream = (int) $_SESSION['id_sessao'];
-            $responseStream = excluiStream($idExcluiStream);
-
-            header("location: /gtx2/control/control.areaLogada.php");
-            break;
-        case 'perfilNick':
-            $idSessao   = (int)    $_SESSION['id_sessao'];
-            $novoOrigin = (string) $_POST['origin'];
-
-            $responseAlteraNick = "Nick/origin não pode ser vazio!";
-
-            if (!empty($novoOrigin)) {
-                $pessoa = new Pessoa;
-                $pessoa->alteraNick($idSessao, $novoOrigin);
-                $responseAlteraNick = "Nick/origin alterado com sucesso!";
-
-                header("location: /gtx2/control/control.areaLogada.php");
-            }
-
-            break;
-        case 'perfilSenha':
-            $idSessao  = (int) $_SESSION['id_sessao'];
-            $novaSenha = (int) $_POST['novaSenha'];
-
-            $responseAlteraSenha = "Falha. Use senha uma numérica de 10 digitos!";
-
-            if (
-                !empty($novaSenha) 
-                && (strlen($novaSenha) == 10)
-            ) {
-                $pessoa = new Pessoa;
-                $pessoa->atualizaSenha($idSessao, $novaSenha);
-                $responseAlteraSenha = "Senha alterada com sucesso!";
-            }
-
-            break;
-        case 'salvaVersao':
-            $versao = (int) $_POST['versao'];
-
-            if ($versao != verificaVersao()){
-                alteraVersao($versao);
-
-                header("location: /index.php");
-            }
-
-            break;
-        case 'form_sair':
-            require __DIR__ . "/../funcoes/func.sair.php";
-
-            sair();
-            break;
-    }
-}
-
-if (
-    !empty($_SERVER['REQUEST_METHOD']) 
-    && $_SERVER['REQUEST_METHOD'] == 'POST' 
-    && isset($_POST['acaoMembrosAdm'])
-) {
-    $formMembrosAdm = (array) $_POST['acaoMembrosAdm'];
-
-    switch ($formMembrosAdm[1]) {
-        case 'Salvar' :
-            $pessoa = new Pessoa;
-            $pessoa->alteraStatus($formMembrosAdm[2], $formMembrosAdm[0]);
-
-            header("location: /gtx2/control/control.areaLogada.php");
-            break;
-        case 'Excluir' :
-            $pessoa = new Pessoa;
-            $pessoa->excluiPessoa($formMembrosAdm[2]);
-
-            header("location: /gtx2/control/control.arealogada.php");
-            break;
-        }
 }
 
 if (

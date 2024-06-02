@@ -47,7 +47,7 @@ CREATE TABLE canalstream (
     id INT UNIQUE NOT NULL,
     plataforma INT,
     link_canal VARCHAR(50),
-    nickstream VARCHAR(20),
+    nick_stream VARCHAR(20),
     FOREIGN KEY (id) REFERENCES membros(id),
     FOREIGN KEY (plataforma) REFERENCES plataformastream(id)
 );
@@ -58,7 +58,7 @@ CREATE TABLE statussenha(
 CREATE TABLE recuperasenha(
     id INT NOT NULL,
     nick VARCHAR(20) NOT NULL,
-    novasenha TEXT NOT NULL,
+    nova_senha TEXT NOT NULL,
     solicit_senha INT NOT NULL,
     data_solicit DATE NOT NULL,
     id_unico SERIAL,
@@ -94,5 +94,5 @@ INSERT INTO plataformagame (id, descricao) VALUES
 INSERT INTO membros (nome, nick, plataforma, status_solicit, senha) VALUES 
 ('Administrador', 'adm', 1, 4, '$2y$10$PHBLahBLh4F0oX4iBcpUmef7o1TzdA6x3dIGYkR3v3xWrrRWRYwyS');
 
-INSERT INTO canalstream (id, plataforma, link_canal, nickstream) VALUES
+INSERT INTO canalstream (id, plataforma, link_canal, nick_stream) VALUES
 (1, NULL, NULL, NULL);

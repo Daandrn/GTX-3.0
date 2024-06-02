@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Config\DataBase;
-use PDO;
 use Vendor\Model\Model;
 
 require_once __DIR__ . '/../../Vendor/autoload.php';
@@ -16,7 +14,7 @@ class StreamChannel extends Model
             'id',
             'plataforma',
             'link_canal',
-            'nickstream',
+            'nick_stream',
         ];
         
         return new StreamChannel('canalstream', $fillable);

@@ -3,9 +3,12 @@
 namespace App\Services;
 
 use App\DTO\Membros\CreateMembroDTO;
+use App\DTO\Membros\UpdateNickDTO;
+use App\DTO\Membros\UpdatePasswordDTO;
 use App\DTO\Membros\UpdateStatusMembroDTO;
 use App\Repositories\MembrosRepository;
 use stdClass;
+use Vendor\Helpers\SanitizeInput;
 
 require_once __DIR__ . '/../../Vendor/autoload.php';
 
@@ -73,18 +76,76 @@ class MembrosService
             CreateMembroDTO::make((array) $request),
         );
 
-        if ($response) {
+        if ($response->id) {
             $this->streamChannelService->newStream($response->id);
         }
 
         return ['message' => "Solicitação realizada com sucesso, aguarde que seja aprovada por um dos administradores!"];
     }
 
-    public function update(array $request): bool
+    public function updateNick(UpdateNickDTO $dto, int $id): array
+    {
+        if (preg_match('[\'"<>&;/\|]', $dto->nick)) {
+            return ['message' => "O campo nick não pode conter caracteres especiais!"];
+        }
+        
+        $dto->nick = SanitizeInput::make($dto->nick);
+        
+        if (!strlen($dto->nick) > 0) {
+            return ['message' => "O nick é obrigatório!"];
+        }
+        
+        if (strlen($dto->nick) < 3 || strlen($dto->nick) > 20) {
+            return ['message' => "O nick deve ter no mínimo 3 e no maximo 20 caracteres!"];
+        }
+        
+        $memberExists = $this->membrosRepository->memberExists(id: $id);
+
+        if (!$memberExists) {
+            return ['message' => "Membro informado não existe. Verifique!"];
+        }
+        
+        $nickUpdated = $this->membrosRepository->updateNick($dto, $id);
+
+        $_SESSION['nick'] = $nickUpdated->nick;
+
+        return ['message' => "Nick alterado com sucesso!"];
+    }
+
+    public function updatePassword(UpdatePasswordDTO $dto, int $id): array
+    {
+        $dto->senha = SanitizeInput::make($dto->senha);
+        
+        if (!strlen($dto->senha) > 0) {
+            return ['message' => "A senha é obrigatória!"];
+        }
+        
+        if (strlen($dto->senha) < 8) {
+            return ['message' => "A senha deve conter no mínimo 8 caracteres!"];
+        }
+        
+        $memberExists = $this->membrosRepository->memberExists(id: $id);
+
+        if (!$memberExists) {
+            return ['message' => "Membro informado não existe. Verifique!"];
+        }
+
+        $dto->senha = password_hash($dto->senha, PASSWORD_BCRYPT);
+        
+        $wasUpdated = $this->membrosRepository->updatePassword($dto, $id);
+
+        if ($wasUpdated) {
+            return ['message' => "Senha alterada com sucesso!"];
+        }
+        
+        return ['message' => "Erro ao alterar senha. verifique!"];
+    }
+
+    public function updateStatusMember(array $request): bool
     {
         require __DIR__ . '/../DTO/Membros/UpdateStatusMembroDTO.php';
 
-        return $this->membrosRepository->update(
+        return $this->membrosRepository->updateStatusMember(
             UpdateStatusMembroDTO::make($request['acaoMembrosAdm'])
         );
     }

@@ -20,7 +20,7 @@
                         <td><?php echo $membro->nick; ?></td>
                         <td><?php echo $membro->cargo_membro; ?></td>
                         <td>
-                            <a id="linkcanal" href="https://<?php echo $membro->link_canal; ?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $membro->nickstream; ?></a>
+                            <a id="linkcanal" href="https://<?php echo $membro->link_canal; ?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $membro->nick_stream; ?></a>
                         </td>
                         <td><?php echo $membro->plataforma_game; ?></td>
                     </tr>

@@ -38,18 +38,18 @@
         <div id="dadosPessoais">
             <div id="canalStream">
                 <form action="/alteracanalstream" method="POST">
-                    <h3>Canal Stream</h3>
+                    <h3>Canal de Stream</h3>
                     <div>
-                        <label for="nickStream">Nick stream</label>
-                        <input type="text" name="nickStream" value="<?php echo $items['dadoStream']['nickStream'] ?? ''; ?>" placeholder="Nickstream" maxlength="20">
+                        <label for="nick_stream">Nick stream</label>
+                        <input type="text" name="nick_stream" id="nick_stream" value="<?php echo $items['dadoStream']['nickStream'] ?? ''; ?>" placeholder="Nickstream" maxlength="20">
                     </div>
                     <div>
-                        <label for="linkStream">Link canal</label>
-                        <input type="text" name="linkStream" value="<?php echo $items['dadoStream']['linkcanal'] ?? ''; ?>" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv." maxlength="50">
+                        <label for="link_canal">Link canal</label>
+                        <input type="text" name="link_canal" id="link_canal" value="<?php echo $items['dadoStream']['linkCanal'] ?? ''; ?>" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv." maxlength="50">
                     </div>
                     <div>
                         <label for="plataforma">Plataforma</label>
-                        <select name="plataforma" id="">
+                        <select name="plataforma" id="plataforma">
                             <option value=""></option>
                             <?php foreach ($items['plataformasStream'] as $plat) : ?>
                                 <option value="<?php echo $plat->id; ?>" <?php echo $plat->id == ($items['dadoStream']['plataforma'] ?? '') ? "selected" : ''; ?>><?php echo $plat->descricao; ?></option>
@@ -65,7 +65,7 @@
                         </span>
                 </form>
                 <span>
-                    <form method="POST">
+                    <form action="/limpacanalstream" method="POST">
                         <input type="hidden" name="formLogado" value="excluiCanalStream">
                         <input type="submit" value="Excluir">
                     </form>
@@ -85,11 +85,11 @@
         </div>
         <div id="perfil">
             <div>
-                <form method="POST">
+                <form action="/alteranick" method="POST">
                     <h3>Perfil</h3>
                     <div>
-                        <label for="">Nick/origin</label>
-                        <input type="text" name="origin" value="<?php echo $nickPerfil ?? '' ?>" maxlength="15" pattern="[a-zA-Z0-9]*">
+                        <label for="nick">Nick/origin</label>
+                        <input type="text" name="nick" id="nick" value="<?php echo $items['nickPerfil'] ?? ''; ?>" maxlength="15" pattern="[a-zA-Z0-9]*">
                     </div>
                     <input type="hidden" name="formLogado" value="perfilNick">
                     <input type="submit" value="Salvar Nick" class="salvarPerfil">
@@ -105,10 +105,10 @@
                 </script>
             </div>
             <div>
-                <form method="POST">
+                <form action="/alterasenha" method="POST">
                     <div>
-                        <label for="novaSenha">Nova senha</label>
-                        <input type="password" name="novaSenha" id="" pattern="[0-9]*" placeholder="Nova senha" maxlength="10" title="Insira sua senha numérica.">
+                        <label for="senha">Nova senha</label>
+                        <input type="password" name="senha" id="senha" placeholder="Nova senha" maxlength="10" title="Insira sua senha numérica.">
                     </div>
                     <input type="hidden" name="formLogado" value="perfilSenha">
                     <input type="submit" value="Salvar Senha" class="salvarPerfil">

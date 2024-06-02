@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\DTO\Membros\CreateMembroDTO;
+use App\DTO\Membros\UpdateNickDTO;
+use App\DTO\Membros\UpdatePasswordDTO;
 use App\DTO\Membros\UpdateStatusMembroDTO;
 use App\Models\Membros;
 use stdClass;
@@ -18,15 +20,24 @@ class MembrosRepository
         $this->membrosModel = Membros::newInstance();
     }
 
-    public function memberExists(string $nick): bool
+    public function memberExists(?string $nick = null, ?int $id = null): stdClass|false
     {
-        $memberExists = $this->membrosModel->select(
-            fields: ['id', 'nick'],
-            where: ['nick', '=', "'$nick'", 'limit 1'],
-        );
+        if ($nick) {
+            $memberExists = $this->membrosModel->select(
+                fields: ['id', 'nick'],
+                where: ['nick', '=', "'$nick'", 'limit 1'],
+            );
+        }
 
-        return $memberExists
-                ? true
+        if ($id) {
+            $memberExists = $this->membrosModel->select(
+                fields: ['id', 'nick'],
+                where: ['id', '=', "'$id'", 'limit 1'],
+            );
+        }
+
+        return !empty($memberExists)
+                ? $memberExists[0]
                 : false;
     }
 
@@ -39,7 +50,7 @@ class MembrosRepository
                 'membros.nick',
                 'statusmembro.descricao as cargo_membro',
                 'canalstream.link_canal',
-                'canalstream.nickstream',
+                'canalstream.nick_stream',
                 'plataformagame.descricao as plataforma_game',
             ],
             join: [
@@ -112,7 +123,7 @@ class MembrosRepository
                 'membros.nome',
                 'membros.nick',
                 'membros.status_solicit',
-                'canalstream.nickstream',
+                'canalstream.nick_stream',
                 'canalstream.link_canal',
                 'canalstream.plataforma',
             ],
@@ -138,17 +149,40 @@ class MembrosRepository
             );
         }
 
-        return $insert
+        return !empty($newMember)
                 ? $newMember[0]
                 : false;
     }
 
-    public function update(UpdateStatusMembroDTO $dto): bool
+    public function updateStatusMember(UpdateStatusMembroDTO $dto): bool
     {
         return $this->membrosModel->update(
-            id: $dto->id,
             data: ['status_solicit' => $dto->status_solicit],
+            id: $dto->id,
         );
+    }
+
+    public function updateNick(UpdateNickDTO $dto, int $id): stdClass|false
+    {
+        $wasUpdated = $this->membrosModel->update($dto->toArray(), $id);
+
+        if ($wasUpdated) {
+            $nickUpdated = $this->membrosModel->select(
+                fields: ['id', 'nick'],
+                where: ['id', '=', $id, 'limit 1'],
+            );
+        }
+
+        return $wasUpdated
+                ? $nickUpdated[0]
+                : false;
+    }
+
+    public function updatePassword(UpdatePasswordDTO $dto, int $id): bool
+    {
+        $wasUpdated = $this->membrosModel->update($dto->toArray(), $id);
+
+        return $wasUpdated;
     }
 
     public function delete(int $id): bool

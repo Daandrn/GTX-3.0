@@ -12,7 +12,7 @@
                     </div>
                     <div>
                         <label for="senha_login">Senha: </label>
-                        <input type="password" name="senha_login" id="senha_login" maxlength="10" size="10" pattern="[0-9]*" placeholder="Senha" title="Insira sua senha numérica." autocomplete="off">
+                        <input type="password" name="senha_login" id="senha_login" maxlength="10" size="10" placeholder="Senha" title="Insira sua senha." autocomplete="off">
                     </div>
                     <div>
                         <input type="hidden" name="formInicio" value="form_login">
