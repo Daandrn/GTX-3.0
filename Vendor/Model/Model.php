@@ -79,13 +79,13 @@ class Model implements ModelInterface
         $consulta = DataBase::conn()->prepare($sql);
 
         foreach ($this->fillable as $key => $value) {
-            $consulta->bindParam(":{$key}", $data["$value"]);
+            $consulta->bindValue(":{$key}", $data["$value"]);
         }
 
         return $consulta->execute();
     }
 
-    public function update(int $id = null, array $data): bool
+    public function update(array $data, int $id = null): bool
     {
         $values = "";
         array_walk($data, function ($value, $key) use (&$values): string {
@@ -100,10 +100,12 @@ class Model implements ModelInterface
         $sql = "UPDATE {$this->tableName} SET {$values} {$where}";
         $consulta = DataBase::conn()->prepare($sql);
 
-        $consulta->bindParam(":id", $id);
+        if ($id) {
+            $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+        }
 
         foreach ($data as $key => $value) {
-            $consulta->bindParam(":{$key}", $value);
+            $consulta->bindValue(":{$key}", $value);
         }
 
         return $consulta->execute();
@@ -115,7 +117,7 @@ class Model implements ModelInterface
 
         $sql = "DELETE FROM {$this->tableName} {$where}";
         $consulta = DataBase::conn()->prepare($sql);
-        $consulta->bindParam(':id', $id, PDO::PARAM_INT);
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $consulta->execute();
     }
