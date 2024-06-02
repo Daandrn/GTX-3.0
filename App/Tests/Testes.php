@@ -2,8 +2,10 @@
 
 namespace App\tests;
 
+use App\DTO\Membros\UpdatePasswordDTO;
 use App\Repositories\StreamChannelRepository;
 use App\Requests\Request;
+use App\Services\MembrosService;
 
 require_once __DIR__ . '/../../Vendor/autoload.php';
 
@@ -17,6 +19,7 @@ class Testes
         //$this->novoCanalStream(999);
         //$this->verificaConteudoRequisicao();
         //$this->verificaSessao();
+        //$this->alterarSenha('12345678', 1);
     }
 
     private function novoCanalStream(int $id)
@@ -36,6 +39,14 @@ class Testes
     {
         session_start();
         var_dump($_SESSION);
+        echo "<br>";
+    }
+
+    private function alterarSenha(string $password, int $id): void
+    {
+        $dto = UpdatePasswordDTO::make((object) ['senha' => $password]);
+        (new MembrosService())->updatePassword($dto, $id);
+        var_dump('Senha alterada com sucesso!');
         echo "<br>";
     }
 

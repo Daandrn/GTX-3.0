@@ -2,7 +2,7 @@
 
 namespace App\DTO\Membros;
 
-require_once __DIR__.'/../../../Vendor/autoload.php';
+require_once __DIR__ . '/../../../Vendor/autoload.php';
 
 class UpdateStatusMembroDTO
 {
@@ -14,7 +14,7 @@ class UpdateStatusMembroDTO
 
     public static function make(array $request): self
     {
-        $id = (int) $request[2];
+        $id             = (int) $request[2];
         $status_solicit = (int) $request[0];
 
         return new self(

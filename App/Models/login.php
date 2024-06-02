@@ -18,10 +18,10 @@ class Login extends Model
             'status_solicit',
             'senha',
         ];
-        
+
         return new Login('membros', $fillable);
     }
-    
+
     public function loginPasswordMember(string $nick): stdClass|null
     {
         $membro = $this->select(
@@ -30,13 +30,13 @@ class Login extends Model
                 'nome',
                 'nick',
                 'status_solicit',
-                'senha'
+                'senha',
             ],
             where: ['nick', '=', "'$nick'", 'AND status_solicit IN (0, 1, 4) limit 1'],
         );
 
         return !empty($membro)
-                ? $membro[0]
-                : null;
+            ? $membro[0]
+            : null;
     }
 }

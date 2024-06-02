@@ -5,11 +5,10 @@ namespace App\Controllers;
 use App\Models\Login;
 use App\Repositories\MembrosRepository;
 
-require_once __DIR__.'/../../Vendor/autoload.php';
+require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class LoginController
 {
-    protected MembrosRepository $membrosRepository;
     protected Login $loginModel;
 
     public function __construct()

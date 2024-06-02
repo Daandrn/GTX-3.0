@@ -2,14 +2,14 @@
 
 namespace App\DTO;
 
-require_once __DIR__.'/../../Vendor/autoload.php';
+require_once __DIR__ . '/../../Vendor/autoload.php';
 
 class UpdateStreamChannelDTO
 {
-    public int|null $plataforma;
+    public int|null    $plataforma;
     public string|null $link_canal;
     public string|null $nick_stream;
-    
+
     protected function __construct(object $data)
     {
         $this->plataforma  = is_numeric($data->plataforma) ? (int) $data->plataforma : null;
@@ -24,7 +24,7 @@ class UpdateStreamChannelDTO
             'link_canal'  => $request->link_canal,
             'nick_stream' => $request->nick_stream,
         ];
-        
+
         return new self($data);
     }
 
@@ -35,7 +35,7 @@ class UpdateStreamChannelDTO
             'link_canal'  => $this->link_canal,
             'nick_stream' => $this->nick_stream,
         ];
-        
+
         return $array;
     }
 }

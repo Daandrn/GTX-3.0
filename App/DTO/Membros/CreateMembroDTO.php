@@ -4,7 +4,7 @@ namespace App\DTO\Membros;
 
 use App\Enums\StatusSolicit;
 
-require_once __DIR__.'/../../../Vendor/autoload.php';
+require_once __DIR__ . '/../../../Vendor/autoload.php';
 
 class CreateMembroDTO
 {
@@ -24,7 +24,7 @@ class CreateMembroDTO
             $request['nick_recrut'],
             $request['plataforma_recrut'],
             StatusSolicit::STATUS_PENDENTE->value,
-            password_hash('123456', PASSWORD_BCRYPT),
+            password_hash('12345678', PASSWORD_BCRYPT),
         );
     }
 }

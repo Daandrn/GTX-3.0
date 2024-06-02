@@ -40,14 +40,14 @@ Route::post(['novo'], InicioController::class, 'inicioRecruit');
 Route::get(['inicio', ''], InicioController::class, 'index');
 
 Route::delete(['excluir'], MembrosController::class, 'delete');
+Route::patch(['alteracanalstream'], MembrosController::class, 'alteraCanalStream');
+Route::patch(['limpacanalstream'], MembrosController::class, 'limpaCanalStream');
+Route::patch(['alteranick'], MembrosController::class, 'alteraNick');
+Route::patch(['alterasenha'], MembrosController::class, 'alteraSenha');
 Route::patch(['alterastatusmembro'], MembrosController::class, 'alteraStatusMembro');
 Route::get(['membros'], MembrosController::class, 'listaMembros');
 
 Route::post(['sair'], AreaLogadaController::class, 'exit');
-Route::patch(['alteracanalstream'], AreaLogadaController::class, 'alteraCanalStream');
-Route::patch(['limpacanalstream'], AreaLogadaController::class, 'limpaCanalStream');
-Route::patch(['alteranick'], AreaLogadaController::class, 'alteraNick');
-Route::patch(['alterasenha'], AreaLogadaController::class, 'alteraSenha');
 Route::get(['arealogada'], AreaLogadaController::class, 'index');
 
 Route::get(['salavideos'], SalaVideosController::class, 'index');
