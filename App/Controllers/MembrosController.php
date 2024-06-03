@@ -25,11 +25,6 @@ class MembrosController
         $this->membrosService       = new MembrosService;
         $this->streamChannelService = new StreamChannelService;
         $this->areaLogadaService    = new AreaLogadaService;
-
-        if (!$this->areaLogadaService->sessionExists()) {
-            Redirect::to("inicio");
-            return;
-        }
     }
 
     public function listaMembros()
@@ -49,6 +44,11 @@ class MembrosController
 
     public function alteraCanalStream()
     {
+        if (!$this->areaLogadaService->sessionExists()) {
+            Redirect::to("inicio");
+            return;
+        }
+        
         $request = Request::new();
         $id      = (int) $_SESSION['id_sessao'];
 
@@ -62,6 +62,11 @@ class MembrosController
 
     public function limpaCanalStream()
     {
+        if (!$this->areaLogadaService->sessionExists()) {
+            Redirect::to("inicio");
+            return;
+        }
+
         $id = (int) $_SESSION['id_sessao'];
 
         $data = (object) [
@@ -80,6 +85,11 @@ class MembrosController
 
     public function excluiCanalStream()
     {
+        if (!$this->areaLogadaService->sessionExists()) {
+            Redirect::to("inicio");
+            return;
+        }
+
         $id       = (int) $_SESSION['id_sessao'];
         $response = $this->streamChannelService->deleteStream($id);
 
@@ -88,6 +98,11 @@ class MembrosController
 
     public function alteraNick()
     {
+        if (!$this->areaLogadaService->sessionExists()) {
+            Redirect::to("inicio");
+            return;
+        }
+
         $Request = Request::new();
         $id      = (int) $_SESSION['id_sessao'];
 
@@ -101,6 +116,11 @@ class MembrosController
 
     public function alteraSenha()
     {
+        if (!$this->areaLogadaService->sessionExists()) {
+            Redirect::to("inicio");
+            return;
+        }
+
         $Request = Request::new();
         $id      = (int) $_SESSION['id_sessao'];
 
