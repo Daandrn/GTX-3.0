@@ -140,7 +140,7 @@ final class Route
      * Verifica se a requisição tipo GET está vazia.
      * @return bool
      */
-    private static function getRequestVerify(): bool
+    public static function getRequestVerify(): bool
     {
         return $_SERVER['REQUEST_METHOD'] === 'GET';
     }
@@ -149,7 +149,7 @@ final class Route
      * Verifica se a requisição tipo POST está vazia.
      * @return bool
      */
-    private static function postRequestVerify(): bool
+    public static function postRequestVerify(): bool
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
