@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use App\DTO\SolicitUpdatePassword;
 use App\Models\RecuperaSenha;
+use stdClass;
 
 require_once __DIR__ . '/../../Vendor/autoload.php';
 
@@ -15,19 +17,26 @@ class RecuperaSenhaRepository
         $this->recuperaSenha = RecuperaSenha::newInstance();
     }
 
+    public function new(SolicitUpdatePassword $dto): bool
+    {
+        $wasCreated = $this->recuperaSenha->insert($dto->toArray());
+        
+        return $wasCreated;
+    }
+
     public function getPendingSolicities(): array|null
     {
         $solicities = $this->recuperaSenha->select(
             fields: [
                 'membros.nome',
+                'recuperasenha.member_id',
                 'recuperasenha.id',
-                'recuperasenha.id_unico',
                 'recuperasenha.nick',
                 'recuperasenha.data_solicit',
-                'statussenha.descricao AS statussenha',
+                'statussenha.descricao AS status_senha',
             ],
             join: [
-                ['membros', 'id', 'right'],
+                ['membros', 'id', 'inner', 'member_id'],
                 ['statussenha', 'solicit_senha', 'left'],
             ],
             where: [
@@ -41,71 +50,26 @@ class RecuperaSenhaRepository
                 : null;
     }
 
-    // public function alteraSenha(int $id, int $idSolicit): bool|string
-    // {
-    //     try {
-    //         $consulta = connection()->prepare("UPDATE pessoa 
-    //                                             SET senha = (SELECT novasenha 
-    //                                                             FROM recuperasenha 
-    //                                                             WHERE id_unico = :id_unico)
-    //                                             WHERE id = :id");
-    //         $consulta->bindParam(':id', $idPessoa, PDO::PARAM_INT);
-    //         $consulta->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
-    //         $consulta->execute();
-    //     } catch (PDOException $erro) {
-    //         return "Erro ao alterar senha: " . $erro->getMessage();
-    //     }
+    public function getSolicityToMember(int $member_id): stdClass|false
+    {
+        $solicity = $this->recuperaSenha->select(
+            where: ['member_id', '=', $member_id, 'and solicit_senha = 1 ORDER BY data_solicit DESC limit 1'],
+        );
 
-    //     try {
-    //         $consulta2 = connection()->prepare("UPDATE recuperasenha
-    //                                             SET solicit_senha = 0
-    //                                             WHERE id_unico = :id_unico AND solicit_senha = 1");
-    //         $consulta2->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
+        return !empty($solicity)
+                ? $solicity[0]
+                : false;
+    }
 
-    //         return $consulta2->execute();
-    //     } catch (PDOException $erro) {
-    //         return "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
-    //     }
-    // }
+    public function updateStatusSolicity(int $id, int $status_solicit): bool
+    {
+        $wasUpdated = $this->recuperaSenha->update(
+            ['solicit_senha' => $status_solicit],
+            $id,
+        );
 
-    // /**
-    //  * Usado quando é necessário negar uma solicitação de nova senha
-    //  */
-    // public function reprovaNovaSenha(int $idSolicit): bool|string
-    // {
-    //     try {
-    //         $consulta = connection()->prepare("UPDATE recuperasenha
-    //                                             SET solicit_senha = 2
-    //                                             WHERE id_unico = :id_unico");
-    //         $consulta->bindParam(':id_unico', $idUnico, PDO::PARAM_INT);
-
-    //         return $consulta->execute();
-    //     } catch (PDOException $erro) {
-    //         return "Erro ao alterar status da solicitação de senha: " . $erro->getMessage();
-    //     }
-    // }
-
-    // /**
-    //  * Recuperar senha da pessoa
-    //  */
-    // public function recuperaSenha(string $nick, int $newPassword): bool|string
-    // {
-    //     try {
-    //         $consulta1 = connection()->query("SELECT max(id_unico) AS id_unico FROM recuperasenha");
-    //         $resultado = $consulta1->fetch(PDO::FETCH_ASSOC);
-    //         $maxIdUnico = $resultado['id_unico'] + 1;
-
-    //         $dataSolicit = date('d-m-Y');
-
-    //         $consulta2 = connection()->prepare("INSERT INTO recuperasenha VALUES ((SELECT id FROM pessoa WHERE nick = :nick), :nick, :novaSenha, 1, :dataSolicit, :id_unico)");
-    //         $consulta2->bindParam(':nick', $nickPessoa, PDO::PARAM_STR);
-    //         $consulta2->bindParam(':novaSenha', $novaSenha, PDO::PARAM_STR);
-    //         $consulta2->bindParam(':dataSolicit', $dataSolicit, PDO::PARAM_STR);
-    //         $consulta2->bindParam('id_unico', $maxIdUnico, PDO::PARAM_INT);
-
-    //         return $consulta2->execute();
-    //     } catch (PDOexception $erro) {
-    //         return "Erro ao solicitar nova senha: " . $erro->getMessage();
-    //     }
-    // }   
+        return $wasUpdated
+                ? true
+                : false;
+    }
 }

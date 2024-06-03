@@ -11,12 +11,11 @@ class RecuperaSenha extends Model
     public static function newInstance(): self
     {
         $fillable = [
-            'id',
+            'member_id',
             'nick',
-            'novasenha',
+            'nova_senha',
             'solicit_senha',
             'data_solicit',
-            'id_unico',
         ];
         
         return new RecuperaSenha('recuperasenha', $fillable);

@@ -287,17 +287,25 @@
                                     <tr>
                                         <td class="formatNome"><?php echo $novaSenha->nome; ?></td>
                                         <td class="formatNick"><?php echo $novaSenha->nick; ?></td>
-                                        <td class="formatPlataforma"><?php echo $novaSenha->data_solicit; ?></td>
-                                        <td class="formatStatus"><?php echo $novaSenha->statussenha; ?></td>
+                                        <td class="formatPlataforma"><?php echo (new DateTime($novaSenha->data_solicit))->format('d/m/y'); ?></td>
+                                        <td class="formatStatus"><?php echo $novaSenha->status_senha; ?></td>
                                         <td class="formatAcao">
-                                            <form action="/alterastatusmembro" method="post">
-                                                <div>
-                                                    <input type="submit" name="acaoAlteraSenha[]" value="Aprovar">
-                                                    <input type="submit" name="acaoAlteraSenha[]" value="Reprovar">
-                                                    <input type="hidden" name="acaoAlteraSenha[]" value="<?php echo $novaSenha->id; ?>">
-                                                    <input type="hidden" name="acaoAlteraSenha[]" value="<?php echo $novaSenha->id_unico; ?>">
-                                                </div>
-                                            </form>
+                                            <div id="formsAcaoNovaSenha">
+                                                <form action="/aprovasenha" method="post">
+                                                    <div>
+                                                        <input type="submit" name="acaoAlteraSenha" value="Aprovar">
+                                                        <input type="hidden" name="member_id" id="member_id" value="<?php echo $novaSenha->member_id; ?>">
+                                                        <input type="hidden" name="id" id="id" value="<?php echo $novaSenha->id; ?>">
+                                                    </div>
+                                                </form>
+                                                <form action="/reprovasenha" method="post">
+                                                    <div>
+                                                        <input type="submit" name="acaoAlteraSenha" value="Reprovar">
+                                                        <input type="hidden" name="member_id" id="member_id" value="<?php echo $novaSenha->member_id; ?>">
+                                                        <input type="hidden" name="id" id="id" value="<?php echo $novaSenha->id; ?>">
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

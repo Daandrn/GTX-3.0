@@ -18,9 +18,9 @@ form {
     align-items: center;
     justify-content: center;
     background-color:#525252;
-    border-radius: 7px;
+    border-radius: 0px 0px 7px 7px;
     width: 396px;
-    height: 292.5px;
+    height: 142.5px;
     color: white;
 }
 

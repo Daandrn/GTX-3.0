@@ -11,18 +11,17 @@
 <body id="bodyRecuperaSenha">
     <div id="divRecuperaSenha">
         <h4>Recuperação de senha</h4>
-        <form action="/gtx2/control/control.recuperaSenha.php" method="post">
+        <form method="post" id="formRecuperaSenha">
             <div>
-                <label for="origin">Nick/origin</label>
-                <input type="text" name="origin" id="origin" maxlength="15" size="30" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick sem espaços ou caracteres especiais.">
+                <label for="nick">Nick/origin</label>
+                <input type="text" name="nick" id="nick" maxlength="15" size="30" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick sem espaços ou caracteres especiais.">
             </div>
             <div>
-                <label for="newSenha">Nova senha</label>
-                <input type="password" name="newSenha" id="newSenha" maxlength="10" size="10" pattern="[0-9]*" placeholder="Senha" title="Insira sua nova senha numérica." autocomplete="off">
+                <label for="nova_senha">Nova senha</label>
+                <input type="password" name="nova_senha" id="nova_senha" maxlength="10" size="10" placeholder="Senha" title="Insira sua nova senha numérica." autocomplete="off">
             </div>
             <input type="hidden" name="recuperaSenhaFrame" value="recuperarSenha">
             <input type="submit" id="botaoRecuperaSenha" value="Recuperar senha">
-            <button type="button" id="botaoFecharRecuperaSenha">fechar</button>
         </form>
     </div>
     <script>
@@ -51,9 +50,26 @@
             alert(responseExisteSolicit)
         }
 
-        let recuperaSenhaFrame = document.querySelector('#recuperaSenhaFrame');
-        const botaoFecharRecuperaSenha = document.querySelector('#botaoFecharRecuperaSenha').addEventListener('click', function() {
-            recuperaSenhaFrame.style.display = 'none';
+        const formRecuperaSenha = document.querySelector('#formRecuperaSenha').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const xhr = new XMLHttpRequest;
+
+            let nick = document.querySelector('#nick').value;
+            let nova_senha = document.querySelector('#nova_senha').value;
+
+            let data = JSON.stringify({'nick': nick, 'nova_senha': nova_senha});
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    let response = JSON.parse(xhr.response);
+                    alert(response.message);
+                }
+            };
+
+            xhr.open('POST', '/recuperasenha');
+
+            xhr.send(data);
         });
     </script>
 </body>

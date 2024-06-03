@@ -22,6 +22,7 @@
                 </form>
             </div>
             <span id="recuperaSenhaFrame" style="display: none;">
+                <div id="divBotaoFecharRecuperaSenha"><button type="button" id="botaoFecharRecuperaSenha" ><b>X</b></button></div>
                 <iframe src="/Views/recuperaSenha.view.php" frameborder="2" id="frameRecuperaSenha"></iframe>
             </span>
             <div id="quemsomos">
@@ -67,8 +68,13 @@
         let message = <?php echo isset($items['message']) ? json_encode($items['message']) : json_decode(0); ?>;
 
         let recuperaSenhaFrame = document.querySelector('#recuperaSenhaFrame');
+
         const buttonNovaSenha = document.querySelector('#buttonNovaSenha').addEventListener('click', function() {
             recuperaSenhaFrame.style.display = '';
+        });
+
+        const botaoFecharRecuperaSenha = document.querySelector('#botaoFecharRecuperaSenha').addEventListener('click', function() {
+            recuperaSenhaFrame.style.display = 'none';
         });
     </script>
     <script src="/Public/Js/alert.js"></script>
