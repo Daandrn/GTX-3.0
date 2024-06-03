@@ -44,6 +44,21 @@ class MembrosService
         return $rejected;
     }
 
+    public function memberExists(?string $nick = null, ?int $id = null): stdClass|false
+    {
+        if ($nick) {
+            $memberExists = $this->membrosRepository->memberExists(nick: $nick);
+            return $memberExists;
+        }
+
+        if ($id) {
+            $memberExists = $this->membrosRepository->memberExists(id: $id);
+            return $memberExists;
+        }
+
+        return false;
+    }
+
     public function memberWithStream(int $id): stdClass|null
     {
         return $this->membrosRepository->memberWithStream($id);
@@ -64,7 +79,7 @@ class MembrosService
             return ['message' => "Nick inválido!"];
         }
 
-        $memberExists = $this->membrosRepository->memberExists($request->nick_recrut);
+        $memberExists = $this->memberExists(nick: $request->nick_recrut);
 
         if ($memberExists) {
             return ['message' => "O nick {$request->nick_recrut} já está sendo utilizado! Utilize o recuperar senha ou procure um administrador."];
@@ -97,7 +112,7 @@ class MembrosService
             return ['message' => "O nick deve ter no mínimo 3 e no maximo 20 caracteres!"];
         }
 
-        $memberExists = $this->membrosRepository->memberExists(id: $id);
+        $memberExists = $this->memberExists(id: $id);
 
         if (!$memberExists) {
             return ['message' => "Membro informado não existe. Verifique!"];
@@ -122,13 +137,15 @@ class MembrosService
             return ['message' => "A senha deve conter no mínimo 8 caracteres!"];
         }
 
-        $memberExists = $this->membrosRepository->memberExists(id: $id);
+        $memberExists = $this->memberExists(id: $id);
 
         if (!$memberExists) {
             return ['message' => "Membro informado não existe. Verifique!"];
         }
 
-        $dto->senha = password_hash($dto->senha, PASSWORD_BCRYPT);
+        if (password_get_info($dto->senha)['algoName'] !== 'bcrypt') {
+            $dto->senha = password_hash($dto->senha, PASSWORD_BCRYPT);
+        }
 
         $wasUpdated = $this->membrosRepository->updatePassword($dto, $id);
 
