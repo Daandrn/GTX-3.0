@@ -27,7 +27,7 @@ CREATE TABLE statusmembro (
 );
 CREATE TABLE plataformagame (
     id INT PRIMARY KEY UNIQUE,
-    descricao TEXT
+    descricao TEXT NOT NULL
 );
 CREATE TABLE membros (
     id SERIAL PRIMARY KEY,
@@ -56,12 +56,12 @@ CREATE TABLE statussenha(
     descricao TEXT NOT NULL
 );
 CREATE TABLE recuperasenha(
-    id INT NOT NULL,
+    id SERIAL UNIQUE,
+    member_id INT NOT NULL,
     nick VARCHAR(20) NOT NULL,
     nova_senha TEXT NOT NULL,
     solicit_senha INT NOT NULL,
     data_solicit DATE NOT NULL,
-    id_unico SERIAL,
     FOREIGN KEY (solicit_senha) REFERENCES statussenha(solicit_senha)
 );
 
@@ -76,7 +76,7 @@ INSERT INTO statusmembro (status_solicit, descricao) VALUES
 INSERT INTO statussenha (solicit_senha, descricao) VALUES
 (0, 'Aprovado'),
 (1, 'Solicitado'),
-(2,'Reprovado');
+(2, 'Reprovado');
 
 INSERT INTO plataformastream (id, descricao) VALUES
 (1, 'Youtube'),
