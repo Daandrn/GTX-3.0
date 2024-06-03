@@ -21,6 +21,7 @@ CREATE DATABASE "GTX3"
 Executar o sql no ADM do BD
 */
 -- Cria as tabelas
+BEGIN;
 CREATE TABLE statusmembro (
     status_solicit INT PRIMARY KEY UNIQUE,
     descricao TEXT NOT NULL
@@ -64,8 +65,10 @@ CREATE TABLE recuperasenha(
     data_solicit DATE NOT NULL,
     FOREIGN KEY (solicit_senha) REFERENCES statussenha(solicit_senha)
 );
+COMMIT;
 
 -- Insere os dados constantes da aplicação
+BEGIN;
 INSERT INTO statusmembro (status_solicit, descricao) VALUES 
 (0, 'Pendente'),
 (1, 'Membro'),
@@ -96,3 +99,4 @@ INSERT INTO membros (nome, nick, plataforma, status_solicit, senha) VALUES
 
 INSERT INTO canalstream (id, plataforma, link_canal, nick_stream) VALUES
 (1, NULL, NULL, NULL);
+COMMIT;

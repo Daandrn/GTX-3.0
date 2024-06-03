@@ -15,8 +15,6 @@ require_once __DIR__ . '/../Vendor/autoload.php';
 $routes = [
     'get' => [
         '',
-        'login',
-        'novo',
         'inicio',
         'membros',
         'arealogada',
@@ -24,6 +22,8 @@ $routes = [
         'teste',
     ],
     'post' => [
+        'login',
+        'novo',
         'excluir',
         'alteracanalstream',
         'limpacanalstream',
