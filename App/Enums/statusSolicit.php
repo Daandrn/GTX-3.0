@@ -2,6 +2,8 @@
 
 namespace App\Enums;
 
+require_once __DIR__ . '/../../Vendor/autoload.php';
+
 enum StatusSolicit: int
 {
     case STATUS_PENDENTE  = 0;
