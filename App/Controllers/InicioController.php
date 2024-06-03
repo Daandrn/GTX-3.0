@@ -35,13 +35,6 @@ class InicioController
             $usuarioLogin = $request->nick_login;
             $senhaLogin   = $request->senha_login;
 
-            if (
-                strlen($usuarioLogin) === 0
-                || strlen($senhaLogin) === 0
-            ) {
-                return View::view('inicio', ['message' => "Usuário e senha são obrigatórios!"]);
-            }
-
             if (strlen($usuarioLogin) < 3) {
                 return View::view('inicio', ['message' => "Usuário inválido!"]);
             }
