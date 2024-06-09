@@ -81,11 +81,11 @@ class CanalStreamService
             $dto->link_canal = $this->linkFormat($dto->link_canal);
         }
         
-        $wasUpdated = $this->canalStreamRepository->update($dto, $id);
+        // $wasUpdated = $this->canalStreamRepository->update($dto, $id);
 
-        if (!$wasUpdated) {
-            return ['message' => "Erro ao alterar canal de stream. Procure um administrador!"];
-        }
+        // if (!$wasUpdated) {
+        //     return ['message' => "Erro ao alterar canal de stream. Procure um administrador!"];
+        // }
 
         $response = ['message' => "Canal de stream alterado com sucesso!"];
         
@@ -100,11 +100,11 @@ class CanalStreamService
             return ['message' => "Não existe canal de stream para o usuário. Procure um administrador!"];
         }
         
-        $wasUpdated = $this->canalStreamRepository->update($dto, $id);
+        // $wasUpdated = $this->canalStreamRepository->update($dto, $id);
 
-        if (!$wasUpdated) {
-            return ['message' => "Erro ao limpar canal de stream. Procure um administrador!"];
-        }
+        // if (!$wasUpdated) {
+        //     return ['message' => "Erro ao limpar canal de stream. Procure um administrador!"];
+        // }
 
         $response = ['message' => "Canal de stream excluído com sucesso!"];
         

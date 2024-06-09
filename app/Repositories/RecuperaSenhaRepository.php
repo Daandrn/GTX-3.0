@@ -35,8 +35,8 @@ class RecuperaSenhaRepository
             ],
         );
 
-        $solicities->from();
-        $solicities->join('membros', 'membros.id', 'member_id', 'inner');
+        $solicities->from('recupera_senha');
+        $solicities->join('membros', 'membros.id', 'recupera_senha.member_id', 'inner');
         $solicities->join('status_senha', 'solicit_senha', 'left');
         $solicities->where('solicit_senha', '=', '1');
         $solicities->orderBy('data_solicit', 'asc');
@@ -44,7 +44,7 @@ class RecuperaSenhaRepository
         return $solicities->first();
     }
 
-    public function getSolicityToMember(int $member_id): 
+    public function getSolicityToMember(int $member_id)
     {
         $solicity = $this->recuperaSenha->select();
         $solicity->from('');

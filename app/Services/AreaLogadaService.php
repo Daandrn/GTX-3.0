@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\PlataformaStream;
+use Illuminate\Database\Eloquent\Collection;
 
 class AreaLogadaService
 {
@@ -30,11 +31,11 @@ class AreaLogadaService
         return false;
     }
 
-    function getPlataformaStreams(): array|null
+    function getPlataformaStreams(): Collection|null
     {
-        $platforms = $this->plataformaStreamModel->select();
+        $platforms = $this->plataformaStreamModel->select()->get();
 
-        return !empty($platforms)
+        return $platforms->isNotEmpty()
                 ? $platforms
                 : null;
     }
