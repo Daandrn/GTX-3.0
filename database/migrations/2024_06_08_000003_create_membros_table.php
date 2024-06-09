@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('membros', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 30)->notNullable();
-            $table->string('nick', 20)->unique()->notNullable();
-            $table->integer('plataforma')->noTnullable();
-            $table->integer('status_solicit')->notNullable();
-            $table->string('email')->unique();
+            $table->string('nome', 30)->nullable(false);
+            $table->string('nick', 20)->unique()->nullable(false);
+            $table->integer('plataforma')->nullable(false);
+            $table->integer('status_solicit')->nullable(false);
+            $table->string('email')->unique()->nullable(true);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('senha')->notNullable();
+            $table->string('senha')->nullable(false);
             $table->rememberToken();
             $table->timestamps();
 

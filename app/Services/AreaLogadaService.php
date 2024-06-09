@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class AreaLogadaService
 {
-    
     public function __construct(
         protected PlataformaStream $plataformaStreamModel,
     ) {
@@ -19,7 +18,7 @@ class AreaLogadaService
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        
+
         if (isset($_SESSION['nick'])) {
             return true;
         }

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('canal_stream', function (Blueprint $table) {
             $table->id();
             $table->integer('membro_id')->unique();
-            $table->integer('plataforma')->nullable();
-            $table->string('link_canal', 50)->nullable();
-            $table->string('nick_stream', 20)->unique()->Nullable();
+            $table->integer('plataforma')->nullable(true);
+            $table->string('link_canal', 50)->nullable(true);
+            $table->string('nick_stream', 20)->nullable(true);
             $table->timestamps();
 
             $table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');

@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\CanalStream;
+use App\Models\Membro;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,8 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Membro::factory(1)->create();
-        \App\Models\CanalStream::factory(1)->create();
+        Membro::factory()->create();
+        CanalStream::factory()->create();
 
         // \App\Models\Membro::factory()->create([
         //     'nome' => 'Test User',

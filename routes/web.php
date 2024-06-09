@@ -31,9 +31,9 @@ Route::patch('limpacanalstream', [MembroController::class, 'limpaCanalStream'])-
 Route::patch('alteranick', [MembroController::class, 'alteraNick'])->name('alteranick');
 Route::patch('alterasenha', [MembroController::class, 'alteraSenha'])->name('alterasenha');
 Route::patch('alterastatusmembro', [MembroController::class, 'alteraStatusMembro'])->name('alterastatusmembro');
-Route::get('membros', [MembroController::class, 'listaMembros'])->name('membros');
+Route::get('membros', [MembroController::class, 'listaMembros'])->name('listaMembros');
 
-Route::post('recuperasenha', [RecuperaSenhaController::class, 'recuperarSenha'])->name('recuperasenha');
+Route::post('recuperasenha', [RecuperaSenhaController::class, 'recuperarSenha'])->name('recuperarSenha');
 Route::post('aprovasenha', [RecuperaSenhaController::class, 'aprovaSenha'])->name('aprovasenha');
 Route::post('reprovasenha', [RecuperaSenhaController::class, 'reprovaSenha'])->name('reprovasenha');
 

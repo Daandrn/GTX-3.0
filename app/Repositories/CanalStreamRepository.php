@@ -22,9 +22,7 @@ class CanalStreamRepository
      */
     public function getStream(int $id): CanalStream
     {
-        $canalStream = $this->canalStreamModel->select();
-
-        $canalStream->where('id', '=', $id);
+        $canalStream = $this->canalStreamModel->where('id', '=', $id);
         
         return $canalStream->first();
     }
@@ -41,20 +39,20 @@ class CanalStreamRepository
         return $this->canalStreamModel->insert($data);
     }
 
-    // public function update(UpdateCanalStreamDTO $dto, ?int $id = null): stdClass|false
-    // {
-    //     $wasUpdated = $this->canalStreamModel->update(data: $dto->toArray(), id: $id, );
+    public function update(UpdateCanalStreamDTO $dto, ?int $id = null): stdClass|false
+    {
+        $wasUpdated = $this->canalStreamModel->update(data: $dto->toArray(), id: $id, );
 
-    //     if ($wasUpdated) {
-    //         $streamUpdated = $this->canalStreamModel->select(
-    //             where: ['id', '=', $id, ''],
-    //         );
-    //     }
+        if ($wasUpdated) {
+            $streamUpdated = $this->canalStreamModel->select(
+                where: ['id', '=', $id, ''],
+            );
+        }
 
-    //     return !empty($wasUpdated)
-    //             ? (object) $streamUpdated[0]
-    //             : false;
-    // }
+        return !empty($wasUpdated)
+                ? (object) $streamUpdated[0]
+                : false;
+    }
 
     public function delete(int $id): bool
     {

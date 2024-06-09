@@ -17,10 +17,10 @@
         <div class="navegador">
             <nav>
                 <ul>
-                    <li><a class="aNavegador" href="/inicio">Inicio</a></li>
-                    <li><a class="aNavegador" href="/arealogada">Área logada</a></li>
-                    <li><a class="aNavegador" href="/saladevideos">Sala de videos</a></li>
-                    <li><a class="aNavegador" href="/membros">Membros</a></li>
+                    <li><a class="aNavegador" href="{{ Route('inicio') }}">Inicio</a></li>
+                    <li><a class="aNavegador" href="{{ Route('arealogada') }}">Área logada</a></li>
+                    <li><a class="aNavegador" href="{{ Route('saladevideos') }}">Sala de videos</a></li>
+                    <li><a class="aNavegador" href="{{ Route('listaMembros') }}">Membros</a></li>
                 </ul>
             </nav>
         </div>

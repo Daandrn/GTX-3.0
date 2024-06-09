@@ -2,62 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Login;
+use App\Http\Requests\LoginRequest;
+use App\Services\MembroService;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController
 {
     
     public function __construct(
-        protected Login $loginModel,
+        protected MembroService $membroService,
     ) {
         //
     }
 
-    public function login($usuarioLogin, $senhaLogin): array
+    public function login(LoginRequest $loginRequest)
     {
-        return $this->auth($usuarioLogin, $senhaLogin);
+        $response = $this->auth($loginRequest);
+
+        return $response;
     }
 
-    private function auth(string $nick, string $password): array
+    private function auth(LoginRequest $loginRequest): array
     {
-        $membro = $this->loginModel->loginPasswordMember($nick);
+        $membro = $this->membroService->validateLogin($loginRequest);
 
-        if (!$membro) {
+        if (isset($membro['message'])) {
             return [
-                'message' => "Usuário não encontrado!",
+                'message'      => $membro['message'],
+                'status_login' => false,
             ];
         }
-
-        if ($membro->status_solicit === 0) {
+        
+        if (!Hash::check($loginRequest->senha_login, $membro->senha)) {
             return [
-                'message' => "Aguardando aprovação! entre em contato com um dos administradores ou aguarde.",
-            ];
-        }
-
-        if (
-            $membro->status_solicit === 2
-            || $membro->status_solicit === 3
-        ) {
-            return [
-                'message' => "Acesso negado!",
-            ];
-        }
-
-        if (!password_verify($password, $membro->senha)) {
-            return [
-                'message' => "Senha incorreta! tente novamente ou use o esqueci senha.",
+                'message'      => "Senha incorreta!",
+                'status_login' => false,
             ];
         }
 
         if (
-            $nick === $membro->nick
-            && password_verify($password, $membro->senha)
-            && ($membro->status_solicit === 1
-                || $membro->status_solicit === 4)
+            $loginRequest->nick_login === $membro->nick
+            && Hash::check($loginRequest->senha_login, $membro->senha)
+            && in_array($membro->status_solicit, [1, 4], true)
         ) {
-            session_start();
-
-            $_SESSION = [
+               $_SESSION = [
                 "nome"         => $membro->nome,
                 "id_sessao"    => $membro->id,
                 "nick"         => $membro->nick,

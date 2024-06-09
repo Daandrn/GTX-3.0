@@ -22,11 +22,11 @@ class MembroController
         //
     }
 
-    public function listaMembros(): view
+    public function listaMembros()
     {
         $membros = $this->membroService->allMembers();
 
-        return view('membros', $membros);
+        return view('membros', compact('membros'));
     }
 
     public function alteraStatusMembro()

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CanalStream extends Model
 {
@@ -16,7 +17,15 @@ class CanalStream extends Model
         'nick_stream',
     ];
 
-    protected $table = [
-        'canal_stream'
-    ];
+    protected $table = 'canal_stream';
+
+    /**
+     * Get all of the membros for the CanalStream
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function membros(): HasMany
+    {
+        return $this->hasMany(Membro::class, 'membro_id', 'id');
+    }
 }

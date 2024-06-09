@@ -6,13 +6,15 @@
             <div id="login">
                 <h1>Sou membro</h1>
                 <form action="/login" name="formlogin" method="POST">
+                    @csrf()
+                    @method('POST')
                     <div>
                         <label for="nick_login">Login: </label>
-                        <input type="text" name="nick_login" id="nick_login" maxlength="15" size="30" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick sem espaços ou caracteres especiais.">
+                        <input type="text" name="nick_login" id="nick_login" maxlength="15" size="30" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick sem espaços ou caracteres especiais." value="{{ old('nick_login') }}">
                     </div>
                     <div>
                         <label for="senha_login">Senha: </label>
-                        <input type="password" name="senha_login" id="senha_login" maxlength="10" size="10" placeholder="Senha" title="Insira sua senha." autocomplete="off">
+                        <input type="password" name="senha_login" id="senha_login" maxlength="10" size="10" placeholder="Senha" title="Insira sua senha." autocomplete="off" value="{{ old('senha_login') }}">
                     </div>
                     <div>
                         <input type="hidden" name="formInicio" value="form_login">
@@ -64,6 +66,7 @@
     <div id="imagemind">
         <img src="/public/css/imagens/logotrans.png">
     </div>
+    <x-alert/>
     <script>
         let recuperaSenhaFrame = document.querySelector('#recuperaSenhaFrame');
 

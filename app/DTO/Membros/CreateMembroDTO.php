@@ -3,6 +3,7 @@
 namespace App\DTO\Membros;
 
 use App\Enums\StatusSolicit;
+use Illuminate\Support\Facades\Hash;
 
 class CreateMembroDTO
 {
@@ -22,7 +23,7 @@ class CreateMembroDTO
             $request['nick_recrut'],
             $request['plataforma_recrut'],
             StatusSolicit::STATUS_PENDENTE->value,
-            password_hash('12345678', PASSWORD_BCRYPT),
+            Hash::make('12345678'),
         );
     }
 }

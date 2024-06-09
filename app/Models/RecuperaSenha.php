@@ -16,7 +16,5 @@ class recuperasenha extends Model
         'status_solicit',
     ];
 
-    protected $table = [
-        'recupera_senha'
-    ];
+    protected $table = 'recupera_senha';
 }

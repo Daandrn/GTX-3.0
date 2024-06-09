@@ -25,31 +25,6 @@
         </form>
     </div>
     <script>
-        let responseRecuperaSenha = <?php
-                                    $alert = isset($responseRecuperaSenha) ? $responseRecuperaSenha : 1;
-                                    echo json_encode($alert);
-                                    ?>
-
-        let responseExistePessoa = <?php
-                                    $alert2 = isset($responseExistePessoa) ? $responseExistePessoa : 1;
-                                    echo json_encode($alert2);
-                                    ?>
-
-        let responseExisteSolicit = <?php
-                                    $alert3 = isset($responseExisteSolicit) ? $responseExisteSolicit : 1;
-                                    echo json_encode($alert3);
-                                    ?>
-
-        if (responseExistePessoa != 1) {
-            alert(responseExistePessoa)
-        }
-        if ((responseRecuperaSenha) != 1) {
-            alert(responseRecuperaSenha)
-        }
-        if ((responseExisteSolicit) != 1) {
-            alert(responseExisteSolicit)
-        }
-
         const formRecuperaSenha = document.querySelector('#formRecuperaSenha').addEventListener('submit', function (event) {
             event.preventDefault();
 

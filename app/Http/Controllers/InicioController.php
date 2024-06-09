@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Requests\Request;
 use App\Services\MembroService;
+use Redirect;
 
 class InicioController
 {
-    
     public function __construct(
         protected MembroService $membroService,
-
     ) {
         //
     }
@@ -20,40 +20,19 @@ class InicioController
         return view('inicio');
     }
 
-    public function inicioLogin()
+    public function inicioLogin(LoginRequest $loginRequest, LoginController $loginController)
     {
-        $request = Request::new();
+        $response = $loginController->login($loginRequest);
         
-        if (
-            isset($_SERVER['REQUEST_METHOD'])
-            && $_SERVER['REQUEST_METHOD'] === 'POST'
-            && $request->formInicio === 'form_login'
-        ) {
-            $usuarioLogin = $request->nick_login;
-            $senhaLogin   = $request->senha_login;
-
-            if (strlen($usuarioLogin) < 3) {
-                return view('inicio', ['message' => "Usuário inválido!"]);
-            }
-
-            if (strlen($senhaLogin) < 8) {
-                return view('inicio', ['message' => "Senha inválida!"]);
-            }
-
-            $loginMembro = new LoginController;
-            $response = $loginMembro->login($usuarioLogin, $senhaLogin);
-
-            if (
-                isset($response['status_login'])
-                && $response['status_login']
-            ) {
-                return Redirect::to("arealogada");
-            }
-
-            return view('inicio', ['message' => $response['message']]);
+        if (isset($response['status_login']) && $response['status_login'] === true) {
+            
+            return redirect()
+            ->route('arealogada');
         }
-
-        return view('inicio', ['message' => "Erro na requisição!"]);
+            
+        return redirect()
+                ->route('inicio')
+                ->withErrors($response['message']);
     }
 
     public function inicioRecruit()

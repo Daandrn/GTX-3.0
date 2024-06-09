@@ -27,29 +27,29 @@ class RecuperaSenhaRepository
         $solicities = $this->recuperaSenha->select(
             [
                 'membros.nome',
-                'recupera_senha.member_id',
+                'recupera_senha.membro_id',
                 'recupera_senha.id',
                 'recupera_senha.nick',
-                'recupera_senha.data_solicit',
-                'status_senha.descricao AS status_senha',
+                'recupera_senha.created_at',
+                'status_senha.descricao',
             ],
         );
 
-        $solicities->from('recupera_senha');
-        $solicities->join('membros', 'membros.id', 'recupera_senha.member_id', 'inner');
-        $solicities->join('status_senha', 'solicit_senha', 'left');
-        $solicities->where('solicit_senha', '=', '1');
-        $solicities->orderBy('data_solicit', 'asc');
+        $solicities->join('membros', 'membros.id', 'recupera_senha.membro_id');
+        $solicities->join('status_senha', 'status_senha.id', '=', 'recupera_senha.status_senha');
+
+        $solicities->where('status_senha', '=', 1);
+
+        $solicities->orderBy('created_at', 'asc');
 
         return $solicities->first();
     }
 
     public function getSolicityToMember(int $member_id)
     {
-        $solicity = $this->recuperaSenha->select();
-        $solicity->from('');
-        $solicity->where('member_id', '=', $member_id, 'and solicit_senha = 1');
-        $solicity->orderBy('data_solicit', 'desc');
+        $solicity = $this->recuperaSenha->where('membro_id', '=', $member_id, 'and solicit_senha = 1');
+
+        $solicity->orderBy('created_at', 'desc');
 
         return $solicity->first();
     }

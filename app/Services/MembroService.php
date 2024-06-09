@@ -6,10 +6,11 @@ use App\DTO\Membros\CreateMembroDTO;
 use App\DTO\Membros\UpdateNickDTO;
 use App\DTO\Membros\UpdatePasswordDTO;
 use App\DTO\Membros\UpdateStatusMembroDTO;
+use App\Http\Requests\LoginRequest;
 use App\Models\Membro;
 use App\Repositories\MembroRepository;
 use Illuminate\Database\Eloquent\Collection;
-use stdClass;
+use Illuminate\Support\Facades\Hash;
 use Vendor\Helpers\SanitizeInput;
 
 class MembroService
@@ -60,6 +61,30 @@ class MembroService
     public function memberWithStream(int $id): Membro
     {
         return $this->membroRepository->memberWithStream($id);
+    }
+
+    protected function loginPasswordMember(string $nick): Membro
+    {
+        return $this->membroRepository->loginPasswordMember($nick);
+    }
+
+    public function validateLogin(LoginRequest $loginRequest): array|Membro
+    {
+        $membro = $this->loginPasswordMember($loginRequest->nick_login);
+        
+        if ($membro->status_solicit === 0) {
+            return [
+                'message' => "Aguardando aprovação! entre em contato com um dos administradores ou aguarde.",
+            ];
+        }
+
+        if (!Hash::check($loginRequest->senha_login, $membro->senha)) {
+            return [
+                'message' => "Senha incorreta! tente novamente ou use o esqueci senha.",
+            ];
+        }
+
+        return $membro;
     }
 
     public function newMember(object $request): array

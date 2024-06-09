@@ -13,7 +13,5 @@ class PlataformaStream extends Model
         'descricao',
     ];
 
-    protected $table = [
-        'plataforma_stream'
-    ];
+    protected $table = 'plataforma_stream';
 }

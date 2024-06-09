@@ -13,7 +13,5 @@ class StatusSenha extends Model
         'descricao',
     ];
 
-    protected $table = [
-        'status_senha'
-    ];
+    protected $table = 'status_senha';
 }

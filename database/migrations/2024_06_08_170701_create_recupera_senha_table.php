@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('recupera_senha', function (Blueprint $table) {
             $table->id();
-            $table->integer('membro_id')->notNullable();
-            $table->string('nick', 20)->notNullable();
-            $table->string('nova_senha')->notNullable();
-            $table->integer('status_solicit')->notNullable();
+            $table->integer('membro_id')->nullable(false);
+            $table->string('nick', 20)->nullable(false);
+            $table->string('nova_senha')->nullable(false);
+            $table->integer('status_senha')->nullable(false);
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('status_senha');
+            $table->foreign('status_senha')->references('id')->on('status_senha');
         });
     }
 

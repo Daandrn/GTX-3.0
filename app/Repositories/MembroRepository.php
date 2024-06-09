@@ -5,8 +5,9 @@ namespace App\Repositories;
 use App\DTO\Membros\CreateMembroDTO;
 use App\DTO\Membros\UpdateNickDTO;
 use App\DTO\Membros\UpdatePasswordDTO;
-use App\DTO\Membros\UpdateStatus_MembroDTO;
+use App\DTO\Membros\UpdateStatusMembroDTO;
 use App\Models\Membro;
+use App\Models\PlataformaGame;
 use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
@@ -47,11 +48,9 @@ class MembroRepository
             ]
         );
 
-        $membros->from('membros');
-
-        $membros->join('status_membros', 'status_solicit', '=', 'status_membros.id', 'inner');
-        $membros->join('canal_stream', 'membros.id', '=', 'canal_stream.membro_id', 'left');
-        $membros->join('plataforma_game', 'membros.plataforma', '=', 'plataforma_game.id', 'inner');
+        $membros->join('status_membros', 'status_solicit', '=', 'status_membros.id');
+        $membros->leftJoin('canal_stream', 'membros.id', '=', 'canal_stream.membro_id');
+        $membros->join('plataforma_game', 'membros.plataforma', '=', 'plataforma_game.id');
 
         $membros->whereIn('status_solicit', [1,4]);
 
@@ -68,14 +67,12 @@ class MembroRepository
                 'membros.nome',
                 'membros.nick',
                 'plataforma_game.descricao AS plataforma',
-                'status_membro.descricao AS status_membros',
+                'status_membros.descricao',
             ],
         );
 
-        $recruits->from('membros');
-
-        $recruits->join('status_membro', 'status_membro.id', 'status_solicit', 'left');
-        $recruits->join('plataforma_game', 'plataforma_game.id', 'membros.plataforma', 'left');
+        $recruits->leftJoin('status_membros', 'status_membros.id', 'status_solicit');
+        $recruits->leftJoin('plataforma_game', 'plataforma_game.id', 'membros.plataforma');
 
         $recruits->whereIn('status_solicit', [0]);
 
@@ -92,14 +89,12 @@ class MembroRepository
                 'membros.nome',
                 'membros.nick',
                 'plataforma_game.descricao AS plataforma',
-                'status_membro.descricao AS status_membro',
+                'status_membros.descricao AS status_membros',
             ],
         );
 
-        $rejected->from('membros');
-
-        $rejected->join('status_membro', 'status_membro.id','status_solicit', 'left');
-        $rejected->join('plataforma_game', 'plataforma_game.id', 'membros.plataforma', 'left');
+        $rejected->leftJoin('status_membros', 'status_membros.id','status_solicit');
+        $rejected->leftJoin('plataforma_game', 'plataforma_game.id', 'membros.plataforma');
 
         $rejected->whereIn('status_solicit', [2]);
 
@@ -122,11 +117,27 @@ class MembroRepository
             ],
         );
 
-        $membro->join('canal_stream', 'canal_stream.membros.id', 'membros.id','inner');
+        $membro->leftJoin('canal_stream', 'canal_stream.membro_id', 'membros.id');
 
         $membro->where('membros.id', '=', $id);
 
         return $membro->first();
+    }
+
+    public function loginPasswordMember(string $nick): Membro
+    {
+        $loginPassword = $this->membroModel->where('nick', '=', $nick);
+        $loginPassword->whereIn('status_solicit', [0, 1, 4]);
+
+        return $loginPassword->firstOrFail(
+            [
+                'id',
+                'nome',
+                'nick',
+                'status_solicit',
+                'senha',
+            ],
+        );
     }
 
     public function insert(CreateMembroDTO $dto): stdClass|false
@@ -145,11 +156,11 @@ class MembroRepository
                 : false;
     }
 
-    public function updateStatusMember(UpdateStatus_MembroDTO $dto): bool
+    public function updateStatusMember(UpdateStatusMembroDTO $dto): bool
     {
         return $this->membroModel->update(
-            data: ['status_solicit' => $dto->status_solicit],
-            id: $dto->id,
+            ['status_solicit' => $dto->status_solicit],
+            $dto->id,
         );
     }
 

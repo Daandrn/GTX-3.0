@@ -9,15 +9,13 @@ use Illuminate\Support\Facades\View;
 
 class AreaLogadaController
 {
-    
     public function __construct(
         protected AreaLogadaService    $areaLogadaService,
-        protected MembroService       $membroService,
+        protected MembroService        $membroService,
         protected RecuperaSenhaService $recuperaSenhaService,
     ) {
         if (!$this->areaLogadaService->sessionExists()) {
-            redirect("inicio");
-
+            redirect('/');
             return;
         }
     }
@@ -27,7 +25,7 @@ class AreaLogadaController
         $nomeSessao = (string) $_SESSION['nome'];
         $idSessao   = (int) $_SESSION['id_sessao'];
 
-        $memberLogged = $this->membroService->memberWithStream($idSessao);
+        $memberLogged = $this->membroService->memberWithStream(1);
 
         $nickPerfil        = $memberLogged->nick;
         $dadoStream        = [
@@ -35,7 +33,7 @@ class AreaLogadaController
             'linkCanal'  => $memberLogged->link_canal,
             'plataforma' => $memberLogged->plataforma,
         ];
-        $plataformasStream = $this->areaLogadaService->getStreamingPlatforms();
+        $plataformasStream = $this->areaLogadaService->getPlataformaStreams();
         $listaMembros      = $this->membroService->allMembers();
         $listaRecrut       = $this->membroService->allRecruits();
         $listaRejeitados   = $this->membroService->allRejected();
@@ -47,13 +45,17 @@ class AreaLogadaController
         return view('areaLogada', $data);
     }
 
-    public function exit(): void
+    public function exit()
     {
         session_start();
         session_regenerate_id(true);
         session_destroy();
-        redirect("inicio");
 
-        return;
+        return redirect()->route('inicio');
+    }
+
+    public function __destruct()
+    {
+        //
     }
 }

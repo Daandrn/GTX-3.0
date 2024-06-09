@@ -13,23 +13,25 @@
                     <th style="width: 78px;">Plataforma</th>
                 </tr>
             </thead>
-            <?php if (!empty($items)) : ?>
-                <?php foreach ($items as $membro) : ?>
-                    <tr id="lista">
-                        <td><?php echo $membro->nome; ?></td>
-                        <td><?php echo $membro->nick; ?></td>
-                        <td><?php echo $membro->cargo_membro; ?></td>
-                        <td>
-                            <a id="linkcanal" href="https://<?php echo $membro->link_canal; ?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $membro->nick_stream; ?></a>
-                        </td>
-                        <td><?php echo $membro->plataforma_game; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else : ?>
+            @if ($membros->isNotEmpty())
+
+                @foreach ($membros->all() as $membro)
+                <tr id="lista">
+                    <td><?php echo $membro->nome; ?></td>
+                    <td><?php echo $membro->nick; ?></td>
+                    <td><?php echo $membro->cargo_membro; ?></td>
+                    <td>
+                        <a id="linkcanal" href="https://<?php echo $membro->link_canal; ?>" target="_blank" title="Clique aqui para ir ao canal!"><?php echo $membro->nick_stream; ?></a>
+                    </td>
+                    <td><?php echo $membro->plataforma_game; ?></td>
+                </tr>
+                @endforeach
+
+            @else
                 <tr id="lista">
                     <td colspan="5">Nenhum membro encontrado!</td>
                 </tr>
-            <?php endif; ?>
+            @endif
         </table>
     </div>
 </main>
