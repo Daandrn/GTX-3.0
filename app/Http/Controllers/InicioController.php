@@ -40,6 +40,8 @@ class InicioController
     {
         $response = $this->membroService->newMember($recruitRequest);
 
-        return view('inicio', $response);
+        return redirect()
+                ->route('inicio')
+                ->withErrors($response);
     }
 }

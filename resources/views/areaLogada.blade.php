@@ -39,17 +39,17 @@
         </h1>
         <div id="dadosPessoais">
             <div id="canalStream">
-                <form action="/alteracanalstream" method="POST">
+                <form action="{{ Route('alteracanalstream') }}" method="POST">
                     @csrf()
-                    @method('POST')
+                    @method('PATCH')
                     <h3>Canal de Stream</h3>
                     <div>
                         <label for="nick_stream">Nick stream</label>
-                        <input type="text" name="nick_stream" id="nick_stream" value="{{ ($dadoStream['nickStream'] ?? '') }}" placeholder="Nickstream" maxlength="20">
+                        <input type="text" name="nick_stream" id="nick_stream" value="{{ (old('nick_stream') ?? $dadoStream['nickStream']) }}" placeholder="Nickstream" maxlength="20">
                     </div>
                     <div>
                         <label for="link_canal">Link canal</label>
-                        <input type="text" name="link_canal" id="link_canal" value="{{ ($dadoStream['linkCanal'] ?? '') }}" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv." maxlength="50">
+                        <input type="text" name="link_canal" id="link_canal" value="{{ (old('link_canal') ?? $dadoStream['linkCanal']) }}" placeholder="twitch.tv" title="Insira o link do seu canal sem 'https://'. Ex.: www.twitch.tv ou twitch.tv." maxlength="50">
                     </div>
                     <div>
                         <label for="plataforma">Plataforma</label>
@@ -58,7 +58,7 @@
                             <option value=""></option>
 
                             @foreach ($plataformasStream as $plat)
-                                <option value="{{ $plat->id }}" @selected($plat->id == ($dadoStream['plataforma'] ?? '') ? "selected" : '')>{{ $plat->descricao }}</option>
+                                <option value="{{ $plat->id }}" @selected(($plat->id == (old('plataforma') ?? $dadoStream['plataforma'])))>{{ $plat->descricao }}</option>
                             @endforeach
 
                         </select>
@@ -72,9 +72,9 @@
                         </span>
                 </form>
                 <span>
-                    <form action="/limpacanalstream" method="POST">
+                    <form action="{{ Route('limpacanalstream') }}" method="POST">
                         @csrf()
-                        @method('POST')
+                        @method('PATCH')
                         <input type="hidden" name="formLogado" value="excluiCanalStream">
                         <input type="submit" value="Excluir">
                     </form>
@@ -84,7 +84,7 @@
         </div>
         <div id="perfil">
             <div>
-                <form action="/alteranick" method="POST">
+                <form action="{{ Route('alteranick') }}" method="POST">
                     @csrf()
                     @method('POST')
                     <h3>Perfil</h3>
@@ -97,7 +97,7 @@
                 </form>
             </div>
             <div>
-                <form action="/alterasenha" method="POST">
+                <form action="{{ Route('alterasenha') }}" method="POST">
                     @csrf()
                     @method('POST')
                     <div>
@@ -188,7 +188,7 @@
                                         <td class="formatPlataforma">{{ $recrut->plataforma }}</td>
                                         <td class="formatStatus">{{ $recrut->status_solicit }}</td>
                                         <td class="formatAcao">
-                                            <form action="/alterastatusmembro" method="post">
+                                            <form action="{{ Route('alterastatusmembro') }}" method="post">
                                                 @csrf()
                                                 @method('POST')
                                                 <div>
@@ -245,7 +245,7 @@
                                                     <input type="hidden" name="acaoMembrosAdm[]" value="{{ $rejeitados->id }}">
                                                 </div>
                                             </form>
-                                            <form action="/excluir" method="post">
+                                            <form action="{{ Route('excluir') }}" method="post">
                                                 @csrf()
                                                 @method('POST')
                                                 <div>
@@ -286,7 +286,7 @@
                                         <td class="formatStatus">{{ $novaSenha->status_senha }}</td>
                                         <td class="formatAcao">
                                             <div id="formsAcaoNovaSenha">
-                                                <form action="/aprovasenha" method="post">
+                                                <form action="{{ Route('aprovasenha') }}" method="post">
                                                     @csrf()
                                                     @method('POST')
                                                     <div>
@@ -295,7 +295,7 @@
                                                         <input type="hidden" name="id" id="id" value="{{ $novaSenha->id }}">
                                                     </div>
                                                 </form>
-                                                <form action="/reprovasenha" method="post">
+                                                <form action="{{ Route('reprovasenha') }}" method="post">
                                                     @csrf()
                                                     @method('POST')
                                                     <div>

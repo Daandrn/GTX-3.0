@@ -40,19 +40,16 @@ class CanalStreamRepository
         return $this->canalStreamModel->insert($data);
     }
 
-    public function update(UpdateCanalStreamDTO $dto, ?int $id = null): stdClass|false
+    public function update(UpdateCanalStreamDTO $dto): CanalStream
     {
-        $wasUpdated = $this->canalStreamModel->update(data: $dto->toArray(), id: $id, );
+        $canalStream = $this->canalStreamModel->findOrFail($dto->membro_id);
+        $wasUpdated = $canalStream->update($dto->toArray());
 
         if ($wasUpdated) {
-            $streamUpdated = $this->canalStreamModel->select(
-                where: ['id', '=', $id, ''],
-            );
+            $streamUpdated = $this->canalStreamModel->where('id', '=', $dto->membro_id);
         }
 
-        return !empty($wasUpdated)
-                ? (object) $streamUpdated[0]
-                : false;
+        return $streamUpdated->first();
     }
 
     public function delete(int $id): bool

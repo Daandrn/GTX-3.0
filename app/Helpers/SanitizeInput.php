@@ -1,10 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Vendor\Helpers;
+namespace App\Helpers;
 
 use Exception;
-
-require_once __DIR__.'/../autoload.php';
 
 class SanitizeInput
 {

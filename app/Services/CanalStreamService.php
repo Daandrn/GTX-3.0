@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\DTO\UpdateCanalStreamDTO;
+use App\Helpers\SanitizeInput;
 use App\Repositories\CanalStreamRepository;
-use Vendor\Helpers\SanitizeInput;
 
 class CanalStreamService
 {
@@ -34,7 +34,7 @@ class CanalStreamService
         return $response;
     }
 
-    public function updateStream(int $id, UpdateCanalStreamDTO $dto): array
+    public function updateStream(UpdateCanalStreamDTO $dto): array
     {
         if (preg_match('[\'"<>&;/\|]', $dto->nick_stream)) {
             return ['message' => "O campo nick stream não pode conter caracteres especiais!"];
@@ -71,7 +71,7 @@ class CanalStreamService
             return ['message' => "O campo link do canal deve ter no maximo 50 caracteres!"];
         }
 
-        $streamExists = $this->canalStreamRepository->getStream($id);
+        $streamExists = $this->canalStreamRepository->getStream($dto->membro_id);
 
         if ($streamExists->isEmpty()) {
             return ['message' => "Não existe canal de stream para o usuário. Procure um administrador!"];
@@ -81,7 +81,7 @@ class CanalStreamService
             $dto->link_canal = $this->linkFormat($dto->link_canal);
         }
         
-        $wasUpdated = $this->canalStreamRepository->update($dto, $id);
+        $wasUpdated = $this->canalStreamRepository->update($dto);
 
         if (!$wasUpdated) {
             return ['message' => "Erro ao alterar canal de stream. Procure um administrador!"];
@@ -92,15 +92,15 @@ class CanalStreamService
         return $response;
     }
 
-    public function limpaStream(int $id, UpdateCanalStreamDTO $dto): array
+    public function limpaStream(UpdateCanalStreamDTO $dto): array
     {
-        $streamExists = $this->canalStreamRepository->getStream($id);
+        $streamExists = $this->canalStreamRepository->getStream($dto->membro_id);
 
         if ($streamExists->isEmpty()) {
             return ['message' => "Não existe canal de stream para o usuário. Procure um administrador!"];
         }
         
-        $wasUpdated = $this->canalStreamRepository->update($dto, $id);
+        $wasUpdated = $this->canalStreamRepository->update($dto);
 
         if (!$wasUpdated) {
             return ['message' => "Erro ao limpar canal de stream. Procure um administrador!"];

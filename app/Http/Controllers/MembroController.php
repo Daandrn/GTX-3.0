@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\DTO\Membros\UpdateNickDTO;
 use App\DTO\Membros\UpdatePasswordDTO;
-use App\DTO\UpdateStreamChannelDTO;
+use App\DTO\UpdateCanalStreamDTO;
+use App\Http\Requests\UpdateCanalStreamRequest;
 use App\Requests\Request;
 use App\Services\AreaLogadaService;
 use App\Services\MembroService;
@@ -34,61 +35,65 @@ class MembroController
         $request = Request::toArray();
         $this->membroService->updateStatusMember($request);
 
-        return redirect('arealogada');
+        return redirect()
+                ->route('arealogada');
     }
 
-    public function alteraCanalStream()
+    public function alteraCanalStream(UpdateCanalStreamRequest $updateStreamRequest)
     {
         if (!$this->areaLogadaService->sessionExists()) {
-            redirect("inicio");
-            return;
+            return redirect()
+                    ->route('inicio', status:401);
         }
         
-        $request = Request::new();
-        $id      = session('id_sessao');
+        $updateStreamRequest->membro_id = session('id_sessao');
 
-        $response = $this->CanalStreamService->updateStream(
-            $id,
-            UpdateStreamChannelDTO::make($request)
+        $response = $this->canalStreamService->updateStream(
+            UpdateCanalStreamDTO::make($updateStreamRequest)
         );
 
-        return redirect(classMethod: 'AreaLogadaController.index', errors: $response);
+        return redirect()
+                ->route('arealogada')
+                ->withErrors($response);
     }
 
     public function limpaCanalStream()
     {
         if (!$this->areaLogadaService->sessionExists()) {
-            redirect("inicio");
-            return;
+            return redirect()
+                    ->route('inicio', status:401);
+            
         }
 
-        $id = session('id_sessao');
-
         $data = (object) [
+            'membro_id'   => session()->get('id_sessao'),
             'plataforma'  => null,
             'link_canal'  => null,
             'nick_stream' => null,
         ];
 
-        $response = $this->CanalStreamService->limpaStream(
-            $id,
-            UpdateStreamChannelDTO::make($data)
+        $response = $this->canalStreamService->limpaStream(
+            UpdateCanalStreamDTO::make($data)
         );
 
-        return redirect(classMethod: 'AreaLogadaController.index', errors: $response);
+        return redirect()
+                ->route('arealogada')
+                ->withErrors($response);
     }
 
     public function excluiCanalStream()
     {
         if (!$this->areaLogadaService->sessionExists()) {
-            redirect("inicio");
-            return;
+            return redirect()
+                    ->route('inicio', status:401);
         }
 
         $id       = session('id_sessao');
-        $response = $this->CanalStreamService->deleteStream($id);
+        $response = $this->canalStreamService->deleteStream($id);
 
-        return redirect(classMethod: 'AreaLogadaController.index', errors: $response);
+        return redirect()
+                ->route('arealogada')
+                ->withErrors($response);
     }
 
     public function alteraNick()
@@ -106,7 +111,9 @@ class MembroController
             $id
         );
 
-        return redirect(classMethod: 'AreaLogadaController.index', errors: $response);
+        return redirect()
+                ->route('arealogada')
+                ->withErrors($response);
     }
 
     public function alteraSenha()
@@ -124,7 +131,9 @@ class MembroController
             $id
         );
 
-        return redirect(classMethod: 'AreaLogadaController.index', errors: $response);
+        return redirect()
+                ->route('arealogada')
+                ->withErrors($response);
     }
 
     public function delete()
@@ -132,6 +141,7 @@ class MembroController
         $request = Request::toArray();
         $this->membroService->delete($request);
 
-        return redirect('arealogada');
+        return redirect()
+                ->route('arealogada');
     }
 }
