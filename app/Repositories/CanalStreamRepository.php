@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\DTO\UpdateCanalStreamDTO;
 use App\Models\CanalStream;
+use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
 class CanalStreamRepository
@@ -18,21 +19,21 @@ class CanalStreamRepository
     /**
      * Carrega canal de stream
      * @param int $id id do membro
-     * @return CanalStream Dados do canal de stream
+     * @return Collection Dados do canal de stream
      */
-    public function getStream(int $id): CanalStream
+    public function getStream(int $id): Collection
     {
         $canalStream = $this->canalStreamModel->where('id', '=', $id);
         
-        return $canalStream->first();
+        return $canalStream->get();
     }
 
     public function new(int $id): bool
     {
         $data = [
-            'id'         => $id,
-            'plataforma' => null,
-            'link_canal' => null,
+            'membro_id'   => $id,
+            'plataforma'  => null,
+            'link_canal'  => null,
             'nick_stream' => null,
         ];
         

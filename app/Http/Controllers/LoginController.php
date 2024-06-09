@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Services\MembroService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class LoginController
@@ -45,12 +46,12 @@ class LoginController
             && Hash::check($loginRequest->senha_login, $membro->senha)
             && in_array($membro->status_solicit, [1, 4], true)
         ) {
-               $_SESSION = [
+            session([
                 "nome"         => $membro->nome,
                 "id_sessao"    => $membro->id,
                 "nick"         => $membro->nick,
                 "statusMembro" => $membro->status_solicit
-            ];
+            ]);
 
             return [
                 'message'      => "Login realizado com sucesso!",

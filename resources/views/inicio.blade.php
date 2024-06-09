@@ -35,22 +35,24 @@
             </div>
             <div id="recrut">
                 <h1>Quero fazer parte</h1>
-                <form action="/novo" name="formrecrut" method="POST">
+                <form action="{{ Route('novo') }}" name="formrecrut" method="POST">
+                    @csrf()
+                    @method('POST')
                     <div>
                         <label for="nome_recrut">Nome: </label>
-                        <input type="text" name="nome_recrut" id="nome_recrut" maxlength="24" size="40" pattern="[A-Za-z\s'ãáâéêíõôóúÃÁÂÉÊÍÕÔÓÚ]+" placeholder="Nome" title="Insira seu nome.">
+                        <input type="text" name="nome_recrut" id="nome_recrut" maxlength="24" size="40" pattern="[A-Za-z\s'ãáâéêíõôóúÃÁÂÉÊÍÕÔÓÚ]+" placeholder="Nome" title="Insira seu nome." value="{{ old('nome_recrut') }}">
                     </div>
                     <div>
                         <label for="nick_recrut">Nick: </label>
-                        <input type="text" name="nick_recrut" id="nick_recrut" maxlength="15" size="40" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick/origin.">
+                        <input type="text" name="nick_recrut" id="nick_recrut" maxlength="15" size="40" pattern="[a-zA-Z0-9]*" placeholder="Nick/origin" title="Insira seu nick/origin." value="{{ old('nick_recrut') }}">
                     </div>
                     <div>
                         <label for="plataforma_recrut">Plataforma: </label>
-                        <select name="plataforma_recrut" id="plataforma_recrut" required>
-                            <option value=""></option>
-                            <option value="1">PC</option>
-                            <option value="2">Xbox Séries</option>
-                            <option value="3">Ps5</option>
+                        <select name="plataforma_recrut" id="plataforma_recrut">
+                            <option value=""  @selected(old('plataforma_recrut') === '')></option>
+                            <option value="1" @selected(old('plataforma_recrut') === '1')>PC</option>
+                            <option value="2" @selected(old('plataforma_recrut') === '2')>Xbox Séries</option>
+                            <option value="3" @selected(old('plataforma_recrut') === '3')>Ps5</option>
                         </select>
                     </div>
                     <div>

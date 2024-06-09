@@ -7,9 +7,11 @@ use App\DTO\Membros\UpdateNickDTO;
 use App\DTO\Membros\UpdatePasswordDTO;
 use App\DTO\Membros\UpdateStatusMembroDTO;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RecruitRequest;
 use App\Models\Membro;
 use App\Repositories\MembroRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Vendor\Helpers\SanitizeInput;
 
@@ -45,7 +47,7 @@ class MembroService
         return $rejected;
     }
 
-    public function memberExists(?string $nick = null, ?int $id = null): Membro
+    public function memberExists(?string $nick = null, ?int $id = null): Collection
     {
         if ($nick) {
             $memberExists = $this->membroRepository->memberExists(nick: $nick);
@@ -87,29 +89,22 @@ class MembroService
         return $membro;
     }
 
-    public function newMember(object $request): array
+    public function newMember(RecruitRequest $recruitRequest): array
     {
-        $nome = preg_replace("/[^A-Za-z\s'ãáâéêíõôóúÃÁÂÉÊÍÕÔÓÚ]/", '', $request->nome_recrut);
+        $recruitRequest->nome_recrut = preg_replace("/[^A-Za-z\s'ãáâéêíõôóúÃÁÂÉÊÍÕÔÓÚ]/", '', $recruitRequest->nome_recrut);
 
-        if (strlen($nome) < 3) {
-            return ['message' => "Nome inválido!"];
-        }
-
-        if (
-            strlen($request->nick_recrut) < 5
-            || preg_match('/[^a-zA-Z0-9\s]/', $request->nick_recrut)
-        ) {
+        if (preg_match('/[^a-zA-Z0-9\s]/', $recruitRequest->nick_recrut)) {
             return ['message' => "Nick inválido!"];
         }
 
-        $memberExists = $this->memberExists(nick: $request->nick_recrut);
+        $memberExists = $this->memberExists(nick: $recruitRequest->nick_recrut);
 
-        if ($memberExists) {
-            return ['message' => "O nick {$request->nick_recrut} já está sendo utilizado! Utilize o recuperar senha ou procure um administrador."];
+        if ($memberExists->isNotEmpty()) {
+            return ['message' => "O nick {$recruitRequest->nick_recrut} já está sendo utilizado! Utilize o recuperar senha ou procure um administrador."];
         }
-
+        
         $response = $this->membroRepository->insert(
-            CreateMembroDTO::make((array) $request),
+            CreateMembroDTO::make($recruitRequest->toArray()),
         );
 
         if ($response->id) {
@@ -137,13 +132,13 @@ class MembroService
 
         $memberExists = $this->memberExists(id: $id);
 
-        if (!$memberExists) {
+        if ($memberExists->isEmpty()) {
             return ['message' => "Membro informado não existe. Verifique!"];
         }
 
         $nickUpdated = $this->membroRepository->updateNick($dto, $id);
 
-        $_SESSION['nick'] = $nickUpdated->nick;
+        session()->push('nick', $nickUpdated->nick);
 
         return ['message' => "Nick alterado com sucesso!"];
     }
@@ -162,7 +157,7 @@ class MembroService
 
         $memberExists = $this->memberExists(id: $id);
 
-        if (!$memberExists) {
+        if ($memberExists->isEmpty()) {
             return ['message' => "Membro informado não existe. Verifique!"];
         }
 

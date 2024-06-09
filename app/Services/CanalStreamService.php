@@ -19,7 +19,7 @@ class CanalStreamService
     {
         $exists = $this->canalStreamRepository->getStream($id);
         
-        if ($exists) {
+        if ($exists->isNotEmpty()) {
             return ['message' => "Erro: Já existe cadastro com este id. verifique!"];
         }
 
@@ -73,7 +73,7 @@ class CanalStreamService
 
         $streamExists = $this->canalStreamRepository->getStream($id);
 
-        if (is_null($streamExists)) {
+        if ($streamExists->isEmpty()) {
             return ['message' => "Não existe canal de stream para o usuário. Procure um administrador!"];
         }
 
@@ -81,11 +81,11 @@ class CanalStreamService
             $dto->link_canal = $this->linkFormat($dto->link_canal);
         }
         
-        // $wasUpdated = $this->canalStreamRepository->update($dto, $id);
+        $wasUpdated = $this->canalStreamRepository->update($dto, $id);
 
-        // if (!$wasUpdated) {
-        //     return ['message' => "Erro ao alterar canal de stream. Procure um administrador!"];
-        // }
+        if (!$wasUpdated) {
+            return ['message' => "Erro ao alterar canal de stream. Procure um administrador!"];
+        }
 
         $response = ['message' => "Canal de stream alterado com sucesso!"];
         
@@ -96,15 +96,15 @@ class CanalStreamService
     {
         $streamExists = $this->canalStreamRepository->getStream($id);
 
-        if (is_null($streamExists)) {
+        if ($streamExists->isEmpty()) {
             return ['message' => "Não existe canal de stream para o usuário. Procure um administrador!"];
         }
         
-        // $wasUpdated = $this->canalStreamRepository->update($dto, $id);
+        $wasUpdated = $this->canalStreamRepository->update($dto, $id);
 
-        // if (!$wasUpdated) {
-        //     return ['message' => "Erro ao limpar canal de stream. Procure um administrador!"];
-        // }
+        if (!$wasUpdated) {
+            return ['message' => "Erro ao limpar canal de stream. Procure um administrador!"];
+        }
 
         $response = ['message' => "Canal de stream excluído com sucesso!"];
         
@@ -115,7 +115,7 @@ class CanalStreamService
     {
         $streamExists = $this->canalStreamRepository->getStream($id);
 
-        if (is_null($streamExists)) {
+        if ($streamExists->isEmpty()) {
             return ['message' => "Erro: Não existe canal de stream para o id. verifique!"];
         }
         

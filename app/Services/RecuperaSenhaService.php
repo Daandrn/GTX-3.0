@@ -6,6 +6,7 @@ use App\DTO\Membros\UpdatePasswordDTO;
 use App\DTO\SolicitUpdatePassword;
 use App\Enums\StatusNovaSenha;
 use App\Repositories\RecuperaSenhaRepository;
+use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
 class RecuperaSenhaService
@@ -25,7 +26,7 @@ class RecuperaSenhaService
         return $wasCreated;
     }
 
-    public function pendingSolicities(): array|null
+    public function pendingSolicities(): Collection
     {
         return $this->recuperaSenhaRepository->getPendingSolicities();
     }

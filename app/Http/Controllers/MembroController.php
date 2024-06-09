@@ -45,7 +45,7 @@ class MembroController
         }
         
         $request = Request::new();
-        $id      = (int) $_SESSION['id_sessao'];
+        $id      = session('id_sessao');
 
         $response = $this->CanalStreamService->updateStream(
             $id,
@@ -62,7 +62,7 @@ class MembroController
             return;
         }
 
-        $id = (int) $_SESSION['id_sessao'];
+        $id = session('id_sessao');
 
         $data = (object) [
             'plataforma'  => null,
@@ -85,7 +85,7 @@ class MembroController
             return;
         }
 
-        $id       = (int) $_SESSION['id_sessao'];
+        $id       = session('id_sessao');
         $response = $this->CanalStreamService->deleteStream($id);
 
         return redirect(classMethod: 'AreaLogadaController.index', errors: $response);
@@ -99,7 +99,7 @@ class MembroController
         }
 
         $Request = Request::new();
-        $id      = (int) $_SESSION['id_sessao'];
+        $id      = session('id_sessao');
 
         $response = $this->membroService->updateNick(
             UpdateNickDTO::make($Request),
@@ -117,7 +117,7 @@ class MembroController
         }
 
         $Request = Request::new();
-        $id      = (int) $_SESSION['id_sessao'];
+        $id      = session('id_sessao');
 
         $response = $this->membroService->updatePassword(
             UpdatePasswordDTO::make($Request),

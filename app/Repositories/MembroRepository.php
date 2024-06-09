@@ -20,19 +20,17 @@ class MembroRepository
         //
     }
 
-    public function memberExists(?string $nick = null, ?int $id = null): Membro
-    {
+    public function memberExists(?string $nick = null, ?int $id = null): Collection
+    {        
         if ($nick) {
-            $memberExists = $this->membroModel->select('id', 'nick');
-            $memberExists->where('nick', '=', $nick);
+            $memberExists = $this->membroModel->where('nick', '=', $nick);
         }
 
         if ($id) {
-            $memberExists = $this->membroModel->select('id', 'nick');
-            $memberExists->where('id', '=', $id);
+            $memberExists = $this->membroModel->where('id', '=', $id);
         }
 
-        return $memberExists->first();
+        return $memberExists->get(['id', 'nick']);
     }
 
     public function getAllMembers(): Collection
@@ -67,7 +65,7 @@ class MembroRepository
                 'membros.nome',
                 'membros.nick',
                 'plataforma_game.descricao AS plataforma',
-                'status_membros.descricao',
+                'status_membros.descricao as status_solicit',
             ],
         );
 
@@ -89,14 +87,14 @@ class MembroRepository
                 'membros.nome',
                 'membros.nick',
                 'plataforma_game.descricao AS plataforma',
-                'status_membros.descricao AS status_membros',
+                'status_membros.descricao AS status_solicit',
             ],
         );
 
-        $rejected->leftJoin('status_membros', 'status_membros.id','status_solicit');
-        $rejected->leftJoin('plataforma_game', 'plataforma_game.id', 'membros.plataforma');
+        $rejected->join('status_membros', 'status_membros.id', '=','status_solicit');
+        $rejected->join('plataforma_game', 'plataforma_game.id', '=', 'membros.plataforma');
 
-        $rejected->whereIn('status_solicit', [2]);
+        $rejected->whereIn('status_solicit', [2, 3]);
 
         $rejected->orderBy('membros.id', 'asc');
 
@@ -140,20 +138,11 @@ class MembroRepository
         );
     }
 
-    public function insert(CreateMembroDTO $dto): stdClass|false
+    public function insert(CreateMembroDTO $dto): Membro
     {
-        $insert = $this->membroModel->insert((array) $dto);
+        $newMember = $this->membroModel->create($dto->toArray());
 
-        if ($insert) {
-            $newMember = $this->membroModel->select(
-                fields: ['*'],
-                where: ['id', '=', '(SELECT max(id) FROM membros)', 'limit 1'],
-            );
-        }
-
-        return !empty($newMember)
-                ? $newMember[0]
-                : false;
+        return $newMember;
     }
 
     public function updateStatusMember(UpdateStatusMembroDTO $dto): bool

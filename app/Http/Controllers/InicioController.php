@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RecruitRequest;
 use App\Requests\Request;
 use App\Services\MembroService;
 use Redirect;
@@ -25,9 +26,9 @@ class InicioController
         $response = $loginController->login($loginRequest);
         
         if (isset($response['status_login']) && $response['status_login'] === true) {
-            
+
             return redirect()
-            ->route('arealogada');
+                    ->route('arealogada');
         }
             
         return redirect()
@@ -35,18 +36,10 @@ class InicioController
                 ->withErrors($response['message']);
     }
 
-    public function inicioRecruit()
+    public function inicioRecruit(RecruitRequest $recruitRequest)
     {
-        $request = Request::new();
-        
-        if (
-            isset($_SERVER['REQUEST_METHOD'])
-            && $_SERVER['REQUEST_METHOD'] === 'POST'
-            && $request->formInicio === 'form_recrut'
-        ) {
-            $response = $this->membroService->newMember($request);
+        $response = $this->membroService->newMember($recruitRequest);
 
-            return view('inicio', $response);
-        }
+        return view('inicio', $response);
     }
 }

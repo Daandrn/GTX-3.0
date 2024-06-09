@@ -15,17 +15,16 @@ class AreaLogadaService
 
     public function sessionExists(): bool
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        if (!session()->isStarted()) {
+            session()->start();
         }
 
-        if (isset($_SESSION['nick'])) {
+        if (session()->has('nick')) {
             return true;
         }
 
-        session_regenerate_id();
-        $_SESSION = [];
-        session_destroy();
+        session()->invalidate();
+        session()->flush();
 
         return false;
     }

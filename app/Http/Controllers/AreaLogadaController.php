@@ -14,18 +14,19 @@ class AreaLogadaController
         protected MembroService        $membroService,
         protected RecuperaSenhaService $recuperaSenhaService,
     ) {
-        if (!$this->areaLogadaService->sessionExists()) {
-            redirect('/');
-            return;
-        }
+        //
     }
 
     public function index(?array $errors = null, ?array $data = null)
-    {
-        $nomeSessao = (string) $_SESSION['nome'];
-        $idSessao   = (int) $_SESSION['id_sessao'];
+    {   
+        if (!session()->isStarted() || !session()->has('nick')) {
+            return redirect('/');
+        }
+        
+        $nomeSessao = session('nome');
+        $idSessao   = session('id_sessao');
 
-        $memberLogged = $this->membroService->memberWithStream(1);
+        $memberLogged = $this->membroService->memberWithStream($idSessao);
 
         $nickPerfil        = $memberLogged->nick;
         $dadoStream        = [
@@ -47,15 +48,10 @@ class AreaLogadaController
 
     public function exit()
     {
-        session_start();
-        session_regenerate_id(true);
-        session_destroy();
+        session()->invalidate();
+        session()->flush();
+        session()->regenerateToken();
 
         return redirect()->route('inicio');
-    }
-
-    public function __destruct()
-    {
-        //
     }
 }

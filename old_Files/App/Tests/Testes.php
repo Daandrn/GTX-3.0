@@ -40,7 +40,7 @@ class Testes
     private function verificaSessao()
     {
         session_start();
-        var_dump($_SESSION);
+        var_dump(session());
         echo "<br>";
     }
 

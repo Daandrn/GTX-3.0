@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\DTO\SolicitUpdatePassword;
 use App\Models\RecuperaSenha;
-use stdClass;
+use Illuminate\Database\Eloquent\Collection;
 
 class RecuperaSenhaRepository
 {
@@ -22,7 +22,7 @@ class RecuperaSenhaRepository
         return $wasCreated;
     }
 
-    public function getPendingSolicities(): array|null
+    public function getPendingSolicities(): Collection
     {
         $solicities = $this->recuperaSenha->select(
             [
@@ -31,7 +31,7 @@ class RecuperaSenhaRepository
                 'recupera_senha.id',
                 'recupera_senha.nick',
                 'recupera_senha.created_at',
-                'status_senha.descricao',
+                'status_senha.descricao as status_senha',
             ],
         );
 
@@ -42,7 +42,7 @@ class RecuperaSenhaRepository
 
         $solicities->orderBy('created_at', 'asc');
 
-        return $solicities->first();
+        return $solicities->get();
     }
 
     public function getSolicityToMember(int $member_id)

@@ -124,7 +124,7 @@
                             <th>Status Membro</th>
                             <th>Ação</th>
                         </tr>
-                        @if (!empty($listaMembros))
+                        @if ($listaMembros->isNotEmpty())
                             @foreach ($listaMembros as $membros)
                                 <tr>
                                     <td class="formatNome">{{ $membros->nome }}</td>
@@ -132,7 +132,7 @@
                                     <td class="formatPlataforma">{{ $membros->plataforma_game }}</td>
                                     <td class="formatStatus">{{ $membros->cargo_membro }}</td>
                                     <td class="formatAcao">
-                                        @if (/**$_SESSION['statusMembro'] === 4*/ true)
+                                        @if (session()->get('statusMembro') === 4)
                                             <form action="/alterastatusmembro" method="post">
                                                 @csrf()
                                                 @method('POST')
@@ -148,7 +148,7 @@
                                                 </div>
                                             </form>
                                         @endif
-                                        @if (/**in_array($_SESSION['statusMembro'], [1, 4], true)*/ true)
+                                        @if (in_array(session()->get('statusMembro'), [1, 4], true))
                                             <form action="/elogiar" method="post">
                                                 @csrf()
                                                 @method('POST')
@@ -165,46 +165,9 @@
                                 <td class="formatNoresult" colspan="5">Nenhum membro econtrado!</td>
                             </tr>
                         @endif
-                        @if (!empty($listaMembros))
-                            @foreach ($listaMembros as $membros)
-                                <tr>
-                                    <td class="formatNome">{{ $membros->nome }}</td>
-                                    <td class="formatNick">{{ $membros->nick }}</td>
-                                    <td class="formatPlataforma">{{ $membros->plataforma_game }}</td>
-                                    <td class="formatStatus">{{ $membros->cargo_membro }}</td>
-                                    <td class="formatAcao">
-                                        @if (/**$_SESSION['statusMembro'] === 4*/ true)
-                                            <form action="/alterastatusmembro" method="post">
-                                                @csrf()
-                                                @method('POST')
-                                                <div>
-                                                    <select name="acaoMembrosAdm[]">
-                                                        <option value="">Selecione</option>
-                                                        <option value="4">Administrador</option>
-                                                        <option value="1">Membro</option>
-                                                        <option value="3">Expulsar</option>
-                                                    </select>
-                                                    <input type="submit" name="acaoMembrosAdm[]" value="Salvar">
-                                                    <input type="hidden" name="acaoMembrosAdm[]" value="{{ $membros->id }}">
-                                                </div>
-                                            </form>
-                                        @endif
-                                        @if (/**in_array($_SESSION['statusMembro'], [1, 4], true)*/ true)
-                                            <form action="/elogiar" method="post">
-                                                @csrf()
-                                                @method('POST')
-                                                <input type="submit" value="Elogiar">
-                                                <input type="submit" value="Xingar">
-                                                <input type="hidden" name="acaoMembros" value="{{ $membros->id }}">
-                                            </form>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
                     </table>
                 </div>
-                @if (/**$_SESSION['statusMembro'] === 4*/ true)
+                @if (session()->get('statusMembro') === 4)
                     <div id="recrutAdm">
                         <table id="tabAdmMembros">
                             <caption>
@@ -217,13 +180,13 @@
                                 <th>Status Solicitação</th>
                                 <th>Ação</th>
                             </tr>
-                            @if (!empty($listaRecrut))
+                            @if ($listaRecrut->isNotEmpty())
                                 @foreach ($listaRecrut as $recrut)
                                     <tr>
                                         <td class="formatNome">{{ $recrut->nome }}</td>
                                         <td class="formatNick">{{ $recrut->nick }}</td>
                                         <td class="formatPlataforma">{{ $recrut->plataforma }}</td>
-                                        <td class="formatStatus">{{ $recrut->status_membro }}</td>
+                                        <td class="formatStatus">{{ $recrut->status_solicit }}</td>
                                         <td class="formatAcao">
                                             <form action="/alterastatusmembro" method="post">
                                                 @csrf()
@@ -249,7 +212,7 @@
                         </table>
                     </div>
                 @endif
-                @if (/**$_SESSION['statusMembro'] === 4*/ true)
+                @if (session()->get('statusMembro') === 4)
                     <div id="recusadosAdm">
                         <table id="tabAdmMembros">
                             <caption>
@@ -262,13 +225,13 @@
                                 <th>Status Solicitação</th>
                                 <th>Ação</th>
                             </tr>
-                            @if (!empty($FlistaRejeitados))
-                                @foreach ($FlistaRejeitados as $rejeitados)
+                            @if ($listaRejeitados->isNotEmpty())
+                                @foreach ($listaRejeitados as $rejeitados)
                                     <tr>
                                         <td class="formatNome">{{ $rejeitados->nome }}</td>
                                         <td class="formatNick">{{ $rejeitados->nick }}</td>
                                         <td class="formatPlataforma">{{ $rejeitados->plataforma }}</td>
-                                        <td class="formatStatus">{{ $rejeitados->status_membro }}</td>
+                                        <td class="formatStatus">{{ $rejeitados->status_solicit }}</td>
                                         <td class="formatAcao">
                                             <form action="/alterastatusmembro" method="post">
                                                 @csrf()
@@ -301,7 +264,7 @@
                         </table>
                     </div>
                 @endif
-                @if (/**$_SESSION['statusMembro'] === 4*/ true)
+                @if (session()->get('statusMembro') === 4)
                     <div id="recuperaSenha">
                         <table id="tabAdmMembros">
                             <caption>
@@ -314,7 +277,7 @@
                                 <th>Status Solicitação</th>
                                 <th>Ação</th>
                             </tr>
-                            @if (!empty($listaNovaSenha))
+                            @if ($listaNovaSenha->isNotEmpty())
                                 @foreach ($listaNovaSenha as $novaSenha)
                                     <tr>
                                         <td class="formatNome">{{ $novaSenha->nome }}</td>

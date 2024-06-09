@@ -7,23 +7,44 @@ use Illuminate\Support\Facades\Hash;
 
 class CreateMembroDTO
 {
-    public function __construct(
-        public string $nome,
-        public string $nick,
-        public string $plataforma,
-        public int    $status_solicit,
-        public string $senha,
-    ) {
+    public string $nome;
+    public string $nick;
+    public string $plataforma;
+    public int    $status_solicit;
+    public string $senha;
+
+    public function __construct(object $data) 
+    {
+        $this->nome           = $data->nome;
+        $this->nick           = $data->nick;
+        $this->plataforma     = $data->plataforma;
+        $this->status_solicit = $data->status_solicit;
+        $this->senha          = $data->senha;
     }
 
     public static function make(array $request): self
     {
-        return new self(
-            $request['nome_recrut'],
-            $request['nick_recrut'],
-            $request['plataforma_recrut'],
-            StatusSolicit::STATUS_PENDENTE->value,
-            Hash::make('12345678'),
-        );
+        $data = (object) [
+            'nome'           => $request['nome_recrut'],
+            'nick'           => $request['nick_recrut'],
+            'plataforma'     => $request['plataforma_recrut'],
+            'status_solicit' => StatusSolicit::STATUS_PENDENTE->value,
+            'senha'          => Hash::make('12345678'),
+        ];
+        
+        return new self($data);
+    }
+
+    public function toArray(): array
+    {
+        $array = [
+            'nome'           => $this->nome,
+            'nick'           => $this->nick,
+            'plataforma'     => $this->plataforma,
+            'status_solicit' => $this->status_solicit,
+            'senha'          => $this->senha,
+        ];
+
+        return $array;
     }
 }
