@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTX</title>
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="shortcut icon" href="/Public/css/imagens/logotrans.png" type="image/x-png">
 </head>
 
