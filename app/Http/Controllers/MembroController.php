@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\DTO\Membros\UpdateNickDTO;
 use App\DTO\Membros\UpdatePasswordDTO;
+use App\DTO\Membros\UpdateStatusMembroDTO;
 use App\DTO\UpdateCanalStreamDTO;
+use App\Http\Requests\Request;
 use App\Http\Requests\UpdateCanalStreamRequest;
-use App\Requests\Request;
 use App\Services\AreaLogadaService;
 use App\Services\MembroService;
 use App\Services\CanalStreamService;
@@ -30,10 +31,11 @@ class MembroController
         return view('membros', compact('membros'));
     }
 
-    public function alteraStatusMembro()
+    public function alteraStatusMembro(Request $request)
     {
-        $request = Request::toArray();
-        $this->membroService->updateStatusMember($request);
+        $this->membroService->updateStatusMember(
+            UpdateStatusMembroDTO::make($request['acaoMembrosAdm'])
+        );
 
         return redirect()
                 ->route('arealogada');
@@ -46,7 +48,7 @@ class MembroController
                     ->route('inicio', status:401);
         }
         
-        $updateStreamRequest->membro_id = session('id_sessao');
+        $updateStreamRequest->membro_id = session()->get('id_sessao');
 
         $response = $this->canalStreamService->updateStream(
             UpdateCanalStreamDTO::make($updateStreamRequest)
@@ -96,19 +98,17 @@ class MembroController
                 ->withErrors($response);
     }
 
-    public function alteraNick()
+    public function alteraNick(Request $request)
     {
         if (!$this->areaLogadaService->sessionExists()) {
             redirect("inicio");
             return;
         }
 
-        $Request = Request::new();
-        $id      = session('id_sessao');
+        $request->id = session()->get('id_sessao');
 
         $response = $this->membroService->updateNick(
-            UpdateNickDTO::make($Request),
-            $id
+            UpdateNickDTO::make($request)
         );
 
         return redirect()
@@ -116,19 +116,17 @@ class MembroController
                 ->withErrors($response);
     }
 
-    public function alteraSenha()
+    public function alteraSenha(Request $request)
     {
         if (!$this->areaLogadaService->sessionExists()) {
-            redirect("inicio");
-            return;
+            return redirect()
+                    ->route('inicio');
         }
 
-        $Request = Request::new();
-        $id      = session('id_sessao');
+        $request->id = session()->get('id_sessao');
 
         $response = $this->membroService->updatePassword(
-            UpdatePasswordDTO::make($Request),
-            $id
+            UpdatePasswordDTO::make($request)
         );
 
         return redirect()
@@ -136,9 +134,8 @@ class MembroController
                 ->withErrors($response);
     }
 
-    public function delete()
+    public function delete(Request $request)
     {
-        $request = Request::toArray();
         $this->membroService->delete($request);
 
         return redirect()

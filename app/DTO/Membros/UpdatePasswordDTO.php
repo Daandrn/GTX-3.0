@@ -4,16 +4,19 @@ namespace App\DTO\Membros;
 
 class UpdatePasswordDTO
 {
+    public int    $id;
     public string $senha;
 
     public function __construct(object $data)
     {
-        $this->senha = $data->senha;
+        $this->id    = $data->id;
+        $this->senha = (string) $data->senha;
     }
 
     public static function make(object $request): self
     {
         $data = (object) [
+            'id'    => $request->id,
             'senha' => $request->senha,
         ];
         
@@ -23,6 +26,7 @@ class UpdatePasswordDTO
     public function toArray(): array
     {
         $array = [
+            'id'    => $this->id,
             'senha' => $this->senha,
         ];
         

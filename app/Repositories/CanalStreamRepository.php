@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\DTO\UpdateCanalStreamDTO;
 use App\Models\CanalStream;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use stdClass;
 
 class CanalStreamRepository
@@ -52,8 +53,11 @@ class CanalStreamRepository
         return $streamUpdated->first();
     }
 
-    public function delete(int $id): bool
+    public function delete(int $id): void
     {
-        return $this->canalStreamModel->deleteOne($id);
+        DB::beginTransaction();
+        
+        $streamDeleted = $this->canalStreamModel->findOrFail($id);
+        $streamDeleted->deleteOrFail();
     }
 }

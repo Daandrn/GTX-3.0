@@ -9,6 +9,7 @@ use App\DTO\Membros\UpdateStatusMembroDTO;
 use App\Models\Membro;
 use App\Models\PlataformaGame;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use stdClass;
 
 class MembroRepository
@@ -69,8 +70,8 @@ class MembroRepository
             ],
         );
 
-        $recruits->leftJoin('status_membros', 'status_membros.id', 'status_solicit');
-        $recruits->leftJoin('plataforma_game', 'plataforma_game.id', 'membros.plataforma');
+        $recruits->join('status_membros', 'status_membros.id', '=', 'status_solicit');
+        $recruits->join('plataforma_game', 'plataforma_game.id', '=', 'membros.plataforma');
 
         $recruits->whereIn('status_solicit', [0]);
 
@@ -140,44 +141,40 @@ class MembroRepository
 
     public function insert(CreateMembroDTO $dto): Membro
     {
-        $newMember = $this->membroModel->create($dto->toArray());
-
-        return $newMember;
+        return $this->membroModel->create($dto->toArray());
     }
 
     public function updateStatusMember(UpdateStatusMembroDTO $dto): bool
     {
-        return $this->membroModel->update(
-            ['status_solicit' => $dto->status_solicit],
-            $dto->id,
-        );
+        $memberUpdated = $this->membroModel->findOrFail($dto->id);
+
+        return $memberUpdated->update($dto->toArray());
     }
 
-    public function updateNick(UpdateNickDTO $dto, int $id): stdClass|false
+    public function updateNick(UpdateNickDTO $dto): Membro
     {
-        $wasUpdated = $this->membroModel->update($dto->toArray(), $id);
+        $memberUpdated = $this->membroModel->findOrFail($dto->id);
+        $wasUpdated = $memberUpdated->update($dto->toArray());
 
         if ($wasUpdated) {
-            $nickUpdated = $this->membroModel->select(
-                fields: ['id', 'nick'],
-                where: ['id', '=', $id, 'limit 1'],
-            );
+            $nickUpdated = $this->membroModel->where('id', '=', $dto->id);
         }
 
-        return $wasUpdated
-                ? $nickUpdated[0]
-                : false;
+        return $nickUpdated->first(['id', 'nick']);
     }
 
-    public function updatePassword(UpdatePasswordDTO $dto, int $id): bool
+    public function updatePassword(UpdatePasswordDTO $dto): bool
     {
-        $wasUpdated = $this->membroModel->update($dto->toArray(), $id);
-
-        return $wasUpdated;
+        $memberUpdated = $this->membroModel->findOrFail($dto->id);
+        
+        return $memberUpdated->update($dto->toArray());
     }
 
-    public function delete(int $id): bool
+    public function delete(int $id): void
     {
-        return $this->membroModel->deleteOne($id);
+        $deleted = $this->membroModel->findOrFail($id);
+        $deleted->deleteOrFail();
+
+        DB::commit();
     }
 }

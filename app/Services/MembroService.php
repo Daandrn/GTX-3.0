@@ -6,14 +6,14 @@ use App\DTO\Membros\CreateMembroDTO;
 use App\DTO\Membros\UpdateNickDTO;
 use App\DTO\Membros\UpdatePasswordDTO;
 use App\DTO\Membros\UpdateStatusMembroDTO;
+use App\Helpers\SanitizeInput;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RecruitRequest;
+use App\Http\Requests\Request;
 use App\Models\Membro;
 use App\Repositories\MembroRepository;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Vendor\Helpers\SanitizeInput;
 
 class MembroService
 {
@@ -114,7 +114,7 @@ class MembroService
         return ['message' => "Solicitação realizada com sucesso, aguarde que seja aprovada por um dos administradores!"];
     }
 
-    public function updateNick(UpdateNickDTO $dto, int $id): array
+    public function updateNick(UpdateNickDTO $dto): array
     {
         if (preg_match('[\'"<>&;/\|]', $dto->nick)) {
             return ['message' => "O campo nick não pode conter caracteres especiais!"];
@@ -130,20 +130,20 @@ class MembroService
             return ['message' => "O nick deve ter no mínimo 3 e no maximo 20 caracteres!"];
         }
 
-        $memberExists = $this->memberExists(id: $id);
+        $memberExists = $this->memberExists(id: $dto->id);
 
         if ($memberExists->isEmpty()) {
             return ['message' => "Membro informado não existe. Verifique!"];
         }
 
-        $nickUpdated = $this->membroRepository->updateNick($dto, $id);
+        $nickUpdated = $this->membroRepository->updateNick($dto);
 
-        session()->push('nick', $nickUpdated->nick);
+        session()->put('nick', $nickUpdated->nick);
 
         return ['message' => "Nick alterado com sucesso!"];
     }
 
-    public function updatePassword(UpdatePasswordDTO $dto, int $id): array
+    public function updatePassword(UpdatePasswordDTO $dto): array
     {
         $dto->senha = SanitizeInput::make($dto->senha);
 
@@ -155,17 +155,17 @@ class MembroService
             return ['message' => "A senha deve conter no mínimo 8 caracteres!"];
         }
 
-        $memberExists = $this->memberExists(id: $id);
+        $memberExists = $this->memberExists(id: $dto->id);
 
         if ($memberExists->isEmpty()) {
             return ['message' => "Membro informado não existe. Verifique!"];
         }
 
         if (password_get_info($dto->senha)['algoName'] !== 'bcrypt') {
-            $dto->senha = password_hash($dto->senha, PASSWORD_BCRYPT);
+            $dto->senha = Hash::make($dto->senha);
         }
 
-        $wasUpdated = $this->membroRepository->updatePassword($dto, $id);
+        $wasUpdated = $this->membroRepository->updatePassword($dto);
 
         if ($wasUpdated) {
             return ['message' => "Senha alterada com sucesso!"];
@@ -174,18 +174,15 @@ class MembroService
         return ['message' => "Erro ao alterar senha. verifique!"];
     }
 
-    public function updateStatusMember(array $request): bool
+    public function updateStatusMember(UpdateStatusMembroDTO $dto): bool
     {
-        return $this->membroRepository->updateStatusMember(
-            UpdateStatusMembroDTO::make($request['acaoMembrosAdm'])
-        );
+        return $this->membroRepository->updateStatusMember($dto);
     }
 
-    public function delete(array $request): bool
+    public function delete(Request $request): void
     {
-        $id = (int) $request['acaoMembrosAdm'][1];
+        $id = (int) $request->acaoMembrosAdm[1];
         $this->canalStreamService->deleteStream($id);
-
-        return $this->membroRepository->delete($id);
+        $this->membroRepository->delete($id);
     }
 }

@@ -29,9 +29,7 @@ class CanalStreamService
             return ['message' => "Erro ao criar canal de stream. verifique!"];
         }
 
-        $response = ['message' => "Canal de stream criado com sucesso!"];
-
-        return $response;
+        return ['message' => "Canal de stream criado com sucesso!"];
     }
 
     public function updateStream(UpdateCanalStreamDTO $dto): array
@@ -87,9 +85,7 @@ class CanalStreamService
             return ['message' => "Erro ao alterar canal de stream. Procure um administrador!"];
         }
 
-        $response = ['message' => "Canal de stream alterado com sucesso!"];
-        
-        return $response;
+        return ['message' => "Canal de stream alterado com sucesso!"];
     }
 
     public function limpaStream(UpdateCanalStreamDTO $dto): array
@@ -105,29 +101,15 @@ class CanalStreamService
         if (!$wasUpdated) {
             return ['message' => "Erro ao limpar canal de stream. Procure um administrador!"];
         }
-
-        $response = ['message' => "Canal de stream excluído com sucesso!"];
         
-        return $response;
+        return ['message' => "Canal de stream excluído com sucesso!"];
     }
 
     public function deleteStream(int $id): array
     {
-        $streamExists = $this->canalStreamRepository->getStream($id);
-
-        if ($streamExists->isEmpty()) {
-            return ['message' => "Erro: Não existe canal de stream para o id. verifique!"];
-        }
+        $this->canalStreamRepository->delete($id);
         
-        $wasDeleted = $this->canalStreamRepository->delete($id);
-
-        if (!$wasDeleted) {
-            return ['message' => "Erro ao excluir canal de stream. verifique!"];
-        }
-        
-        $response = ['message' => "Canal de stream excluído com sucesso!"];
-        
-        return $response;
+        return ['message' => "Canal de stream excluído com sucesso!"];
     }
 
     protected function linkFormat(string $link) 

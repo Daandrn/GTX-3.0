@@ -86,7 +86,7 @@
             <div>
                 <form action="{{ Route('alteranick') }}" method="POST">
                     @csrf()
-                    @method('POST')
+                    @method('PATCH')
                     <h3>Perfil</h3>
                     <div>
                         <label for="nick">Nick/origin</label>
@@ -99,7 +99,7 @@
             <div>
                 <form action="{{ Route('alterasenha') }}" method="POST">
                     @csrf()
-                    @method('POST')
+                    @method('PATCH')
                     <div>
                         <label for="senha">Nova senha</label>
                         <input type="password" name="senha" id="senha" placeholder="Nova senha" maxlength="10" title="Insira sua senha numérica.">
@@ -133,9 +133,9 @@
                                     <td class="formatStatus">{{ $membros->cargo_membro }}</td>
                                     <td class="formatAcao">
                                         @if (session()->get('statusMembro') === 4)
-                                            <form action="/alterastatusmembro" method="post">
+                                            <form action="{{ Route('alterastatusmembro') }}" method="post">
                                                 @csrf()
-                                                @method('POST')
+                                                @method('PATCH')
                                                 <div>
                                                     <select name="acaoMembrosAdm[]">
                                                         <option value="">Selecione</option>
@@ -149,7 +149,7 @@
                                             </form>
                                         @endif
                                         @if (in_array(session()->get('statusMembro'), [1, 4], true))
-                                            <form action="/elogiar" method="post">
+                                            <form action="/" method="post">
                                                 @csrf()
                                                 @method('POST')
                                                 <input type="submit" value="Elogiar">
@@ -190,7 +190,7 @@
                                         <td class="formatAcao">
                                             <form action="{{ Route('alterastatusmembro') }}" method="post">
                                                 @csrf()
-                                                @method('POST')
+                                                @method('PATCH')
                                                 <div>
                                                     <select name="acaoMembrosAdm[]">
                                                         <option value="">Selecione</option>
@@ -233,9 +233,9 @@
                                         <td class="formatPlataforma">{{ $rejeitados->plataforma }}</td>
                                         <td class="formatStatus">{{ $rejeitados->status_solicit }}</td>
                                         <td class="formatAcao">
-                                            <form action="/alterastatusmembro" method="post">
+                                            <form action="{{ Route('alterastatusmembro') }}" method="post">
                                                 @csrf()
-                                                @method('POST')
+                                                @method('PATCH')
                                                 <div>
                                                     <select name="acaoMembrosAdm[]">
                                                         <option value="">Selecione</option>

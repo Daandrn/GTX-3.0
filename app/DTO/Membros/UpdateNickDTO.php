@@ -4,16 +4,19 @@ namespace App\DTO\Membros;
 
 class UpdateNickDTO
 {
+    public int    $id;
     public string $nick;
 
     public function __construct(object $data)
     {
+        $this->id   = $data->id;
         $this->nick = $data->nick;
     }
 
     public static function make(object $request): self
     {
         $data = (object) [
+            'id'   => $request->id,
             'nick' => $request->nick,
         ];
 
@@ -23,6 +26,7 @@ class UpdateNickDTO
     public function toArray(): array
     {
         $array = [
+            'id'   => $this->id,
             'nick' => $this->nick,
         ];
 
